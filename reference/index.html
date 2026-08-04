@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">eyeprocess</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.0.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,6 +30,10 @@
     <li><a class="dropdown-item" href="../articles/preprocessing-features.html">Preprocessing, AOIs, and Feature Engineering</a></li>
     <li><a class="dropdown-item" href="../articles/psychometric-process-models.html">Psychometric Process-Data Models</a></li>
     <li><a class="dropdown-item" href="../articles/responsible-use.html">Quality, Provenance, and Responsible Interpretation</a></li>
+    <li><a class="dropdown-item" href="../articles/multi-vendor-validation.html">Multi-vendor empirical validation</a></li>
+    <li><a class="dropdown-item" href="../articles/interoperability-storage.html">Interoperability, Eye-Tracking-BIDS, and storage</a></li>
+    <li><a class="dropdown-item" href="../articles/advanced-model-validation.html">Advanced model programme and validation</a></li>
+    <li><a class="dropdown-item" href="../articles/research-validation-program.html">Research validation and software-paper programme</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
@@ -268,6 +272,20 @@
 
       <dl><dt>
 
+          <code><a href="audit_advanced_model_evidence.html">audit_advanced_model_evidence()</a></code>
+
+        </dt>
+        <dd>Audit advanced-model scientific evidence</dd>
+
+        <dt>
+
+          <code><a href="audit_vendor_validation.html">audit_vendor_validation()</a></code>
+
+        </dt>
+        <dd>Audit a multi-vendor validation corpus</dd>
+
+        <dt>
+
           <code><a href="eyeprocess-coordinates-time.html">register_coordinate_space</a></code> <code><a href="eyeprocess-coordinates-time.html">coordinate_space</a></code> <code><a href="eyeprocess-coordinates-time.html">convert_xy</a></code> <code><a href="eyeprocess-coordinates-time.html">convert_coordinates</a></code> <code><a href="eyeprocess-coordinates-time.html">audit_coordinate_spaces</a></code> <code><a href="eyeprocess-coordinates-time.html">estimate_sampling_rate</a></code> <code><a href="eyeprocess-coordinates-time.html">normalize_timebase</a></code> <code><a href="eyeprocess-coordinates-time.html">audit_timebase</a></code> <code><a href="eyeprocess-coordinates-time.html">align_clock</a></code> <code><a href="eyeprocess-coordinates-time.html">estimate_clock_transform</a></code> <code><a href="eyeprocess-coordinates-time.html">print.eye_clock_transform</a></code> <code><a href="eyeprocess-coordinates-time.html">apply_clock_transform</a></code> <code><a href="eyeprocess-coordinates-time.html">synchronize_eye_biometrics</a></code> <code><a href="eyeprocess-coordinates-time.html">audit_clock_sync</a></code>
 
         </dt>
@@ -333,6 +351,320 @@
         </dt>
         <dd>Experimental psychometric process models</dd>
       </dl></div><div class="section level2">
+      <h2 id="interoperability-and-storage">Interoperability and storage<a class="anchor" aria-label="anchor" href="#interoperability-and-storage"></a></h2>
+
+
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="eye_storage_spec.html">eye_storage_spec()</a></code>
+
+        </dt>
+        <dd>Specify disk-backed eyeprocess storage</dd>
+
+        <dt>
+
+          <code><a href="write_eye_storage.html">write_eye_storage()</a></code>
+
+        </dt>
+        <dd>Write an eye dataset to RDS or Arrow/Parquet storage</dd>
+
+        <dt>
+
+          <code><a href="open_eye_storage.html">open_eye_storage()</a></code>
+
+        </dt>
+        <dd>Open an eyeprocess storage handle</dd>
+
+        <dt>
+
+          <code><a href="collect_eye_storage.html">collect_eye_storage()</a></code>
+
+        </dt>
+        <dd>Collect a disk-backed eye dataset</dd>
+
+        <dt>
+
+          <code><a href="export_eye_bids.html">export_eye_bids()</a></code>
+
+        </dt>
+        <dd>Export Eye-Tracking-BIDS physiological recordings</dd>
+
+        <dt>
+
+          <code><a href="import_eye_bids.html">import_eye_bids()</a></code>
+
+        </dt>
+        <dd>Import Eye-Tracking-BIDS physiological recordings</dd>
+
+        <dt>
+
+          <code><a href="external_eye_adapters.html">as_eyeprocess_eyetools()</a></code> <code><a href="external_eye_adapters.html">as_eyeprocess_eyetrackingr()</a></code> <code><a href="external_eye_adapters.html">as_eyeprocess_gazer()</a></code> <code><a href="external_eye_adapters.html">as_eyeprocess_eyeris()</a></code> <code><a href="external_eye_adapters.html">as_eyeprocess_pupillometryr()</a></code>
+
+        </dt>
+        <dd>Convert common external eye-tracking objects</dd>
+
+        <dt>
+
+          <code><a href="sequence_interoperability.html">as_procdata_sequence()</a></code> <code><a href="sequence_interoperability.html">as_traminer_sequence()</a></code> <code><a href="sequence_interoperability.html">as_seqhmm_data()</a></code>
+
+        </dt>
+        <dd>Convert scanpaths to process/sequence package contracts</dd>
+
+        <dt>
+
+          <code><a href="fit_gdina_adapter.html">fit_gdina_adapter()</a></code>
+
+        </dt>
+        <dd>Fit a GDINA cognitive-diagnosis adapter</dd>
+
+        <dt>
+
+          <code><a href="fit_diffirt_adapter.html">fit_diffirt_adapter()</a></code>
+
+        </dt>
+        <dd>Fit a diffusion IRT adapter</dd>
+
+        <dt>
+
+          <code><a href="fit_openmx_process_model.html">fit_openmx_process_model()</a></code>
+
+        </dt>
+        <dd>Fit a user-defined OpenMx process model</dd>
+      </dl></div><div class="section level2">
+      <h2 id="validation-programme">Validation programme<a class="anchor" aria-label="anchor" href="#validation-programme"></a></h2>
+
+
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="vendor_validation_spec.html">vendor_validation_spec()</a></code>
+
+        </dt>
+        <dd>Specify multi-vendor empirical validation requirements</dd>
+
+        <dt>
+
+          <code><a href="audit_vendor_validation.html">audit_vendor_validation()</a></code>
+
+        </dt>
+        <dd>Audit a multi-vendor validation corpus</dd>
+
+        <dt>
+
+          <code><a href="model_validation_spec.html">model_validation_spec()</a></code>
+
+        </dt>
+        <dd>Specify a model-validation programme</dd>
+
+        <dt>
+
+          <code><a href="run_model_validation.html">run_model_validation()</a></code>
+
+        </dt>
+        <dd>Run parameter-recovery, coverage, and misspecification validation</dd>
+
+        <dt>
+
+          <code><a href="advanced_model_evidence_spec.html">advanced_model_evidence_spec()</a></code>
+
+        </dt>
+        <dd>Specify evidence required to promote advanced model interfaces</dd>
+
+        <dt>
+
+          <code><a href="audit_advanced_model_evidence.html">audit_advanced_model_evidence()</a></code>
+
+        </dt>
+        <dd>Audit advanced-model scientific evidence</dd>
+
+        <dt>
+
+          <code><a href="simulation_based_calibration.html">simulation_based_calibration()</a></code>
+
+        </dt>
+        <dd>Run simulation-based calibration</dd>
+
+        <dt>
+
+          <code><a href="compare_model_engines.html">compare_model_engines()</a></code>
+
+        </dt>
+        <dd>Compare equivalent model engines</dd>
+
+        <dt>
+
+          <code><a href="raven_reproduction_spec.html">raven_reproduction_spec()</a></code>
+
+        </dt>
+        <dd>Specify a published Raven strategy-model reproduction</dd>
+
+        <dt>
+
+          <code><a href="run_raven_reproduction.html">run_raven_reproduction()</a></code>
+
+        </dt>
+        <dd>Execute a licensed published-model reproduction</dd>
+
+        <dt>
+
+          <code><a href="grouped_cv.html">grouped_cv()</a></code>
+
+        </dt>
+        <dd>Evaluate a model with grouped cross-validation</dd>
+
+        <dt>
+
+          <code><a href="crossed_grouped_cv.html">crossed_grouped_cv()</a></code>
+
+        </dt>
+        <dd>Cross-classified grouped cross-validation</dd>
+
+        <dt>
+
+          <code><a href="quantify_process_leakage.html">quantify_process_leakage()</a></code>
+
+        </dt>
+        <dd>Quantify leakage from row-wise rather than grouped validation</dd>
+
+        <dt>
+
+          <code><a href="preprocessing_multiverse.html">preprocessing_multiverse()</a></code>
+
+        </dt>
+        <dd>Run a preprocessing or AOI multiverse</dd>
+
+        <dt>
+
+          <code><a href="benchmark_eyeprocess.html">benchmark_eyeprocess()</a></code>
+
+        </dt>
+        <dd>Benchmark an eyeprocess operation</dd>
+
+        <dt>
+
+          <code><a href="reporting_guideline_audit.html">reporting_guideline_audit()</a></code>
+
+        </dt>
+        <dd>Audit reporting-guideline coverage</dd>
+
+        <dt>
+
+          <code><a href="write_reporting_guideline_report.html">write_reporting_guideline_report()</a></code>
+
+        </dt>
+        <dd>Write a reporting-guideline audit report</dd>
+
+        <dt>
+
+          <code><a href="create_public_benchmark.html">create_public_benchmark()</a></code>
+
+        </dt>
+        <dd>Create a public, de-identified benchmark bundle</dd>
+
+        <dt>
+
+          <code><a href="write_software_paper_scaffold.html">write_software_paper_scaffold()</a></code>
+
+        </dt>
+        <dd>Write a methodological software-paper scaffold</dd>
+
+        <dt>
+
+          <code><a href="run_eyeprocess_validation_program.html">run_eyeprocess_validation_program()</a></code>
+
+        </dt>
+        <dd>Run the complete validation-release programme</dd>
+      </dl></div><div class="section level2">
+      <h2 id="advanced-model-programme">Advanced model programme<a class="anchor" aria-label="anchor" href="#advanced-model-programme"></a></h2>
+
+
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="dynamic_irtree_spec.html">dynamic_irtree_spec()</a></code>
+
+        </dt>
+        <dd>Specify a dynamic gaze-state IRTree</dd>
+
+        <dt>
+
+          <code><a href="fit_dynamic_irtree.html">fit_dynamic_irtree()</a></code>
+
+        </dt>
+        <dd>Fit a dynamic gaze-state response-tree model</dd>
+
+        <dt>
+
+          <code><a href="functional_pupil_irt_spec.html">functional_pupil_irt_spec()</a></code>
+
+        </dt>
+        <dd>Specify a functional pupil-IRT model</dd>
+
+        <dt>
+
+          <code><a href="fit_joint_functional_pupil_irt.html">fit_joint_functional_pupil_irt()</a></code>
+
+        </dt>
+        <dd>Fit a functional pupil-informed IRT workflow</dd>
+
+        <dt>
+
+          <code><a href="theory_strategy_spec.html">theory_strategy_spec()</a></code>
+
+        </dt>
+        <dd>Specify theory-defined process strategies</dd>
+
+        <dt>
+
+          <code><a href="fit_theory_strategy_irt.html">fit_theory_strategy_irt()</a></code>
+
+        </dt>
+        <dd>Fit a theory-defined strategy-informed IRT model</dd>
+
+        <dt>
+
+          <code><a href="gaze_diffusion_spec.html">gaze_diffusion_spec()</a></code>
+
+        </dt>
+        <dd>Specify a gaze-informed diffusion workflow</dd>
+
+        <dt>
+
+          <code><a href="fit_gaze_diffusion_irt.html">fit_gaze_diffusion_irt()</a></code>
+
+        </dt>
+        <dd>Fit a gaze-informed diffusion/accumulation workflow</dd>
+
+        <dt>
+
+          <code><a href="advanced_validation_grid.html">advanced_validation_grid()</a></code>
+
+        </dt>
+        <dd>Construct the advanced-model validation grid</dd>
+
+        <dt>
+
+          <code><a href="simulate_advanced_process_data.html">simulate_advanced_process_data()</a></code>
+
+        </dt>
+        <dd>Simulate advanced response-process data</dd>
+      </dl></div><div class="section level2">
       <h2 id="simulation-and-reporting">Simulation and reporting<a class="anchor" aria-label="anchor" href="#simulation-and-reporting"></a></h2>
 
 
@@ -355,6 +687,57 @@
 
         </dt>
         <dd>Export, reporting, and package bridges</dd>
+      </dl></div><div class="section level2">
+      <h2 id="validation-evidence-and-reports">Validation evidence and reports<a class="anchor" aria-label="anchor" href="#validation-evidence-and-reports"></a></h2>
+
+
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="grouped_folds.html">grouped_folds()</a></code>
+
+        </dt>
+        <dd>Create grouped cross-validation folds</dd>
+
+        <dt>
+
+          <code><a href="crossed_grouped_folds.html">crossed_grouped_folds()</a></code>
+
+        </dt>
+        <dd>Create cross-classified grouped folds</dd>
+
+        <dt>
+
+          <code><a href="model_validation_summary.html">model_validation_summary()</a></code>
+
+        </dt>
+        <dd>Summarize model validation</dd>
+
+        <dt>
+
+          <code><a href="sbc_summary.html">sbc_summary()</a></code>
+
+        </dt>
+        <dd>Summarize simulation-based calibration</dd>
+
+        <dt>
+
+          <code><a href="write_vendor_validation_report.html">write_vendor_validation_report()</a></code>
+
+        </dt>
+        <dd>Write a multi-vendor validation report</dd>
+
+        <dt>
+
+          <code><a href="write_advanced_model_evidence_report.html">write_advanced_model_evidence_report()</a></code>
+
+        </dt>
+        <dd>Write an advanced-model evidence report</dd>
       </dl></div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>

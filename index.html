@@ -11,8 +11,8 @@
 <script src="deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Harmonize Eye-Tracking, Pupillometry, Biometrics, and Psychometric Process Data">
-<meta name="description" content="Provides an extensible, vendor-neutral framework for importing, validating, harmonizing, transforming, visualizing, and modelling eye-tracking, pupillometry, behavioural, and biometric process data. The package uses explicit timebase and coordinate-space registries, preserves native fields and provenance, and offers first-class adapters for Gazepoint Analysis and Gazepoint Biometrics exports alongside generic and vendor-specific importers. Downstream tools support trial and area of interest reconstruction, signal-quality auditing, feature derivation, scanpath analysis, response-time and item-response workflows, and optional psychometric modelling engines. An integrated Gazepoint workflow produces quality-control evidence, media-trial reconstruction, plots, analysis-ready process tables, IRT-ready response structures, and reproducible reports.">
-<meta property="og:description" content="Provides an extensible, vendor-neutral framework for importing, validating, harmonizing, transforming, visualizing, and modelling eye-tracking, pupillometry, behavioural, and biometric process data. The package uses explicit timebase and coordinate-space registries, preserves native fields and provenance, and offers first-class adapters for Gazepoint Analysis and Gazepoint Biometrics exports alongside generic and vendor-specific importers. Downstream tools support trial and area of interest reconstruction, signal-quality auditing, feature derivation, scanpath analysis, response-time and item-response workflows, and optional psychometric modelling engines. An integrated Gazepoint workflow produces quality-control evidence, media-trial reconstruction, plots, analysis-ready process tables, IRT-ready response structures, and reproducible reports.">
+<meta name="description" content="Provides an extensible, vendor-neutral framework for importing, validating, harmonizing, transforming, visualizing, and modelling eye-tracking, pupillometry, behavioural, and biometric process data. The package uses explicit timebase and coordinate-space registries, preserves native fields and provenance, and offers first-class adapters for Gazepoint Analysis and Gazepoint Biometrics exports alongside generic and vendor-specific importers. Downstream tools support trial and area of interest reconstruction, signal-quality auditing, feature derivation, scanpath analysis, response-time and item-response workflows, and optional psychometric modelling engines. An integrated Gazepoint workflow produces quality-control evidence, media-trial reconstruction, plots, analysis-ready process tables, IRT-ready response structures, and reproducible reports. Eye-Tracking-BIDS interoperability and validation-release infrastructure support disk-backed storage, independent multi-vendor evidence, grouped validation, simulation calibration, model-equivalence audits, and explicitly experimental advanced psychometric process models.">
+<meta property="og:description" content="Provides an extensible, vendor-neutral framework for importing, validating, harmonizing, transforming, visualizing, and modelling eye-tracking, pupillometry, behavioural, and biometric process data. The package uses explicit timebase and coordinate-space registries, preserves native fields and provenance, and offers first-class adapters for Gazepoint Analysis and Gazepoint Biometrics exports alongside generic and vendor-specific importers. Downstream tools support trial and area of interest reconstruction, signal-quality auditing, feature derivation, scanpath analysis, response-time and item-response workflows, and optional psychometric modelling engines. An integrated Gazepoint workflow produces quality-control evidence, media-trial reconstruction, plots, analysis-ready process tables, IRT-ready response structures, and reproducible reports. Eye-Tracking-BIDS interoperability and validation-release infrastructure support disk-backed storage, independent multi-vendor evidence, grouped validation, simulation calibration, model-equivalence audits, and explicitly experimental advanced psychometric process models.">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -22,7 +22,7 @@
 
     <a class="navbar-brand me-2" href="index.html">eyeprocess</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.0.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -47,6 +47,10 @@
     <li><a class="dropdown-item" href="articles/preprocessing-features.html">Preprocessing, AOIs, and Feature Engineering</a></li>
     <li><a class="dropdown-item" href="articles/psychometric-process-models.html">Psychometric Process-Data Models</a></li>
     <li><a class="dropdown-item" href="articles/responsible-use.html">Quality, Provenance, and Responsible Interpretation</a></li>
+    <li><a class="dropdown-item" href="articles/multi-vendor-validation.html">Multi-vendor empirical validation</a></li>
+    <li><a class="dropdown-item" href="articles/interoperability-storage.html">Interoperability, Eye-Tracking-BIDS, and storage</a></li>
+    <li><a class="dropdown-item" href="articles/advanced-model-validation.html">Advanced model programme and validation</a></li>
+    <li><a class="dropdown-item" href="articles/research-validation-program.html">Research validation and software-paper programme</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="news/index.html">Changelog</a></li>
@@ -332,6 +336,12 @@
 <span><span class="va">result</span></span>
 <span><span class="fu"><a href="reference/validate_gazepoint_workflow.html">validate_gazepoint_workflow</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span></code></pre></div>
 <p>The output includes QC evidence, media/trial reconstruction, vendor-fixation and AOI summaries, processed pupil and valid-only biometric features, gaze and physiological plots, a person-by-item-by-trial process table, IRT-ready response templates, canonical exports, provenance, source fingerprints, a rerun script, and Markdown/HTML reports. The workflow does not fabricate responses or fit an IRT model automatically when observed response data are unavailable.</p>
+</div>
+<div class="section level2">
+<h2 id="validation-and-interoperability-programme">Validation and interoperability programme<a class="anchor" aria-label="anchor" href="#validation-and-interoperability-programme"></a>
+</h2>
+<p>Development version 0.4.0.9000 adds Eye-Tracking-BIDS import/export, optional Arrow/Parquet storage, explicit multi-vendor empirical-validation gates, advanced-model evidence audits, parameter-recovery and SBC harnesses, grouped validation, leakage and multiverse diagnostics, benchmark/reporting assets, and four explicitly experimental advanced model families.</p>
+<p>Software availability is not evidence of scientific validity: vendor claims require independent real exports, and advanced models remain experimental until their declared recovery, calibration, misspecification, grouped validation, equivalence, and empirical-reproduction gates pass.</p>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">

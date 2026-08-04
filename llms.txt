@@ -285,6 +285,21 @@ canonical exports, provenance, source fingerprints, a rerun script, and
 Markdown/HTML reports. The workflow does not fabricate responses or fit
 an IRT model automatically when observed response data are unavailable.
 
+## Validation and interoperability programme
+
+Development version 0.4.0.9000 adds Eye-Tracking-BIDS import/export,
+optional Arrow/Parquet storage, explicit multi-vendor
+empirical-validation gates, advanced-model evidence audits,
+parameter-recovery and SBC harnesses, grouped validation, leakage and
+multiverse diagnostics, benchmark/reporting assets, and four explicitly
+experimental advanced model families.
+
+Software availability is not evidence of scientific validity: vendor
+claims require independent real exports, and advanced models remain
+experimental until their declared recovery, calibration,
+misspecification, grouped validation, equivalence, and
+empirical-reproduction gates pass.
+
 # Package index
 
 ## Package overview
@@ -512,6 +527,10 @@ an IRT model automatically when observed response data are unavailable.
 
 ## Quality and governance
 
+- [`audit_advanced_model_evidence()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_advanced_model_evidence.md)
+  : Audit advanced-model scientific evidence
+- [`audit_vendor_validation()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_vendor_validation.md)
+  : Audit a multi-vendor validation corpus
 - [`register_coordinate_space`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-coordinates-time.md)
   [`coordinate_space`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-coordinates-time.md)
   [`convert_xy`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-coordinates-time.md)
@@ -632,6 +651,103 @@ an IRT model automatically when observed response data are unavailable.
   [`print.eye_missing_sensitivity`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-experimental.md)
   : Experimental psychometric process models
 
+## Interoperability and storage
+
+- [`eye_storage_spec()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eye_storage_spec.md)
+  : Specify disk-backed eyeprocess storage
+- [`write_eye_storage()`](https://stefanosbalaskas.github.io/eyeprocess/reference/write_eye_storage.md)
+  : Write an eye dataset to RDS or Arrow/Parquet storage
+- [`open_eye_storage()`](https://stefanosbalaskas.github.io/eyeprocess/reference/open_eye_storage.md)
+  : Open an eyeprocess storage handle
+- [`collect_eye_storage()`](https://stefanosbalaskas.github.io/eyeprocess/reference/collect_eye_storage.md)
+  : Collect a disk-backed eye dataset
+- [`export_eye_bids()`](https://stefanosbalaskas.github.io/eyeprocess/reference/export_eye_bids.md)
+  : Export Eye-Tracking-BIDS physiological recordings
+- [`import_eye_bids()`](https://stefanosbalaskas.github.io/eyeprocess/reference/import_eye_bids.md)
+  : Import Eye-Tracking-BIDS physiological recordings
+- [`as_eyeprocess_eyetools()`](https://stefanosbalaskas.github.io/eyeprocess/reference/external_eye_adapters.md)
+  [`as_eyeprocess_eyetrackingr()`](https://stefanosbalaskas.github.io/eyeprocess/reference/external_eye_adapters.md)
+  [`as_eyeprocess_gazer()`](https://stefanosbalaskas.github.io/eyeprocess/reference/external_eye_adapters.md)
+  [`as_eyeprocess_eyeris()`](https://stefanosbalaskas.github.io/eyeprocess/reference/external_eye_adapters.md)
+  [`as_eyeprocess_pupillometryr()`](https://stefanosbalaskas.github.io/eyeprocess/reference/external_eye_adapters.md)
+  : Convert common external eye-tracking objects
+- [`as_procdata_sequence()`](https://stefanosbalaskas.github.io/eyeprocess/reference/sequence_interoperability.md)
+  [`as_traminer_sequence()`](https://stefanosbalaskas.github.io/eyeprocess/reference/sequence_interoperability.md)
+  [`as_seqhmm_data()`](https://stefanosbalaskas.github.io/eyeprocess/reference/sequence_interoperability.md)
+  : Convert scanpaths to process/sequence package contracts
+- [`fit_gdina_adapter()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_gdina_adapter.md)
+  : Fit a GDINA cognitive-diagnosis adapter
+- [`fit_diffirt_adapter()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_diffirt_adapter.md)
+  : Fit a diffusion IRT adapter
+- [`fit_openmx_process_model()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_openmx_process_model.md)
+  : Fit a user-defined OpenMx process model
+
+## Validation programme
+
+- [`vendor_validation_spec()`](https://stefanosbalaskas.github.io/eyeprocess/reference/vendor_validation_spec.md)
+  : Specify multi-vendor empirical validation requirements
+- [`audit_vendor_validation()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_vendor_validation.md)
+  : Audit a multi-vendor validation corpus
+- [`model_validation_spec()`](https://stefanosbalaskas.github.io/eyeprocess/reference/model_validation_spec.md)
+  : Specify a model-validation programme
+- [`run_model_validation()`](https://stefanosbalaskas.github.io/eyeprocess/reference/run_model_validation.md)
+  : Run parameter-recovery, coverage, and misspecification validation
+- [`advanced_model_evidence_spec()`](https://stefanosbalaskas.github.io/eyeprocess/reference/advanced_model_evidence_spec.md)
+  : Specify evidence required to promote advanced model interfaces
+- [`audit_advanced_model_evidence()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_advanced_model_evidence.md)
+  : Audit advanced-model scientific evidence
+- [`simulation_based_calibration()`](https://stefanosbalaskas.github.io/eyeprocess/reference/simulation_based_calibration.md)
+  : Run simulation-based calibration
+- [`compare_model_engines()`](https://stefanosbalaskas.github.io/eyeprocess/reference/compare_model_engines.md)
+  : Compare equivalent model engines
+- [`raven_reproduction_spec()`](https://stefanosbalaskas.github.io/eyeprocess/reference/raven_reproduction_spec.md)
+  : Specify a published Raven strategy-model reproduction
+- [`run_raven_reproduction()`](https://stefanosbalaskas.github.io/eyeprocess/reference/run_raven_reproduction.md)
+  : Execute a licensed published-model reproduction
+- [`grouped_cv()`](https://stefanosbalaskas.github.io/eyeprocess/reference/grouped_cv.md)
+  : Evaluate a model with grouped cross-validation
+- [`crossed_grouped_cv()`](https://stefanosbalaskas.github.io/eyeprocess/reference/crossed_grouped_cv.md)
+  : Cross-classified grouped cross-validation
+- [`quantify_process_leakage()`](https://stefanosbalaskas.github.io/eyeprocess/reference/quantify_process_leakage.md)
+  : Quantify leakage from row-wise rather than grouped validation
+- [`preprocessing_multiverse()`](https://stefanosbalaskas.github.io/eyeprocess/reference/preprocessing_multiverse.md)
+  : Run a preprocessing or AOI multiverse
+- [`benchmark_eyeprocess()`](https://stefanosbalaskas.github.io/eyeprocess/reference/benchmark_eyeprocess.md)
+  : Benchmark an eyeprocess operation
+- [`reporting_guideline_audit()`](https://stefanosbalaskas.github.io/eyeprocess/reference/reporting_guideline_audit.md)
+  : Audit reporting-guideline coverage
+- [`write_reporting_guideline_report()`](https://stefanosbalaskas.github.io/eyeprocess/reference/write_reporting_guideline_report.md)
+  : Write a reporting-guideline audit report
+- [`create_public_benchmark()`](https://stefanosbalaskas.github.io/eyeprocess/reference/create_public_benchmark.md)
+  : Create a public, de-identified benchmark bundle
+- [`write_software_paper_scaffold()`](https://stefanosbalaskas.github.io/eyeprocess/reference/write_software_paper_scaffold.md)
+  : Write a methodological software-paper scaffold
+- [`run_eyeprocess_validation_program()`](https://stefanosbalaskas.github.io/eyeprocess/reference/run_eyeprocess_validation_program.md)
+  : Run the complete validation-release programme
+
+## Advanced model programme
+
+- [`dynamic_irtree_spec()`](https://stefanosbalaskas.github.io/eyeprocess/reference/dynamic_irtree_spec.md)
+  : Specify a dynamic gaze-state IRTree
+- [`fit_dynamic_irtree()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_dynamic_irtree.md)
+  : Fit a dynamic gaze-state response-tree model
+- [`functional_pupil_irt_spec()`](https://stefanosbalaskas.github.io/eyeprocess/reference/functional_pupil_irt_spec.md)
+  : Specify a functional pupil-IRT model
+- [`fit_joint_functional_pupil_irt()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_joint_functional_pupil_irt.md)
+  : Fit a functional pupil-informed IRT workflow
+- [`theory_strategy_spec()`](https://stefanosbalaskas.github.io/eyeprocess/reference/theory_strategy_spec.md)
+  : Specify theory-defined process strategies
+- [`fit_theory_strategy_irt()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_theory_strategy_irt.md)
+  : Fit a theory-defined strategy-informed IRT model
+- [`gaze_diffusion_spec()`](https://stefanosbalaskas.github.io/eyeprocess/reference/gaze_diffusion_spec.md)
+  : Specify a gaze-informed diffusion workflow
+- [`fit_gaze_diffusion_irt()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_gaze_diffusion_irt.md)
+  : Fit a gaze-informed diffusion/accumulation workflow
+- [`advanced_validation_grid()`](https://stefanosbalaskas.github.io/eyeprocess/reference/advanced_validation_grid.md)
+  : Construct the advanced-model validation grid
+- [`simulate_advanced_process_data()`](https://stefanosbalaskas.github.io/eyeprocess/reference/simulate_advanced_process_data.md)
+  : Simulate advanced response-process data
+
 ## Simulation and reporting
 
 - [`simulate_eye_dataset`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-simulation.md)
@@ -657,6 +773,21 @@ an IRT model automatically when observed response data are unavailable.
   [`as_eye_biometrics.data.frame`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-export-report.md)
   : Export, reporting, and package bridges
 
+## Validation evidence and reports
+
+- [`grouped_folds()`](https://stefanosbalaskas.github.io/eyeprocess/reference/grouped_folds.md)
+  : Create grouped cross-validation folds
+- [`crossed_grouped_folds()`](https://stefanosbalaskas.github.io/eyeprocess/reference/crossed_grouped_folds.md)
+  : Create cross-classified grouped folds
+- [`model_validation_summary()`](https://stefanosbalaskas.github.io/eyeprocess/reference/model_validation_summary.md)
+  : Summarize model validation
+- [`sbc_summary()`](https://stefanosbalaskas.github.io/eyeprocess/reference/sbc_summary.md)
+  : Summarize simulation-based calibration
+- [`write_vendor_validation_report()`](https://stefanosbalaskas.github.io/eyeprocess/reference/write_vendor_validation_report.md)
+  : Write a multi-vendor validation report
+- [`write_advanced_model_evidence_report()`](https://stefanosbalaskas.github.io/eyeprocess/reference/write_advanced_model_evidence_report.md)
+  : Write an advanced-model evidence report
+
 # Articles
 
 ### Foundations
@@ -680,3 +811,11 @@ an IRT model automatically when observed response data are unavailable.
   Models](https://stefanosbalaskas.github.io/eyeprocess/articles/psychometric-process-models.md):
 - [Quality, Provenance, and Responsible
   Interpretation](https://stefanosbalaskas.github.io/eyeprocess/articles/responsible-use.md):
+- [Multi-vendor empirical
+  validation](https://stefanosbalaskas.github.io/eyeprocess/articles/multi-vendor-validation.md):
+- [Interoperability, Eye-Tracking-BIDS, and
+  storage](https://stefanosbalaskas.github.io/eyeprocess/articles/interoperability-storage.md):
+- [Advanced model programme and
+  validation](https://stefanosbalaskas.github.io/eyeprocess/articles/advanced-model-validation.md):
+- [Research validation and software-paper
+  programme](https://stefanosbalaskas.github.io/eyeprocess/articles/research-validation-program.md):

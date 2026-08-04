@@ -1,6 +1,23 @@
 # Changelog
 
-## eyeprocess (development version)
+## eyeprocess 0.4.0.9000
+
+- Added Eye-Tracking-BIDS import/export and optional RDS/Parquet/Arrow
+  storage.
+- Added interoperability contracts for eye-tracking, sequence, GDINA,
+  diffIRT, and OpenMx ecosystems.
+- Added multi-vendor empirical-validation audits and an executable
+  validation-release programme.
+- Added parameter-recovery, interval-coverage, simulation-based
+  calibration, advanced-model evidence gates, engine-equivalence,
+  empirical-reproduction, grouped-validation, leakage, multiverse,
+  benchmarking, reporting, and public-benchmark infrastructure.
+- Added dynamic gaze-state IRTree, functional pupil-IRT, theory-defined
+  strategy-IRT, and gaze-informed diffusion model families with explicit
+  experimental safeguards.
+- Added tests, plots, templates, scripts, and four research vignettes.
+
+## eyeprocess 0.3.0.9001
 
 ## eyeprocess 0.3.0.9000
 
