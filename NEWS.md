@@ -1,3 +1,37 @@
+# eyeprocess 0.2.0.9002
+
+- Renamed the packaged Gazepoint Analysis 7.2.0 regression fixtures to portable, space-free filenames.
+- Updated all fixture references while preserving filename-based inference of the canonical participant identity `User 3`.
+- Added regression coverage requiring portable packaged fixture paths.
+- No importer, canonical schema, biometric mapping, or empirical-validation behavior changed.
+
+# eyeprocess 0.2.0.9001
+
+- Preserved the successful real Gazepoint Analysis 7.2.0 corpus validation while aligning legacy synthetic tests with current channel semantics.
+- Treats the legacy `GSR` fixture field as `gsr_raw`; processed conductance remains represented by `GSR_US`/`EDA` columns.
+- Added an explicit `recording_id` argument to folder-level Gazepoint import and forwards it safely for single-recording folders.
+- Rejects a single `recording_id` override for multi-recording folders rather than creating duplicate canonical identifiers.
+- Added regression coverage for direct and generic folder imports with recording-ID overrides.
+
+# eyeprocess 0.2.0.9000
+
+* Added empirical support for Gazepoint Analysis 7.2.0 `User *_all_gaze.csv`,
+  `User *_fixations.csv`, and multi-section `Data_Summary_export_*.csv` files.
+* Added filename-based participant and recording identity inference for paired
+  Gazepoint exports whose `USER` field is blank.
+* Added `TIMETICK(f=...)` normalization to zero-based recording seconds while
+  retaining native ticks, media-relative time, source media identifiers, AOI
+  labels, saccade measures, and video-frame values.
+* Namespaced vendor fixation identifiers by media because Gazepoint restarts
+  `FPOGID` for each media item.
+* Added explicit Gazepoint biometric channels and validity handling for raw GSR,
+  conductance in microsiemens, tonic/phasic components, heart rate, IBI, and
+  engagement dial values.
+* Added `read_gazepoint_summary()` and conversion of Gazepoint Data Summary
+  reports into AOI definitions and participant-AOI feature records.
+* Added paired-folder import, real-structure fixtures, regression tests, and a
+  private six-recording empirical validation corpus.
+
 # eyeprocess 0.1.0.9003
 
 * Updated the validation-corpus regression test to match the intentional,

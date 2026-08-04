@@ -1,6 +1,6 @@
 # eyeprocess implementation status
 
-Current development version: **0.1.0.9003**
+Current development version: **0.2.0.9002**
 
 ## Implemented in the development source
 
@@ -38,7 +38,7 @@ Windows 11 validation with R 4.6.1 established that version 0.0.0.9004:
 - passes `pkgdown::check_pkgdown()` with no problems; and
 - passes installation and runtime smoke tests.
 
-Version 0.1.0.9003 adds substantial empirical-format validation functionality,
+Version 0.2.0.9002 adds substantial empirical-format validation functionality,
 new documentation, and new tests. It has passed the static source audit recorded
 in `STATIC_AUDIT.txt`; a fresh Windows runtime validation is required before the
 milestone is closed.
@@ -57,10 +57,21 @@ coverage, misspecification, and empirical-reproduction studies are complete.
 
 ## Empirical-format validation milestone
 
-Version 0.1.0.9003 adds a formal compatibility-evidence layer. Adapter support
+Version 0.2.0.9002 adds a formal compatibility-evidence layer. Adapter support
 is now distinguished as declared, synthetic-fixture validated, or empirically
 validated against real de-identified exports. The package can inspect source
 structures, validate single exports or corpora, quantify canonical coverage,
 audit preservation, test canonical round trips, anonymize datasets, and produce
 reviewable validation bundles. No real vendor corpus is bundled; production
 compatibility still requires user-supplied empirical exports.
+
+## Gazepoint Analysis 7.2.0 real-export milestone
+
+Version 0.2.0.9002 adds an adapter path derived from six paired Gazepoint
+`*_all_gaze.csv` and `*_fixations.csv` files plus four multi-section Data
+Summary reports. It explicitly handles blank `USER` fields, filename-derived
+recording identities, monotonic `TIMETICK(f=10000000)` clocks, media-relative
+`TIME(...)` resets, media-scoped fixation identifiers, AOI summary sections,
+and embedded Gazepoint Biometrics channels. This version remains a runtime
+validation candidate until the complete Windows gate and private real-corpus
+validation have passed.

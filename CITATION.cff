@@ -2,7 +2,7 @@ cff-version: 1.2.0
 message: "If you use eyeprocess, please cite this software."
 title: "eyeprocess: Harmonize Eye-Tracking, Pupillometry, Biometrics, and Psychometric Process Data"
 type: software
-version: 0.1.0.9003
+version: 0.2.0.9002
 date-released: 2026-08-04
 authors:
   - family-names: Balaskas

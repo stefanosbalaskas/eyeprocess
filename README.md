@@ -1,7 +1,7 @@
 # eyeprocess
 
 <!-- badges: start -->
-**Development status:** 0.1.0.9003
+**Development status:** 0.2.0.9002
 <!-- badges: end -->
 
 `eyeprocess` is a vendor-neutral R framework for transforming heterogeneous
@@ -41,7 +41,7 @@ eye-tracking ecosystems, and downstream psychometric modelling.
 
 ## Empirical export validation
 
-Version 0.1.0.9003 adds a formal evidence framework for validating real export
+Version 0.2.0.9002 adds a formal evidence framework for validating real export
 files rather than treating adapter availability as proof of production
 compatibility. It provides:
 
@@ -62,17 +62,12 @@ compatibility claims are made.
 
 ## Development validation status
 
-Version 0.0.0.9004 is the validated baseline: on Windows 11 with R 4.6.1 it
+Version 0.1.0.9003 is the validated baseline: on Windows 11 with R 4.6.1 it
 installed successfully, passed the complete unit-test suite, completed
 `R CMD check` with **0 errors, 0 warnings, and 0 notes**, passed
 `pkgdown::check_pkgdown()`, and passed runtime smoke tests.
 
-Version 0.1.0.9003 adds the empirical export-validation layer described above
-and requires a fresh runtime validation after installation. The dedicated
-adapters remain **development implementations**: synthetic fixtures exercise
-their expected structures, but production compatibility must still be confirmed
-against multiple real, de-identified exports from each vendor and software
-version.
+Version 0.2.0.9002 adds a real-structure Gazepoint Analysis 7.2.0 adapter milestone and requires a fresh runtime validation after installation. Its regression corpus is derived from six paired de-identified Gazepoint sample/fixation exports and four Data Summary reports. Production compatibility remains version-specific and must be confirmed against additional independent exports before a general compatibility claim is made.
 
 The original joint-process and dynamic models are explicitly experimental. They
 must undergo parameter-recovery, calibration, coverage, misspecification, and
@@ -81,6 +76,27 @@ empirical-reproduction studies before confirmatory use.
 See [`IMPLEMENTATION_STATUS.md`](IMPLEMENTATION_STATUS.md),
 [`FUNCTION_REFERENCE.md`](FUNCTION_REFERENCE.md), and
 [`STATIC_AUDIT.txt`](STATIC_AUDIT.txt).
+
+
+## Gazepoint Analysis 7.2.0 real-export workflow
+
+The enhanced Gazepoint adapter recognizes current export names and report structures:
+
+```r
+x <- read_gazepoint_folder(
+  "C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess-validation-corpus/cases/gazepoint-analysis-v7.2.0-demo"
+)
+
+gp_pair_exports(
+  "C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess-validation-corpus/cases/gazepoint-analysis-v7.2.0-demo"
+)
+
+validate_eye_dataset(x)
+schema_coverage_summary(x)
+source_preservation_audit(x, require_raw = TRUE)
+```
+
+For these exports, `TIMETICK(f=10000000)` is the monotonic recording clock. The `TIME(...)` field is retained as media-relative time because it restarts when the media changes. Gazepoint fixation identifiers are namespaced by media for the same reason. Multi-section Data Summary reports are imported with `read_gazepoint_summary()` and converted to AOI definitions and participant-AOI features.
 
 ## Installation from the local source tree
 

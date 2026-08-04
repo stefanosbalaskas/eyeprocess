@@ -30,3 +30,15 @@
 ^HOTFIX_0\.1\.0\.9001\.md$
 
 ^HOTFIX_0\.1\.0\.9002\.md$
+^\.gitattributes$
+^prepare_gazepoint_validation_corpus\.ps1$
+^REAL_GAZEPOINT_VALIDATION\.md$
+^HOTFIX_0\.1\.0\.9003\.md$
+^MILESTONE_0\.2\.0\.9000\.md$
+^validate_gazepoint_real_exports\.R$
+^HANDOFF_0\.2\.0\.9000\.md$
+
+^HANDOFF_0\.2\.0\.9001\.md$
+^HOTFIX_0\.2\.0\.9001\.md$
+^HANDOFF_0\.2\.0\.9002\.md$
+^HOTFIX_0\.2\.0\.9002\.md$

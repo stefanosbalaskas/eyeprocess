@@ -1,24 +1,41 @@
 eyeprocess static audit
-Version: 0.1.0.9003
+=======================
 
-PASS  DESCRIPTION version: 0.1.0.9003
-PASS  README.md current version
-PASS  CITATION.cff current version
-PASS  inst/CITATION current version
-PASS  cran-comments.md current version
-PASS  IMPLEMENTATION_STATUS.md current version
-PASS  obsolete init error expectation removed
-PASS  idempotent message tested
-PASS  manifest preservation tested
-PASS  case-file preservation tested
-PASS  qmethod removed
-PASS  _pkgdown.yml parses
-PASS  CITATION.cff parses
-PASS  no trailing whitespace
-PASS  no merge conflict markers
-PASS  all NAMESPACE exports resolve
-PASS  all S3 methods resolve
-PASS  source inventory: R files=19, exports=223, tests=11, vignettes=7
+Candidate version: 0.2.0.9002
+Purpose: remove the final R CMD check portable-filename warning without changing adapter behavior.
 
-Runtime note:
-R is unavailable in the build container; the Windows validation script remains the authoritative runtime gate.
+R source files: 20
+Functions defined: 373
+Exported functions: 224
+S3 methods: 41
+Manual pages: 18
+Vignettes: 7
+Test files: 12
+Fixture files: 16
+
+PASS: Packaged inst paths contain no whitespace
+PASS: DESCRIPTION and CITATION.cff versions match — 0.2.0.9002 / 0.2.0.9002
+PASS: inst/CITATION version matches — 0.2.0.9002
+PASS: README development version matches — 0.2.0.9002
+PASS: Implementation status version matches — 0.2.0.9002
+PASS: Portable gaze fixture referenced
+PASS: Portable fixation fixture referenced
+PASS: Legacy spaced fixture paths absent from code paths
+PASS: Portable gaze fixture exists
+PASS: Portable fixation fixture exists
+PASS: HANDOFF_0.2.0.9002.md excluded from build — HANDOFF_0.2.0.9002.md
+PASS: HOTFIX_0.2.0.9002.md excluded from build — HOTFIX_0.2.0.9002.md
+PASS: pkgdown YAML parses
+PASS: All exported functions resolve
+PASS: All S3 methods resolve
+PASS: No trailing whitespace
+PASS: No merge conflict markers
+
+Runtime evidence inherited from 0.2.0.9001:
+- All unit tests passed.
+- pkgdown configuration passed.
+- Real six-recording Gazepoint Analysis 7.2.0 validation passed.
+- Full private corpus validation passed with zero validation errors and warnings.
+- R CMD check had 0 errors, 1 warning, 0 notes; the sole warning was the two spaced fixture filenames corrected here.
+
+A fresh complete Windows runtime validation remains required for 0.2.0.9002.

@@ -1,6 +1,6 @@
 # eyeprocess public function reference
 
-This development source exports **223 functions**. Functions in the experimental model layer require independent methodological and numerical validation before confirmatory use.
+This development source exports **224 functions**. Functions in the experimental model layer require independent methodological and numerical validation before confirmatory use.
 
 ## Canonical dataset and provenance
 
@@ -223,6 +223,7 @@ This development source exports **223 functions**. Functions in the experimental
 - `read_gazepoint_fixations()`
 - `read_gazepoint_folder()`
 - `read_gazepoint_gaze()`
+- `read_gazepoint_summary()`
 
 ## Other vendor imports
 

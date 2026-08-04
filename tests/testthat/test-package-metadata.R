@@ -41,3 +41,11 @@ test_that("pkgdown reference index includes the package overview", {
   expect_match(config, "- title: Package overview", fixed = TRUE)
   expect_match(config, "- eyeprocess-package", fixed = TRUE)
 })
+
+
+test_that("packaged regression fixtures use portable filenames", {
+  root <- system.file("extdata", package = "eyeprocess")
+  testthat::skip_if(!nzchar(root), "Installed extdata is unavailable.")
+  files <- list.files(root, recursive = TRUE, all.files = TRUE, no.. = TRUE)
+  expect_false(any(grepl("[[:space:]]", files)))
+})

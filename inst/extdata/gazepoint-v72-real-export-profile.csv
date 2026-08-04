@@ -1,0 +1,7 @@
+participant_label,sample_rows,fixation_rows,media_items,recording_elapsed_seconds,estimated_sampling_rate_hz,combined_gaze_valid_percent,left_pupil_valid_percent,right_pupil_valid_percent,biometrics_valid,aoi_labeled_samples
+User 0,1223,54,2,20.075826,60.871,97.547,97.465,97.302,False,131
+User 1,1222,52,2,20.058888,60.831,98.527,98.527,98.527,False,167
+User 2,1220,57,2,20.007365,60.868,95.164,95.082,95.164,False,85
+User 3,1227,56,2,20.141845,60.856,97.229,97.066,97.229,True,197
+User 4,1222,56,2,20.05965,60.844,94.19,94.108,74.877,True,172
+User 5,1226,62,2,20.125084,60.825,97.961,97.961,92.251,True,246

@@ -143,7 +143,7 @@ read_gazepoint <- function(
     keep_raw = TRUE,
     quiet = FALSE,
     ...) {
-  if (dir.exists(path)) return(read_gazepoint_folder(path, participant_id = participant_id, session_id = session_id, keep_raw = keep_raw, quiet = quiet, ...))
+  if (dir.exists(path)) return(read_gazepoint_folder(path, participant_id = participant_id, recording_id = recording_id, session_id = session_id, keep_raw = keep_raw, quiet = quiet, ...))
   type <- gp_identify_export_type(path)
   if (type == "fixations") return(read_gazepoint_fixations(path, participant_id = participant_id, recording_id = recording_id, session_id = session_id, keep_raw = keep_raw, quiet = quiet, ...))
   if (type == "aoi_statistics") return(read_gazepoint_aoi_statistics(path, participant_id = participant_id, recording_id = recording_id, session_id = session_id, keep_raw = keep_raw, quiet = quiet, ...))
@@ -337,6 +337,7 @@ read_gazepoint_folder <- function(
     path,
     include = c("gaze", "fixations", "events", "biometrics", "aoi"),
     participant_id = NULL,
+    recording_id = NULL,
     session_id = "S001",
     keep_raw = TRUE,
     recursive = FALSE,
@@ -349,10 +350,10 @@ read_gazepoint_folder <- function(
   objs <- list()
   for (i in seq_along(files)) {
     type <- types[i]
-    if (type == "gaze" && "gaze" %in% include) objs[[length(objs) + 1L]] <- read_gazepoint(files[i], participant_id = participant_id, session_id = session_id, keep_raw = keep_raw, quiet = TRUE, ...)
-    if (type == "combined_biometrics" && any(c("gaze", "biometrics") %in% include)) objs[[length(objs) + 1L]] <- read_gazepoint(files[i], participant_id = participant_id, session_id = session_id, keep_raw = keep_raw, quiet = TRUE, ...)
-    if (type == "fixations" && "fixations" %in% include) objs[[length(objs) + 1L]] <- read_gazepoint_fixations(files[i], participant_id = participant_id, session_id = session_id, keep_raw = keep_raw, quiet = TRUE, ...)
-    if (type == "aoi_statistics" && "aoi" %in% include) objs[[length(objs) + 1L]] <- read_gazepoint_aoi_statistics(files[i], participant_id = participant_id, session_id = session_id, keep_raw = keep_raw, quiet = TRUE, ...)
+    if (type == "gaze" && "gaze" %in% include) objs[[length(objs) + 1L]] <- read_gazepoint(files[i], participant_id = participant_id, recording_id = recording_id, session_id = session_id, keep_raw = keep_raw, quiet = TRUE, ...)
+    if (type == "combined_biometrics" && any(c("gaze", "biometrics") %in% include)) objs[[length(objs) + 1L]] <- read_gazepoint(files[i], participant_id = participant_id, recording_id = recording_id, session_id = session_id, keep_raw = keep_raw, quiet = TRUE, ...)
+    if (type == "fixations" && "fixations" %in% include) objs[[length(objs) + 1L]] <- read_gazepoint_fixations(files[i], participant_id = participant_id, recording_id = recording_id, session_id = session_id, keep_raw = keep_raw, quiet = TRUE, ...)
+    if (type == "aoi_statistics" && "aoi" %in% include) objs[[length(objs) + 1L]] <- read_gazepoint_aoi_statistics(files[i], participant_id = participant_id, recording_id = recording_id, session_id = session_id, keep_raw = keep_raw, quiet = TRUE, ...)
   }
   if (!length(objs)) .eye_stop("No requested Gazepoint export types were found.")
   out <- do.call(combine_eye_datasets, c(objs, list(resolve_ids = FALSE)))

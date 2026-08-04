@@ -1,6 +1,6 @@
 # Validating real eye-tracking exports
 
-`eyeprocess` 0.1.0.9003 distinguishes implemented support from evidence of
+`eyeprocess` 0.2.0.9002 distinguishes implemented support from evidence of
 compatibility with real exports. The package contains synthetic fixtures, but
 real device/software combinations must be validated separately.
 
@@ -81,3 +81,18 @@ Add one source file or folder per case and one manifest row per case before
 running validation. Use `supported_eye_formats()` for adapter names and
 `eye_format_profiles()` for `format_family` identifiers.
 
+
+## Gazepoint Analysis 7.2.0 corpus case
+
+The project validation corpus may contain one folder case with multiple paired
+recordings. For the current development case, the manifest path is relative:
+
+```text
+cases/gazepoint-analysis-v7.2.0-demo
+```
+
+The folder contains six `User *_all_gaze.csv` files, six paired
+`User *_fixations.csv` files, and four `Data_Summary_export_*.csv` reports.
+Version 0.2.0.9002 identifies each `User N` pair as one recording, uses
+`TIMETICK(f=10000000)` for recording-level order, retains media-relative time,
+and imports the Data Summary sections as AOI definitions and summary features.
