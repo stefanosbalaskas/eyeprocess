@@ -1,7 +1,7 @@
 # eyeprocess
 
 <!-- badges: start -->
-**Development status:** 0.3.0.9001
+**Development status:** 0.4.0.9000
 [![R-CMD-check](https://github.com/stefanosbalaskas/eyeprocess/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/stefanosbalaskas/eyeprocess/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
@@ -249,3 +249,16 @@ physiological plots, a person-by-item-by-trial process table, IRT-ready response
 templates, canonical exports, provenance, source fingerprints, a rerun script,
 and Markdown/HTML reports. The workflow does not fabricate responses or fit an
 IRT model automatically when observed response data are unavailable.
+
+## Validation and interoperability programme
+
+Development version 0.4.0.9000 adds Eye-Tracking-BIDS import/export,
+optional Arrow/Parquet storage, explicit multi-vendor empirical-validation
+gates, advanced-model evidence audits, parameter-recovery and SBC harnesses,
+grouped validation, leakage and multiverse diagnostics, benchmark/reporting
+assets, and four explicitly experimental advanced model families.
+
+Software availability is not evidence of scientific validity: vendor claims
+require independent real exports, and advanced models remain experimental
+until their declared recovery, calibration, misspecification, grouped
+validation, equivalence, and empirical-reproduction gates pass.

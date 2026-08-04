@@ -20,6 +20,10 @@ articles:
   - preprocessing-features
   - psychometric-process-models
   - responsible-use
+  - multi-vendor-validation
+  - interoperability-storage
+  - advanced-model-validation
+  - research-validation-program
 reference:
 - title: Package overview
   contents:
@@ -112,9 +116,67 @@ reference:
   - fit_accuracy_rt
   - fit_process_irt
   - fit_joint_process_model
+- title: Interoperability and storage
+  contents:
+  - eye_storage_spec
+  - write_eye_storage
+  - open_eye_storage
+  - collect_eye_storage
+  - export_eye_bids
+  - import_eye_bids
+  - starts_with("as_eyeprocess_")
+  - starts_with("as_procdata")
+  - starts_with("as_traminer")
+  - starts_with("as_seqhmm")
+  - fit_gdina_adapter
+  - fit_diffirt_adapter
+  - fit_openmx_process_model
+- title: Validation programme
+  contents:
+  - vendor_validation_spec
+  - audit_vendor_validation
+  - model_validation_spec
+  - run_model_validation
+  - advanced_model_evidence_spec
+  - audit_advanced_model_evidence
+  - simulation_based_calibration
+  - compare_model_engines
+  - raven_reproduction_spec
+  - run_raven_reproduction
+  - grouped_cv
+  - crossed_grouped_cv
+  - quantify_process_leakage
+  - preprocessing_multiverse
+  - benchmark_eyeprocess
+  - reporting_guideline_audit
+  - write_reporting_guideline_report
+  - create_public_benchmark
+  - write_software_paper_scaffold
+  - run_eyeprocess_validation_program
+- title: Advanced model programme
+  contents:
+  - dynamic_irtree_spec
+  - fit_dynamic_irtree
+  - functional_pupil_irt_spec
+  - fit_joint_functional_pupil_irt
+  - theory_strategy_spec
+  - fit_theory_strategy_irt
+  - gaze_diffusion_spec
+  - fit_gaze_diffusion_irt
+  - advanced_validation_grid
+  - simulate_advanced_process_data
 - title: Simulation and reporting
   contents:
   - simulate_eye_dataset
   - simulate_process_irt
   - parameter_recovery
   - report_eye_dataset
+
+- title: Validation evidence and reports
+  contents:
+  - grouped_folds
+  - crossed_grouped_folds
+  - model_validation_summary
+  - sbc_summary
+  - write_vendor_validation_report
+  - write_advanced_model_evidence_report
