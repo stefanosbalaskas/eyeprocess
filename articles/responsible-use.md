@@ -1,0 +1,38 @@
+# Quality, Provenance, and Responsible Interpretation
+
+Eye and physiological signals are observations. They do not identify
+mental states without a defensible measurement model and external
+validation.
+
+``` r
+
+validate_eye_dataset(x)
+audit_sampling_rate(x)
+audit_signal_quality(x)
+audit_pupil_quality(x)
+audit_trial_coverage(x)
+audit_missingness(x)
+analysis_readiness(x)
+interpretive_warnings()
+```
+
+The package does not automatically equate:
+
+- fixation with attention;
+- long dwell time with item difficulty;
+- pupil dilation with cognitive load;
+- rapid response with guessing;
+- EDA with a uniquely identified emotional state;
+- a statistical process component with effort or engagement.
+
+## Reproducible records
+
+``` r
+
+provenance_manifest(x)
+write_provenance(x, "provenance.json", format = "json")
+report_eye_dataset(x, "analysis-report.md", include_plots = TRUE)
+```
+
+Exploratory and confirmatory analyses should use separately declared
+feature, preprocessing, AOI, exclusion, and model specifications.

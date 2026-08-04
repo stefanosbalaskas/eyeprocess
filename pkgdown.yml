@@ -1,0 +1,16 @@
+pandoc: 3.8.3
+pkgdown: 2.2.1
+pkgdown_sha: ~
+articles:
+  gazepoint-downstream-workflow: gazepoint-downstream-workflow.html
+  gazepoint-workflows: gazepoint-workflows.html
+  getting-started: getting-started.html
+  importing-and-harmonizing: importing-and-harmonizing.html
+  preprocessing-features: preprocessing-features.html
+  psychometric-process-models: psychometric-process-models.html
+  responsible-use: responsible-use.html
+  validating-real-exports: validating-real-exports.html
+last_built: 2026-08-04T10:50Z
+urls:
+  reference: https://stefanosbalaskas.github.io/eyeprocess/reference
+  article: https://stefanosbalaskas.github.io/eyeprocess/articles

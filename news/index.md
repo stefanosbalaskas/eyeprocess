@@ -1,0 +1,204 @@
+# Changelog
+
+## eyeprocess (development version)
+
+## eyeprocess 0.3.0.9000
+
+- Added
+  [`run_gazepoint_workflow()`](https://stefanosbalaskas.github.io/eyeprocess/reference/run_gazepoint_workflow.md)
+  as the complete, reproducible downstream workflow for real Gazepoint
+  folders.
+- Added media-run reconstruction into explicit person-by-item-by-trial
+  intervals with optional study-specific item and condition maps.
+- Added integrated QC evidence for file pairing, canonical validation,
+  timebases, coordinate spaces, sampling rates, gaze and pupil validity,
+  trial coverage, episodes, and multimodal clock overlap.
+- Added pupil interpolation/filtering and blink derivation with baseline
+  correction disabled by default unless explicitly declared.
+- Added valid-only biometric analysis values and trial-level EDA,
+  heart-rate, IBI, dial, pupil, gaze, fixation, and AOI summaries while
+  preserving native data.
+- Added one-row-per-person-item-trial process tables,
+  AOI/fixation/pupil/biometric tables, feature dictionaries, response
+  templates, and conditional response/response-time matrices.
+- Added a complete plot suite, canonical export, source fingerprint,
+  workflow specification, rerun script, session information,
+  Markdown/HTML report, and workflow-result object.
+- Added workflow validation, documentation, a dedicated vignette,
+  Windows runner script, and regression tests with and without observed
+  responses.
+- The workflow never fabricates responses, scores, IRT estimates, or
+  psychological interpretations.
+
+## eyeprocess 0.2.0.9002
+
+- Renamed the packaged Gazepoint Analysis 7.2.0 regression fixtures to
+  portable, space-free filenames.
+- Updated all fixture references while preserving filename-based
+  inference of the canonical participant identity `User 3`.
+- Added regression coverage requiring portable packaged fixture paths.
+- No importer, canonical schema, biometric mapping, or
+  empirical-validation behavior changed.
+
+## eyeprocess 0.2.0.9001
+
+- Preserved the successful real Gazepoint Analysis 7.2.0 corpus
+  validation while aligning legacy synthetic tests with current channel
+  semantics.
+- Treats the legacy `GSR` fixture field as `gsr_raw`; processed
+  conductance remains represented by `GSR_US`/`EDA` columns.
+- Added an explicit `recording_id` argument to folder-level Gazepoint
+  import and forwards it safely for single-recording folders.
+- Rejects a single `recording_id` override for multi-recording folders
+  rather than creating duplicate canonical identifiers.
+- Added regression coverage for direct and generic folder imports with
+  recording-ID overrides.
+
+## eyeprocess 0.2.0.9000
+
+- Added empirical support for Gazepoint Analysis 7.2.0
+  `User *_all_gaze.csv`, `User *_fixations.csv`, and multi-section
+  `Data_Summary_export_*.csv` files.
+- Added filename-based participant and recording identity inference for
+  paired Gazepoint exports whose `USER` field is blank.
+- Added `TIMETICK(f=...)` normalization to zero-based recording seconds
+  while retaining native ticks, media-relative time, source media
+  identifiers, AOI labels, saccade measures, and video-frame values.
+- Namespaced vendor fixation identifiers by media because Gazepoint
+  restarts `FPOGID` for each media item.
+- Added explicit Gazepoint biometric channels and validity handling for
+  raw GSR, conductance in microsiemens, tonic/phasic components, heart
+  rate, IBI, and engagement dial values.
+- Added
+  [`read_gazepoint_summary()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-gazepoint.md)
+  and conversion of Gazepoint Data Summary reports into AOI definitions
+  and participant-AOI feature records.
+- Added paired-folder import, real-structure fixtures, regression tests,
+  and a private six-recording empirical validation corpus.
+
+## eyeprocess 0.1.0.9003
+
+- Updated the validation-corpus regression test to match the
+  intentional, idempotent behavior of
+  [`init_validation_corpus()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-format-validation.md).
+  Repeated initialization now verifies preservation of the manifest,
+  README, and existing case files rather than expecting an obsolete
+  non-empty-directory error.
+- No package implementation or analysis behavior changed in this patch.
+
+## eyeprocess 0.1.0.9002
+
+- Removed repeated
+  [`write.csv()`](https://rdrr.io/r/utils/write.table.html) `qmethod`
+  warnings from canonical-folder serialization on Windows.
+- Added explicit canonical units for imported biometric channels,
+  including heart rate, interbeat intervals, electrodermal activity, and
+  engagement-dial streams; unknown channels retain the explicit unit
+  `vendor_units`.
+- Made
+  [`init_validation_corpus()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-format-validation.md)
+  idempotent and non-destructive. Re-running it now preserves existing
+  manifests and case files unless `overwrite = TRUE`.
+- Added regression tests for warning-free canonical serialization,
+  populated biometric units, and safe repeated corpus initialization.
+
+## eyeprocess 0.1.0.9001
+
+- Corrected binocular eye-sample validation to use the composite key
+  `recording_id + sample_id + eye`, eliminating false duplicate-key
+  errors.
+
+- Added versioned canonical-folder serialization with an explicit
+  missing-value token, preserving the distinction between `NA` and
+  genuine empty text while retaining compatibility with folders written
+  by earlier development builds.
+
+- Prevented Pupil Labs and EyeLink detectors from probing proprietary
+  binary files as delimited text and suppressed detector-level parsing
+  warnings.
+
+- Made `validate_real_exports.R` exit cleanly with instructions when an
+  initialized corpus has no cases, rather than raising an error.
+
+- Added regression tests for binocular keys, missing-versus-empty round
+  trips, and warning-free expected rejection of SMI IDF input.
+
+- Added reproducible empirical export validation for individual files,
+  folders, and initialized, versioned multi-vendor corpora.
+
+- Added declared-versus-fixture-versus-empirical compatibility profiles.
+
+- Added source manifests with file hashes, field inventories, delimiter
+  and format-detection evidence.
+
+- Added canonical schema-coverage and source-preservation audits.
+
+- Added deterministic dataset fingerprints, canonical round-trip
+  comparison, and table-level compatibility evidence.
+
+- Added linked-identifier anonymization and shareable validation bundles
+  that exclude raw vendor data, source paths, original filenames, and
+  file hashes by default; human disclosure review remains mandatory.
+
+- Added dedicated source validators for Tobii, Pupil Labs, EyeLink, SMI,
+  and generic mapped exports, so all built-in adapters expose a
+  validation hook.
+
+- Added unique case identifiers, manifest-relative path resolution,
+  exact format-family evidence assignment, a real-export validation
+  vignette, manifest template, plots, reports, and regression tests.
+
+## eyeprocess 0.0.0.9004
+
+- Added `eyeprocess-package` to a dedicated Package overview section in
+  the pkgdown reference index, resolving the final
+  [`pkgdown::check_pkgdown()`](https://pkgdown.r-lib.org/reference/check_pkgdown.html)
+  configuration error.
+- No analytical, import, schema, plotting, or modelling behaviour
+  changed.
+
+## eyeprocess 0.0.0.9003
+
+- Fixed the Windows installer version check by removing
+  [`read.dcf()`](https://rdrr.io/r/base/dcf.html) field-name attributes
+  and comparing normalized character scalars. This eliminates a false
+  mismatch when the installed and source versions are identical.
+- Added the canonical pkgdown site URL to `DESCRIPTION` while retaining
+  the GitHub repository URL, satisfying
+  [`pkgdown::check_pkgdown()`](https://pkgdown.r-lib.org/reference/check_pkgdown.html).
+- Retained all 0.0.0.9002 package-check and runtime fixes.
+
+## eyeprocess 0.0.0.9002
+
+- Removed stale `hello()` scaffold artefacts during local installation
+  and validation.
+- Replaced the unexported `brms::gaussian()` reference with
+  [`stats::gaussian()`](https://rdrr.io/r/stats/family.html).
+- Removed non-standard evaluation from stream construction and Gazepoint
+  biometric matching.
+- Excluded the repository-level `CITATION.cff` from built source
+  packages while retaining `inst/CITATION`.
+- Hardened the Windows installer against reinstalling a loaded namespace
+  and against false version-success messages.
+
+## eyeprocess 0.0.0.9001
+
+- Fixed type-preserving row binding when canonical tables contain zero
+  rows.
+- Added stable identifiers to the interpretive-warning registry.
+- Removed all-missing extrema warnings from fixation and saccade
+  preprocessing.
+
+## eyeprocess 0.0.0.9000
+
+- Introduces the canonical `eye_dataset` relational object.
+- Adds generic CSV/TSV mapping and an extensible adapter registry.
+- Adds first-class Gazepoint Analysis and Gazepoint Biometrics
+  importers.
+- Adds dedicated Tobii Pro Lab, Pupil Labs Neon/Core, EyeLink
+  ASC/report, and SMI BeGaze text adapters.
+- Adds explicit clock and coordinate-space management.
+- Adds trial reconstruction, AOI registration and assignment,
+  ocular-event derivation, pupil preprocessing, quality audits, feature
+  extraction, plots, simulations, reporting, and optional psychometric
+  modelling interfaces.

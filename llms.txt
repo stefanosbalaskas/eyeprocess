@@ -1,0 +1,682 @@
+# eyeprocess
+
+`eyeprocess` is a vendor-neutral R framework for transforming
+heterogeneous eye-tracking, pupillometry, behavioural, and biometric
+exports into validated, analysis-ready process data. It provides
+first-class support for Gazepoint Analysis and Gazepoint Biometrics
+exports, dedicated adapters for common eye-tracking ecosystems, and
+downstream psychometric modelling.
+
+## Design commitments
+
+- Harmonize semantics, not merely column names.
+- Retain native timestamps and source files.
+- Record every timebase and coordinate transformation.
+- Keep vendor-produced and package-derived ocular events
+  distinguishable.
+- Never resample, interpolate, clip, or exclude observations silently.
+- Treat gaze, pupil, and physiology as observations—not automatic
+  psychological constructs.
+- Keep Gazepoint support deep while the canonical representation remains
+  vendor-neutral.
+
+## Supported inputs
+
+| Ecosystem | Initial interface | Support level |
+|----|----|----|
+| Gazepoint Analysis | [`read_gazepoint()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-gazepoint.md), [`read_gazepoint_folder()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-gazepoint.md) | First class |
+| Gazepoint Biometrics | [`read_gazepoint_biometrics()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-gazepoint.md) | First class |
+| Generic CSV/TSV | [`read_eye_generic()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-generic.md) | Universal mapping |
+| Tobii Pro Lab | [`read_tobii()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-vendors.md) | Dedicated |
+| Pupil Labs Neon | [`read_pupil_neon()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-vendors.md) | Dedicated |
+| Pupil Labs Core | [`read_pupil_core()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-vendors.md) | Dedicated |
+| EyeLink ASC | [`read_eyelink_asc()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-vendors.md) | Dedicated |
+| EyeLink Data Viewer | [`read_eyelink_report()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-vendors.md) | Explicit mapping |
+| EyeLink EDF | [`read_eyelink_edf()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-vendors.md) | Local EDF2ASC bridge |
+| SMI BeGaze ASCII | [`read_smi()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-vendors.md) | Legacy dedicated |
+| Custom adapters | [`register_eye_adapter()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-adapters.md) | Extensible |
+
+## Empirical export validation
+
+Version 0.2.0.9002 adds a formal evidence framework for validating real
+export files rather than treating adapter availability as proof of
+production compatibility. It provides:
+
+- [`inspect_eye_source()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-format-validation.md)
+  for file structure, fields, delimiters, hashes, and format-detection
+  evidence;
+- [`validate_eye_source()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-format-validation.md)
+  for adapter, canonical-schema, timebase, coordinate, provenance,
+  quality, and round-trip checks;
+- [`init_validation_corpus()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-format-validation.md),
+  [`validation_manifest()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-format-validation.md),
+  and
+  [`validate_eye_corpus()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-format-validation.md)
+  for versioned multi-vendor compatibility corpora;
+- [`schema_coverage()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-format-validation.md)
+  and
+  [`source_preservation_audit()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-format-validation.md)
+  for loss-aware harmonization evidence;
+- [`anonymize_eye_dataset()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-format-validation.md)
+  and
+  [`create_validation_bundle()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-format-validation.md)
+  for reviewable, non-raw compatibility bundles.
+
+Support levels are reported separately as declared, fixture-tested, or
+empirically validated. Real vendor exports remain necessary before
+production compatibility claims are made.
+
+## Development validation status
+
+Version 0.1.0.9003 is the validated baseline: on Windows 11 with R 4.6.1
+it installed successfully, passed the complete unit-test suite,
+completed `R CMD check` with **0 errors, 0 warnings, and 0 notes**,
+passed
+[`pkgdown::check_pkgdown()`](https://pkgdown.r-lib.org/reference/check_pkgdown.html),
+and passed runtime smoke tests.
+
+Version 0.2.0.9002 established the validated real-structure Gazepoint
+Analysis 7.2.0 adapter baseline. Version 0.3.0.9000 adds the complete
+downstream workflow and requires a fresh runtime validation after
+installation. The regression corpus is derived from six paired
+de-identified Gazepoint sample/fixation exports and four Data Summary
+reports. Production compatibility remains version-specific and must be
+confirmed against additional independent exports before a general
+compatibility claim is made.
+
+The original joint-process and dynamic models are explicitly
+experimental. They must undergo parameter-recovery, calibration,
+coverage, misspecification, and empirical-reproduction studies before
+confirmatory use.
+
+See
+[`IMPLEMENTATION_STATUS.md`](https://stefanosbalaskas.github.io/eyeprocess/IMPLEMENTATION_STATUS.md),
+[`FUNCTION_REFERENCE.md`](https://stefanosbalaskas.github.io/eyeprocess/FUNCTION_REFERENCE.md),
+and
+[`STATIC_AUDIT.txt`](https://stefanosbalaskas.github.io/eyeprocess/STATIC_AUDIT.txt).
+
+## Gazepoint Analysis 7.2.0 real-export workflow
+
+The enhanced Gazepoint adapter recognizes current export names and
+report structures:
+
+``` r
+
+x <- read_gazepoint_folder(
+  "C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess-validation-corpus/cases/gazepoint-analysis-v7.2.0-demo"
+)
+
+gp_pair_exports(
+  "C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess-validation-corpus/cases/gazepoint-analysis-v7.2.0-demo"
+)
+
+validate_eye_dataset(x)
+schema_coverage_summary(x)
+source_preservation_audit(x, require_raw = TRUE)
+```
+
+For these exports, `TIMETICK(f=10000000)` is the monotonic recording
+clock. The `TIME(...)` field is retained as media-relative time because
+it restarts when the media changes. Gazepoint fixation identifiers are
+namespaced by media for the same reason. Multi-section Data Summary
+reports are imported with
+[`read_gazepoint_summary()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-gazepoint.md)
+and converted to AOI definitions and participant-AOI features.
+
+## Installation from the local source tree
+
+``` r
+
+install.packages(c(
+  "ggplot2", "testthat", "knitr", "rmarkdown", "jsonlite"
+))
+
+install.packages(
+  "C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess",
+  repos = NULL,
+  type = "source"
+)
+```
+
+For development:
+
+``` r
+
+install.packages(c("devtools", "roxygen2", "pkgdown"))
+devtools::load_all("C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess")
+devtools::test("C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess")
+devtools::check("C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess")
+```
+
+## Gazepoint workflow
+
+``` r
+
+library(eyeprocess)
+
+x <- read_gazepoint_folder(
+  "data/P001",
+  include = c("gaze", "fixations", "events", "biometrics")
+)
+
+x
+validate_eye_dataset(x)
+audit_signal_quality(x)
+audit_timebase(x)
+
+x <- build_trials(x, start_events = "TRIAL_START", end_events = "TRIAL_END")
+x <- register_aois(
+  x,
+  new_aoi("prompt", x = 0, y = 0, width = 0.50, height = 1),
+  new_aoi("options", x = 0.50, y = 0, width = 0.50, height = 1)
+)
+x <- assign_aois(x)
+x <- derive_all_features(x)
+
+plot_signal_quality(x)
+plot_scanpath(x, trial_id = x$intervals$trial_id[1])
+plot_pupil_timeseries(x, trial_id = x$intervals$trial_id[1])
+```
+
+## Generic export
+
+``` r
+
+mapping <- eye_mapping(
+  participant = "subject",
+  recording = "recording",
+  timestamp = "timestamp_us",
+  x = "gaze_x",
+  y = "gaze_y",
+  pupil_left = "pupil_left_mm",
+  pupil_right = "pupil_right_mm",
+  trial = "trial_id",
+  stimulus = "stimulus"
+)
+
+x <- read_eye_generic(
+  "data/export.csv",
+  mapping = mapping,
+  time_unit = "microseconds",
+  coordinate_space = "display_pixels_top_left",
+  screen_width = 1920,
+  screen_height = 1080
+)
+```
+
+## Psychometric workflow
+
+``` r
+
+x <- derive_all_features(x)
+
+fit <- fit_explanatory_irt(
+  x,
+  score ~ dwell_time + first_fixation_latency + pupil_auc,
+  engine = "lme4"
+)
+
+fit_rt <- fit_accuracy_rt(x, engine = "LNIRT")
+```
+
+Optional engines are deliberately not installed as mandatory
+dependencies. Install only the modelling engines required for a study:
+
+``` r
+
+install.packages(c("mirt", "TAM", "LNIRT", "lme4"))
+```
+
+## Simulation
+
+``` r
+
+sim <- simulate_eye_dataset(
+  n_person = 80,
+  n_item = 20,
+  seed = 42
+)
+
+sim <- derive_all_features(sim)
+plot_eye_trace(sim, trial_id = sim$intervals$trial_id[1])
+plot_transition_matrix(sim)
+```
+
+## Responsible interpretation
+
+Run:
+
+``` r
+
+interpretive_warnings()
+analysis_readiness(x)
+provenance_manifest(x)
+```
+
+The package does not equate fixation with attention, dwell time with
+difficulty, pupil dilation with cognitive load, rapid response with
+guessing, or a data-derived process factor with a named psychological
+construct.
+
+## Complete Gazepoint downstream workflow
+
+The integrated workflow converts a real Gazepoint Analysis folder into a
+canonical dataset and every major downstream research artifact:
+
+``` r
+
+library(eyeprocess)
+
+result <- run_gazepoint_workflow(
+  "C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess-validation-corpus/cases/gazepoint-analysis-v7.2.0-demo",
+  output_dir = "C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess-downstream-output",
+  overwrite = TRUE
+)
+
+result
+validate_gazepoint_workflow(result)
+```
+
+The output includes QC evidence, media/trial reconstruction,
+vendor-fixation and AOI summaries, processed pupil and valid-only
+biometric features, gaze and physiological plots, a
+person-by-item-by-trial process table, IRT-ready response templates,
+canonical exports, provenance, source fingerprints, a rerun script, and
+Markdown/HTML reports. The workflow does not fabricate responses or fit
+an IRT model automatically when observed response data are unavailable.
+
+# Package index
+
+## Package overview
+
+- [`eyeprocess`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-package.md)
+  [`eyeprocess-package`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-package.md)
+  : eyeprocess: Harmonize Eye-Tracking and Psychometric Process Data
+
+## Canonical data and adapters
+
+- [`eye_schema`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-schema.md)
+  [`schema_table`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-schema.md)
+  [`empty_eye_table`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-schema.md)
+  [`standardize_eye_table`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-schema.md)
+  [`validate_eye_table`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-schema.md)
+  [`canonical_table_names`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-schema.md)
+  [`new_coordinate_space`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-schema.md)
+  : Canonical schemas and coordinate spaces
+- [`new_eye_dataset`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-class.md)
+  [`is_eye_dataset`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-class.md)
+  [`as_eye_dataset`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-class.md)
+  [`as_eye_dataset.eye_dataset`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-class.md)
+  [`as_eye_dataset.data.frame`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-class.md)
+  [`as_eye_dataset.default`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-class.md)
+  [`print.eye_dataset`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-class.md)
+  [`summary.eye_dataset`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-class.md)
+  [`print.summary.eye_dataset`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-class.md)
+  [`validate_eye_dataset`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-class.md)
+  [`print.eye_validation`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-class.md)
+  [`get_eye_table`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-class.md)
+  [`set_eye_table`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-class.md)
+  [`append_eye_table`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-class.md)
+  [`add_provenance`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-class.md)
+  [`provenance_manifest`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-class.md)
+  [`compact_eye_dataset`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-class.md)
+  : Create and manage eyeprocess datasets
+- [`eye_mapping`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-adapters.md)
+  [`print.eye_mapping`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-adapters.md)
+  [`validate_eye_mapping`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-adapters.md)
+  [`infer_eye_mapping`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-adapters.md)
+  [`register_eye_adapter`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-adapters.md)
+  [`unregister_eye_adapter`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-adapters.md)
+  [`supported_eye_formats`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-adapters.md)
+  [`detect_eye_format`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-adapters.md)
+  [`print.eye_format_detection`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-adapters.md)
+  [`read_eye_export`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-adapters.md)
+  [`read_eye_folder`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-adapters.md)
+  [`combine_eye_datasets`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-adapters.md)
+  [`remap_recording_ids`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-adapters.md)
+  : Mappings and adapter registry
+- [`read_eye_generic`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-generic.md)
+  : Import generic delimited eye-tracking data
+
+## Gazepoint
+
+- [`is_gazepoint_export`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-gazepoint.md)
+  [`gp_identify_export_type`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-gazepoint.md)
+  [`gp_profile_export`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-gazepoint.md)
+  [`gp_list_export_fields`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-gazepoint.md)
+  [`gp_validate_export`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-gazepoint.md)
+  [`read_gazepoint`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-gazepoint.md)
+  [`read_gazepoint_gaze`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-gazepoint.md)
+  [`read_gazepoint_biometrics`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-gazepoint.md)
+  [`read_gazepoint_fixations`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-gazepoint.md)
+  [`read_gazepoint_events`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-gazepoint.md)
+  [`read_gazepoint_combined`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-gazepoint.md)
+  [`read_gazepoint_folder`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-gazepoint.md)
+  [`gp_pair_exports`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-gazepoint.md)
+  [`gp_match_recordings`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-gazepoint.md)
+  [`gp_match_biometrics`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-gazepoint.md)
+  [`gp_audit_file_pairs`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-gazepoint.md)
+  [`read_gazepoint_aoi_statistics`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-gazepoint.md)
+  [`read_gazepoint_summary`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-gazepoint.md)
+  [`gp_parse_user_events`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-gazepoint.md)
+  [`gp_parse_media_events`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-gazepoint.md)
+  [`gp_reconstruct_trials`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-gazepoint.md)
+  [`gp_reconstruct_stimuli`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-gazepoint.md)
+  [`gp_align_media_ids`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-gazepoint.md)
+  [`gp_parse_markers`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-gazepoint.md)
+  [`gp_check_sampling_rate`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-gazepoint.md)
+  [`gp_check_validity_fields`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-gazepoint.md)
+  [`gp_check_fixation_ids`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-gazepoint.md)
+  [`gp_check_media_timing`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-gazepoint.md)
+  [`gp_check_pupil_channels`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-gazepoint.md)
+  [`gp_check_biometrics_sync`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-gazepoint.md)
+  : Import Gazepoint and Gazepoint Biometrics exports
+- [`gazepoint_workflow_spec()`](https://stefanosbalaskas.github.io/eyeprocess/reference/gazepoint_workflow_spec.md)
+  : Specify an integrated Gazepoint downstream workflow
+- [`run_gazepoint_workflow()`](https://stefanosbalaskas.github.io/eyeprocess/reference/run_gazepoint_workflow.md)
+  : Run the complete Gazepoint downstream workflow
+- [`build_gazepoint_media_trials()`](https://stefanosbalaskas.github.io/eyeprocess/reference/build_gazepoint_media_trials.md)
+  : Reconstruct media presentations as analysis trials
+- [`derive_gazepoint_workflow_features()`](https://stefanosbalaskas.github.io/eyeprocess/reference/derive_gazepoint_workflow_features.md)
+  : Derive the complete Gazepoint workflow feature set
+- [`gazepoint_analysis_tables()`](https://stefanosbalaskas.github.io/eyeprocess/reference/gazepoint_analysis_tables.md)
+  : Build person-by-item-by-trial analysis tables
+- [`gazepoint_irt_tables()`](https://stefanosbalaskas.github.io/eyeprocess/reference/gazepoint_irt_tables.md)
+  : Create IRT-ready response and process tables
+- [`plot_gazepoint_workflow()`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot_gazepoint_workflow.md)
+  : Generate the complete Gazepoint workflow plot suite
+- [`validate_gazepoint_workflow()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validate_gazepoint_workflow.md)
+  : Validate an integrated Gazepoint workflow result
+- [`write_gazepoint_workflow_report()`](https://stefanosbalaskas.github.io/eyeprocess/reference/write_gazepoint_workflow_report.md)
+  : Write a reproducible Gazepoint workflow report
+
+## Other vendors
+
+- [`is_tobii_export`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-vendors.md)
+  [`read_tobii`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-vendors.md)
+  [`is_pupil_labs_export`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-vendors.md)
+  [`pupil_labs_format`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-vendors.md)
+  [`read_pupillabs`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-vendors.md)
+  [`read_pupil_neon`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-vendors.md)
+  [`read_pupil_core`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-vendors.md)
+  [`is_eyelink_export`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-vendors.md)
+  [`read_eyelink_asc`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-vendors.md)
+  [`read_eyelink_report`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-vendors.md)
+  [`read_eyelink_edf`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-vendors.md)
+  [`is_smi_export`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-vendors.md)
+  [`read_smi`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-vendors.md)
+  [`read_smi_raw_export`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-vendors.md)
+  [`read_smi_event_export`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-vendors.md)
+  [`read_smi_aoi_export`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-vendors.md)
+  : Import Tobii, Pupil Labs, EyeLink, and SMI exports
+
+## Empirical format validation
+
+- [`format_validation_spec`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-format-validation.md)
+  [`eye_format_profiles`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-format-validation.md)
+  [`format_compatibility_matrix`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-format-validation.md)
+  [`inspect_eye_source`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-format-validation.md)
+  [`schema_coverage`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-format-validation.md)
+  [`schema_coverage_summary`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-format-validation.md)
+  [`source_preservation_audit`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-format-validation.md)
+  [`fingerprint_eye_dataset`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-format-validation.md)
+  [`compare_eye_datasets`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-format-validation.md)
+  [`roundtrip_eye_dataset`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-format-validation.md)
+  [`validate_eye_source`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-format-validation.md)
+  [`validation_manifest`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-format-validation.md)
+  [`write_validation_manifest`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-format-validation.md)
+  [`read_validation_manifest`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-format-validation.md)
+  [`discover_validation_cases`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-format-validation.md)
+  [`init_validation_corpus`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-format-validation.md)
+  [`validate_eye_corpus`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-format-validation.md)
+  [`anonymize_eye_dataset`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-format-validation.md)
+  [`write_format_validation_report`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-format-validation.md)
+  [`create_validation_bundle`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-format-validation.md)
+  [`validate_tobii_export`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-format-validation.md)
+  [`validate_pupillabs_export`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-format-validation.md)
+  [`validate_eyelink_export`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-format-validation.md)
+  [`validate_smi_export`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-format-validation.md)
+  [`validate_generic_export`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-format-validation.md)
+  [`print.eye_format_validation_spec`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-format-validation.md)
+  [`print.eye_roundtrip_validation`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-format-validation.md)
+  [`print.eye_format_validation`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-format-validation.md)
+  [`summary.eye_format_validation`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-format-validation.md)
+  [`plot.eye_format_validation`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-format-validation.md)
+  [`print.eye_corpus_validation`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-format-validation.md)
+  [`plot.eye_corpus_validation`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-format-validation.md)
+  : Validate real eye-tracking exports and compatibility corpora
+
+## Time, coordinates, trials, and AOIs
+
+- [`register_coordinate_space`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-coordinates-time.md)
+  [`coordinate_space`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-coordinates-time.md)
+  [`convert_xy`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-coordinates-time.md)
+  [`convert_coordinates`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-coordinates-time.md)
+  [`audit_coordinate_spaces`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-coordinates-time.md)
+  [`estimate_sampling_rate`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-coordinates-time.md)
+  [`normalize_timebase`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-coordinates-time.md)
+  [`audit_timebase`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-coordinates-time.md)
+  [`align_clock`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-coordinates-time.md)
+  [`estimate_clock_transform`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-coordinates-time.md)
+  [`print.eye_clock_transform`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-coordinates-time.md)
+  [`apply_clock_transform`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-coordinates-time.md)
+  [`synchronize_eye_biometrics`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-coordinates-time.md)
+  [`audit_clock_sync`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-coordinates-time.md)
+  : Coordinate and timebase management
+- [`build_trials`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-trials-aoi.md)
+  [`build_stimulus_intervals`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-trials-aoi.md)
+  [`assign_trials`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-trials-aoi.md)
+  [`add_responses`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-trials-aoi.md)
+  [`build_item_responses`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-trials-aoi.md)
+  [`new_aoi`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-trials-aoi.md)
+  [`print.eye_aoi`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-trials-aoi.md)
+  [`register_aois`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-trials-aoi.md)
+  [`assign_aois`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-trials-aoi.md)
+  [`build_aoi_visits`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-trials-aoi.md)
+  : Trials, responses, stimuli, and areas of interest
+
+## Preprocessing and features
+
+- [`preprocess_spec`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-preprocessing.md)
+  [`print.eye_preprocess_spec`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-preprocessing.md)
+  [`rolling_apply`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-preprocessing.md)
+  [`filter_gaze`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-preprocessing.md)
+  [`flag_gaze_outliers`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-preprocessing.md)
+  [`gaze_velocity`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-preprocessing.md)
+  [`interpolate_pupil`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-preprocessing.md)
+  [`filter_pupil`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-preprocessing.md)
+  [`baseline_pupil`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-preprocessing.md)
+  [`pupil_deconvolve`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-preprocessing.md)
+  [`detect_blinks`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-preprocessing.md)
+  [`detect_fixations_ivt`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-preprocessing.md)
+  [`detect_fixations_idt`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-preprocessing.md)
+  [`detect_saccades`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-preprocessing.md)
+  [`preprocess_eye`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-preprocessing.md)
+  : Gaze and pupil preprocessing
+- [`feature_spec`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-features.md)
+  [`print.eye_feature_spec`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-features.md)
+  [`trial_table`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-features.md)
+  [`summarize_fixations`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-features.md)
+  [`scanpath_sequence`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-features.md)
+  [`transition_matrix`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-features.md)
+  [`gaze_entropy`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-features.md)
+  [`transition_entropy`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-features.md)
+  [`derive_gaze_features`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-features.md)
+  [`derive_pupil_features`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-features.md)
+  [`derive_rt_features`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-features.md)
+  [`derive_biometric_features`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-features.md)
+  [`derive_all_features`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-features.md)
+  [`features_wide`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-features.md)
+  [`feature_dictionary`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-features.md)
+  : Derive gaze, pupil, response-time, and biometric features
+
+## Quality and governance
+
+- [`register_coordinate_space`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-coordinates-time.md)
+  [`coordinate_space`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-coordinates-time.md)
+  [`convert_xy`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-coordinates-time.md)
+  [`convert_coordinates`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-coordinates-time.md)
+  [`audit_coordinate_spaces`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-coordinates-time.md)
+  [`estimate_sampling_rate`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-coordinates-time.md)
+  [`normalize_timebase`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-coordinates-time.md)
+  [`audit_timebase`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-coordinates-time.md)
+  [`align_clock`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-coordinates-time.md)
+  [`estimate_clock_transform`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-coordinates-time.md)
+  [`print.eye_clock_transform`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-coordinates-time.md)
+  [`apply_clock_transform`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-coordinates-time.md)
+  [`synchronize_eye_biometrics`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-coordinates-time.md)
+  [`audit_clock_sync`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-coordinates-time.md)
+  : Coordinate and timebase management
+- [`store_quality`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-quality.md)
+  [`audit_sampling_rate`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-quality.md)
+  [`audit_signal_quality`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-quality.md)
+  [`audit_pupil_quality`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-quality.md)
+  [`audit_episodes`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-quality.md)
+  [`audit_event_order`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-quality.md)
+  [`audit_trial_coverage`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-quality.md)
+  [`audit_aois`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-quality.md)
+  [`audit_missingness`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-quality.md)
+  [`check_process_leakage`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-quality.md)
+  [`check_feature_level`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-quality.md)
+  [`interpretive_warnings`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-quality.md)
+  [`analysis_readiness`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-quality.md)
+  [`print.eye_readiness`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-quality.md)
+  [`compare_preprocessing`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-quality.md)
+  [`compare_aoi_definitions`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-quality.md)
+  [`sensitivity_process`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-quality.md)
+  [`print.eye_sensitivity`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-quality.md)
+  : Quality control, sensitivity, and governance
+- [`new_eye_dataset`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-class.md)
+  [`is_eye_dataset`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-class.md)
+  [`as_eye_dataset`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-class.md)
+  [`as_eye_dataset.eye_dataset`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-class.md)
+  [`as_eye_dataset.data.frame`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-class.md)
+  [`as_eye_dataset.default`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-class.md)
+  [`print.eye_dataset`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-class.md)
+  [`summary.eye_dataset`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-class.md)
+  [`print.summary.eye_dataset`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-class.md)
+  [`validate_eye_dataset`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-class.md)
+  [`print.eye_validation`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-class.md)
+  [`get_eye_table`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-class.md)
+  [`set_eye_table`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-class.md)
+  [`append_eye_table`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-class.md)
+  [`add_provenance`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-class.md)
+  [`provenance_manifest`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-class.md)
+  [`compact_eye_dataset`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-class.md)
+  : Create and manage eyeprocess datasets
+
+## Visualisation
+
+- [`plot.eye_dataset`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-plots.md)
+  [`plot_eye_overview`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-plots.md)
+  [`plot_eye_trace`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-plots.md)
+  [`plot_fixations`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-plots.md)
+  [`plot_scanpath`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-plots.md)
+  [`plot_gaze_heatmap`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-plots.md)
+  [`plot_aoi_dwell`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-plots.md)
+  [`plot_transition_matrix`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-plots.md)
+  [`plot_pupil_timeseries`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-plots.md)
+  [`plot_biometrics`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-plots.md)
+  [`plot_signal_quality`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-plots.md)
+  [`plot_sampling_rate`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-plots.md)
+  [`plot_missingness`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-plots.md)
+  [`plot_trial_timeline`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-plots.md)
+  [`plot_feature_distribution`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-plots.md)
+  [`plot_feature_correlation`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-plots.md)
+  [`plot_coordinate_spaces`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-plots.md)
+  [`plot_clock_alignment`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-plots.md)
+  [`plot_item_difficulty`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-plots.md)
+  [`plot_model_diagnostics`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-plots.md)
+  : Visualize eye-tracking and multimodal process data
+- [`plot_gazepoint_workflow()`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot_gazepoint_workflow.md)
+  : Generate the complete Gazepoint workflow plot suite
+
+## Psychometrics
+
+- [`response_matrix`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-models.md)
+  [`response_time_matrix`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-models.md)
+  [`align_response_matrices`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-models.md)
+  [`model_data`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-models.md)
+  [`print.eyeprocess_model`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-models.md)
+  [`summary.eyeprocess_model`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-models.md)
+  [`print.summary.eyeprocess_model`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-models.md)
+  [`fit_irt`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-models.md)
+  [`fit_explanatory_irt`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-models.md)
+  [`fit_accuracy_rt`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-models.md)
+  [`print.eye_two_stage_rt`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-models.md)
+  [`fit_dif`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-models.md)
+  [`fit_shared_process_factor`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-models.md)
+  [`item_parameters`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-models.md)
+  [`person_scores`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-models.md)
+  [`model_fit_statistics`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-models.md)
+  [`predict.eyeprocess_model`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-models.md)
+  [`check_local_dependence`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-models.md)
+  [`fit_joint_process_model`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-models.md)
+  [`fit_dynamic_aoi_model`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-models.md)
+  [`print.eye_dynamic_aoi`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-models.md)
+  : Psychometric and process-data models
+- [`process_irt_spec`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-experimental.md)
+  [`print.process_irt_spec`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-experimental.md)
+  [`fit_process_irt`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-experimental.md)
+  [`fit_gaze_informed_irt`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-experimental.md)
+  [`fit_pupil_informed_irt`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-experimental.md)
+  [`fit_multimodal_irt`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-experimental.md)
+  [`process_irt_diagnostics`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-experimental.md)
+  [`functional_pupil_features`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-experimental.md)
+  [`fit_strategy_mixture`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-experimental.md)
+  [`print.eye_strategy_mixture`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-experimental.md)
+  [`estimate_ez_diffusion`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-experimental.md)
+  [`fit_gaze_weighted_choice`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-experimental.md)
+  [`model_missing_process`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-experimental.md)
+  [`sensitivity_missing_process`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-experimental.md)
+  [`print.eye_missing_sensitivity`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-experimental.md)
+  : Experimental psychometric process models
+
+## Simulation and reporting
+
+- [`simulate_eye_dataset`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-simulation.md)
+  [`simulate_process_irt`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-simulation.md)
+  [`parameter_recovery`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-simulation.md)
+  [`summary.eye_parameter_recovery`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-simulation.md)
+  [`plot.eye_parameter_recovery`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-simulation.md)
+  [`power_process_simulation`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-simulation.md)
+  : Simulate and validate eyeprocess workflows
+- [`write_eye_dataset`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-export-report.md)
+  [`read_eye_dataset`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-export-report.md)
+  [`export_canonical`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-export-report.md)
+  [`import_canonical`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-export-report.md)
+  [`write_provenance`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-export-report.md)
+  [`report_eye_dataset`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-export-report.md)
+  [`report_processirt`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-export-report.md)
+  [`as_eye_dataset.gp3_recording`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-export-report.md)
+  [`as_eye_dataset.gp3_analysis`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-export-report.md)
+  [`as_eye_dataset.gp3_data`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-export-report.md)
+  [`as_eye_dataset.gpbiometrics_data`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-export-report.md)
+  [`as_eye_biometrics`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-export-report.md)
+  [`as_eye_biometrics.eye_dataset`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-export-report.md)
+  [`as_eye_biometrics.data.frame`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-export-report.md)
+  : Export, reporting, and package bridges
+
+# Articles
+
+### Foundations
+
+- [Getting Started with
+  eyeprocess](https://stefanosbalaskas.github.io/eyeprocess/articles/getting-started.md):
+- [Importing and Harmonizing Eye-Tracking
+  Exports](https://stefanosbalaskas.github.io/eyeprocess/articles/importing-and-harmonizing.md):
+- [Gazepoint and Gazepoint Biometrics
+  Workflows](https://stefanosbalaskas.github.io/eyeprocess/articles/gazepoint-workflows.md):
+- [Complete Gazepoint Downstream
+  Workflow](https://stefanosbalaskas.github.io/eyeprocess/articles/gazepoint-downstream-workflow.md):
+- [Validating Real Eye-Tracking
+  Exports](https://stefanosbalaskas.github.io/eyeprocess/articles/validating-real-exports.md):
+
+### Analysis
+
+- [Preprocessing, AOIs, and Feature
+  Engineering](https://stefanosbalaskas.github.io/eyeprocess/articles/preprocessing-features.md):
+- [Psychometric Process-Data
+  Models](https://stefanosbalaskas.github.io/eyeprocess/articles/psychometric-process-models.md):
+- [Quality, Provenance, and Responsible
+  Interpretation](https://stefanosbalaskas.github.io/eyeprocess/articles/responsible-use.md):
