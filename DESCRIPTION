@@ -20,8 +20,7 @@ Description: Provides an extensible, vendor-neutral framework for importing,
     quality-control evidence, media-trial reconstruction, plots, analysis-ready
     process tables, IRT-ready response structures, and reproducible reports.
 License: MIT + file LICENSE
-URL: https://stefanosbalaskas.github.io/eyeprocess,
-    https://github.com/stefanosbalaskas/eyeprocess
+URL: https://stefanosbalaskas.github.io/eyeprocess/, https://github.com/stefanosbalaskas/eyeprocess
 BugReports: https://github.com/stefanosbalaskas/eyeprocess/issues
 Encoding: UTF-8
 Depends: R (>= 4.1.0)

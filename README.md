@@ -2,6 +2,7 @@
 
 <!-- badges: start -->
 **Development status:** 0.3.0.9000
+[![R-CMD-check](https://github.com/stefanosbalaskas/eyeprocess/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/stefanosbalaskas/eyeprocess/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 `eyeprocess` is a vendor-neutral R framework for transforming heterogeneous
