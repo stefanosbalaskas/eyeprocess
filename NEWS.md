@@ -1,3 +1,15 @@
+# eyeprocess 0.3.0.9000
+
+- Added `run_gazepoint_workflow()` as the complete, reproducible downstream workflow for real Gazepoint folders.
+- Added media-run reconstruction into explicit person-by-item-by-trial intervals with optional study-specific item and condition maps.
+- Added integrated QC evidence for file pairing, canonical validation, timebases, coordinate spaces, sampling rates, gaze and pupil validity, trial coverage, episodes, and multimodal clock overlap.
+- Added pupil interpolation/filtering and blink derivation with baseline correction disabled by default unless explicitly declared.
+- Added valid-only biometric analysis values and trial-level EDA, heart-rate, IBI, dial, pupil, gaze, fixation, and AOI summaries while preserving native data.
+- Added one-row-per-person-item-trial process tables, AOI/fixation/pupil/biometric tables, feature dictionaries, response templates, and conditional response/response-time matrices.
+- Added a complete plot suite, canonical export, source fingerprint, workflow specification, rerun script, session information, Markdown/HTML report, and workflow-result object.
+- Added workflow validation, documentation, a dedicated vignette, Windows runner script, and regression tests with and without observed responses.
+- The workflow never fabricates responses, scores, IRT estimates, or psychological interpretations.
+
 # eyeprocess 0.2.0.9002
 
 - Renamed the packaged Gazepoint Analysis 7.2.0 regression fixtures to portable, space-free filenames.

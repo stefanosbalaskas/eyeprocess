@@ -1,41 +1,73 @@
-eyeprocess static audit
-=======================
+EYEPROCESS STATIC SOURCE AUDIT
+------------------------------
+Generated: 2026-08-04T07:57:42.088903+00:00
 
-Candidate version: 0.2.0.9002
-Purpose: remove the final R CMD check portable-filename warning without changing adapter behavior.
+SCOPE
+-----
+This is a static source audit. No R executable is available in this build environment,
+so installation, unit tests, R CMD check, vignette rendering, pkgdown rendering, and the
+real Gazepoint workflow must be rerun on the Windows validation machine.
 
-R source files: 20
-Functions defined: 373
-Exported functions: 224
-S3 methods: 41
-Manual pages: 18
-Vignettes: 7
-Test files: 12
+COUNTS
+------
+Package version: 0.3.0.9000
+R source files: 21
+Functions defined: 402
+Unique function names: 390
+Exported functions: 233
+S3 methods: 44
+Manual pages: 19
+Vignettes: 8
+Test files: 13
 Fixture files: 16
+Workflow tests: 1
 
-PASS: Packaged inst paths contain no whitespace
-PASS: DESCRIPTION and CITATION.cff versions match — 0.2.0.9002 / 0.2.0.9002
-PASS: inst/CITATION version matches — 0.2.0.9002
-PASS: README development version matches — 0.2.0.9002
-PASS: Implementation status version matches — 0.2.0.9002
-PASS: Portable gaze fixture referenced
-PASS: Portable fixation fixture referenced
-PASS: Legacy spaced fixture paths absent from code paths
-PASS: Portable gaze fixture exists
-PASS: Portable fixation fixture exists
-PASS: HANDOFF_0.2.0.9002.md excluded from build — HANDOFF_0.2.0.9002.md
-PASS: HOTFIX_0.2.0.9002.md excluded from build — HOTFIX_0.2.0.9002.md
-PASS: pkgdown YAML parses
-PASS: All exported functions resolve
-PASS: All S3 methods resolve
+CHECKS
+------
+PASS: All NAMESPACE exports resolve
+PASS: All S3 registrations resolve
+PASS: No duplicate NAMESPACE exports
+PASS: No duplicate S3 registrations
+PASS: All exported functions have Rd aliases
+PASS: All R source delimiters are balanced
+PASS: DESCRIPTION/CFF/CITATION/NEWS versions synchronized
+PASS: pkgdown and CFF YAML parse
+PASS: All pkgdown articles exist
+PASS: All explicit pkgdown references resolve
+PASS: No paths contain whitespace
+PASS: All packaged extdata filenames are portable
 PASS: No trailing whitespace
-PASS: No merge conflict markers
+PASS: No merge-conflict markers
+PASS: All workflow assets exist
+PASS: All custom top-level files are excluded from source builds
 
-Runtime evidence inherited from 0.2.0.9001:
-- All unit tests passed.
-- pkgdown configuration passed.
-- Real six-recording Gazepoint Analysis 7.2.0 validation passed.
-- Full private corpus validation passed with zero validation errors and warnings.
-- R CMD check had 0 errors, 1 warning, 0 notes; the sole warning was the two spaced fixture filenames corrected here.
+NEW INTEGRATED WORKFLOW ASSETS
+------------------------------
+- R/019-gazepoint-downstream-workflow.R
+- man/eyeprocess-gazepoint-workflow.Rd
+- vignettes/gazepoint-downstream-workflow.Rmd
+- tests/testthat/test-gazepoint-downstream-workflow.R
+- run_gazepoint_downstream_workflow.R
+- inst/scripts/run-gazepoint-downstream-workflow.R
+- inst/templates/gazepoint-item-map.csv
+- inst/templates/gazepoint-responses.csv
 
-A fresh complete Windows runtime validation remains required for 0.2.0.9002.
+INTEGRATED WORKFLOW PUBLIC API
+------------------------------
+- gazepoint_workflow_spec()
+- build_gazepoint_media_trials()
+- derive_gazepoint_workflow_features()
+- gazepoint_analysis_tables()
+- gazepoint_irt_tables()
+- plot_gazepoint_workflow()
+- write_gazepoint_workflow_report()
+- run_gazepoint_workflow()
+- validate_gazepoint_workflow()
+
+EVIDENCE BOUNDARY
+-----------------
+- 0.2.0.9002 is the last runtime-validated baseline on Windows.
+- 0.3.0.9000 is a feature candidate with static source validation only in this environment.
+- The workflow does not fabricate responses or scores; absent outcomes produce an IRT response template.
+- Optional pupil baseline correction remains disabled by default unless a defensible baseline is supplied.
+- Vendor/native values and provenance remain preserved alongside analysis series.

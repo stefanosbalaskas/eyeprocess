@@ -42,3 +42,6 @@
 ^HOTFIX_0\.2\.0\.9001\.md$
 ^HANDOFF_0\.2\.0\.9002\.md$
 ^HOTFIX_0\.2\.0\.9002\.md$
+^MILESTONE_0\.3\.0\.9000\.md$
+^HANDOFF_0\.3\.0\.9000\.md$
+^run_gazepoint_downstream_workflow\.R$

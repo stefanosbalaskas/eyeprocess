@@ -12,6 +12,7 @@ articles:
   - getting-started
   - importing-and-harmonizing
   - gazepoint-workflows
+  - gazepoint-downstream-workflow
   - validating-real-exports
 - title: Analysis
   navbar: Analysis
@@ -35,6 +36,15 @@ reference:
   contents:
   - starts_with("read_gazepoint")
   - starts_with("gp_")
+  - gazepoint_workflow_spec
+  - run_gazepoint_workflow
+  - build_gazepoint_media_trials
+  - derive_gazepoint_workflow_features
+  - gazepoint_analysis_tables
+  - gazepoint_irt_tables
+  - plot_gazepoint_workflow
+  - validate_gazepoint_workflow
+  - write_gazepoint_workflow_report
 - title: Other vendors
   contents:
   - read_tobii

@@ -52,24 +52,43 @@ summarize_fixations <- function(x, by = c("recording_id", "trial_id", "aoi_id"),
   .assert_eye_dataset(x)
   source <- match.arg(source)
   d <- x$episodes[x$episodes$episode_type == "fixation", , drop = FALSE]
-  if (source == "vendor") d <- d[d$derived_by == "vendor", ]
-  if (source == "eyeprocess") d <- d[d$derived_by == "eyeprocess", ]
+  if (source == "vendor") d <- d[d$derived_by == "vendor", , drop = FALSE]
+  if (source == "eyeprocess") d <- d[d$derived_by == "eyeprocess", , drop = FALSE]
   by <- intersect(by, names(d))
   if (!nrow(d) || !length(by)) return(data.frame())
+
   groups <- .group_split(d, by)
+
+  # interaction() produces no groups when every value of a
+  # grouping field, such as aoi_id, is missing.
+  if (!length(groups)) return(data.frame())
+
   out <- lapply(groups, function(z) {
     base <- z[1L, by, drop = FALSE]
-    cbind(base, data.frame(
-      fixation_count = nrow(z),
-      fixation_duration_total_ms = sum(z$duration_ms, na.rm = TRUE),
-      fixation_duration_mean_ms = mean(z$duration_ms, na.rm = TRUE),
-      fixation_duration_median_ms = stats::median(z$duration_ms, na.rm = TRUE),
-      first_fixation_time = min(z$start_time, na.rm = TRUE),
-      last_fixation_time = max(z$end_time, na.rm = TRUE),
-      stringsAsFactors = FALSE
-    ))
+    cbind(
+      base,
+      data.frame(
+        fixation_count = nrow(z),
+        fixation_duration_total_ms = sum(z$duration_ms, na.rm = TRUE),
+        fixation_duration_mean_ms = mean(z$duration_ms, na.rm = TRUE),
+        fixation_duration_median_ms = stats::median(z$duration_ms, na.rm = TRUE),
+        first_fixation_time = min(z$start_time, na.rm = TRUE),
+        last_fixation_time = max(z$end_time, na.rm = TRUE),
+        stringsAsFactors = FALSE
+      )
+    )
   })
-  do.call(rbind, out)
+
+  if (!length(out)) return(data.frame())
+
+  result <- do.call(rbind, out)
+
+  if (is.null(result)) {
+    return(data.frame())
+  }
+
+  rownames(result) <- NULL
+  result
 }
 
 scanpath_sequence <- function(x, trial_id = NULL, recording_id = NULL, source = c("visits", "fixations", "samples"), collapse_consecutive = TRUE) {

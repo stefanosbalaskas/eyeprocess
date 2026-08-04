@@ -1,6 +1,6 @@
 # eyeprocess implementation status
 
-Current development version: **0.2.0.9002**
+Current development version: **0.3.0.9000**
 
 ## Implemented in the development source
 
@@ -38,10 +38,12 @@ Windows 11 validation with R 4.6.1 established that version 0.0.0.9004:
 - passes `pkgdown::check_pkgdown()` with no problems; and
 - passes installation and runtime smoke tests.
 
-Version 0.2.0.9002 adds substantial empirical-format validation functionality,
-new documentation, and new tests. It has passed the static source audit recorded
-in `STATIC_AUDIT.txt`; a fresh Windows runtime validation is required before the
-milestone is closed.
+Version 0.2.0.9002 passed the complete Windows gate, including all unit tests,
+vignettes, `R CMD check` with 0 errors/0 warnings/0 notes, pkgdown validation,
+installation, runtime smoke tests, and the private real Gazepoint corpus.
+
+Version 0.3.0.9000 adds the integrated downstream workflow and requires a fresh
+Windows runtime validation before this milestone is closed.
 
 ## Evidence boundaries
 
@@ -75,3 +77,12 @@ recording identities, monotonic `TIMETICK(f=10000000)` clocks, media-relative
 and embedded Gazepoint Biometrics channels. This version remains a runtime
 validation candidate until the complete Windows gate and private real-corpus
 validation have passed.
+
+
+## Integrated downstream workflow milestone
+
+Version 0.3.0.9000 adds the end-to-end real Gazepoint workflow from canonical
+import through QC, media/trial reconstruction, fixation and AOI summaries, pupil
+and biometric processing, plots, analysis-ready process tables, IRT-ready
+response structures, canonical exports, provenance, and reproducible reports.
+Responses and scores remain optional and are never fabricated.

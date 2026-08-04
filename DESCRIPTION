@@ -1,7 +1,7 @@
 Package: eyeprocess
 Type: Package
 Title: Harmonize Eye-Tracking, Pupillometry, Biometrics, and Psychometric Process Data
-Version: 0.2.0.9002
+Version: 0.3.0.9000
 Authors@R: c(
     person("Stefanos", "Balaskas", role = c("aut", "cre"),
            email = "s.balaskas@ac.upatras.gr",
@@ -16,7 +16,9 @@ Description: Provides an extensible, vendor-neutral framework for importing,
     and vendor-specific importers. Downstream tools support trial and area of
     interest reconstruction, signal-quality auditing, feature derivation,
     scanpath analysis, response-time and item-response workflows, and optional
-    psychometric modelling engines.
+    psychometric modelling engines. An integrated Gazepoint workflow produces
+    quality-control evidence, media-trial reconstruction, plots, analysis-ready
+    process tables, IRT-ready response structures, and reproducible reports.
 License: MIT + file LICENSE
 URL: https://stefanosbalaskas.github.io/eyeprocess,
     https://github.com/stefanosbalaskas/eyeprocess

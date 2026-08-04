@@ -1,7 +1,7 @@
 # eyeprocess
 
 <!-- badges: start -->
-**Development status:** 0.2.0.9002
+**Development status:** 0.3.0.9000
 <!-- badges: end -->
 
 `eyeprocess` is a vendor-neutral R framework for transforming heterogeneous
@@ -67,7 +67,7 @@ installed successfully, passed the complete unit-test suite, completed
 `R CMD check` with **0 errors, 0 warnings, and 0 notes**, passed
 `pkgdown::check_pkgdown()`, and passed runtime smoke tests.
 
-Version 0.2.0.9002 adds a real-structure Gazepoint Analysis 7.2.0 adapter milestone and requires a fresh runtime validation after installation. Its regression corpus is derived from six paired de-identified Gazepoint sample/fixation exports and four Data Summary reports. Production compatibility remains version-specific and must be confirmed against additional independent exports before a general compatibility claim is made.
+Version 0.2.0.9002 established the validated real-structure Gazepoint Analysis 7.2.0 adapter baseline. Version 0.3.0.9000 adds the complete downstream workflow and requires a fresh runtime validation after installation. The regression corpus is derived from six paired de-identified Gazepoint sample/fixation exports and four Data Summary reports. Production compatibility remains version-specific and must be confirmed against additional independent exports before a general compatibility claim is made.
 
 The original joint-process and dynamic models are explicitly experimental. They
 must undergo parameter-recovery, calibration, coverage, misspecification, and
@@ -223,3 +223,28 @@ provenance_manifest(x)
 The package does not equate fixation with attention, dwell time with difficulty,
 pupil dilation with cognitive load, rapid response with guessing, or a
 data-derived process factor with a named psychological construct.
+
+## Complete Gazepoint downstream workflow
+
+The integrated workflow converts a real Gazepoint Analysis folder into a
+canonical dataset and every major downstream research artifact:
+
+```r
+library(eyeprocess)
+
+result <- run_gazepoint_workflow(
+  "C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess-validation-corpus/cases/gazepoint-analysis-v7.2.0-demo",
+  output_dir = "C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess-downstream-output",
+  overwrite = TRUE
+)
+
+result
+validate_gazepoint_workflow(result)
+```
+
+The output includes QC evidence, media/trial reconstruction, vendor-fixation
+and AOI summaries, processed pupil and valid-only biometric features, gaze and
+physiological plots, a person-by-item-by-trial process table, IRT-ready response
+templates, canonical exports, provenance, source fingerprints, a rerun script,
+and Markdown/HTML reports. The workflow does not fabricate responses or fit an
+IRT model automatically when observed response data are unavailable.

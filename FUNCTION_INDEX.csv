@@ -1,225 +1,403 @@
-function,category,status,source_file,source_line
-add_provenance,Canonical dataset and provenance,development,R/002-class.R,296
-add_responses,"Trials, responses, and AOIs",development,R/008-trials-aoi.R,168
-align_clock,Timebase and coordinate operations,development,R/007-coordinates-time.R,207
-align_response_matrices,Psychometric and statistical models,development,R/013-models.R,43
-analysis_readiness,Quality and governance,development,R/011-quality-governance.R,242
-anonymize_eye_dataset,Empirical export validation,development,R/017-format-validation.R,1167
-append_eye_table,Canonical dataset and provenance,development,R/002-class.R,291
-apply_clock_transform,Timebase and coordinate operations,development,R/007-coordinates-time.R,241
-as_eye_biometrics,"Export, reports, and bridges",development,R/015-export-report-bridges.R,249
-as_eye_dataset,Canonical dataset and provenance,development,R/002-class.R,62
-assign_aois,"Trials, responses, and AOIs",development,R/008-trials-aoi.R,303
-assign_trials,"Trials, responses, and AOIs",development,R/008-trials-aoi.R,147
-audit_aois,Quality and governance,development,R/011-quality-governance.R,156
-audit_clock_sync,Timebase and coordinate operations,development,R/007-coordinates-time.R,282
-audit_coordinate_spaces,Timebase and coordinate operations,development,R/007-coordinates-time.R,119
-audit_episodes,Quality and governance,development,R/011-quality-governance.R,108
-audit_event_order,Quality and governance,development,R/011-quality-governance.R,124
-audit_missingness,Quality and governance,development,R/011-quality-governance.R,170
-audit_pupil_quality,Quality and governance,development,R/011-quality-governance.R,80
-audit_sampling_rate,Quality and governance,development,R/011-quality-governance.R,20
-audit_signal_quality,Quality and governance,development,R/011-quality-governance.R,41
-audit_timebase,Timebase and coordinate operations,development,R/007-coordinates-time.R,183
-audit_trial_coverage,Quality and governance,development,R/011-quality-governance.R,139
-baseline_pupil,Preprocessing,development,R/009-preprocessing.R,171
-build_aoi_visits,"Trials, responses, and AOIs",development,R/008-trials-aoi.R,361
-build_item_responses,"Trials, responses, and AOIs",development,R/008-trials-aoi.R,190
-build_stimulus_intervals,"Trials, responses, and AOIs",development,R/008-trials-aoi.R,79
-build_trials,"Trials, responses, and AOIs",development,R/008-trials-aoi.R,1
-canonical_table_names,Schema and canonical tables,development,R/001-schema.R,148
-check_feature_level,Quality and governance,development,R/011-quality-governance.R,205
-check_local_dependence,Psychometric and statistical models,development,R/013-models.R,325
-check_process_leakage,Quality and governance,development,R/011-quality-governance.R,188
-combine_eye_datasets,Generic adapters and mappings,development,R/003-mapping-adapters.R,184
-compact_eye_dataset,Canonical dataset and provenance,development,R/002-class.R,348
-compare_aoi_definitions,Quality and governance,development,R/011-quality-governance.R,301
-compare_eye_datasets,Empirical export validation,development,R/017-format-validation.R,459
-compare_preprocessing,Quality and governance,development,R/011-quality-governance.R,283
-convert_coordinates,Timebase and coordinate operations,development,R/007-coordinates-time.R,67
-convert_xy,Timebase and coordinate operations,development,R/007-coordinates-time.R,31
-coordinate_space,Timebase and coordinate operations,development,R/007-coordinates-time.R,14
-create_validation_bundle,Empirical export validation,development,R/017-format-validation.R,1410
-derive_all_features,Feature extraction,development,R/010-features.R,307
-derive_biometric_features,Feature extraction,development,R/010-features.R,274
-derive_gaze_features,Feature extraction,development,R/010-features.R,162
-derive_pupil_features,Feature extraction,development,R/010-features.R,215
-derive_rt_features,Feature extraction,development,R/010-features.R,259
-detect_blinks,Preprocessing,development,R/009-preprocessing.R,235
-detect_eye_format,Generic adapters and mappings,development,R/003-mapping-adapters.R,127
-detect_fixations_idt,Preprocessing,development,R/009-preprocessing.R,317
-detect_fixations_ivt,Preprocessing,development,R/009-preprocessing.R,269
-detect_saccades,Preprocessing,development,R/009-preprocessing.R,364
-discover_validation_cases,Empirical export validation,development,R/017-format-validation.R,1027
-empty_eye_table,Schema and canonical tables,development,R/001-schema.R,102
-estimate_clock_transform,Timebase and coordinate operations,development,R/007-coordinates-time.R,211
-estimate_ez_diffusion,Experimental models,development,R/016-advanced-experimental.R,152
-estimate_sampling_rate,Timebase and coordinate operations,development,R/007-coordinates-time.R,139
-export_canonical,"Export, reports, and bridges",development,R/015-export-report-bridges.R,118
-eye_format_profiles,Empirical export validation,development,R/017-format-validation.R,57
-eye_mapping,Generic adapters and mappings,development,R/003-mapping-adapters.R,1
-eye_schema,Schema and canonical tables,development,R/001-schema.R,1
-feature_dictionary,Feature extraction,development,R/010-features.R,336
-feature_spec,Feature extraction,development,R/010-features.R,1
-features_wide,Feature extraction,development,R/010-features.R,321
-filter_gaze,Preprocessing,development,R/009-preprocessing.R,52
-filter_pupil,Preprocessing,development,R/009-preprocessing.R,153
-fingerprint_eye_dataset,Empirical export validation,development,R/017-format-validation.R,431
-fit_accuracy_rt,Psychometric and statistical models,development,R/013-models.R,167
-fit_dif,Psychometric and statistical models,development,R/013-models.R,205
-fit_dynamic_aoi_model,Psychometric and statistical models,development,R/013-models.R,366
-fit_explanatory_irt,Psychometric and statistical models,development,R/013-models.R,122
-fit_gaze_informed_irt,Experimental models,development,R/016-advanced-experimental.R,45
-fit_gaze_weighted_choice,Experimental models,development,R/016-advanced-experimental.R,197
-fit_irt,Psychometric and statistical models,development,R/013-models.R,98
-fit_joint_process_model,Psychometric and statistical models,development,R/013-models.R,332
-fit_multimodal_irt,Experimental models,development,R/016-advanced-experimental.R,55
-fit_process_irt,Experimental models,development,R/016-advanced-experimental.R,29
-fit_pupil_informed_irt,Experimental models,development,R/016-advanced-experimental.R,50
-fit_shared_process_factor,Psychometric and statistical models,development,R/013-models.R,235
-fit_strategy_mixture,Experimental models,development,R/016-advanced-experimental.R,107
-flag_gaze_outliers,Preprocessing,development,R/009-preprocessing.R,71
-format_compatibility_matrix,Empirical export validation,development,R/017-format-validation.R,131
-format_validation_spec,Empirical export validation,development,R/017-format-validation.R,3
-functional_pupil_features,Experimental models,development,R/016-advanced-experimental.R,73
-gaze_entropy,Feature extraction,development,R/010-features.R,128
-gaze_velocity,Preprocessing,development,R/009-preprocessing.R,103
-get_eye_table,Canonical dataset and provenance,development,R/002-class.R,274
-gp_align_media_ids,Gazepoint import,development,R/005-import-gazepoint.R,492
-gp_audit_file_pairs,Gazepoint import,development,R/018-gazepoint-real-exports.R,737
-gp_check_biometrics_sync,Gazepoint import,development,R/005-import-gazepoint.R,500
-gp_check_fixation_ids,Gazepoint import,development,R/005-import-gazepoint.R,497
-gp_check_media_timing,Gazepoint import,development,R/005-import-gazepoint.R,498
-gp_check_pupil_channels,Gazepoint import,development,R/005-import-gazepoint.R,499
-gp_check_sampling_rate,Gazepoint import,development,R/005-import-gazepoint.R,495
-gp_check_validity_fields,Gazepoint import,development,R/005-import-gazepoint.R,496
-gp_identify_export_type,Gazepoint import,development,R/018-gazepoint-real-exports.R,216
-gp_list_export_fields,Gazepoint import,development,R/005-import-gazepoint.R,78
-gp_match_biometrics,Gazepoint import,development,R/005-import-gazepoint.R,377
-gp_match_recordings,Gazepoint import,development,R/005-import-gazepoint.R,376
-gp_pair_exports,Gazepoint import,development,R/018-gazepoint-real-exports.R,718
-gp_parse_markers,Gazepoint import,development,R/005-import-gazepoint.R,493
-gp_parse_media_events,Gazepoint import,development,R/005-import-gazepoint.R,465
-gp_parse_user_events,Gazepoint import,development,R/005-import-gazepoint.R,432
-gp_profile_export,Gazepoint import,development,R/005-import-gazepoint.R,57
-gp_reconstruct_stimuli,Gazepoint import,development,R/005-import-gazepoint.R,491
-gp_reconstruct_trials,Gazepoint import,development,R/005-import-gazepoint.R,490
-gp_validate_export,Gazepoint import,development,R/005-import-gazepoint.R,86
-import_canonical,"Export, reports, and bridges",development,R/015-export-report-bridges.R,119
-infer_eye_mapping,Generic adapters and mappings,development,R/003-mapping-adapters.R,66
-init_validation_corpus,Empirical export validation,development,R/017-format-validation.R,982
-inspect_eye_source,Empirical export validation,development,R/017-format-validation.R,187
-interpolate_pupil,Preprocessing,development,R/009-preprocessing.R,122
-interpretive_warnings,Quality and governance,development,R/011-quality-governance.R,225
-is_eye_dataset,Canonical dataset and provenance,development,R/002-class.R,60
-is_eyelink_export,Other vendor imports,development,R/006-import-other-vendors.R,364
-is_gazepoint_export,Gazepoint import,development,R/018-gazepoint-real-exports.R,195
-is_pupil_labs_export,Other vendor imports,development,R/006-import-other-vendors.R,117
-is_smi_export,Other vendor imports,development,R/006-import-other-vendors.R,566
-is_tobii_export,Other vendor imports,development,R/006-import-other-vendors.R,3
-item_parameters,Psychometric and statistical models,development,R/013-models.R,269
-model_data,Psychometric and statistical models,development,R/013-models.R,49
-model_fit_statistics,Psychometric and statistical models,development,R/013-models.R,304
-model_missing_process,Experimental models,development,R/016-advanced-experimental.R,209
-new_aoi,"Trials, responses, and AOIs",development,R/008-trials-aoi.R,214
-new_coordinate_space,Schema and canonical tables,development,R/001-schema.R,150
-new_eye_dataset,Canonical dataset and provenance,development,R/002-class.R,1
-normalize_timebase,Timebase and coordinate operations,development,R/007-coordinates-time.R,152
-parameter_recovery,Simulation and validation,development,R/014-simulation.R,211
-person_scores,Psychometric and statistical models,development,R/013-models.R,287
-plot_aoi_dwell,Visualisation,development,R/012-plots.R,93
-plot_biometrics,Visualisation,development,R/012-plots.R,139
-plot_clock_alignment,Visualisation,development,R/012-plots.R,228
-plot_coordinate_spaces,Visualisation,development,R/012-plots.R,219
-plot_eye_overview,Visualisation,development,R/012-plots.R,10
-plot_eye_trace,Visualisation,development,R/012-plots.R,29
-plot_feature_correlation,Visualisation,development,R/012-plots.R,206
-plot_feature_distribution,Visualisation,development,R/012-plots.R,194
-plot_fixations,Visualisation,development,R/012-plots.R,42
-plot_gaze_heatmap,Visualisation,development,R/012-plots.R,73
-plot_item_difficulty,Visualisation,development,R/012-plots.R,240
-plot_missingness,Visualisation,development,R/012-plots.R,170
-plot_model_diagnostics,Visualisation,development,R/012-plots.R,249
-plot_pupil_timeseries,Visualisation,development,R/012-plots.R,114
-plot_sampling_rate,Visualisation,development,R/012-plots.R,162
-plot_scanpath,Visualisation,development,R/012-plots.R,57
-plot_signal_quality,Visualisation,development,R/012-plots.R,154
-plot_transition_matrix,Visualisation,development,R/012-plots.R,103
-plot_trial_timeline,Visualisation,development,R/012-plots.R,181
-power_process_simulation,Simulation and validation,development,R/014-simulation.R,260
-preprocess_eye,Preprocessing,development,R/009-preprocessing.R,397
-preprocess_spec,Preprocessing,development,R/009-preprocessing.R,1
-process_irt_diagnostics,Experimental models,development,R/016-advanced-experimental.R,60
-process_irt_spec,Experimental models,development,R/016-advanced-experimental.R,1
-provenance_manifest,Canonical dataset and provenance,development,R/002-class.R,334
-pupil_deconvolve,Preprocessing,development,R/009-preprocessing.R,211
-pupil_labs_format,Other vendor imports,development,R/006-import-other-vendors.R,133
-read_eye_dataset,"Export, reports, and bridges",development,R/015-export-report-bridges.R,73
-read_eye_export,Generic adapters and mappings,development,R/003-mapping-adapters.R,152
-read_eye_folder,Generic adapters and mappings,development,R/003-mapping-adapters.R,172
-read_eye_generic,Generic import,development,R/004-import-generic.R,126
-read_eyelink_asc,Other vendor imports,development,R/006-import-other-vendors.R,380
-read_eyelink_edf,Other vendor imports,development,R/006-import-other-vendors.R,546
-read_eyelink_report,Other vendor imports,development,R/006-import-other-vendors.R,540
-read_gazepoint,Gazepoint import,development,R/018-gazepoint-real-exports.R,265
-read_gazepoint_aoi_statistics,Gazepoint import,development,R/018-gazepoint-real-exports.R,527
-read_gazepoint_biometrics,Gazepoint import,development,R/018-gazepoint-real-exports.R,755
-read_gazepoint_combined,Gazepoint import,development,R/018-gazepoint-real-exports.R,832
-read_gazepoint_events,Gazepoint import,development,R/005-import-gazepoint.R,321
-read_gazepoint_fixations,Gazepoint import,development,R/018-gazepoint-real-exports.R,325
-read_gazepoint_folder,Gazepoint import,development,R/018-gazepoint-real-exports.R,647
-read_gazepoint_gaze,Gazepoint import,development,R/005-import-gazepoint.R,189
-read_gazepoint_summary,Gazepoint import,development,R/018-gazepoint-real-exports.R,432
-read_pupil_core,Other vendor imports,development,R/006-import-other-vendors.R,270
-read_pupil_neon,Other vendor imports,development,R/006-import-other-vendors.R,148
-read_pupillabs,Other vendor imports,development,R/006-import-other-vendors.R,140
-read_smi,Other vendor imports,development,R/006-import-other-vendors.R,579
-read_smi_aoi_export,Other vendor imports,development,R/006-import-other-vendors.R,629
-read_smi_event_export,Other vendor imports,development,R/006-import-other-vendors.R,628
-read_smi_raw_export,Other vendor imports,development,R/006-import-other-vendors.R,627
-read_tobii,Other vendor imports,development,R/006-import-other-vendors.R,24
-read_validation_manifest,Empirical export validation,development,R/017-format-validation.R,969
-register_aois,"Trials, responses, and AOIs",development,R/008-trials-aoi.R,258
-register_coordinate_space,Timebase and coordinate operations,development,R/007-coordinates-time.R,1
-register_eye_adapter,Generic adapters and mappings,development,R/003-mapping-adapters.R,95
-remap_recording_ids,Generic adapters and mappings,development,R/003-mapping-adapters.R,227
-report_eye_dataset,"Export, reports, and bridges",development,R/015-export-report-bridges.R,134
-report_processirt,"Export, reports, and bridges",development,R/015-export-report-bridges.R,188
-response_matrix,Psychometric and statistical models,development,R/013-models.R,1
-response_time_matrix,Psychometric and statistical models,development,R/013-models.R,24
-rolling_apply,Preprocessing,development,R/009-preprocessing.R,39
-roundtrip_eye_dataset,Empirical export validation,development,R/017-format-validation.R,575
-scanpath_sequence,Feature extraction,development,R/010-features.R,75
-schema_coverage,Empirical export validation,development,R/017-format-validation.R,275
-schema_coverage_summary,Empirical export validation,development,R/017-format-validation.R,321
-schema_table,Schema and canonical tables,development,R/001-schema.R,94
-sensitivity_missing_process,Experimental models,development,R/016-advanced-experimental.R,225
-sensitivity_process,Quality and governance,development,R/011-quality-governance.R,316
-set_eye_table,Canonical dataset and provenance,development,R/002-class.R,281
-simulate_eye_dataset,Simulation and validation,development,R/014-simulation.R,1
-simulate_process_irt,Simulation and validation,development,R/014-simulation.R,178
-source_preservation_audit,Empirical export validation,development,R/017-format-validation.R,349
-standardize_eye_table,Schema and canonical tables,development,R/001-schema.R,110
-store_quality,Quality and governance,development,R/011-quality-governance.R,10
-summarize_fixations,Feature extraction,development,R/010-features.R,51
-supported_eye_formats,Generic adapters and mappings,development,R/003-mapping-adapters.R,114
-synchronize_eye_biometrics,Timebase and coordinate operations,development,R/007-coordinates-time.R,257
-transition_entropy,Feature extraction,development,R/010-features.R,151
-transition_matrix,Feature extraction,development,R/010-features.R,104
-trial_table,Feature extraction,development,R/010-features.R,46
-unregister_eye_adapter,Generic adapters and mappings,development,R/003-mapping-adapters.R,108
-validate_eye_corpus,Empirical export validation,development,R/017-format-validation.R,1053
-validate_eye_dataset,Canonical dataset and provenance,development,R/002-class.R,124
-validate_eye_mapping,Generic adapters and mappings,development,R/003-mapping-adapters.R,53
-validate_eye_source,Empirical export validation,development,R/017-format-validation.R,623
-validate_eye_table,Schema and canonical tables,development,R/001-schema.R,121
-validate_eyelink_export,Empirical export validation,development,R/017-format-validation.R,1506
-validate_generic_export,Empirical export validation,development,R/017-format-validation.R,1532
-validate_pupillabs_export,Empirical export validation,development,R/017-format-validation.R,1495
-validate_smi_export,Empirical export validation,development,R/017-format-validation.R,1522
-validate_tobii_export,Empirical export validation,development,R/017-format-validation.R,1481
-validation_manifest,Empirical export validation,development,R/017-format-validation.R,868
-write_eye_dataset,"Export, reports, and bridges",development,R/015-export-report-bridges.R,4
-write_format_validation_report,Empirical export validation,development,R/017-format-validation.R,1321
-write_provenance,"Export, reports, and bridges",development,R/015-export-report-bridges.R,121
-write_validation_manifest,Empirical export validation,development,R/017-format-validation.R,963
+name,visibility,source_file,line,title
+.eye_stop,internal,R/000-utils.R,10,
+.eye_warn,internal,R/000-utils.R,11,
+.eye_message,internal,R/000-utils.R,12,
+.assert_scalar_character,internal,R/000-utils.R,14,
+.assert_flag,internal,R/000-utils.R,20,
+.assert_data_frame,internal,R/000-utils.R,27,
+.assert_eye_dataset,internal,R/000-utils.R,32,
+.assert_columns,internal,R/000-utils.R,39,
+.empty_df,internal,R/000-utils.R,50,
+.as_character_id,internal,R/000-utils.R,58,
+.safe_numeric,internal,R/000-utils.R,63,
+.safe_logical,internal,R/000-utils.R,68,
+.unique_id,internal,R/000-utils.R,77,
+.next_id,internal,R/000-utils.R,81,
+.now_utc,internal,R/000-utils.R,93,
+.file_md5,internal,R/000-utils.R,97,
+.deep_copy,internal,R/000-utils.R,105,
+.bind_rows_base,internal,R/000-utils.R,107,
+.safe_max,internal,R/000-utils.R,134,
+.safe_min,internal,R/000-utils.R,140,
+.safe_span,internal,R/000-utils.R,146,
+.read_delimited,internal,R/000-utils.R,152,
+.first_existing,internal,R/000-utils.R,174,
+.first_nonmissing,internal,R/000-utils.R,186,
+.group_split,internal,R/000-utils.R,191,
+.aggregate_rows,internal,R/000-utils.R,198,
+.require_namespace,internal,R/000-utils.R,209,
+.valid_choice,internal,R/000-utils.R,218,
+.quantile_safe,internal,R/000-utils.R,225,
+.trapz,internal,R/000-utils.R,231,
+.mode_value,internal,R/000-utils.R,242,
+.copy_attrs,internal,R/000-utils.R,249,
+eye_schema,exported,R/001-schema.R,1,
+schema_table,exported,R/001-schema.R,94,
+empty_eye_table,exported,R/001-schema.R,102,
+standardize_eye_table,exported,R/001-schema.R,110,
+validate_eye_table,exported,R/001-schema.R,121,
+canonical_table_names,exported,R/001-schema.R,148,
+new_coordinate_space,exported,R/001-schema.R,150,
+new_eye_dataset,exported,R/002-class.R,1,
+is_eye_dataset,exported,R/002-class.R,60,
+as_eye_dataset,exported,R/002-class.R,62,
+as_eye_dataset.eye_dataset,s3_method,R/002-class.R,64,
+as_eye_dataset.data.frame,s3_method,R/002-class.R,66,
+as_eye_dataset.default,s3_method,R/002-class.R,70,
+print.eye_dataset,s3_method,R/002-class.R,74,
+summary.eye_dataset,s3_method,R/002-class.R,93,
+print.summary.eye_dataset,s3_method,R/002-class.R,113,
+validate_eye_dataset,exported,R/002-class.R,124,
+print.eye_validation,s3_method,R/002-class.R,264,
+get_eye_table,exported,R/002-class.R,274,
+set_eye_table,exported,R/002-class.R,281,
+append_eye_table,exported,R/002-class.R,291,
+add_provenance,exported,R/002-class.R,296,
+provenance_manifest,exported,R/002-class.R,334,
+compact_eye_dataset,exported,R/002-class.R,348,
+eye_mapping,exported,R/003-mapping-adapters.R,1,
+print.eye_mapping,s3_method,R/003-mapping-adapters.R,43,
+validate_eye_mapping,exported,R/003-mapping-adapters.R,53,
+infer_eye_mapping,exported,R/003-mapping-adapters.R,66,
+register_eye_adapter,exported,R/003-mapping-adapters.R,95,
+unregister_eye_adapter,exported,R/003-mapping-adapters.R,108,
+supported_eye_formats,exported,R/003-mapping-adapters.R,114,
+detect_eye_format,exported,R/003-mapping-adapters.R,127,
+print.eye_format_detection,s3_method,R/003-mapping-adapters.R,146,
+read_eye_export,exported,R/003-mapping-adapters.R,152,
+read_eye_folder,exported,R/003-mapping-adapters.R,172,
+combine_eye_datasets,exported,R/003-mapping-adapters.R,184,
+remap_recording_ids,exported,R/003-mapping-adapters.R,227,
+.time_multiplier,internal,R/004-import-generic.R,1,
+.map_column,internal,R/004-import-generic.R,22,
+.make_recordings,internal,R/004-import-generic.R,29,
+.resolve_recording_vector,internal,R/004-import-generic.R,59,
+.make_streams,internal,R/004-import-generic.R,68,
+.make_biometric_streams,internal,R/004-import-generic.R,99,
+read_eye_generic,exported,R/004-import-generic.R,126,
+.make_eye_samples_from_mapping,internal,R/004-import-generic.R,256,
+.make_events_from_mapping,internal,R/004-import-generic.R,296,
+.make_responses_from_mapping,internal,R/004-import-generic.R,318,
+.canonical_biometric_unit,internal,R/004-import-generic.R,342,
+.make_biometrics_from_mapping,internal,R/004-import-generic.R,359,
+.gp_pick,internal,R/005-import-gazepoint.R,24,
+is_gazepoint_export,exported,R/005-import-gazepoint.R,26,
+gp_identify_export_type,exported,R/005-import-gazepoint.R,44,
+gp_profile_export,exported,R/005-import-gazepoint.R,57,
+gp_list_export_fields,exported,R/005-import-gazepoint.R,78,
+gp_validate_export,exported,R/005-import-gazepoint.R,86,
+.gp_mapping,internal,R/005-import-gazepoint.R,106,
+read_gazepoint,exported,R/005-import-gazepoint.R,135,
+read_gazepoint_gaze,exported,R/005-import-gazepoint.R,189,
+.gp_biometric_mapping,internal,R/005-import-gazepoint.R,191,
+read_gazepoint_biometrics,exported,R/005-import-gazepoint.R,206,
+read_gazepoint_fixations,exported,R/005-import-gazepoint.R,258,
+read_gazepoint_events,exported,R/005-import-gazepoint.R,321,
+read_gazepoint_combined,exported,R/005-import-gazepoint.R,329,
+read_gazepoint_folder,exported,R/005-import-gazepoint.R,336,
+gp_pair_exports,exported,R/005-import-gazepoint.R,366,
+gp_match_recordings,exported,R/005-import-gazepoint.R,377,
+gp_match_biometrics,exported,R/005-import-gazepoint.R,378,
+gp_audit_file_pairs,exported,R/005-import-gazepoint.R,383,
+read_gazepoint_aoi_statistics,exported,R/005-import-gazepoint.R,397,
+gp_parse_user_events,exported,R/005-import-gazepoint.R,433,
+gp_parse_media_events,exported,R/005-import-gazepoint.R,466,
+gp_reconstruct_trials,exported,R/005-import-gazepoint.R,491,
+gp_reconstruct_stimuli,exported,R/005-import-gazepoint.R,492,
+gp_align_media_ids,exported,R/005-import-gazepoint.R,493,
+gp_parse_markers,exported,R/005-import-gazepoint.R,494,
+gp_check_sampling_rate,exported,R/005-import-gazepoint.R,496,
+gp_check_validity_fields,exported,R/005-import-gazepoint.R,497,
+gp_check_fixation_ids,exported,R/005-import-gazepoint.R,498,
+gp_check_media_timing,exported,R/005-import-gazepoint.R,499,
+gp_check_pupil_channels,exported,R/005-import-gazepoint.R,500,
+gp_check_biometrics_sync,exported,R/005-import-gazepoint.R,501,
+is_tobii_export,exported,R/006-import-other-vendors.R,3,
+.tobii_valid,internal,R/006-import-other-vendors.R,15,
+read_tobii,exported,R/006-import-other-vendors.R,24,
+is_pupil_labs_export,exported,R/006-import-other-vendors.R,117,
+pupil_labs_format,exported,R/006-import-other-vendors.R,133,
+read_pupillabs,exported,R/006-import-other-vendors.R,140,
+read_pupil_neon,exported,R/006-import-other-vendors.R,148,
+.read_neon_companions,internal,R/006-import-other-vendors.R,202,
+read_pupil_core,exported,R/006-import-other-vendors.R,270,
+.read_core_companions,internal,R/006-import-other-vendors.R,311,
+is_eyelink_export,exported,R/006-import-other-vendors.R,364,
+read_eyelink_asc,exported,R/006-import-other-vendors.R,380,
+.parse_eyelink_asc,internal,R/006-import-other-vendors.R,431,
+read_eyelink_report,exported,R/006-import-other-vendors.R,540,
+read_eyelink_edf,exported,R/006-import-other-vendors.R,546,
+is_smi_export,exported,R/006-import-other-vendors.R,566,
+read_smi,exported,R/006-import-other-vendors.R,579,
+read_smi_raw_export,exported,R/006-import-other-vendors.R,627,
+read_smi_event_export,exported,R/006-import-other-vendors.R,628,
+read_smi_aoi_export,exported,R/006-import-other-vendors.R,629,
+register_coordinate_space,exported,R/007-coordinates-time.R,1,
+coordinate_space,exported,R/007-coordinates-time.R,14,
+.list_supported_coordinate_transforms,internal,R/007-coordinates-time.R,21,
+convert_xy,exported,R/007-coordinates-time.R,31,
+convert_coordinates,exported,R/007-coordinates-time.R,67,
+audit_coordinate_spaces,exported,R/007-coordinates-time.R,119,
+estimate_sampling_rate,exported,R/007-coordinates-time.R,139,
+normalize_timebase,exported,R/007-coordinates-time.R,152,
+audit_timebase,exported,R/007-coordinates-time.R,183,
+align_clock,exported,R/007-coordinates-time.R,207,
+estimate_clock_transform,exported,R/007-coordinates-time.R,211,
+print.eye_clock_transform,s3_method,R/007-coordinates-time.R,232,
+apply_clock_transform,exported,R/007-coordinates-time.R,241,
+synchronize_eye_biometrics,exported,R/007-coordinates-time.R,257,
+audit_clock_sync,exported,R/007-coordinates-time.R,282,
+build_trials,exported,R/008-trials-aoi.R,1,
+build_stimulus_intervals,exported,R/008-trials-aoi.R,79,
+.find_interval_id,internal,R/008-trials-aoi.R,132,
+assign_trials,exported,R/008-trials-aoi.R,147,
+add_responses,exported,R/008-trials-aoi.R,168,
+build_item_responses,exported,R/008-trials-aoi.R,190,
+new_aoi,exported,R/008-trials-aoi.R,214,
+print.eye_aoi,s3_method,R/008-trials-aoi.R,253,
+register_aois,exported,R/008-trials-aoi.R,258,
+.point_in_polygon,internal,R/008-trials-aoi.R,277,
+.aoi_contains,internal,R/008-trials-aoi.R,290,
+assign_aois,exported,R/008-trials-aoi.R,303,
+build_aoi_visits,exported,R/008-trials-aoi.R,361,
+preprocess_spec,exported,R/009-preprocessing.R,1,
+print.eye_preprocess_spec,s3_method,R/009-preprocessing.R,30,
+rolling_apply,exported,R/009-preprocessing.R,39,
+filter_gaze,exported,R/009-preprocessing.R,52,
+flag_gaze_outliers,exported,R/009-preprocessing.R,71,
+gaze_velocity,exported,R/009-preprocessing.R,103,
+interpolate_pupil,exported,R/009-preprocessing.R,122,
+filter_pupil,exported,R/009-preprocessing.R,153,
+baseline_pupil,exported,R/009-preprocessing.R,171,
+pupil_deconvolve,exported,R/009-preprocessing.R,211,
+detect_blinks,exported,R/009-preprocessing.R,235,
+detect_fixations_ivt,exported,R/009-preprocessing.R,269,
+detect_fixations_idt,exported,R/009-preprocessing.R,317,
+detect_saccades,exported,R/009-preprocessing.R,364,
+preprocess_eye,exported,R/009-preprocessing.R,397,
+feature_spec,exported,R/010-features.R,1,
+print.eye_feature_spec,s3_method,R/010-features.R,20,
+.feature_rows,internal,R/010-features.R,28,
+trial_table,exported,R/010-features.R,46,
+summarize_fixations,exported,R/010-features.R,51,
+scanpath_sequence,exported,R/010-features.R,75,
+transition_matrix,exported,R/010-features.R,104,
+gaze_entropy,exported,R/010-features.R,128,
+transition_entropy,exported,R/010-features.R,151,
+derive_gaze_features,exported,R/010-features.R,162,
+derive_pupil_features,exported,R/010-features.R,215,
+derive_rt_features,exported,R/010-features.R,259,
+derive_biometric_features,exported,R/010-features.R,274,
+derive_all_features,exported,R/010-features.R,307,
+features_wide,exported,R/010-features.R,321,
+feature_dictionary,exported,R/010-features.R,336,
+.quality_row,internal,R/011-quality-governance.R,1,
+store_quality,exported,R/011-quality-governance.R,10,
+audit_sampling_rate,exported,R/011-quality-governance.R,20,
+audit_signal_quality,exported,R/011-quality-governance.R,41,
+audit_pupil_quality,exported,R/011-quality-governance.R,80,
+audit_episodes,exported,R/011-quality-governance.R,108,
+audit_event_order,exported,R/011-quality-governance.R,124,
+audit_trial_coverage,exported,R/011-quality-governance.R,139,
+audit_aois,exported,R/011-quality-governance.R,156,
+audit_missingness,exported,R/011-quality-governance.R,170,
+check_process_leakage,exported,R/011-quality-governance.R,188,
+check_feature_level,exported,R/011-quality-governance.R,205,
+interpretive_warnings,exported,R/011-quality-governance.R,225,
+analysis_readiness,exported,R/011-quality-governance.R,242,
+print.eye_readiness,s3_method,R/011-quality-governance.R,276,
+compare_preprocessing,exported,R/011-quality-governance.R,283,
+compare_aoi_definitions,exported,R/011-quality-governance.R,301,
+sensitivity_process,exported,R/011-quality-governance.R,316,
+print.eye_sensitivity,s3_method,R/011-quality-governance.R,322,
+.plot_empty,internal,R/012-plots.R,1,
+plot.eye_dataset,s3_method,R/012-plots.R,8,
+plot_eye_overview,exported,R/012-plots.R,10,
+.select_trial_data,internal,R/012-plots.R,23,
+plot_eye_trace,exported,R/012-plots.R,29,
+plot_fixations,exported,R/012-plots.R,42,
+plot_scanpath,exported,R/012-plots.R,57,
+plot_gaze_heatmap,exported,R/012-plots.R,73,
+plot_aoi_dwell,exported,R/012-plots.R,93,
+plot_transition_matrix,exported,R/012-plots.R,103,
+plot_pupil_timeseries,exported,R/012-plots.R,114,
+plot_biometrics,exported,R/012-plots.R,139,
+plot_signal_quality,exported,R/012-plots.R,154,
+plot_sampling_rate,exported,R/012-plots.R,162,
+plot_missingness,exported,R/012-plots.R,170,
+plot_trial_timeline,exported,R/012-plots.R,181,
+plot_feature_distribution,exported,R/012-plots.R,194,
+plot_feature_correlation,exported,R/012-plots.R,206,
+plot_coordinate_spaces,exported,R/012-plots.R,219,
+plot_clock_alignment,exported,R/012-plots.R,228,
+plot_item_difficulty,exported,R/012-plots.R,240,
+plot_model_diagnostics,exported,R/012-plots.R,249,
+response_matrix,exported,R/013-models.R,1,
+response_time_matrix,exported,R/013-models.R,24,
+align_response_matrices,exported,R/013-models.R,43,
+model_data,exported,R/013-models.R,49,
+.new_eyeprocess_model,internal,R/013-models.R,63,
+print.eyeprocess_model,s3_method,R/013-models.R,71,
+summary.eyeprocess_model,s3_method,R/013-models.R,80,
+print.summary.eyeprocess_model,s3_method,R/013-models.R,89,
+fit_irt,exported,R/013-models.R,98,
+fit_explanatory_irt,exported,R/013-models.R,122,
+fit_accuracy_rt,exported,R/013-models.R,167,
+print.eye_two_stage_rt,s3_method,R/013-models.R,199,
+fit_dif,exported,R/013-models.R,205,
+fit_shared_process_factor,exported,R/013-models.R,235,
+item_parameters,exported,R/013-models.R,269,
+person_scores,exported,R/013-models.R,287,
+model_fit_statistics,exported,R/013-models.R,304,
+predict.eyeprocess_model,s3_method,R/013-models.R,317,
+check_local_dependence,exported,R/013-models.R,325,
+fit_joint_process_model,exported,R/013-models.R,332,
+fit_dynamic_aoi_model,exported,R/013-models.R,366,
+print.eye_dynamic_aoi,s3_method,R/013-models.R,378,
+simulate_eye_dataset,exported,R/014-simulation.R,1,
+simulate_process_irt,exported,R/014-simulation.R,178,
+parameter_recovery,exported,R/014-simulation.R,211,
+summary.eye_parameter_recovery,s3_method,R/014-simulation.R,246,
+plot.eye_parameter_recovery,s3_method,R/014-simulation.R,252,
+power_process_simulation,exported,R/014-simulation.R,260,
+write_eye_dataset,exported,R/015-export-report-bridges.R,4,
+read_eye_dataset,exported,R/015-export-report-bridges.R,73,
+export_canonical,exported,R/015-export-report-bridges.R,118,
+import_canonical,exported,R/015-export-report-bridges.R,119,
+write_provenance,exported,R/015-export-report-bridges.R,121,
+report_eye_dataset,exported,R/015-export-report-bridges.R,134,
+report_processirt,exported,R/015-export-report-bridges.R,188,
+.markdown_table,internal,R/015-export-report-bridges.R,190,
+.save_plot,internal,R/015-export-report-bridges.R,204,
+as_eye_dataset.gp3_recording,s3_method,R/015-export-report-bridges.R,213,
+as_eye_dataset.gp3_analysis,s3_method,R/015-export-report-bridges.R,220,
+as_eye_dataset.gp3_data,s3_method,R/015-export-report-bridges.R,221,
+as_eye_dataset.gpbiometrics_data,s3_method,R/015-export-report-bridges.R,223,
+.bridge_list_to_eye_dataset,internal,R/015-export-report-bridges.R,233,
+as_eye_biometrics,exported,R/015-export-report-bridges.R,249,
+as_eye_biometrics.eye_dataset,s3_method,R/015-export-report-bridges.R,251,
+as_eye_biometrics.data.frame,s3_method,R/015-export-report-bridges.R,256,
+process_irt_spec,exported,R/016-advanced-experimental.R,1,
+print.process_irt_spec,s3_method,R/016-advanced-experimental.R,20,
+fit_process_irt,exported,R/016-advanced-experimental.R,29,
+fit_gaze_informed_irt,exported,R/016-advanced-experimental.R,45,
+fit_pupil_informed_irt,exported,R/016-advanced-experimental.R,50,
+fit_multimodal_irt,exported,R/016-advanced-experimental.R,55,
+process_irt_diagnostics,exported,R/016-advanced-experimental.R,60,
+functional_pupil_features,exported,R/016-advanced-experimental.R,73,
+fit_strategy_mixture,exported,R/016-advanced-experimental.R,107,
+print.eye_strategy_mixture,s3_method,R/016-advanced-experimental.R,146,
+estimate_ez_diffusion,exported,R/016-advanced-experimental.R,152,
+fit_gaze_weighted_choice,exported,R/016-advanced-experimental.R,197,
+model_missing_process,exported,R/016-advanced-experimental.R,209,
+sensitivity_missing_process,exported,R/016-advanced-experimental.R,225,
+print.eye_missing_sensitivity,s3_method,R/016-advanced-experimental.R,240,
+format_validation_spec,exported,R/017-format-validation.R,3,
+print.eye_format_validation_spec,s3_method,R/017-format-validation.R,44,
+eye_format_profiles,exported,R/017-format-validation.R,57,
+format_compatibility_matrix,exported,R/017-format-validation.R,131,
+.source_delimiter,internal,R/017-format-validation.R,167,
+.source_relative_path,internal,R/017-format-validation.R,179,
+inspect_eye_source,exported,R/017-format-validation.R,187,
+.schema_critical_fields,internal,R/017-format-validation.R,243,
+.nonmissing_value,internal,R/017-format-validation.R,265,
+schema_coverage,exported,R/017-format-validation.R,275,
+schema_coverage_summary,exported,R/017-format-validation.R,321,
+.usable_text,internal,R/017-format-validation.R,344,
+source_preservation_audit,exported,R/017-format-validation.R,349,
+.stable_cell,internal,R/017-format-validation.R,384,
+.stable_table,internal,R/017-format-validation.R,410,
+.table_md5,internal,R/017-format-validation.R,424,
+fingerprint_eye_dataset,exported,R/017-format-validation.R,431,
+compare_eye_datasets,exported,R/017-format-validation.R,459,
+roundtrip_eye_dataset,exported,R/017-format-validation.R,575,
+print.eye_roundtrip_validation,s3_method,R/017-format-validation.R,600,
+.validation_check,internal,R/017-format-validation.R,606,
+.safe_audit,internal,R/017-format-validation.R,616,
+validate_eye_source,exported,R/017-format-validation.R,623,
+print.eye_format_validation,s3_method,R/017-format-validation.R,809,
+summary.eye_format_validation,s3_method,R/017-format-validation.R,819,
+plot.eye_format_validation,s3_method,R/017-format-validation.R,835,
+validation_manifest,exported,R/017-format-validation.R,868,
+.coerce_manifest_flag,internal,R/017-format-validation.R,912,
+.validate_manifest_rows,internal,R/017-format-validation.R,934,
+.is_absolute_path,internal,R/017-format-validation.R,959,
+write_validation_manifest,exported,R/017-format-validation.R,963,
+read_validation_manifest,exported,R/017-format-validation.R,969,
+init_validation_corpus,exported,R/017-format-validation.R,982,
+discover_validation_cases,exported,R/017-format-validation.R,1027,
+validate_eye_corpus,exported,R/017-format-validation.R,1053,
+print.eye_corpus_validation,s3_method,R/017-format-validation.R,1129,
+plot.eye_corpus_validation,s3_method,R/017-format-validation.R,1137,
+.redact_metadata_paths,internal,R/017-format-validation.R,1151,
+anonymize_eye_dataset,exported,R/017-format-validation.R,1167,
+write_format_validation_report,exported,R/017-format-validation.R,1321,
+.redact_validation_result,internal,R/017-format-validation.R,1363,
+create_validation_bundle,exported,R/017-format-validation.R,1410,
+.empty_vendor_issues,internal,R/017-format-validation.R,1464,
+.vendor_issue,internal,R/017-format-validation.R,1471,
+validate_tobii_export,exported,R/017-format-validation.R,1481,
+validate_pupillabs_export,exported,R/017-format-validation.R,1495,
+validate_eyelink_export,exported,R/017-format-validation.R,1506,
+validate_smi_export,exported,R/017-format-validation.R,1522,
+validate_generic_export,exported,R/017-format-validation.R,1532,
+.gp_id_token,internal,R/018-gazepoint-real-exports.R,3,
+.gp_filename_identity,internal,R/018-gazepoint-real-exports.R,9,
+.gp_time_info,internal,R/018-gazepoint-real-exports.R,30,
+.gp_tick_origin,internal,R/018-gazepoint-real-exports.R,56,
+.gp_source_lookup,internal,R/018-gazepoint-real-exports.R,66,
+.gp_apply_timebase,internal,R/018-gazepoint-real-exports.R,84,
+.gp_aoi_id,internal,R/018-gazepoint-real-exports.R,127,
+.gp_biometric_mapping,internal,R/018-gazepoint-real-exports.R,138,
+.gp_mapping,internal,R/018-gazepoint-real-exports.R,155,
+.gp_is_summary_report,internal,R/018-gazepoint-real-exports.R,188,
+is_gazepoint_export,exported,R/018-gazepoint-real-exports.R,195,
+gp_identify_export_type,exported,R/018-gazepoint-real-exports.R,216,
+.gp_apply_biometric_validity,internal,R/018-gazepoint-real-exports.R,232,
+read_gazepoint,exported,R/018-gazepoint-real-exports.R,265,
+read_gazepoint_fixations,exported,R/018-gazepoint-real-exports.R,325,
+.gp_parse_csv_block,internal,R/018-gazepoint-real-exports.R,413,
+read_gazepoint_summary,exported,R/018-gazepoint-real-exports.R,432,
+print.gazepoint_summary,s3_method,R/018-gazepoint-real-exports.R,454,
+.gp_summary_features,internal,R/018-gazepoint-real-exports.R,463,
+read_gazepoint_aoi_statistics,exported,R/018-gazepoint-real-exports.R,538,
+.gp_dedupe_summary_features,internal,R/018-gazepoint-real-exports.R,641,
+read_gazepoint_folder,exported,R/018-gazepoint-real-exports.R,658,
+gp_pair_exports,exported,R/018-gazepoint-real-exports.R,734,
+gp_audit_file_pairs,exported,R/018-gazepoint-real-exports.R,753,
+read_gazepoint_biometrics,exported,R/018-gazepoint-real-exports.R,771,
+read_gazepoint_combined,exported,R/018-gazepoint-real-exports.R,848,
+gazepoint_workflow_spec,exported,R/019-gazepoint-downstream-workflow.R,28,Specify an integrated Gazepoint downstream workflow
+print.eye_gazepoint_workflow_spec,s3_method,R/019-gazepoint-downstream-workflow.R,87,
+.workflow_token,internal,R/019-gazepoint-downstream-workflow.R,99,
+.workflow_write_csv,internal,R/019-gazepoint-downstream-workflow.R,105,
+.workflow_clean_output,internal,R/019-gazepoint-downstream-workflow.R,111,
+.workflow_item_map,internal,R/019-gazepoint-downstream-workflow.R,122,
+build_gazepoint_media_trials,exported,R/019-gazepoint-downstream-workflow.R,173,Reconstruct media presentations as analysis trials
+.workflow_link_features_to_trials,internal,R/019-gazepoint-downstream-workflow.R,252,
+.workflow_prepare_responses,internal,R/019-gazepoint-downstream-workflow.R,286,
+.workflow_prepare_biometrics,internal,R/019-gazepoint-downstream-workflow.R,375,
+.workflow_preprocess_pupil,internal,R/019-gazepoint-downstream-workflow.R,390,
+.workflow_trial_features,internal,R/019-gazepoint-downstream-workflow.R,435,
+.workflow_biometric_features,internal,R/019-gazepoint-downstream-workflow.R,493,
+derive_gazepoint_workflow_features,exported,R/019-gazepoint-downstream-workflow.R,558,Derive the complete Gazepoint workflow feature set
+.workflow_wide_features,internal,R/019-gazepoint-downstream-workflow.R,599,
+gazepoint_analysis_tables,exported,R/019-gazepoint-downstream-workflow.R,622,Build person-by-item-by-trial analysis tables
+gazepoint_irt_tables,exported,R/019-gazepoint-downstream-workflow.R,802,Create IRT-ready response and process tables
+.workflow_qc_tables,internal,R/019-gazepoint-downstream-workflow.R,896,
+.workflow_save_plot,internal,R/019-gazepoint-downstream-workflow.R,924,
+plot_gazepoint_workflow,exported,R/019-gazepoint-downstream-workflow.R,949,Generate the complete Gazepoint workflow plot suite
+.workflow_matrix_table,internal,R/019-gazepoint-downstream-workflow.R,1060,
+.workflow_write_tables,internal,R/019-gazepoint-downstream-workflow.R,1069,
+.workflow_relative,internal,R/019-gazepoint-downstream-workflow.R,1122,
+.workflow_r_quote,internal,R/019-gazepoint-downstream-workflow.R,1129,
+write_gazepoint_workflow_report,exported,R/019-gazepoint-downstream-workflow.R,1139,Write a reproducible Gazepoint workflow report
+.workflow_reproducibility_files,internal,R/019-gazepoint-downstream-workflow.R,1242,
+run_gazepoint_workflow,exported,R/019-gazepoint-downstream-workflow.R,1310,Run the complete Gazepoint downstream workflow
+print.eye_gazepoint_workflow,s3_method,R/019-gazepoint-downstream-workflow.R,1426,
+summary.eye_gazepoint_workflow,s3_method,R/019-gazepoint-downstream-workflow.R,1439,
+validate_gazepoint_workflow,exported,R/019-gazepoint-downstream-workflow.R,1460,Validate an integrated Gazepoint workflow result
+.detect_generic_delimited,internal,R/zzz.R,1,
+.read_generic_adapter,internal,R/zzz.R,8,
+.onLoad,internal,R/zzz.R,10,
+.onAttach,internal,R/zzz.R,24,

@@ -107,5 +107,27 @@ stopifnot(
         format_validation$checks$status == "pass")
 )
 
+workflow_fixture <- system.file("extdata", "gazepoint_v72", package = "eyeprocess")
+workflow_output <- tempfile("eyeprocess-downstream-smoke-")
+workflow <- run_gazepoint_workflow(
+  workflow_fixture,
+  output_dir = workflow_output,
+  spec = gazepoint_workflow_spec(
+    create_plots = FALSE,
+    create_html_report = FALSE,
+    retain_raw = FALSE
+  ),
+  overwrite = TRUE,
+  quiet = TRUE
+)
+workflow_checks <- validate_gazepoint_workflow(workflow)
+stopifnot(
+  inherits(workflow, "eye_gazepoint_workflow"),
+  workflow$status == "pass",
+  nrow(workflow$tables$process) == nrow(workflow$tables$trials),
+  all(workflow_checks$passed)
+)
+unlink(workflow_output, recursive = TRUE, force = TRUE)
+
 cat("\nAll requested local validation stages completed.\n")
 print(sessionInfo())

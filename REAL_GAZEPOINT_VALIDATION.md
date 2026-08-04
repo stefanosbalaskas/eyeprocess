@@ -40,4 +40,4 @@ The dedicated six-recording Gazepoint Analysis 7.2.0 validation and the complete
 
 ## 0.2.0.9002 package-check status
 
-The dedicated six-recording real-export workflow and complete private corpus remain PASS. Version 0.2.0.9001 also passed all unit tests and substantive package checks; its only `R CMD check` finding was a portable-filename WARNING for two bundled fixture paths containing spaces. Version 0.2.0.9002 renames those packaged fixtures without changing the empirical adapter behavior. A fresh complete Windows runtime gate remains required for 0.2.0.9002.
+The dedicated six-recording real-export workflow and complete private corpus remain PASS. Version 0.2.0.9001 also passed all unit tests and substantive package checks; its only `R CMD check` finding was a portable-filename WARNING for two bundled fixture paths containing spaces. Version 0.2.0.9002 renamed those packaged fixtures without changing the empirical adapter behavior and subsequently passed the complete Windows runtime gate with 0 errors, 0 warnings, and 0 notes. Version 0.3.0.9000 builds the integrated downstream workflow on this validated baseline.
