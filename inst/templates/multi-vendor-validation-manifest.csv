@@ -1,0 +1,11 @@
+case_id,path,vendor,format_family,software_version,device_model,expected_import,require_gaze,require_native_time,require_coordinate_space,require_provenance,require_raw_retention,run_roundtrip,independent_source,licence_reviewed,notes
+gazepoint_case_01,cases/gazepoint-01,gazepoint,gazepoint_analysis,7.2.0,GP3,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,Validated private corpus
+gazepoint_case_02,cases/gazepoint-02,gazepoint,gazepoint_analysis,NA,NA,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,FALSE,FALSE,Replace with an independent real export source
+tobii_case_01,cases/tobii-01,tobii,tobii_pro_lab,NA,NA,TRUE,TRUE,TRUE,TRUE,TRUE,FALSE,TRUE,FALSE,FALSE,Replace with a real export source
+tobii_case_02,cases/tobii-02,tobii,tobii_pro_lab,NA,NA,TRUE,TRUE,TRUE,TRUE,TRUE,FALSE,TRUE,FALSE,FALSE,Replace with an independent real export source
+pupillabs_case_01,cases/pupillabs-01,pupillabs,pupil_labs,NA,NA,TRUE,TRUE,TRUE,TRUE,TRUE,FALSE,TRUE,FALSE,FALSE,Replace with a real export source
+pupillabs_case_02,cases/pupillabs-02,pupillabs,pupil_labs,NA,NA,TRUE,TRUE,TRUE,TRUE,TRUE,FALSE,TRUE,FALSE,FALSE,Replace with an independent real export source
+eyelink_case_01,cases/eyelink-01,eyelink,eyelink_asc,NA,NA,TRUE,TRUE,TRUE,TRUE,TRUE,FALSE,TRUE,FALSE,FALSE,Replace with a real export source
+eyelink_case_02,cases/eyelink-02,eyelink,eyelink_asc,NA,NA,TRUE,TRUE,TRUE,TRUE,TRUE,FALSE,TRUE,FALSE,FALSE,Replace with an independent real export source
+smi_case_01,cases/smi-01,smi,smi_begaze,NA,NA,TRUE,TRUE,TRUE,TRUE,TRUE,FALSE,TRUE,FALSE,FALSE,Replace with a real export source
+smi_case_02,cases/smi-02,smi,smi_begaze,NA,NA,TRUE,TRUE,TRUE,TRUE,TRUE,FALSE,TRUE,FALSE,FALSE,Replace with an independent real export source

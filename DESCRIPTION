@@ -1,7 +1,7 @@
 Package: eyeprocess
 Type: Package
 Title: Harmonize Eye-Tracking, Pupillometry, Biometrics, and Psychometric Process Data
-Version: 0.3.0.9001
+Version: 0.4.0.9000
 Authors@R: c(
     person("Stefanos", "Balaskas", role = c("aut", "cre"),
            email = "s.balaskas@ac.upatras.gr",
@@ -19,6 +19,10 @@ Description: Provides an extensible, vendor-neutral framework for importing,
     psychometric modelling engines. An integrated Gazepoint workflow produces
     quality-control evidence, media-trial reconstruction, plots, analysis-ready
     process tables, IRT-ready response structures, and reproducible reports.
+    Eye-Tracking-BIDS interoperability and validation-release infrastructure
+    support disk-backed storage, independent multi-vendor evidence, grouped
+    validation, simulation calibration, model-equivalence audits, and
+    explicitly experimental advanced psychometric process models.
 License: MIT + file LICENSE
 URL: https://stefanosbalaskas.github.io/eyeprocess/, https://github.com/stefanosbalaskas/eyeprocess
 BugReports: https://github.com/stefanosbalaskas/eyeprocess/issues
@@ -41,6 +45,11 @@ Suggests:
     mirt,
     rmarkdown,
     TAM,
+    arrow,
+    diffIRT,
+    GDINA,
+    OpenMx,
+    TraMineR,
     testthat (>= 3.0.0)
 VignetteBuilder: knitr
 Config/testthat/edition: 3

@@ -1,0 +1,90 @@
+---
+title: "Research validation and software-paper programme"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Research validation and software-paper programme}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>", eval = FALSE)
+```
+
+## Parameter recovery and interval coverage
+
+```{r}
+validation <- run_model_validation(
+  simulator = simulate_model,
+  fitter = fit_model,
+  extractor = extract_estimates,
+  truth_extractor = extract_truth,
+  grid = expand.grid(n_person = c(200, 500), n_item = c(20, 40)),
+  spec = model_validation_spec(replications = 500)
+)
+model_validation_summary(validation)
+plot(validation, type = "coverage")
+```
+
+## Grouped validation and leakage
+
+```{r}
+grouped_cv(model_data, score ~ process_feature, group = "participant_id")
+crossed_grouped_cv(
+  model_data,
+  score ~ process_feature,
+  groups = c("participant_id", "item_id")
+)
+quantify_process_leakage(model_data, score ~ process_feature)
+```
+
+## Preprocessing multiverse
+
+```{r}
+multiverse <- preprocessing_multiverse(
+  dataset,
+  specifications = preprocessing_grid,
+  transform = preprocess_eye,
+  analyse = fit_declared_model,
+  extract = extract_target_estimand
+)
+plot(multiverse)
+```
+
+## Reproducible release assets
+
+```{r}
+create_public_benchmark(dataset, "benchmark", include_samples = FALSE, overwrite = TRUE)
+write_software_paper_scaffold("paper/eyeprocess-software-paper.Rmd")
+```
+
+The Raven reproduction must be implemented only after verifying the public data schema, code licence, scoring, strategy definitions, and exact published estimand. The package should never silently substitute a different model and call it a reproduction.
+
+
+## Explicit confirmatory gates
+
+`simulation_based_calibration()` audits posterior ranks, `compare_model_engines()`
+checks numerical equivalence across engines, and `run_raven_reproduction()` refuses
+to run until the exact materials and reuse terms have been reviewed. These functions
+make the remaining scientific work executable without claiming that unrun simulations
+or unavailable vendor corpora constitute evidence.
+
+
+## Systematic advanced-model grid
+
+```{r}
+full_design <- advanced_validation_grid()
+validation_result <- run_model_validation(
+  simulator = simulate_advanced_process_data,
+  fitter = fit_candidate_model,
+  extractor = extract_candidate_parameters,
+  truth_extractor = function(x) x$truth,
+  grid = full_design,
+  spec = model_validation_spec(replications = 500L),
+  seed = 20260804L
+)
+```
+
+The default design is a one-factor-at-a-time screening grid. The complete Cartesian design is available through `advanced_validation_grid(full_factorial = TRUE)` and is intentionally very large. Execute it on declared computing
+infrastructure, preserve failed replications, and archive the resulting RDS,
+CSV summaries, plots, session information, and model-evidence audit.

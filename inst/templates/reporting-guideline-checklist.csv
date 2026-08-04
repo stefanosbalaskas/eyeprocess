@@ -1,0 +1,12 @@
+section,item,requirement,evidence_source
+hardware,Device and software metadata,required,recordings
+sampling,Nominal and observed sampling rates,required,streams
+calibration,Calibration and validation quality,recommended,calibrations
+coordinates,Coordinate system and transforms,required,coordinate_spaces
+preprocessing,Algorithms and parameters,required,provenance
+quality,Track loss and signal quality,required,quality
+AOIs,Geometry and assignment rules,required,aoi_definitions/aoi_geometry
+exclusions,Trial and participant exclusions,required,quality/provenance
+model,Model estimand and identification,required,eyeprocess_model
+sensitivity,Preprocessing and AOI sensitivity,recommended,eye_multiverse
+interpretation,Construct limitations,required,report
