@@ -1,0 +1,136 @@
+---
+title: "Validating Real Eye-Tracking Exports"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Validating Real Eye-Tracking Exports}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+library(eyeprocess)
+```
+
+## Why empirical validation is separate from declared support
+
+An adapter can be structurally implemented and exercised with synthetic
+fixtures without yet being validated against the diversity of real exports
+created by different device models, software versions, export selections, and
+laboratory conventions. `eyeprocess` therefore distinguishes:
+
+1. **declared support**, based on the implemented parser and documented format;
+2. **synthetic-fixture validation**, based on reproducible package fixtures;
+3. **real-export validation**, based on de-identified empirical files.
+
+```{r profiles}
+head(eye_format_profiles())
+```
+
+## Validate one source
+
+The following example uses the bundled Gazepoint fixture. For real work, replace
+`path` with a source file or export folder.
+
+```{r single-source}
+path <- system.file("extdata", "gazepoint", "demo-user.csv", package = "eyeprocess")
+
+result <- validate_eye_source(
+  path,
+  vendor = "gazepoint",
+  spec = format_validation_spec(run_roundtrip = TRUE),
+  import_args = list(recording_id = "R001", quiet = TRUE),
+  retain_dataset = TRUE,
+  case_id = "gazepoint-demo"
+)
+
+summary(result)
+result$checks
+```
+
+The result retains separate evidence for format detection, adapter-specific
+findings, canonical validation, schema coverage, source preservation, quality
+audits, and canonical round-trip comparison.
+
+## Build a validation corpus
+
+Create a private corpus skeleton with:
+
+```{r initialize-corpus, eval=FALSE}
+init_validation_corpus("C:/private/eyeprocess-validation-corpus")
+```
+
+The initializer is safe to run repeatedly: existing manifest and case files are
+preserved unless `overwrite = TRUE` is supplied.
+
+A corpus should normally contain one directory per export case. Record the
+vendor, device model, software version, export family, and any known options in
+a manifest.
+
+```{r manifest}
+manifest <- validation_manifest(
+  paths = c(
+    system.file("extdata", "gazepoint", "demo-user.csv", package = "eyeprocess"),
+    system.file("extdata", "tobii-demo.tsv", package = "eyeprocess")
+  ),
+  vendor = c("gazepoint", "tobii"),
+  format_family = c("gazepoint_analysis", "tobii_pro_lab"),
+  software_version = c("fixture", "fixture"),
+  case_id = c("gp-fixture", "tobii-fixture")
+)
+
+corpus <- validate_eye_corpus(
+  manifest,
+  spec = format_validation_spec(run_roundtrip = FALSE),
+  import_args = list(
+    `gp-fixture` = list(recording_id = "R001", quiet = TRUE),
+    `tobii-fixture` = list(recording_id = "R002", quiet = TRUE)
+  )
+)
+
+corpus$summary
+```
+
+The compatibility matrix can then combine declared capabilities with observed
+case outcomes.
+
+```{r compatibility}
+format_compatibility_matrix(corpus)[, c(
+  "format_id", "adapter", "validation_level",
+  "empirical_cases", "empirical_passes", "empirical_failures"
+)]
+```
+
+## Produce a safe validation bundle
+
+Validation bundles contain the report, checks, manifests, coverage tables, and
+optionally an anonymized canonical dataset. They do not include raw vendor
+exports.
+
+```{r bundle, eval=FALSE}
+create_validation_bundle(
+  result,
+  path = "gazepoint-validation-bundle.zip",
+  include_dataset = TRUE,
+  anonymize = TRUE,
+  overwrite = TRUE
+)
+```
+
+Automated anonymization replaces core identifiers, removes raw data and source
+paths, and can redact free-text values. It cannot identify every possible
+study-specific disclosure. Review every bundle before sharing it.
+
+## Recommended real-export acceptance process
+
+For each vendor and software version:
+
+1. collect multiple de-identified exports with different export selections;
+2. record device, firmware, software version, sampling rate, and coordinate
+   configuration;
+3. validate each case using a manifest;
+4. inspect every warning and failed canonical field;
+5. verify trial markers, pupil units, fixation provenance, and AOI semantics;
+6. retain compatibility evidence with the package release;
+7. promote support from fixture-tested to empirically validated only after all
+   required cases pass.

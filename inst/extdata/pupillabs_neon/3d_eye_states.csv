@@ -1,0 +1,4 @@
+timestamp [ns],pupil diameter left [mm],pupil diameter right [mm]
+1000000000,3.10,3.15
+1016666667,3.12,3.17
+1033333334,3.14,3.19

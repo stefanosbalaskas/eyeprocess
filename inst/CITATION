@@ -1,0 +1,15 @@
+citHeader("To cite eyeprocess in publications, use:")
+
+citEntry(
+  entry = "Manual",
+  title = "eyeprocess: Harmonize Eye-Tracking, Pupillometry, Biometrics, and Psychometric Process Data",
+  author = personList(as.person("Stefanos Balaskas")),
+  year = "2026",
+  note = "R package version 0.1.0.9003",
+  url = "https://github.com/stefanosbalaskas/eyeprocess",
+  textVersion = paste(
+    "Balaskas, S. (2026). eyeprocess: Harmonize Eye-Tracking,",
+    "Pupillometry, Biometrics, and Psychometric Process Data.",
+    "R package version 0.1.0.9003."
+  )
+)

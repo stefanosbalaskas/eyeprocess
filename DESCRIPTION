@@ -1,0 +1,47 @@
+Package: eyeprocess
+Type: Package
+Title: Harmonize Eye-Tracking, Pupillometry, Biometrics, and Psychometric Process Data
+Version: 0.1.0.9003
+Authors@R: c(
+    person("Stefanos", "Balaskas", role = c("aut", "cre"),
+           email = "s.balaskas@ac.upatras.gr",
+           comment = c(ORCID = "0000-0003-2444-9796"))
+    )
+Description: Provides an extensible, vendor-neutral framework for importing,
+    validating, harmonizing, transforming, visualizing, and modelling
+    eye-tracking, pupillometry, behavioural, and biometric process data.
+    The package uses explicit timebase and coordinate-space registries,
+    preserves native fields and provenance, and offers first-class adapters
+    for Gazepoint Analysis and Gazepoint Biometrics exports alongside generic
+    and vendor-specific importers. Downstream tools support trial and area of
+    interest reconstruction, signal-quality auditing, feature derivation,
+    scanpath analysis, response-time and item-response workflows, and optional
+    psychometric modelling engines.
+License: MIT + file LICENSE
+URL: https://stefanosbalaskas.github.io/eyeprocess,
+    https://github.com/stefanosbalaskas/eyeprocess
+BugReports: https://github.com/stefanosbalaskas/eyeprocess/issues
+Encoding: UTF-8
+LazyData: false
+Depends: R (>= 4.1.0)
+Imports:
+    graphics,
+    grDevices,
+    methods,
+    splines,
+    stats,
+    utils
+Suggests:
+    brms,
+    ggplot2,
+    jsonlite,
+    knitr,
+    lme4,
+    LNIRT,
+    mirt,
+    rmarkdown,
+    TAM,
+    testthat (>= 3.0.0)
+VignetteBuilder: knitr
+Config/testthat/edition: 3
+RoxygenNote: 7.3.2

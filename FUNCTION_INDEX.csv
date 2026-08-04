@@ -1,0 +1,224 @@
+function,category,status,source_file,source_line
+add_provenance,Canonical dataset and provenance,development,R/002-class.R,275
+add_responses,"Trials, responses, and AOIs",development,R/008-trials-aoi.R,168
+align_clock,Timebase and coordinate operations,development,R/007-coordinates-time.R,207
+align_response_matrices,Psychometric and statistical models,development,R/013-models.R,43
+analysis_readiness,Quality and governance,development,R/011-quality-governance.R,242
+anonymize_eye_dataset,Empirical export validation,development,R/017-format-validation.R,1154
+append_eye_table,Canonical dataset and provenance,development,R/002-class.R,270
+apply_clock_transform,Timebase and coordinate operations,development,R/007-coordinates-time.R,241
+as_eye_biometrics,"Export, reports, and bridges",development,R/015-export-report-bridges.R,199
+as_eye_dataset,Canonical dataset and provenance,development,R/002-class.R,62
+assign_aois,"Trials, responses, and AOIs",development,R/008-trials-aoi.R,303
+assign_trials,"Trials, responses, and AOIs",development,R/008-trials-aoi.R,147
+audit_aois,Quality and governance,development,R/011-quality-governance.R,156
+audit_clock_sync,Timebase and coordinate operations,development,R/007-coordinates-time.R,282
+audit_coordinate_spaces,Timebase and coordinate operations,development,R/007-coordinates-time.R,119
+audit_episodes,Quality and governance,development,R/011-quality-governance.R,108
+audit_event_order,Quality and governance,development,R/011-quality-governance.R,124
+audit_missingness,Quality and governance,development,R/011-quality-governance.R,170
+audit_pupil_quality,Quality and governance,development,R/011-quality-governance.R,80
+audit_sampling_rate,Quality and governance,development,R/011-quality-governance.R,20
+audit_signal_quality,Quality and governance,development,R/011-quality-governance.R,41
+audit_timebase,Timebase and coordinate operations,development,R/007-coordinates-time.R,183
+audit_trial_coverage,Quality and governance,development,R/011-quality-governance.R,139
+baseline_pupil,Preprocessing and ocular events,development,R/009-preprocessing.R,171
+build_aoi_visits,"Trials, responses, and AOIs",development,R/008-trials-aoi.R,361
+build_item_responses,"Trials, responses, and AOIs",development,R/008-trials-aoi.R,190
+build_stimulus_intervals,"Trials, responses, and AOIs",development,R/008-trials-aoi.R,79
+build_trials,"Trials, responses, and AOIs",development,R/008-trials-aoi.R,1
+canonical_table_names,Schema and coordinate registry,development,R/001-schema.R,148
+check_feature_level,Quality and governance,development,R/011-quality-governance.R,205
+check_local_dependence,Psychometric and statistical models,development,R/013-models.R,325
+check_process_leakage,Quality and governance,development,R/011-quality-governance.R,188
+combine_eye_datasets,Adapter registry and detection,development,R/003-mapping-adapters.R,184
+compact_eye_dataset,Canonical dataset and provenance,development,R/002-class.R,327
+compare_aoi_definitions,Quality and governance,development,R/011-quality-governance.R,301
+compare_eye_datasets,Empirical export validation,development,R/017-format-validation.R,459
+compare_preprocessing,Quality and governance,development,R/011-quality-governance.R,283
+convert_coordinates,Timebase and coordinate operations,development,R/007-coordinates-time.R,67
+convert_xy,Timebase and coordinate operations,development,R/007-coordinates-time.R,31
+coordinate_space,Timebase and coordinate operations,development,R/007-coordinates-time.R,14
+create_validation_bundle,Empirical export validation,development,R/017-format-validation.R,1397
+derive_all_features,Feature extraction and scanpaths,development,R/010-features.R,307
+derive_biometric_features,Feature extraction and scanpaths,development,R/010-features.R,274
+derive_gaze_features,Feature extraction and scanpaths,development,R/010-features.R,162
+derive_pupil_features,Feature extraction and scanpaths,development,R/010-features.R,215
+derive_rt_features,Feature extraction and scanpaths,development,R/010-features.R,259
+detect_blinks,Preprocessing and ocular events,development,R/009-preprocessing.R,235
+detect_eye_format,Adapter registry and detection,development,R/003-mapping-adapters.R,127
+detect_fixations_idt,Preprocessing and ocular events,development,R/009-preprocessing.R,317
+detect_fixations_ivt,Preprocessing and ocular events,development,R/009-preprocessing.R,269
+detect_saccades,Preprocessing and ocular events,development,R/009-preprocessing.R,364
+discover_validation_cases,Empirical export validation,development,R/017-format-validation.R,1014
+empty_eye_table,Schema and coordinate registry,development,R/001-schema.R,102
+estimate_clock_transform,Timebase and coordinate operations,development,R/007-coordinates-time.R,211
+estimate_ez_diffusion,Experimental models,experimental,R/016-advanced-experimental.R,152
+estimate_sampling_rate,Timebase and coordinate operations,development,R/007-coordinates-time.R,139
+export_canonical,"Export, reports, and bridges",development,R/015-export-report-bridges.R,68
+eye_format_profiles,Empirical export validation,development,R/017-format-validation.R,57
+eye_mapping,Adapter registry and detection,development,R/003-mapping-adapters.R,1
+eye_schema,Schema and coordinate registry,development,R/001-schema.R,1
+feature_dictionary,Feature extraction and scanpaths,development,R/010-features.R,336
+feature_spec,Feature extraction and scanpaths,development,R/010-features.R,1
+features_wide,Feature extraction and scanpaths,development,R/010-features.R,321
+filter_gaze,Preprocessing and ocular events,development,R/009-preprocessing.R,52
+filter_pupil,Preprocessing and ocular events,development,R/009-preprocessing.R,153
+fingerprint_eye_dataset,Empirical export validation,development,R/017-format-validation.R,431
+fit_accuracy_rt,Psychometric and statistical models,development,R/013-models.R,167
+fit_dif,Psychometric and statistical models,development,R/013-models.R,205
+fit_dynamic_aoi_model,Psychometric and statistical models,development,R/013-models.R,366
+fit_explanatory_irt,Psychometric and statistical models,development,R/013-models.R,122
+fit_gaze_informed_irt,Experimental models,experimental,R/016-advanced-experimental.R,45
+fit_gaze_weighted_choice,Experimental models,experimental,R/016-advanced-experimental.R,197
+fit_irt,Psychometric and statistical models,development,R/013-models.R,98
+fit_joint_process_model,Psychometric and statistical models,development,R/013-models.R,332
+fit_multimodal_irt,Experimental models,experimental,R/016-advanced-experimental.R,55
+fit_process_irt,Experimental models,experimental,R/016-advanced-experimental.R,29
+fit_pupil_informed_irt,Experimental models,experimental,R/016-advanced-experimental.R,50
+fit_shared_process_factor,Psychometric and statistical models,development,R/013-models.R,235
+fit_strategy_mixture,Experimental models,experimental,R/016-advanced-experimental.R,107
+flag_gaze_outliers,Preprocessing and ocular events,development,R/009-preprocessing.R,71
+format_compatibility_matrix,Empirical export validation,development,R/017-format-validation.R,131
+format_validation_spec,Empirical export validation,development,R/017-format-validation.R,3
+functional_pupil_features,Experimental models,experimental,R/016-advanced-experimental.R,73
+gaze_entropy,Feature extraction and scanpaths,development,R/010-features.R,128
+gaze_velocity,Preprocessing and ocular events,development,R/009-preprocessing.R,103
+get_eye_table,Canonical dataset and provenance,development,R/002-class.R,253
+gp_align_media_ids,Gazepoint import,development,R/005-import-gazepoint.R,492
+gp_audit_file_pairs,Gazepoint import,development,R/005-import-gazepoint.R,382
+gp_check_biometrics_sync,Gazepoint import,development,R/005-import-gazepoint.R,500
+gp_check_fixation_ids,Gazepoint import,development,R/005-import-gazepoint.R,497
+gp_check_media_timing,Gazepoint import,development,R/005-import-gazepoint.R,498
+gp_check_pupil_channels,Gazepoint import,development,R/005-import-gazepoint.R,499
+gp_check_sampling_rate,Gazepoint import,development,R/005-import-gazepoint.R,495
+gp_check_validity_fields,Gazepoint import,development,R/005-import-gazepoint.R,496
+gp_identify_export_type,Gazepoint import,development,R/005-import-gazepoint.R,44
+gp_list_export_fields,Gazepoint import,development,R/005-import-gazepoint.R,78
+gp_match_biometrics,Gazepoint import,development,R/005-import-gazepoint.R,377
+gp_match_recordings,Gazepoint import,development,R/005-import-gazepoint.R,376
+gp_pair_exports,Gazepoint import,development,R/005-import-gazepoint.R,365
+gp_parse_markers,Gazepoint import,development,R/005-import-gazepoint.R,493
+gp_parse_media_events,Gazepoint import,development,R/005-import-gazepoint.R,465
+gp_parse_user_events,Gazepoint import,development,R/005-import-gazepoint.R,432
+gp_profile_export,Gazepoint import,development,R/005-import-gazepoint.R,57
+gp_reconstruct_stimuli,Gazepoint import,development,R/005-import-gazepoint.R,491
+gp_reconstruct_trials,Gazepoint import,development,R/005-import-gazepoint.R,490
+gp_validate_export,Gazepoint import,development,R/005-import-gazepoint.R,86
+import_canonical,"Export, reports, and bridges",development,R/015-export-report-bridges.R,69
+infer_eye_mapping,Adapter registry and detection,development,R/003-mapping-adapters.R,66
+init_validation_corpus,Empirical export validation,development,R/017-format-validation.R,982
+inspect_eye_source,Empirical export validation,development,R/017-format-validation.R,187
+interpolate_pupil,Preprocessing and ocular events,development,R/009-preprocessing.R,122
+interpretive_warnings,Quality and governance,development,R/011-quality-governance.R,225
+is_eye_dataset,Canonical dataset and provenance,development,R/002-class.R,60
+is_eyelink_export,Other vendor imports,development,R/006-import-other-vendors.R,363
+is_gazepoint_export,Gazepoint import,development,R/005-import-gazepoint.R,26
+is_pupil_labs_export,Other vendor imports,development,R/006-import-other-vendors.R,117
+is_smi_export,Other vendor imports,development,R/006-import-other-vendors.R,564
+is_tobii_export,Other vendor imports,development,R/006-import-other-vendors.R,3
+item_parameters,Psychometric and statistical models,development,R/013-models.R,269
+model_data,Psychometric and statistical models,development,R/013-models.R,49
+model_fit_statistics,Psychometric and statistical models,development,R/013-models.R,304
+model_missing_process,Experimental models,experimental,R/016-advanced-experimental.R,209
+new_aoi,"Trials, responses, and AOIs",development,R/008-trials-aoi.R,214
+new_coordinate_space,Schema and coordinate registry,development,R/001-schema.R,150
+new_eye_dataset,Canonical dataset and provenance,development,R/002-class.R,1
+normalize_timebase,Timebase and coordinate operations,development,R/007-coordinates-time.R,152
+parameter_recovery,Simulation and validation,development,R/014-simulation.R,211
+person_scores,Psychometric and statistical models,development,R/013-models.R,287
+plot_aoi_dwell,Visualisation,development,R/012-plots.R,93
+plot_biometrics,Visualisation,development,R/012-plots.R,139
+plot_clock_alignment,Visualisation,development,R/012-plots.R,228
+plot_coordinate_spaces,Visualisation,development,R/012-plots.R,219
+plot_eye_overview,Visualisation,development,R/012-plots.R,10
+plot_eye_trace,Visualisation,development,R/012-plots.R,29
+plot_feature_correlation,Visualisation,development,R/012-plots.R,206
+plot_feature_distribution,Visualisation,development,R/012-plots.R,194
+plot_fixations,Visualisation,development,R/012-plots.R,42
+plot_gaze_heatmap,Visualisation,development,R/012-plots.R,73
+plot_item_difficulty,Visualisation,development,R/012-plots.R,240
+plot_missingness,Visualisation,development,R/012-plots.R,170
+plot_model_diagnostics,Visualisation,development,R/012-plots.R,249
+plot_pupil_timeseries,Visualisation,development,R/012-plots.R,114
+plot_sampling_rate,Visualisation,development,R/012-plots.R,162
+plot_scanpath,Visualisation,development,R/012-plots.R,57
+plot_signal_quality,Visualisation,development,R/012-plots.R,154
+plot_transition_matrix,Visualisation,development,R/012-plots.R,103
+plot_trial_timeline,Visualisation,development,R/012-plots.R,181
+power_process_simulation,Simulation and validation,development,R/014-simulation.R,260
+preprocess_eye,Preprocessing and ocular events,development,R/009-preprocessing.R,397
+preprocess_spec,Preprocessing and ocular events,development,R/009-preprocessing.R,1
+process_irt_diagnostics,Experimental models,experimental,R/016-advanced-experimental.R,60
+process_irt_spec,Experimental models,experimental,R/016-advanced-experimental.R,1
+provenance_manifest,Canonical dataset and provenance,development,R/002-class.R,313
+pupil_deconvolve,Preprocessing and ocular events,development,R/009-preprocessing.R,211
+pupil_labs_format,Other vendor imports,development,R/006-import-other-vendors.R,132
+read_eye_dataset,"Export, reports, and bridges",development,R/015-export-report-bridges.R,41
+read_eye_export,Adapter registry and detection,development,R/003-mapping-adapters.R,152
+read_eye_folder,Adapter registry and detection,development,R/003-mapping-adapters.R,172
+read_eye_generic,Generic import and mapping,development,R/004-import-generic.R,126
+read_eyelink_asc,Other vendor imports,development,R/006-import-other-vendors.R,378
+read_eyelink_edf,Other vendor imports,development,R/006-import-other-vendors.R,544
+read_eyelink_report,Other vendor imports,development,R/006-import-other-vendors.R,538
+read_gazepoint,Gazepoint import,development,R/005-import-gazepoint.R,135
+read_gazepoint_aoi_statistics,Gazepoint import,development,R/005-import-gazepoint.R,396
+read_gazepoint_biometrics,Gazepoint import,development,R/005-import-gazepoint.R,206
+read_gazepoint_combined,Gazepoint import,development,R/005-import-gazepoint.R,329
+read_gazepoint_events,Gazepoint import,development,R/005-import-gazepoint.R,321
+read_gazepoint_fixations,Gazepoint import,development,R/005-import-gazepoint.R,258
+read_gazepoint_folder,Gazepoint import,development,R/005-import-gazepoint.R,336
+read_gazepoint_gaze,Gazepoint import,development,R/005-import-gazepoint.R,189
+read_pupil_core,Other vendor imports,development,R/006-import-other-vendors.R,269
+read_pupil_neon,Other vendor imports,development,R/006-import-other-vendors.R,147
+read_pupillabs,Other vendor imports,development,R/006-import-other-vendors.R,139
+read_smi,Other vendor imports,development,R/006-import-other-vendors.R,577
+read_smi_aoi_export,Other vendor imports,development,R/006-import-other-vendors.R,627
+read_smi_event_export,Other vendor imports,development,R/006-import-other-vendors.R,626
+read_smi_raw_export,Other vendor imports,development,R/006-import-other-vendors.R,625
+read_tobii,Other vendor imports,development,R/006-import-other-vendors.R,24
+read_validation_manifest,Empirical export validation,development,R/017-format-validation.R,969
+register_aois,"Trials, responses, and AOIs",development,R/008-trials-aoi.R,258
+register_coordinate_space,Timebase and coordinate operations,development,R/007-coordinates-time.R,1
+register_eye_adapter,Adapter registry and detection,development,R/003-mapping-adapters.R,95
+remap_recording_ids,Adapter registry and detection,development,R/003-mapping-adapters.R,227
+report_eye_dataset,"Export, reports, and bridges",development,R/015-export-report-bridges.R,84
+report_processirt,"Export, reports, and bridges",development,R/015-export-report-bridges.R,138
+response_matrix,Psychometric and statistical models,development,R/013-models.R,1
+response_time_matrix,Psychometric and statistical models,development,R/013-models.R,24
+rolling_apply,Preprocessing and ocular events,development,R/009-preprocessing.R,39
+roundtrip_eye_dataset,Empirical export validation,development,R/017-format-validation.R,575
+scanpath_sequence,Feature extraction and scanpaths,development,R/010-features.R,75
+schema_coverage,Empirical export validation,development,R/017-format-validation.R,275
+schema_coverage_summary,Empirical export validation,development,R/017-format-validation.R,321
+schema_table,Schema and coordinate registry,development,R/001-schema.R,94
+sensitivity_missing_process,Experimental models,experimental,R/016-advanced-experimental.R,225
+sensitivity_process,Quality and governance,development,R/011-quality-governance.R,316
+set_eye_table,Canonical dataset and provenance,development,R/002-class.R,260
+simulate_eye_dataset,Simulation and validation,development,R/014-simulation.R,1
+simulate_process_irt,Simulation and validation,development,R/014-simulation.R,178
+source_preservation_audit,Empirical export validation,development,R/017-format-validation.R,349
+standardize_eye_table,Schema and coordinate registry,development,R/001-schema.R,110
+store_quality,Quality and governance,development,R/011-quality-governance.R,10
+summarize_fixations,Feature extraction and scanpaths,development,R/010-features.R,51
+supported_eye_formats,Adapter registry and detection,development,R/003-mapping-adapters.R,114
+synchronize_eye_biometrics,Timebase and coordinate operations,development,R/007-coordinates-time.R,257
+transition_entropy,Feature extraction and scanpaths,development,R/010-features.R,151
+transition_matrix,Feature extraction and scanpaths,development,R/010-features.R,104
+trial_table,Feature extraction and scanpaths,development,R/010-features.R,46
+unregister_eye_adapter,Adapter registry and detection,development,R/003-mapping-adapters.R,108
+validate_eye_corpus,Empirical export validation,development,R/017-format-validation.R,1040
+validate_eye_dataset,Canonical dataset and provenance,development,R/002-class.R,124
+validate_eye_mapping,Adapter registry and detection,development,R/003-mapping-adapters.R,53
+validate_eye_source,Empirical export validation,development,R/017-format-validation.R,623
+validate_eye_table,Schema and coordinate registry,development,R/001-schema.R,121
+validate_eyelink_export,Empirical export validation,development,R/017-format-validation.R,1493
+validate_generic_export,Empirical export validation,development,R/017-format-validation.R,1519
+validate_pupillabs_export,Empirical export validation,development,R/017-format-validation.R,1482
+validate_smi_export,Empirical export validation,development,R/017-format-validation.R,1509
+validate_tobii_export,Empirical export validation,development,R/017-format-validation.R,1468
+validation_manifest,Empirical export validation,development,R/017-format-validation.R,868
+write_eye_dataset,"Export, reports, and bridges",development,R/015-export-report-bridges.R,1
+write_format_validation_report,Empirical export validation,development,R/017-format-validation.R,1308
+write_provenance,"Export, reports, and bridges",development,R/015-export-report-bridges.R,71
+write_validation_manifest,Empirical export validation,development,R/017-format-validation.R,963

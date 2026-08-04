@@ -1,0 +1,209 @@
+# eyeprocess
+
+<!-- badges: start -->
+**Development status:** 0.1.0.9003
+<!-- badges: end -->
+
+`eyeprocess` is a vendor-neutral R framework for transforming heterogeneous
+eye-tracking, pupillometry, behavioural, and biometric exports into validated,
+analysis-ready process data. It provides first-class support for Gazepoint
+Analysis and Gazepoint Biometrics exports, dedicated adapters for common
+eye-tracking ecosystems, and downstream psychometric modelling.
+
+## Design commitments
+
+- Harmonize semantics, not merely column names.
+- Retain native timestamps and source files.
+- Record every timebase and coordinate transformation.
+- Keep vendor-produced and package-derived ocular events distinguishable.
+- Never resample, interpolate, clip, or exclude observations silently.
+- Treat gaze, pupil, and physiology as observations—not automatic psychological
+  constructs.
+- Keep Gazepoint support deep while the canonical representation remains
+  vendor-neutral.
+
+## Supported inputs
+
+| Ecosystem | Initial interface | Support level |
+|---|---|---|
+| Gazepoint Analysis | `read_gazepoint()`, `read_gazepoint_folder()` | First class |
+| Gazepoint Biometrics | `read_gazepoint_biometrics()` | First class |
+| Generic CSV/TSV | `read_eye_generic()` | Universal mapping |
+| Tobii Pro Lab | `read_tobii()` | Dedicated |
+| Pupil Labs Neon | `read_pupil_neon()` | Dedicated |
+| Pupil Labs Core | `read_pupil_core()` | Dedicated |
+| EyeLink ASC | `read_eyelink_asc()` | Dedicated |
+| EyeLink Data Viewer | `read_eyelink_report()` | Explicit mapping |
+| EyeLink EDF | `read_eyelink_edf()` | Local EDF2ASC bridge |
+| SMI BeGaze ASCII | `read_smi()` | Legacy dedicated |
+| Custom adapters | `register_eye_adapter()` | Extensible |
+
+
+## Empirical export validation
+
+Version 0.1.0.9003 adds a formal evidence framework for validating real export
+files rather than treating adapter availability as proof of production
+compatibility. It provides:
+
+- `inspect_eye_source()` for file structure, fields, delimiters, hashes, and
+  format-detection evidence;
+- `validate_eye_source()` for adapter, canonical-schema, timebase, coordinate,
+  provenance, quality, and round-trip checks;
+- `init_validation_corpus()`, `validation_manifest()`, and
+  `validate_eye_corpus()` for versioned multi-vendor compatibility corpora;
+- `schema_coverage()` and `source_preservation_audit()` for loss-aware
+  harmonization evidence;
+- `anonymize_eye_dataset()` and `create_validation_bundle()` for reviewable,
+  non-raw compatibility bundles.
+
+Support levels are reported separately as declared, fixture-tested, or
+empirically validated. Real vendor exports remain necessary before production
+compatibility claims are made.
+
+## Development validation status
+
+Version 0.0.0.9004 is the validated baseline: on Windows 11 with R 4.6.1 it
+installed successfully, passed the complete unit-test suite, completed
+`R CMD check` with **0 errors, 0 warnings, and 0 notes**, passed
+`pkgdown::check_pkgdown()`, and passed runtime smoke tests.
+
+Version 0.1.0.9003 adds the empirical export-validation layer described above
+and requires a fresh runtime validation after installation. The dedicated
+adapters remain **development implementations**: synthetic fixtures exercise
+their expected structures, but production compatibility must still be confirmed
+against multiple real, de-identified exports from each vendor and software
+version.
+
+The original joint-process and dynamic models are explicitly experimental. They
+must undergo parameter-recovery, calibration, coverage, misspecification, and
+empirical-reproduction studies before confirmatory use.
+
+See [`IMPLEMENTATION_STATUS.md`](IMPLEMENTATION_STATUS.md),
+[`FUNCTION_REFERENCE.md`](FUNCTION_REFERENCE.md), and
+[`STATIC_AUDIT.txt`](STATIC_AUDIT.txt).
+
+## Installation from the local source tree
+
+```r
+install.packages(c(
+  "ggplot2", "testthat", "knitr", "rmarkdown", "jsonlite"
+))
+
+install.packages(
+  "C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess",
+  repos = NULL,
+  type = "source"
+)
+```
+
+For development:
+
+```r
+install.packages(c("devtools", "roxygen2", "pkgdown"))
+devtools::load_all("C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess")
+devtools::test("C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess")
+devtools::check("C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess")
+```
+
+## Gazepoint workflow
+
+```r
+library(eyeprocess)
+
+x <- read_gazepoint_folder(
+  "data/P001",
+  include = c("gaze", "fixations", "events", "biometrics")
+)
+
+x
+validate_eye_dataset(x)
+audit_signal_quality(x)
+audit_timebase(x)
+
+x <- build_trials(x, start_events = "TRIAL_START", end_events = "TRIAL_END")
+x <- register_aois(
+  x,
+  new_aoi("prompt", x = 0, y = 0, width = 0.50, height = 1),
+  new_aoi("options", x = 0.50, y = 0, width = 0.50, height = 1)
+)
+x <- assign_aois(x)
+x <- derive_all_features(x)
+
+plot_signal_quality(x)
+plot_scanpath(x, trial_id = x$intervals$trial_id[1])
+plot_pupil_timeseries(x, trial_id = x$intervals$trial_id[1])
+```
+
+## Generic export
+
+```r
+mapping <- eye_mapping(
+  participant = "subject",
+  recording = "recording",
+  timestamp = "timestamp_us",
+  x = "gaze_x",
+  y = "gaze_y",
+  pupil_left = "pupil_left_mm",
+  pupil_right = "pupil_right_mm",
+  trial = "trial_id",
+  stimulus = "stimulus"
+)
+
+x <- read_eye_generic(
+  "data/export.csv",
+  mapping = mapping,
+  time_unit = "microseconds",
+  coordinate_space = "display_pixels_top_left",
+  screen_width = 1920,
+  screen_height = 1080
+)
+```
+
+## Psychometric workflow
+
+```r
+x <- derive_all_features(x)
+
+fit <- fit_explanatory_irt(
+  x,
+  score ~ dwell_time + first_fixation_latency + pupil_auc,
+  engine = "lme4"
+)
+
+fit_rt <- fit_accuracy_rt(x, engine = "LNIRT")
+```
+
+Optional engines are deliberately not installed as mandatory dependencies.
+Install only the modelling engines required for a study:
+
+```r
+install.packages(c("mirt", "TAM", "LNIRT", "lme4"))
+```
+
+## Simulation
+
+```r
+sim <- simulate_eye_dataset(
+  n_person = 80,
+  n_item = 20,
+  seed = 42
+)
+
+sim <- derive_all_features(sim)
+plot_eye_trace(sim, trial_id = sim$intervals$trial_id[1])
+plot_transition_matrix(sim)
+```
+
+## Responsible interpretation
+
+Run:
+
+```r
+interpretive_warnings()
+analysis_readiness(x)
+provenance_manifest(x)
+```
+
+The package does not equate fixation with attention, dwell time with difficulty,
+pupil dilation with cognitive load, rapid response with guessing, or a
+data-derived process factor with a named psychological construct.

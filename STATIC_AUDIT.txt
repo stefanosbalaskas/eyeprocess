@@ -1,0 +1,24 @@
+eyeprocess static audit
+Version: 0.1.0.9003
+
+PASS  DESCRIPTION version: 0.1.0.9003
+PASS  README.md current version
+PASS  CITATION.cff current version
+PASS  inst/CITATION current version
+PASS  cran-comments.md current version
+PASS  IMPLEMENTATION_STATUS.md current version
+PASS  obsolete init error expectation removed
+PASS  idempotent message tested
+PASS  manifest preservation tested
+PASS  case-file preservation tested
+PASS  qmethod removed
+PASS  _pkgdown.yml parses
+PASS  CITATION.cff parses
+PASS  no trailing whitespace
+PASS  no merge conflict markers
+PASS  all NAMESPACE exports resolve
+PASS  all S3 methods resolve
+PASS  source inventory: R files=19, exports=223, tests=11, vignettes=7
+
+Runtime note:
+R is unavailable in the build container; the Windows validation script remains the authoritative runtime gate.

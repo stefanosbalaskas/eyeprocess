@@ -1,0 +1,4 @@
+gaze_timestamp,norm_pos_x,norm_pos_y,confidence,world_index
+1.000,0.20,0.30,0.95,1
+1.017,0.21,0.31,0.96,1
+1.033,0.22,0.32,0.97,1

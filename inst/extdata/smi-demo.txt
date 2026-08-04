@@ -1,0 +1,4 @@
+Participant	Recording	Time	Point of Regard X [px]	Point of Regard Y [px]	L Pupil Diameter [mm]	R Pupil Diameter [mm]	Stimulus Name	Event Type
+P001	R001	0	400	300	3.2	3.3	item01	TRIAL_START
+P001	R001	16667	405	302	3.2	3.3	item01	NA
+P001	R001	33334	410	304	3.3	3.4	item01	TRIAL_END

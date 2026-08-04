@@ -1,0 +1,2 @@
+case_id,path,vendor,format_family,software_version,device_model,expected_import,require_gaze,require_native_time,require_coordinate_space,require_provenance,require_raw_retention,run_roundtrip,notes
+case-001,C:/path/to/export,gazepoint,gazepoint_analysis,unknown,GP3,TRUE,TRUE,TRUE,TRUE,TRUE,FALSE,TRUE,Replace with a de-identified export path

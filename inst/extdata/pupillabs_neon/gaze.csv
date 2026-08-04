@@ -1,0 +1,4 @@
+recording id,timestamp [ns],gaze x [px],gaze y [px],azimuth [deg],elevation [deg],worn
+rec-neon,1000000000,500,300,2.1,-1.2,1
+rec-neon,1016666667,505,302,2.2,-1.1,1
+rec-neon,1033333334,510,304,2.3,-1.0,1

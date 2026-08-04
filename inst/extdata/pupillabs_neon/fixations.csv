@@ -1,0 +1,2 @@
+start timestamp [ns],end timestamp [ns],duration [ms],fixation x [px],fixation y [px]
+1000000000,1033333334,33.333,505,302

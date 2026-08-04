@@ -1,0 +1,15 @@
+test_that("datasets round-trip through RDS and canonical folders", {
+  x <- simulate_eye_dataset(n_person = 2, n_item = 2, samples_per_trial = 10, seed = 4)
+  rds <- tempfile(fileext = ".rds")
+  write_eye_dataset(x, rds)
+  y <- read_eye_dataset(rds)
+  expect_s3_class(y, "eye_dataset")
+  expect_equal(nrow(y$gaze_samples), nrow(x$gaze_samples))
+
+  folder <- tempfile("eye-canonical-")
+  export_canonical(x, folder)
+  z <- import_canonical(folder)
+  expect_s3_class(z, "eye_dataset")
+  expect_equal(nrow(z$responses), nrow(x$responses))
+  unlink(folder, recursive = TRUE)
+})

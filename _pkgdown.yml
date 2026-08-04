@@ -1,0 +1,110 @@
+url: https://stefanosbalaskas.github.io/eyeprocess/
+template:
+  bootstrap: 5
+navbar:
+  structure:
+    left: [intro, reference, articles, news]
+    right: [search, github]
+articles:
+- title: Foundations
+  navbar: Foundations
+  contents:
+  - getting-started
+  - importing-and-harmonizing
+  - gazepoint-workflows
+  - validating-real-exports
+- title: Analysis
+  navbar: Analysis
+  contents:
+  - preprocessing-features
+  - psychometric-process-models
+  - responsible-use
+reference:
+- title: Package overview
+  contents:
+  - eyeprocess-package
+- title: Canonical data and adapters
+  contents:
+  - eye_schema
+  - new_eye_dataset
+  - eye_mapping
+  - read_eye_export
+  - read_eye_generic
+  - supported_eye_formats
+- title: Gazepoint
+  contents:
+  - starts_with("read_gazepoint")
+  - starts_with("gp_")
+- title: Other vendors
+  contents:
+  - read_tobii
+  - read_pupillabs
+  - read_pupil_neon
+  - read_pupil_core
+  - read_eyelink_asc
+  - read_eyelink_report
+  - read_eyelink_edf
+  - read_smi
+- title: Empirical format validation
+  contents:
+  - format_validation_spec
+  - eye_format_profiles
+  - format_compatibility_matrix
+  - inspect_eye_source
+  - schema_coverage
+  - schema_coverage_summary
+  - source_preservation_audit
+  - fingerprint_eye_dataset
+  - compare_eye_datasets
+  - roundtrip_eye_dataset
+  - validate_eye_source
+  - init_validation_corpus
+  - validation_manifest
+  - write_validation_manifest
+  - read_validation_manifest
+  - discover_validation_cases
+  - validate_eye_corpus
+  - anonymize_eye_dataset
+  - write_format_validation_report
+  - create_validation_bundle
+  - validate_tobii_export
+  - validate_pupillabs_export
+  - validate_eyelink_export
+  - validate_smi_export
+  - validate_generic_export
+- title: Time, coordinates, trials, and AOIs
+  contents:
+  - audit_timebase
+  - convert_coordinates
+  - synchronize_eye_biometrics
+  - build_trials
+  - new_aoi
+  - assign_aois
+- title: Preprocessing and features
+  contents:
+  - preprocess_spec
+  - preprocess_eye
+  - derive_all_features
+  - feature_dictionary
+- title: Quality and governance
+  contents:
+  - starts_with("audit_")
+  - analysis_readiness
+  - interpretive_warnings
+  - provenance_manifest
+- title: Visualisation
+  contents:
+  - starts_with("plot_")
+- title: Psychometrics
+  contents:
+  - fit_irt
+  - fit_explanatory_irt
+  - fit_accuracy_rt
+  - fit_process_irt
+  - fit_joint_process_model
+- title: Simulation and reporting
+  contents:
+  - simulate_eye_dataset
+  - simulate_process_irt
+  - parameter_recovery
+  - report_eye_dataset

@@ -1,0 +1,70 @@
+---
+title: "Psychometric Process-Data Models"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Psychometric Process-Data Models}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>", eval = FALSE)
+```
+
+The package prepares linked person-item-trial data and delegates mature IRT
+estimation to optional engines where appropriate.
+
+## Response and response-time matrices
+
+```{r}
+y  <- response_matrix(x)
+rt <- response_time_matrix(x, log_transform = TRUE)
+aligned <- align_response_matrices(y, rt)
+```
+
+## Conventional and explanatory IRT
+
+```{r}
+fit_mirt <- fit_irt(x, engine = "mirt", model = 1, itemtype = "2PL")
+fit_tam  <- fit_irt(x, engine = "TAM")
+
+fit_explanatory <- fit_explanatory_irt(
+  x,
+  score ~ dwell_time + first_fixation_latency + pupil_auc,
+  engine = "lme4"
+)
+```
+
+## Accuracy and response time
+
+```{r}
+fit_rt <- fit_accuracy_rt(x, engine = "LNIRT")
+```
+
+`LNIRT` receives aligned response matrices and log response times. A two-stage
+fallback is available for transparent exploratory work, but it is not treated
+as equivalent to a joint latent model.
+
+## Process-informed and experimental models
+
+```{r}
+spec <- process_irt_spec(
+  response = "score",
+  gaze_features = c("dwell_time", "first_fixation_latency"),
+  pupil_features = c("pupil_auc"),
+  response_time = "response_time"
+)
+
+fit <- fit_process_irt(x, spec, engine = "lme4")
+process_irt_diagnostics(fit)
+
+shared <- fit_shared_process_factor(
+  x,
+  features = c("dwell_time", "fixation_count", "pupil_auc")
+)
+```
+
+Shared process factors are intentionally neutral labels until construct validity
+is established. Advanced joint and dynamic functions are marked experimental
+and require simulation, parameter-recovery, and empirical validation before
+confirmatory use.

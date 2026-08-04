@@ -1,0 +1,4 @@
+Participant name	Recording name	Recording timestamp	Gaze point X	Gaze point Y	Pupil diameter left	Pupil diameter right	Validity left	Validity right	Presented Stimulus name	Event	Event value
+P001	R001	0	400	300	3.2	3.3	Valid	Valid	item01	TRIAL_START	item01
+P001	R001	16667	410	305	3.2	3.3	Valid	Valid	item01	NA	NA
+P001	R001	33334	420	310	3.3	3.4	Valid	Valid	item01	TRIAL_END	item01
