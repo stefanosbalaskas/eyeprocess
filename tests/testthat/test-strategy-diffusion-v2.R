@@ -133,4 +133,3 @@ test_that("Stan generated quantities use supported absolute-value syntax", {
   expect_false(grepl("\\bfabs\\s*\\(", stan_code, perl = TRUE))
   expect_match(stan_code, "fmax\\(abs\\(drift\\), 0\\.25\\)", perl = TRUE)
 })
-
