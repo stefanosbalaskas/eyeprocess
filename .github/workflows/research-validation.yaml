@@ -1,0 +1,95 @@
+name: research-validation
+
+on:
+  workflow_dispatch:
+    inputs:
+      artifact_name:
+        description: "Artifact containing validation-manifest.csv, validation-workflow.R, and any declared inputs"
+        required: true
+        type: string
+      artifact_run_id:
+        description: "Workflow run ID that produced the validation artifact"
+        required: true
+        type: string
+      chunks:
+        description: "Comma-separated deterministic chunk identifiers"
+        required: true
+        default: "C00001"
+        type: string
+      timeout_minutes:
+        description: "Maximum minutes per chunk"
+        required: true
+        default: "180"
+        type: string
+
+permissions:
+  actions: read
+  contents: read
+
+env:
+  R_KEEP_PKG_SOURCE: yes
+  EYEPROCESS_ISOLATION: callr
+  EYEPROCESS_TIMEOUT: 7200
+  EYEPROCESS_MEMORY_MB: 8192
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    outputs:
+      chunks: ${{ steps.matrix.outputs.chunks }}
+    steps:
+      - id: matrix
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json, os
+          chunks = [x.strip() for x in "${{ inputs.chunks }}".split(",") if x.strip()]
+          if not chunks:
+              raise SystemExit("At least one chunk identifier is required")
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as stream:
+              stream.write("chunks=" + json.dumps(chunks) + "\n")
+          PY
+
+  validate:
+    needs: prepare
+    strategy:
+      fail-fast: false
+      matrix:
+        chunk: ${{ fromJSON(needs.prepare.outputs.chunks) }}
+    runs-on: ubuntu-latest
+    timeout-minutes: ${{ fromJSON(inputs.timeout_minutes) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          extra-packages: any::devtools, any::callr, any::future, any::future.apply
+      - uses: actions/download-artifact@v4
+        with:
+          name: ${{ inputs.artifact_name }}
+          run-id: ${{ inputs.artifact_run_id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: validation
+      - name: Validate downloaded research bundle
+        shell: bash
+        run: |
+          test -f validation/validation-manifest.csv
+          test -f validation/validation-workflow.R
+      - name: Install eyeprocess
+        run: R CMD INSTALL .
+      - name: Run deterministic chunk
+        shell: bash
+        run: |
+          RUNNER="$(Rscript -e 'cat(system.file("scripts", "run-validation-chunk.R", package="eyeprocess"))')"
+          Rscript "$RUNNER" validation "${{ matrix.chunk }}" validation/validation-workflow.R
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: validation-${{ matrix.chunk }}
+          path: |
+            validation/checkpoints
+            validation/runner-manifest.*
+          if-no-files-found: warn
+          retention-days: 30

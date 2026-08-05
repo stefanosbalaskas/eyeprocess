@@ -1,0 +1,87 @@
+---
+title: "Independent multi-vendor validation corpus"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Independent multi-vendor validation corpus}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+```
+
+# Evidence levels
+
+Vendor support is reported at three distinct levels:
+
+1. `declared`: an adapter and semantic mapping exist;
+2. `fixture-tested`: synthetic or developer fixtures pass;
+3. `empirically-validated`: independent real exports with version metadata, licensing review, validation artifacts, and successful audits pass.
+
+The third level cannot be created by software alone.
+
+# Registering a case
+
+```{r, eval=FALSE}
+corpus <- init_vendor_corpus("private/vendor-corpus")
+
+register_validation_case(
+  corpus_path = corpus,
+  source_path = "private/exports/tobii-study-01",
+  vendor = "Tobii",
+  device_model = "Tobii Pro Spectrum",
+  software_name = "Tobii Pro Lab",
+  software_version = "1.x",
+  export_profile = "gaze data + events",
+  sampling_rate_hz = 300,
+  coordinate_system = "display area normalized",
+  timebase = "microseconds",
+  event_semantics = "stimulus and trial markers",
+  ocular_structure = "binocular",
+  missingness_convention = "vendor validity codes",
+  vendor_fixations = "exported fixation filter retained separately",
+  package_transformations = "canonical renaming and unit normalization",
+  unsupported_fields = "declared explicitly",
+  independent_source = TRUE,
+  licence_reviewed = TRUE,
+  redistribution_allowed = FALSE,
+  support_level = "empirically-validated",
+  mode = "reference"
+)
+```
+
+# Fingerprinting, redaction, and semantics
+
+```{r, eval=FALSE}
+fingerprint_validation_case("private/exports/tobii-study-01")
+redact_validation_case(corpus, "tobii-study-01", remove_columns = c("participant_name"))
+
+register_vendor_semantics(
+  corpus,
+  data.frame(
+    vendor = "tobii",
+    native_field = "Gaze point X",
+    native_meaning = "horizontal display-area coordinate",
+    canonical_table = "gaze_samples",
+    canonical_field = "x",
+    unit = "normalized",
+    transformation = "identity",
+    loss_risk = "none",
+    evidence_case_id = "tobii-study-01"
+  )
+)
+
+compare_vendor_semantics(corpus)
+```
+
+# Compatibility evidence
+
+```{r, eval=FALSE}
+build_compatibility_matrix(corpus, min_empirical_cases = 2L)
+audit_vendor_field_coverage(corpus)
+audit_roundtrip_loss(original, roundtrip)
+write_vendor_case_report(corpus, "tobii-study-01")
+```
+
+A production claim should remain version-specific and should identify unsupported semantics rather than presenting a binary vendor badge.

@@ -262,3 +262,9 @@ Software availability is not evidence of scientific validity: vendor claims
 require independent real exports, and advanced models remain experimental
 until their declared recovery, calibration, misspecification, grouped
 validation, equivalence, and empirical-reproduction gates pass.
+
+## Research-scale validation programme (0.5.0.9000)
+
+The development programme now supports deterministic and resumable validation jobs, independent vendor-evidence corpora, stable object/storage contracts, optional Stan engines, and a synthetic multimodal benchmark.
+
+Advanced dynamic-state, functional-pupil, strategy-mixture, and gaze-diffusion models remain explicitly experimental until their declared recovery, calibration, misspecification, grouped-validation, equivalence, sensitivity, and empirical-reproduction gates pass.

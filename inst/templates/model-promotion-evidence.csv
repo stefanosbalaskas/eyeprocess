@@ -1,0 +1,8 @@
+model_family,gate,required,evidence_path,status,reviewer,review_date,notes
+dynamic_irtree,completion,TRUE,,missing,,,
+dynamic_irtree,sbc,TRUE,,missing,,,
+dynamic_irtree,misspecification,TRUE,,missing,,,
+dynamic_irtree,grouped_validation,TRUE,,missing,,,
+dynamic_irtree,engine_equivalence,TRUE,,missing,,,
+dynamic_irtree,empirical_reproduction,TRUE,,missing,,,
+dynamic_irtree,preprocessing_sensitivity,TRUE,,missing,,,

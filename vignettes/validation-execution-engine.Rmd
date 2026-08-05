@@ -1,0 +1,107 @@
+---
+title: "Research-scale validation execution"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Research-scale validation execution}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+```
+
+# Purpose
+
+`eyeprocess` separates an executable model from evidence that the model is scientifically dependable. The validation execution engine converts a declared Monte Carlo design into deterministic jobs, atomic checkpoints, resumable runs, auditable failures, recovery summaries, calibration diagnostics, and promotion decisions.
+
+# Deterministic plans
+
+```{r, eval=FALSE}
+library(eyeprocess)
+
+plan <- validation_job_plan(
+  grid = list(
+    n_person = c(50L, 150L, 500L),
+    n_item = c(10L, 30L),
+    process_effect = c(0, 0.25, 0.50),
+    feature_reliability = c(0.50, 0.80),
+    missingness = c(0, 0.15)
+  ),
+  replications = 500L,
+  base_seed = 20260805L,
+  model_family = "dynamic_irtree",
+  chunk_size = 25L
+)
+
+write_validation_job_manifest(plan, "validation/dynamic-irtree")
+```
+
+A job seed is determined by the complete design cell, replication, and base seed. Reordering a plan therefore does not alter the simulated study.
+
+# Atomic execution and resumption
+
+```{r, eval=FALSE}
+run_validation_jobs(
+  plan,
+  simulator = simulate_one_study,
+  fitter = fit_one_model,
+  extractor = extract_estimates,
+  truth_extractor = extract_truth,
+  diagnostics_extractor = extract_diagnostics,
+  draws_extractor = extract_draws,
+  output_dir = "validation/dynamic-irtree",
+  workers = 8L,
+  backend = "future",
+  isolation = "callr",
+  timeout_seconds = 3600,
+  memory_limit_mb = 8192
+)
+
+resume_validation_jobs(
+  plan,
+  "validation/dynamic-irtree",
+  retry = c("missing", "failed", "nonconverged")
+)
+```
+
+Every checkpoint preserves the job specification, seed, warnings, messages, errors, runtime, estimates, diagnostics, optional posterior draws, predictions, and session metadata. Failed jobs are evidence and are never silently removed.
+
+# Collection and evidence
+
+```{r, eval=FALSE}
+result <- collect_validation_jobs("validation/dynamic-irtree", plan)
+validation_recovery_summary(result)
+validation_failure_summary(result)
+validation_runtime_summary(result)
+validation_calibration_summary(result)
+validation_sbc_summary(result)
+
+audit <- audit_validation_completion(result)
+plot_parameter_recovery(result)
+plot_interval_coverage(result)
+plot_sbc_rank(result)
+plot_validation_failures(result)
+plot_validation_runtime(result)
+write_validation_release_report(result, "validation-report.md")
+```
+
+# Promotion remains gated
+
+```{r, eval=FALSE}
+evidence <- list(
+  dynamic_irtree = list(
+    completion = audit,
+    sbc = sbc_audit,
+    misspecification = misspecification_audit,
+    grouped_validation = grouped_result,
+    engine_equivalence = equivalence_result,
+    empirical_reproduction = reproduction_result,
+    preprocessing_sensitivity = aoi_sensitivity
+  )
+)
+
+audit_model_promotion(evidence)
+```
+
+The audit reports `experimental` whenever any required gate is absent or fails. Code execution alone is not a promotion criterion.
