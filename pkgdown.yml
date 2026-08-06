@@ -1,4 +1,4 @@
-pandoc: '3.10'
+pandoc: 3.8.3
 pkgdown: 2.2.1
 pkgdown_sha: ~
 articles:
@@ -22,7 +22,7 @@ articles:
   theory-strategy-mixtures: theory-strategy-mixtures.html
   validating-real-exports: validating-real-exports.html
   validation-execution-engine: validation-execution-engine.html
-last_built: 2026-08-06T22:32Z
+last_built: 2026-08-06T23:03Z
 urls:
   reference: https://stefanosbalaskas.github.io/eyeprocess/reference
   article: https://stefanosbalaskas.github.io/eyeprocess/articles
