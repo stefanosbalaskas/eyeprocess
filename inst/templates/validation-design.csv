@@ -1,0 +1,4 @@
+n_person,n_item,ability_speed_correlation,process_effect,feature_reliability,missingness,aoi_state_error,pupil_autocorrelation,luminance_confounding,dif,local_dependence
+50,10,0.0,0.0,0.50,0.00,0.00,0.0,0.0,0.0,0.0
+150,30,0.3,0.25,0.80,0.10,0.05,0.5,0.2,0.2,0.2
+500,30,0.6,0.50,0.95,0.20,0.15,0.8,0.5,0.5,0.5

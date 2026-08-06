@@ -1,0 +1,2 @@
+case_id,vendor,support_level,device_model,hardware_version,software_name,software_version,export_profile,sampling_rate_hz,coordinate_system,timebase,event_semantics,ocular_structure,missingness_convention,vendor_fixations,package_transformations,unsupported_fields,independent_source,licence_reviewed,redistribution_allowed,status,notes
+example-case,tobii,declared,,,,,,,,,,,,,,,,FALSE,FALSE,FALSE,pending,Replace every blank with case-specific evidence

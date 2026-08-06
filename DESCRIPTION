@@ -1,56 +1,32 @@
 Package: eyeprocess
 Type: Package
 Title: Harmonize Eye-Tracking, Pupillometry, Biometrics, and Psychometric Process Data
-Version: 0.4.0.9000
-Authors@R: c(
-    person("Stefanos", "Balaskas", role = c("aut", "cre"),
-           email = "s.balaskas@ac.upatras.gr",
-           comment = c(ORCID = "0000-0003-2444-9796"))
-    )
-Description: Provides an extensible, vendor-neutral framework for importing,
-    validating, harmonizing, transforming, visualizing, and modelling
-    eye-tracking, pupillometry, behavioural, and biometric process data.
-    The package uses explicit timebase and coordinate-space registries,
-    preserves native fields and provenance, and offers first-class adapters
-    for Gazepoint Analysis and Gazepoint Biometrics exports alongside generic
-    and vendor-specific importers. Downstream tools support trial and area of
-    interest reconstruction, signal-quality auditing, feature derivation,
-    scanpath analysis, response-time and item-response workflows, and optional
-    psychometric modelling engines. An integrated Gazepoint workflow produces
-    quality-control evidence, media-trial reconstruction, plots, analysis-ready
-    process tables, IRT-ready response structures, and reproducible reports.
-    Eye-Tracking-BIDS interoperability and validation-release infrastructure
-    support disk-backed storage, independent multi-vendor evidence, grouped
-    validation, simulation calibration, model-equivalence audits, and
-    explicitly experimental advanced psychometric process models.
+Version: 0.5.0.9000
+Authors@R: c( person("Stefanos", "Balaskas", role = c("aut", "cre"), email = "s.balaskas@ac.upatras.gr", comment =
+    c(ORCID = "0000-0003-2444-9796")) )
+Description: Provides an extensible, vendor-neutral framework for importing, validating, harmonizing, transforming,
+    visualizing, and modelling eye-tracking, pupillometry, behavioural, and biometric process data. The package uses
+    explicit timebase and coordinate-space registries, preserves native fields and provenance, and offers first-class
+    adapters for Gazepoint Analysis and Gazepoint Biometrics exports alongside generic and vendor-specific importers.
+    Downstream tools support trial and area of interest reconstruction, signal-quality auditing, feature derivation,
+    scanpath analysis, response-time and item-response workflows, and optional psychometric modelling engines. An
+    integrated Gazepoint workflow produces quality-control evidence, media-trial reconstruction, plots, analysis-ready
+    process tables, IRT-ready response structures, and reproducible reports. Eye-Tracking-BIDS interoperability and
+    validation-release infrastructure support disk-backed storage, independent multi-vendor evidence, grouped validation,
+    simulation calibration, model-equivalence audits, and explicitly experimental advanced psychometric process models.
+    Research-scale infrastructure adds deterministic resumable Monte Carlo execution, atomic validation checkpoints,
+    explicit advanced-model promotion gates, independent multi-vendor evidence registries, stable object contracts,
+    partitioned disk-backed storage, optional probabilistic engines, and a fully synthetic multimodal benchmark for
+    reproducibility testing.
 License: MIT + file LICENSE
 URL: https://stefanosbalaskas.github.io/eyeprocess/, https://github.com/stefanosbalaskas/eyeprocess
 BugReports: https://github.com/stefanosbalaskas/eyeprocess/issues
 Encoding: UTF-8
 Depends: R (>= 4.1.0)
-Imports:
-    graphics,
-    grDevices,
-    methods,
-    splines,
-    stats,
-    utils
-Suggests:
-    brms,
-    ggplot2,
-    jsonlite,
-    knitr,
-    lme4,
-    LNIRT,
-    mirt,
-    rmarkdown,
-    TAM,
-    arrow,
-    diffIRT,
-    GDINA,
-    OpenMx,
-    TraMineR,
-    testthat (>= 3.0.0)
+Imports: graphics, grDevices, methods, splines, stats, utils
+Suggests: brms, ggplot2, jsonlite, knitr, lme4, LNIRT, mirt, rmarkdown, TAM, arrow, diffIRT, GDINA, OpenMx, TraMineR,
+    testthat (>= 3.0.0), callr, cmdstanr, eyetrackingR, future, future.apply, openssl, PupillometryR, rtdists, seqHMM
+Additional_repositories: https://stan-dev.r-universe.dev
 VignetteBuilder: knitr
 Config/testthat/edition: 3
 Config/roxygen2/version: 8.0.0

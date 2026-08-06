@@ -1,0 +1,53 @@
+---
+title: "Public benchmark and software-paper reproduction"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Public benchmark and software-paper reproduction}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+```
+
+# Bundled multimodal study
+
+The package includes a compact, fully synthetic and openly redistributable benchmark containing participant and item metadata, binary responses, response times, recordings, gaze samples, events, AOIs, pupil trajectories, quality indicators, and provenance.
+
+```{r}
+library(eyeprocess)
+study <- eyeprocess_benchmark_study()
+study
+```
+
+The benchmark tests contracts and reproducibility. It is not real participant data, vendor compatibility evidence, or scientific validation of advanced models.
+
+# Integrity and expected outputs
+
+```{r}
+validation <- validate_benchmark_study(study)
+validation$valid
+
+reproduction <- run_benchmark_reproduction(study)
+reproduction$comparison
+```
+
+All source files are fingerprinted. Relational checks ensure that participants, items, trials, events, gaze, and pupil records agree. Expected scalar outputs use explicit numerical tolerances.
+
+# Data dictionary and reproduction directory
+
+```{r, eval=FALSE}
+write_benchmark_data_dictionary(study, "benchmark-data-dictionary.md")
+write_software_paper_reproduction("software-paper-reproduction", study)
+```
+
+The reproduction scaffold contains copied benchmark data, an executable R script, expected outputs, a README, and a file/session manifest.
+
+# Release audit
+
+```{r}
+audit_benchmark_release(study)$ready
+```
+
+A public empirical benchmark can later be added under an independently reviewed licence. It must remain distinct from this synthetic test asset.
