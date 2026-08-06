@@ -1,22 +1,21 @@
 # Fit a dynamic gaze-state response-tree model
 
-Fits one-vs-rest transition logits for each observed destination state.
-The model preserves transition order, person/item structure, and
-optional item response predictors. It is an auditable dynamic baseline
-rather than a claim that observed AOI states are latent cognitive
-states.
+Part of the research-scale validation, advanced-model, interoperability,
+storage, adapter, or reproducibility programme. Experimental model
+functions remain subject to declared evidence gates.
 
 ## Usage
 
 ``` r
-fit_dynamic_irtree(x, spec = dynamic_irtree_spec(), min_transitions = 10L)
+fit_dynamic_irtree(x, spec = dynamic_irtree_spec(), min_transitions = 10L, seed = 1L,
+  ...)
 ```
 
 ## Arguments
 
 - x:
 
-  An \`eye_dataset\`.
+  An \`eye_dataset\` or transition/long-state data frame.
 
 - spec:
 
@@ -24,8 +23,17 @@ fit_dynamic_irtree(x, spec = dynamic_irtree_spec(), min_transitions = 10L)
 
 - min_transitions:
 
-  Minimum transitions required per destination state.
+  Minimum support per destination for baseline logits.
+
+- seed:
+
+  Random seed for probabilistic engines.
+
+- ...:
+
+  Engine-specific arguments.
 
 ## Value
 
-An \`eye_dynamic_irtree\` object.
+The documented eyeprocess object, data frame, plot, report path, or
+adapter result.

@@ -1,43 +1,50 @@
-# Fit a theory-defined strategy-informed IRT model
+# Fit a theory-constrained strategy mixture
 
-Strategy prototypes are declared before estimation. Posterior strategy
-probabilities are computed from Gaussian feature-distance likelihoods
-and entered into a response model with person and item effects.
+Part of the research-scale validation, advanced-model, interoperability,
+storage, adapter, or reproducibility programme. Experimental model
+functions remain subject to declared evidence gates.
 
 ## Usage
 
 ``` r
-fit_theory_strategy_irt(
-  x,
-  spec,
-  response = "score",
-  participant = "participant_id",
-  item = "item_id"
-)
+fit_theory_strategy_irt(data, spec, seed = 1L, response = NULL, participant = NULL,
+  item = NULL, ...)
 ```
 
 ## Arguments
 
-- x:
+- data:
 
-  An \`eye_dataset\` or model data frame.
+  Trial-level data.
 
 - spec:
 
-  Theory strategy specification.
+  Strategy specification.
+
+- seed:
+
+  Seed.
 
 - response:
 
-  Response column.
+  Value for \`response\`. See the function description and relevant
+  article for constraints.
 
 - participant:
 
-  Participant column.
+  Value for \`participant\`. See the function description and relevant
+  article for constraints.
 
 - item:
 
-  Item column.
+  Value for \`item\`. See the function description and relevant article
+  for constraints.
+
+- ...:
+
+  Engine arguments.
 
 ## Value
 
-An \`eye_theory_strategy_irt\` object.
+The documented eyeprocess object, data frame, plot, report path, or
+adapter result.

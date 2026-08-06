@@ -29,3 +29,19 @@
   validation](https://stefanosbalaskas.github.io/eyeprocess/articles/advanced-model-validation.md):
 - [Research validation and software-paper
   programme](https://stefanosbalaskas.github.io/eyeprocess/articles/research-validation-program.md):
+- [Research-scale validation
+  execution](https://stefanosbalaskas.github.io/eyeprocess/articles/validation-execution-engine.md):
+- [Dynamic IRTree and transition-model
+  hardening](https://stefanosbalaskas.github.io/eyeprocess/articles/dynamic-irtree-hardening.md):
+- [Independent multi-vendor validation
+  corpus](https://stefanosbalaskas.github.io/eyeprocess/articles/independent-vendor-corpus.md):
+- [Functional pupil-IRT
+  modelling](https://stefanosbalaskas.github.io/eyeprocess/articles/functional-pupil-irt-engine.md):
+- [Theory-constrained strategy
+  mixtures](https://stefanosbalaskas.github.io/eyeprocess/articles/theory-strategy-mixtures.md):
+- [Gaze-informed diffusion-IRT
+  modelling](https://stefanosbalaskas.github.io/eyeprocess/articles/gaze-diffusion-irt.md):
+- [Stable APIs, scalable storage, and external
+  adapters](https://stefanosbalaskas.github.io/eyeprocess/articles/api-storage-adapters.md):
+- [Public benchmark and software-paper
+  reproduction](https://stefanosbalaskas.github.io/eyeprocess/articles/benchmark-reproduction.md):

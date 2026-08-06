@@ -1,31 +1,39 @@
-# Fit a GDINA cognitive-diagnosis adapter
+# fit gdina adapter
 
-Fit a GDINA cognitive-diagnosis adapter
+Part of the research-scale validation, advanced-model, interoperability,
+storage, adapter, or reproducibility programme. Experimental model
+functions remain subject to declared evidence gates.
 
 ## Usage
 
 ``` r
-fit_gdina_adapter(x, q_matrix, model = "GDINA", ...)
+fit_gdina_adapter(data, Q, model = "GDINA", purpose = "cognitive diagnosis", ...)
 ```
 
 ## Arguments
 
-- x:
+- data:
 
-  An \`eye_dataset\`.
+  Value for \`data\`. See the function description and relevant article
+  for constraints.
 
-- q_matrix:
+- Q:
 
-  Q-matrix with items in response-matrix order.
+  Q-matrix with one row per item.
 
 - model:
 
-  GDINA model specification.
+  GDINA model specification used for eye-dataset inputs.
+
+- purpose:
+
+  Declared scientific purpose for the external-engine contract.
 
 - ...:
 
-  Passed to \`GDINA::GDINA()\`.
+  Additional arguments passed to the selected engine or method.
 
 ## Value
 
-An \`eyeprocess_model\`.
+The documented eyeprocess object, data frame, plot, report path, or
+adapter result.

@@ -1,23 +1,36 @@
 # Specify a functional pupil-IRT model
 
-Specify a functional pupil-IRT model
+Part of the research-scale validation, advanced-model, interoperability,
+storage, adapter, or reproducibility programme. Experimental model
+functions remain subject to declared evidence gates.
 
 ## Usage
 
 ``` r
-functional_pupil_irt_spec(
-  df = 5L,
-  response = "score",
-  engine = c("two_stage_glm", "two_stage_lme4", "brms"),
-  include_response_time = TRUE
-)
+functional_pupil_irt_spec(df = 6L, basis = c("natural_spline", "bspline"),
+  response = "score", engine = c("two_stage_glm", "two_stage_lme4", "brms", "stan"),
+  alignment = c("trial", "event"), event_time_column = NULL, latency_ms = 200,
+  baseline_window = c(-200, 0), baseline_method = c("subtract", "percent", "zscore"),
+  min_baseline_samples = 3L, drop_invalid_baseline = TRUE, time_window = NULL,
+  pupil_column = NULL, time_column = NULL, participant_column = "participant_id",
+  item_column = "item_id", trial_column = "trial_id", luminance_column = NULL,
+  gaze_x_column = NULL, gaze_y_column = NULL, blink_column = NULL,
+  interpolated_column = NULL, max_interpolated_fraction = 0.20,
+  nuisance_by_participant = FALSE, include_response_time = TRUE, ar1 = TRUE,
+  participant_effect = TRUE, item_effect = TRUE, chains = 4L,
+  parallel_chains = chains, iter_warmup = 1000L, iter_sampling = 1000L,
+  adapt_delta = 0.95, max_treedepth = 12L)
 ```
 
 ## Arguments
 
 - df:
 
-  Natural-spline degrees of freedom.
+  Basis degrees of freedom.
+
+- basis:
+
+  Natural spline or B-spline basis.
 
 - response:
 
@@ -25,12 +38,129 @@ functional_pupil_irt_spec(
 
 - engine:
 
-  Two-stage GLM/multilevel engine or joint \`brms\` engine.
+  Two-stage baseline, multilevel baseline, brms bridge, or
+
+- alignment:
+
+  Trial- or event-aligned time.
+
+- event_time_column:
+
+  Event timestamp column required for event alignment.
+
+- latency_ms:
+
+  Physiological latency shift applied before basis creation.
+
+- baseline_window:
+
+  Numeric time window used for baseline correction.
+
+- baseline_method:
+
+  Subtract, percent change, or z score.
+
+- min_baseline_samples:
+
+  Minimum finite baseline samples per trial.
+
+- drop_invalid_baseline:
+
+  Whether to exclude trials with invalid baselines.
+
+- time_window:
+
+  Optional analysis time window.
+
+- pupil_column:
+
+  Column names.
+
+- time_column:
+
+  Column names.
+
+- participant_column:
+
+  Column names.
+
+- item_column:
+
+  Column names.
+
+- trial_column:
+
+  Column names.
+
+- luminance_column:
+
+  Optional nuisance columns.
+
+- gaze_x_column:
+
+  Optional nuisance columns.
+
+- gaze_y_column:
+
+  Optional nuisance columns.
+
+- blink_column:
+
+  Optional quality columns.
+
+- interpolated_column:
+
+  Optional quality columns.
+
+- max_interpolated_fraction:
+
+  Maximum interpolated fraction per trial.
+
+- nuisance_by_participant:
+
+  Whether nuisance residualization includes participant fixed effects.
 
 - include_response_time:
 
-  Include a response-time submodel when joint.
+  Include response time in supported joint bridges.
+
+- ar1:
+
+  Include trial-wise AR(1) residual structure in Stan.
+
+- participant_effect:
+
+  Include participant/item pupil effects.
+
+- item_effect:
+
+  Include participant/item pupil effects.
+
+- chains:
+
+  CmdStan controls.
+
+- parallel_chains:
+
+  CmdStan controls.
+
+- iter_warmup:
+
+  CmdStan controls.
+
+- iter_sampling:
+
+  CmdStan controls.
+
+- adapt_delta:
+
+  CmdStan sampler controls.
+
+- max_treedepth:
+
+  CmdStan sampler controls.
 
 ## Value
 
-An \`eye_functional_pupil_irt_spec\`.
+The documented eyeprocess object, data frame, plot, report path, or
+adapter result.

@@ -1,5 +1,36 @@
 # Changelog
 
+## eyeprocess 0.5.0.9000
+
+### Research-scale validation and reproducible orchestration
+
+- Added deterministic Monte Carlo job plans, atomic checkpoints,
+  resumption, parallel execution, manifests,
+  recovery/calibration/failure summaries, plots, reports, and
+  model-promotion audits.
+- Added manual research-validation workflows and chunk-based execution
+  scripts; full simulations remain opt-in and are not run during
+  ordinary package checks.
+
+### Advanced model hardening
+
+- Hardened dynamic IRTree models with transition designs, structural
+  zeros, irregular time, uncertain states, multinomial and optional Stan
+  hidden-state engines, decoding, residuals, comparison, and recovery
+  programmes.
+- Added functional pupil–IRT, theory-constrained strategy-mixture, and
+  Wiener gaze-diffusion engines with explicit scientific-evidence gates.
+
+### Vendor evidence, contracts, storage, and reproducibility
+
+- Added independent multi-vendor corpus registration, fingerprinting,
+  redaction, semantic comparison, round-trip loss audits, and
+  declared/fixture/empirical compatibility matrices.
+- Added stable API/object contracts, atomic partitioned
+  Arrow/Parquet/CSV/RDS storage, schema migration, corruption detection,
+  optional-engine adapters, and a fully synthetic multimodal public
+  benchmark.
+
 ## eyeprocess 0.4.0.9000
 
 - Added Eye-Tracking-BIDS import/export and optional RDS/Parquet/Arrow

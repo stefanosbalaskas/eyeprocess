@@ -1,20 +1,28 @@
-pandoc: 3.8.3
+pandoc: '3.10'
 pkgdown: 2.2.1
 pkgdown_sha: ~
 articles:
   advanced-model-validation: advanced-model-validation.html
+  api-storage-adapters: api-storage-adapters.html
+  benchmark-reproduction: benchmark-reproduction.html
+  dynamic-irtree-hardening: dynamic-irtree-hardening.html
+  functional-pupil-irt-engine: functional-pupil-irt-engine.html
+  gaze-diffusion-irt: gaze-diffusion-irt.html
   gazepoint-downstream-workflow: gazepoint-downstream-workflow.html
   gazepoint-workflows: gazepoint-workflows.html
   getting-started: getting-started.html
   importing-and-harmonizing: importing-and-harmonizing.html
+  independent-vendor-corpus: independent-vendor-corpus.html
   interoperability-storage: interoperability-storage.html
   multi-vendor-validation: multi-vendor-validation.html
   preprocessing-features: preprocessing-features.html
   psychometric-process-models: psychometric-process-models.html
   research-validation-program: research-validation-program.html
   responsible-use: responsible-use.html
+  theory-strategy-mixtures: theory-strategy-mixtures.html
   validating-real-exports: validating-real-exports.html
-last_built: 2026-08-04T20:50Z
+  validation-execution-engine: validation-execution-engine.html
+last_built: 2026-08-06T22:15Z
 urls:
   reference: https://stefanosbalaskas.github.io/eyeprocess/reference
   article: https://stefanosbalaskas.github.io/eyeprocess/articles

@@ -1,27 +1,102 @@
-# Specify theory-defined process strategies
+# Define a theory-constrained strategy-mixture model
 
-Specify theory-defined process strategies
+Part of the research-scale validation, advanced-model, interoperability,
+storage, adapter, or reproducibility programme. Experimental model
+functions remain subject to declared evidence gates.
 
 ## Usage
 
 ``` r
-theory_strategy_spec(prototypes, feature_sd = NULL, prior = NULL)
+theory_strategy_spec(strategies = NULL, feature_columns = NULL, response = "score",
+  participant = "participant_id", item = "item_id", condition = NULL,
+  item_availability = NULL, engine = c("em", "stan"), multiple_starts = 10L,
+  anchor_strength = 3, chains = 4L, parallel_chains = min(4L, chains),
+  iter_warmup = 1000L, iter_sampling = 1000L, adapt_delta = 0.95, max_treedepth = 12L,
+  prototypes = NULL, feature_sd = NULL, prior = NULL)
 ```
 
 ## Arguments
 
+- strategies:
+
+  Named list of strategy signatures. Each signature is a named
+
+- feature_columns:
+
+  Process-feature columns.
+
+- response:
+
+  Binary response column.
+
+- participant:
+
+  Participant identifier.
+
+- item:
+
+  Item identifier.
+
+- condition:
+
+  Optional condition column.
+
+- item_availability:
+
+  Optional item-by-strategy availability matrix or data frame.
+
+- engine:
+
+  Estimation engine.
+
+- multiple_starts:
+
+  Number of starts for the EM baseline.
+
+- anchor_strength:
+
+  Prior/penalty strength anchoring classes to signatures.
+
+- chains:
+
+  Stan controls.
+
+- parallel_chains:
+
+  Stan controls.
+
+- iter_warmup:
+
+  Stan controls.
+
+- iter_sampling:
+
+  Stan controls.
+
+- adapt_delta:
+
+  Stan controls.
+
+- max_treedepth:
+
+  Stan controls.
+
 - prototypes:
 
-  Matrix/data frame with strategies in rows and features in columns.
+  Value for \`prototypes\`. See the function description and relevant
+  article for constraints.
 
 - feature_sd:
 
-  Optional feature standard deviations used in distance likelihoods.
+  Value for \`feature_sd\`. See the function description and relevant
+  article for constraints.
 
 - prior:
 
-  Optional strategy prior probabilities.
+  Value for \`prior\`. See the function description and relevant article
+  for constraints.
 
 ## Value
 
-An \`eye_theory_strategy_spec\`.
+The documented eyeprocess object, data frame, plot, report path, or
+adapter result.

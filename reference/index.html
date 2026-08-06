@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">eyeprocess</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.0.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,6 +34,14 @@
     <li><a class="dropdown-item" href="../articles/interoperability-storage.html">Interoperability, Eye-Tracking-BIDS, and storage</a></li>
     <li><a class="dropdown-item" href="../articles/advanced-model-validation.html">Advanced model programme and validation</a></li>
     <li><a class="dropdown-item" href="../articles/research-validation-program.html">Research validation and software-paper programme</a></li>
+    <li><a class="dropdown-item" href="../articles/validation-execution-engine.html">Research-scale validation execution</a></li>
+    <li><a class="dropdown-item" href="../articles/dynamic-irtree-hardening.html">Dynamic IRTree and transition-model hardening</a></li>
+    <li><a class="dropdown-item" href="../articles/independent-vendor-corpus.html">Independent multi-vendor validation corpus</a></li>
+    <li><a class="dropdown-item" href="../articles/functional-pupil-irt-engine.html">Functional pupil-IRT modelling</a></li>
+    <li><a class="dropdown-item" href="../articles/theory-strategy-mixtures.html">Theory-constrained strategy mixtures</a></li>
+    <li><a class="dropdown-item" href="../articles/gaze-diffusion-irt.html">Gaze-informed diffusion-IRT modelling</a></li>
+    <li><a class="dropdown-item" href="../articles/api-storage-adapters.html">Stable APIs, scalable storage, and external adapters</a></li>
+    <li><a class="dropdown-item" href="../articles/benchmark-reproduction.html">Public benchmark and software-paper reproduction</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
@@ -279,6 +287,41 @@
 
         <dt>
 
+          <code><a href="audit_benchmark_release.html">audit_benchmark_release()</a></code>
+
+        </dt>
+        <dd>Audit whether benchmark assets are ready for public release</dd>
+
+        <dt>
+
+          <code><a href="audit_model_promotion.html">audit_model_promotion()</a></code>
+
+        </dt>
+        <dd>Audit promotion readiness for advanced model families</dd>
+
+        <dt>
+
+          <code><a href="audit_roundtrip_loss.html">audit_roundtrip_loss()</a></code>
+
+        </dt>
+        <dd>Audit semantic and numerical loss after a round trip</dd>
+
+        <dt>
+
+          <code><a href="audit_validation_completion.html">audit_validation_completion()</a></code>
+
+        </dt>
+        <dd>Audit whether a validation programme is complete</dd>
+
+        <dt>
+
+          <code><a href="audit_vendor_field_coverage.html">audit_vendor_field_coverage()</a></code>
+
+        </dt>
+        <dd>Audit vendor field coverage against canonical semantics</dd>
+
+        <dt>
+
           <code><a href="audit_vendor_validation.html">audit_vendor_validation()</a></code>
 
         </dt>
@@ -327,6 +370,41 @@
 
         </dt>
         <dd>Generate the complete Gazepoint workflow plot suite</dd>
+
+        <dt>
+
+          <code><a href="plot_interval_coverage.html">plot_interval_coverage()</a></code>
+
+        </dt>
+        <dd>Plot interval coverage</dd>
+
+        <dt>
+
+          <code><a href="plot_parameter_recovery.html">plot_parameter_recovery()</a></code>
+
+        </dt>
+        <dd>Plot parameter recovery</dd>
+
+        <dt>
+
+          <code><a href="plot_sbc_rank.html">plot_sbc_rank()</a></code>
+
+        </dt>
+        <dd>Plot SBC rank histograms</dd>
+
+        <dt>
+
+          <code><a href="plot_validation_failures.html">plot_validation_failures()</a></code>
+
+        </dt>
+        <dd>Plot validation failure rates</dd>
+
+        <dt>
+
+          <code><a href="plot_validation_runtime.html">plot_validation_runtime()</a></code>
+
+        </dt>
+        <dd>Plot validation runtime</dd>
       </dl></div><div class="section level2">
       <h2 id="psychometrics">Psychometrics<a class="anchor" aria-label="anchor" href="#psychometrics"></a></h2>
 
@@ -421,7 +499,7 @@
           <code><a href="fit_gdina_adapter.html">fit_gdina_adapter()</a></code>
 
         </dt>
-        <dd>Fit a GDINA cognitive-diagnosis adapter</dd>
+        <dd>fit gdina adapter</dd>
 
         <dt>
 
@@ -600,7 +678,7 @@
           <code><a href="dynamic_irtree_spec.html">dynamic_irtree_spec()</a></code>
 
         </dt>
-        <dd>Specify a dynamic gaze-state IRTree</dd>
+        <dd>Specify a hardened dynamic gaze-state IRTree</dd>
 
         <dt>
 
@@ -628,28 +706,28 @@
           <code><a href="theory_strategy_spec.html">theory_strategy_spec()</a></code>
 
         </dt>
-        <dd>Specify theory-defined process strategies</dd>
+        <dd>Define a theory-constrained strategy-mixture model</dd>
 
         <dt>
 
           <code><a href="fit_theory_strategy_irt.html">fit_theory_strategy_irt()</a></code>
 
         </dt>
-        <dd>Fit a theory-defined strategy-informed IRT model</dd>
+        <dd>Fit a theory-constrained strategy mixture</dd>
 
         <dt>
 
           <code><a href="gaze_diffusion_spec.html">gaze_diffusion_spec()</a></code>
 
         </dt>
-        <dd>Specify a gaze-informed diffusion workflow</dd>
+        <dd>Define a gaze-informed diffusion model</dd>
 
         <dt>
 
           <code><a href="fit_gaze_diffusion_irt.html">fit_gaze_diffusion_irt()</a></code>
 
         </dt>
-        <dd>Fit a gaze-informed diffusion/accumulation workflow</dd>
+        <dd>Fit a gaze-informed diffusion model</dd>
 
         <dt>
 
@@ -738,6 +816,1114 @@
 
         </dt>
         <dd>Write an advanced-model evidence report</dd>
+      </dl></div><div class="section level2">
+      <h2 id="research-scale-validation-models-storage-and-reproducibility">Research-scale validation, models, storage, and reproducibility<a class="anchor" aria-label="anchor" href="#research-scale-validation-models-storage-and-reproducibility"></a></h2>
+
+      <div class="section-desc"><p>Deterministic orchestration and explicitly gated advanced research infrastructure.</p></div>
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="benchmark_expected_outputs.html">benchmark_expected_outputs()</a></code>
+
+        </dt>
+        <dd>Return expected benchmark outputs</dd>
+
+        <dt>
+
+          <code><a href="benchmark_eye_storage.html">benchmark_eye_storage()</a></code>
+
+        </dt>
+        <dd>Benchmark storage formats and query operations</dd>
+
+        <dt>
+
+          <code><a href="build_compatibility_matrix.html">build_compatibility_matrix()</a></code>
+
+        </dt>
+        <dd>Build the declared/fixture/empirical compatibility matrix</dd>
+
+        <dt>
+
+          <code><a href="collect_validation_jobs.html">collect_validation_jobs()</a></code>
+
+        </dt>
+        <dd>Collect validation checkpoints from one or more directories</dd>
+
+        <dt>
+
+          <code><a href="compare_diffusion_accuracy_rt.html">compare_diffusion_accuracy_rt()</a></code>
+
+        </dt>
+        <dd>Compare diffusion and conventional accuracy-RT models</dd>
+
+        <dt>
+
+          <code><a href="compare_dynamic_transition_models.html">compare_dynamic_transition_models()</a></code>
+
+        </dt>
+        <dd>Compare dynamic transition models</dd>
+
+        <dt>
+
+          <code><a href="compare_engine_adapters.html">compare_engine_adapters()</a></code>
+
+        </dt>
+        <dd>Compare multiple external-engine adapter results</dd>
+
+        <dt>
+
+          <code><a href="compare_functional_scalar_models.html">compare_functional_scalar_models()</a></code>
+
+        </dt>
+        <dd>Compare functional and scalar pupil summaries</dd>
+
+        <dt>
+
+          <code><a href="compare_strategy_heterogeneity.html">compare_strategy_heterogeneity()</a></code>
+
+        </dt>
+        <dd>Compare mixture and continuous heterogeneity descriptions</dd>
+
+        <dt>
+
+          <code><a href="compare_vendor_semantics.html">compare_vendor_semantics()</a></code>
+
+        </dt>
+        <dd>Compare semantic mappings between vendors</dd>
+
+        <dt>
+
+          <code><a href="decode_dynamic_states.html">decode_dynamic_states()</a></code>
+
+        </dt>
+        <dd>Decode latent or fitted transition states</dd>
+
+        <dt>
+
+          <code><a href="detect_corrupt_partitions.html">detect_corrupt_partitions()</a></code>
+
+        </dt>
+        <dd>Detect missing, truncated, or modified partitions</dd>
+
+        <dt>
+
+          <code><a href="diffusion_identification_study.html">diffusion_identification_study()</a></code>
+
+        </dt>
+        <dd>Construct a simulation-based identification study</dd>
+
+        <dt>
+
+          <code><a href="diffusion_parameter_diagnostics.html">diffusion_parameter_diagnostics()</a></code>
+
+        </dt>
+        <dd>Diagnose diffusion-parameter trade-offs and sampling</dd>
+
+        <dt>
+
+          <code><a href="diffusion_posterior_predictive.html">diffusion_posterior_predictive()</a></code>
+
+        </dt>
+        <dd>Posterior predictive summaries for accuracy and RT</dd>
+
+        <dt>
+
+          <code><a href="dynamic_irtree_recovery.html">dynamic_irtree_recovery()</a></code>
+
+        </dt>
+        <dd>Evaluate dynamic-state recovery under misclassification</dd>
+
+        <dt>
+
+          <code><a href="dynamic_posterior_predictive_check.html">dynamic_posterior_predictive_check()</a></code>
+
+        </dt>
+        <dd>Posterior predictive checks for dynamic state models</dd>
+
+        <dt>
+
+          <code><a href="dynamic_transition_design.html">dynamic_transition_design()</a></code>
+
+        </dt>
+        <dd>Build an explicit dynamic-transition design matrix</dd>
+
+        <dt>
+
+          <code><a href="engine_adapter_status.html">engine_adapter_status()</a></code>
+
+        </dt>
+        <dd>Report an adapter's availability and contract</dd>
+
+        <dt>
+
+          <code><a href="external_model_engines.html">external_model_engines()</a></code>
+
+        </dt>
+        <dd>List external engine adapters</dd>
+
+        <dt>
+
+          <code><a href="extract_diffusion_parameters.html">extract_diffusion_parameters()</a></code>
+
+        </dt>
+        <dd>Extract diffusion parameter summaries</dd>
+
+        <dt>
+
+          <code><a href="extract_functional_pupil_parameters.html">extract_functional_pupil_parameters()</a></code>
+
+        </dt>
+        <dd>Extract functional pupil parameters for validation</dd>
+
+        <dt>
+
+          <code><a href="eyeprocess_api_version.html">eyeprocess_api_version()</a></code>
+
+        </dt>
+        <dd>Return the public eyeprocess API version</dd>
+
+        <dt>
+
+          <code><a href="eyeprocess_benchmark_study.html">eyeprocess_benchmark_study()</a></code>
+
+        </dt>
+        <dd>Locate the bundled public benchmark study</dd>
+
+        <dt>
+
+          <code><a href="eyeprocess_deprecation.html">eyeprocess_deprecation()</a></code>
+
+        </dt>
+        <dd>Declare a deprecation in a structured form</dd>
+
+        <dt>
+
+          <code><a href="fingerprint_validation_case.html">fingerprint_validation_case()</a></code>
+
+        </dt>
+        <dd>Fingerprint every file in a validation case</dd>
+
+        <dt>
+
+          <code><a href="fit_brms_adapter.html">fit_brms_adapter()</a></code>
+
+        </dt>
+        <dd>fit brms adapter</dd>
+
+        <dt>
+
+          <code><a href="fit_diffirt_engine_adapter.html">fit_diffirt_engine_adapter()</a></code>
+
+        </dt>
+        <dd>fit diffirt engine adapter</dd>
+
+        <dt>
+
+          <code><a href="fit_dynamic_irtree_stan.html">fit_dynamic_irtree_stan()</a></code>
+
+        </dt>
+        <dd>Fit an optional CmdStan dynamic-transition model</dd>
+
+        <dt>
+
+          <code><a href="fit_external_engine.html">fit_external_engine()</a></code>
+
+        </dt>
+        <dd>Fit an external model engine through a stable adapter</dd>
+
+        <dt>
+
+          <code><a href="fit_eyetrackingr_adapter.html">fit_eyetrackingr_adapter()</a></code>
+
+        </dt>
+        <dd>fit eyetrackingr adapter</dd>
+
+        <dt>
+
+          <code><a href="fit_functional_pupil_stan.html">fit_functional_pupil_stan()</a></code>
+
+        </dt>
+        <dd>Fit the bundled joint functional pupil-IRT Stan model</dd>
+
+        <dt>
+
+          <code><a href="fit_gaze_diffusion_stan.html">fit_gaze_diffusion_stan()</a></code>
+
+        </dt>
+        <dd>Fit the CmdStan Wiener diffusion model</dd>
+
+        <dt>
+
+          <code><a href="fit_lnirt_adapter.html">fit_lnirt_adapter()</a></code>
+
+        </dt>
+        <dd>fit lnirt adapter</dd>
+
+        <dt>
+
+          <code><a href="fit_mirt_adapter.html">fit_mirt_adapter()</a></code>
+
+        </dt>
+        <dd>fit mirt adapter</dd>
+
+        <dt>
+
+          <code><a href="fit_multinomial_transition.html">fit_multinomial_transition()</a></code>
+
+        </dt>
+        <dd>Fit a penalized multinomial transition model</dd>
+
+        <dt>
+
+          <code><a href="fit_openmx_adapter.html">fit_openmx_adapter()</a></code>
+
+        </dt>
+        <dd>fit openmx adapter</dd>
+
+        <dt>
+
+          <code><a href="fit_pupillometryr_adapter.html">fit_pupillometryr_adapter()</a></code>
+
+        </dt>
+        <dd>fit pupillometryr adapter</dd>
+
+        <dt>
+
+          <code><a href="fit_seqhmm_adapter.html">fit_seqhmm_adapter()</a></code>
+
+        </dt>
+        <dd>fit seqhmm adapter</dd>
+
+        <dt>
+
+          <code><a href="fit_strategy_mixture_em.html">fit_strategy_mixture_em()</a></code>
+
+        </dt>
+        <dd>Fit the deterministic multi-start EM baseline</dd>
+
+        <dt>
+
+          <code><a href="fit_strategy_mixture_stan.html">fit_strategy_mixture_stan()</a></code>
+
+        </dt>
+        <dd>Fit the probabilistic strategy-mixture engine</dd>
+
+        <dt>
+
+          <code><a href="fit_tam_adapter.html">fit_tam_adapter()</a></code>
+
+        </dt>
+        <dd>fit tam adapter</dd>
+
+        <dt>
+
+          <code><a href="fit_traminer_adapter.html">fit_traminer_adapter()</a></code>
+
+        </dt>
+        <dd>fit traminer adapter</dd>
+
+        <dt>
+
+          <code><a href="functional_pupil_basis.html">functional_pupil_basis()</a></code>
+
+        </dt>
+        <dd>Construct a functional basis for pupil trajectories</dd>
+
+        <dt>
+
+          <code><a href="functional_pupil_diagnostics.html">functional_pupil_diagnostics()</a></code>
+
+        </dt>
+        <dd>Diagnose functional pupil model and preprocessing quality</dd>
+
+        <dt>
+
+          <code><a href="import_benchmark_study.html">import_benchmark_study()</a></code>
+
+        </dt>
+        <dd>Build an eye dataset from the public benchmark</dd>
+
+        <dt>
+
+          <code><a href="init_vendor_corpus.html">init_vendor_corpus()</a></code>
+
+        </dt>
+        <dd>Create or validate a multi-vendor corpus directory</dd>
+
+        <dt>
+
+          <code><a href="migrate_eye_storage_schema.html">migrate_eye_storage_schema()</a></code>
+
+        </dt>
+        <dd>Migrate a storage schema through an atomic rewrite</dd>
+
+        <dt>
+
+          <code><a href="model_promotion_spec.html">model_promotion_spec()</a></code>
+
+        </dt>
+        <dd>Specify evidence gates for model promotion</dd>
+
+        <dt>
+
+          <code><a href="object_schema.html">object_schema()</a></code>
+
+        </dt>
+        <dd>Describe a stable object schema</dd>
+
+        <dt>
+
+          <code><a href="open_partitioned_eye_storage.html">open_partitioned_eye_storage()</a></code>
+
+        </dt>
+        <dd>Open partitioned eye storage</dd>
+
+        <dt>
+
+          <code><a href="package_reproducibility_manifest.html">package_reproducibility_manifest()</a></code>
+
+        </dt>
+        <dd>Create a reproducibility manifest for files and software</dd>
+
+        <dt>
+
+          <code><a href="partition_eye_storage.html">partition_eye_storage()</a></code>
+
+        </dt>
+        <dd>Create a partition specification</dd>
+
+        <dt>
+
+          <code><a href="plot.eye_dynamic_irtree.html">plot(<i>&lt;eye_dynamic_irtree&gt;</i>)</a></code>
+
+        </dt>
+        <dd>plot eye dynamic irtree</dd>
+
+        <dt>
+
+          <code><a href="plot.eye_dynamic_ppc.html">plot(<i>&lt;eye_dynamic_ppc&gt;</i>)</a></code>
+
+        </dt>
+        <dd>plot eye dynamic ppc</dd>
+
+        <dt>
+
+          <code><a href="plot.eye_functional_pupil_diagnostics.html">plot(<i>&lt;eye_functional_pupil_diagnostics&gt;</i>)</a></code>
+
+        </dt>
+        <dd>plot eye functional pupil diagnostics</dd>
+
+        <dt>
+
+          <code><a href="plot.eye_functional_pupil_irt.html">plot(<i>&lt;eye_functional_pupil_irt&gt;</i>)</a></code>
+
+        </dt>
+        <dd>plot eye functional pupil irt</dd>
+
+        <dt>
+
+          <code><a href="plot.eye_functional_pupil_sensitivity.html">plot(<i>&lt;eye_functional_pupil_sensitivity&gt;</i>)</a></code>
+
+        </dt>
+        <dd>plot eye functional pupil sensitivity</dd>
+
+        <dt>
+
+          <code><a href="plot.eye_model_promotion_audit.html">plot(<i>&lt;eye_model_promotion_audit&gt;</i>)</a></code>
+
+        </dt>
+        <dd>plot eye model promotion audit</dd>
+
+        <dt>
+
+          <code><a href="plot.eye_roundtrip_loss_audit.html">plot(<i>&lt;eye_roundtrip_loss_audit&gt;</i>)</a></code>
+
+        </dt>
+        <dd>plot eye roundtrip loss audit</dd>
+
+        <dt>
+
+          <code><a href="plot.eye_storage_benchmark.html">plot(<i>&lt;eye_storage_benchmark&gt;</i>)</a></code>
+
+        </dt>
+        <dd>plot eye storage benchmark</dd>
+
+        <dt>
+
+          <code><a href="plot.eye_strategy_aoi_sensitivity.html">plot(<i>&lt;eye_strategy_aoi_sensitivity&gt;</i>)</a></code>
+
+        </dt>
+        <dd>plot eye strategy aoi sensitivity</dd>
+
+        <dt>
+
+          <code><a href="plot.eye_transition_diagnostics.html">plot(<i>&lt;eye_transition_diagnostics&gt;</i>)</a></code>
+
+        </dt>
+        <dd>plot eye transition diagnostics</dd>
+
+        <dt>
+
+          <code><a href="plot.eye_vendor_compatibility_matrix.html">plot(<i>&lt;eye_vendor_compatibility_matrix&gt;</i>)</a></code>
+
+        </dt>
+        <dd>plot eye vendor compatibility matrix</dd>
+
+        <dt>
+
+          <code><a href="predict.eye_multinomial_transition.html">predict(<i>&lt;eye_multinomial_transition&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Predict destination-state probabilities</dd>
+
+        <dt>
+
+          <code><a href="prepare_dynamic_irtree_data.html">prepare_dynamic_irtree_data()</a></code>
+
+        </dt>
+        <dd>Prepare ordered transition data for dynamic IRTree models</dd>
+
+        <dt>
+
+          <code><a href="prepare_functional_pupil_data.html">prepare_functional_pupil_data()</a></code>
+
+        </dt>
+        <dd>Prepare aligned, corrected functional pupil data</dd>
+
+        <dt>
+
+          <code><a href="prepare_gaze_diffusion_data.html">prepare_gaze_diffusion_data()</a></code>
+
+        </dt>
+        <dd>Prepare joint accuracy-response-time data</dd>
+
+        <dt>
+
+          <code><a href="prepare_strategy_mixture_data.html">prepare_strategy_mixture_data()</a></code>
+
+        </dt>
+        <dd>Prepare data for a strategy-mixture model</dd>
+
+        <dt>
+
+          <code><a href="print.eye_benchmark_reproduction.html">print(<i>&lt;eye_benchmark_reproduction&gt;</i>)</a></code>
+
+        </dt>
+        <dd>print eye benchmark reproduction</dd>
+
+        <dt>
+
+          <code><a href="print.eye_benchmark_study.html">print(<i>&lt;eye_benchmark_study&gt;</i>)</a></code>
+
+        </dt>
+        <dd>print eye benchmark study</dd>
+
+        <dt>
+
+          <code><a href="print.eye_benchmark_validation.html">print(<i>&lt;eye_benchmark_validation&gt;</i>)</a></code>
+
+        </dt>
+        <dd>print eye benchmark validation</dd>
+
+        <dt>
+
+          <code><a href="print.eye_diffusion_diagnostics.html">print(<i>&lt;eye_diffusion_diagnostics&gt;</i>)</a></code>
+
+        </dt>
+        <dd>print eye diffusion diagnostics</dd>
+
+        <dt>
+
+          <code><a href="print.eye_diffusion_identification_study.html">print(<i>&lt;eye_diffusion_identification_study&gt;</i>)</a></code>
+
+        </dt>
+        <dd>print eye diffusion identification study</dd>
+
+        <dt>
+
+          <code><a href="print.eye_dynamic_irtree.html">print(<i>&lt;eye_dynamic_irtree&gt;</i>)</a></code>
+
+        </dt>
+        <dd>print eye dynamic irtree</dd>
+
+        <dt>
+
+          <code><a href="print.eye_dynamic_ppc.html">print(<i>&lt;eye_dynamic_ppc&gt;</i>)</a></code>
+
+        </dt>
+        <dd>print eye dynamic ppc</dd>
+
+        <dt>
+
+          <code><a href="print.eye_dynamic_recovery.html">print(<i>&lt;eye_dynamic_recovery&gt;</i>)</a></code>
+
+        </dt>
+        <dd>print eye dynamic recovery</dd>
+
+        <dt>
+
+          <code><a href="print.eye_engine_adapter_result.html">print(<i>&lt;eye_engine_adapter_result&gt;</i>)</a></code>
+
+        </dt>
+        <dd>print eye engine adapter result</dd>
+
+        <dt>
+
+          <code><a href="print.eye_functional_pupil_data.html">print(<i>&lt;eye_functional_pupil_data&gt;</i>)</a></code>
+
+        </dt>
+        <dd>print eye functional pupil data</dd>
+
+        <dt>
+
+          <code><a href="print.eye_functional_pupil_diagnostics.html">print(<i>&lt;eye_functional_pupil_diagnostics&gt;</i>)</a></code>
+
+        </dt>
+        <dd>print eye functional pupil diagnostics</dd>
+
+        <dt>
+
+          <code><a href="print.eye_functional_pupil_irt.html">print(<i>&lt;eye_functional_pupil_irt&gt;</i>)</a></code>
+
+        </dt>
+        <dd>print eye functional pupil irt</dd>
+
+        <dt>
+
+          <code><a href="print.eye_functional_pupil_sensitivity.html">print(<i>&lt;eye_functional_pupil_sensitivity&gt;</i>)</a></code>
+
+        </dt>
+        <dd>print eye functional pupil sensitivity</dd>
+
+        <dt>
+
+          <code><a href="print.eye_functional_scalar_comparison.html">print(<i>&lt;eye_functional_scalar_comparison&gt;</i>)</a></code>
+
+        </dt>
+        <dd>print eye functional scalar comparison</dd>
+
+        <dt>
+
+          <code><a href="print.eye_gaze_diffusion_data.html">print(<i>&lt;eye_gaze_diffusion_data&gt;</i>)</a></code>
+
+        </dt>
+        <dd>print eye gaze diffusion data</dd>
+
+        <dt>
+
+          <code><a href="print.eye_gaze_diffusion_irt.html">print(<i>&lt;eye_gaze_diffusion_irt&gt;</i>)</a></code>
+
+        </dt>
+        <dd>print eye gaze diffusion irt</dd>
+
+        <dt>
+
+          <code><a href="print.eye_gaze_diffusion_spec.html">print(<i>&lt;eye_gaze_diffusion_spec&gt;</i>)</a></code>
+
+        </dt>
+        <dd>print eye gaze diffusion spec</dd>
+
+        <dt>
+
+          <code><a href="print.eye_model_contract_validation.html">print(<i>&lt;eye_model_contract_validation&gt;</i>)</a></code>
+
+        </dt>
+        <dd>print eye model contract validation</dd>
+
+        <dt>
+
+          <code><a href="print.eye_model_promotion_audit.html">print(<i>&lt;eye_model_promotion_audit&gt;</i>)</a></code>
+
+        </dt>
+        <dd>print eye model promotion audit</dd>
+
+        <dt>
+
+          <code><a href="print.eye_multinomial_transition.html">print(<i>&lt;eye_multinomial_transition&gt;</i>)</a></code>
+
+        </dt>
+        <dd>print eye multinomial transition</dd>
+
+        <dt>
+
+          <code><a href="print.eye_partition_spec.html">print(<i>&lt;eye_partition_spec&gt;</i>)</a></code>
+
+        </dt>
+        <dd>print eye partition spec</dd>
+
+        <dt>
+
+          <code><a href="print.eye_partitioned_storage.html">print(<i>&lt;eye_partitioned_storage&gt;</i>)</a></code>
+
+        </dt>
+        <dd>print eye partitioned storage</dd>
+
+        <dt>
+
+          <code><a href="print.eye_redaction_result.html">print(<i>&lt;eye_redaction_result&gt;</i>)</a></code>
+
+        </dt>
+        <dd>print eye redaction result</dd>
+
+        <dt>
+
+          <code><a href="print.eye_roundtrip_loss_audit.html">print(<i>&lt;eye_roundtrip_loss_audit&gt;</i>)</a></code>
+
+        </dt>
+        <dd>print eye roundtrip loss audit</dd>
+
+        <dt>
+
+          <code><a href="print.eye_strategy_data.html">print(<i>&lt;eye_strategy_data&gt;</i>)</a></code>
+
+        </dt>
+        <dd>print eye strategy data</dd>
+
+        <dt>
+
+          <code><a href="print.eye_strategy_manipulation_validation.html">print(<i>&lt;eye_strategy_manipulation_validation&gt;</i>)</a></code>
+
+        </dt>
+        <dd>print eye strategy manipulation validation</dd>
+
+        <dt>
+
+          <code><a href="print.eye_theory_strategy_irt.html">print(<i>&lt;eye_theory_strategy_irt&gt;</i>)</a></code>
+
+        </dt>
+        <dd>print eye theory strategy irt</dd>
+
+        <dt>
+
+          <code><a href="print.eye_theory_strategy_spec.html">print(<i>&lt;eye_theory_strategy_spec&gt;</i>)</a></code>
+
+        </dt>
+        <dd>print eye theory strategy spec</dd>
+
+        <dt>
+
+          <code><a href="print.eye_transition_design.html">print(<i>&lt;eye_transition_design&gt;</i>)</a></code>
+
+        </dt>
+        <dd>print eye transition design</dd>
+
+        <dt>
+
+          <code><a href="print.eye_transition_diagnostics.html">print(<i>&lt;eye_transition_diagnostics&gt;</i>)</a></code>
+
+        </dt>
+        <dd>print eye transition diagnostics</dd>
+
+        <dt>
+
+          <code><a href="print.eye_validation_case_fingerprint.html">print(<i>&lt;eye_validation_case_fingerprint&gt;</i>)</a></code>
+
+        </dt>
+        <dd>print eye validation case fingerprint</dd>
+
+        <dt>
+
+          <code><a href="print.eye_validation_collection.html">print(<i>&lt;eye_validation_collection&gt;</i>)</a></code>
+
+        </dt>
+        <dd>print eye validation collection</dd>
+
+        <dt>
+
+          <code><a href="print.eye_validation_completion_audit.html">print(<i>&lt;eye_validation_completion_audit&gt;</i>)</a></code>
+
+        </dt>
+        <dd>print eye validation completion audit</dd>
+
+        <dt>
+
+          <code><a href="print.eye_validation_job_plan.html">print(<i>&lt;eye_validation_job_plan&gt;</i>)</a></code>
+
+        </dt>
+        <dd>print eye validation job plan</dd>
+
+        <dt>
+
+          <code><a href="print.eye_validation_run.html">print(<i>&lt;eye_validation_run&gt;</i>)</a></code>
+
+        </dt>
+        <dd>print eye validation run</dd>
+
+        <dt>
+
+          <code><a href="print.eye_vendor_case.html">print(<i>&lt;eye_vendor_case&gt;</i>)</a></code>
+
+        </dt>
+        <dd>print eye vendor case</dd>
+
+        <dt>
+
+          <code><a href="print.eye_vendor_compatibility_matrix.html">print(<i>&lt;eye_vendor_compatibility_matrix&gt;</i>)</a></code>
+
+        </dt>
+        <dd>print eye vendor compatibility matrix</dd>
+
+        <dt>
+
+          <code><a href="print.eye_vendor_semantic_comparison.html">print(<i>&lt;eye_vendor_semantic_comparison&gt;</i>)</a></code>
+
+        </dt>
+        <dd>print eye vendor semantic comparison</dd>
+
+        <dt>
+
+          <code><a href="promote_vendor_support.html">promote_vendor_support()</a></code>
+
+        </dt>
+        <dd>Promote a case support level only when evidence is supplied</dd>
+
+        <dt>
+
+          <code><a href="prune_validation_checkpoints.html">prune_validation_checkpoints()</a></code>
+
+        </dt>
+        <dd>Remove obsolete or corrupt validation checkpoints</dd>
+
+        <dt>
+
+          <code><a href="pupil_preprocessing_grid.html">pupil_preprocessing_grid()</a></code>
+
+        </dt>
+        <dd>Create a preprocessing sensitivity grid for pupil analysis</dd>
+
+        <dt>
+
+          <code><a href="pupil_preprocessing_sensitivity.html">pupil_preprocessing_sensitivity()</a></code>
+
+        </dt>
+        <dd>Run functional pupil preprocessing sensitivity analysis</dd>
+
+        <dt>
+
+          <code><a href="query_eye_storage.html">query_eye_storage()</a></code>
+
+        </dt>
+        <dd>Query partitioned eye storage lazily where possible</dd>
+
+        <dt>
+
+          <code><a href="read_benchmark_table.html">read_benchmark_table()</a></code>
+
+        </dt>
+        <dd>Read a benchmark table</dd>
+
+        <dt>
+
+          <code><a href="read_validation_job_manifest.html">read_validation_job_manifest()</a></code>
+
+        </dt>
+        <dd>Read a validation manifest</dd>
+
+        <dt>
+
+          <code><a href="read_vendor_registry.html">read_vendor_registry()</a></code>
+
+        </dt>
+        <dd>Read the multi-vendor case registry</dd>
+
+        <dt>
+
+          <code><a href="redact_validation_case.html">redact_validation_case()</a></code>
+
+        </dt>
+        <dd>Redact a validation case without inventing replacement data</dd>
+
+        <dt>
+
+          <code><a href="register_validation_case.html">register_validation_case()</a></code>
+
+        </dt>
+        <dd>Register an independent validation case</dd>
+
+        <dt>
+
+          <code><a href="register_vendor_semantics.html">register_vendor_semantics()</a></code>
+
+        </dt>
+        <dd>Register vendor-field semantics</dd>
+
+        <dt>
+
+          <code><a href="resume_validation_jobs.html">resume_validation_jobs()</a></code>
+
+        </dt>
+        <dd>Resume incomplete or failed validation jobs</dd>
+
+        <dt>
+
+          <code><a href="run_benchmark_reproduction.html">run_benchmark_reproduction()</a></code>
+
+        </dt>
+        <dd>Derive reproducible benchmark summaries</dd>
+
+        <dt>
+
+          <code><a href="run_validation_jobs.html">run_validation_jobs()</a></code>
+
+        </dt>
+        <dd>Run validation jobs with checkpointing and deterministic seeds</dd>
+
+        <dt>
+
+          <code><a href="simulate_dynamic_irtree_data.html">simulate_dynamic_irtree_data()</a></code>
+
+        </dt>
+        <dd>Simulate observed dynamic-state transitions</dd>
+
+        <dt>
+
+          <code><a href="simulate_gaze_diffusion_data.html">simulate_gaze_diffusion_data()</a></code>
+
+        </dt>
+        <dd>Simulate a hierarchical gaze-diffusion study</dd>
+
+        <dt>
+
+          <code><a href="simulate_strategy_mixture_data.html">simulate_strategy_mixture_data()</a></code>
+
+        </dt>
+        <dd>Simulate a theory-defined strategy-mixture study</dd>
+
+        <dt>
+
+          <code><a href="split_validation_plan.html">split_validation_plan()</a></code>
+
+        </dt>
+        <dd>Split a validation plan into independent chunks</dd>
+
+        <dt>
+
+          <code><a href="storage_transaction_manifest.html">storage_transaction_manifest()</a></code>
+
+        </dt>
+        <dd>Return the transaction manifest</dd>
+
+        <dt>
+
+          <code><a href="strategy_aoi_sensitivity.html">strategy_aoi_sensitivity()</a></code>
+
+        </dt>
+        <dd>Assess sensitivity to alternative AOI feature definitions</dd>
+
+        <dt>
+
+          <code><a href="strategy_classification_uncertainty.html">strategy_classification_uncertainty()</a></code>
+
+        </dt>
+        <dd>Quantify strategy-classification uncertainty</dd>
+
+        <dt>
+
+          <code><a href="strategy_label_switching_diagnostics.html">strategy_label_switching_diagnostics()</a></code>
+
+        </dt>
+        <dd>Diagnose label stability across multiple starts</dd>
+
+        <dt>
+
+          <code><a href="strategy_posterior_probabilities.html">strategy_posterior_probabilities()</a></code>
+
+        </dt>
+        <dd>Posterior strategy probabilities</dd>
+
+        <dt>
+
+          <code><a href="structural_transition_mask.html">structural_transition_mask()</a></code>
+
+        </dt>
+        <dd>Define structural-zero and allowed transition masks</dd>
+
+        <dt>
+
+          <code><a href="summary.eye_validation_job_plan.html">summary(<i>&lt;eye_validation_job_plan&gt;</i>)</a></code>
+
+        </dt>
+        <dd>summary eye validation job plan</dd>
+
+        <dt>
+
+          <code><a href="transition_residual_diagnostics.html">transition_residual_diagnostics()</a></code>
+
+        </dt>
+        <dd>Compute transition residual diagnostics</dd>
+
+        <dt>
+
+          <code><a href="upgrade_eye_dataset.html">upgrade_eye_dataset()</a></code>
+
+        </dt>
+        <dd>Upgrade a legacy eye dataset</dd>
+
+        <dt>
+
+          <code><a href="upgrade_eyeprocess_model.html">upgrade_eyeprocess_model()</a></code>
+
+        </dt>
+        <dd>Upgrade a legacy eyeprocess model</dd>
+
+        <dt>
+
+          <code><a href="validate_benchmark_study.html">validate_benchmark_study()</a></code>
+
+        </dt>
+        <dd>Validate benchmark integrity and relational constraints</dd>
+
+        <dt>
+
+          <code><a href="validate_engine_adapter.html">validate_engine_adapter()</a></code>
+
+        </dt>
+        <dd>Validate an external-engine adapter contract</dd>
+
+        <dt>
+
+          <code><a href="validate_eye_storage_metadata.html">validate_eye_storage_metadata()</a></code>
+
+        </dt>
+        <dd>Validate storage metadata and partition fingerprints</dd>
+
+        <dt>
+
+          <code><a href="validate_model_object.html">validate_model_object()</a></code>
+
+        </dt>
+        <dd>Validate a fitted model against the stable model contract</dd>
+
+        <dt>
+
+          <code><a href="validate_strategy_manipulation.html">validate_strategy_manipulation()</a></code>
+
+        </dt>
+        <dd>Validate strategy posteriors against an experimental manipulation</dd>
+
+        <dt>
+
+          <code><a href="validation_calibration_summary.html">validation_calibration_summary()</a></code>
+
+        </dt>
+        <dd>Summarize prediction calibration</dd>
+
+        <dt>
+
+          <code><a href="validation_failure_summary.html">validation_failure_summary()</a></code>
+
+        </dt>
+        <dd>Summarize convergence and execution failures</dd>
+
+        <dt>
+
+          <code><a href="validation_job_plan.html">validation_job_plan()</a></code>
+
+        </dt>
+        <dd>Create a deterministic validation job plan</dd>
+
+        <dt>
+
+          <code><a href="validation_recovery_summary.html">validation_recovery_summary()</a></code>
+
+        </dt>
+        <dd>Summarize parameter recovery</dd>
+
+        <dt>
+
+          <code><a href="validation_runtime_summary.html">validation_runtime_summary()</a></code>
+
+        </dt>
+        <dd>Summarize validation runtime and checkpoint scale</dd>
+
+        <dt>
+
+          <code><a href="validation_sbc_summary.html">validation_sbc_summary()</a></code>
+
+        </dt>
+        <dd>Summarize simulation-based calibration ranks</dd>
+
+        <dt>
+
+          <code><a href="validation_seed.html">validation_seed()</a></code>
+
+        </dt>
+        <dd>Allocate a deterministic validation seed</dd>
+
+        <dt>
+
+          <code><a href="validation_thresholds.html">validation_thresholds()</a></code>
+
+        </dt>
+        <dd>Specify completion and scientific-promotion thresholds</dd>
+
+        <dt>
+
+          <code><a href="verify_reproducibility_manifest.html">verify_reproducibility_manifest()</a></code>
+
+        </dt>
+        <dd>Verify a reproducibility manifest</dd>
+
+        <dt>
+
+          <code><a href="write_benchmark_data_dictionary.html">write_benchmark_data_dictionary()</a></code>
+
+        </dt>
+        <dd>Write the benchmark data dictionary</dd>
+
+        <dt>
+
+          <code><a href="write_model_promotion_report.html">write_model_promotion_report()</a></code>
+
+        </dt>
+        <dd>Write a model-promotion report</dd>
+
+        <dt>
+
+          <code><a href="write_partitioned_eye_storage.html">write_partitioned_eye_storage()</a></code>
+
+        </dt>
+        <dd>Write an eye dataset as atomic partitioned storage</dd>
+
+        <dt>
+
+          <code><a href="write_software_paper_reproduction.html">write_software_paper_reproduction()</a></code>
+
+        </dt>
+        <dd>Write a complete software-paper reproduction scaffold</dd>
+
+        <dt>
+
+          <code><a href="write_validation_job_manifest.html">write_validation_job_manifest()</a></code>
+
+        </dt>
+        <dd>Write a machine-readable validation manifest</dd>
+
+        <dt>
+
+          <code><a href="write_validation_release_report.html">write_validation_release_report()</a></code>
+
+        </dt>
+        <dd>Write a validation release report</dd>
+
+        <dt>
+
+          <code><a href="write_vendor_case_report.html">write_vendor_case_report()</a></code>
+
+        </dt>
+        <dd>Write a vendor case evidence report</dd>
+
+        <dt>
+
+          <code><a href="write_vendor_registry.html">write_vendor_registry()</a></code>
+
+        </dt>
+        <dd>Write the multi-vendor case registry</dd>
       </dl></div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>

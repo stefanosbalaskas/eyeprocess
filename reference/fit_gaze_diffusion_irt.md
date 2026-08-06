@@ -1,27 +1,34 @@
-# Fit a gaze-informed diffusion/accumulation workflow
+# Fit a gaze-informed diffusion model
 
-Fit a gaze-informed diffusion/accumulation workflow
+Part of the research-scale validation, advanced-model, interoperability,
+storage, adapter, or reproducibility programme. Experimental model
+functions remain subject to declared evidence gates.
 
 ## Usage
 
 ``` r
-fit_gaze_diffusion_irt(x, spec = gaze_diffusion_spec(), ...)
+fit_gaze_diffusion_irt(data, spec = gaze_diffusion_spec(), seed = 1L, ...)
 ```
 
 ## Arguments
 
-- x:
+- data:
 
-  An \`eye_dataset\`.
+  Trial-level data.
 
 - spec:
 
   Diffusion specification.
 
+- seed:
+
+  Seed.
+
 - ...:
 
-  Passed to the selected engine.
+  Engine arguments.
 
 ## Value
 
-An \`eye_gaze_diffusion_irt\` object.
+The documented eyeprocess object, data frame, plot, report path, or
+adapter result.

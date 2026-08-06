@@ -227,6 +227,16 @@
 
 - [`audit_advanced_model_evidence()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_advanced_model_evidence.md)
   : Audit advanced-model scientific evidence
+- [`audit_benchmark_release()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_benchmark_release.md)
+  : Audit whether benchmark assets are ready for public release
+- [`audit_model_promotion()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_model_promotion.md)
+  : Audit promotion readiness for advanced model families
+- [`audit_roundtrip_loss()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_roundtrip_loss.md)
+  : Audit semantic and numerical loss after a round trip
+- [`audit_validation_completion()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_validation_completion.md)
+  : Audit whether a validation programme is complete
+- [`audit_vendor_field_coverage()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_vendor_field_coverage.md)
+  : Audit vendor field coverage against canonical semantics
 - [`audit_vendor_validation()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_vendor_validation.md)
   : Audit a multi-vendor validation corpus
 - [`register_coordinate_space`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-coordinates-time.md)
@@ -307,6 +317,16 @@
   : Visualize eye-tracking and multimodal process data
 - [`plot_gazepoint_workflow()`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot_gazepoint_workflow.md)
   : Generate the complete Gazepoint workflow plot suite
+- [`plot_interval_coverage()`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot_interval_coverage.md)
+  : Plot interval coverage
+- [`plot_parameter_recovery()`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot_parameter_recovery.md)
+  : Plot parameter recovery
+- [`plot_sbc_rank()`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot_sbc_rank.md)
+  : Plot SBC rank histograms
+- [`plot_validation_failures()`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot_validation_failures.md)
+  : Plot validation failure rates
+- [`plot_validation_runtime()`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot_validation_runtime.md)
+  : Plot validation runtime
 
 ## Psychometrics
 
@@ -374,7 +394,7 @@
   [`as_seqhmm_data()`](https://stefanosbalaskas.github.io/eyeprocess/reference/sequence_interoperability.md)
   : Convert scanpaths to process/sequence package contracts
 - [`fit_gdina_adapter()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_gdina_adapter.md)
-  : Fit a GDINA cognitive-diagnosis adapter
+  : fit gdina adapter
 - [`fit_diffirt_adapter()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_diffirt_adapter.md)
   : Fit a diffusion IRT adapter
 - [`fit_openmx_process_model()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_openmx_process_model.md)
@@ -426,7 +446,7 @@
 ## Advanced model programme
 
 - [`dynamic_irtree_spec()`](https://stefanosbalaskas.github.io/eyeprocess/reference/dynamic_irtree_spec.md)
-  : Specify a dynamic gaze-state IRTree
+  : Specify a hardened dynamic gaze-state IRTree
 - [`fit_dynamic_irtree()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_dynamic_irtree.md)
   : Fit a dynamic gaze-state response-tree model
 - [`functional_pupil_irt_spec()`](https://stefanosbalaskas.github.io/eyeprocess/reference/functional_pupil_irt_spec.md)
@@ -434,13 +454,13 @@
 - [`fit_joint_functional_pupil_irt()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_joint_functional_pupil_irt.md)
   : Fit a functional pupil-informed IRT workflow
 - [`theory_strategy_spec()`](https://stefanosbalaskas.github.io/eyeprocess/reference/theory_strategy_spec.md)
-  : Specify theory-defined process strategies
+  : Define a theory-constrained strategy-mixture model
 - [`fit_theory_strategy_irt()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_theory_strategy_irt.md)
-  : Fit a theory-defined strategy-informed IRT model
+  : Fit a theory-constrained strategy mixture
 - [`gaze_diffusion_spec()`](https://stefanosbalaskas.github.io/eyeprocess/reference/gaze_diffusion_spec.md)
-  : Specify a gaze-informed diffusion workflow
+  : Define a gaze-informed diffusion model
 - [`fit_gaze_diffusion_irt()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_gaze_diffusion_irt.md)
-  : Fit a gaze-informed diffusion/accumulation workflow
+  : Fit a gaze-informed diffusion model
 - [`advanced_validation_grid()`](https://stefanosbalaskas.github.io/eyeprocess/reference/advanced_validation_grid.md)
   : Construct the advanced-model validation grid
 - [`simulate_advanced_process_data()`](https://stefanosbalaskas.github.io/eyeprocess/reference/simulate_advanced_process_data.md)
@@ -485,3 +505,323 @@
   : Write a multi-vendor validation report
 - [`write_advanced_model_evidence_report()`](https://stefanosbalaskas.github.io/eyeprocess/reference/write_advanced_model_evidence_report.md)
   : Write an advanced-model evidence report
+
+## Research-scale validation, models, storage, and reproducibility
+
+Deterministic orchestration and explicitly gated advanced research
+infrastructure.
+
+- [`benchmark_expected_outputs()`](https://stefanosbalaskas.github.io/eyeprocess/reference/benchmark_expected_outputs.md)
+  : Return expected benchmark outputs
+- [`benchmark_eye_storage()`](https://stefanosbalaskas.github.io/eyeprocess/reference/benchmark_eye_storage.md)
+  : Benchmark storage formats and query operations
+- [`build_compatibility_matrix()`](https://stefanosbalaskas.github.io/eyeprocess/reference/build_compatibility_matrix.md)
+  : Build the declared/fixture/empirical compatibility matrix
+- [`collect_validation_jobs()`](https://stefanosbalaskas.github.io/eyeprocess/reference/collect_validation_jobs.md)
+  : Collect validation checkpoints from one or more directories
+- [`compare_diffusion_accuracy_rt()`](https://stefanosbalaskas.github.io/eyeprocess/reference/compare_diffusion_accuracy_rt.md)
+  : Compare diffusion and conventional accuracy-RT models
+- [`compare_dynamic_transition_models()`](https://stefanosbalaskas.github.io/eyeprocess/reference/compare_dynamic_transition_models.md)
+  : Compare dynamic transition models
+- [`compare_engine_adapters()`](https://stefanosbalaskas.github.io/eyeprocess/reference/compare_engine_adapters.md)
+  : Compare multiple external-engine adapter results
+- [`compare_functional_scalar_models()`](https://stefanosbalaskas.github.io/eyeprocess/reference/compare_functional_scalar_models.md)
+  : Compare functional and scalar pupil summaries
+- [`compare_strategy_heterogeneity()`](https://stefanosbalaskas.github.io/eyeprocess/reference/compare_strategy_heterogeneity.md)
+  : Compare mixture and continuous heterogeneity descriptions
+- [`compare_vendor_semantics()`](https://stefanosbalaskas.github.io/eyeprocess/reference/compare_vendor_semantics.md)
+  : Compare semantic mappings between vendors
+- [`decode_dynamic_states()`](https://stefanosbalaskas.github.io/eyeprocess/reference/decode_dynamic_states.md)
+  : Decode latent or fitted transition states
+- [`detect_corrupt_partitions()`](https://stefanosbalaskas.github.io/eyeprocess/reference/detect_corrupt_partitions.md)
+  : Detect missing, truncated, or modified partitions
+- [`diffusion_identification_study()`](https://stefanosbalaskas.github.io/eyeprocess/reference/diffusion_identification_study.md)
+  : Construct a simulation-based identification study
+- [`diffusion_parameter_diagnostics()`](https://stefanosbalaskas.github.io/eyeprocess/reference/diffusion_parameter_diagnostics.md)
+  : Diagnose diffusion-parameter trade-offs and sampling
+- [`diffusion_posterior_predictive()`](https://stefanosbalaskas.github.io/eyeprocess/reference/diffusion_posterior_predictive.md)
+  : Posterior predictive summaries for accuracy and RT
+- [`dynamic_irtree_recovery()`](https://stefanosbalaskas.github.io/eyeprocess/reference/dynamic_irtree_recovery.md)
+  : Evaluate dynamic-state recovery under misclassification
+- [`dynamic_posterior_predictive_check()`](https://stefanosbalaskas.github.io/eyeprocess/reference/dynamic_posterior_predictive_check.md)
+  : Posterior predictive checks for dynamic state models
+- [`dynamic_transition_design()`](https://stefanosbalaskas.github.io/eyeprocess/reference/dynamic_transition_design.md)
+  : Build an explicit dynamic-transition design matrix
+- [`engine_adapter_status()`](https://stefanosbalaskas.github.io/eyeprocess/reference/engine_adapter_status.md)
+  : Report an adapter's availability and contract
+- [`external_model_engines()`](https://stefanosbalaskas.github.io/eyeprocess/reference/external_model_engines.md)
+  : List external engine adapters
+- [`extract_diffusion_parameters()`](https://stefanosbalaskas.github.io/eyeprocess/reference/extract_diffusion_parameters.md)
+  : Extract diffusion parameter summaries
+- [`extract_functional_pupil_parameters()`](https://stefanosbalaskas.github.io/eyeprocess/reference/extract_functional_pupil_parameters.md)
+  : Extract functional pupil parameters for validation
+- [`eyeprocess_api_version()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_api_version.md)
+  : Return the public eyeprocess API version
+- [`eyeprocess_benchmark_study()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_benchmark_study.md)
+  : Locate the bundled public benchmark study
+- [`eyeprocess_deprecation()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_deprecation.md)
+  : Declare a deprecation in a structured form
+- [`fingerprint_validation_case()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fingerprint_validation_case.md)
+  : Fingerprint every file in a validation case
+- [`fit_brms_adapter()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_brms_adapter.md)
+  : fit brms adapter
+- [`fit_diffirt_engine_adapter()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_diffirt_engine_adapter.md)
+  : fit diffirt engine adapter
+- [`fit_dynamic_irtree_stan()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_dynamic_irtree_stan.md)
+  : Fit an optional CmdStan dynamic-transition model
+- [`fit_external_engine()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_external_engine.md)
+  : Fit an external model engine through a stable adapter
+- [`fit_eyetrackingr_adapter()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_eyetrackingr_adapter.md)
+  : fit eyetrackingr adapter
+- [`fit_functional_pupil_stan()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_functional_pupil_stan.md)
+  : Fit the bundled joint functional pupil-IRT Stan model
+- [`fit_gaze_diffusion_stan()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_gaze_diffusion_stan.md)
+  : Fit the CmdStan Wiener diffusion model
+- [`fit_lnirt_adapter()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_lnirt_adapter.md)
+  : fit lnirt adapter
+- [`fit_mirt_adapter()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_mirt_adapter.md)
+  : fit mirt adapter
+- [`fit_multinomial_transition()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_multinomial_transition.md)
+  : Fit a penalized multinomial transition model
+- [`fit_openmx_adapter()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_openmx_adapter.md)
+  : fit openmx adapter
+- [`fit_pupillometryr_adapter()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_pupillometryr_adapter.md)
+  : fit pupillometryr adapter
+- [`fit_seqhmm_adapter()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_seqhmm_adapter.md)
+  : fit seqhmm adapter
+- [`fit_strategy_mixture_em()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_strategy_mixture_em.md)
+  : Fit the deterministic multi-start EM baseline
+- [`fit_strategy_mixture_stan()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_strategy_mixture_stan.md)
+  : Fit the probabilistic strategy-mixture engine
+- [`fit_tam_adapter()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_tam_adapter.md)
+  : fit tam adapter
+- [`fit_traminer_adapter()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_traminer_adapter.md)
+  : fit traminer adapter
+- [`functional_pupil_basis()`](https://stefanosbalaskas.github.io/eyeprocess/reference/functional_pupil_basis.md)
+  : Construct a functional basis for pupil trajectories
+- [`functional_pupil_diagnostics()`](https://stefanosbalaskas.github.io/eyeprocess/reference/functional_pupil_diagnostics.md)
+  : Diagnose functional pupil model and preprocessing quality
+- [`import_benchmark_study()`](https://stefanosbalaskas.github.io/eyeprocess/reference/import_benchmark_study.md)
+  : Build an eye dataset from the public benchmark
+- [`init_vendor_corpus()`](https://stefanosbalaskas.github.io/eyeprocess/reference/init_vendor_corpus.md)
+  : Create or validate a multi-vendor corpus directory
+- [`migrate_eye_storage_schema()`](https://stefanosbalaskas.github.io/eyeprocess/reference/migrate_eye_storage_schema.md)
+  : Migrate a storage schema through an atomic rewrite
+- [`model_promotion_spec()`](https://stefanosbalaskas.github.io/eyeprocess/reference/model_promotion_spec.md)
+  : Specify evidence gates for model promotion
+- [`object_schema()`](https://stefanosbalaskas.github.io/eyeprocess/reference/object_schema.md)
+  : Describe a stable object schema
+- [`open_partitioned_eye_storage()`](https://stefanosbalaskas.github.io/eyeprocess/reference/open_partitioned_eye_storage.md)
+  : Open partitioned eye storage
+- [`package_reproducibility_manifest()`](https://stefanosbalaskas.github.io/eyeprocess/reference/package_reproducibility_manifest.md)
+  : Create a reproducibility manifest for files and software
+- [`partition_eye_storage()`](https://stefanosbalaskas.github.io/eyeprocess/reference/partition_eye_storage.md)
+  : Create a partition specification
+- [`plot(`*`<eye_dynamic_irtree>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_dynamic_irtree.md)
+  : plot eye dynamic irtree
+- [`plot(`*`<eye_dynamic_ppc>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_dynamic_ppc.md)
+  : plot eye dynamic ppc
+- [`plot(`*`<eye_functional_pupil_diagnostics>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_functional_pupil_diagnostics.md)
+  : plot eye functional pupil diagnostics
+- [`plot(`*`<eye_functional_pupil_irt>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_functional_pupil_irt.md)
+  : plot eye functional pupil irt
+- [`plot(`*`<eye_functional_pupil_sensitivity>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_functional_pupil_sensitivity.md)
+  : plot eye functional pupil sensitivity
+- [`plot(`*`<eye_model_promotion_audit>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_model_promotion_audit.md)
+  : plot eye model promotion audit
+- [`plot(`*`<eye_roundtrip_loss_audit>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_roundtrip_loss_audit.md)
+  : plot eye roundtrip loss audit
+- [`plot(`*`<eye_storage_benchmark>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_storage_benchmark.md)
+  : plot eye storage benchmark
+- [`plot(`*`<eye_strategy_aoi_sensitivity>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_strategy_aoi_sensitivity.md)
+  : plot eye strategy aoi sensitivity
+- [`plot(`*`<eye_transition_diagnostics>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_transition_diagnostics.md)
+  : plot eye transition diagnostics
+- [`plot(`*`<eye_vendor_compatibility_matrix>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_vendor_compatibility_matrix.md)
+  : plot eye vendor compatibility matrix
+- [`predict(`*`<eye_multinomial_transition>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/predict.eye_multinomial_transition.md)
+  : Predict destination-state probabilities
+- [`prepare_dynamic_irtree_data()`](https://stefanosbalaskas.github.io/eyeprocess/reference/prepare_dynamic_irtree_data.md)
+  : Prepare ordered transition data for dynamic IRTree models
+- [`prepare_functional_pupil_data()`](https://stefanosbalaskas.github.io/eyeprocess/reference/prepare_functional_pupil_data.md)
+  : Prepare aligned, corrected functional pupil data
+- [`prepare_gaze_diffusion_data()`](https://stefanosbalaskas.github.io/eyeprocess/reference/prepare_gaze_diffusion_data.md)
+  : Prepare joint accuracy-response-time data
+- [`prepare_strategy_mixture_data()`](https://stefanosbalaskas.github.io/eyeprocess/reference/prepare_strategy_mixture_data.md)
+  : Prepare data for a strategy-mixture model
+- [`print(`*`<eye_benchmark_reproduction>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/print.eye_benchmark_reproduction.md)
+  : print eye benchmark reproduction
+- [`print(`*`<eye_benchmark_study>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/print.eye_benchmark_study.md)
+  : print eye benchmark study
+- [`print(`*`<eye_benchmark_validation>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/print.eye_benchmark_validation.md)
+  : print eye benchmark validation
+- [`print(`*`<eye_diffusion_diagnostics>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/print.eye_diffusion_diagnostics.md)
+  : print eye diffusion diagnostics
+- [`print(`*`<eye_diffusion_identification_study>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/print.eye_diffusion_identification_study.md)
+  : print eye diffusion identification study
+- [`print(`*`<eye_dynamic_irtree>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/print.eye_dynamic_irtree.md)
+  : print eye dynamic irtree
+- [`print(`*`<eye_dynamic_ppc>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/print.eye_dynamic_ppc.md)
+  : print eye dynamic ppc
+- [`print(`*`<eye_dynamic_recovery>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/print.eye_dynamic_recovery.md)
+  : print eye dynamic recovery
+- [`print(`*`<eye_engine_adapter_result>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/print.eye_engine_adapter_result.md)
+  : print eye engine adapter result
+- [`print(`*`<eye_functional_pupil_data>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/print.eye_functional_pupil_data.md)
+  : print eye functional pupil data
+- [`print(`*`<eye_functional_pupil_diagnostics>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/print.eye_functional_pupil_diagnostics.md)
+  : print eye functional pupil diagnostics
+- [`print(`*`<eye_functional_pupil_irt>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/print.eye_functional_pupil_irt.md)
+  : print eye functional pupil irt
+- [`print(`*`<eye_functional_pupil_sensitivity>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/print.eye_functional_pupil_sensitivity.md)
+  : print eye functional pupil sensitivity
+- [`print(`*`<eye_functional_scalar_comparison>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/print.eye_functional_scalar_comparison.md)
+  : print eye functional scalar comparison
+- [`print(`*`<eye_gaze_diffusion_data>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/print.eye_gaze_diffusion_data.md)
+  : print eye gaze diffusion data
+- [`print(`*`<eye_gaze_diffusion_irt>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/print.eye_gaze_diffusion_irt.md)
+  : print eye gaze diffusion irt
+- [`print(`*`<eye_gaze_diffusion_spec>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/print.eye_gaze_diffusion_spec.md)
+  : print eye gaze diffusion spec
+- [`print(`*`<eye_model_contract_validation>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/print.eye_model_contract_validation.md)
+  : print eye model contract validation
+- [`print(`*`<eye_model_promotion_audit>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/print.eye_model_promotion_audit.md)
+  : print eye model promotion audit
+- [`print(`*`<eye_multinomial_transition>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/print.eye_multinomial_transition.md)
+  : print eye multinomial transition
+- [`print(`*`<eye_partition_spec>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/print.eye_partition_spec.md)
+  : print eye partition spec
+- [`print(`*`<eye_partitioned_storage>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/print.eye_partitioned_storage.md)
+  : print eye partitioned storage
+- [`print(`*`<eye_redaction_result>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/print.eye_redaction_result.md)
+  : print eye redaction result
+- [`print(`*`<eye_roundtrip_loss_audit>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/print.eye_roundtrip_loss_audit.md)
+  : print eye roundtrip loss audit
+- [`print(`*`<eye_strategy_data>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/print.eye_strategy_data.md)
+  : print eye strategy data
+- [`print(`*`<eye_strategy_manipulation_validation>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/print.eye_strategy_manipulation_validation.md)
+  : print eye strategy manipulation validation
+- [`print(`*`<eye_theory_strategy_irt>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/print.eye_theory_strategy_irt.md)
+  : print eye theory strategy irt
+- [`print(`*`<eye_theory_strategy_spec>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/print.eye_theory_strategy_spec.md)
+  : print eye theory strategy spec
+- [`print(`*`<eye_transition_design>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/print.eye_transition_design.md)
+  : print eye transition design
+- [`print(`*`<eye_transition_diagnostics>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/print.eye_transition_diagnostics.md)
+  : print eye transition diagnostics
+- [`print(`*`<eye_validation_case_fingerprint>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/print.eye_validation_case_fingerprint.md)
+  : print eye validation case fingerprint
+- [`print(`*`<eye_validation_collection>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/print.eye_validation_collection.md)
+  : print eye validation collection
+- [`print(`*`<eye_validation_completion_audit>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/print.eye_validation_completion_audit.md)
+  : print eye validation completion audit
+- [`print(`*`<eye_validation_job_plan>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/print.eye_validation_job_plan.md)
+  : print eye validation job plan
+- [`print(`*`<eye_validation_run>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/print.eye_validation_run.md)
+  : print eye validation run
+- [`print(`*`<eye_vendor_case>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/print.eye_vendor_case.md)
+  : print eye vendor case
+- [`print(`*`<eye_vendor_compatibility_matrix>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/print.eye_vendor_compatibility_matrix.md)
+  : print eye vendor compatibility matrix
+- [`print(`*`<eye_vendor_semantic_comparison>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/print.eye_vendor_semantic_comparison.md)
+  : print eye vendor semantic comparison
+- [`promote_vendor_support()`](https://stefanosbalaskas.github.io/eyeprocess/reference/promote_vendor_support.md)
+  : Promote a case support level only when evidence is supplied
+- [`prune_validation_checkpoints()`](https://stefanosbalaskas.github.io/eyeprocess/reference/prune_validation_checkpoints.md)
+  : Remove obsolete or corrupt validation checkpoints
+- [`pupil_preprocessing_grid()`](https://stefanosbalaskas.github.io/eyeprocess/reference/pupil_preprocessing_grid.md)
+  : Create a preprocessing sensitivity grid for pupil analysis
+- [`pupil_preprocessing_sensitivity()`](https://stefanosbalaskas.github.io/eyeprocess/reference/pupil_preprocessing_sensitivity.md)
+  : Run functional pupil preprocessing sensitivity analysis
+- [`query_eye_storage()`](https://stefanosbalaskas.github.io/eyeprocess/reference/query_eye_storage.md)
+  : Query partitioned eye storage lazily where possible
+- [`read_benchmark_table()`](https://stefanosbalaskas.github.io/eyeprocess/reference/read_benchmark_table.md)
+  : Read a benchmark table
+- [`read_validation_job_manifest()`](https://stefanosbalaskas.github.io/eyeprocess/reference/read_validation_job_manifest.md)
+  : Read a validation manifest
+- [`read_vendor_registry()`](https://stefanosbalaskas.github.io/eyeprocess/reference/read_vendor_registry.md)
+  : Read the multi-vendor case registry
+- [`redact_validation_case()`](https://stefanosbalaskas.github.io/eyeprocess/reference/redact_validation_case.md)
+  : Redact a validation case without inventing replacement data
+- [`register_validation_case()`](https://stefanosbalaskas.github.io/eyeprocess/reference/register_validation_case.md)
+  : Register an independent validation case
+- [`register_vendor_semantics()`](https://stefanosbalaskas.github.io/eyeprocess/reference/register_vendor_semantics.md)
+  : Register vendor-field semantics
+- [`resume_validation_jobs()`](https://stefanosbalaskas.github.io/eyeprocess/reference/resume_validation_jobs.md)
+  : Resume incomplete or failed validation jobs
+- [`run_benchmark_reproduction()`](https://stefanosbalaskas.github.io/eyeprocess/reference/run_benchmark_reproduction.md)
+  : Derive reproducible benchmark summaries
+- [`run_validation_jobs()`](https://stefanosbalaskas.github.io/eyeprocess/reference/run_validation_jobs.md)
+  : Run validation jobs with checkpointing and deterministic seeds
+- [`simulate_dynamic_irtree_data()`](https://stefanosbalaskas.github.io/eyeprocess/reference/simulate_dynamic_irtree_data.md)
+  : Simulate observed dynamic-state transitions
+- [`simulate_gaze_diffusion_data()`](https://stefanosbalaskas.github.io/eyeprocess/reference/simulate_gaze_diffusion_data.md)
+  : Simulate a hierarchical gaze-diffusion study
+- [`simulate_strategy_mixture_data()`](https://stefanosbalaskas.github.io/eyeprocess/reference/simulate_strategy_mixture_data.md)
+  : Simulate a theory-defined strategy-mixture study
+- [`split_validation_plan()`](https://stefanosbalaskas.github.io/eyeprocess/reference/split_validation_plan.md)
+  : Split a validation plan into independent chunks
+- [`storage_transaction_manifest()`](https://stefanosbalaskas.github.io/eyeprocess/reference/storage_transaction_manifest.md)
+  : Return the transaction manifest
+- [`strategy_aoi_sensitivity()`](https://stefanosbalaskas.github.io/eyeprocess/reference/strategy_aoi_sensitivity.md)
+  : Assess sensitivity to alternative AOI feature definitions
+- [`strategy_classification_uncertainty()`](https://stefanosbalaskas.github.io/eyeprocess/reference/strategy_classification_uncertainty.md)
+  : Quantify strategy-classification uncertainty
+- [`strategy_label_switching_diagnostics()`](https://stefanosbalaskas.github.io/eyeprocess/reference/strategy_label_switching_diagnostics.md)
+  : Diagnose label stability across multiple starts
+- [`strategy_posterior_probabilities()`](https://stefanosbalaskas.github.io/eyeprocess/reference/strategy_posterior_probabilities.md)
+  : Posterior strategy probabilities
+- [`structural_transition_mask()`](https://stefanosbalaskas.github.io/eyeprocess/reference/structural_transition_mask.md)
+  : Define structural-zero and allowed transition masks
+- [`summary(`*`<eye_validation_job_plan>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/summary.eye_validation_job_plan.md)
+  : summary eye validation job plan
+- [`transition_residual_diagnostics()`](https://stefanosbalaskas.github.io/eyeprocess/reference/transition_residual_diagnostics.md)
+  : Compute transition residual diagnostics
+- [`upgrade_eye_dataset()`](https://stefanosbalaskas.github.io/eyeprocess/reference/upgrade_eye_dataset.md)
+  : Upgrade a legacy eye dataset
+- [`upgrade_eyeprocess_model()`](https://stefanosbalaskas.github.io/eyeprocess/reference/upgrade_eyeprocess_model.md)
+  : Upgrade a legacy eyeprocess model
+- [`validate_benchmark_study()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validate_benchmark_study.md)
+  : Validate benchmark integrity and relational constraints
+- [`validate_engine_adapter()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validate_engine_adapter.md)
+  : Validate an external-engine adapter contract
+- [`validate_eye_storage_metadata()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validate_eye_storage_metadata.md)
+  : Validate storage metadata and partition fingerprints
+- [`validate_model_object()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validate_model_object.md)
+  : Validate a fitted model against the stable model contract
+- [`validate_strategy_manipulation()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validate_strategy_manipulation.md)
+  : Validate strategy posteriors against an experimental manipulation
+- [`validation_calibration_summary()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validation_calibration_summary.md)
+  : Summarize prediction calibration
+- [`validation_failure_summary()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validation_failure_summary.md)
+  : Summarize convergence and execution failures
+- [`validation_job_plan()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validation_job_plan.md)
+  : Create a deterministic validation job plan
+- [`validation_recovery_summary()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validation_recovery_summary.md)
+  : Summarize parameter recovery
+- [`validation_runtime_summary()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validation_runtime_summary.md)
+  : Summarize validation runtime and checkpoint scale
+- [`validation_sbc_summary()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validation_sbc_summary.md)
+  : Summarize simulation-based calibration ranks
+- [`validation_seed()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validation_seed.md)
+  : Allocate a deterministic validation seed
+- [`validation_thresholds()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validation_thresholds.md)
+  : Specify completion and scientific-promotion thresholds
+- [`verify_reproducibility_manifest()`](https://stefanosbalaskas.github.io/eyeprocess/reference/verify_reproducibility_manifest.md)
+  : Verify a reproducibility manifest
+- [`write_benchmark_data_dictionary()`](https://stefanosbalaskas.github.io/eyeprocess/reference/write_benchmark_data_dictionary.md)
+  : Write the benchmark data dictionary
+- [`write_model_promotion_report()`](https://stefanosbalaskas.github.io/eyeprocess/reference/write_model_promotion_report.md)
+  : Write a model-promotion report
+- [`write_partitioned_eye_storage()`](https://stefanosbalaskas.github.io/eyeprocess/reference/write_partitioned_eye_storage.md)
+  : Write an eye dataset as atomic partitioned storage
+- [`write_software_paper_reproduction()`](https://stefanosbalaskas.github.io/eyeprocess/reference/write_software_paper_reproduction.md)
+  : Write a complete software-paper reproduction scaffold
+- [`write_validation_job_manifest()`](https://stefanosbalaskas.github.io/eyeprocess/reference/write_validation_job_manifest.md)
+  : Write a machine-readable validation manifest
+- [`write_validation_release_report()`](https://stefanosbalaskas.github.io/eyeprocess/reference/write_validation_release_report.md)
+  : Write a validation release report
+- [`write_vendor_case_report()`](https://stefanosbalaskas.github.io/eyeprocess/reference/write_vendor_case_report.md)
+  : Write a vendor case evidence report
+- [`write_vendor_registry()`](https://stefanosbalaskas.github.io/eyeprocess/reference/write_vendor_registry.md)
+  : Write the multi-vendor case registry

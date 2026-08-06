@@ -1,0 +1,63 @@
+# Gaze-informed diffusion-IRT modelling
+
+## Confirmatory parameter mapping
+
+Gaze features must be assigned to theoretically defensible diffusion
+parameters before fitting. A feature cannot be placed simultaneously on
+drift, boundary, non-decision time, and starting bias in a confirmatory
+specification.
+
+``` r
+
+spec <- gaze_diffusion_spec(
+  response = "score",
+  response_time = "response_time",
+  drift_features = c("evidence_dwell_balance", "verification_transitions"),
+  boundary_features = "warning_dwell",
+  nondecision_features = "first_fixation_latency",
+  starting_features = "initial_option_bias",
+  censor_column = "rt_censoring",
+  contaminant = TRUE,
+  engine = "stan"
+)
+
+prepared <- prepare_gaze_diffusion_data(trials, spec)
+fit <- fit_gaze_diffusion_irt(trials, spec, seed = 42)
+```
+
+The Stan engine uses the Wiener first-passage likelihood for observed
+responses, mirrored parameters for the lower boundary, censoring
+contributions, person/item heterogeneity, and an optional uniform
+contaminant mixture.
+
+## Identification and posterior checks
+
+``` r
+
+extract_diffusion_parameters(fit)
+diffusion_parameter_diagnostics(fit, correlation_threshold = 0.85)
+diffusion_posterior_predictive(fit)
+compare_diffusion_accuracy_rt(fit)
+```
+
+The generated predictive RTs are a lightweight diagnostic approximation;
+likelihood-based inference remains based on the Wiener model.
+
+## Simulation programme
+
+``` r
+
+programme <- diffusion_identification_study(
+  conditions = list(
+    n_person = c(50L, 150L, 500L),
+    n_item = c(10L, 30L),
+    gaze_effect = c(0, 0.20, 0.40),
+    contaminant_fraction = c(0, 0.05)
+  ),
+  replications = 200L
+)
+```
+
+Promotion requires identification, parameter recovery, coverage,
+contaminant and censoring sensitivity, grouped validation, comparison
+with conventional accuracy–RT models, and empirical reproduction.
