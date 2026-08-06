@@ -1,7 +1,7 @@
 # eyeprocess
 
 <!-- badges: start -->
-**Development status:** 0.4.0.9000
+**Development status:** 0.5.0.9000
 [![R-CMD-check](https://github.com/stefanosbalaskas/eyeprocess/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/stefanosbalaskas/eyeprocess/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
