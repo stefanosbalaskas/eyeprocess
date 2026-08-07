@@ -287,4 +287,3 @@ Balaskas, S. (2026). *eyeprocess: Harmonize Eye-Tracking, Pupillometry, Biometri
 - Concept DOI: `10.5281/zenodo.21844472`
 
 See `CITATION.cff` for machine-readable citation metadata.
-
