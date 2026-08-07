@@ -1,4 +1,4 @@
-# eyeprocess 0.6.0.9000
+# eyeprocess 0.6.0
 
 ## Measurement uncertainty and AOI evidence
 

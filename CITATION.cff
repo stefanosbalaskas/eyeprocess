@@ -2,12 +2,13 @@ cff-version: 1.2.0
 message: "If you use eyeprocess, please cite this software."
 title: "eyeprocess: Harmonize Eye-Tracking, Pupillometry, Biometrics, and Psychometric Process Data"
 type: software
-version: 0.3.0.9000
-date-released: 2026-08-04
+version: 0.6.0
+date-released: 2026-08-07
 authors:
   - family-names: Balaskas
     given-names: Stefanos
     orcid: https://orcid.org/0000-0003-2444-9796
     email: s.balaskas@ac.upatras.gr
 repository-code: https://github.com/stefanosbalaskas/eyeprocess
+url: https://stefanosbalaskas.github.io/eyeprocess/
 license: MIT
