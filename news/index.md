@@ -1,5 +1,32 @@
 # Changelog
 
+## eyeprocess 0.6.0.9000
+
+### Measurement uncertainty and AOI evidence
+
+- Added probabilistic AOI assignment, fuzzy transition summaries,
+  compositional AOI analysis, and explicit measurement-uncertainty
+  propagation and budgets.
+- Added calibration-drift detection, offline recalibration, process
+  reliability and Generalizability Theory, and cross-device
+  linking/equivalence audits.
+
+### Temporal, spatial, and pupil-process science
+
+- Added pupil phase-amplitude registration, informative-missingness and
+  MNAR sensitivity, recurrence and cross-recurrence analysis,
+  experimental fixation point-process models, representative scanpaths,
+  and cognitive-episode segmentation.
+
+### Decision intelligence and provenance
+
+- Added multi-objective item-bank optimization, dynamic process-DIF and
+  fairness drift, conditional process centiles, and auditable
+  evidence/decision provenance graphs.
+- Added a shared S3 plotting framework, 18 targeted test modules, eight
+  articles, CI, manual documentation, and a standalone validation
+  programme.
+
 ## eyeprocess 0.5.0.9000
 
 ### Research-scale validation and reproducible orchestration

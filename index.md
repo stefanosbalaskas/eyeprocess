@@ -311,3 +311,18 @@ Advanced dynamic-state, functional-pupil, strategy-mixture, and
 gaze-diffusion models remain explicitly experimental until their
 declared recovery, calibration, misspecification, grouped-validation,
 equivalence, sensitivity, and empirical-reproduction gates pass.
+
+## Measurement-intelligence programme (0.6.0.9000)
+
+This development programme adds probabilistic and compositional AOI
+analysis, explicit process-measurement uncertainty, recalibration and
+device-linking audits, process reliability, pupil phase-amplitude
+registration, missingness sensitivity, recurrence and point-process
+models, representative scanpaths, cognitive episodes, multi-objective
+item-bank decisions, process-DIF monitoring, conditional reference
+centiles, and evidence-provenance graphs.
+
+The implementations are auditable reference engines. Experimental
+spatial, temporal, fairness, normative, and anomaly outputs are review
+evidence rather than automatic causal, clinical, ability, or misconduct
+determinations.

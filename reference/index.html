@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">eyeprocess</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.0.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,6 +42,14 @@
     <li><a class="dropdown-item" href="../articles/gaze-diffusion-irt.html">Gaze-informed diffusion-IRT modelling</a></li>
     <li><a class="dropdown-item" href="../articles/api-storage-adapters.html">Stable APIs, scalable storage, and external adapters</a></li>
     <li><a class="dropdown-item" href="../articles/benchmark-reproduction.html">Public benchmark and software-paper reproduction</a></li>
+    <li><a class="dropdown-item" href="../articles/probabilistic-aoi-compositions.html">Probabilistic AOIs and Compositional Attention</a></li>
+    <li><a class="dropdown-item" href="../articles/uncertainty-calibration.html">Measurement Uncertainty and Recalibration</a></li>
+    <li><a class="dropdown-item" href="../articles/reliability-device-transportability.html">Process Reliability and Device Transportability</a></li>
+    <li><a class="dropdown-item" href="../articles/pupil-registration-missingness.html">Pupil Phase-Amplitude Registration and Missingness</a></li>
+    <li><a class="dropdown-item" href="../articles/temporal-spatial-process-science.html">Temporal and Spatial Process Science</a></li>
+    <li><a class="dropdown-item" href="../articles/scanpaths-and-cognitive-episodes.html">Representative Scanpaths and Cognitive Episodes</a></li>
+    <li><a class="dropdown-item" href="../articles/item-bank-fairness-norms.html">Item-Bank Decisions, Fairness Drift, and Reference Centiles</a></li>
+    <li><a class="dropdown-item" href="../articles/evidence-decision-provenance.html">Evidence and Decision Provenance</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
@@ -280,6 +288,69 @@
 
       <dl><dt>
 
+          <code><a href="031-probabilistic-aoi.html">assign_aois_probabilistic()</a></code> <code><a href="031-probabilistic-aoi.html">audit_aoi_separation()</a></code> <code><a href="031-probabilistic-aoi.html">summarise_aoi_membership()</a></code> <code><a href="031-probabilistic-aoi.html">propagate_aoi_uncertainty()</a></code> <code><a href="031-probabilistic-aoi.html">plot_aoi_probability_map()</a></code> <code><a href="031-probabilistic-aoi.html">plot_aoi_boundary_risk()</a></code> <code><a href="031-probabilistic-aoi.html">plot_probabilistic_scanpath()</a></code> <code><a href="031-probabilistic-aoi.html">plot_fuzzy_transition_matrix()</a></code> <code><a href="031-probabilistic-aoi.html">plot_aoi_metric_uncertainty()</a></code>
+
+        </dt>
+        <dd>Probabilistic AOI assignment and uncertainty propagation</dd>
+
+        <dt>
+
+          <code><a href="034-calibration-recalibration.html">detect_calibration_drift()</a></code> <code><a href="034-calibration-recalibration.html">fit_offline_recalibration()</a></code> <code><a href="034-calibration-recalibration.html">apply_offline_recalibration()</a></code> <code><a href="034-calibration-recalibration.html">audit_recalibration()</a></code> <code><a href="034-calibration-recalibration.html">plot_calibration_vector_field()</a></code> <code><a href="034-calibration-recalibration.html">plot_calibration_error_ellipses()</a></code> <code><a href="034-calibration-recalibration.html">plot_drift_over_time()</a></code> <code><a href="034-calibration-recalibration.html">plot_recalibration_before_after()</a></code> <code><a href="034-calibration-recalibration.html">plot_screen_coverage()</a></code>
+
+        </dt>
+        <dd>Calibration drift and offline recalibration</dd>
+
+        <dt>
+
+          <code><a href="035-process-reliability.html">fit_process_gstudy()</a></code> <code><a href="035-process-reliability.html">process_variance_components()</a></code> <code><a href="035-process-reliability.html">design_process_dstudy()</a></code> <code><a href="035-process-reliability.html">audit_process_reliability()</a></code> <code><a href="035-process-reliability.html">plot_variance_components()</a></code> <code><a href="035-process-reliability.html">plot_dependability_surface()</a></code> <code><a href="035-process-reliability.html">plot_reliability_by_metric()</a></code> <code><a href="035-process-reliability.html">plot_session_stability()</a></code> <code><a href="035-process-reliability.html">plot_item_sampling_reliability()</a></code>
+
+        </dt>
+        <dd>Process reliability and Generalizability Theory</dd>
+
+        <dt>
+
+          <code><a href="036-device-linking.html">fit_device_linking()</a></code> <code><a href="036-device-linking.html">apply_device_linking()</a></code> <code><a href="036-device-linking.html">audit_device_equivalence()</a></code> <code><a href="036-device-linking.html">estimate_device_specific_error()</a></code> <code><a href="036-device-linking.html">plot_device_agreement()</a></code> <code><a href="036-device-linking.html">plot_device_bias_by_magnitude()</a></code> <code><a href="036-device-linking.html">plot_device_transfer_curve()</a></code> <code><a href="036-device-linking.html">plot_device_equivalence_intervals()</a></code> <code><a href="036-device-linking.html">plot_cross_vendor_metric_matrix()</a></code>
+
+        </dt>
+        <dd>Cross-device and cross-vendor metric linking</dd>
+
+        <dt>
+
+          <code><a href="037-pupil-registration.html">register_pupil_curves()</a></code> <code><a href="037-pupil-registration.html">decompose_pupil_phase_amplitude()</a></code> <code><a href="037-pupil-registration.html">fit_phase_amplitude_irt()</a></code> <code><a href="037-pupil-registration.html">audit_pupil_registration()</a></code> <code><a href="037-pupil-registration.html">plot_pupil_registration()</a></code> <code><a href="037-pupil-registration.html">plot_warping_functions()</a></code> <code><a href="037-pupil-registration.html">plot_phase_amplitude_scores()</a></code> <code><a href="037-pupil-registration.html">plot_item_phase_delay()</a></code> <code><a href="037-pupil-registration.html">plot_registered_pupil_effects()</a></code>
+
+        </dt>
+        <dd>Pupil phase-amplitude registration</dd>
+
+        <dt>
+
+          <code><a href="043-item-bank-optimization.html">item_objective_spec()</a></code> <code><a href="043-item-bank-optimization.html">item_pareto_front()</a></code> <code><a href="043-item-bank-optimization.html">optimize_item_bank()</a></code> <code><a href="043-item-bank-optimization.html">audit_bank_decision_stability()</a></code> <code><a href="043-item-bank-optimization.html">plot_item_pareto()</a></code> <code><a href="043-item-bank-optimization.html">plot_objective_tradeoffs()</a></code> <code><a href="043-item-bank-optimization.html">plot_bank_information_coverage()</a></code> <code><a href="043-item-bank-optimization.html">plot_decision_stability()</a></code> <code><a href="043-item-bank-optimization.html">plot_selected_bank_profile()</a></code>
+
+        </dt>
+        <dd>Multi-objective item-bank optimization</dd>
+
+        <dt>
+
+          <code><a href="044-process-dif-fairness.html">fit_process_dif()</a></code> <code><a href="044-process-dif-fairness.html">monitor_dif_drift()</a></code> <code><a href="044-process-dif-fairness.html">decompose_dif_evidence()</a></code> <code><a href="044-process-dif-fairness.html">audit_fairness_transportability()</a></code> <code><a href="044-process-dif-fairness.html">plot_group_icc_process_overlay()</a></code> <code><a href="044-process-dif-fairness.html">plot_process_dif_forest()</a></code> <code><a href="044-process-dif-fairness.html">plot_dif_drift_heatmap()</a></code> <code><a href="044-process-dif-fairness.html">plot_fairness_transport_matrix()</a></code> <code><a href="044-process-dif-fairness.html">plot_item_group_process_curves()</a></code>
+
+        </dt>
+        <dd>Dynamic process-DIF and fairness drift</dd>
+
+        <dt>
+
+          <code><a href="045-process-norms.html">fit_process_norms()</a></code> <code><a href="045-process-norms.html">predict_process_centiles()</a></code> <code><a href="045-process-norms.html">score_process_deviation()</a></code> <code><a href="045-process-norms.html">audit_norm_transportability()</a></code> <code><a href="045-process-norms.html">plot_process_centiles()</a></code> <code><a href="045-process-norms.html">plot_normative_fan()</a></code> <code><a href="045-process-norms.html">plot_person_normative_profile()</a></code> <code><a href="045-process-norms.html">plot_item_normative_deviation()</a></code>
+
+        </dt>
+        <dd>Conditional process reference centiles</dd>
+
+        <dt>
+
+          <code><a href="046-evidence-provenance-graph.html">build_evidence_graph()</a></code> <code><a href="046-evidence-provenance-graph.html">trace_item_decision()</a></code> <code><a href="046-evidence-provenance-graph.html">compare_decision_provenance()</a></code> <code><a href="046-evidence-provenance-graph.html">audit_evidence_dependencies()</a></code> <code><a href="046-evidence-provenance-graph.html">plot_evidence_graph()</a></code> <code><a href="046-evidence-provenance-graph.html">plot_item_decision_path()</a></code> <code><a href="046-evidence-provenance-graph.html">plot_metric_dependency_graph()</a></code> <code><a href="046-evidence-provenance-graph.html">plot_model_decision_impact()</a></code>
+
+        </dt>
+        <dd>Evidence and decision provenance graphs</dd>
+
+        <dt>
+
           <code><a href="audit_advanced_model_evidence.html">audit_advanced_model_evidence()</a></code>
 
         </dt>
@@ -358,6 +429,125 @@
 
 
       <dl><dt>
+
+          <code><a href="030-measurement-intelligence-utils.html">eye_plot_spec()</a></code> <code><a href="030-measurement-intelligence-utils.html">plot_diagnostics()</a></code> <code><a href="030-measurement-intelligence-utils.html">plot_evidence()</a></code> <code><a href="030-measurement-intelligence-utils.html">plot_sensitivity()</a></code> <code><a href="030-measurement-intelligence-utils.html">autoplot_eyeprocess()</a></code>
+
+        </dt>
+        <dd>Measurement-intelligence plotting and result infrastructure</dd>
+
+        <dt>
+
+          <code><a href="031-probabilistic-aoi.html">assign_aois_probabilistic()</a></code> <code><a href="031-probabilistic-aoi.html">audit_aoi_separation()</a></code> <code><a href="031-probabilistic-aoi.html">summarise_aoi_membership()</a></code> <code><a href="031-probabilistic-aoi.html">propagate_aoi_uncertainty()</a></code> <code><a href="031-probabilistic-aoi.html">plot_aoi_probability_map()</a></code> <code><a href="031-probabilistic-aoi.html">plot_aoi_boundary_risk()</a></code> <code><a href="031-probabilistic-aoi.html">plot_probabilistic_scanpath()</a></code> <code><a href="031-probabilistic-aoi.html">plot_fuzzy_transition_matrix()</a></code> <code><a href="031-probabilistic-aoi.html">plot_aoi_metric_uncertainty()</a></code>
+
+        </dt>
+        <dd>Probabilistic AOI assignment and uncertainty propagation</dd>
+
+        <dt>
+
+          <code><a href="032-compositional-aoi.html">derive_aoi_composition()</a></code> <code><a href="032-compositional-aoi.html">transform_aoi_composition()</a></code> <code><a href="032-compositional-aoi.html">fit_aoi_compositional_model()</a></code> <code><a href="032-compositional-aoi.html">compare_aoi_compositions()</a></code> <code><a href="032-compositional-aoi.html">aoi_balance_coordinates()</a></code> <code><a href="032-compositional-aoi.html">plot_aoi_ternary()</a></code> <code><a href="032-compositional-aoi.html">plot_aoi_balance_biplot()</a></code> <code><a href="032-compositional-aoi.html">plot_aoi_variation_matrix()</a></code> <code><a href="032-compositional-aoi.html">plot_compositional_group_difference()</a></code> <code><a href="032-compositional-aoi.html">plot_aoi_composition_trajectory()</a></code>
+
+        </dt>
+        <dd>Compositional analysis of AOI attention</dd>
+
+        <dt>
+
+          <code><a href="033-process-uncertainty.html">process_uncertainty_spec()</a></code> <code><a href="033-process-uncertainty.html">estimate_process_uncertainty()</a></code> <code><a href="033-process-uncertainty.html">propagate_process_uncertainty()</a></code> <code><a href="033-process-uncertainty.html">uncertainty_budget()</a></code> <code><a href="033-process-uncertainty.html">compare_uncertainty_budgets()</a></code> <code><a href="033-process-uncertainty.html">plot_uncertainty_waterfall()</a></code> <code><a href="033-process-uncertainty.html">plot_uncertainty_tornado()</a></code> <code><a href="033-process-uncertainty.html">plot_uncertainty_by_item()</a></code> <code><a href="033-process-uncertainty.html">plot_uncertainty_by_stage()</a></code>
+
+        </dt>
+        <dd>Process measurement-uncertainty budgets</dd>
+
+        <dt>
+
+          <code><a href="034-calibration-recalibration.html">detect_calibration_drift()</a></code> <code><a href="034-calibration-recalibration.html">fit_offline_recalibration()</a></code> <code><a href="034-calibration-recalibration.html">apply_offline_recalibration()</a></code> <code><a href="034-calibration-recalibration.html">audit_recalibration()</a></code> <code><a href="034-calibration-recalibration.html">plot_calibration_vector_field()</a></code> <code><a href="034-calibration-recalibration.html">plot_calibration_error_ellipses()</a></code> <code><a href="034-calibration-recalibration.html">plot_drift_over_time()</a></code> <code><a href="034-calibration-recalibration.html">plot_recalibration_before_after()</a></code> <code><a href="034-calibration-recalibration.html">plot_screen_coverage()</a></code>
+
+        </dt>
+        <dd>Calibration drift and offline recalibration</dd>
+
+        <dt>
+
+          <code><a href="035-process-reliability.html">fit_process_gstudy()</a></code> <code><a href="035-process-reliability.html">process_variance_components()</a></code> <code><a href="035-process-reliability.html">design_process_dstudy()</a></code> <code><a href="035-process-reliability.html">audit_process_reliability()</a></code> <code><a href="035-process-reliability.html">plot_variance_components()</a></code> <code><a href="035-process-reliability.html">plot_dependability_surface()</a></code> <code><a href="035-process-reliability.html">plot_reliability_by_metric()</a></code> <code><a href="035-process-reliability.html">plot_session_stability()</a></code> <code><a href="035-process-reliability.html">plot_item_sampling_reliability()</a></code>
+
+        </dt>
+        <dd>Process reliability and Generalizability Theory</dd>
+
+        <dt>
+
+          <code><a href="036-device-linking.html">fit_device_linking()</a></code> <code><a href="036-device-linking.html">apply_device_linking()</a></code> <code><a href="036-device-linking.html">audit_device_equivalence()</a></code> <code><a href="036-device-linking.html">estimate_device_specific_error()</a></code> <code><a href="036-device-linking.html">plot_device_agreement()</a></code> <code><a href="036-device-linking.html">plot_device_bias_by_magnitude()</a></code> <code><a href="036-device-linking.html">plot_device_transfer_curve()</a></code> <code><a href="036-device-linking.html">plot_device_equivalence_intervals()</a></code> <code><a href="036-device-linking.html">plot_cross_vendor_metric_matrix()</a></code>
+
+        </dt>
+        <dd>Cross-device and cross-vendor metric linking</dd>
+
+        <dt>
+
+          <code><a href="037-pupil-registration.html">register_pupil_curves()</a></code> <code><a href="037-pupil-registration.html">decompose_pupil_phase_amplitude()</a></code> <code><a href="037-pupil-registration.html">fit_phase_amplitude_irt()</a></code> <code><a href="037-pupil-registration.html">audit_pupil_registration()</a></code> <code><a href="037-pupil-registration.html">plot_pupil_registration()</a></code> <code><a href="037-pupil-registration.html">plot_warping_functions()</a></code> <code><a href="037-pupil-registration.html">plot_phase_amplitude_scores()</a></code> <code><a href="037-pupil-registration.html">plot_item_phase_delay()</a></code> <code><a href="037-pupil-registration.html">plot_registered_pupil_effects()</a></code>
+
+        </dt>
+        <dd>Pupil phase-amplitude registration</dd>
+
+        <dt>
+
+          <code><a href="038-informative-missingness.html">fit_process_observation_model()</a></code> <code><a href="038-informative-missingness.html">fit_joint_signal_missingness()</a></code> <code><a href="038-informative-missingness.html">process_pattern_mixture()</a></code> <code><a href="038-informative-missingness.html">sensitivity_mnar_process()</a></code> <code><a href="038-informative-missingness.html">plot_observation_probability()</a></code> <code><a href="038-informative-missingness.html">plot_missingness_by_time()</a></code> <code><a href="038-informative-missingness.html">plot_missingness_by_aoi()</a></code> <code><a href="038-informative-missingness.html">plot_mnar_tipping_point()</a></code> <code><a href="038-informative-missingness.html">plot_complete_case_sensitivity()</a></code>
+
+        </dt>
+        <dd>Informative missingness and MNAR sensitivity</dd>
+
+        <dt>
+
+          <code><a href="039-recurrence-analysis.html">gaze_recurrence()</a></code> <code><a href="039-recurrence-analysis.html">cross_recurrence()</a></code> <code><a href="039-recurrence-analysis.html">windowed_recurrence()</a></code> <code><a href="039-recurrence-analysis.html">recurrence_features()</a></code> <code><a href="039-recurrence-analysis.html">plot_recurrence_matrix()</a></code> <code><a href="039-recurrence-analysis.html">plot_windowed_recurrence()</a></code> <code><a href="039-recurrence-analysis.html">plot_diagonal_recurrence_profile()</a></code> <code><a href="039-recurrence-analysis.html">plot_crossmodal_recurrence()</a></code> <code><a href="039-recurrence-analysis.html">plot_recurrence_network()</a></code>
+
+        </dt>
+        <dd>Recurrence and cross-recurrence analysis</dd>
+
+        <dt>
+
+          <code><a href="040-fixation-point-process.html">fit_fixation_point_process()</a></code> <code><a href="040-fixation-point-process.html">fit_marked_gaze_process()</a></code> <code><a href="040-fixation-point-process.html">predict_fixation_intensity()</a></code> <code><a href="040-fixation-point-process.html">diagnose_gaze_point_process()</a></code> <code><a href="040-fixation-point-process.html">plot_fixation_intensity()</a></code> <code><a href="040-fixation-point-process.html">plot_spatial_residuals()</a></code> <code><a href="040-fixation-point-process.html">plot_temporal_excitation_kernel()</a></code> <code><a href="040-fixation-point-process.html">plot_covariate_effect_surface()</a></code> <code><a href="040-fixation-point-process.html">plot_observed_expected_fixations()</a></code>
+
+        </dt>
+        <dd>Spatio-temporal fixation point-process models</dd>
+
+        <dt>
+
+          <code><a href="041-representative-scanpaths.html">representative_scanpath()</a></code> <code><a href="041-representative-scanpaths.html">scanpath_dispersion()</a></code> <code><a href="041-representative-scanpaths.html">compare_scanpath_distributions()</a></code> <code><a href="041-representative-scanpaths.html">bootstrap_representative_scanpath()</a></code> <code><a href="041-representative-scanpaths.html">plot_scanpath_atlas()</a></code> <code><a href="041-representative-scanpaths.html">plot_representative_scanpath()</a></code> <code><a href="041-representative-scanpaths.html">plot_scanpath_dispersion()</a></code> <code><a href="041-representative-scanpaths.html">plot_group_scanpath_transport()</a></code> <code><a href="041-representative-scanpaths.html">plot_scanpath_similarity_matrix()</a></code>
+
+        </dt>
+        <dd>Representative scanpaths and scanpath distributions</dd>
+
+        <dt>
+
+          <code><a href="042-process-episodes.html">detect_process_changepoints()</a></code> <code><a href="042-process-episodes.html">segment_process_episodes()</a></code> <code><a href="042-process-episodes.html">label_process_episodes()</a></code> <code><a href="042-process-episodes.html">compare_episode_structure()</a></code> <code><a href="042-process-episodes.html">plot_process_episodes()</a></code> <code><a href="042-process-episodes.html">plot_changepoint_ribbons()</a></code> <code><a href="042-process-episodes.html">plot_episode_waterfall()</a></code> <code><a href="042-process-episodes.html">plot_episode_transition_graph()</a></code> <code><a href="042-process-episodes.html">plot_episode_duration_distribution()</a></code>
+
+        </dt>
+        <dd>Cognitive-episode change-point detection</dd>
+
+        <dt>
+
+          <code><a href="043-item-bank-optimization.html">item_objective_spec()</a></code> <code><a href="043-item-bank-optimization.html">item_pareto_front()</a></code> <code><a href="043-item-bank-optimization.html">optimize_item_bank()</a></code> <code><a href="043-item-bank-optimization.html">audit_bank_decision_stability()</a></code> <code><a href="043-item-bank-optimization.html">plot_item_pareto()</a></code> <code><a href="043-item-bank-optimization.html">plot_objective_tradeoffs()</a></code> <code><a href="043-item-bank-optimization.html">plot_bank_information_coverage()</a></code> <code><a href="043-item-bank-optimization.html">plot_decision_stability()</a></code> <code><a href="043-item-bank-optimization.html">plot_selected_bank_profile()</a></code>
+
+        </dt>
+        <dd>Multi-objective item-bank optimization</dd>
+
+        <dt>
+
+          <code><a href="044-process-dif-fairness.html">fit_process_dif()</a></code> <code><a href="044-process-dif-fairness.html">monitor_dif_drift()</a></code> <code><a href="044-process-dif-fairness.html">decompose_dif_evidence()</a></code> <code><a href="044-process-dif-fairness.html">audit_fairness_transportability()</a></code> <code><a href="044-process-dif-fairness.html">plot_group_icc_process_overlay()</a></code> <code><a href="044-process-dif-fairness.html">plot_process_dif_forest()</a></code> <code><a href="044-process-dif-fairness.html">plot_dif_drift_heatmap()</a></code> <code><a href="044-process-dif-fairness.html">plot_fairness_transport_matrix()</a></code> <code><a href="044-process-dif-fairness.html">plot_item_group_process_curves()</a></code>
+
+        </dt>
+        <dd>Dynamic process-DIF and fairness drift</dd>
+
+        <dt>
+
+          <code><a href="045-process-norms.html">fit_process_norms()</a></code> <code><a href="045-process-norms.html">predict_process_centiles()</a></code> <code><a href="045-process-norms.html">score_process_deviation()</a></code> <code><a href="045-process-norms.html">audit_norm_transportability()</a></code> <code><a href="045-process-norms.html">plot_process_centiles()</a></code> <code><a href="045-process-norms.html">plot_normative_fan()</a></code> <code><a href="045-process-norms.html">plot_person_normative_profile()</a></code> <code><a href="045-process-norms.html">plot_item_normative_deviation()</a></code>
+
+        </dt>
+        <dd>Conditional process reference centiles</dd>
+
+        <dt>
+
+          <code><a href="046-evidence-provenance-graph.html">build_evidence_graph()</a></code> <code><a href="046-evidence-provenance-graph.html">trace_item_decision()</a></code> <code><a href="046-evidence-provenance-graph.html">compare_decision_provenance()</a></code> <code><a href="046-evidence-provenance-graph.html">audit_evidence_dependencies()</a></code> <code><a href="046-evidence-provenance-graph.html">plot_evidence_graph()</a></code> <code><a href="046-evidence-provenance-graph.html">plot_item_decision_path()</a></code> <code><a href="046-evidence-provenance-graph.html">plot_metric_dependency_graph()</a></code> <code><a href="046-evidence-provenance-graph.html">plot_model_decision_impact()</a></code>
+
+        </dt>
+        <dd>Evidence and decision provenance graphs</dd>
+
+        <dt>
 
           <code><a href="eyeprocess-plots.html">plot.eye_dataset</a></code> <code><a href="eyeprocess-plots.html">plot_eye_overview</a></code> <code><a href="eyeprocess-plots.html">plot_eye_trace</a></code> <code><a href="eyeprocess-plots.html">plot_fixations</a></code> <code><a href="eyeprocess-plots.html">plot_scanpath</a></code> <code><a href="eyeprocess-plots.html">plot_gaze_heatmap</a></code> <code><a href="eyeprocess-plots.html">plot_aoi_dwell</a></code> <code><a href="eyeprocess-plots.html">plot_transition_matrix</a></code> <code><a href="eyeprocess-plots.html">plot_pupil_timeseries</a></code> <code><a href="eyeprocess-plots.html">plot_biometrics</a></code> <code><a href="eyeprocess-plots.html">plot_signal_quality</a></code> <code><a href="eyeprocess-plots.html">plot_sampling_rate</a></code> <code><a href="eyeprocess-plots.html">plot_missingness</a></code> <code><a href="eyeprocess-plots.html">plot_trial_timeline</a></code> <code><a href="eyeprocess-plots.html">plot_feature_distribution</a></code> <code><a href="eyeprocess-plots.html">plot_feature_correlation</a></code> <code><a href="eyeprocess-plots.html">plot_coordinate_spaces</a></code> <code><a href="eyeprocess-plots.html">plot_clock_alignment</a></code> <code><a href="eyeprocess-plots.html">plot_item_difficulty</a></code> <code><a href="eyeprocess-plots.html">plot_model_diagnostics</a></code>
 
@@ -1924,6 +2114,141 @@
 
         </dt>
         <dd>Write the multi-vendor case registry</dd>
+      </dl></div><div class="section level2">
+      <h2 id="measurement-intelligence-uncertainty-transportability-and-decision-evidence">Measurement intelligence, uncertainty, transportability, and decision evidence<a class="anchor" aria-label="anchor" href="#measurement-intelligence-uncertainty-transportability-and-decision-evidence"></a></h2>
+
+      <div class="section-desc"><p>Reference implementations with explicit uncertainty, validation, and interpretation boundaries.</p></div>
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="032-compositional-aoi.html">derive_aoi_composition()</a></code> <code><a href="032-compositional-aoi.html">transform_aoi_composition()</a></code> <code><a href="032-compositional-aoi.html">fit_aoi_compositional_model()</a></code> <code><a href="032-compositional-aoi.html">compare_aoi_compositions()</a></code> <code><a href="032-compositional-aoi.html">aoi_balance_coordinates()</a></code> <code><a href="032-compositional-aoi.html">plot_aoi_ternary()</a></code> <code><a href="032-compositional-aoi.html">plot_aoi_balance_biplot()</a></code> <code><a href="032-compositional-aoi.html">plot_aoi_variation_matrix()</a></code> <code><a href="032-compositional-aoi.html">plot_compositional_group_difference()</a></code> <code><a href="032-compositional-aoi.html">plot_aoi_composition_trajectory()</a></code>
+
+        </dt>
+        <dd>Compositional analysis of AOI attention</dd>
+
+        <dt>
+
+          <code><a href="036-device-linking.html">fit_device_linking()</a></code> <code><a href="036-device-linking.html">apply_device_linking()</a></code> <code><a href="036-device-linking.html">audit_device_equivalence()</a></code> <code><a href="036-device-linking.html">estimate_device_specific_error()</a></code> <code><a href="036-device-linking.html">plot_device_agreement()</a></code> <code><a href="036-device-linking.html">plot_device_bias_by_magnitude()</a></code> <code><a href="036-device-linking.html">plot_device_transfer_curve()</a></code> <code><a href="036-device-linking.html">plot_device_equivalence_intervals()</a></code> <code><a href="036-device-linking.html">plot_cross_vendor_metric_matrix()</a></code>
+
+        </dt>
+        <dd>Cross-device and cross-vendor metric linking</dd>
+
+        <dt>
+
+          <code><a href="034-calibration-recalibration.html">detect_calibration_drift()</a></code> <code><a href="034-calibration-recalibration.html">fit_offline_recalibration()</a></code> <code><a href="034-calibration-recalibration.html">apply_offline_recalibration()</a></code> <code><a href="034-calibration-recalibration.html">audit_recalibration()</a></code> <code><a href="034-calibration-recalibration.html">plot_calibration_vector_field()</a></code> <code><a href="034-calibration-recalibration.html">plot_calibration_error_ellipses()</a></code> <code><a href="034-calibration-recalibration.html">plot_drift_over_time()</a></code> <code><a href="034-calibration-recalibration.html">plot_recalibration_before_after()</a></code> <code><a href="034-calibration-recalibration.html">plot_screen_coverage()</a></code>
+
+        </dt>
+        <dd>Calibration drift and offline recalibration</dd>
+
+        <dt>
+
+          <code><a href="031-probabilistic-aoi.html">assign_aois_probabilistic()</a></code> <code><a href="031-probabilistic-aoi.html">audit_aoi_separation()</a></code> <code><a href="031-probabilistic-aoi.html">summarise_aoi_membership()</a></code> <code><a href="031-probabilistic-aoi.html">propagate_aoi_uncertainty()</a></code> <code><a href="031-probabilistic-aoi.html">plot_aoi_probability_map()</a></code> <code><a href="031-probabilistic-aoi.html">plot_aoi_boundary_risk()</a></code> <code><a href="031-probabilistic-aoi.html">plot_probabilistic_scanpath()</a></code> <code><a href="031-probabilistic-aoi.html">plot_fuzzy_transition_matrix()</a></code> <code><a href="031-probabilistic-aoi.html">plot_aoi_metric_uncertainty()</a></code>
+
+        </dt>
+        <dd>Probabilistic AOI assignment and uncertainty propagation</dd>
+
+        <dt>
+
+          <code><a href="030-measurement-intelligence-utils.html">eye_plot_spec()</a></code> <code><a href="030-measurement-intelligence-utils.html">plot_diagnostics()</a></code> <code><a href="030-measurement-intelligence-utils.html">plot_evidence()</a></code> <code><a href="030-measurement-intelligence-utils.html">plot_sensitivity()</a></code> <code><a href="030-measurement-intelligence-utils.html">autoplot_eyeprocess()</a></code>
+
+        </dt>
+        <dd>Measurement-intelligence plotting and result infrastructure</dd>
+
+        <dt>
+
+          <code><a href="041-representative-scanpaths.html">representative_scanpath()</a></code> <code><a href="041-representative-scanpaths.html">scanpath_dispersion()</a></code> <code><a href="041-representative-scanpaths.html">compare_scanpath_distributions()</a></code> <code><a href="041-representative-scanpaths.html">bootstrap_representative_scanpath()</a></code> <code><a href="041-representative-scanpaths.html">plot_scanpath_atlas()</a></code> <code><a href="041-representative-scanpaths.html">plot_representative_scanpath()</a></code> <code><a href="041-representative-scanpaths.html">plot_scanpath_dispersion()</a></code> <code><a href="041-representative-scanpaths.html">plot_group_scanpath_transport()</a></code> <code><a href="041-representative-scanpaths.html">plot_scanpath_similarity_matrix()</a></code>
+
+        </dt>
+        <dd>Representative scanpaths and scanpath distributions</dd>
+
+        <dt>
+
+          <code><a href="046-evidence-provenance-graph.html">build_evidence_graph()</a></code> <code><a href="046-evidence-provenance-graph.html">trace_item_decision()</a></code> <code><a href="046-evidence-provenance-graph.html">compare_decision_provenance()</a></code> <code><a href="046-evidence-provenance-graph.html">audit_evidence_dependencies()</a></code> <code><a href="046-evidence-provenance-graph.html">plot_evidence_graph()</a></code> <code><a href="046-evidence-provenance-graph.html">plot_item_decision_path()</a></code> <code><a href="046-evidence-provenance-graph.html">plot_metric_dependency_graph()</a></code> <code><a href="046-evidence-provenance-graph.html">plot_model_decision_impact()</a></code>
+
+        </dt>
+        <dd>Evidence and decision provenance graphs</dd>
+
+        <dt>
+
+          <code><a href="042-process-episodes.html">detect_process_changepoints()</a></code> <code><a href="042-process-episodes.html">segment_process_episodes()</a></code> <code><a href="042-process-episodes.html">label_process_episodes()</a></code> <code><a href="042-process-episodes.html">compare_episode_structure()</a></code> <code><a href="042-process-episodes.html">plot_process_episodes()</a></code> <code><a href="042-process-episodes.html">plot_changepoint_ribbons()</a></code> <code><a href="042-process-episodes.html">plot_episode_waterfall()</a></code> <code><a href="042-process-episodes.html">plot_episode_transition_graph()</a></code> <code><a href="042-process-episodes.html">plot_episode_duration_distribution()</a></code>
+
+        </dt>
+        <dd>Cognitive-episode change-point detection</dd>
+
+        <dt>
+
+          <code><a href="033-process-uncertainty.html">process_uncertainty_spec()</a></code> <code><a href="033-process-uncertainty.html">estimate_process_uncertainty()</a></code> <code><a href="033-process-uncertainty.html">propagate_process_uncertainty()</a></code> <code><a href="033-process-uncertainty.html">uncertainty_budget()</a></code> <code><a href="033-process-uncertainty.html">compare_uncertainty_budgets()</a></code> <code><a href="033-process-uncertainty.html">plot_uncertainty_waterfall()</a></code> <code><a href="033-process-uncertainty.html">plot_uncertainty_tornado()</a></code> <code><a href="033-process-uncertainty.html">plot_uncertainty_by_item()</a></code> <code><a href="033-process-uncertainty.html">plot_uncertainty_by_stage()</a></code>
+
+        </dt>
+        <dd>Process measurement-uncertainty budgets</dd>
+
+        <dt>
+
+          <code><a href="039-recurrence-analysis.html">gaze_recurrence()</a></code> <code><a href="039-recurrence-analysis.html">cross_recurrence()</a></code> <code><a href="039-recurrence-analysis.html">windowed_recurrence()</a></code> <code><a href="039-recurrence-analysis.html">recurrence_features()</a></code> <code><a href="039-recurrence-analysis.html">plot_recurrence_matrix()</a></code> <code><a href="039-recurrence-analysis.html">plot_windowed_recurrence()</a></code> <code><a href="039-recurrence-analysis.html">plot_diagonal_recurrence_profile()</a></code> <code><a href="039-recurrence-analysis.html">plot_crossmodal_recurrence()</a></code> <code><a href="039-recurrence-analysis.html">plot_recurrence_network()</a></code>
+
+        </dt>
+        <dd>Recurrence and cross-recurrence analysis</dd>
+
+        <dt>
+
+          <code><a href="047-measurement-intelligence-adapters.html">fit_process_missingness_model()</a></code> <code><a href="047-measurement-intelligence-adapters.html">crossmodal_recurrence_model()</a></code>
+
+        </dt>
+        <dd>Measurement-intelligence compatibility adapters</dd>
+
+        <dt>
+
+          <code><a href="044-process-dif-fairness.html">fit_process_dif()</a></code> <code><a href="044-process-dif-fairness.html">monitor_dif_drift()</a></code> <code><a href="044-process-dif-fairness.html">decompose_dif_evidence()</a></code> <code><a href="044-process-dif-fairness.html">audit_fairness_transportability()</a></code> <code><a href="044-process-dif-fairness.html">plot_group_icc_process_overlay()</a></code> <code><a href="044-process-dif-fairness.html">plot_process_dif_forest()</a></code> <code><a href="044-process-dif-fairness.html">plot_dif_drift_heatmap()</a></code> <code><a href="044-process-dif-fairness.html">plot_fairness_transport_matrix()</a></code> <code><a href="044-process-dif-fairness.html">plot_item_group_process_curves()</a></code>
+
+        </dt>
+        <dd>Dynamic process-DIF and fairness drift</dd>
+
+        <dt>
+
+          <code><a href="037-pupil-registration.html">register_pupil_curves()</a></code> <code><a href="037-pupil-registration.html">decompose_pupil_phase_amplitude()</a></code> <code><a href="037-pupil-registration.html">fit_phase_amplitude_irt()</a></code> <code><a href="037-pupil-registration.html">audit_pupil_registration()</a></code> <code><a href="037-pupil-registration.html">plot_pupil_registration()</a></code> <code><a href="037-pupil-registration.html">plot_warping_functions()</a></code> <code><a href="037-pupil-registration.html">plot_phase_amplitude_scores()</a></code> <code><a href="037-pupil-registration.html">plot_item_phase_delay()</a></code> <code><a href="037-pupil-registration.html">plot_registered_pupil_effects()</a></code>
+
+        </dt>
+        <dd>Pupil phase-amplitude registration</dd>
+
+        <dt>
+
+          <code><a href="035-process-reliability.html">fit_process_gstudy()</a></code> <code><a href="035-process-reliability.html">process_variance_components()</a></code> <code><a href="035-process-reliability.html">design_process_dstudy()</a></code> <code><a href="035-process-reliability.html">audit_process_reliability()</a></code> <code><a href="035-process-reliability.html">plot_variance_components()</a></code> <code><a href="035-process-reliability.html">plot_dependability_surface()</a></code> <code><a href="035-process-reliability.html">plot_reliability_by_metric()</a></code> <code><a href="035-process-reliability.html">plot_session_stability()</a></code> <code><a href="035-process-reliability.html">plot_item_sampling_reliability()</a></code>
+
+        </dt>
+        <dd>Process reliability and Generalizability Theory</dd>
+
+        <dt>
+
+          <code><a href="040-fixation-point-process.html">fit_fixation_point_process()</a></code> <code><a href="040-fixation-point-process.html">fit_marked_gaze_process()</a></code> <code><a href="040-fixation-point-process.html">predict_fixation_intensity()</a></code> <code><a href="040-fixation-point-process.html">diagnose_gaze_point_process()</a></code> <code><a href="040-fixation-point-process.html">plot_fixation_intensity()</a></code> <code><a href="040-fixation-point-process.html">plot_spatial_residuals()</a></code> <code><a href="040-fixation-point-process.html">plot_temporal_excitation_kernel()</a></code> <code><a href="040-fixation-point-process.html">plot_covariate_effect_surface()</a></code> <code><a href="040-fixation-point-process.html">plot_observed_expected_fixations()</a></code>
+
+        </dt>
+        <dd>Spatio-temporal fixation point-process models</dd>
+
+        <dt>
+
+          <code><a href="038-informative-missingness.html">fit_process_observation_model()</a></code> <code><a href="038-informative-missingness.html">fit_joint_signal_missingness()</a></code> <code><a href="038-informative-missingness.html">process_pattern_mixture()</a></code> <code><a href="038-informative-missingness.html">sensitivity_mnar_process()</a></code> <code><a href="038-informative-missingness.html">plot_observation_probability()</a></code> <code><a href="038-informative-missingness.html">plot_missingness_by_time()</a></code> <code><a href="038-informative-missingness.html">plot_missingness_by_aoi()</a></code> <code><a href="038-informative-missingness.html">plot_mnar_tipping_point()</a></code> <code><a href="038-informative-missingness.html">plot_complete_case_sensitivity()</a></code>
+
+        </dt>
+        <dd>Informative missingness and MNAR sensitivity</dd>
+
+        <dt>
+
+          <code><a href="045-process-norms.html">fit_process_norms()</a></code> <code><a href="045-process-norms.html">predict_process_centiles()</a></code> <code><a href="045-process-norms.html">score_process_deviation()</a></code> <code><a href="045-process-norms.html">audit_norm_transportability()</a></code> <code><a href="045-process-norms.html">plot_process_centiles()</a></code> <code><a href="045-process-norms.html">plot_normative_fan()</a></code> <code><a href="045-process-norms.html">plot_person_normative_profile()</a></code> <code><a href="045-process-norms.html">plot_item_normative_deviation()</a></code>
+
+        </dt>
+        <dd>Conditional process reference centiles</dd>
+
+        <dt>
+
+          <code><a href="043-item-bank-optimization.html">item_objective_spec()</a></code> <code><a href="043-item-bank-optimization.html">item_pareto_front()</a></code> <code><a href="043-item-bank-optimization.html">optimize_item_bank()</a></code> <code><a href="043-item-bank-optimization.html">audit_bank_decision_stability()</a></code> <code><a href="043-item-bank-optimization.html">plot_item_pareto()</a></code> <code><a href="043-item-bank-optimization.html">plot_objective_tradeoffs()</a></code> <code><a href="043-item-bank-optimization.html">plot_bank_information_coverage()</a></code> <code><a href="043-item-bank-optimization.html">plot_decision_stability()</a></code> <code><a href="043-item-bank-optimization.html">plot_selected_bank_profile()</a></code>
+
+        </dt>
+        <dd>Multi-objective item-bank optimization</dd>
       </dl></div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>

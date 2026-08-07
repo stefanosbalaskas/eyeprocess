@@ -128,3 +128,14 @@ and reproduction scaffold.
 Evidence status: infrastructure complete; advanced scientific claims
 remain experimental and require executed external evidence. Real
 multi-vendor exports are not bundled or fabricated.
+
+## Measurement-intelligence programme 0.6.0.9000
+
+Implemented: 18 R modules, 150 exported APIs, 54 registered S3 methods,
+19 testthat files, eight articles, grouped manual documentation, CI, and
+standalone validation tooling.
+
+Evidence status: dependency-free reference implementations are complete.
+Confirmatory, clinical, high-stakes, cross-device-equivalence, fairness,
+normative, and operational claims require study-specific calibration,
+external validation, sensitivity analysis, and governance review.

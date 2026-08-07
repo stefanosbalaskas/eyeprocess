@@ -45,3 +45,19 @@
   adapters](https://stefanosbalaskas.github.io/eyeprocess/articles/api-storage-adapters.md):
 - [Public benchmark and software-paper
   reproduction](https://stefanosbalaskas.github.io/eyeprocess/articles/benchmark-reproduction.md):
+- [Probabilistic AOIs and Compositional
+  Attention](https://stefanosbalaskas.github.io/eyeprocess/articles/probabilistic-aoi-compositions.md):
+- [Measurement Uncertainty and
+  Recalibration](https://stefanosbalaskas.github.io/eyeprocess/articles/uncertainty-calibration.md):
+- [Process Reliability and Device
+  Transportability](https://stefanosbalaskas.github.io/eyeprocess/articles/reliability-device-transportability.md):
+- [Pupil Phase-Amplitude Registration and
+  Missingness](https://stefanosbalaskas.github.io/eyeprocess/articles/pupil-registration-missingness.md):
+- [Temporal and Spatial Process
+  Science](https://stefanosbalaskas.github.io/eyeprocess/articles/temporal-spatial-process-science.md):
+- [Representative Scanpaths and Cognitive
+  Episodes](https://stefanosbalaskas.github.io/eyeprocess/articles/scanpaths-and-cognitive-episodes.md):
+- [Item-Bank Decisions, Fairness Drift, and Reference
+  Centiles](https://stefanosbalaskas.github.io/eyeprocess/articles/item-bank-fairness-norms.md):
+- [Evidence and Decision
+  Provenance](https://stefanosbalaskas.github.io/eyeprocess/articles/evidence-decision-provenance.md):
