@@ -19,7 +19,7 @@ if (length(bad)) {
   stop("Measurement-intelligence parse failures: ", paste(basename(bad), collapse = ", "), call. = FALSE)
 }
 
-results <- testthat::test_dir(
+results <- testthat::test_local(
   file.path(package_path, "tests", "testthat"),
   filter = "probabilistic|compositional|uncertainty|calibration|reliability|device|pupil|missingness|recurrence|point-process|scanpath|episodes|item-bank|process-dif|process-norms|evidence|measurement-intelligence",
   reporter = "summary",

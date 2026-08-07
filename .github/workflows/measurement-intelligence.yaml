@@ -47,7 +47,7 @@ jobs:
       - name: Run measurement-intelligence tests
         shell: Rscript {0}
         run: |
-          testthat::test_dir(
+          testthat::test_local(
             "tests/testthat",
             filter = "probabilistic|compositional|uncertainty|calibration|reliability|device|pupil|missingness|recurrence|point-process|scanpath|episodes|item-bank|process-dif|process-norms|evidence|measurement-intelligence",
             reporter = "summary",
