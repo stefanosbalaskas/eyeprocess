@@ -1,7 +1,9 @@
 # eyeprocess
 
+[![DOI](https://zenodo.org/badge/1322747590.svg)](https://doi.org/10.5281/zenodo.21844472)
+
 <!-- badges: start -->
-**Development status:** 0.5.0.9000
+**Current release:** 0.6.0
 [![R-CMD-check](https://github.com/stefanosbalaskas/eyeprocess/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/stefanosbalaskas/eyeprocess/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
@@ -269,8 +271,19 @@ The development programme now supports deterministic and resumable validation jo
 
 Advanced dynamic-state, functional-pupil, strategy-mixture, and gaze-diffusion models remain explicitly experimental until their declared recovery, calibration, misspecification, grouped-validation, equivalence, sensitivity, and empirical-reproduction gates pass.
 
-## Measurement-intelligence programme (0.6.0.9000)
+## Measurement-intelligence programme (0.6.0)
 
 This development programme adds probabilistic and compositional AOI analysis, explicit process-measurement uncertainty, recalibration and device-linking audits, process reliability, pupil phase-amplitude registration, missingness sensitivity, recurrence and point-process models, representative scanpaths, cognitive episodes, multi-objective item-bank decisions, process-DIF monitoring, conditional reference centiles, and evidence-provenance graphs.
 
 The implementations are auditable reference engines. Experimental spatial, temporal, fairness, normative, and anomaly outputs are review evidence rather than automatic causal, clinical, ability, or misconduct determinations.
+
+## Citation
+
+If you use `eyeprocess` in research, please cite the archived software release:
+
+Balaskas, S. (2026). *eyeprocess: Harmonize Eye-Tracking, Pupillometry, Biometrics, and Psychometric Process Data* (Version 0.6.0). Zenodo. https://doi.org/10.5281/zenodo.21844473
+
+- Version 0.6.0 DOI: `10.5281/zenodo.21844473`
+- Concept DOI: `10.5281/zenodo.21844472`
+
+See `CITATION.cff` for machine-readable citation metadata.
