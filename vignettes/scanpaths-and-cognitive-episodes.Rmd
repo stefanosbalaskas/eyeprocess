@@ -1,0 +1,49 @@
+---
+title: "Representative Scanpaths and Cognitive Episodes"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Representative Scanpaths and Cognitive Episodes}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>", eval = FALSE)
+```
+
+
+A representative scanpath is accompanied by a distance matrix and dispersion estimate rather than selected visually.
+
+```{r}
+representative <- representative_scanpath(
+  scanpath_long,
+  method = "medoid",
+  distance = "edit",
+  id_col = "person_trial_id",
+  aoi_col = "aoi"
+)
+plot_representative_scanpath(representative)
+plot_scanpath_dispersion(representative)
+plot_scanpath_similarity_matrix(representative)
+comparison <- compare_scanpath_distributions(
+  scanpath_list,
+  group = strategy_group,
+  distance = "edit"
+)
+plot_group_scanpath_transport(comparison)
+```
+
+Change-point segmentation provides candidate cognitive episodes. Labels are transparent study-specific rules, not latent psychological facts.
+
+```{r}
+changes <- detect_process_changepoints(
+  multimodal_stream,
+  channels = c("gaze_velocity", "pupil_bc", "eda"),
+  time_col = "time"
+)
+plot_changepoint_ribbons(changes)
+episodes <- label_process_episodes(segment_process_episodes(changes))
+plot_process_episodes(episodes)
+plot_episode_transition_graph(episodes)
+plot_episode_duration_distribution(episodes)
+```

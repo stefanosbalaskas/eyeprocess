@@ -1,0 +1,22 @@
+test_that("probabilistic AOI assignment closes probabilities", {
+  x <- mi_gaze_data(40)
+  fit <- assign_aois_probabilistic(x, mi_aois(), precision = 0.05)
+  expect_s3_class(fit, "eye_probabilistic_aoi")
+  expect_equal(rowSums(fit$probabilities), rep(1, nrow(x)), tolerance = 1e-8)
+  expect_true(all(fit$classification$maximum_probability >= 0))
+  audit <- audit_aoi_separation(fit)
+  expect_s3_class(audit, "eye_aoi_separation_audit")
+  propagated <- propagate_aoi_uncertainty(fit, draws = 20, time_col = "time", duration_col = "duration")
+  expect_s3_class(propagated, "eye_aoi_uncertainty")
+  expect_equal(nrow(propagated$draws), 20)
+  expect_plot_silent(plot_aoi_probability_map(fit))
+  expect_plot_silent(plot_aoi_metric_uncertainty(propagated))
+})
+
+test_that("internal softmax preserves matrix dimensions and row closure", {
+  logits <- matrix(c(0, 1, -1, 2, 0, 3), nrow = 2, byrow = TRUE)
+  softmax <- getFromNamespace(".mi_softmax", "eyeprocess")(logits)
+  expect_true(is.matrix(softmax))
+  expect_equal(dim(softmax), dim(logits))
+  expect_equal(rowSums(softmax), rep(1, nrow(logits)), tolerance = 1e-12)
+})

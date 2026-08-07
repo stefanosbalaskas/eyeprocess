@@ -1,0 +1,12 @@
+test_that("offline recalibration reduces synthetic translation error", {
+  set.seed(1)
+  reference <- data.frame(target_x = runif(60), target_y = runif(60))
+  data <- transform(reference, x = target_x + 0.05 + rnorm(60, 0, 0.005), y = target_y - 0.03 + rnorm(60, 0, 0.005), time = seq_len(60))
+  drift <- detect_calibration_drift(data, window = 10, x_col = "x", y_col = "y", time_col = "time")
+  model <- fit_offline_recalibration(drift, method = "translation")
+  corrected <- apply_offline_recalibration(data, model, x_col = "x", y_col = "y")
+  audit <- audit_recalibration(data, corrected)
+  expect_true(audit$summary$after_rmse < audit$summary$before_rmse)
+  expect_plot_silent(plot_calibration_vector_field(drift))
+  expect_plot_silent(plot_recalibration_before_after(audit))
+})

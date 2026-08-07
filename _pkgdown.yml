@@ -33,6 +33,15 @@ articles:
   - api-storage-adapters
   - benchmark-reproduction
   # eyeprocess research-scale articles
+  - probabilistic-aoi-compositions
+  - uncertainty-calibration
+  - reliability-device-transportability
+  - pupil-registration-missingness
+  - temporal-spatial-process-science
+  - scanpaths-and-cognitive-episodes
+  - item-bank-fairness-norms
+  - evidence-decision-provenance
+  # eyeprocess measurement-intelligence articles
 reference:
 - title: Package overview
   contents:
@@ -351,3 +360,69 @@ reference:
   - write_vendor_case_report
   - write_vendor_registry
   # eyeprocess research-scale reference
+
+- title: Measurement intelligence, uncertainty, transportability, and decision evidence
+  desc: Reference implementations with explicit uncertainty, validation, and interpretation boundaries.
+  contents:
+  - aoi_balance_coordinates
+  - apply_device_linking
+  - apply_offline_recalibration
+  - assign_aois_probabilistic
+  - autoplot_eyeprocess
+  - bootstrap_representative_scanpath
+  - build_evidence_graph
+  - compare_aoi_compositions
+  - compare_decision_provenance
+  - compare_episode_structure
+  - compare_scanpath_distributions
+  - compare_uncertainty_budgets
+  - cross_recurrence
+  - crossmodal_recurrence_model
+  - decompose_dif_evidence
+  - decompose_pupil_phase_amplitude
+  - derive_aoi_composition
+  - design_process_dstudy
+  - detect_calibration_drift
+  - detect_process_changepoints
+  - diagnose_gaze_point_process
+  - estimate_device_specific_error
+  - estimate_process_uncertainty
+  - eye_plot_spec
+  - fit_aoi_compositional_model
+  - fit_device_linking
+  - fit_fixation_point_process
+  - fit_joint_signal_missingness
+  - fit_marked_gaze_process
+  - fit_offline_recalibration
+  - fit_phase_amplitude_irt
+  - fit_process_dif
+  - fit_process_gstudy
+  - fit_process_missingness_model
+  - fit_process_norms
+  - fit_process_observation_model
+  - gaze_recurrence
+  - item_objective_spec
+  - item_pareto_front
+  - label_process_episodes
+  - monitor_dif_drift
+  - optimize_item_bank
+  - predict_fixation_intensity
+  - predict_process_centiles
+  - process_pattern_mixture
+  - process_uncertainty_spec
+  - process_variance_components
+  - propagate_aoi_uncertainty
+  - propagate_process_uncertainty
+  - recurrence_features
+  - register_pupil_curves
+  - representative_scanpath
+  - scanpath_dispersion
+  - score_process_deviation
+  - segment_process_episodes
+  - sensitivity_mnar_process
+  - summarise_aoi_membership
+  - trace_item_decision
+  - transform_aoi_composition
+  - uncertainty_budget
+  - windowed_recurrence
+  # eyeprocess measurement-intelligence reference

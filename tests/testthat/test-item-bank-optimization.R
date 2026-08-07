@@ -1,0 +1,12 @@
+test_that("Pareto and item-bank optimization select requested items", {
+  set.seed(1)
+  items <- data.frame(item_id = paste0("I", 1:20), information = runif(20), burden = runif(20), fairness = runif(20), exposure = runif(20))
+  spec <- item_objective_spec("information", "burden", "fairness", "exposure")
+  pareto <- item_pareto_front(items, spec)
+  expect_true(any(pareto$table$pareto_front))
+  optimization <- optimize_item_bank(pareto, 8, spec)
+  expect_equal(nrow(optimization$selected), 8)
+  stability <- audit_bank_decision_stability(optimization, draws = 20)
+  expect_equal(nrow(stability$summary), 20)
+  expect_plot_silent(plot_item_pareto(pareto))
+})
