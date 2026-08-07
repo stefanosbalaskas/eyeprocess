@@ -10,11 +10,11 @@ AOIs, pupil trajectories, quality indicators, and provenance.
 ``` r
 
 library(eyeprocess)
-#> eyeprocess 0.6.0.9000: vendor-neutral eye/process data harmonization with first-class Gazepoint support.
+#> eyeprocess 0.6.0: vendor-neutral eye/process data harmonization with first-class Gazepoint support.
 study <- eyeprocess_benchmark_study()
 study
 #> eyeprocess public benchmark study
-#> Path:   C:/Users/Stefanos-PC/AppData/Local/R/win-library/4.6/eyeprocess/extdata/benchmark-study
+#> Path:   /home/runner/work/_temp/Library/eyeprocess/extdata/benchmark-study
 #> Files:  10
 #> Status: synthetic, openly redistributable benchmark - not empirical vendor validation
 ```
