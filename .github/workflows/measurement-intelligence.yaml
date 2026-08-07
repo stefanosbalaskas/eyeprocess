@@ -36,6 +36,7 @@ jobs:
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: any::rcmdcheck, any::testthat
+          extra-repositories: https://stan-dev.r-universe.dev
           needs: check
       - name: Parse measurement-intelligence modules
         shell: Rscript {0}
