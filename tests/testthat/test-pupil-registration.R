@@ -1,0 +1,16 @@
+test_that("pupil registration separates phase and amplitude", {
+  set.seed(1)
+  ids <- paste0("P", 1:12)
+  data <- do.call(rbind, lapply(seq_along(ids), function(i) {
+    time <- seq(0, 2, length.out = 50)
+    data.frame(person_id = ids[[i]], time = time, pupil = exp(-((time - (0.8 + i / 100))^2) / 0.08) + rnorm(50, 0, 0.02))
+  }))
+  registration <- register_pupil_curves(data, "time", "pupil")
+  expect_s3_class(registration, "eye_pupil_registration")
+  decomposition <- decompose_pupil_phase_amplitude(registration, components = 2)
+  expect_true(all(c("phase_shift", "amplitude_pc1") %in% names(decomposition$scores)))
+  responses <- matrix(rbinom(12 * 5, 1, 0.6), nrow = 12, dimnames = list(ids, NULL))
+  fit <- fit_phase_amplitude_irt(responses, decomposition)
+  expect_s3_class(fit, "eye_phase_amplitude_irt")
+  expect_plot_silent(plot_pupil_registration(registration))
+})

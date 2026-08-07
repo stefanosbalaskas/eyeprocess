@@ -1,0 +1,53 @@
+---
+title: "Measurement Uncertainty and Recalibration"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Measurement Uncertainty and Recalibration}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>", eval = FALSE)
+```
+
+
+The uncertainty programme separates calibration, AOI assignment, preprocessing, sampling, and model components. It produces a source-by-metric budget and can propagate the combined uncertainty to a study estimand.
+
+```{r}
+spec <- process_uncertainty_spec(
+  source_sd = c(calibration = 0.018, aoi_assignment = 0.025),
+  draws = 2000
+)
+uncertainty <- estimate_process_uncertainty(
+  trial_features, spec, metrics = c("dwell_ms", "pupil_auc"), cluster = "person_id"
+)
+uncertainty_budget(uncertainty)
+plot_uncertainty_waterfall(uncertainty, metric = "pupil_auc")
+plot_uncertainty_tornado(uncertainty, metric = "pupil_auc")
+propagated <- propagate_process_uncertainty(
+  uncertainty,
+  estimand = function(data) mean(data$pupil_auc, na.rm = TRUE),
+  method = "simulation"
+)
+```
+
+Spatial drift should be reviewed before derived AOI metrics are interpreted.
+
+```{r}
+drift <- detect_calibration_drift(
+  calibration_samples,
+  window = "30 sec",
+  x_col = "gaze_x",
+  y_col = "gaze_y",
+  time_col = "time"
+)
+plot_calibration_vector_field(drift)
+plot_drift_over_time(drift)
+model <- fit_offline_recalibration(drift, method = "affine", robust = TRUE)
+corrected <- apply_offline_recalibration(samples, model, "gaze_x", "gaze_y")
+audit <- audit_recalibration(calibration_samples, corrected)
+plot_recalibration_before_after(audit)
+```
+
+Recalibration must be estimated from defensible reference points and audited on held-out targets whenever possible.

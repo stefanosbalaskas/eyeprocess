@@ -1,0 +1,13 @@
+test_that("conditional process centiles and deviation scores work", {
+  set.seed(1)
+  reference <- data.frame(age = runif(120, 10, 18), dwell_ms = exp(6 + 0.03 * runif(120, 10, 18) + rnorm(120, 0, 0.1)))
+  model <- fit_process_norms(reference, "dwell_ms", "age")
+  expect_s3_class(model, "eye_process_norms")
+  predicted <- predict_process_centiles(model, data.frame(age = c(12, 15, 18)))
+  expect_equal(nrow(predicted), 3)
+  scores <- score_process_deviation(model, reference[1:10, ], "centile")
+  expect_true(all(scores$deviation_score >= 0 & scores$deviation_score <= 100))
+  audit <- audit_norm_transportability(model, reference[1:40, ])
+  expect_s3_class(audit, "eye_norm_transportability")
+  expect_plot_silent(plot_process_centiles(model))
+})

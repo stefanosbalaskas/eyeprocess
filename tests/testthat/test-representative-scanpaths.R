@@ -1,0 +1,12 @@
+test_that("representative scanpaths and comparison work", {
+  paths <- list(A = c("stem", "evidence", "options"), B = c("stem", "options", "evidence"), C = c("stem", "evidence", "options", "evidence"), D = c("options", "stem", "evidence"))
+  representative <- representative_scanpath(paths, method = "consensus", distance = "edit")
+  expect_s3_class(representative, "eye_scanpath_representative")
+  dispersion <- scanpath_dispersion(representative)
+  expect_equal(nrow(dispersion), 4)
+  comparison <- compare_scanpath_distributions(paths, c("G1", "G1", "G2", "G2"), distance = "edit", permutations = 19)
+  expect_true(comparison$p_value >= 0 && comparison$p_value <= 1)
+  boot <- bootstrap_representative_scanpath(representative, draws = 10)
+  expect_s3_class(boot, "eye_scanpath_bootstrap")
+  expect_plot_silent(plot_representative_scanpath(representative))
+})

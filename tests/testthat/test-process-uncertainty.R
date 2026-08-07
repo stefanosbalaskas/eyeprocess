@@ -1,0 +1,12 @@
+test_that("process uncertainty budgets and propagation work", {
+  data <- data.frame(dwell = rnorm(50, 1000, 100), pupil = rnorm(50, 0.1, 0.03))
+  spec <- process_uncertainty_spec(source_sd = c(calibration = 3, preprocessing = 2), draws = 30)
+  fit <- estimate_process_uncertainty(data, spec, metrics = c("dwell", "pupil"))
+  expect_s3_class(fit, "eye_process_uncertainty")
+  expect_equal(sum(uncertainty_budget(fit)$variance_share[uncertainty_budget(fit)$metric == "dwell"]), 1, tolerance = 1e-8)
+  propagated <- propagate_process_uncertainty(fit, function(x) mean(x$dwell), draws = 20)
+  expect_equal(propagated$summary$draws, 20)
+  comparison <- compare_uncertainty_budgets(first = fit, second = fit)
+  expect_s3_class(comparison, "eye_uncertainty_budget_comparison")
+  expect_plot_silent(plot_uncertainty_waterfall(fit))
+})
