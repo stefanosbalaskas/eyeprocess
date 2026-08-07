@@ -3,7 +3,7 @@ message: "If you use eyeprocess, please cite this software."
 title: "eyeprocess: Harmonize Eye-Tracking, Pupillometry, Biometrics, and Psychometric Process Data"
 type: software
 version: 0.6.0
-date-released: 2026-08-07
+date-released: 2026-08-08
 authors:
   - family-names: Balaskas
     given-names: Stefanos
