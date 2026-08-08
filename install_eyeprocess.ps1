@@ -1,5 +1,5 @@
 $ErrorActionPreference = "Stop"
-$PackagePath = "C:\Users\Stefanos-PC\Documents\Rstudio\eyeprocess"
+$PackagePath = "path/to/eyeprocess"
 
 if (-not (Test-Path $PackagePath)) {
     throw "Package directory not found: $PackagePath"

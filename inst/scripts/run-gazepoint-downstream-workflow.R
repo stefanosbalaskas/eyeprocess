@@ -1,11 +1,11 @@
 # Complete real Gazepoint downstream workflow for the validated private corpus.
 
 source_dir <- paste0(
-  "C:/Users/Stefanos-PC/Documents/Rstudio/",
+  "path/to/",
   "eyeprocess-validation-corpus/cases/gazepoint-analysis-v7.2.0-demo"
 )
 output_dir <- paste0(
-  "C:/Users/Stefanos-PC/Documents/Rstudio/",
+  "path/to/",
   "eyeprocess-downstream-output"
 )
 
