@@ -1,7 +1,7 @@
 $ErrorActionPreference = "Stop"
 
-$Source = "C:\Users\Stefanos-PC\Desktop\gp3_test_exports"
-$Corpus = "C:\Users\Stefanos-PC\Documents\Rstudio\eyeprocess-validation-corpus"
+$Source = "path/to/gp3_test_exports"
+$Corpus = "path/to/eyeprocess-validation-corpus"
 $Case = Join-Path $Corpus "cases\gazepoint-analysis-v7.2.0-demo"
 $Manifest = Join-Path $Corpus "validation-manifest.csv"
 
@@ -19,4 +19,4 @@ gazepoint-analysis-v7-2-0-six-users,cases/gazepoint-analysis-v7.2.0-demo,gazepoi
 
 Write-Host "Gazepoint validation case copied to: $Case"
 Write-Host "Manifest written to: $Manifest"
-Write-Host "Next run: source('C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess/validate_real_exports.R')"
+Write-Host "Next run: source('path/to/eyeprocess/validate_real_exports.R')"

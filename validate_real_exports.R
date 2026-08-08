@@ -2,8 +2,8 @@
 # Edit these two paths before running the script.
 
 invisible((function() {
-  corpus_path <- "C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess-validation-corpus"
-  output_path <- "C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess-validation-output"
+  corpus_path <- "path/to/eyeprocess-validation-corpus"
+  output_path <- "path/to/eyeprocess-validation-output"
 
   if (!requireNamespace("eyeprocess", quietly = TRUE)) {
     stop("Install eyeprocess before running this script.", call. = FALSE)

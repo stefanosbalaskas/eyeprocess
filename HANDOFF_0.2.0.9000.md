@@ -10,7 +10,7 @@ Before extracting this candidate over the package source, commit the validated
 0.1.0.9003 baseline and create the feature branch:
 
 ```bat
-cd /d C:\Users\Stefanos-PC\Documents\Rstudio\eyeprocess
+cd /d path/to/eyeprocess
 git config --global user.email "s.balaskas@ac.upatras.gr"
 git config --global user.name "Stefanos Balaskas"
 git commit -m "Establish validated eyeprocess empirical-validation baseline"
@@ -22,7 +22,7 @@ git switch -c feature/real-gazepoint-validation
 The private corpus belongs at:
 
 ```text
-C:\Users\Stefanos-PC\Documents\Rstudio\eyeprocess-validation-corpus
+path/to/eyeprocess-validation-corpus
 ```
 
 It contains six paired `_all_gaze.csv` and `_fixations.csv` exports and four
@@ -34,9 +34,9 @@ repository.
 After installing 0.2.0.9000, run:
 
 ```r
-source("C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess/validate_eyeprocess.R")
-source("C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess/validate_gazepoint_real_exports.R")
-source("C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess/validate_real_exports.R")
+source("path/to/eyeprocess/validate_eyeprocess.R")
+source("path/to/eyeprocess/validate_gazepoint_real_exports.R")
+source("path/to/eyeprocess/validate_real_exports.R")
 ```
 
 The candidate is not a validated release until all three stages pass on the

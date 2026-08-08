@@ -1,6 +1,6 @@
 # Comprehensive local validation for eyeprocess.
 package_path <- normalizePath(
-  "C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess",
+  "path/to/eyeprocess",
   winslash = "/",
   mustWork = TRUE
 )

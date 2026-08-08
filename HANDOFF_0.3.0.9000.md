@@ -13,12 +13,12 @@ package_zip <- file.choose()
 
 unzip(
   package_zip,
-  exdir = "C:/Users/Stefanos-PC/Documents/Rstudio",
+  exdir = "path/to",
   overwrite = TRUE
 )
 
 source(
-  "C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess/install_eyeprocess.R"
+  "path/to/eyeprocess/install_eyeprocess.R"
 )
 ```
 
@@ -28,7 +28,7 @@ Confirm that the installed version is `0.3.0.9000`.
 
 ```r
 source(
-  "C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess/validate_eyeprocess.R"
+  "path/to/eyeprocess/validate_eyeprocess.R"
 )
 ```
 
@@ -40,20 +40,20 @@ smoke tests.
 
 ```r
 source(
-  "C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess/run_gazepoint_downstream_workflow.R"
+  "path/to/eyeprocess/run_gazepoint_downstream_workflow.R"
 )
 ```
 
 Input:
 
 ```text
-C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess-validation-corpus/cases/gazepoint-analysis-v7.2.0-demo
+path/to/eyeprocess-validation-corpus/cases/gazepoint-analysis-v7.2.0-demo
 ```
 
 Output:
 
 ```text
-C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess-downstream-output
+path/to/eyeprocess-downstream-output
 ```
 
 The validated corpus should yield six recordings, twelve reconstructed media

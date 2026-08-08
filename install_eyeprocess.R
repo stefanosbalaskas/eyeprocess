@@ -1,8 +1,8 @@
 # Install eyeprocess from its local source directory on Windows.
-# Run with: source("C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess/install_eyeprocess.R")
+# Run with: source("path/to/eyeprocess/install_eyeprocess.R")
 
 package_path <- normalizePath(
-  "C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess",
+  "path/to/eyeprocess",
   winslash = "/",
   mustWork = TRUE
 )

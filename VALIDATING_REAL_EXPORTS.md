@@ -11,7 +11,7 @@ Initialize a corpus outside the package source tree:
 ```r
 library(eyeprocess)
 init_validation_corpus(
-  "C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess-validation-corpus"
+  "path/to/eyeprocess-validation-corpus"
 )
 ```
 
@@ -20,7 +20,7 @@ and all case files unless `overwrite = TRUE` is requested explicitly. The
 resulting layout can be expanded as follows:
 
 ```text
-C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess-validation-corpus/
+path/to/eyeprocess-validation-corpus/
   validation-manifest.csv
   gp-analysis-7-2/
   gp-biometrics-7-2/
@@ -41,7 +41,7 @@ Edit the generated `validation-manifest.csv` and add one unique row per case. Th
 Edit the paths at the top of `validate_real_exports.R`, then run:
 
 ```r
-source("C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess/validate_real_exports.R")
+source("path/to/eyeprocess/validate_real_exports.R")
 ```
 
 The script writes:

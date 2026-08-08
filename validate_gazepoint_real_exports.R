@@ -1,9 +1,9 @@
 # Empirical validation for the private Gazepoint Analysis 7.2.0 corpus.
 
 invisible((function() {
-  corpus_root <- "C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess-validation-corpus"
+  corpus_root <- "path/to/eyeprocess-validation-corpus"
   case_path <- file.path(corpus_root, "cases", "gazepoint-analysis-v7.2.0-demo")
-  output_path <- "C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess-validation-output/gazepoint-v7.2.0"
+  output_path <- "path/to/eyeprocess-validation-output/gazepoint-v7.2.0"
 
   if (!requireNamespace("eyeprocess", quietly = TRUE)) {
     stop("Install eyeprocess before running this script.", call. = FALSE)
