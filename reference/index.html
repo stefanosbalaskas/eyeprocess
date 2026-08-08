@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">eyeprocess</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -50,6 +50,8 @@
     <li><a class="dropdown-item" href="../articles/scanpaths-and-cognitive-episodes.html">Representative Scanpaths and Cognitive Episodes</a></li>
     <li><a class="dropdown-item" href="../articles/item-bank-fairness-norms.html">Item-Bank Decisions, Fairness Drift, and Reference Centiles</a></li>
     <li><a class="dropdown-item" href="../articles/evidence-decision-provenance.html">Evidence and Decision Provenance</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><a class="dropdown-item" href="../articles/index.html">More articles...</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
@@ -67,6 +69,1296 @@
     </div>
 
     <div class="section level2">
+      <h2 id="process-irt-and-validation-reference-">Process IRT and validation reference (0.7)<a class="anchor" aria-label="anchor" href="#process-irt-and-validation-reference-"></a></h2>
+
+      <div class="section-desc"><p>Public process-aware IRT, semantic-validation, evidence-governance, simulation, recovery, transportability, and advanced measurement APIs introduced in the 0.7 development series.</p></div>
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="algorithm_facet_effects.html">algorithm_facet_effects()</a></code>
+
+        </dt>
+        <dd>Extract algorithm facet effects</dd>
+
+        <dt>
+
+          <code><a href="as_irt_recovery_results.html">as_irt_recovery_results()</a></code>
+
+        </dt>
+        <dd>Canonicalise parameter-recovery results</dd>
+
+        <dt>
+
+          <code><a href="audit_bias.html">audit_bias()</a></code>
+
+        </dt>
+        <dd>Audit bias</dd>
+
+        <dt>
+
+          <code><a href="audit_channel_incremental_information.html">audit_channel_incremental_information()</a></code>
+
+        </dt>
+        <dd>Audit out-of-sample incremental information from a process channel</dd>
+
+        <dt>
+
+          <code><a href="audit_convergence.html">audit_convergence()</a></code>
+
+        </dt>
+        <dd>Audit convergence and classified failures</dd>
+
+        <dt>
+
+          <code><a href="audit_coverage.html">audit_coverage()</a></code>
+
+        </dt>
+        <dd>Audit coverage</dd>
+
+        <dt>
+
+          <code><a href="audit_distractor_attention.html">audit_distractor_attention()</a></code>
+
+        </dt>
+        <dd>Audit distractor attention patterns</dd>
+
+        <dt>
+
+          <code><a href="audit_identifiability.html">audit_identifiability()</a></code>
+
+        </dt>
+        <dd>Audit empirical identifiability from replicate estimates</dd>
+
+        <dt>
+
+          <code><a href="audit_interval_width.html">audit_interval_width()</a></code>
+
+        </dt>
+        <dd>Audit interval width</dd>
+
+        <dt>
+
+          <code><a href="audit_irf_shape.html">audit_irf_shape()</a></code>
+
+        </dt>
+        <dd>Audit item response-function shape departures</dd>
+
+        <dt>
+
+          <code><a href="audit_latent_distribution.html">audit_latent_distribution()</a></code>
+
+        </dt>
+        <dd>Audit the empirical latent-trait distribution</dd>
+
+        <dt>
+
+          <code><a href="audit_measurement_transportability.html">audit_measurement_transportability()</a></code>
+
+        </dt>
+        <dd>Summarise measurement transportability across held-out groups</dd>
+
+        <dt>
+
+          <code><a href="audit_process_adjusted_dif.html">audit_process_adjusted_dif()</a></code>
+
+        </dt>
+        <dd>Audit DIF before and after process-data adjustment</dd>
+
+        <dt>
+
+          <code><a href="audit_process_local_dependence.html">audit_process_local_dependence()</a></code>
+
+        </dt>
+        <dd>Audit inter-option/process local dependence</dd>
+
+        <dt>
+
+          <code><a href="audit_process_measurement_invariance.html">audit_process_measurement_invariance()</a></code>
+
+        </dt>
+        <dd>Audit process measurement invariance across facets</dd>
+
+        <dt>
+
+          <code><a href="audit_rmse.html">audit_rmse()</a></code>
+
+        </dt>
+        <dd>Audit rmse</dd>
+
+        <dt>
+
+          <code><a href="audit_sbc.html">audit_sbc()</a></code>
+
+        </dt>
+        <dd>Audit SBC rank uniformity</dd>
+
+        <dt>
+
+          <code><a href="calibration_transfer_audit.html">calibration_transfer_audit()</a></code>
+
+        </dt>
+        <dd>Audit transfer of calibration across devices/sessions/sites</dd>
+
+        <dt>
+
+          <code><a href="classify_item_missingness.html">classify_item_missingness()</a></code>
+
+        </dt>
+        <dd>Classify item missingness using exposure and response evidence</dd>
+
+        <dt>
+
+          <code><a href="compare_irt_models.html">compare_irt_models()</a></code>
+
+        </dt>
+        <dd>Compare multimodal IRT model objects</dd>
+
+        <dt>
+
+          <code><a href="compare_latent_distribution_models.html">compare_latent_distribution_models()</a></code>
+
+        </dt>
+        <dd>Compare simple latent-distribution reference models</dd>
+
+        <dt>
+
+          <code><a href="compare_parametric_nonparametric_irf.html">compare_parametric_nonparametric_irf()</a></code>
+
+        </dt>
+        <dd>Compare conventional logistic and flexible IRF shapes</dd>
+
+        <dt>
+
+          <code><a href="compare_validation_engines.html">compare_validation_engines()</a></code>
+
+        </dt>
+        <dd>Compare validation engines on common recovery output</dd>
+
+        <dt>
+
+          <code><a href="compatibility_evidence_matrix.html">compatibility_evidence_matrix()</a></code>
+
+        </dt>
+        <dd>Build a detailed compatibility evidence matrix</dd>
+
+        <dt>
+
+          <code><a href="coordinate_fidelity_audit.html">coordinate_fidelity_audit()</a></code>
+
+        </dt>
+        <dd>Coordinate semantic-fidelity audit</dd>
+
+        <dt>
+
+          <code><a href="cross_device_process_equating_audit.html">cross_device_process_equating_audit()</a></code>
+
+        </dt>
+        <dd>Cross-device process-scale equating audit</dd>
+
+        <dt>
+
+          <code><a href="cross_version_adapter_regression.html">cross_version_adapter_regression()</a></code>
+
+        </dt>
+        <dd>Compare adapter output across software/format versions</dd>
+
+        <dt>
+
+          <code><a href="detect_irt_changepoints.html">detect_irt_changepoints()</a></code>
+
+        </dt>
+        <dd>Detect IRT/process change points using an SIC-inspired multichannel score</dd>
+
+        <dt>
+
+          <code><a href="detect_process_changepoint.html">detect_process_changepoint()</a></code>
+
+        </dt>
+        <dd>Detect a response-process change point</dd>
+
+        <dt>
+
+          <code><a href="device_facet_effects.html">device_facet_effects()</a></code>
+
+        </dt>
+        <dd>Extract device facet effects</dd>
+
+        <dt>
+
+          <code><a href="distractor_process_map.html">distractor_process_map()</a></code>
+
+        </dt>
+        <dd>Build a distractor process map</dd>
+
+        <dt>
+
+          <code><a href="encode_response_combinations.html">encode_response_combinations()</a></code>
+
+        </dt>
+        <dd>Encode multiple-response item response combinations</dd>
+
+        <dt>
+
+          <code><a href="equate_irt_scales.html">equate_irt_scales()</a></code>
+
+        </dt>
+        <dd>Equate IRT scales using anchor item parameters</dd>
+
+        <dt>
+
+          <code><a href="estimate_visual_exposure_probability.html">estimate_visual_exposure_probability()</a></code>
+
+        </dt>
+        <dd>Estimate visual exposure probability</dd>
+
+        <dt>
+
+          <code><a href="event_roundtrip_audit.html">event_roundtrip_audit()</a></code>
+
+        </dt>
+        <dd>Audit event survival across an interchange round trip</dd>
+
+        <dt>
+
+          <code><a href="event_semantics_audit.html">event_semantics_audit()</a></code>
+
+        </dt>
+        <dd>Audit event semantic preservation</dd>
+
+        <dt>
+
+          <code><a href="expected_process_information.html">expected_process_information()</a></code>
+
+        </dt>
+        <dd>Expected process-aware item utility under a theta distribution</dd>
+
+        <dt>
+
+          <code><a href="explain_latent_interaction.html">explain_latent_interaction()</a></code>
+
+        </dt>
+        <dd>Explain local person-item latent-space interactions</dd>
+
+        <dt>
+
+          <code><a href="external_validate_irt.html">external_validate_irt()</a></code>
+
+        </dt>
+        <dd>External validation on a completely held-out dataset</dd>
+
+        <dt>
+
+          <code><a href="extract_parameter_truth.html">extract_parameter_truth()</a></code>
+
+        </dt>
+        <dd>Extract canonical parameter truth from simulated data</dd>
+
+        <dt>
+
+          <code><a href="eye_stream_fidelity_audit.html">eye_stream_fidelity_audit()</a></code>
+
+        </dt>
+        <dd>Audit preservation of monocular/binocular stream semantics</dd>
+
+        <dt>
+
+          <code><a href="facet_effects.html">facet_effects()</a></code>
+
+        </dt>
+        <dd>Extract facet effects from a many-facet process model</dd>
+
+        <dt>
+
+          <code><a href="field_fidelity_report.html">field_fidelity_report()</a></code>
+
+        </dt>
+        <dd>Field-level semantic fidelity report</dd>
+
+        <dt>
+
+          <code><a href="fit_censored_normal_process_irt.html">fit_censored_normal_process_irt()</a></code>
+
+        </dt>
+        <dd>Conditional censored-normal calibration for bounded process measurements</dd>
+
+        <dt>
+
+          <code><a href="fit_changepoint_multimodal_irt.html">fit_changepoint_multimodal_irt()</a></code>
+
+        </dt>
+        <dd>Fit a multimodal change-point IRT workflow</dd>
+
+        <dt>
+
+          <code><a href="fit_changepoint_rt_irt.html">fit_changepoint_rt_irt()</a></code>
+
+        </dt>
+        <dd>Fit a change-point RT IRT workflow</dd>
+
+        <dt>
+
+          <code><a href="fit_cognitive_diagnosis_process.html">fit_cognitive_diagnosis_process()</a></code>
+
+        </dt>
+        <dd>Cognitive-diagnosis model with process indicators</dd>
+
+        <dt>
+
+          <code><a href="fit_continuous_time_irt.html">fit_continuous_time_irt()</a></code>
+
+        </dt>
+        <dd>Continuous-time IRT external-engine gate</dd>
+
+        <dt>
+
+          <code><a href="fit_crossclassified_process_irt.html">fit_crossclassified_process_irt()</a></code>
+
+        </dt>
+        <dd>Cross-classified process IRT reference model</dd>
+
+        <dt>
+
+          <code><a href="fit_dynamic_gpirt.html">fit_dynamic_gpirt()</a></code>
+
+        </dt>
+        <dd>Dynamic GPIRT external-engine gate</dd>
+
+        <dt>
+
+          <code><a href="fit_event_time_irt.html">fit_event_time_irt()</a></code>
+
+        </dt>
+        <dd>Fit an event-time IRT reference workflow</dd>
+
+        <dt>
+
+          <code><a href="fit_flow_mirt.html">fit_flow_mirt()</a></code>
+
+        </dt>
+        <dd>Flow-MIRT external-engine gate</dd>
+
+        <dt>
+
+          <code><a href="fit_gaze_informed_missingness_irt.html">fit_gaze_informed_missingness_irt()</a></code>
+
+        </dt>
+        <dd>Fit a gaze-informed missingness IRT diagnostic</dd>
+
+        <dt>
+
+          <code><a href="fit_gpirt.html">fit_gpirt()</a></code>
+
+        </dt>
+        <dd>GPIRT model-criticism interface</dd>
+
+        <dt>
+
+          <code><a href="fit_irt_model.html">fit_irt_model()</a></code>
+
+        </dt>
+        <dd>Fit a registered multimodal IRT model</dd>
+
+        <dt>
+
+          <code><a href="fit_joint_gaze_rt_irt.html">fit_joint_gaze_rt_irt()</a></code>
+
+        </dt>
+        <dd>Joint response, response-time, and gaze-process IRT</dd>
+
+        <dt>
+
+          <code><a href="fit_joint_graded_rt_process_irt.html">fit_joint_graded_rt_process_irt()</a></code>
+
+        </dt>
+        <dd>Joint graded-response, RT, and process reference model</dd>
+
+        <dt>
+
+          <code><a href="fit_latent_class_process_irt.html">fit_latent_class_process_irt()</a></code>
+
+        </dt>
+        <dd>Latent process-class IRT reference model</dd>
+
+        <dt>
+
+          <code><a href="fit_latent_space_irt.html">fit_latent_space_irt()</a></code>
+
+        </dt>
+        <dd>Fit a latent-space IRT model using LSMjml</dd>
+
+        <dt>
+
+          <code><a href="fit_manyfacet_process_irt.html">fit_manyfacet_process_irt()</a></code>
+
+        </dt>
+        <dd>Many-facet process IRT reference model</dd>
+
+        <dt>
+
+          <code><a href="fit_multimodal_trait_irt.html">fit_multimodal_trait_irt()</a></code>
+
+        </dt>
+        <dd>Multimodal trait-model convenience wrapper</dd>
+
+        <dt>
+
+          <code><a href="fit_multiple_response_process_irt.html">fit_multiple_response_process_irt()</a></code>
+
+        </dt>
+        <dd>Fit a multiple-response process-IRT reference model</dd>
+
+        <dt>
+
+          <code><a href="fit_nominal_gaze_irt.html">fit_nominal_gaze_irt()</a></code>
+
+        </dt>
+        <dd>Nominal/distractor IRT with option-level gaze</dd>
+
+        <dt>
+
+          <code><a href="fit_omission_survival_irt.html">fit_omission_survival_irt()</a></code>
+
+        </dt>
+        <dd>Response/RT/omission survival IRT reference model</dd>
+
+        <dt>
+
+          <code><a href="fit_process_hmm_irt.html">fit_process_hmm_irt()</a></code>
+
+        </dt>
+        <dd>Process-state HMM with an IRT response layer</dd>
+
+        <dt>
+
+          <code><a href="fit_response_process_embedding_irt.html">fit_response_process_embedding_irt()</a></code>
+
+        </dt>
+        <dd>Fit an IRT response model augmented by sequence embeddings</dd>
+
+        <dt>
+
+          <code><a href="fit_revisit_process_cdm.html">fit_revisit_process_cdm()</a></code>
+
+        </dt>
+        <dd>Fit a revisiting-aware cognitive-diagnosis process workflow</dd>
+
+        <dt>
+
+          <code><a href="fit_speed_accuracy_engagement_irt.html">fit_speed_accuracy_engagement_irt()</a></code>
+
+        </dt>
+        <dd>Speed-accuracy-engagement IRT convenience wrapper</dd>
+
+        <dt>
+
+          <code><a href="fit_validation_replicate.html">fit_validation_replicate()</a></code>
+
+        </dt>
+        <dd>Fit one model-validation replicate</dd>
+
+        <dt>
+
+          <code><a href="fit_variational_irt.html">fit_variational_irt()</a></code>
+
+        </dt>
+        <dd>Variational IRT external-engine gate</dd>
+
+        <dt>
+
+          <code><a href="generalizability_process_study.html">generalizability_process_study()</a></code>
+
+        </dt>
+        <dd>Generalizability-style variance decomposition for a process measure</dd>
+
+        <dt>
+
+          <code><a href="get_irt_model.html">get_irt_model()</a></code>
+
+        </dt>
+        <dd>Retrieve a registered multimodal IRT model</dd>
+
+        <dt>
+
+          <code><a href="grade_model_evidence.html">grade_model_evidence()</a></code>
+
+        </dt>
+        <dd>Grade model evidence against an explicit validation contract</dd>
+
+        <dt>
+
+          <code><a href="irt_compositional_channel.html">irt_compositional_channel()</a></code>
+
+        </dt>
+        <dd>Compositional AOI channel</dd>
+
+        <dt>
+
+          <code><a href="irt_continuous_channel.html">irt_continuous_channel()</a></code>
+
+        </dt>
+        <dd>Continuous/bounded process channel for multimodal IRT</dd>
+
+        <dt>
+
+          <code><a href="irt_count_channel.html">irt_count_channel()</a></code>
+
+        </dt>
+        <dd>Count-valued process channel for multimodal IRT</dd>
+
+        <dt>
+
+          <code><a href="irt_functional_channel.html">irt_functional_channel()</a></code>
+
+        </dt>
+        <dd>Functional trajectory channel</dd>
+
+        <dt>
+
+          <code><a href="irt_model_spec.html">irt_model_spec()</a></code>
+
+        </dt>
+        <dd>Define a multimodal IRT model specification</dd>
+
+        <dt>
+
+          <code><a href="irt_nominal_channel.html">irt_nominal_channel()</a></code>
+
+        </dt>
+        <dd>Nominal response/process channel</dd>
+
+        <dt>
+
+          <code><a href="irt_response_channel.html">irt_response_channel()</a></code>
+
+        </dt>
+        <dd>Binary/ordinal response channel for multimodal IRT</dd>
+
+        <dt>
+
+          <code><a href="irt_rt_channel.html">irt_rt_channel()</a></code>
+
+        </dt>
+        <dd>Response-time channel for multimodal IRT</dd>
+
+        <dt>
+
+          <code><a href="irt_sequence_channel.html">irt_sequence_channel()</a></code>
+
+        </dt>
+        <dd>Sequence/process-state channel</dd>
+
+        <dt>
+
+          <code><a href="irt_survival_channel.html">irt_survival_channel()</a></code>
+
+        </dt>
+        <dd>Survival/event-time channel for multimodal IRT</dd>
+
+        <dt>
+
+          <code><a href="irt_validation_spec.html">irt_validation_spec()</a></code>
+
+        </dt>
+        <dd>Specify a validation programme for a process-IRT model</dd>
+
+        <dt>
+
+          <code><a href="latent_distribution_stress_test.html">latent_distribution_stress_test()</a></code>
+
+        </dt>
+        <dd>Stress-test IRT estimators across latent distributions</dd>
+
+        <dt>
+
+          <code><a href="latent_trait_trajectory.html">latent_trait_trajectory()</a></code>
+
+        </dt>
+        <dd>Estimate a descriptive continuous-time latent trajectory</dd>
+
+        <dt>
+
+          <code><a href="leave_device_out_validation.html">leave_device_out_validation()</a></code>
+
+        </dt>
+        <dd>Leave device out validation</dd>
+
+        <dt>
+
+          <code><a href="leave_item_out_validation.html">leave_item_out_validation()</a></code>
+
+        </dt>
+        <dd>Leave item out validation</dd>
+
+        <dt>
+
+          <code><a href="leave_session_out_validation.html">leave_session_out_validation()</a></code>
+
+        </dt>
+        <dd>Leave session out validation</dd>
+
+        <dt>
+
+          <code><a href="leave_site_out_validation.html">leave_site_out_validation()</a></code>
+
+        </dt>
+        <dd>Leave site out validation</dd>
+
+        <dt>
+
+          <code><a href="list_irt_models.html">list_irt_models()</a></code>
+
+        </dt>
+        <dd>List registered multimodal IRT models</dd>
+
+        <dt>
+
+          <code><a href="negative_control_process_test.html">negative_control_process_test()</a></code>
+
+        </dt>
+        <dd>Negative-control test for an allegedly informative process channel</dd>
+
+        <dt>
+
+          <code><a href="option_process_information.html">option_process_information()</a></code>
+
+        </dt>
+        <dd>Quantify option-process information from a nominal gaze model</dd>
+
+        <dt>
+
+          <code><a href="plot.eye_adapter_regression_audit.html">plot(<i>&lt;eye_adapter_regression_audit&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Plot eye adapter regression audit</dd>
+
+        <dt>
+
+          <code><a href="plot.eye_bids_roundtrip.html">plot(<i>&lt;eye_bids_roundtrip&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Plot eye bids roundtrip</dd>
+
+        <dt>
+
+          <code><a href="plot.eye_compatibility_evidence_matrix.html">plot(<i>&lt;eye_compatibility_evidence_matrix&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Plot detailed compatibility evidence</dd>
+
+        <dt>
+
+          <code><a href="plot.eye_event_roundtrip_audit.html">plot(<i>&lt;eye_event_roundtrip_audit&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Plot eye event roundtrip audit</dd>
+
+        <dt>
+
+          <code><a href="plot.eye_event_time_irt.html">plot(<i>&lt;eye_event_time_irt&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Plot eye event time irt</dd>
+
+        <dt>
+
+          <code><a href="plot.eye_gaze_informed_missingness_irt.html">plot(<i>&lt;eye_gaze_informed_missingness_irt&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Plot eye gaze informed missingness irt</dd>
+
+        <dt>
+
+          <code><a href="plot.eye_gpirt.html">plot(<i>&lt;eye_gpirt&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Plot flexible IRF shape diagnostics</dd>
+
+        <dt>
+
+          <code><a href="plot.eye_incremental_information_audit.html">plot(<i>&lt;eye_incremental_information_audit&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Plot incremental process-channel information by fold</dd>
+
+        <dt>
+
+          <code><a href="plot.eye_irt_changepoints.html">plot(<i>&lt;eye_irt_changepoints&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Plot detected process changepoints</dd>
+
+        <dt>
+
+          <code><a href="plot.eye_irt_equating.html">plot(<i>&lt;eye_irt_equating&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Plot an IRT linking/equating transformation</dd>
+
+        <dt>
+
+          <code><a href="plot.eye_irt_ppc.html">plot(<i>&lt;eye_irt_ppc&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Plot posterior predictive discrepancy tail probabilities</dd>
+
+        <dt>
+
+          <code><a href="plot.eye_irt_recovery_summary.html">plot(<i>&lt;eye_irt_recovery_summary&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Plot parameter-recovery bias or RMSE</dd>
+
+        <dt>
+
+          <code><a href="plot.eye_irt_sbc.html">plot(<i>&lt;eye_irt_sbc&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Plot SBC rank histograms by parameter</dd>
+
+        <dt>
+
+          <code><a href="plot.eye_joint_gaze_rt_irt.html">plot(<i>&lt;eye_joint_gaze_rt_irt&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Plot a joint gaze-response-time IRT fit</dd>
+
+        <dt>
+
+          <code><a href="plot.eye_joint_graded_rt_process_irt.html">plot(<i>&lt;eye_joint_graded_rt_process_irt&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Plot a graded response + RT/process fit</dd>
+
+        <dt>
+
+          <code><a href="plot.eye_latent_distribution_comparison.html">plot(<i>&lt;eye_latent_distribution_comparison&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Plot eye latent distribution comparison</dd>
+
+        <dt>
+
+          <code><a href="plot.eye_latent_space_irt.html">plot(<i>&lt;eye_latent_space_irt&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Plot a latent-space IRT adapter fit</dd>
+
+        <dt>
+
+          <code><a href="plot.eye_manyfacet_process_irt.html">plot(<i>&lt;eye_manyfacet_process_irt&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Plot many-facet process IRT effects</dd>
+
+        <dt>
+
+          <code><a href="plot.eye_nominal_gaze_irt.html">plot(<i>&lt;eye_nominal_gaze_irt&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Plot nominal-response gaze results</dd>
+
+        <dt>
+
+          <code><a href="plot.eye_omission_survival_irt.html">plot(<i>&lt;eye_omission_survival_irt&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Plot omission/not-reached survival IRT diagnostics</dd>
+
+        <dt>
+
+          <code><a href="plot.eye_process_cat_simulation.html">plot(<i>&lt;eye_process_cat_simulation&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Plot CAT simulation information accumulation</dd>
+
+        <dt>
+
+          <code><a href="plot.eye_process_channel_ablation.html">plot(<i>&lt;eye_process_channel_ablation&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Plot process-channel ablation</dd>
+
+        <dt>
+
+          <code><a href="plot.eye_process_dependent_discrimination.html">plot(<i>&lt;eye_process_dependent_discrimination&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Plot process-dependent discrimination</dd>
+
+        <dt>
+
+          <code><a href="plot.eye_process_facet_effects.html">plot(<i>&lt;eye_process_facet_effects&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Plot eye process facet effects</dd>
+
+        <dt>
+
+          <code><a href="plot.eye_process_g_study.html">plot(<i>&lt;eye_process_g_study&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Plot process-measure variance components</dd>
+
+        <dt>
+
+          <code><a href="plot.eye_process_hmm_irt.html">plot(<i>&lt;eye_process_hmm_irt&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Plot a process-HMM IRT fit</dd>
+
+        <dt>
+
+          <code><a href="plot.eye_process_local_dependence_audit.html">plot(<i>&lt;eye_process_local_dependence_audit&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Plot process/local-dependence diagnostics</dd>
+
+        <dt>
+
+          <code><a href="plot.eye_process_negative_control.html">plot(<i>&lt;eye_process_negative_control&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Plot a process-channel negative-control distribution</dd>
+
+        <dt>
+
+          <code><a href="plot.eye_process_person_fit.html">plot(<i>&lt;eye_process_person_fit&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Plot process person-fit discrepancies</dd>
+
+        <dt>
+
+          <code><a href="plot.eye_sbc_audit.html">plot(<i>&lt;eye_sbc_audit&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Plot SBC audit summaries</dd>
+
+        <dt>
+
+          <code><a href="plot.eye_semantic_roundtrip.html">plot(<i>&lt;eye_semantic_roundtrip&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Plot semantic round-trip fidelity</dd>
+
+        <dt>
+
+          <code><a href="plot.eye_vendor_semantic_validation.html">plot(<i>&lt;eye_vendor_semantic_validation&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Plot eye vendor semantic validation</dd>
+
+        <dt>
+
+          <code><a href="plot_distractor_information.html">plot_distractor_information()</a></code>
+
+        </dt>
+        <dd>Plot option-level distractor information</dd>
+
+        <dt>
+
+          <code><a href="plot_irf_uncertainty.html">plot_irf_uncertainty()</a></code>
+
+        </dt>
+        <dd>Plot uncertainty for flexible item response functions</dd>
+
+        <dt>
+
+          <code><a href="plot_person_item_space.html">plot_person_item_space()</a></code>
+
+        </dt>
+        <dd>Plot person/item latent-space coordinates</dd>
+
+        <dt>
+
+          <code><a href="plot_process_changepoint.html">plot_process_changepoint()</a></code>
+
+        </dt>
+        <dd>Plot detected process change points</dd>
+
+        <dt>
+
+          <code><a href="posterior_predictive_discrepancies.html">posterior_predictive_discrepancies()</a></code>
+
+        </dt>
+        <dd>Posterior predictive discrepancy table</dd>
+
+        <dt>
+
+          <code><a href="posterior_sbc_contract.html">posterior_sbc_contract()</a></code>
+
+        </dt>
+        <dd>Define a posterior-SBC replication contract</dd>
+
+        <dt>
+
+          <code><a href="predict.eye_censored_normal_process_irt.html">predict(<i>&lt;eye_censored_normal_process_irt&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Predict expected bounded response from a censored-normal process IRT fit</dd>
+
+        <dt>
+
+          <code><a href="predict_theta_at_time.html">predict_theta_at_time()</a></code>
+
+        </dt>
+        <dd>Predict a latent trait at arbitrary times</dd>
+
+        <dt>
+
+          <code><a href="print.eye_irt_evidence_grade.html">print(<i>&lt;eye_irt_evidence_grade&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Print eye irt evidence grade</dd>
+
+        <dt>
+
+          <code><a href="print.eye_irt_model_spec.html">print(<i>&lt;eye_irt_model_spec&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Print a multimodal IRT model specification</dd>
+
+        <dt>
+
+          <code><a href="print.eye_irt_validation_spec.html">print(<i>&lt;eye_irt_validation_spec&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Print eye irt validation spec</dd>
+
+        <dt>
+
+          <code><a href="print.eye_process_negative_control.html">print(<i>&lt;eye_process_negative_control&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Print eye process negative control</dd>
+
+        <dt>
+
+          <code><a href="print.eye_vendor_schema_contract.html">print(<i>&lt;eye_vendor_schema_contract&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Print eye vendor schema contract</dd>
+
+        <dt>
+
+          <code><a href="process_channel_ablation.html">process_channel_ablation()</a></code>
+
+        </dt>
+        <dd>Ablate process channels under a common out-of-sample evaluator</dd>
+
+        <dt>
+
+          <code><a href="process_dependent_discrimination_audit.html">process_dependent_discrimination_audit()</a></code>
+
+        </dt>
+        <dd>Audit process-dependent item discrimination</dd>
+
+        <dt>
+
+          <code><a href="process_dif_nuisance_surrogate.html">process_dif_nuisance_surrogate()</a></code>
+
+        </dt>
+        <dd>Construct a process-data nuisance surrogate for DIF analysis</dd>
+
+        <dt>
+
+          <code><a href="process_item_information.html">process_item_information()</a></code>
+
+        </dt>
+        <dd>2PL response item information</dd>
+
+        <dt>
+
+          <code><a href="process_ngram_features.html">process_ngram_features()</a></code>
+
+        </dt>
+        <dd>N-gram features from process sequences</dd>
+
+        <dt>
+
+          <code><a href="process_person_fit.html">process_person_fit()</a></code>
+
+        </dt>
+        <dd>Joint response-process person-fit diagnostic</dd>
+
+        <dt>
+
+          <code><a href="process_residual_map.html">process_residual_map()</a></code>
+
+        </dt>
+        <dd>Return person/item latent-space coordinates</dd>
+
+        <dt>
+
+          <code><a href="process_sequence_embedding.html">process_sequence_embedding()</a></code>
+
+        </dt>
+        <dd>Low-dimensional embedding of response-process sequences</dd>
+
+        <dt>
+
+          <code><a href="process_state_occupancy.html">process_state_occupancy()</a></code>
+
+        </dt>
+        <dd>Summarize HMM state occupancy</dd>
+
+        <dt>
+
+          <code><a href="process_state_transition_summary.html">process_state_transition_summary()</a></code>
+
+        </dt>
+        <dd>Summarize HMM process-state transitions</dd>
+
+        <dt>
+
+          <code><a href="promote_irt_model.html">promote_irt_model()</a></code>
+
+        </dt>
+        <dd>Promote an IRT model after evidence gates are met</dd>
+
+        <dt>
+
+          <code><a href="public_validation_corpus.html">public_validation_corpus()</a></code>
+
+        </dt>
+        <dd>Public validation-corpus registry</dd>
+
+        <dt>
+
+          <code><a href="pupil_unit_fidelity_audit.html">pupil_unit_fidelity_audit()</a></code>
+
+        </dt>
+        <dd>Pupil-unit semantic-fidelity audit</dd>
+
+        <dt>
+
+          <code><a href="recalibrate_after_changepoint.html">recalibrate_after_changepoint()</a></code>
+
+        </dt>
+        <dd>Iteratively detect, clean, and recalibrate after process change points</dd>
+
+        <dt>
+
+          <code><a href="recommended_validation_replications.html">recommended_validation_replications()</a></code>
+
+        </dt>
+        <dd>Approximate simulation replications needed for a target Monte Carlo error</dd>
+
+        <dt>
+
+          <code><a href="register_irt_model.html">register_irt_model()</a></code>
+
+        </dt>
+        <dd>Register a multimodal IRT model</dd>
+
+        <dt>
+
+          <code><a href="roundtrip_eye_bids.html">roundtrip_eye_bids()</a></code>
+
+        </dt>
+        <dd>Execute and audit an Eye-Tracking-BIDS round trip</dd>
+
+        <dt>
+
+          <code><a href="run_posterior_sbc.html">run_posterior_sbc()</a></code>
+
+        </dt>
+        <dd>Run posterior simulation-based calibration from an explicit contract</dd>
+
+        <dt>
+
+          <code><a href="run_sbc.html">run_sbc()</a></code>
+
+        </dt>
+        <dd>Run generic simulation-based calibration</dd>
+
+        <dt>
+
+          <code><a href="select_next_item_process.html">select_next_item_process()</a></code>
+
+        </dt>
+        <dd>Select the next item using response/process utility</dd>
+
+        <dt>
+
+          <code><a href="semantic_fidelity_spec.html">semantic_fidelity_spec()</a></code>
+
+        </dt>
+        <dd>Semantic fidelity specification</dd>
+
+        <dt>
+
+          <code><a href="semantic_loss_map.html">semantic_loss_map()</a></code>
+
+        </dt>
+        <dd>Convert a semantic round-trip audit into a loss map</dd>
+
+        <dt>
+
+          <code><a href="semantic_roundtrip_audit.html">semantic_roundtrip_audit()</a></code>
+
+        </dt>
+        <dd>Audit a complete semantic round trip</dd>
+
+        <dt>
+
+          <code><a href="session_facet_effects.html">session_facet_effects()</a></code>
+
+        </dt>
+        <dd>Extract session facet effects</dd>
+
+        <dt>
+
+          <code><a href="simulate_from_model.html">simulate_from_model()</a></code>
+
+        </dt>
+        <dd>Simulate data from a model or registered model specification</dd>
+
+        <dt>
+
+          <code><a href="simulate_irt_model.html">simulate_irt_model()</a></code>
+
+        </dt>
+        <dd>Simulate from a registered multimodal IRT model</dd>
+
+        <dt>
+
+          <code><a href="simulate_process_cat.html">simulate_process_cat()</a></code>
+
+        </dt>
+        <dd>Simulate a simple process-aware CAT policy</dd>
+
+        <dt>
+
+          <code><a href="stress_test_latent_distribution.html">stress_test_latent_distribution()</a></code>
+
+        </dt>
+        <dd>Stress test latent distribution</dd>
+
+        <dt>
+
+          <code><a href="stress_test_local_dependence.html">stress_test_local_dependence()</a></code>
+
+        </dt>
+        <dd>Stress test local dependence</dd>
+
+        <dt>
+
+          <code><a href="stress_test_missingness.html">stress_test_missingness()</a></code>
+
+        </dt>
+        <dd>Stress test missingness</dd>
+
+        <dt>
+
+          <code><a href="stress_test_misspecification.html">stress_test_misspecification()</a></code>
+
+        </dt>
+        <dd>Run a generic misspecification stress-test grid</dd>
+
+        <dt>
+
+          <code><a href="stress_test_preprocessing.html">stress_test_preprocessing()</a></code>
+
+        </dt>
+        <dd>Stress test preprocessing</dd>
+
+        <dt>
+
+          <code><a href="stress_test_speededness.html">stress_test_speededness()</a></code>
+
+        </dt>
+        <dd>Stress test speededness</dd>
+
+        <dt>
+
+          <code><a href="summarize_parameter_recovery.html">summarize_parameter_recovery()</a></code>
+
+        </dt>
+        <dd>Summarise parameter recovery</dd>
+
+        <dt>
+
+          <code><a href="timestamp_fidelity_audit.html">timestamp_fidelity_audit()</a></code>
+
+        </dt>
+        <dd>Timestamp semantic-fidelity audit</dd>
+
+        <dt>
+
+          <code><a href="validate_bids_eye_semantics.html">validate_bids_eye_semantics()</a></code>
+
+        </dt>
+        <dd>Validate BIDS eye-tracking semantics</dd>
+
+        <dt>
+
+          <code><a href="validate_hed_event_semantics.html">validate_hed_event_semantics()</a></code>
+
+        </dt>
+        <dd>Minimal HED annotation audit for event tables</dd>
+
+        <dt>
+
+          <code><a href="validate_irt_model.html">validate_irt_model()</a></code>
+
+        </dt>
+        <dd>Validate a registered multimodal IRT model</dd>
+
+        <dt>
+
+          <code><a href="validate_latent_space_process_similarity.html">validate_latent_space_process_similarity()</a></code>
+
+        </dt>
+        <dd>Validate latent-space proximity against process similarity</dd>
+
+        <dt>
+
+          <code><a href="validate_vendor_semantics.html">validate_vendor_semantics()</a></code>
+
+        </dt>
+        <dd>Validate imported data against a vendor semantic contract</dd>
+
+        <dt>
+
+          <code><a href="validate_vendor_timestamp_semantics.html">validate_vendor_timestamp_semantics()</a></code>
+
+        </dt>
+        <dd>Validate vendor-specific timestamp semantics</dd>
+
+        <dt>
+
+          <code><a href="validation_evidence_levels.html">validation_evidence_levels()</a></code>
+
+        </dt>
+        <dd>Detailed validation evidence levels</dd>
+
+        <dt>
+
+          <code><a href="validation_failure_taxonomy.html">validation_failure_taxonomy()</a></code>
+
+        </dt>
+        <dd>Classify common estimator failures without hiding the original message</dd>
+
+        <dt>
+
+          <code><a href="validation_mcse.html">validation_mcse()</a></code>
+
+        </dt>
+        <dd>Monte Carlo standard errors for validation metrics</dd>
+
+        <dt>
+
+          <code><a href="vendor_schema_contract.html">vendor_schema_contract()</a></code>
+
+        </dt>
+        <dd>Declare a vendor semantic schema contract</dd>
+      </dl></div><div class="section level2">
       <h2 id="package-overview">Package overview<a class="anchor" aria-label="anchor" href="#package-overview"></a></h2>
 
 
@@ -365,6 +1657,76 @@
 
         <dt>
 
+          <code><a href="audit_bias.html">audit_bias()</a></code>
+
+        </dt>
+        <dd>Audit bias</dd>
+
+        <dt>
+
+          <code><a href="audit_channel_incremental_information.html">audit_channel_incremental_information()</a></code>
+
+        </dt>
+        <dd>Audit out-of-sample incremental information from a process channel</dd>
+
+        <dt>
+
+          <code><a href="audit_convergence.html">audit_convergence()</a></code>
+
+        </dt>
+        <dd>Audit convergence and classified failures</dd>
+
+        <dt>
+
+          <code><a href="audit_coverage.html">audit_coverage()</a></code>
+
+        </dt>
+        <dd>Audit coverage</dd>
+
+        <dt>
+
+          <code><a href="audit_distractor_attention.html">audit_distractor_attention()</a></code>
+
+        </dt>
+        <dd>Audit distractor attention patterns</dd>
+
+        <dt>
+
+          <code><a href="audit_identifiability.html">audit_identifiability()</a></code>
+
+        </dt>
+        <dd>Audit empirical identifiability from replicate estimates</dd>
+
+        <dt>
+
+          <code><a href="audit_interval_width.html">audit_interval_width()</a></code>
+
+        </dt>
+        <dd>Audit interval width</dd>
+
+        <dt>
+
+          <code><a href="audit_irf_shape.html">audit_irf_shape()</a></code>
+
+        </dt>
+        <dd>Audit item response-function shape departures</dd>
+
+        <dt>
+
+          <code><a href="audit_latent_distribution.html">audit_latent_distribution()</a></code>
+
+        </dt>
+        <dd>Audit the empirical latent-trait distribution</dd>
+
+        <dt>
+
+          <code><a href="audit_measurement_transportability.html">audit_measurement_transportability()</a></code>
+
+        </dt>
+        <dd>Summarise measurement transportability across held-out groups</dd>
+
+        <dt>
+
           <code><a href="audit_model_promotion.html">audit_model_promotion()</a></code>
 
         </dt>
@@ -372,10 +1734,45 @@
 
         <dt>
 
+          <code><a href="audit_process_adjusted_dif.html">audit_process_adjusted_dif()</a></code>
+
+        </dt>
+        <dd>Audit DIF before and after process-data adjustment</dd>
+
+        <dt>
+
+          <code><a href="audit_process_local_dependence.html">audit_process_local_dependence()</a></code>
+
+        </dt>
+        <dd>Audit inter-option/process local dependence</dd>
+
+        <dt>
+
+          <code><a href="audit_process_measurement_invariance.html">audit_process_measurement_invariance()</a></code>
+
+        </dt>
+        <dd>Audit process measurement invariance across facets</dd>
+
+        <dt>
+
+          <code><a href="audit_rmse.html">audit_rmse()</a></code>
+
+        </dt>
+        <dd>Audit rmse</dd>
+
+        <dt>
+
           <code><a href="audit_roundtrip_loss.html">audit_roundtrip_loss()</a></code>
 
         </dt>
         <dd>Audit semantic and numerical loss after a round trip</dd>
+
+        <dt>
+
+          <code><a href="audit_sbc.html">audit_sbc()</a></code>
+
+        </dt>
+        <dd>Audit SBC rank uniformity</dd>
 
         <dt>
 
@@ -556,6 +1953,13 @@
 
         <dt>
 
+          <code><a href="plot_distractor_information.html">plot_distractor_information()</a></code>
+
+        </dt>
+        <dd>Plot option-level distractor information</dd>
+
+        <dt>
+
           <code><a href="plot_gazepoint_workflow.html">plot_gazepoint_workflow()</a></code>
 
         </dt>
@@ -570,10 +1974,31 @@
 
         <dt>
 
+          <code><a href="plot_irf_uncertainty.html">plot_irf_uncertainty()</a></code>
+
+        </dt>
+        <dd>Plot uncertainty for flexible item response functions</dd>
+
+        <dt>
+
           <code><a href="plot_parameter_recovery.html">plot_parameter_recovery()</a></code>
 
         </dt>
         <dd>Plot parameter recovery</dd>
+
+        <dt>
+
+          <code><a href="plot_person_item_space.html">plot_person_item_space()</a></code>
+
+        </dt>
+        <dd>Plot person/item latent-space coordinates</dd>
+
+        <dt>
+
+          <code><a href="plot_process_changepoint.html">plot_process_changepoint()</a></code>
+
+        </dt>
+        <dd>Plot detected process change points</dd>
 
         <dt>
 

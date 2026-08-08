@@ -61,3 +61,22 @@
   Centiles](https://stefanosbalaskas.github.io/eyeprocess/articles/item-bank-fairness-norms.md):
 - [Evidence and Decision
   Provenance](https://stefanosbalaskas.github.io/eyeprocess/articles/evidence-decision-provenance.md):
+
+### Process IRT and validation (0.7)
+
+Multimodal process-aware IRT models, semantic validation, evidence
+grading, recovery studies, and experimental measurement architectures
+introduced for the 0.7 series.
+
+- [Validation Before Promotion: Recovery, SBC, PPC, and
+  Transportability](https://stefanosbalaskas.github.io/eyeprocess/articles/advanced-model-validation-0-7.md):
+- [Experimental Process-IRT Methods and Evidence
+  Gates](https://stefanosbalaskas.github.io/eyeprocess/articles/experimental-process-irt-0-7.md):
+- [Multimodal Process IRT: Responses, Time, Gaze, and
+  Missingness](https://stefanosbalaskas.github.io/eyeprocess/articles/multimodal-process-irt-0-7.md):
+- [Multiple-Response Items, Revisiting, and Local
+  Dependence](https://stefanosbalaskas.github.io/eyeprocess/articles/multiple-response-and-revisiting-irt-0-7.md):
+- [Process-IRT Model Atlas: What to Fit, What to Validate, What Not to
+  Claim](https://stefanosbalaskas.github.io/eyeprocess/articles/process-irt-model-atlas-0-7.md):
+- [Independent Vendor Validation and Semantic
+  Fidelity](https://stefanosbalaskas.github.io/eyeprocess/articles/validation-evidence-0-7.md):

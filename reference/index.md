@@ -1,5 +1,384 @@
 # Package index
 
+## Process IRT and validation reference (0.7)
+
+Public process-aware IRT, semantic-validation, evidence-governance,
+simulation, recovery, transportability, and advanced measurement APIs
+introduced in the 0.7 development series.
+
+- [`algorithm_facet_effects()`](https://stefanosbalaskas.github.io/eyeprocess/reference/algorithm_facet_effects.md)
+  : Extract algorithm facet effects
+- [`as_irt_recovery_results()`](https://stefanosbalaskas.github.io/eyeprocess/reference/as_irt_recovery_results.md)
+  : Canonicalise parameter-recovery results
+- [`audit_bias()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_bias.md)
+  : Audit bias
+- [`audit_channel_incremental_information()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_channel_incremental_information.md)
+  : Audit out-of-sample incremental information from a process channel
+- [`audit_convergence()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_convergence.md)
+  : Audit convergence and classified failures
+- [`audit_coverage()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_coverage.md)
+  : Audit coverage
+- [`audit_distractor_attention()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_distractor_attention.md)
+  : Audit distractor attention patterns
+- [`audit_identifiability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_identifiability.md)
+  : Audit empirical identifiability from replicate estimates
+- [`audit_interval_width()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_interval_width.md)
+  : Audit interval width
+- [`audit_irf_shape()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_irf_shape.md)
+  : Audit item response-function shape departures
+- [`audit_latent_distribution()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_latent_distribution.md)
+  : Audit the empirical latent-trait distribution
+- [`audit_measurement_transportability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_measurement_transportability.md)
+  : Summarise measurement transportability across held-out groups
+- [`audit_process_adjusted_dif()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_process_adjusted_dif.md)
+  : Audit DIF before and after process-data adjustment
+- [`audit_process_local_dependence()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_process_local_dependence.md)
+  : Audit inter-option/process local dependence
+- [`audit_process_measurement_invariance()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_process_measurement_invariance.md)
+  : Audit process measurement invariance across facets
+- [`audit_rmse()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_rmse.md)
+  : Audit rmse
+- [`audit_sbc()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_sbc.md)
+  : Audit SBC rank uniformity
+- [`calibration_transfer_audit()`](https://stefanosbalaskas.github.io/eyeprocess/reference/calibration_transfer_audit.md)
+  : Audit transfer of calibration across devices/sessions/sites
+- [`classify_item_missingness()`](https://stefanosbalaskas.github.io/eyeprocess/reference/classify_item_missingness.md)
+  : Classify item missingness using exposure and response evidence
+- [`compare_irt_models()`](https://stefanosbalaskas.github.io/eyeprocess/reference/compare_irt_models.md)
+  : Compare multimodal IRT model objects
+- [`compare_latent_distribution_models()`](https://stefanosbalaskas.github.io/eyeprocess/reference/compare_latent_distribution_models.md)
+  : Compare simple latent-distribution reference models
+- [`compare_parametric_nonparametric_irf()`](https://stefanosbalaskas.github.io/eyeprocess/reference/compare_parametric_nonparametric_irf.md)
+  : Compare conventional logistic and flexible IRF shapes
+- [`compare_validation_engines()`](https://stefanosbalaskas.github.io/eyeprocess/reference/compare_validation_engines.md)
+  : Compare validation engines on common recovery output
+- [`compatibility_evidence_matrix()`](https://stefanosbalaskas.github.io/eyeprocess/reference/compatibility_evidence_matrix.md)
+  : Build a detailed compatibility evidence matrix
+- [`coordinate_fidelity_audit()`](https://stefanosbalaskas.github.io/eyeprocess/reference/coordinate_fidelity_audit.md)
+  : Coordinate semantic-fidelity audit
+- [`cross_device_process_equating_audit()`](https://stefanosbalaskas.github.io/eyeprocess/reference/cross_device_process_equating_audit.md)
+  : Cross-device process-scale equating audit
+- [`cross_version_adapter_regression()`](https://stefanosbalaskas.github.io/eyeprocess/reference/cross_version_adapter_regression.md)
+  : Compare adapter output across software/format versions
+- [`detect_irt_changepoints()`](https://stefanosbalaskas.github.io/eyeprocess/reference/detect_irt_changepoints.md)
+  : Detect IRT/process change points using an SIC-inspired multichannel
+  score
+- [`detect_process_changepoint()`](https://stefanosbalaskas.github.io/eyeprocess/reference/detect_process_changepoint.md)
+  : Detect a response-process change point
+- [`device_facet_effects()`](https://stefanosbalaskas.github.io/eyeprocess/reference/device_facet_effects.md)
+  : Extract device facet effects
+- [`distractor_process_map()`](https://stefanosbalaskas.github.io/eyeprocess/reference/distractor_process_map.md)
+  : Build a distractor process map
+- [`encode_response_combinations()`](https://stefanosbalaskas.github.io/eyeprocess/reference/encode_response_combinations.md)
+  : Encode multiple-response item response combinations
+- [`equate_irt_scales()`](https://stefanosbalaskas.github.io/eyeprocess/reference/equate_irt_scales.md)
+  : Equate IRT scales using anchor item parameters
+- [`estimate_visual_exposure_probability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/estimate_visual_exposure_probability.md)
+  : Estimate visual exposure probability
+- [`event_roundtrip_audit()`](https://stefanosbalaskas.github.io/eyeprocess/reference/event_roundtrip_audit.md)
+  : Audit event survival across an interchange round trip
+- [`event_semantics_audit()`](https://stefanosbalaskas.github.io/eyeprocess/reference/event_semantics_audit.md)
+  : Audit event semantic preservation
+- [`expected_process_information()`](https://stefanosbalaskas.github.io/eyeprocess/reference/expected_process_information.md)
+  : Expected process-aware item utility under a theta distribution
+- [`explain_latent_interaction()`](https://stefanosbalaskas.github.io/eyeprocess/reference/explain_latent_interaction.md)
+  : Explain local person-item latent-space interactions
+- [`external_validate_irt()`](https://stefanosbalaskas.github.io/eyeprocess/reference/external_validate_irt.md)
+  : External validation on a completely held-out dataset
+- [`extract_parameter_truth()`](https://stefanosbalaskas.github.io/eyeprocess/reference/extract_parameter_truth.md)
+  : Extract canonical parameter truth from simulated data
+- [`eye_stream_fidelity_audit()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eye_stream_fidelity_audit.md)
+  : Audit preservation of monocular/binocular stream semantics
+- [`facet_effects()`](https://stefanosbalaskas.github.io/eyeprocess/reference/facet_effects.md)
+  : Extract facet effects from a many-facet process model
+- [`field_fidelity_report()`](https://stefanosbalaskas.github.io/eyeprocess/reference/field_fidelity_report.md)
+  : Field-level semantic fidelity report
+- [`fit_censored_normal_process_irt()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_censored_normal_process_irt.md)
+  : Conditional censored-normal calibration for bounded process
+  measurements
+- [`fit_changepoint_multimodal_irt()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_changepoint_multimodal_irt.md)
+  : Fit a multimodal change-point IRT workflow
+- [`fit_changepoint_rt_irt()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_changepoint_rt_irt.md)
+  : Fit a change-point RT IRT workflow
+- [`fit_cognitive_diagnosis_process()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_cognitive_diagnosis_process.md)
+  : Cognitive-diagnosis model with process indicators
+- [`fit_continuous_time_irt()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_continuous_time_irt.md)
+  : Continuous-time IRT external-engine gate
+- [`fit_crossclassified_process_irt()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_crossclassified_process_irt.md)
+  : Cross-classified process IRT reference model
+- [`fit_dynamic_gpirt()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_dynamic_gpirt.md)
+  : Dynamic GPIRT external-engine gate
+- [`fit_event_time_irt()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_event_time_irt.md)
+  : Fit an event-time IRT reference workflow
+- [`fit_flow_mirt()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_flow_mirt.md)
+  : Flow-MIRT external-engine gate
+- [`fit_gaze_informed_missingness_irt()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_gaze_informed_missingness_irt.md)
+  : Fit a gaze-informed missingness IRT diagnostic
+- [`fit_gpirt()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_gpirt.md)
+  : GPIRT model-criticism interface
+- [`fit_irt_model()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_irt_model.md)
+  : Fit a registered multimodal IRT model
+- [`fit_joint_gaze_rt_irt()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_joint_gaze_rt_irt.md)
+  : Joint response, response-time, and gaze-process IRT
+- [`fit_joint_graded_rt_process_irt()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_joint_graded_rt_process_irt.md)
+  : Joint graded-response, RT, and process reference model
+- [`fit_latent_class_process_irt()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_latent_class_process_irt.md)
+  : Latent process-class IRT reference model
+- [`fit_latent_space_irt()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_latent_space_irt.md)
+  : Fit a latent-space IRT model using LSMjml
+- [`fit_manyfacet_process_irt()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_manyfacet_process_irt.md)
+  : Many-facet process IRT reference model
+- [`fit_multimodal_trait_irt()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_multimodal_trait_irt.md)
+  : Multimodal trait-model convenience wrapper
+- [`fit_multiple_response_process_irt()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_multiple_response_process_irt.md)
+  : Fit a multiple-response process-IRT reference model
+- [`fit_nominal_gaze_irt()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_nominal_gaze_irt.md)
+  : Nominal/distractor IRT with option-level gaze
+- [`fit_omission_survival_irt()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_omission_survival_irt.md)
+  : Response/RT/omission survival IRT reference model
+- [`fit_process_hmm_irt()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_process_hmm_irt.md)
+  : Process-state HMM with an IRT response layer
+- [`fit_response_process_embedding_irt()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_response_process_embedding_irt.md)
+  : Fit an IRT response model augmented by sequence embeddings
+- [`fit_revisit_process_cdm()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_revisit_process_cdm.md)
+  : Fit a revisiting-aware cognitive-diagnosis process workflow
+- [`fit_speed_accuracy_engagement_irt()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_speed_accuracy_engagement_irt.md)
+  : Speed-accuracy-engagement IRT convenience wrapper
+- [`fit_validation_replicate()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_validation_replicate.md)
+  : Fit one model-validation replicate
+- [`fit_variational_irt()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_variational_irt.md)
+  : Variational IRT external-engine gate
+- [`generalizability_process_study()`](https://stefanosbalaskas.github.io/eyeprocess/reference/generalizability_process_study.md)
+  : Generalizability-style variance decomposition for a process measure
+- [`get_irt_model()`](https://stefanosbalaskas.github.io/eyeprocess/reference/get_irt_model.md)
+  : Retrieve a registered multimodal IRT model
+- [`grade_model_evidence()`](https://stefanosbalaskas.github.io/eyeprocess/reference/grade_model_evidence.md)
+  : Grade model evidence against an explicit validation contract
+- [`irt_compositional_channel()`](https://stefanosbalaskas.github.io/eyeprocess/reference/irt_compositional_channel.md)
+  : Compositional AOI channel
+- [`irt_continuous_channel()`](https://stefanosbalaskas.github.io/eyeprocess/reference/irt_continuous_channel.md)
+  : Continuous/bounded process channel for multimodal IRT
+- [`irt_count_channel()`](https://stefanosbalaskas.github.io/eyeprocess/reference/irt_count_channel.md)
+  : Count-valued process channel for multimodal IRT
+- [`irt_functional_channel()`](https://stefanosbalaskas.github.io/eyeprocess/reference/irt_functional_channel.md)
+  : Functional trajectory channel
+- [`irt_model_spec()`](https://stefanosbalaskas.github.io/eyeprocess/reference/irt_model_spec.md)
+  : Define a multimodal IRT model specification
+- [`irt_nominal_channel()`](https://stefanosbalaskas.github.io/eyeprocess/reference/irt_nominal_channel.md)
+  : Nominal response/process channel
+- [`irt_response_channel()`](https://stefanosbalaskas.github.io/eyeprocess/reference/irt_response_channel.md)
+  : Binary/ordinal response channel for multimodal IRT
+- [`irt_rt_channel()`](https://stefanosbalaskas.github.io/eyeprocess/reference/irt_rt_channel.md)
+  : Response-time channel for multimodal IRT
+- [`irt_sequence_channel()`](https://stefanosbalaskas.github.io/eyeprocess/reference/irt_sequence_channel.md)
+  : Sequence/process-state channel
+- [`irt_survival_channel()`](https://stefanosbalaskas.github.io/eyeprocess/reference/irt_survival_channel.md)
+  : Survival/event-time channel for multimodal IRT
+- [`irt_validation_spec()`](https://stefanosbalaskas.github.io/eyeprocess/reference/irt_validation_spec.md)
+  : Specify a validation programme for a process-IRT model
+- [`latent_distribution_stress_test()`](https://stefanosbalaskas.github.io/eyeprocess/reference/latent_distribution_stress_test.md)
+  : Stress-test IRT estimators across latent distributions
+- [`latent_trait_trajectory()`](https://stefanosbalaskas.github.io/eyeprocess/reference/latent_trait_trajectory.md)
+  : Estimate a descriptive continuous-time latent trajectory
+- [`leave_device_out_validation()`](https://stefanosbalaskas.github.io/eyeprocess/reference/leave_device_out_validation.md)
+  : Leave device out validation
+- [`leave_item_out_validation()`](https://stefanosbalaskas.github.io/eyeprocess/reference/leave_item_out_validation.md)
+  : Leave item out validation
+- [`leave_session_out_validation()`](https://stefanosbalaskas.github.io/eyeprocess/reference/leave_session_out_validation.md)
+  : Leave session out validation
+- [`leave_site_out_validation()`](https://stefanosbalaskas.github.io/eyeprocess/reference/leave_site_out_validation.md)
+  : Leave site out validation
+- [`list_irt_models()`](https://stefanosbalaskas.github.io/eyeprocess/reference/list_irt_models.md)
+  : List registered multimodal IRT models
+- [`negative_control_process_test()`](https://stefanosbalaskas.github.io/eyeprocess/reference/negative_control_process_test.md)
+  : Negative-control test for an allegedly informative process channel
+- [`option_process_information()`](https://stefanosbalaskas.github.io/eyeprocess/reference/option_process_information.md)
+  : Quantify option-process information from a nominal gaze model
+- [`plot(`*`<eye_adapter_regression_audit>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_adapter_regression_audit.md)
+  : Plot eye adapter regression audit
+- [`plot(`*`<eye_bids_roundtrip>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_bids_roundtrip.md)
+  : Plot eye bids roundtrip
+- [`plot(`*`<eye_compatibility_evidence_matrix>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_compatibility_evidence_matrix.md)
+  : Plot detailed compatibility evidence
+- [`plot(`*`<eye_event_roundtrip_audit>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_event_roundtrip_audit.md)
+  : Plot eye event roundtrip audit
+- [`plot(`*`<eye_event_time_irt>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_event_time_irt.md)
+  : Plot eye event time irt
+- [`plot(`*`<eye_gaze_informed_missingness_irt>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_gaze_informed_missingness_irt.md)
+  : Plot eye gaze informed missingness irt
+- [`plot(`*`<eye_gpirt>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_gpirt.md)
+  : Plot flexible IRF shape diagnostics
+- [`plot(`*`<eye_incremental_information_audit>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_incremental_information_audit.md)
+  : Plot incremental process-channel information by fold
+- [`plot(`*`<eye_irt_changepoints>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_irt_changepoints.md)
+  : Plot detected process changepoints
+- [`plot(`*`<eye_irt_equating>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_irt_equating.md)
+  : Plot an IRT linking/equating transformation
+- [`plot(`*`<eye_irt_ppc>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_irt_ppc.md)
+  : Plot posterior predictive discrepancy tail probabilities
+- [`plot(`*`<eye_irt_recovery_summary>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_irt_recovery_summary.md)
+  : Plot parameter-recovery bias or RMSE
+- [`plot(`*`<eye_irt_sbc>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_irt_sbc.md)
+  : Plot SBC rank histograms by parameter
+- [`plot(`*`<eye_joint_gaze_rt_irt>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_joint_gaze_rt_irt.md)
+  : Plot a joint gaze-response-time IRT fit
+- [`plot(`*`<eye_joint_graded_rt_process_irt>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_joint_graded_rt_process_irt.md)
+  : Plot a graded response + RT/process fit
+- [`plot(`*`<eye_latent_distribution_comparison>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_latent_distribution_comparison.md)
+  : Plot eye latent distribution comparison
+- [`plot(`*`<eye_latent_space_irt>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_latent_space_irt.md)
+  : Plot a latent-space IRT adapter fit
+- [`plot(`*`<eye_manyfacet_process_irt>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_manyfacet_process_irt.md)
+  : Plot many-facet process IRT effects
+- [`plot(`*`<eye_nominal_gaze_irt>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_nominal_gaze_irt.md)
+  : Plot nominal-response gaze results
+- [`plot(`*`<eye_omission_survival_irt>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_omission_survival_irt.md)
+  : Plot omission/not-reached survival IRT diagnostics
+- [`plot(`*`<eye_process_cat_simulation>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_process_cat_simulation.md)
+  : Plot CAT simulation information accumulation
+- [`plot(`*`<eye_process_channel_ablation>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_process_channel_ablation.md)
+  : Plot process-channel ablation
+- [`plot(`*`<eye_process_dependent_discrimination>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_process_dependent_discrimination.md)
+  : Plot process-dependent discrimination
+- [`plot(`*`<eye_process_facet_effects>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_process_facet_effects.md)
+  : Plot eye process facet effects
+- [`plot(`*`<eye_process_g_study>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_process_g_study.md)
+  : Plot process-measure variance components
+- [`plot(`*`<eye_process_hmm_irt>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_process_hmm_irt.md)
+  : Plot a process-HMM IRT fit
+- [`plot(`*`<eye_process_local_dependence_audit>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_process_local_dependence_audit.md)
+  : Plot process/local-dependence diagnostics
+- [`plot(`*`<eye_process_negative_control>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_process_negative_control.md)
+  : Plot a process-channel negative-control distribution
+- [`plot(`*`<eye_process_person_fit>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_process_person_fit.md)
+  : Plot process person-fit discrepancies
+- [`plot(`*`<eye_sbc_audit>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_sbc_audit.md)
+  : Plot SBC audit summaries
+- [`plot(`*`<eye_semantic_roundtrip>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_semantic_roundtrip.md)
+  : Plot semantic round-trip fidelity
+- [`plot(`*`<eye_vendor_semantic_validation>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_vendor_semantic_validation.md)
+  : Plot eye vendor semantic validation
+- [`plot_distractor_information()`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot_distractor_information.md)
+  : Plot option-level distractor information
+- [`plot_irf_uncertainty()`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot_irf_uncertainty.md)
+  : Plot uncertainty for flexible item response functions
+- [`plot_person_item_space()`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot_person_item_space.md)
+  : Plot person/item latent-space coordinates
+- [`plot_process_changepoint()`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot_process_changepoint.md)
+  : Plot detected process change points
+- [`posterior_predictive_discrepancies()`](https://stefanosbalaskas.github.io/eyeprocess/reference/posterior_predictive_discrepancies.md)
+  : Posterior predictive discrepancy table
+- [`posterior_sbc_contract()`](https://stefanosbalaskas.github.io/eyeprocess/reference/posterior_sbc_contract.md)
+  : Define a posterior-SBC replication contract
+- [`predict(`*`<eye_censored_normal_process_irt>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/predict.eye_censored_normal_process_irt.md)
+  : Predict expected bounded response from a censored-normal process IRT
+  fit
+- [`predict_theta_at_time()`](https://stefanosbalaskas.github.io/eyeprocess/reference/predict_theta_at_time.md)
+  : Predict a latent trait at arbitrary times
+- [`print(`*`<eye_irt_evidence_grade>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/print.eye_irt_evidence_grade.md)
+  : Print eye irt evidence grade
+- [`print(`*`<eye_irt_model_spec>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/print.eye_irt_model_spec.md)
+  : Print a multimodal IRT model specification
+- [`print(`*`<eye_irt_validation_spec>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/print.eye_irt_validation_spec.md)
+  : Print eye irt validation spec
+- [`print(`*`<eye_process_negative_control>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/print.eye_process_negative_control.md)
+  : Print eye process negative control
+- [`print(`*`<eye_vendor_schema_contract>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/print.eye_vendor_schema_contract.md)
+  : Print eye vendor schema contract
+- [`process_channel_ablation()`](https://stefanosbalaskas.github.io/eyeprocess/reference/process_channel_ablation.md)
+  : Ablate process channels under a common out-of-sample evaluator
+- [`process_dependent_discrimination_audit()`](https://stefanosbalaskas.github.io/eyeprocess/reference/process_dependent_discrimination_audit.md)
+  : Audit process-dependent item discrimination
+- [`process_dif_nuisance_surrogate()`](https://stefanosbalaskas.github.io/eyeprocess/reference/process_dif_nuisance_surrogate.md)
+  : Construct a process-data nuisance surrogate for DIF analysis
+- [`process_item_information()`](https://stefanosbalaskas.github.io/eyeprocess/reference/process_item_information.md)
+  : 2PL response item information
+- [`process_ngram_features()`](https://stefanosbalaskas.github.io/eyeprocess/reference/process_ngram_features.md)
+  : N-gram features from process sequences
+- [`process_person_fit()`](https://stefanosbalaskas.github.io/eyeprocess/reference/process_person_fit.md)
+  : Joint response-process person-fit diagnostic
+- [`process_residual_map()`](https://stefanosbalaskas.github.io/eyeprocess/reference/process_residual_map.md)
+  : Return person/item latent-space coordinates
+- [`process_sequence_embedding()`](https://stefanosbalaskas.github.io/eyeprocess/reference/process_sequence_embedding.md)
+  : Low-dimensional embedding of response-process sequences
+- [`process_state_occupancy()`](https://stefanosbalaskas.github.io/eyeprocess/reference/process_state_occupancy.md)
+  : Summarize HMM state occupancy
+- [`process_state_transition_summary()`](https://stefanosbalaskas.github.io/eyeprocess/reference/process_state_transition_summary.md)
+  : Summarize HMM process-state transitions
+- [`promote_irt_model()`](https://stefanosbalaskas.github.io/eyeprocess/reference/promote_irt_model.md)
+  : Promote an IRT model after evidence gates are met
+- [`public_validation_corpus()`](https://stefanosbalaskas.github.io/eyeprocess/reference/public_validation_corpus.md)
+  : Public validation-corpus registry
+- [`pupil_unit_fidelity_audit()`](https://stefanosbalaskas.github.io/eyeprocess/reference/pupil_unit_fidelity_audit.md)
+  : Pupil-unit semantic-fidelity audit
+- [`recalibrate_after_changepoint()`](https://stefanosbalaskas.github.io/eyeprocess/reference/recalibrate_after_changepoint.md)
+  : Iteratively detect, clean, and recalibrate after process change
+  points
+- [`recommended_validation_replications()`](https://stefanosbalaskas.github.io/eyeprocess/reference/recommended_validation_replications.md)
+  : Approximate simulation replications needed for a target Monte Carlo
+  error
+- [`register_irt_model()`](https://stefanosbalaskas.github.io/eyeprocess/reference/register_irt_model.md)
+  : Register a multimodal IRT model
+- [`roundtrip_eye_bids()`](https://stefanosbalaskas.github.io/eyeprocess/reference/roundtrip_eye_bids.md)
+  : Execute and audit an Eye-Tracking-BIDS round trip
+- [`run_posterior_sbc()`](https://stefanosbalaskas.github.io/eyeprocess/reference/run_posterior_sbc.md)
+  : Run posterior simulation-based calibration from an explicit contract
+- [`run_sbc()`](https://stefanosbalaskas.github.io/eyeprocess/reference/run_sbc.md)
+  : Run generic simulation-based calibration
+- [`select_next_item_process()`](https://stefanosbalaskas.github.io/eyeprocess/reference/select_next_item_process.md)
+  : Select the next item using response/process utility
+- [`semantic_fidelity_spec()`](https://stefanosbalaskas.github.io/eyeprocess/reference/semantic_fidelity_spec.md)
+  : Semantic fidelity specification
+- [`semantic_loss_map()`](https://stefanosbalaskas.github.io/eyeprocess/reference/semantic_loss_map.md)
+  : Convert a semantic round-trip audit into a loss map
+- [`semantic_roundtrip_audit()`](https://stefanosbalaskas.github.io/eyeprocess/reference/semantic_roundtrip_audit.md)
+  : Audit a complete semantic round trip
+- [`session_facet_effects()`](https://stefanosbalaskas.github.io/eyeprocess/reference/session_facet_effects.md)
+  : Extract session facet effects
+- [`simulate_from_model()`](https://stefanosbalaskas.github.io/eyeprocess/reference/simulate_from_model.md)
+  : Simulate data from a model or registered model specification
+- [`simulate_irt_model()`](https://stefanosbalaskas.github.io/eyeprocess/reference/simulate_irt_model.md)
+  : Simulate from a registered multimodal IRT model
+- [`simulate_process_cat()`](https://stefanosbalaskas.github.io/eyeprocess/reference/simulate_process_cat.md)
+  : Simulate a simple process-aware CAT policy
+- [`stress_test_latent_distribution()`](https://stefanosbalaskas.github.io/eyeprocess/reference/stress_test_latent_distribution.md)
+  : Stress test latent distribution
+- [`stress_test_local_dependence()`](https://stefanosbalaskas.github.io/eyeprocess/reference/stress_test_local_dependence.md)
+  : Stress test local dependence
+- [`stress_test_missingness()`](https://stefanosbalaskas.github.io/eyeprocess/reference/stress_test_missingness.md)
+  : Stress test missingness
+- [`stress_test_misspecification()`](https://stefanosbalaskas.github.io/eyeprocess/reference/stress_test_misspecification.md)
+  : Run a generic misspecification stress-test grid
+- [`stress_test_preprocessing()`](https://stefanosbalaskas.github.io/eyeprocess/reference/stress_test_preprocessing.md)
+  : Stress test preprocessing
+- [`stress_test_speededness()`](https://stefanosbalaskas.github.io/eyeprocess/reference/stress_test_speededness.md)
+  : Stress test speededness
+- [`summarize_parameter_recovery()`](https://stefanosbalaskas.github.io/eyeprocess/reference/summarize_parameter_recovery.md)
+  : Summarise parameter recovery
+- [`timestamp_fidelity_audit()`](https://stefanosbalaskas.github.io/eyeprocess/reference/timestamp_fidelity_audit.md)
+  : Timestamp semantic-fidelity audit
+- [`validate_bids_eye_semantics()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validate_bids_eye_semantics.md)
+  : Validate BIDS eye-tracking semantics
+- [`validate_hed_event_semantics()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validate_hed_event_semantics.md)
+  : Minimal HED annotation audit for event tables
+- [`validate_irt_model()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validate_irt_model.md)
+  : Validate a registered multimodal IRT model
+- [`validate_latent_space_process_similarity()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validate_latent_space_process_similarity.md)
+  : Validate latent-space proximity against process similarity
+- [`validate_vendor_semantics()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validate_vendor_semantics.md)
+  : Validate imported data against a vendor semantic contract
+- [`validate_vendor_timestamp_semantics()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validate_vendor_timestamp_semantics.md)
+  : Validate vendor-specific timestamp semantics
+- [`validation_evidence_levels()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validation_evidence_levels.md)
+  : Detailed validation evidence levels
+- [`validation_failure_taxonomy()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validation_failure_taxonomy.md)
+  : Classify common estimator failures without hiding the original
+  message
+- [`validation_mcse()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validation_mcse.md)
+  : Monte Carlo standard errors for validation metrics
+- [`vendor_schema_contract()`](https://stefanosbalaskas.github.io/eyeprocess/reference/vendor_schema_contract.md)
+  : Declare a vendor semantic schema contract
+
 ## Package overview
 
 - [`eyeprocess`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-package.md)
@@ -317,10 +696,40 @@
   : Audit advanced-model scientific evidence
 - [`audit_benchmark_release()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_benchmark_release.md)
   : Audit whether benchmark assets are ready for public release
+- [`audit_bias()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_bias.md)
+  : Audit bias
+- [`audit_channel_incremental_information()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_channel_incremental_information.md)
+  : Audit out-of-sample incremental information from a process channel
+- [`audit_convergence()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_convergence.md)
+  : Audit convergence and classified failures
+- [`audit_coverage()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_coverage.md)
+  : Audit coverage
+- [`audit_distractor_attention()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_distractor_attention.md)
+  : Audit distractor attention patterns
+- [`audit_identifiability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_identifiability.md)
+  : Audit empirical identifiability from replicate estimates
+- [`audit_interval_width()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_interval_width.md)
+  : Audit interval width
+- [`audit_irf_shape()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_irf_shape.md)
+  : Audit item response-function shape departures
+- [`audit_latent_distribution()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_latent_distribution.md)
+  : Audit the empirical latent-trait distribution
+- [`audit_measurement_transportability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_measurement_transportability.md)
+  : Summarise measurement transportability across held-out groups
 - [`audit_model_promotion()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_model_promotion.md)
   : Audit promotion readiness for advanced model families
+- [`audit_process_adjusted_dif()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_process_adjusted_dif.md)
+  : Audit DIF before and after process-data adjustment
+- [`audit_process_local_dependence()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_process_local_dependence.md)
+  : Audit inter-option/process local dependence
+- [`audit_process_measurement_invariance()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_process_measurement_invariance.md)
+  : Audit process measurement invariance across facets
+- [`audit_rmse()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_rmse.md)
+  : Audit rmse
 - [`audit_roundtrip_loss()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_roundtrip_loss.md)
   : Audit semantic and numerical loss after a round trip
+- [`audit_sbc()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_sbc.md)
+  : Audit SBC rank uniformity
 - [`audit_validation_completion()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_validation_completion.md)
   : Audit whether a validation programme is complete
 - [`audit_vendor_field_coverage()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_vendor_field_coverage.md)
@@ -568,12 +977,20 @@
   [`plot_item_difficulty`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-plots.md)
   [`plot_model_diagnostics`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-plots.md)
   : Visualize eye-tracking and multimodal process data
+- [`plot_distractor_information()`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot_distractor_information.md)
+  : Plot option-level distractor information
 - [`plot_gazepoint_workflow()`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot_gazepoint_workflow.md)
   : Generate the complete Gazepoint workflow plot suite
 - [`plot_interval_coverage()`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot_interval_coverage.md)
   : Plot interval coverage
+- [`plot_irf_uncertainty()`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot_irf_uncertainty.md)
+  : Plot uncertainty for flexible item response functions
 - [`plot_parameter_recovery()`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot_parameter_recovery.md)
   : Plot parameter recovery
+- [`plot_person_item_space()`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot_person_item_space.md)
+  : Plot person/item latent-space coordinates
+- [`plot_process_changepoint()`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot_process_changepoint.md)
+  : Plot detected process change points
 - [`plot_sbc_rank()`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot_sbc_rank.md)
   : Plot SBC rank histograms
 - [`plot_validation_failures()`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot_validation_failures.md)
