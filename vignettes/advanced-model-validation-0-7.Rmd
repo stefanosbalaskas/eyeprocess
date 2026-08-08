@@ -1,0 +1,212 @@
+---
+title: "Validation Before Promotion: Recovery, SBC, PPC, and Transportability"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Validation Before Promotion: Recovery, SBC, PPC, and Transportability}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+library(eyeprocess)
+```
+
+# A common validation contract
+
+Every advanced model should answer the same questions before promotion:
+
+* can its parameters be recovered under its own generator?
+* how biased and noisy are the estimates?
+* do intervals cover at their nominal rate?
+* how often does estimation fail?
+* are parameters empirically identifiable?
+* is Bayesian computation calibrated?
+* can replicated data reproduce scientifically important features?
+* what happens under misspecification and preprocessing changes?
+* does measurement transport to held-out devices, sessions, sites, and items?
+* does the process channel add out-of-sample information beyond conventional
+  response/RT information?
+
+```{r}
+spec <- eyeprocess::irt_validation_spec(
+  model_id = "joint_gaze_rt",
+  replications = 500,
+  parameters = c("ability", "speed", "engagement"),
+  grouped_validation = c("device", "session", "site")
+)
+spec
+```
+
+# Recovery table
+
+The canonical recovery table has one row per replicate/parameter and columns
+`replicate`, `parameter`, `truth`, `estimate`, and optionally `lower`, `upper`,
+`converged`, `scenario`, `engine`, and `failure_type`.
+
+```{r, eval=FALSE}
+summary <- summarize_parameter_recovery(recovery)
+audit_bias(summary, threshold = .10)
+audit_rmse(summary, threshold = .30)
+audit_coverage(summary, minimum = .90)
+audit_interval_width(summary)
+audit_convergence(recovery, minimum = .95)
+audit_identifiability(recovery)
+validation_mcse(recovery, "coverage")
+recommended_validation_replications(target_mcse = .01, metric = "coverage")
+plot(summary)
+```
+
+# Prior SBC
+
+```{r, eval=FALSE}
+sbc <- run_sbc(
+  simulator = function(r) simulate_one_dataset(r),
+  fitter = function(dat) fit_bayesian_model(dat),
+  posterior_draws = function(fit) as.matrix(fit$draws),
+  replications = 250
+)
+
+audit_sbc(sbc)
+plot(sbc, parameter = "ability_sd")
+```
+
+SBC is an inference-algorithm validation. It does not establish empirical model
+fit or construct validity.
+
+# Posterior SBC
+
+Posterior SBC addresses a different question: whether inference is calibrated in
+the region relevant **conditional on the observed data**. Because the correct
+conditional self-consistency experiment is model-specific, eyeprocess requires
+an explicit callback rather than pretending ordinary SBC is posterior SBC.
+
+```{r, eval=FALSE}
+contract <- posterior_sbc_contract(function(replicate, observed_data) {
+  # Model-specific implementation following the posterior-SBC construction.
+  # Must return the simulated truth and posterior draws from the corresponding
+  # conditional self-consistency experiment.
+  list(truth = truth, draws = draws)
+})
+
+psbc <- run_posterior_sbc(observed_data, contract, replications = 100)
+audit_sbc(psbc)
+```
+
+# Posterior predictive checks
+
+```{r, eval=FALSE}
+posterior_predictive_discrepancies(
+  observed = observed_fixations,
+  replicated = replicated_fixations,
+  discrepancies = list(
+    mean = mean,
+    sd = sd,
+    zero_rate = function(x) mean(x == 0),
+    p95 = function(x) unname(quantile(x, .95))
+  )
+)
+```
+
+Choose discrepancies that could falsify the scientific use of the model: tail
+fixation counts, omission rate, transition entropy, pupil peak timing, response
+accuracy by item difficulty, and other substantively meaningful summaries.
+
+# Misspecification
+
+```{r, eval=FALSE}
+stress_test_latent_distribution(runner)
+stress_test_local_dependence(runner)
+stress_test_speededness(runner)
+stress_test_missingness(runner)
+stress_test_preprocessing(runner, variants = c(
+  "default", "strict_validity", "alternate_fixation_detector", "alternate_pupil_filter"
+))
+```
+
+The `runner` owns data generation and fitting; the framework records scenario,
+replicate, results, and classified failures.
+
+# External and grouped validation
+
+```{r, eval=FALSE}
+external_validate_irt(train, external, fitter, predictor, scorer)
+leave_device_out_validation(data, "device", fitter, predictor, scorer)
+leave_session_out_validation(data, "session", fitter, predictor, scorer)
+leave_site_out_validation(data, "site", fitter, predictor, scorer)
+leave_item_out_validation(data, "item_id", fitter, predictor, scorer)
+```
+
+Then quantify transportability rather than reporting only a pooled score:
+
+```{r, eval=FALSE}
+audit_measurement_transportability(
+  held_out_results,
+  metric = "rmse",
+  higher_is_better = FALSE,
+  max_range = .15
+)
+```
+
+# Incremental information and negative controls
+
+A process channel should survive a stricter test than in-sample significance.
+
+```{r, eval=FALSE}
+inc <- audit_channel_incremental_information(
+  data,
+  fold = "participant_fold",
+  baseline_fitter = fit_response_rt,
+  process_fitter = fit_response_rt_gaze,
+  predictor = predict_trait,
+  scorer = trait_rmse,
+  higher_is_better = FALSE
+)
+plot(inc)
+
+negative_control_process_test(
+  data,
+  process_columns = c("fixation_count", "evidence_dwell"),
+  within = c("person_id", "item_id"),
+  evaluator = full_crossvalidated_score,
+  permutations = 250,
+  higher_is_better = TRUE
+)
+```
+
+This guards against adding gaze merely because a high-dimensional channel can
+improve training fit.
+
+# Process-dependent discrimination
+
+```{r, eval=FALSE}
+pd <- process_dependent_discrimination_audit(
+  data,
+  response = "correct",
+  theta = "theta",
+  process = "rt_ms",
+  person = "person_id",
+  item = "item_id"
+)
+plot(pd)
+```
+
+The diagnostic asks whether effective response discrimination varies with the
+person-by-item process residual. It should be described as an association unless
+a design identifies a causal mechanism.
+
+# Evidence grade
+
+```{r, eval=FALSE}
+grade_model_evidence(
+  recovery = recovery,
+  spec = spec,
+  external_validation = held_out_results,
+  sbc = sbc,
+  ppc = ppc,
+  semantic_roundtrip = roundtrip
+)
+```
+
+The grade is a governance summary of supplied evidence, not a substitute for
+construct validity or independent replication.

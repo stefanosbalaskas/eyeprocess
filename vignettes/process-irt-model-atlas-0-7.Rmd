@@ -1,0 +1,160 @@
+---
+title: "Process-IRT Model Atlas: What to Fit, What to Validate, What Not to Claim"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Process-IRT Model Atlas: What to Fit, What to Validate, What Not to Claim}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+library(eyeprocess)
+```
+
+# Purpose
+
+The process-IRT layer is deliberately organized by *measurement question*, not
+by estimator novelty. Eye-tracking, pupillometry, response time, omissions, and
+sequences become explicit measurement channels only when their role and
+validation evidence are stated.
+
+```{r}
+validation_evidence_levels()
+list_irt_models()
+```
+
+# Core model families
+
+| Question | Primary API | Default scientific status |
+|---|---|---|
+| Do response, time, and gaze share person/item structure? | `fit_joint_gaze_rt_irt()` | reference/experimental |
+| Do graded scores and time/process co-vary? | `fit_joint_graded_rt_process_irt()` | experimental |
+| Which option was chosen and inspected? | `fit_nominal_gaze_irt()` | reference/experimental |
+| Does visual exposure inform missingness? | `fit_gaze_informed_missingness_irt()` | diagnostic |
+| Are omissions and not-reached items time processes? | `fit_omission_survival_irt()` | reference/experimental |
+| Are process measures transportable across device/session/algorithm? | `fit_manyfacet_process_irt()` | reference |
+| Does the response process change within a session? | `fit_changepoint_multimodal_irt()` | experimental |
+| Do latent sequence states relate to measurement? | `fit_process_hmm_irt()` | experimental |
+| Do process features explain DIF nuisance variation? | `audit_process_adjusted_dif()` | diagnostic |
+| Is there residual person-item geometry? | `fit_latent_space_irt()` | external engine |
+| Are logistic IRFs too restrictive? | `fit_gpirt()` | model criticism/gated |
+| Does a bounded process outcome pile up at 0/1? | `fit_censored_normal_process_irt()` | conditional calibration |
+| Are event times informative conditional on theta? | `fit_event_time_irt()` | diagnostic/gated |
+| Are multiple selected options informative beyond a total score? | `fit_multiple_response_process_irt()` | reference/external gated |
+| Is there residual inter-option/process dependence? | `audit_process_local_dependence()` | diagnostic |
+| Do revisits/RT/gaze add evidence to cognitive diagnosis? | `fit_revisit_process_cdm()` | adapter/experimental |
+| Does a process channel add held-out information? | `audit_channel_incremental_information()` | validation |
+
+# A process channel must earn its place
+
+The preferred comparison is not “model with gaze has a lower in-sample AIC.”
+Instead, compare held-out performance and run a negative control.
+
+```{r, eval=FALSE}
+inc <- audit_channel_incremental_information(
+  data = trials,
+  fold = "participant_id",
+  baseline_fitter = fit_without_gaze,
+  process_fitter = fit_with_gaze,
+  predictor = predict_model,
+  scorer = score_model,
+  higher_is_better = TRUE
+)
+plot(inc)
+
+neg <- negative_control_process_test(
+  data = trials,
+  process = "dwell_time",
+  fold = "participant_id",
+  fitter = fit_with_gaze,
+  predictor = predict_model,
+  scorer = score_model
+)
+plot(neg)
+```
+
+# Missingness: separate exposure from response
+
+```{r, eval=FALSE}
+miss <- classify_item_missingness(
+  trials,
+  response = "response",
+  reached = "reached",
+  inspected = "inspected",
+  started = "response_started"
+)
+
+fit <- fit_gaze_informed_missingness_irt(
+  trials,
+  response = "response",
+  person = "participant_id",
+  item = "item_id",
+  gaze_exposure = "item_dwell_ms",
+  theta = "theta"
+)
+plot(fit)
+```
+
+A fitted association between gaze exposure and omission is not evidence that
+missingness is ignorable, nor is it a behavioral diagnosis. The two-part
+reference model is intended to expose this dependency before a fully joint
+missingness model is claimed.
+
+# Cross-device measurement is an estimand
+
+```{r, eval=FALSE}
+facets <- fit_manyfacet_process_irt(
+  trials,
+  response = "correct",
+  process = "dwell_ms",
+  person = "participant_id",
+  item = "item_id",
+  device = "device",
+  session = "session",
+  algorithm = "fixation_algorithm"
+)
+
+device_facet_effects(facets, channel = "process")
+session_facet_effects(facets, channel = "process")
+algorithm_facet_effects(facets, channel = "process")
+audit_process_measurement_invariance(facets)
+```
+
+A small device variance component is not enough for interchangeability. It
+should be accompanied by semantic round-trip evidence, unit/coordinate audits,
+and held-device/session validation.
+
+# Latent distribution and IRF stress tests
+
+```{r, eval=FALSE}
+audit_latent_distribution(theta)
+compare_latent_distribution_models(theta)
+latent_distribution_stress_test(validation_runner)
+
+shape <- fit_gpirt(response_matrix, engine = "spline_reference")
+plot_irf_uncertainty(shape, item = 1)
+cmp <- compare_parametric_nonparametric_irf(response_matrix, shape)
+audit_irf_shape(cmp)
+```
+
+The spline-reference route is intentionally called a shape audit, not GPIRT.
+Exact GPIRT, dynamic GPIRT, flow-MIRT, variational IRT, and full continuous-time
+IRT remain behind explicit external-engine gates until validated implementations
+are supplied.
+
+# Promotion is evidence-based
+
+```{r, eval=FALSE}
+spec <- irt_validation_spec("joint_gaze_rt", replications = 500)
+
+# retained recovery/SBC/PPC/transport results are combined into an evidence bundle
+grade_model_evidence(evidence_bundle)
+```
+
+At minimum retain recovery, bias/RMSE, interval coverage, convergence/failure
+classification, misspecification stress tests, preprocessing sensitivity, and
+grouped/external validation. Bayesian models additionally require SBC and
+posterior predictive checks; posterior SBC is appropriate when calibration near
+the observed-data regime matters and the model-specific self-consistency
+contract has been implemented.

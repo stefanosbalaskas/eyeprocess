@@ -1,0 +1,7 @@
+rank,level,requirement
+1,declared,Adapter or schema support is declared.
+2,synthetic-fixture,Deterministic synthetic or package fixture passes the declared contract.
+3,vendor-example,A vendor-provided example export passes import and semantic checks.
+4,independent-public-real,An independently produced public real recording passes declared checks.
+5,multisession-multidevice-real,Evidence spans repeated sessions and/or more than one device/model context.
+6,semantic-roundtrip-validated,Native-to-canonical-to-interchange-to-canonical round trip has field-level semantic-loss evidence.

@@ -1,0 +1,9 @@
+ecosystem,device,corpus,url,evidence_goal,access,auto_download,review_terms_before_use
+Gazepoint,GP3 HD 150 Hz,Pavia free observation of moving elements,https://vision.unipv.it/research/etanim/,independent-public-real; multisession-real; raw Gazepoint CSV,public,FALSE,TRUE
+Gazepoint,GP3 HD 150 Hz,Pavia symmetric dynamic stimuli (2026),https://vision.unipv.it/research/etsymanim/,independent-public-real; multisession-real; raw Gazepoint CSV,research/education/non-commercial,FALSE,TRUE
+EyeLink,raw EDF device metadata must be verified in corpus,Raw eye-tracking data EyeLink EDF 10 subjects 2026,https://zenodo.org/records/20780576,raw-native-format; EDF parser validation,public,FALSE,TRUE
+EyeLink,EyeLink 1000 1000 Hz,GazeBase,https://figshare.com/articles/dataset/GazeBase_Data_Repository/12912257,large multisession longitudinal EyeLink benchmark,CC BY 4.0,FALSE,TRUE
+EyeLink,EyeLink Portable Duo 1000 Hz,Eye movement benchmark data for smooth-pursuit classification 2026,https://osf.io/zx7hc/,raw EDF plus ASC conversion; event-parser benchmark,public OSF,FALSE,TRUE
+Tobii,Tobii Pro Fusion 120 Hz,MCFW-Gaze v3,https://zenodo.org/records/20300972,remote-screen Tobii; binocular continuous raw gaze,public Zenodo,FALSE,TRUE
+Tobii,Tobii Pro Glasses 3 ~50 Hz,GroupAffect-4 v3,https://zenodo.org/records/20796290,wearable Tobii; synchronized multimodal streams,public Zenodo; some audio restricted,FALSE,TRUE
+Pupil Labs,Neon,Pupil Labs official Neon sample recording,https://docs.pupil-labs.com/neon/neon-player/getting-started/,vendor-example; native/CSV semantic roundtrip,vendor example,FALSE,TRUE
