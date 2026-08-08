@@ -1,0 +1,182 @@
+---
+title: "Independent Vendor Validation and Semantic Fidelity"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Independent Vendor Validation and Semantic Fidelity}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+library(eyeprocess)
+```
+
+# Why import success is not validation
+
+`eyeprocess` treats vendor compatibility as an evidence claim. A file that can be
+read without error has established only parser reachability. It has not shown
+that timestamps, coordinate systems, eye identity, pupil units, event meanings,
+or missingness semantics survived harmonisation.
+
+Version 0.7 therefore adds a detailed evidence ladder:
+
+```{r}
+eyeprocess::validation_evidence_levels()
+```
+
+The intended progression is:
+
+1. `declared`
+2. `synthetic-fixture`
+3. `vendor-example`
+4. `independent-public-real`
+5. `multisession-multidevice-real`
+6. `semantic-roundtrip-validated`
+
+These detailed tiers complement, rather than replace, the package's existing
+support-status mechanism.
+
+# Public validation corpus
+
+The package does **not** auto-download public human-participant datasets. Use the
+manifest to review licences/terms and select cases deliberately.
+
+```{r}
+corpus <- eyeprocess::public_validation_corpus()
+corpus[, c("ecosystem", "device", "corpus", "evidence_goal", "access")]
+```
+
+The initial corpus targets two independent Gazepoint GP3 HD repeated-session
+sets, raw EyeLink EDF data, GazeBase, a 2026 EyeLink smooth-pursuit benchmark,
+Tobii Pro Fusion, Tobii Pro Glasses 3, and the official Pupil Labs Neon example.
+
+# Semantic round-trip contract
+
+A strong test is not
+
+```
+native -> import succeeds
+```
+
+but
+
+```
+native vendor
+   -> eyeprocess canonical
+   -> BIDS eye tracking
+   -> eyeprocess canonical
+   -> field-by-field semantic comparison
+```
+
+Every compared field should be classified explicitly, for example as
+`LOSSLESS`, `UNIT_TRANSFORMED`, `COORDINATE_TRANSFORMED`,
+`SEMANTICALLY_EQUIVALENT`, `DERIVED`, `UNSUPPORTED`,
+`INTENTIONALLY_DROPPED`, or `AMBIGUOUS`.
+
+```{r, eval=FALSE}
+spec <- semantic_fidelity_spec(
+  timestamp_tolerance = 1e-6,
+  coordinate_tolerance = 1e-6,
+  pupil_tolerance = 1e-6
+)
+
+audit <- semantic_roundtrip_audit(
+  original = native_canonical,
+  roundtrip = bids_reimported,
+  key = c("recording_id", "sample_index"),
+  fields = c("timestamp", "gaze_x", "gaze_y", "pupil", "eye", "event")
+)
+
+semantic_loss_map(audit)
+plot(audit)
+```
+
+# Timestamp semantics
+
+Clock meaning is part of the schema. Device timestamps and system timestamps are
+not interchangeable merely because both are numeric.
+
+```{r, eval=FALSE}
+timestamp_fidelity_audit(
+  source = imported_native,
+  roundtrip = imported_bids,
+  source_time = "device_time",
+  roundtrip_time = "device_time",
+  tolerance = 1e-6
+)
+
+validate_vendor_timestamp_semantics(imported_native)
+```
+
+# Coordinate and pupil fidelity
+
+Coordinate transformations are acceptable when they are explicit and
+invertible. Silent transformations are evidence failures.
+
+```{r, eval=FALSE}
+coordinate_fidelity_audit(
+  source = original,
+  roundtrip = transformed_back,
+  source_x = "gaze_x",
+  source_y = "gaze_y",
+  roundtrip_x = "gaze_x",
+  roundtrip_y = "gaze_y"
+)
+
+pupil_unit_fidelity_audit(
+  source = original,
+  roundtrip = transformed_back,
+  source_pupil = "pupil_left",
+  roundtrip_pupil = "pupil_left"
+)
+```
+
+# BIDS eye-tracking semantics
+
+BIDS 1.11.1 now specifies eye tracking under physiological recordings. Among the
+important semantics are `PhysioType = "eyetrack"`, `RecordedEye`, and
+`SampleCoordinateSystem`; gaze-on-screen recordings also require screen
+presentation metadata. `validate_bids_eye_semantics()` is a lightweight
+structural audit for these requirements. It is intentionally not presented as a
+replacement for the official BIDS validator.
+
+```{r, eval=FALSE}
+validate_bids_eye_semantics(
+  data = bids_table,
+  metadata = bids_json
+)
+```
+
+# HED event semantics
+
+Event survival is not enough. An event that becomes `event_17` has preserved an
+identifier but may have lost experimental meaning. HED provides a controlled,
+machine-actionable event vocabulary.
+
+```{r, eval=FALSE}
+event_semantics_audit(original_events, roundtrip_events,
+                      key = "event_id", label = "trial_type", time = "timestamp")
+validate_hed_event_semantics(events)
+```
+
+`validate_hed_event_semantics()` performs only package-level structural checks.
+For formal HED-schema validation, use the official HED tooling.
+
+# Evidence matrix
+
+```{r, eval=FALSE}
+base <- build_compatibility_matrix()
+case_evidence <- data.frame(
+  ecosystem = "Gazepoint",
+  device = "GP3 HD",
+  evidence_level = "independent-public-real",
+  semantic_roundtrip_pass = FALSE
+)
+
+mat <- compatibility_evidence_matrix(base, case_evidence)
+plot(mat)
+```
+
+A vendor should be promoted only from retained evidence, not from undocumented
+manual impressions.

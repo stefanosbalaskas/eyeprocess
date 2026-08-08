@@ -1,0 +1,22 @@
+model_id,primary_api,status,minimum_promotion_evidence
+joint_gaze_rt,fit_joint_gaze_rt_irt,experimental/reference,recovery;bias;rmse;coverage;convergence;PPC;SBC if Bayesian;channel ablation;external device/session
+graded_rt_process,fit_joint_graded_rt_process_irt,experimental,graded-threshold recovery;RT recovery;coverage;PPC;external validation
+nominal_gaze,fit_nominal_gaze_irt,experimental/reference,category-parameter recovery;rare-option stress;attention negative control;held-item/device validation
+omission_survival,fit_omission_survival_irt,experimental/reference,competing missingness scenarios;time calibration;coverage;not-reached stress;external validation
+gaze_missingness,fit_gaze_informed_missingness_irt,reference diagnostic,proxy-vs-supplied-theta sensitivity;MNAR stress;negative controls;external validation
+manyfacet_process,fit_manyfacet_process_irt,reference,facet recovery;variance-component bias;leave-device/session/site-out;algorithm/AOI sensitivity
+changepoint_multimodal,fit_changepoint_multimodal_irt,experimental/reference,location error;false-positive rate;power;multichannel ablation;speededness misspecification
+process_hmm,fit_process_hmm_irt,experimental/reference,state recovery;label-switch handling;transition recovery;sequence perturbation;external validation
+cognitive_diagnosis_process,fit_cognitive_diagnosis_process,adapter/experimental,attribute recovery;Q-matrix misspecification;process incremental information;external validation
+latent_space,fit_latent_space_irt,external validated engine / experimental use,rotation-aware recovery;dimension CV;process-similarity validation;external validation
+gpirt,fit_gpirt,experimental gated,IRF recovery;logistic null stress;nonmonotonic stress;coverage/SBC for exact Bayesian engine
+dynamic_gpirt,fit_dynamic_gpirt,experimental gated,trajectory recovery;IRF recovery;SBC;irregular-time stress;external validation
+continuous_time,fit_continuous_time_irt,experimental gated,trajectory recovery;irregular timing;time-origin sensitivity;external validation
+event_time,fit_event_time_irt,experimental reference/gated,event hazard calibration;censoring stress;time-unit sensitivity;external validation
+flow_mirt,fit_flow_mirt,experimental gated,non-normal latent recovery;SBC;identifiability;distribution misspecification;external validation
+variational_irt,fit_variational_irt,experimental gated,bias vs reference posterior;coverage;SBC;scalability;failure rate
+bounded_continuous,fit_censored_normal_process_irt,experimental conditional calibration,item recovery;0/1 mass stress;theta-error sensitivity;coverage;external validation
+process_aware_cat,select_next_item_process,experimental,selection bias;trait recovery;time/burden tradeoffs;policy simulation;negative controls
+multiple_response_process,fit_multiple_response_process_irt,experimental reference/external gated,response-combination recovery;inter-option dependence stress;option sparsity;gaze ablation;held-item/person validation;exact-engine comparison
+revisit_process_cdm,fit_revisit_process_cdm,adapter/experimental,attribute recovery;Q-matrix misspecification;revisit/RT/gaze ablation;class stability;external validation
+process_local_dependence,audit_process_local_dependence,diagnostic,residual calibration;null false-positive behavior;threshold sensitivity;known-LD simulation;cross-channel concordance
