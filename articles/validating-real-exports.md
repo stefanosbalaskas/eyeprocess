@@ -75,8 +75,8 @@ result <- validate_eye_source(
 summary(result)
 #>          case_id
 #> 1 gazepoint-demo
-#>                                                                         path
-#> 1 /home/runner/work/_temp/Library/eyeprocess/extdata/gazepoint/demo-user.csv
+#>                                                                                              path
+#> 1 C:/Users/Stefanos-PC/AppData/Local/R/win-library/4.6/eyeprocess/extdata/gazepoint/demo-user.csv
 #>      vendor status files detection_confidence imported validation_errors
 #> 1 gazepoint   pass     1                    1     TRUE                 0
 #>   validation_warnings roundtrip
@@ -152,9 +152,9 @@ corpus$summary
 #>                     case_id
 #> gp-fixture       gp-fixture
 #> tobii-fixture tobii-fixture
-#>                                                                                     path
-#> gp-fixture    /home/runner/work/_temp/Library/eyeprocess/extdata/gazepoint/demo-user.csv
-#> tobii-fixture          /home/runner/work/_temp/Library/eyeprocess/extdata/tobii-demo.tsv
+#>                                                                                                          path
+#> gp-fixture    C:/Users/Stefanos-PC/AppData/Local/R/win-library/4.6/eyeprocess/extdata/gazepoint/demo-user.csv
+#> tobii-fixture          C:/Users/Stefanos-PC/AppData/Local/R/win-library/4.6/eyeprocess/extdata/tobii-demo.tsv
 #>                  vendor status files detection_confidence imported
 #> gp-fixture    gazepoint   pass     1                 1.00     TRUE
 #> tobii-fixture     tobii   pass     1                 0.85     TRUE
