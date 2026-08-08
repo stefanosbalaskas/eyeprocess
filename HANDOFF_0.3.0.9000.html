@@ -64,7 +64,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Windows handoff: eyeprocess 0.3.0.9000</h1>
-      <small class="dont-index">Source: <a href="https://github.com/stefanosbalaskas/eyeprocess/blob/HEAD/HANDOFF_0.3.0.9000.md" class="external-link"><code>HANDOFF_0.3.0.9000.md</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/stefanosbalaskas/eyeprocess/blob/master/HANDOFF_0.3.0.9000.md" class="external-link"><code>HANDOFF_0.3.0.9000.md</code></a></small>
     </div>
 
 <div id="windows-handoff-eyeprocess-0309000" class="section level1">
@@ -78,12 +78,12 @@
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/unzip.html" class="external-link">unzip</a></span><span class="op">(</span></span>
 <span>  <span class="va">package_zip</span>,</span>
-<span>  exdir <span class="op">=</span> <span class="st">"C:/Users/Stefanos-PC/Documents/Rstudio"</span>,</span>
+<span>  exdir <span class="op">=</span> <span class="st">"path/to"</span>,</span>
 <span>  overwrite <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/source.html" class="external-link">source</a></span><span class="op">(</span></span>
-<span>  <span class="st">"C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess/install_eyeprocess.R"</span></span>
+<span>  <span class="st">"path/to/eyeprocess/install_eyeprocess.R"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p>Confirm that the installed version is <code>0.3.0.9000</code>.</p>
 </div>
@@ -91,7 +91,7 @@
 <h2 id="id_2-run-the-complete-package-gate">2. Run the complete package gate<a class="anchor" aria-label="anchor" href="#id_2-run-the-complete-package-gate"></a></h2>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/source.html" class="external-link">source</a></span><span class="op">(</span></span>
-<span>  <span class="st">"C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess/validate_eyeprocess.R"</span></span>
+<span>  <span class="st">"path/to/eyeprocess/validate_eyeprocess.R"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p>The target is all unit tests passing, <code>R CMD check</code> with zero errors, warnings, and notes, a clean pkgdown configuration, successful installation, and runtime smoke tests.</p>
 </div>
@@ -99,12 +99,12 @@
 <h2 id="id_3-run-the-real-six-user-gazepoint-workflow">3. Run the real six-user Gazepoint workflow<a class="anchor" aria-label="anchor" href="#id_3-run-the-real-six-user-gazepoint-workflow"></a></h2>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/source.html" class="external-link">source</a></span><span class="op">(</span></span>
-<span>  <span class="st">"C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess/run_gazepoint_downstream_workflow.R"</span></span>
+<span>  <span class="st">"path/to/eyeprocess/run_gazepoint_downstream_workflow.R"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p>Input:</p>
-<pre class="text"><code>C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess-validation-corpus/cases/gazepoint-analysis-v7.2.0-demo</code></pre>
+<pre class="text"><code><span><span class="va">path</span><span class="op">/</span><span class="va">to</span><span class="op">/</span><span class="va">eyeprocess</span><span class="op">-</span><span class="va">validation</span><span class="op">-</span><span class="va">corpus</span><span class="op">/</span><span class="va">cases</span><span class="op">/</span><span class="va">gazepoint</span><span class="op">-</span><span class="va">analysis</span><span class="op">-</span><span class="va">v7.2.0</span><span class="op">-</span><span class="va">demo</span></span></code></pre>
 <p>Output:</p>
-<pre class="text"><code>C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess-downstream-output</code></pre>
+<pre class="text"><code><span><span class="va">path</span><span class="op">/</span><span class="va">to</span><span class="op">/</span><span class="va">eyeprocess</span><span class="op">-</span><span class="va">downstream</span><span class="op">-</span><span class="va">output</span></span></code></pre>
 <p>The validated corpus should yield six recordings, twelve reconstructed media trials, 7,340 gaze samples, 337 vendor fixations, 14,680 eye samples, and 58,720 biometric observations. With no behavioural response file, IRT readiness should be <code>process_ready_response_pending</code>; this is intentional.</p>
 </div>
 <div class="section level2">

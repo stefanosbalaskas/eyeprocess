@@ -105,11 +105,11 @@ report structures:
 ``` r
 
 x <- read_gazepoint_folder(
-  "C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess-validation-corpus/cases/gazepoint-analysis-v7.2.0-demo"
+  "path/to/eyeprocess-validation-corpus/cases/gazepoint-analysis-v7.2.0-demo"
 )
 
 gp_pair_exports(
-  "C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess-validation-corpus/cases/gazepoint-analysis-v7.2.0-demo"
+  "path/to/eyeprocess-validation-corpus/cases/gazepoint-analysis-v7.2.0-demo"
 )
 
 validate_eye_dataset(x)
@@ -134,7 +134,7 @@ install.packages(c(
 ))
 
 install.packages(
-  "C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess",
+  "path/to/eyeprocess",
   repos = NULL,
   type = "source"
 )
@@ -145,9 +145,9 @@ For development:
 ``` r
 
 install.packages(c("devtools", "roxygen2", "pkgdown"))
-devtools::load_all("C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess")
-devtools::test("C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess")
-devtools::check("C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess")
+devtools::load_all("path/to/eyeprocess")
+devtools::test("path/to/eyeprocess")
+devtools::check("path/to/eyeprocess")
 ```
 
 ## Gazepoint workflow
@@ -270,8 +270,8 @@ canonical dataset and every major downstream research artifact:
 library(eyeprocess)
 
 result <- run_gazepoint_workflow(
-  "C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess-validation-corpus/cases/gazepoint-analysis-v7.2.0-demo",
-  output_dir = "C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess-downstream-output",
+  "path/to/eyeprocess-validation-corpus/cases/gazepoint-analysis-v7.2.0-demo",
+  output_dir = "path/to/eyeprocess-downstream-output",
   overwrite = TRUE
 )
 

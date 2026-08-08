@@ -3,29 +3,29 @@
 Place the source folder at:
 
 ``` text
-C:\Users\Stefanos-PC\Documents\Rstudio\eyeprocess
+path/to/eyeprocess
 ```
 
 ## RStudio Console
 
 ``` r
 
-source("C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess/install_eyeprocess.R")
-source("C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess/validate_eyeprocess.R")
+source("path/to/eyeprocess/install_eyeprocess.R")
+source("path/to/eyeprocess/validate_eyeprocess.R")
 ```
 
 ## PowerShell
 
 ``` powershell
 Set-ExecutionPolicy -Scope Process Bypass
-& "C:\Users\Stefanos-PC\Documents\Rstudio\eyeprocess\install_eyeprocess.ps1"
+& "path/to/eyeprocess\install_eyeprocess.ps1"
 ```
 
 ## Development commands
 
 ``` r
 
-setwd("C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess")
+setwd("path/to/eyeprocess")
 devtools::load_all()
 devtools::test()
 devtools::check(document = FALSE)
@@ -53,7 +53,7 @@ After the package validation succeeds:
 library(eyeprocess)
 
 init_validation_corpus(
-  "C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess-validation-corpus"
+  "path/to/eyeprocess-validation-corpus"
 )
 ```
 

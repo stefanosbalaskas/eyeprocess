@@ -210,11 +210,11 @@
 <p>The enhanced Gazepoint adapter recognizes current export names and report structures:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/eyeprocess-import-gazepoint.html">read_gazepoint_folder</a></span><span class="op">(</span></span>
-<span>  <span class="st">"C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess-validation-corpus/cases/gazepoint-analysis-v7.2.0-demo"</span></span>
+<span>  <span class="st">"path/to/eyeprocess-validation-corpus/cases/gazepoint-analysis-v7.2.0-demo"</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="reference/eyeprocess-import-gazepoint.html">gp_pair_exports</a></span><span class="op">(</span></span>
-<span>  <span class="st">"C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess-validation-corpus/cases/gazepoint-analysis-v7.2.0-demo"</span></span>
+<span>  <span class="st">"path/to/eyeprocess-validation-corpus/cases/gazepoint-analysis-v7.2.0-demo"</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="reference/eyeprocess-class.html">validate_eye_dataset</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
@@ -231,16 +231,16 @@
 <span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span></span>
-<span>  <span class="st">"C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess"</span>,</span>
+<span>  <span class="st">"path/to/eyeprocess"</span>,</span>
 <span>  repos <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  type <span class="op">=</span> <span class="st">"source"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p>For development:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"devtools"</span>, <span class="st">"roxygen2"</span>, <span class="st">"pkgdown"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/load_all.html" class="external-link">load_all</a></span><span class="op">(</span><span class="st">"C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess"</span><span class="op">)</span></span>
-<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/test.html" class="external-link">test</a></span><span class="op">(</span><span class="st">"C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess"</span><span class="op">)</span></span>
-<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/check.html" class="external-link">check</a></span><span class="op">(</span><span class="st">"C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">load_all</span><span class="op">(</span><span class="st">"path/to/eyeprocess"</span><span class="op">)</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">test</span><span class="op">(</span><span class="st">"path/to/eyeprocess"</span><span class="op">)</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">check</span><span class="op">(</span><span class="st">"path/to/eyeprocess"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="gazepoint-workflow">Gazepoint workflow<a class="anchor" aria-label="anchor" href="#gazepoint-workflow"></a>
@@ -345,8 +345,8 @@
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://stefanosbalaskas.github.io/eyeprocess/">eyeprocess</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/run_gazepoint_workflow.html">run_gazepoint_workflow</a></span><span class="op">(</span></span>
-<span>  <span class="st">"C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess-validation-corpus/cases/gazepoint-analysis-v7.2.0-demo"</span>,</span>
-<span>  output_dir <span class="op">=</span> <span class="st">"C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess-downstream-output"</span>,</span>
+<span>  <span class="st">"path/to/eyeprocess-validation-corpus/cases/gazepoint-analysis-v7.2.0-demo"</span>,</span>
+<span>  output_dir <span class="op">=</span> <span class="st">"path/to/eyeprocess-downstream-output"</span>,</span>
 <span>  overwrite <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
 <span></span>

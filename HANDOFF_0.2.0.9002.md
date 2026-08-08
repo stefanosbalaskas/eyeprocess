@@ -11,8 +11,8 @@ Restart R, install the source tree, then run:
 
 ``` r
 
-source("C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess/install_eyeprocess.R")
-source("C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess/validate_eyeprocess.R")
+source("path/to/eyeprocess/install_eyeprocess.R")
+source("path/to/eyeprocess/validate_eyeprocess.R")
 ```
 
 Target:
@@ -27,6 +27,6 @@ Then reconfirm the empirical corpus:
 
 ``` r
 
-source("C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess/validate_gazepoint_real_exports.R")
-source("C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess/validate_real_exports.R")
+source("path/to/eyeprocess/validate_gazepoint_real_exports.R")
+source("path/to/eyeprocess/validate_real_exports.R")
 ```

@@ -31,8 +31,8 @@ responses are supplied, the result is marked
 
 library(eyeprocess)
 
-source_dir <- "C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess-validation-corpus/cases/gazepoint-analysis-v7.2.0-demo"
-output_dir <- "C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess-downstream-output"
+source_dir <- "path/to/eyeprocess-validation-corpus/cases/gazepoint-analysis-v7.2.0-demo"
+output_dir <- "path/to/eyeprocess-downstream-output"
 
 result <- run_gazepoint_workflow(
   source_dir,

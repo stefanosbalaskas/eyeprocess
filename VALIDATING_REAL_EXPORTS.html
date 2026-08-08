@@ -64,7 +64,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Validating real eye-tracking exports</h1>
-      <small class="dont-index">Source: <a href="https://github.com/stefanosbalaskas/eyeprocess/blob/HEAD/VALIDATING_REAL_EXPORTS.md" class="external-link"><code>VALIDATING_REAL_EXPORTS.md</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/stefanosbalaskas/eyeprocess/blob/master/VALIDATING_REAL_EXPORTS.md" class="external-link"><code>VALIDATING_REAL_EXPORTS.md</code></a></small>
     </div>
 
 <div id="validating-real-eye-tracking-exports" class="section level1">
@@ -76,10 +76,10 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://stefanosbalaskas.github.io/eyeprocess/">eyeprocess</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="reference/eyeprocess-format-validation.html">init_validation_corpus</a></span><span class="op">(</span></span>
-<span>  <span class="st">"C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess-validation-corpus"</span></span>
+<span>  <span class="st">"path/to/eyeprocess-validation-corpus"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p>The initializer is idempotent: running it again preserves an existing manifest and all case files unless <code>overwrite = TRUE</code> is requested explicitly. The resulting layout can be expanded as follows:</p>
-<pre class="text"><code>C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess-validation-corpus/
+<pre class="text"><code>path/to/eyeprocess-validation-corpus/
   validation-manifest.csv
   gp-analysis-7-2/
   gp-biometrics-7-2/
@@ -93,7 +93,7 @@
 <h2 id="batch-validation">Batch validation<a class="anchor" aria-label="anchor" href="#batch-validation"></a></h2>
 <p>Edit the paths at the top of <code>validate_real_exports.R</code>, then run:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/source.html" class="external-link">source</a></span><span class="op">(</span><span class="st">"C:/Users/Stefanos-PC/Documents/Rstudio/eyeprocess/validate_real_exports.R"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/source.html" class="external-link">source</a></span><span class="op">(</span><span class="st">"path/to/eyeprocess/validate_real_exports.R"</span><span class="op">)</span></span></code></pre></div>
 <p>The script writes:</p>
 <ul><li>a corpus summary CSV;</li>
 <li>a Markdown validation report;</li>
