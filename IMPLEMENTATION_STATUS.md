@@ -1,6 +1,6 @@
 # eyeprocess implementation status
 
-Current development version: **0.3.0.9000**
+Current development version: **0.8.0.9000**
 
 ## Implemented in the development source
 
@@ -139,3 +139,20 @@ Evidence status: dependency-free reference implementations are complete.
 Confirmatory, clinical, high-stakes, cross-device-equivalence, fairness,
 normative, and operational claims require study-specific calibration,
 external validation, sensitivity analysis, and governance review.
+
+## Current development milestone — 0.8.0.9000
+
+The current validated development baseline is 0.8.0.9000. It extends the
+process-IRT programme with process-measurement and deployment-governance
+infrastructure, including pre-flight governance, deployment drift,
+temporal representations, advanced pupillometry, visual-context/testlet
+IRT, multiblock and profile models, external validity, streaming
+scoring, validation bundles, advanced sensitivity diagnostics, and
+explicitly gated frontier estimators.
+
+The milestone passed focused and full tests, pkgdown validation,
+installation/runtime validation, and R CMD check with 0 errors, 0
+warnings, and 0 notes.
+
+See `MILESTONE_0.8.0.9000.md` and `HANDOFF_0.8.0.9000.md` for the frozen
+source, deployment, validation, and governance checkpoint.

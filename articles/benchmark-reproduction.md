@@ -14,7 +14,7 @@ library(eyeprocess)
 study <- eyeprocess_benchmark_study()
 study
 #> eyeprocess public benchmark study
-#> Path:   C:/Users/Stefanos-PC/AppData/Local/Temp/RtmpywmBPq/temp_libpath1091462fb1670/eyeprocess/extdata/benchmark-study
+#> Path:   /home/runner/work/_temp/Library/eyeprocess/extdata/benchmark-study
 #> Files:  10
 #> Status: synthetic, openly redistributable benchmark - not empirical vendor validation
 ```
