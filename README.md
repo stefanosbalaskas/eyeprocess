@@ -5,7 +5,7 @@
 <!-- badges: start -->
 **Latest archived release:** 0.6.0
 
-**Current development version:** 0.8.0.9000
+**Release candidate:** 0.8.0
 [![R-CMD-check](https://github.com/stefanosbalaskas/eyeprocess/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/stefanosbalaskas/eyeprocess/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
@@ -75,7 +75,7 @@ installed successfully, passed the complete unit-test suite, completed
 Version 0.2.0.9002 established the validated real-structure Gazepoint Analysis 7.2.0 adapter baseline. Version 0.3.0.9000 adds the complete downstream workflow and requires a fresh runtime validation after installation. The regression corpus is derived from six paired de-identified Gazepoint sample/fixation exports and four Data Summary reports. Production compatibility remains version-specific and must be confirmed against additional independent exports before a general compatibility claim is made.
 
 
-Version 0.8.0.9000 is the current validated development baseline. It passed the focused 0.8 test suite and the complete eyeprocess test suite, pkgdown validation, installation with vignettes, installed-package smoke validation, and R CMD check with 0 errors, 0 warnings, and 0 notes. The corresponding GitHub pull request passed all eight CI checks before merging to master.
+Release candidate 0.8.0 is cut from the validated 0.8.0.9000 development baseline. That baseline passed the focused 0.8 test suite and the complete eyeprocess test suite, pkgdown validation, installation with vignettes, installed-package smoke validation, and R CMD check with 0 errors, 0 warnings, and 0 notes. The corresponding implementation pull request passed all eight CI checks before merging to master.
 The original joint-process and dynamic models are explicitly experimental. They
 must undergo parameter-recovery, calibration, coverage, misspecification, and
 empirical-reproduction studies before confirmatory use.
@@ -288,9 +288,9 @@ Version 0.7.0.9000 established the process-IRT validation framework: explicit va
 
 Advanced process models remain subject to their declared validation requirements; availability of a model interface is not treated as evidence that the estimator is suitable for unrestricted confirmatory use.
 
-## Process measurement and deployment governance (0.8.0.9000)
+## Process measurement and deployment governance (0.8.0)
 
-Version 0.8.0.9000 extends eyeprocess with process-measurement and deployment-governance infrastructure for biometric/process pre-flight audits, exclusion manifests, deployment drift, temporal process windows, AOI trajectories, advanced pupillometry, visual-context/testlet IRT, multiblock representations, process-profile mixtures, external validity, streaming scoring, validation bundles, item seeding, presentation sensitivity, process-decision features, and advanced sensitivity and Bayesian/3PL diagnostics.
+Version 0.8.0 extends eyeprocess with process-measurement and deployment-governance infrastructure for biometric/process pre-flight audits, exclusion manifests, deployment drift, temporal process windows, AOI trajectories, advanced pupillometry, visual-context/testlet IRT, multiblock representations, process-profile mixtures, external validity, streaming scoring, validation bundles, item seeding, presentation sensitivity, process-decision features, and advanced sensitivity and Bayesian/3PL diagnostics.
 
 The 0.8 milestone also makes frontier-estimator status explicit: methods without an exact validated implementation remain gated rather than silently falling back to a simpler estimator. Process evidence is not interpreted automatically as a mental-state, clinical, ability, misconduct, or other person-level diagnosis.
 
@@ -305,4 +305,4 @@ Balaskas, S. (2026). *eyeprocess: Harmonize Eye-Tracking, Pupillometry, Biometri
 
 See `CITATION.cff` for machine-readable citation metadata.
 
-The archived citation above remains the citation for the latest formal software release. The current development tree is version 0.8.0.9000; no separate archived DOI is claimed for that development version. Studies using unreleased development functionality should also report the exact eyeprocess version and source commit used.
+Version 0.8.0 is being prepared as the next formal software release. Until its Zenodo archive is published, version 0.6.0 remains the latest archived release and its version DOI remains the current archived citation. No Zenodo version DOI is claimed for 0.8.0 at the release-candidate stage.

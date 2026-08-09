@@ -1,6 +1,6 @@
 eyeprocess static API audit
 
-Version: 0.8.0.9000
+Version: 0.8.0
 Metadata closure date: 2026-08-09
 Validated 0.8 master baseline: 4c54bc9a814035bb1ab8b554974749259d76afc0
 Validated 0.8 pkgdown deployment baseline: 303f9159ac15edfb4d6415525f72bab77f54998f
