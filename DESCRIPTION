@@ -1,7 +1,7 @@
 Package: eyeprocess
 Type: Package
 Title: Harmonize Eye-Tracking, Pupillometry, Biometrics, and Psychometric Process Data
-Version: 0.8.0.9000
+Version: 0.8.0
 Authors@R: c( person("Stefanos", "Balaskas", role = c("aut", "cre"), email = "s.balaskas@ac.upatras.gr", comment =
     c(ORCID = "0000-0003-2444-9796")) )
 Description: Provides an extensible, vendor-neutral framework for importing, validating, harmonizing, transforming,

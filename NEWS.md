@@ -1,4 +1,4 @@
-# eyeprocess 0.8.0.9000
+# eyeprocess 0.8.0
 
 ## Process measurement and deployment governance
 
