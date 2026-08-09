@@ -1,3 +1,44 @@
+# eyeprocess 0.8.0.9000
+
+## Process measurement and deployment governance
+
+- Added biometric/process pre-flight governance and explicit exclusion manifests.
+- Added deployment-drift auditing across device, site, vendor, and stimulus version.
+- Added temporal process windows, AOI trajectory features, growth models, and window-sensitivity audits.
+- Added advanced pupil frequency, activity, event-deconvolution, confound, fatigue, and filtering workflows.
+- Added visual-context/testlet IRT and multiblock process representations.
+- Added process-profile mixtures, external-validity tools, streaming scoring, and validation bundles.
+- Added item-parameter seeding and candidate-bank auditing.
+- Added nonclinical presentation/accessibility sensitivity workflows.
+- Added process-decision proxies and structured/unstructured process-feature comparisons.
+- Added advanced Rasch, mixture, imputation, Bayesian, and gaze-aware 3PL diagnostic infrastructure.
+- Added explicit gated frontier estimators where an exact validated implementation is not available.
+- Added 11 new pkgdown articles, focused 0.8 tests, reference documentation, and validation registries.
+
+### Validation
+
+- Focused 0.8 tests: PASS.
+- Complete eyeprocess test suite: PASS.
+- `pkgdown::check_pkgdown()`: PASS.
+- `R CMD check`: 0 errors, 0 warnings, 0 notes.
+- Installation with vignettes and installed-package smoke validation: PASS.
+- GitHub PR #9: all 8 CI checks passed before merge.
+
+### Scientific governance
+
+- Process evidence is not automatically interpreted as a mental-state, clinical, ability, or misconduct diagnosis.
+- Frontier estimators remain explicitly gated rather than silently substituting simpler estimators.
+- Experimental and custom model specifications retain conservative maturity labels.
+
+# eyeprocess 0.7.0.9000
+
+## Process-IRT validation framework
+
+- Added the process-IRT validation framework and associated validation contracts.
+- Expanded advanced process-model validation, diagnostics, and evidence infrastructure.
+- Preserved explicit experimental and validation-gated maturity boundaries for advanced estimators.
+- Added focused validation coverage and pkgdown documentation for the 0.7 programme.
+
 # eyeprocess 0.6.0
 
 ## Measurement uncertainty and AOI evidence
