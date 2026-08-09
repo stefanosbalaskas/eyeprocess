@@ -14,6 +14,7 @@
 #' @param design Crossed or nested design declaration.
 #' @return An `eye_process_gstudy` object.
 #' @export
+#' @noRd
 fit_process_gstudy <- function(x, metric, facets = c("person", "item", "session", "device"), design = c("crossed", "nested")) {
   .mi_assert_data(x)
   design <- match.arg(design)
@@ -56,6 +57,7 @@ fit_process_gstudy <- function(x, metric, facets = c("person", "item", "session"
 #' @param x Generalizability-study object.
 #' @return Variance-component table.
 #' @export
+#' @noRd
 process_variance_components <- function(x) {
   if (!inherits(x, "eye_process_gstudy")) .mi_stop("`x` must be an `eye_process_gstudy` object.")
   x$variance_components
@@ -70,6 +72,7 @@ process_variance_components <- function(x) {
 #' @param devices Candidate device counts.
 #' @return An `eye_process_dstudy` object.
 #' @export
+#' @noRd
 design_process_dstudy <- function(gstudy, persons = NULL, items = seq(5, 50, 5), sessions = 1:5, devices = 1) {
   if (!inherits(gstudy, "eye_process_gstudy")) .mi_stop("`gstudy` must be an `eye_process_gstudy` object.")
   vc <- setNames(gstudy$variance_components$variance, gstudy$variance_components$component)
@@ -115,6 +118,7 @@ design_process_dstudy <- function(gstudy, persons = NULL, items = seq(5, 50, 5),
 #' @param draws Bootstrap draws.
 #' @return An `eye_process_reliability_audit` object.
 #' @export
+#' @noRd
 audit_process_reliability <- function(x, metrics, method = c("icc", "gtheory", "split_half", "bootstrap"), person_col = "person_id", item_col = "item_id", draws = 250) {
   .mi_assert_data(x)
   method <- match.arg(method)

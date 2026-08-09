@@ -1,0 +1,76 @@
+---
+title: "Advanced pupillometry representations and confound control"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Advanced pupillometry representations and confound control}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>", eval = FALSE)
+library(eyeprocess)
+```
+
+## Frequency/activity features
+
+```{r}
+freq <- pupil_frequency_features(
+  samples,
+  by = c("person_id", "trial_id"),
+  time = "time_ms", pupil = "pupil_gaze_corrected_bc",
+  sampling_rate_hz = 60
+)
+plot(freq)
+```
+
+`pupil_activity_index()` exposes transparent velocity, low/high-frequency contrast, and RIPA-style proxy representations. The package deliberately avoids presenting these as pure cognitive-load measures.
+
+## Event-related pupil deconvolution
+
+```{r}
+deconv <- fit_pupil_event_deconvolution(
+  samples,
+  by = c("person_id", "trial_id"),
+  time = "time_ms", pupil = "pupil_gaze_corrected_bc",
+  events = list(stimulus = 0, information = "information_onset_ms", action = "response_time_ms")
+)
+
+pupil_event_effects(deconv)
+plot(deconv, type = "observed_fitted")
+plot(deconv, type = "effects")
+compare_pupil_kernels(samples, tmax_values = c(512, 930),
+                      by = c("person_id", "trial_id"),
+                      time = "time_ms", pupil = "pupil_gaze_corrected_bc",
+                      events = list(stimulus = 0))
+```
+
+## Luminance and trial-order adjustment
+
+```{r}
+conf <- fit_pupil_confound_model(
+  trial_data,
+  pupil = "pupil_peak",
+  luminance = "screen_luminance",
+  trial_order = "trial_sequence",
+  theta = "theta_hat",
+  person = "person_id", item = "item_id"
+)
+
+adjust_pupil_confounds(conf)
+pupil_confound_effects(conf)
+compare_raw_adjusted_pupil(conf)
+plot(conf, type = "raw_adjusted")
+plot(conf, type = "theta_luminance_surface")
+```
+
+Adjusted values remain model-dependent and should be described as luminance/fatigue-adjusted, not as cognition isolated from all confounding.
+
+## Robust filtering
+
+```{r}
+f <- filter_pupil_signal(raw_pupil, width = 9)
+audit_signal_filter(f)
+plot(f)
+compare_signal_filters(raw_pupil)
+```

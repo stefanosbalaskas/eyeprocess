@@ -1,0 +1,68 @@
+---
+title: "Multiblock process structure, profiles, and external validity"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Multiblock process structure, profiles, and external validity}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>", eval = FALSE)
+library(eyeprocess)
+```
+
+## Conceptual feature blocks
+
+```{r}
+blocks <- process_feature_blocks(
+  person_data,
+  blocks = list(
+    Psychometric = c("theta_hat", "mean_accuracy"),
+    Gaze = c("mean_rt_ms", "mean_dwell_ms", "mean_revisits", "mean_aoi_entropy"),
+    Pupil = c("mean_pupil_peak", "mean_pupil_auc"),
+    Quality = c("mean_valid_gaze_prop", "mean_valid_pupil_prop")
+  ),
+  id = "person_id"
+)
+
+mfa <- fit_multiblock_process_map(blocks)
+multiblock_person_coordinates(mfa)
+multiblock_variable_coordinates(mfa)
+multiblock_contributions(mfa)
+plot(mfa, type = "individuals")
+plot(mfa, type = "variables")
+```
+
+This is exploratory block-aware mapping, not a replacement for multimodal IRT.
+
+## Process-profile discovery
+
+```{r}
+profiles <- fit_process_profile_mixture(
+  person_data,
+  variables = c("mean_dwell_ms", "mean_pupil_peak", "mean_aoi_entropy", "mean_revisits"),
+  k = 3
+)
+process_profile_summary(profiles)
+process_profile_probabilities(profiles)
+plot(profiles, type = "profiles")
+```
+
+Profile names remain neutral until externally validated.
+
+## External validity
+
+```{r}
+valid <- audit_process_external_validity(
+  person_data,
+  criterion = "independent_task_score",
+  predictors = c("theta_hat", "mean_pupil_peak", "mean_dwell_ms", "mean_aoi_entropy"),
+  baseline_predictors = c("age")
+)
+
+process_criterion_associations(valid)
+incremental_process_validity(valid)
+plot(valid, type = "associations")
+plot(valid, type = "incremental")
+```

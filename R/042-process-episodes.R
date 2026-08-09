@@ -10,6 +10,7 @@
 #' @param min_segment Minimum segment length.
 #' @return An `eye_process_changepoints` object.
 #' @export
+#' @noRd
 detect_process_changepoints <- function(x, channels = c("gaze_velocity", "aoi", "pupil", "eda"), time_col = NULL, window = 10, threshold_quantile = 0.9, min_segment = 5) {
   window <- as.integer(window)
   if (!is.finite(window) || window < 2L) .mi_stop("`window` must be an integer of at least 2.")
@@ -45,6 +46,7 @@ detect_process_changepoints <- function(x, channels = c("gaze_velocity", "aoi", 
 #' @param ... Passed to `detect_process_changepoints()` when needed.
 #' @return An `eye_process_episodes` object.
 #' @export
+#' @noRd
 segment_process_episodes <- function(x, ...) {
   changes <- if (inherits(x, "eye_process_changepoints")) x else detect_process_changepoints(x, ...)
   n <- nrow(changes$data)
@@ -70,6 +72,7 @@ segment_process_episodes <- function(x, ...) {
 #' @param model Optional external classifier function.
 #' @return Updated `eye_process_episodes` object.
 #' @export
+#' @noRd
 label_process_episodes <- function(x, rules = NULL, model = NULL) {
   if (!inherits(x, "eye_process_episodes")) .mi_stop("`x` must be an `eye_process_episodes` object.")
   n <- nrow(x$summary)
@@ -100,6 +103,7 @@ label_process_episodes <- function(x, rules = NULL, model = NULL) {
 #' @param group Group vector.
 #' @return An `eye_episode_comparison` object.
 #' @export
+#' @noRd
 compare_episode_structure <- function(x, group) {
   if (inherits(x, "eye_process_episodes")) {
     data <- x$data

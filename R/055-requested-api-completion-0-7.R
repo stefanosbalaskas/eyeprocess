@@ -640,6 +640,26 @@ event_roundtrip_audit <- function(source_events, roundtrip_events,
             class = "eye_event_roundtrip_audit")
 }
 
+.ep07_roundtrip_extract_samples <- function(x) {
+  if (is.data.frame(x)) {
+    return(x)
+  }
+  if (is.list(x) && !is.null(x$samples)) {
+    return(x$samples)
+  }
+  stop("Define `extract_samples` for this object class.", call. = FALSE)
+}
+
+.ep07_adapter_extract_samples <- function(x) {
+  if (is.data.frame(x)) {
+    return(x)
+  }
+  if (is.list(x) && !is.null(x$samples)) {
+    return(x$samples)
+  }
+  stop("Define `extract_samples` for this adapter output.", call. = FALSE)
+}
+
 #' Execute and audit an Eye-Tracking-BIDS round trip
 #'
 #' This is a callback harness so it remains stable even if the package's BIDS
@@ -657,10 +677,7 @@ event_roundtrip_audit <- function(source_events, roundtrip_events,
 #' @export
 roundtrip_eye_bids <- function(source, exporter, importer,
                                export_args = list(), import_args = list(),
-                               extract_samples = function(x) {
-                                 if (is.data.frame(x)) x else if (is.list(x) && !is.null(x$samples)) x$samples else
-                                   stop("Define `extract_samples` for this object class.", call. = FALSE)
-                               },
+                               extract_samples = .ep07_roundtrip_extract_samples,
                                audit_args = list()) {
   if (!is.function(exporter) || !is.function(importer) || !is.function(extract_samples))
     stop("`exporter`, `importer`, and `extract_samples` must be functions.", call. = FALSE)
@@ -683,10 +700,7 @@ roundtrip_eye_bids <- function(source, exporter, importer,
 cross_version_adapter_regression <- function(
     input, baseline_adapter, candidate_adapter,
     baseline_version = "baseline", candidate_version = "candidate",
-    extract_samples = function(x) {
-      if (is.data.frame(x)) x else if (is.list(x) && !is.null(x$samples)) x$samples else
-        stop("Define `extract_samples` for this adapter output.", call. = FALSE)
-    }, audit_args = list()) {
+    extract_samples = .ep07_adapter_extract_samples, audit_args = list()) {
   if (!is.function(baseline_adapter) || !is.function(candidate_adapter) || !is.function(extract_samples))
     stop("Adapter and extractor arguments must be functions.", call. = FALSE)
   old <- baseline_adapter(input); new <- candidate_adapter(input)

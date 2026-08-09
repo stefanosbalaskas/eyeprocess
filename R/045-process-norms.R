@@ -8,6 +8,7 @@
 #' @param family Auto, Gaussian, or lognormal.
 #' @return An `eye_process_norms` object.
 #' @export
+#' @noRd
 fit_process_norms <- function(x, metric, covariates, family = c("auto", "gaussian", "lognormal")) {
   .mi_assert_data(x)
   family <- match.arg(family)
@@ -41,6 +42,7 @@ fit_process_norms <- function(x, metric, covariates, family = c("auto", "gaussia
 #' @param centiles Requested centiles.
 #' @return Data frame of predicted centiles.
 #' @export
+#' @noRd
 predict_process_centiles <- function(model, newdata, centiles = c(2.5, 10, 25, 50, 75, 90, 97.5)) {
   if (!inherits(model, "eye_process_norms")) .mi_stop("`model` must be an `eye_process_norms` object.")
   .mi_assert_data(newdata)
@@ -63,6 +65,7 @@ predict_process_centiles <- function(model, newdata, centiles = c(2.5, 10, 25, 5
 #' @param type Z score, centile, or tail probability.
 #' @return Data frame with deviation scores.
 #' @export
+#' @noRd
 score_process_deviation <- function(model, newdata, type = c("z", "centile", "tail_probability")) {
   if (!inherits(model, "eye_process_norms")) .mi_stop("`model` must be an `eye_process_norms` object.")
   type <- match.arg(type)
@@ -82,6 +85,7 @@ score_process_deviation <- function(model, newdata, type = c("z", "centile", "ta
 #' @param new_sample External sample.
 #' @return An `eye_norm_transportability` object.
 #' @export
+#' @noRd
 audit_norm_transportability <- function(model, new_sample) {
   scored <- score_process_deviation(model, new_sample, type = "z")
   z <- scored$deviation_score

@@ -10,15 +10,7 @@ cross_version_adapter_regression(
   candidate_adapter,
   baseline_version = "baseline",
   candidate_version = "candidate",
-  extract_samples = function(x) {
-     if (is.data.frame(x))
-         x
-     else if
-    (is.list(x) && !is.null(x$samples))
-         x$samples
-     else
-    stop("Define `extract_samples` for this adapter output.", call. = FALSE)
- },
+  extract_samples = .ep07_adapter_extract_samples,
   audit_args = list()
 )
 }

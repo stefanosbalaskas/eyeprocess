@@ -10,6 +10,7 @@
 #' @param grid_size Number of registered time points.
 #' @return An `eye_pupil_registration` object.
 #' @export
+#' @noRd
 register_pupil_curves <- function(x, time, pupil, anchor = c("stimulus", "response", "event"), method = c("elastic", "landmark"), id_col = "person_id", grid_size = 101) {
   .mi_assert_data(x)
   anchor <- match.arg(anchor)
@@ -69,6 +70,7 @@ register_pupil_curves <- function(x, time, pupil, anchor = c("stimulus", "respon
 #' @param components Number of amplitude components.
 #' @return An `eye_pupil_phase_amplitude` object.
 #' @export
+#' @noRd
 decompose_pupil_phase_amplitude <- function(x, components = 3) {
   if (!inherits(x, "eye_pupil_registration")) .mi_stop("`x` must be an `eye_pupil_registration` object.")
   complete <- rowSums(is.finite(x$registered)) >= max(3L, ncol(x$registered) / 2)
@@ -107,6 +109,7 @@ decompose_pupil_phase_amplitude <- function(x, components = 3) {
 #' @param ... Additional arguments reserved for external IRT engines.
 #' @return An `eye_phase_amplitude_irt` object.
 #' @export
+#' @noRd
 fit_phase_amplitude_irt <- function(responses, phase_scores, amplitude_scores = NULL, person_id = NULL, family = c("gaussian", "binomial"), ...) {
   family <- match.arg(family)
   if (inherits(phase_scores, "eye_pupil_phase_amplitude")) {
@@ -144,6 +147,7 @@ fit_phase_amplitude_irt <- function(responses, phase_scores, amplitude_scores = 
 #' @param x Pupil-registration object.
 #' @return An `eye_pupil_registration_audit` object.
 #' @export
+#' @noRd
 audit_pupil_registration <- function(x) {
   if (!inherits(x, "eye_pupil_registration")) .mi_stop("`x` must be an `eye_pupil_registration` object.")
   raw_peak <- apply(x$raw, 1L, function(curve) if (all(!is.finite(curve))) NA_real_ else which.max(curve))

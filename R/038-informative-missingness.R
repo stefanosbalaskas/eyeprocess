@@ -8,6 +8,7 @@
 #' @param random Random-effect grouping columns recorded for audit.
 #' @return An `eye_process_observation_model` object.
 #' @export
+#' @noRd
 fit_process_observation_model <- function(x, observed, predictors, random = c("person", "item")) {
   .mi_assert_data(x)
   observed_values <- if (length(observed) == 1L && is.character(observed) && observed %in% names(x)) x[[observed]] else observed
@@ -39,6 +40,7 @@ fit_process_observation_model <- function(x, observed, predictors, random = c("p
 #' @param predictors Additional outcome predictors.
 #' @return An `eye_joint_signal_missingness` object.
 #' @export
+#' @noRd
 fit_joint_signal_missingness <- function(outcome, observation, method = c("selection", "shared_parameter"), x = NULL, predictors = NULL) {
   method <- match.arg(method)
   if (!is.null(x)) .mi_assert_data(x)
@@ -71,6 +73,7 @@ fit_joint_signal_missingness <- function(outcome, observation, method = c("selec
 #' @param estimand Function applied after imputation.
 #' @return An `eye_mnar_sensitivity` object.
 #' @export
+#' @noRd
 process_pattern_mixture <- function(x, delta = seq(-1, 1, 0.1), metric = NULL, estimand = mean) {
   values <- if (is.data.frame(x)) {
     metric <- metric %||% names(x)[vapply(x, is.numeric, logical(1))][[1L]]
@@ -98,6 +101,7 @@ process_pattern_mixture <- function(x, delta = seq(-1, 1, 0.1), metric = NULL, e
 #' @param ... Passed to `process_pattern_mixture()` for raw values.
 #' @return An `eye_mnar_tipping_point` object.
 #' @export
+#' @noRd
 sensitivity_mnar_process <- function(x, estimand = mean, null = 0, ...) {
   sensitivity <- if (inherits(x, "eye_mnar_sensitivity")) x else process_pattern_mixture(x, estimand = estimand, ...)
   signs <- sign(sensitivity$table$estimate - null)

@@ -1,7 +1,7 @@
 Package: eyeprocess
 Type: Package
 Title: Harmonize Eye-Tracking, Pupillometry, Biometrics, and Psychometric Process Data
-Version: 0.7.0.9000
+Version: 0.8.0.9000
 Authors@R: c( person("Stefanos", "Balaskas", role = c("aut", "cre"), email = "s.balaskas@ac.upatras.gr", comment =
     c(ORCID = "0000-0003-2444-9796")) )
 Description: Provides an extensible, vendor-neutral framework for importing, validating, harmonizing, transforming,
@@ -31,7 +31,9 @@ Imports: graphics, grDevices, methods, splines, stats, utils
 Suggests: brms, ggplot2, jsonlite, knitr, lme4, LNIRT, mirt, rmarkdown, TAM,
     arrow, diffIRT, GDINA, OpenMx, TraMineR, testthat (>= 3.0.0), callr,
     cmdstanr, eyetrackingR, future, future.apply, openssl, PupillometryR,
-    rtdists, seqHMM, LSMjml, MASS, mgcv, nnet, survival
+    rtdists, seqHMM, LSMjml, MASS, mgcv, nnet, survival, eRm, FactoMineR,
+    mice, missForest, plm, psychotree, ranger, robfilter, tidyLPA, loo,
+    posterior
 Additional_repositories: https://stan-dev.r-universe.dev
 VignetteBuilder: knitr
 Config/testthat/edition: 3

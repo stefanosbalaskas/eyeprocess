@@ -1,0 +1,5 @@
+model_id,status,minimum_evidence
+kde_latent_distribution_irt,gated,nonparametric marginal likelihood; bandwidth specification; recovery; Gaussian-misspecification comparison
+persistence_gaze_diffusion_irt,gated,capability/caution/persistence identification; competing persistence process; recovery; behavior-label guardrails
+nonignorable_missing_irt,gated,explicit missingness mechanism; priors; identifiability; missingness recovery; sensitivity
+crossclassified_process_irt_mhrm,gated,cross-classified likelihood; MH-RM engine; recovery; runtime/memory scaling

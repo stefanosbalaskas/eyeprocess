@@ -46,6 +46,7 @@
 #' @param trial_duration_col Optional trial-duration column.
 #' @return An `eye_aoi_composition` object.
 #' @export
+#' @noRd
 derive_aoi_composition <- function(
     x,
     aois,
@@ -112,6 +113,7 @@ derive_aoi_composition <- function(
 #' @param reference ALR reference part.
 #' @return An `eye_aoi_logratio` object.
 #' @export
+#' @noRd
 transform_aoi_composition <- function(x, method = c("ilr", "clr", "alr"), reference = NULL) {
   method <- match.arg(method)
   composition <- if (inherits(x, "eye_aoi_composition")) x$proportions else .mi_close_composition(x)
@@ -153,6 +155,7 @@ transform_aoi_composition <- function(x, method = c("ilr", "clr", "alr"), refere
 #' @param method Log-ratio transform used when `composition` is untransformed.
 #' @return An `eye_aoi_composition_model` object.
 #' @export
+#' @noRd
 fit_aoi_compositional_model <- function(composition, formula, random = NULL, data = NULL, method = "ilr") {
   transformed <- if (inherits(composition, "eye_aoi_logratio")) composition else transform_aoi_composition(composition, method = method)
   model_data <- as.data.frame(transformed$transformed)
@@ -200,6 +203,7 @@ fit_aoi_compositional_model <- function(composition, formula, random = NULL, dat
 #' @param seed Random seed.
 #' @return An `eye_aoi_composition_comparison` object.
 #' @export
+#' @noRd
 compare_aoi_compositions <- function(
     x,
     group,
@@ -234,6 +238,7 @@ compare_aoi_compositions <- function(
 #' @param balances Named list with numerator and denominator AOI names, or contrast matrix.
 #' @return Data frame of balance coordinates.
 #' @export
+#' @noRd
 aoi_balance_coordinates <- function(x, balances) {
   composition <- if (inherits(x, "eye_aoi_composition")) x$proportions else .mi_close_composition(x)
   if (is.matrix(balances)) {

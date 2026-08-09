@@ -1,0 +1,8 @@
+pattern,family,warning
+aoi|target|distractor|button|text,AOI attention,May reflect task design or option relevance
+transition|switch|entropy|scanpath|sequence,Scanpath organization,Correlated with dwell and task structure
+pupil|phasic|tonic|ripa|frequency,Pupil dynamics,May reflect luminance arousal effort fatigue or motor preparation
+gaze|fixation|saccade|dwell|ttff,Gaze dynamics,May reflect viewing constraints and layout as well as processing
+valid|trackloss|missing|confidence|quality,Data quality,Must not be interpreted psychologically
+rt|response_time|trial_order,Timing,May reflect task design motor timing or speededness
+condition|task|stimulus|layout|luminance,Design/context,Can dominate prediction and must be audited separately

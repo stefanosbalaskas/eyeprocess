@@ -41,6 +41,7 @@
 #' @param radius Recurrence radius.
 #' @return An `eye_recurrence` object.
 #' @export
+#' @noRd
 gaze_recurrence <- function(x, representation = c("coordinates", "aoi", "velocity"), x_col = "x", y_col = "y", aoi_col = "aoi", radius = NULL) {
   representation <- match.arg(representation)
   series <- if (is.data.frame(x)) {
@@ -62,6 +63,7 @@ gaze_recurrence <- function(x, representation = c("coordinates", "aoi", "velocit
 #' @param radius Recurrence radius.
 #' @return An `eye_cross_recurrence` object.
 #' @export
+#' @noRd
 cross_recurrence <- function(x, y, channels = c("gaze_pupil", "gaze_eda", "pupil_eda"), radius = NULL) {
   channels <- match.arg(channels)
   standardise_matrix <- function(value) {
@@ -86,6 +88,7 @@ cross_recurrence <- function(x, y, channels = c("gaze_pupil", "gaze_eda", "pupil
 #' @param step Window step.
 #' @return An `eye_windowed_recurrence` object.
 #' @export
+#' @noRd
 windowed_recurrence <- function(x, window, step) {
   series <- if (inherits(x, "eye_recurrence")) x$series else x
   n <- if (is.matrix(series)) nrow(series) else length(series)
@@ -112,6 +115,7 @@ windowed_recurrence <- function(x, window, step) {
 #' @param minimum_line Minimum line length.
 #' @return One-row feature data frame.
 #' @export
+#' @noRd
 recurrence_features <- function(x, minimum_line = 2L) {
   matrix <- if (inherits(x, c("eye_recurrence", "eye_cross_recurrence"))) x$matrix else as.matrix(x)
   diagonal <- .mi_diagonal_lengths(matrix, "diagonal")
