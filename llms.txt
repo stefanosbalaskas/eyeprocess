@@ -1037,12 +1037,20 @@ introduced in the 0.7 development series.
   [`plot_metric_dependency_graph()`](https://stefanosbalaskas.github.io/eyeprocess/reference/046-evidence-provenance-graph.md)
   [`plot_model_decision_impact()`](https://stefanosbalaskas.github.io/eyeprocess/reference/046-evidence-provenance-graph.md)
   : Evidence and decision provenance graphs
+- [`audit_3pl_process_signatures()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_3pl_process_signatures.md)
+  : Identify items for descriptive 3PL/process review
 - [`audit_advanced_model_evidence()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_advanced_model_evidence.md)
   : Audit advanced-model scientific evidence
 - [`audit_benchmark_release()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_benchmark_release.md)
   : Audit whether benchmark assets are ready for public release
 - [`audit_bias()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_bias.md)
   : Audit bias
+- [`audit_biometric_imputation()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_biometric_imputation.md)
+  : Alias emphasizing sensitivity rather than automatic replacement
+- [`audit_biometric_preflight()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_biometric_preflight.md)
+  : Audit incoming biometric/process data before modelling
+- [`audit_candidate_item_bank()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_candidate_item_bank.md)
+  : Audit a candidate item bank against a seed model
 - [`audit_channel_incremental_information()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_channel_incremental_information.md)
   : Audit out-of-sample incremental information from a process channel
 - [`audit_convergence()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_convergence.md)
@@ -1051,36 +1059,64 @@ introduced in the 0.7 development series.
   : Audit coverage
 - [`audit_distractor_attention()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_distractor_attention.md)
   : Audit distractor attention patterns
+- [`audit_frontier_model_contract()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_frontier_model_contract.md)
+  : Audit whether a gated frontier model has a minimum evidence contract
 - [`audit_identifiability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_identifiability.md)
   : Audit empirical identifiability from replicate estimates
 - [`audit_interval_width()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_interval_width.md)
   : Audit interval width
 - [`audit_irf_shape()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_irf_shape.md)
   : Audit item response-function shape departures
+- [`audit_item_reduction_sensitivity()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_item_reduction_sensitivity.md)
+  : Run stepwise Rasch item-reduction as a sensitivity analysis
 - [`audit_latent_distribution()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_latent_distribution.md)
   : Audit the empirical latent-trait distribution
 - [`audit_measurement_transportability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_measurement_transportability.md)
   : Summarise measurement transportability across held-out groups
 - [`audit_model_promotion()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_model_promotion.md)
   : Audit promotion readiness for advanced model families
+- [`audit_multivariate_process_quality()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_multivariate_process_quality.md)
+  : Alias emphasizing data-quality interpretation of process anomaly
+  auditing
+- [`audit_nonparametric_rasch()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_nonparametric_rasch.md)
+  : Run nonparametric Rasch diagnostics with eRm
+- [`audit_presentation_accessibility()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_presentation_accessibility.md)
+  : Audit presentation/accessibility sensitivity without clinical
+  inference
 - [`audit_process_adjusted_dif()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_process_adjusted_dif.md)
   : Audit DIF before and after process-data adjustment
+- [`audit_process_anomalies()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_process_anomalies.md)
+  : Audit multivariate process/data-quality anomalies
+- [`audit_process_drift()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_process_drift.md)
+  : Audit post-deployment psychometric and biometric drift
+- [`audit_process_external_validity()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_process_external_validity.md)
+  : Audit external/structural validity of process traits
 - [`audit_process_local_dependence()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_process_local_dependence.md)
   : Audit inter-option/process local dependence
 - [`audit_process_measurement_invariance()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_process_measurement_invariance.md)
   : Audit process measurement invariance across facets
+- [`audit_process_window_sensitivity()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_process_window_sensitivity.md)
+  : Audit sensitivity of process summaries to temporal window choices
+- [`audit_pupil_fatigue_drift()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_pupil_fatigue_drift.md)
+  : Audit within-person pupil fatigue/trial-order drift
+- [`audit_pupil_frequency_stability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_pupil_frequency_stability.md)
+  : Audit stability of pupil frequency features across window lengths
 - [`audit_rmse()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_rmse.md)
   : Audit rmse
 - [`audit_roundtrip_loss()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_roundtrip_loss.md)
   : Audit semantic and numerical loss after a round trip
 - [`audit_sbc()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_sbc.md)
   : Audit SBC rank uniformity
+- [`audit_signal_filter()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_signal_filter.md)
+  : Summarize a signal-filter audit
 - [`audit_validation_completion()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_validation_completion.md)
   : Audit whether a validation programme is complete
 - [`audit_vendor_field_coverage()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_vendor_field_coverage.md)
   : Audit vendor field coverage against canonical semantics
 - [`audit_vendor_validation()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_vendor_validation.md)
   : Audit a multi-vendor validation corpus
+- [`audit_visual_context_dependence()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_visual_context_dependence.md)
+  : Audit visual-context dependence
 - [`register_coordinate_space`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-coordinates-time.md)
   [`coordinate_space`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-coordinates-time.md)
   [`convert_xy`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-coordinates-time.md)
@@ -1322,6 +1358,10 @@ introduced in the 0.7 development series.
   [`plot_item_difficulty`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-plots.md)
   [`plot_model_diagnostics`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-plots.md)
   : Visualize eye-tracking and multimodal process data
+- [`plot_aoi_transition_matrix()`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot_aoi_transition_matrix.md)
+  : Plot an AOI transition matrix
+- [`plot_aoi_transition_rank()`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot_aoi_transition_rank.md)
+  : Plot top AOI transitions by probability/count
 - [`plot_distractor_information()`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot_distractor_information.md)
   : Plot option-level distractor information
 - [`plot_gazepoint_workflow()`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot_gazepoint_workflow.md)
@@ -1336,6 +1376,24 @@ introduced in the 0.7 development series.
   : Plot person/item latent-space coordinates
 - [`plot_process_changepoint()`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot_process_changepoint.md)
   : Plot detected process change points
+- [`plot_process_channel_ablation_delta()`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot_process_channel_ablation_delta.md)
+  : Plot channel-ablation delta from a full/reference model
+- [`plot_process_feature_stability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot_process_feature_stability.md)
+  : Plot process-feature stability across resamples/splits
+- [`plot_process_window_sensitivity()`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot_process_window_sensitivity.md)
+  : Explicit wrapper for process-window sensitivity plotting
+- [`plot_pupil_activity_sensitivity()`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot_pupil_activity_sensitivity.md)
+  : Plot pupil activity sensitivity to window length
+- [`plot_pupil_activity_windows()`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot_pupil_activity_windows.md)
+  : Plot pupil activity features across windows/groups
+- [`plot_pupil_band_power()`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot_pupil_band_power.md)
+  : Plot pupil low/high-band power summaries
+- [`plot_pupil_components()`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot_pupil_components.md)
+  : Plot tonic/phasic pupil components
+- [`plot_pupil_preprocessing_audit()`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot_pupil_preprocessing_audit.md)
+  : Plot raw-to-processed pupil preprocessing stages
+- [`plot_pupil_spectrum()`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot_pupil_spectrum.md)
+  : Plot a pupil-signal power spectrum
 - [`plot_sbc_rank()`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot_sbc_rank.md)
   : Plot SBC rank histograms
 - [`plot_validation_failures()`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot_validation_failures.md)
@@ -2015,6 +2073,332 @@ interpretation boundaries.
   [`plot_selected_bank_profile()`](https://stefanosbalaskas.github.io/eyeprocess/reference/043-item-bank-optimization.md)
   : Multi-objective item-bank optimization
 
+## Process measurement and deployment governance reference (0.8)
+
+Public 0.8 APIs for process pre-flight, deployment drift, temporal and
+pupil representations, contextual and mixture IRT, exploratory
+structure, external validity, Bayesian/3PL diagnostics, streaming
+scoring, sensitivity analysis, validation reporting, and gated frontier
+methods.
+
+- [`addm_glam_proxy_features()`](https://stefanosbalaskas.github.io/eyeprocess/reference/addm_glam_proxy_features.md)
+  : Compute aDDM/GLAM-inspired gaze-evidence proxy features
+- [`adjust_pupil_confounds()`](https://stefanosbalaskas.github.io/eyeprocess/reference/adjust_pupil_confounds.md)
+  : Extract confound-adjusted pupil values
+- [`aoi_trajectory_features()`](https://stefanosbalaskas.github.io/eyeprocess/reference/aoi_trajectory_features.md)
+  : Extract AOI growth-curve/trajectory features
+- [`apply_preflight_decision()`](https://stefanosbalaskas.github.io/eyeprocess/reference/apply_preflight_decision.md)
+  : Apply a pre-flight decision to data explicitly
+- [`assign_process_feature_family()`](https://stefanosbalaskas.github.io/eyeprocess/reference/assign_process_feature_family.md)
+  : Assign features to conservative process-feature families
+- [`audit_3pl_process_signatures()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_3pl_process_signatures.md)
+  : Identify items for descriptive 3PL/process review
+- [`audit_biometric_imputation()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_biometric_imputation.md)
+  : Alias emphasizing sensitivity rather than automatic replacement
+- [`audit_biometric_preflight()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_biometric_preflight.md)
+  : Audit incoming biometric/process data before modelling
+- [`audit_candidate_item_bank()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_candidate_item_bank.md)
+  : Audit a candidate item bank against a seed model
+- [`audit_frontier_model_contract()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_frontier_model_contract.md)
+  : Audit whether a gated frontier model has a minimum evidence contract
+- [`audit_item_reduction_sensitivity()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_item_reduction_sensitivity.md)
+  : Run stepwise Rasch item-reduction as a sensitivity analysis
+- [`audit_multivariate_process_quality()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_multivariate_process_quality.md)
+  : Alias emphasizing data-quality interpretation of process anomaly
+  auditing
+- [`audit_nonparametric_rasch()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_nonparametric_rasch.md)
+  : Run nonparametric Rasch diagnostics with eRm
+- [`audit_presentation_accessibility()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_presentation_accessibility.md)
+  : Audit presentation/accessibility sensitivity without clinical
+  inference
+- [`audit_process_anomalies()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_process_anomalies.md)
+  : Audit multivariate process/data-quality anomalies
+- [`audit_process_drift()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_process_drift.md)
+  : Audit post-deployment psychometric and biometric drift
+- [`audit_process_external_validity()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_process_external_validity.md)
+  : Audit external/structural validity of process traits
+- [`audit_process_window_sensitivity()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_process_window_sensitivity.md)
+  : Audit sensitivity of process summaries to temporal window choices
+- [`audit_pupil_fatigue_drift()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_pupil_fatigue_drift.md)
+  : Audit within-person pupil fatigue/trial-order drift
+- [`audit_pupil_frequency_stability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_pupil_frequency_stability.md)
+  : Audit stability of pupil frequency features across window lengths
+- [`audit_signal_filter()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_signal_filter.md)
+  : Summarize a signal-filter audit
+- [`audit_visual_context_dependence()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_visual_context_dependence.md)
+  : Audit visual-context dependence
+- [`bayesian_process_diagnostic_flags()`](https://stefanosbalaskas.github.io/eyeprocess/reference/bayesian_process_diagnostic_flags.md)
+  : Extract compact Bayesian process-model diagnostic flags
+- [`bayesian_process_diagnostics_dashboard()`](https://stefanosbalaskas.github.io/eyeprocess/reference/bayesian_process_diagnostics_dashboard.md)
+  : Summarize Bayesian process-model diagnostics
+- [`bind_process_windows()`](https://stefanosbalaskas.github.io/eyeprocess/reference/bind_process_windows.md)
+  : Bind compatible process-window objects
+- [`biometric_imputation_sensitivity()`](https://stefanosbalaskas.github.io/eyeprocess/reference/biometric_imputation_sensitivity.md)
+  : Run biometric-feature imputation as a sensitivity analysis
+- [`collect_validation_evidence()`](https://stefanosbalaskas.github.io/eyeprocess/reference/collect_validation_evidence.md)
+  : Collect validation evidence into a common bundle
+- [`compare_aoi_trajectories()`](https://stefanosbalaskas.github.io/eyeprocess/reference/compare_aoi_trajectories.md)
+  : Compare AOI trajectory feature objects
+- [`compare_bayesian_process_models()`](https://stefanosbalaskas.github.io/eyeprocess/reference/compare_bayesian_process_models.md)
+  : Compare Bayesian process models by LOO or Bayes factor
+- [`compare_deployment_batches()`](https://stefanosbalaskas.github.io/eyeprocess/reference/compare_deployment_batches.md)
+  : Compare two deployment batches descriptively
+- [`compare_presentation_fairness()`](https://stefanosbalaskas.github.io/eyeprocess/reference/compare_presentation_fairness.md)
+  : Compare outcomes across presentation variants
+- [`compare_process_criterion_models()`](https://stefanosbalaskas.github.io/eyeprocess/reference/compare_process_criterion_models.md)
+  : Compare process external-validity models
+- [`compare_process_profile_solutions()`](https://stefanosbalaskas.github.io/eyeprocess/reference/compare_process_profile_solutions.md)
+  : Compare candidate process-profile solutions
+- [`compare_pupil_kernels()`](https://stefanosbalaskas.github.io/eyeprocess/reference/compare_pupil_kernels.md)
+  : Compare pupil deconvolution kernels
+- [`compare_raw_adjusted_pupil()`](https://stefanosbalaskas.github.io/eyeprocess/reference/compare_raw_adjusted_pupil.md)
+  : Compare raw and confound-adjusted pupil values
+- [`compare_signal_filters()`](https://stefanosbalaskas.github.io/eyeprocess/reference/compare_signal_filters.md)
+  : Compare multiple signal filters
+- [`compare_visual_context_irt()`](https://stefanosbalaskas.github.io/eyeprocess/reference/compare_visual_context_irt.md)
+  : Compare base and visual-context IRT models
+- [`context_factor_effects()`](https://stefanosbalaskas.github.io/eyeprocess/reference/context_factor_effects.md)
+  : Extract visual-context factor effects/loadings
+- [`drift_by_device()`](https://stefanosbalaskas.github.io/eyeprocess/reference/drift_by_device.md)
+  : Drift audit stratified by device
+- [`drift_by_site()`](https://stefanosbalaskas.github.io/eyeprocess/reference/drift_by_site.md)
+  : Drift audit stratified by study site
+- [`drift_by_stimulus_version()`](https://stefanosbalaskas.github.io/eyeprocess/reference/drift_by_stimulus_version.md)
+  : Drift audit stratified by stimulus version
+- [`drift_by_vendor()`](https://stefanosbalaskas.github.io/eyeprocess/reference/drift_by_vendor.md)
+  : Drift audit stratified by vendor
+- [`export_validation_bundle()`](https://stefanosbalaskas.github.io/eyeprocess/reference/export_validation_bundle.md)
+  : Export a validation evidence bundle
+- [`extract_process_windows()`](https://stefanosbalaskas.github.io/eyeprocess/reference/extract_process_windows.md)
+  : Extract standardized sliding-window process features
+- [`filter_eye_signal()`](https://stefanosbalaskas.github.io/eyeprocess/reference/filter_eye_signal.md)
+  : Filter a one-dimensional eye signal robustly
+- [`filter_pupil_signal()`](https://stefanosbalaskas.github.io/eyeprocess/reference/filter_pupil_signal.md)
+  : Filter pupil signal robustly
+- [`fit_aoi_growth_curve()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_aoi_growth_curve.md)
+  : Fit a single AOI growth curve
+- [`fit_crossclassified_process_irt_mhrm()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_crossclassified_process_irt_mhrm.md)
+  : Create a gated scalable cross-classified MH-RM process IRT interface
+- [`fit_gaze_anchored_3pl_audit()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_gaze_anchored_3pl_audit.md)
+  : Fit a standard 3PL and audit lower-asymptote alignment with process
+  evidence
+- [`fit_item_parameter_seed_model()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_item_parameter_seed_model.md)
+  : Fit an experimental pre-pilot item-parameter seeding model
+- [`fit_kde_latent_distribution_irt()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_kde_latent_distribution_irt.md)
+  : Create a gated KDE latent-distribution IRT interface
+- [`fit_mixture_irt_process_classes()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_mixture_irt_process_classes.md)
+  : Fit a true mirt mixture-IRT response model
+- [`fit_multiblock_process_map()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_multiblock_process_map.md)
+  : Fit a multiblock psychometric/gaze/pupil/quality structure map
+- [`fit_nonignorable_missing_irt()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_nonignorable_missing_irt.md)
+  : Create a gated Bayesian nonignorable-missing IRT interface
+- [`fit_persistence_gaze_diffusion_irt()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_persistence_gaze_diffusion_irt.md)
+  : Create a gated persistence-augmented gaze-diffusion IRT interface
+- [`fit_process_profile_mixture()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_process_profile_mixture.md)
+  : Fit exploratory process profiles
+- [`fit_process_rasch_tree()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_process_rasch_tree.md)
+  : Fit a process-informed Rasch tree
+- [`fit_pupil_confound_model()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_pupil_confound_model.md)
+  : Fit a luminance/fatigue/process confound model for pupil response
+- [`fit_pupil_event_deconvolution()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_pupil_event_deconvolution.md)
+  : Fit transparent event-related pupil deconvolution models
+- [`fit_visual_context_irt()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_visual_context_irt.md)
+  : Fit an explicit visual-context/testlet IRT model
+- [`gaze_anchored_3pl_alignment()`](https://stefanosbalaskas.github.io/eyeprocess/reference/gaze_anchored_3pl_alignment.md)
+  : Return the process-alignment table from a gaze-anchored 3PL audit
+- [`incremental_process_validity()`](https://stefanosbalaskas.github.io/eyeprocess/reference/incremental_process_validity.md)
+  : Extract incremental process validity
+- [`map_latent_classes_to_process_profiles()`](https://stefanosbalaskas.github.io/eyeprocess/reference/map_latent_classes_to_process_profiles.md)
+  : Map supplied latent-class memberships to process summaries
+- [`multiblock_contributions()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multiblock_contributions.md)
+  : Extract multiblock block contributions/coordinates
+- [`multiblock_person_coordinates()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multiblock_person_coordinates.md)
+  : Extract multiblock person coordinates
+- [`multiblock_variable_coordinates()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multiblock_variable_coordinates.md)
+  : Extract multiblock variable coordinates
+- [`plot(`*`<eye_aoi_growth_curve>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_aoi_growth_curve.md)
+  : Plot aoi growth curve diagnostics
+- [`plot(`*`<eye_aoi_trajectory>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_aoi_trajectory.md)
+  : Plot aoi trajectory diagnostics
+- [`plot(`*`<eye_bayesian_process_dashboard>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_bayesian_process_dashboard.md)
+  : Plot bayesian process dashboard diagnostics
+- [`plot(`*`<eye_biometric_imputation_sensitivity>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_biometric_imputation_sensitivity.md)
+  : Plot biometric imputation sensitivity diagnostics
+- [`plot(`*`<eye_biometric_preflight>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_biometric_preflight.md)
+  : Plot biometric preflight diagnostics
+- [`plot(`*`<eye_candidate_item_bank_audit>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_candidate_item_bank_audit.md)
+  : Plot candidate item bank audit diagnostics
+- [`plot(`*`<eye_decision_process_proxy>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_decision_process_proxy.md)
+  : Plot decision process proxy diagnostics
+- [`plot(`*`<eye_gated_process_model>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_gated_process_model.md)
+  : Plot gated process model diagnostics
+- [`plot(`*`<eye_gaze_anchored_3pl_audit>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_gaze_anchored_3pl_audit.md)
+  : Plot gaze anchored 3pl audit diagnostics
+- [`plot(`*`<eye_item_parameter_seed>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_item_parameter_seed.md)
+  : Plot item parameter seed diagnostics
+- [`plot(`*`<eye_item_reduction_sensitivity>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_item_reduction_sensitivity.md)
+  : Plot item reduction sensitivity diagnostics
+- [`plot(`*`<eye_latent_process_alignment>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_latent_process_alignment.md)
+  : Plot latent process alignment diagnostics
+- [`plot(`*`<eye_mixture_irt_process>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_mixture_irt_process.md)
+  : Plot mixture irt process diagnostics
+- [`plot(`*`<eye_multiblock_process_map>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_multiblock_process_map.md)
+  : Plot multiblock process map diagnostics
+- [`plot(`*`<eye_nonparametric_rasch_audit>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_nonparametric_rasch_audit.md)
+  : Plot nonparametric rasch audit diagnostics
+- [`plot(`*`<eye_preaction_process_features>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_preaction_process_features.md)
+  : Plot preaction process features diagnostics
+- [`plot(`*`<eye_presentation_accessibility>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_presentation_accessibility.md)
+  : Plot presentation accessibility diagnostics
+- [`plot(`*`<eye_presentation_fairness_comparison>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_presentation_fairness_comparison.md)
+  : Plot presentation fairness comparison diagnostics
+- [`plot(`*`<eye_process_anomaly_audit>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_process_anomaly_audit.md)
+  : Plot process anomaly audit diagnostics
+- [`plot(`*`<eye_process_drift_audit>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_process_drift_audit.md)
+  : Plot process drift audit diagnostics
+- [`plot(`*`<eye_process_external_validity>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_process_external_validity.md)
+  : Plot process external validity diagnostics
+- [`plot(`*`<eye_process_feature_blocks>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_process_feature_blocks.md)
+  : Plot process feature blocks diagnostics
+- [`plot(`*`<eye_process_profile_mixture>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_process_profile_mixture.md)
+  : Plot process profile mixture diagnostics
+- [`plot(`*`<eye_process_rasch_tree>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_process_rasch_tree.md)
+  : Plot process rasch tree diagnostics
+- [`plot(`*`<eye_process_window_sensitivity>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_process_window_sensitivity.md)
+  : Plot process window sensitivity diagnostics
+- [`plot(`*`<eye_process_windows>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_process_windows.md)
+  : Plot process windows diagnostics
+- [`plot(`*`<eye_pupil_confound_model>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_pupil_confound_model.md)
+  : Plot pupil confound model diagnostics
+- [`plot(`*`<eye_pupil_deconvolution>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_pupil_deconvolution.md)
+  : Plot pupil deconvolution diagnostics
+- [`plot(`*`<eye_pupil_fatigue_drift>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_pupil_fatigue_drift.md)
+  : Plot pupil fatigue drift diagnostics
+- [`plot(`*`<eye_pupil_frequency_features>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_pupil_frequency_features.md)
+  : Plot pupil frequency features diagnostics
+- [`plot(`*`<eye_pupil_frequency_stability>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_pupil_frequency_stability.md)
+  : Plot pupil frequency stability diagnostics
+- [`plot(`*`<eye_signal_filter_audit>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_signal_filter_audit.md)
+  : Plot signal filter audit diagnostics
+- [`plot(`*`<eye_streaming_score>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_streaming_score.md)
+  : Plot streaming score diagnostics
+- [`plot(`*`<eye_validation_bundle>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_validation_bundle.md)
+  : Plot validation bundle diagnostics
+- [`plot(`*`<eye_visual_context_irt>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot.eye_visual_context_irt.md)
+  : Plot visual context irt diagnostics
+- [`plot_aoi_transition_matrix()`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot_aoi_transition_matrix.md)
+  : Plot an AOI transition matrix
+- [`plot_aoi_transition_rank()`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot_aoi_transition_rank.md)
+  : Plot top AOI transitions by probability/count
+- [`plot_process_channel_ablation_delta()`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot_process_channel_ablation_delta.md)
+  : Plot channel-ablation delta from a full/reference model
+- [`plot_process_feature_stability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot_process_feature_stability.md)
+  : Plot process-feature stability across resamples/splits
+- [`plot_process_window_sensitivity()`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot_process_window_sensitivity.md)
+  : Explicit wrapper for process-window sensitivity plotting
+- [`plot_pupil_activity_sensitivity()`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot_pupil_activity_sensitivity.md)
+  : Plot pupil activity sensitivity to window length
+- [`plot_pupil_activity_windows()`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot_pupil_activity_windows.md)
+  : Plot pupil activity features across windows/groups
+- [`plot_pupil_band_power()`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot_pupil_band_power.md)
+  : Plot pupil low/high-band power summaries
+- [`plot_pupil_components()`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot_pupil_components.md)
+  : Plot tonic/phasic pupil components
+- [`plot_pupil_preprocessing_audit()`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot_pupil_preprocessing_audit.md)
+  : Plot raw-to-processed pupil preprocessing stages
+- [`plot_pupil_spectrum()`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot_pupil_spectrum.md)
+  : Plot a pupil-signal power spectrum
+- [`preaction_process_features()`](https://stefanosbalaskas.github.io/eyeprocess/reference/preaction_process_features.md)
+  : Build pre-action process features
+- [`predict_aoi_trajectory()`](https://stefanosbalaskas.github.io/eyeprocess/reference/predict_aoi_trajectory.md)
+  : Predict from an AOI growth curve
+- [`predict_item_parameter_priors()`](https://stefanosbalaskas.github.io/eyeprocess/reference/predict_item_parameter_priors.md)
+  : Predict pre-pilot item-parameter priors
+- [`preflight_decisions()`](https://stefanosbalaskas.github.io/eyeprocess/reference/preflight_decisions.md)
+  : Extract pre-flight decisions
+- [`preflight_exclusion_manifest()`](https://stefanosbalaskas.github.io/eyeprocess/reference/preflight_exclusion_manifest.md)
+  : Create an explicit pre-flight exclusion/review manifest
+- [`preflight_failures()`](https://stefanosbalaskas.github.io/eyeprocess/reference/preflight_failures.md)
+  : Extract pre-flight failures/review cases
+- [`preflight_passed()`](https://stefanosbalaskas.github.io/eyeprocess/reference/preflight_passed.md)
+  : Extract pre-flight passes
+- [`prepare_structured_unstructured_process_features()`](https://stefanosbalaskas.github.io/eyeprocess/reference/prepare_structured_unstructured_process_features.md)
+  : Prepare leakage-safe structured/unstructured process representations
+- [`print(`*`<eye_gated_process_model>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/print.eye_gated_process_model.md)
+  : Print a gated process model object
+- [`print(`*`<eye_process_drift_spec>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/print.eye_process_drift_spec.md)
+  : Print a process drift spec object
+- [`print(`*`<eye_process_preflight_spec>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/print.eye_process_preflight_spec.md)
+  : Print a process preflight spec object
+- [`print(`*`<eye_process_window_spec>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/print.eye_process_window_spec.md)
+  : Print a process window spec object
+- [`print(`*`<eye_validation_bundle>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/print.eye_validation_bundle.md)
+  : Print a validation bundle object
+- [`print(`*`<eye_visual_context_registry>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/print.eye_visual_context_registry.md)
+  : Print a visual context registry object
+- [`process_anomaly_distance()`](https://stefanosbalaskas.github.io/eyeprocess/reference/process_anomaly_distance.md)
+  : Extract multivariate process anomaly distances
+- [`process_criterion_associations()`](https://stefanosbalaskas.github.io/eyeprocess/reference/process_criterion_associations.md)
+  : Extract process-criterion associations
+- [`process_drift_alerts()`](https://stefanosbalaskas.github.io/eyeprocess/reference/process_drift_alerts.md)
+  : Extract drift alerts
+- [`process_drift_spec()`](https://stefanosbalaskas.github.io/eyeprocess/reference/process_drift_spec.md)
+  : Specify a process-deployment drift audit
+- [`process_feature_blocks()`](https://stefanosbalaskas.github.io/eyeprocess/reference/process_feature_blocks.md)
+  : Define conceptual process-feature blocks
+- [`process_feature_family_registry()`](https://stefanosbalaskas.github.io/eyeprocess/reference/process_feature_family_registry.md)
+  : Registry of process-feature families and interpretation guardrails
+- [`process_feature_stability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/process_feature_stability.md)
+  : Summarize process-feature stability across repeated analyses
+- [`process_preflight_spec()`](https://stefanosbalaskas.github.io/eyeprocess/reference/process_preflight_spec.md)
+  : Specify a biometric process pre-flight gate
+- [`process_profile_probabilities()`](https://stefanosbalaskas.github.io/eyeprocess/reference/process_profile_probabilities.md)
+  : Extract process-profile probabilities
+- [`process_profile_summary()`](https://stefanosbalaskas.github.io/eyeprocess/reference/process_profile_summary.md)
+  : Summarize process profiles
+- [`process_window_spec()`](https://stefanosbalaskas.github.io/eyeprocess/reference/process_window_spec.md)
+  : Specify temporal process windows
+- [`pupil_activity_index()`](https://stefanosbalaskas.github.io/eyeprocess/reference/pupil_activity_index.md)
+  : Compute a transparent pupil activity index
+- [`pupil_band_power()`](https://stefanosbalaskas.github.io/eyeprocess/reference/pupil_band_power.md)
+  : Compute pupil signal power in a frequency band
+- [`pupil_confound_effects()`](https://stefanosbalaskas.github.io/eyeprocess/reference/pupil_confound_effects.md)
+  : Extract pupil confound-model effects
+- [`pupil_event_effects()`](https://stefanosbalaskas.github.io/eyeprocess/reference/pupil_event_effects.md)
+  : Extract event effects from pupil deconvolution
+- [`pupil_event_regressor()`](https://stefanosbalaskas.github.io/eyeprocess/reference/pupil_event_regressor.md)
+  : Build an event-locked pupil regressor
+- [`pupil_frequency_features()`](https://stefanosbalaskas.github.io/eyeprocess/reference/pupil_frequency_features.md)
+  : Extract pupil frequency-domain and activity features by group
+- [`pupil_response_kernel()`](https://stefanosbalaskas.github.io/eyeprocess/reference/pupil_response_kernel.md)
+  : Canonical gamma-shaped pupil response kernel
+- [`pupil_velocity_activity()`](https://stefanosbalaskas.github.io/eyeprocess/reference/pupil_velocity_activity.md)
+  : Derivative-based pupil activity magnitude
+- [`score_partial_response_pattern()`](https://stefanosbalaskas.github.io/eyeprocess/reference/score_partial_response_pattern.md)
+  : Score a partial response pattern from a calibrated mirt model
+- [`score_response_stream()`](https://stefanosbalaskas.github.io/eyeprocess/reference/score_response_stream.md)
+  : Score a response stream cumulatively
+- [`simulate_presentation_variants()`](https://stefanosbalaskas.github.io/eyeprocess/reference/simulate_presentation_variants.md)
+  : Simulate pre-registered presentation variants for review
+- [`streaming_score_history()`](https://stefanosbalaskas.github.io/eyeprocess/reference/streaming_score_history.md)
+  : Extract streaming score history
+- [`summarize_process_windows()`](https://stefanosbalaskas.github.io/eyeprocess/reference/summarize_process_windows.md)
+  : Summarize extracted process windows
+- [`summary(`*`<eye_validation_bundle>`*`)`](https://stefanosbalaskas.github.io/eyeprocess/reference/summary.eye_validation_bundle.md)
+  : Summarize a validation bundle object
+- [`update_person_score()`](https://stefanosbalaskas.github.io/eyeprocess/reference/update_person_score.md)
+  : Update a partial person score with one new response
+- [`validate_process_windows()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validate_process_windows.md)
+  : Validate a process-window representation
+- [`validation_bundle_manifest()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validation_bundle_manifest.md)
+  : Create a machine-readable validation manifest
+- [`validation_report()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validation_report.md)
+  : Render a conservative validation report
+- [`visual_context_registry()`](https://stefanosbalaskas.github.io/eyeprocess/reference/visual_context_registry.md)
+  : Build an item-to-visual-context registry
+- [`write_validation_report()`](https://stefanosbalaskas.github.io/eyeprocess/reference/write_validation_report.md)
+  : Write a validation report to disk
+
 # Articles
 
 ### Foundations
@@ -2097,3 +2481,33 @@ introduced for the 0.7 series.
   Claim](https://stefanosbalaskas.github.io/eyeprocess/articles/process-irt-model-atlas-0-7.md):
 - [Independent Vendor Validation and Semantic
   Fidelity](https://stefanosbalaskas.github.io/eyeprocess/articles/validation-evidence-0-7.md):
+
+### Process measurement and deployment governance (0.8)
+
+Pre-flight quality governance, temporal representations, advanced
+pupillometry, visual-context measurement, multiblock structure,
+Bayesian/3PL diagnostics, streaming scoring, validation bundles,
+optional sensitivity diagnostics, and evidence-gated frontier workflows.
+
+- [Advanced pupillometry representations and confound
+  control](https://stefanosbalaskas.github.io/eyeprocess/articles/advanced-pupillometry-representations.md):
+- [Advanced Rasch, mixture-IRT, and imputation
+  sensitivity](https://stefanosbalaskas.github.io/eyeprocess/articles/advanced-rasch-mixture-and-imputation-sensitivity.md):
+- [Bayesian and 3PL Process
+  Diagnostics](https://stefanosbalaskas.github.io/eyeprocess/articles/bayesian-and-3pl-process-diagnostics.md):
+- [Post-deployment psychometric-biometric drift
+  monitoring](https://stefanosbalaskas.github.io/eyeprocess/articles/deployment-drift-monitoring.md):
+- [Item seeding, accessibility review, and presentation
+  fairness](https://stefanosbalaskas.github.io/eyeprocess/articles/item-seeding-accessibility-and-presentation-fairness.md):
+- [Multiblock process structure, profiles, and external
+  validity](https://stefanosbalaskas.github.io/eyeprocess/articles/multiblock-profiles-and-external-validity.md):
+- [Process-decision proxies and research-frontier
+  gates](https://stefanosbalaskas.github.io/eyeprocess/articles/process-decision-proxies-and-frontier-gates.md):
+- [Process pre-flight and anomaly
+  governance](https://stefanosbalaskas.github.io/eyeprocess/articles/process-preflight-and-anomaly-governance.md):
+- [Streaming scoring and validation evidence
+  bundles](https://stefanosbalaskas.github.io/eyeprocess/articles/streaming-scoring-and-validation-bundles.md):
+- [Temporal process windows and AOI
+  trajectories](https://stefanosbalaskas.github.io/eyeprocess/articles/temporal-process-representations.md):
+- [Visual-context and testlet
+  IRT](https://stefanosbalaskas.github.io/eyeprocess/articles/visual-context-and-testlet-irt.md):

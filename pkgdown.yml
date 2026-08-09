@@ -1,11 +1,15 @@
-pandoc: 3.8.3
+pandoc: '3.10'
 pkgdown: 2.2.1
 pkgdown_sha: ~
 articles:
   advanced-model-validation-0-7: advanced-model-validation-0-7.html
   advanced-model-validation: advanced-model-validation.html
+  advanced-pupillometry-representations: advanced-pupillometry-representations.html
+  advanced-rasch-mixture-and-imputation-sensitivity: advanced-rasch-mixture-and-imputation-sensitivity.html
   api-storage-adapters: api-storage-adapters.html
+  bayesian-and-3pl-process-diagnostics: bayesian-and-3pl-process-diagnostics.html
   benchmark-reproduction: benchmark-reproduction.html
+  deployment-drift-monitoring: deployment-drift-monitoring.html
   dynamic-irtree-hardening: dynamic-irtree-hardening.html
   evidence-decision-provenance: evidence-decision-provenance.html
   experimental-process-irt-0-7: experimental-process-irt-0-7.html
@@ -18,25 +22,32 @@ articles:
   independent-vendor-corpus: independent-vendor-corpus.html
   interoperability-storage: interoperability-storage.html
   item-bank-fairness-norms: item-bank-fairness-norms.html
+  item-seeding-accessibility-and-presentation-fairness: item-seeding-accessibility-and-presentation-fairness.html
   multi-vendor-validation: multi-vendor-validation.html
+  multiblock-profiles-and-external-validity: multiblock-profiles-and-external-validity.html
   multimodal-process-irt-0-7: multimodal-process-irt-0-7.html
   multiple-response-and-revisiting-irt-0-7: multiple-response-and-revisiting-irt-0-7.html
   preprocessing-features: preprocessing-features.html
   probabilistic-aoi-compositions: probabilistic-aoi-compositions.html
+  process-decision-proxies-and-frontier-gates: process-decision-proxies-and-frontier-gates.html
   process-irt-model-atlas-0-7: process-irt-model-atlas-0-7.html
+  process-preflight-and-anomaly-governance: process-preflight-and-anomaly-governance.html
   psychometric-process-models: psychometric-process-models.html
   pupil-registration-missingness: pupil-registration-missingness.html
   reliability-device-transportability: reliability-device-transportability.html
   research-validation-program: research-validation-program.html
   responsible-use: responsible-use.html
   scanpaths-and-cognitive-episodes: scanpaths-and-cognitive-episodes.html
+  streaming-scoring-and-validation-bundles: streaming-scoring-and-validation-bundles.html
+  temporal-process-representations: temporal-process-representations.html
   temporal-spatial-process-science: temporal-spatial-process-science.html
   theory-strategy-mixtures: theory-strategy-mixtures.html
   uncertainty-calibration: uncertainty-calibration.html
   validating-real-exports: validating-real-exports.html
   validation-evidence-0-7: validation-evidence-0-7.html
   validation-execution-engine: validation-execution-engine.html
-last_built: 2026-08-08T20:18Z
+  visual-context-and-testlet-irt: visual-context-and-testlet-irt.html
+last_built: 2026-08-09T10:13Z
 urls:
   reference: https://stefanosbalaskas.github.io/eyeprocess/reference
   article: https://stefanosbalaskas.github.io/eyeprocess/articles

@@ -1,0 +1,61 @@
+# Bayesian and 3PL Process Diagnostics
+
+## Scope
+
+This article adds two diagnostic layers that were present in the source
+research templates but should remain separate from substantive
+behavioral claims.
+
+1.  [`bayesian_process_diagnostics_dashboard()`](https://stefanosbalaskas.github.io/eyeprocess/reference/bayesian_process_diagnostics_dashboard.md)
+    collects LOO, posterior convergence/effective-sample-size summaries,
+    and optionally a Bayes factor for fitted `brms` process models.
+2.  [`fit_gaze_anchored_3pl_audit()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_gaze_anchored_3pl_audit.md)
+    fits a standard psychometric 3PL model and descriptively aligns its
+    item lower-asymptote parameter with gaze, pupil, response-time, or
+    accuracy summaries.
+
+Neither function establishes a causal cognitive mechanism. In
+particular, a 3PL lower asymptote is an item parameter and is not a
+participant-level “guessing detector”.
+
+## Bayesian diagnostics
+
+``` r
+
+dash <- bayesian_process_diagnostics_dashboard(
+  response_only = brms_response_model,
+  response_plus_pupil = brms_pupil_model,
+  compute_loo = TRUE,
+  compute_bayes_factor = FALSE
+)
+
+bayesian_process_diagnostic_flags(dash)
+plot(dash, type = "loo")
+plot(dash, type = "rhat")
+```
+
+Bayes factors are deliberately opt-in because they require suitable
+model fitting settings and answer a different evidential question than
+predictive LOO comparison.
+
+## 3PL response-process alignment
+
+``` r
+
+three_pl <- fit_gaze_anchored_3pl_audit(
+  response_matrix = binary_response_matrix,
+  process_data = binary_long,
+  item = "item_id",
+  process_features = c("ttff_ms", "dwell_ms", "pupil_peak", "rt_ms", "accuracy")
+)
+
+gaze_anchored_3pl_alignment(three_pl)
+audit_3pl_process_signatures(three_pl)
+plot(three_pl, type = "lower_asymptote")
+plot(three_pl, type = "process_alignment", feature = "ttff_ms")
+```
+
+The resulting correlations and review flags are descriptive item-level
+diagnostics. They require independent substantive validation before any
+interpretation in terms of rapid responding, guessing, effort,
+engagement, or strategy.

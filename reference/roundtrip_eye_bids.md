@@ -14,15 +14,7 @@ roundtrip_eye_bids(
   importer,
   export_args = list(),
   import_args = list(),
-  extract_samples = function(x) {
-     if (is.data.frame(x))
-         x
-     else if
-(is.list(x) && !is.null(x$samples))
-x$samples
-     else
-    stop("Define `extract_samples` for this object class.", call. = FALSE)
- },
+  extract_samples = .ep07_roundtrip_extract_samples,
   audit_args = list()
 )
 ```

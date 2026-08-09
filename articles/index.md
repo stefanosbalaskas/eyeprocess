@@ -80,3 +80,33 @@ introduced for the 0.7 series.
   Claim](https://stefanosbalaskas.github.io/eyeprocess/articles/process-irt-model-atlas-0-7.md):
 - [Independent Vendor Validation and Semantic
   Fidelity](https://stefanosbalaskas.github.io/eyeprocess/articles/validation-evidence-0-7.md):
+
+### Process measurement and deployment governance (0.8)
+
+Pre-flight quality governance, temporal representations, advanced
+pupillometry, visual-context measurement, multiblock structure,
+Bayesian/3PL diagnostics, streaming scoring, validation bundles,
+optional sensitivity diagnostics, and evidence-gated frontier workflows.
+
+- [Advanced pupillometry representations and confound
+  control](https://stefanosbalaskas.github.io/eyeprocess/articles/advanced-pupillometry-representations.md):
+- [Advanced Rasch, mixture-IRT, and imputation
+  sensitivity](https://stefanosbalaskas.github.io/eyeprocess/articles/advanced-rasch-mixture-and-imputation-sensitivity.md):
+- [Bayesian and 3PL Process
+  Diagnostics](https://stefanosbalaskas.github.io/eyeprocess/articles/bayesian-and-3pl-process-diagnostics.md):
+- [Post-deployment psychometric-biometric drift
+  monitoring](https://stefanosbalaskas.github.io/eyeprocess/articles/deployment-drift-monitoring.md):
+- [Item seeding, accessibility review, and presentation
+  fairness](https://stefanosbalaskas.github.io/eyeprocess/articles/item-seeding-accessibility-and-presentation-fairness.md):
+- [Multiblock process structure, profiles, and external
+  validity](https://stefanosbalaskas.github.io/eyeprocess/articles/multiblock-profiles-and-external-validity.md):
+- [Process-decision proxies and research-frontier
+  gates](https://stefanosbalaskas.github.io/eyeprocess/articles/process-decision-proxies-and-frontier-gates.md):
+- [Process pre-flight and anomaly
+  governance](https://stefanosbalaskas.github.io/eyeprocess/articles/process-preflight-and-anomaly-governance.md):
+- [Streaming scoring and validation evidence
+  bundles](https://stefanosbalaskas.github.io/eyeprocess/articles/streaming-scoring-and-validation-bundles.md):
+- [Temporal process windows and AOI
+  trajectories](https://stefanosbalaskas.github.io/eyeprocess/articles/temporal-process-representations.md):
+- [Visual-context and testlet
+  IRT](https://stefanosbalaskas.github.io/eyeprocess/articles/visual-context-and-testlet-irt.md):
