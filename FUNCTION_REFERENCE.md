@@ -1,6 +1,6 @@
 # eyeprocess function reference
 
-Current development version: **0.8.0.9000**
+Current package version: **0.8.0**
 
 - Functions defined: 1436
 - Exported functions: 812

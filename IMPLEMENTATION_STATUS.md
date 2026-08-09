@@ -1,6 +1,6 @@
 # eyeprocess implementation status
 
-Current development version: **0.8.0.9000**
+Current package version: **0.8.0**
 
 ## Implemented in the development source
 
