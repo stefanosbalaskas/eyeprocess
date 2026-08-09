@@ -10,6 +10,7 @@
 #' @param grid_size Spatial grid resolution.
 #' @return An `eye_fixation_point_process` object.
 #' @export
+#' @noRd
 fit_fixation_point_process <- function(
     x,
     spatial_covariates = NULL,
@@ -111,6 +112,7 @@ fit_fixation_point_process <- function(
 #' @param x_col,y_col,time_col Coordinate and time columns.
 #' @return An `eye_marked_gaze_process` object.
 #' @export
+#' @noRd
 fit_marked_gaze_process <- function(x, marks = c("duration", "pupil", "saccade_amplitude"), x_col = "x", y_col = "y", time_col = "time") {
   .mi_assert_data(x, min_rows = 5L)
   .mi_assert_columns(x, c(x_col, y_col))
@@ -139,6 +141,7 @@ fit_marked_gaze_process <- function(x, marks = c("duration", "pupil", "saccade_a
 #' @param new_stimulus Optional prediction grid.
 #' @return Data frame with predicted intensity.
 #' @export
+#' @noRd
 predict_fixation_intensity <- function(model, new_stimulus = NULL) {
   if (!inherits(model, "eye_fixation_point_process")) .mi_stop("`model` must be an `eye_fixation_point_process` object.")
   data <- new_stimulus %||% model$grid
@@ -168,6 +171,7 @@ predict_fixation_intensity <- function(model, new_stimulus = NULL) {
 #' @param model Fixation point-process object.
 #' @return An `eye_gaze_point_process_diagnostics` object.
 #' @export
+#' @noRd
 diagnose_gaze_point_process <- function(model) {
   if (!inherits(model, "eye_fixation_point_process")) .mi_stop("`model` must be an `eye_fixation_point_process` object.")
   grid <- model$grid

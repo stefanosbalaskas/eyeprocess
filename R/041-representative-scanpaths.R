@@ -28,6 +28,7 @@
 #' @param distance MultiMatch-style DTW, edit, or transport distance.
 #' @return An `eye_scanpath_representative` object.
 #' @export
+#' @noRd
 representative_scanpath <- function(x, method = c("medoid", "barycenter", "consensus"), id_col = "person_id", aoi_col = "aoi", x_col = "x", y_col = "y", distance = c("multimatch", "edit", "transport")) {
   method <- match.arg(method); distance <- match.arg(distance)
   paths <- .mi_scanpath_list(x, id_col, aoi_col, x_col, y_col)
@@ -75,6 +76,7 @@ representative_scanpath <- function(x, method = c("medoid", "barycenter", "conse
 #' @param x Representative object or scanpath list.
 #' @return Scanpath dispersion summary.
 #' @export
+#' @noRd
 scanpath_dispersion <- function(x) {
   object <- if (inherits(x, "eye_scanpath_representative")) x else representative_scanpath(x)
   distances <- object$distance_matrix
@@ -94,6 +96,7 @@ scanpath_dispersion <- function(x) {
 #' @param permutations Permutations.
 #' @return An `eye_scanpath_comparison` object.
 #' @export
+#' @noRd
 compare_scanpath_distributions <- function(x, group, distance = c("multimatch", "edit", "transport"), permutations = 499) {
   object <- representative_scanpath(x, distance = match.arg(distance))
   groups <- if (!is.null(names(group))) group[names(object$paths)] else group
@@ -119,6 +122,7 @@ compare_scanpath_distributions <- function(x, group, distance = c("multimatch", 
 #' @param seed Seed.
 #' @return An `eye_scanpath_bootstrap` object.
 #' @export
+#' @noRd
 bootstrap_representative_scanpath <- function(x, draws = 250, seed = 20260807) {
   object <- if (inherits(x, "eye_scanpath_representative")) x else representative_scanpath(x)
   set.seed(seed)

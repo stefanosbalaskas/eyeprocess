@@ -33,6 +33,7 @@
 #' @param x_col,y_col,time_col Coordinate and time columns.
 #' @return An `eye_calibration_drift` object.
 #' @export
+#' @noRd
 detect_calibration_drift <- function(
     x,
     references = NULL,
@@ -91,6 +92,7 @@ detect_calibration_drift <- function(
 #' @param reference_x_col,reference_y_col Reference columns.
 #' @return An `eye_recalibration_model` object.
 #' @export
+#' @noRd
 fit_offline_recalibration <- function(
     x,
     method = c("translation", "affine", "polynomial"),
@@ -143,6 +145,7 @@ fit_offline_recalibration <- function(
 #' @param suffix Suffix for corrected coordinates.
 #' @return Data frame with corrected coordinates.
 #' @export
+#' @noRd
 apply_offline_recalibration <- function(x, model, x_col = NULL, y_col = NULL, suffix = "_recalibrated") {
   .mi_assert_data(x)
   if (!inherits(model, "eye_recalibration_model")) .mi_stop("`model` must be an `eye_recalibration_model`.")
@@ -170,6 +173,7 @@ apply_offline_recalibration <- function(x, model, x_col = NULL, y_col = NULL, su
 #' @param minimum_improvement Optional minimum relative RMSE improvement.
 #' @return An `eye_recalibration_audit` object.
 #' @export
+#' @noRd
 audit_recalibration <- function(before, after, minimum_improvement = NULL) {
   before_data <- if (inherits(before, "eye_calibration_drift")) before$observations else before
   .mi_assert_data(before_data)

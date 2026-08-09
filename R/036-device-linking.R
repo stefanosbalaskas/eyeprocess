@@ -21,6 +21,7 @@
 #' @param id_cols Paired-observation identifiers.
 #' @return An `eye_device_linking` object.
 #' @export
+#' @noRd
 fit_device_linking <- function(x, metric, reference_device, method = c("mixed_bland_altman", "hierarchical", "equipercentile"), device_col = "device", id_cols = c("person_id", "item_id")) {
   .mi_assert_data(x)
   method <- match.arg(method)
@@ -74,6 +75,7 @@ fit_device_linking <- function(x, metric, reference_device, method = c("mixed_bl
 #' @param output_col Linked metric column.
 #' @return Data frame with linked measurements.
 #' @export
+#' @noRd
 apply_device_linking <- function(x, linking_model, metric = NULL, device_col = NULL, output_col = NULL) {
   .mi_assert_data(x)
   if (!inherits(linking_model, "eye_device_linking")) .mi_stop("`linking_model` must be an `eye_device_linking` object.")
@@ -102,6 +104,7 @@ apply_device_linking <- function(x, linking_model, metric = NULL, device_col = N
 #' @param by Grouping dimensions retained when present.
 #' @return An `eye_device_equivalence` object.
 #' @export
+#' @noRd
 audit_device_equivalence <- function(x, equivalence_margin, by = c("metric", "task", "aoi")) {
   if (!is.numeric(equivalence_margin) || length(equivalence_margin) != 1L || equivalence_margin <= 0) .mi_stop("`equivalence_margin` must be a positive scalar.")
   if (inherits(x, "eye_device_linking")) {
@@ -130,6 +133,7 @@ audit_device_equivalence <- function(x, equivalence_margin, by = c("metric", "ta
 #' @param x Device-linking object.
 #' @return Device-specific error table.
 #' @export
+#' @noRd
 estimate_device_specific_error <- function(x) {
   if (!inherits(x, "eye_device_linking")) .mi_stop("`x` must be an `eye_device_linking` object.")
   do.call(rbind, lapply(split(x$paired, x$paired[[x$device_col]]), function(data) {

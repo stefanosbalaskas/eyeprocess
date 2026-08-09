@@ -10,6 +10,7 @@
 #' @param ability Optional ability covariate.
 #' @return An `eye_process_dif` object.
 #' @export
+#' @noRd
 fit_process_dif <- function(x, response, process, group, item, ability = NULL) {
   .mi_assert_data(x)
   columns <- c(response, process, group, item, ability)
@@ -54,6 +55,7 @@ fit_process_dif <- function(x, response, process, group, item, ability = NULL) {
 #' @param item Optional item column.
 #' @return An `eye_dif_drift` object.
 #' @export
+#' @noRd
 monitor_dif_drift <- function(x, time, group, metrics, item = NULL) {
   .mi_assert_data(x)
   columns <- c(time, group, metrics, item); columns <- columns[!is.null(columns)]
@@ -103,6 +105,7 @@ monitor_dif_drift <- function(x, time, group, metrics, item = NULL) {
 #' @param design_features Item design-feature table.
 #' @return An `eye_dif_decomposition` object.
 #' @export
+#' @noRd
 decompose_dif_evidence <- function(psychometric, process = NULL, design_features = NULL) {
   psychometric_table <- if (inherits(psychometric, "eye_process_dif")) psychometric$summary else as.data.frame(psychometric)
   if (!"item_id" %in% names(psychometric_table)) .mi_stop("Psychometric evidence requires `item_id`.")
@@ -123,6 +126,7 @@ decompose_dif_evidence <- function(psychometric, process = NULL, design_features
 #' @param item Item column.
 #' @return An `eye_fairness_transportability` object.
 #' @export
+#' @noRd
 audit_fairness_transportability <- function(x, context = "device", effect = "process_dif", item = "item_id") {
   data <- if (inherits(x, "eye_process_dif")) x$summary else as.data.frame(x)
   .mi_assert_columns(data, c(item, effect))

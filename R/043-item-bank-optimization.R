@@ -8,6 +8,7 @@
 #' @param directions Named directions, `"max"` or `"min"`.
 #' @return An `eye_item_objective_spec` object.
 #' @export
+#' @noRd
 item_objective_spec <- function(
     information,
     process_burden,
@@ -45,6 +46,7 @@ item_objective_spec <- function(
 #' @param objectives Objective specification.
 #' @return An `eye_item_pareto` object.
 #' @export
+#' @noRd
 item_pareto_front <- function(x, objectives) {
   if (!inherits(objectives, "eye_item_objective_spec")) .mi_stop("`objectives` must be an `eye_item_objective_spec`.")
   table <- .mi_objective_table(x, objectives)
@@ -97,6 +99,7 @@ item_pareto_front <- function(x, objectives) {
 #' @param seed Seed.
 #' @return An `eye_item_bank_optimization` object.
 #' @export
+#' @noRd
 optimize_item_bank <- function(x, n_items, objectives, constraints = NULL, method = c("integer", "evolutionary"), iterations = 500, seed = 20260807) {
   method <- match.arg(method)
   pareto <- if (inherits(x, "eye_item_pareto")) x else item_pareto_front(x, objectives)
@@ -145,6 +148,7 @@ optimize_item_bank <- function(x, n_items, objectives, constraints = NULL, metho
 #' @param seed Seed.
 #' @return An `eye_bank_decision_stability` object.
 #' @export
+#' @noRd
 audit_bank_decision_stability <- function(x, draws = 1000, noise_sd = 0.1, seed = 20260807) {
   optimization <- if (inherits(x, "eye_item_bank_optimization")) x else .mi_stop("`x` must be an item-bank optimization result.")
   table <- optimization$table

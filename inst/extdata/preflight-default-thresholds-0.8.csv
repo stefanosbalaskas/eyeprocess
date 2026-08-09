@@ -1,0 +1,11 @@
+criterion,default,interpretation
+min_gaze_validity,0.80,minimum mean gaze-validity proportion
+min_pupil_validity,0.70,minimum mean pupil-validity proportion
+max_gaze_missingness,0.25,maximum mean gaze-missingness proportion
+max_pupil_missingness,0.30,maximum mean pupil-missingness proportion
+min_valid_trial_fraction,0.70,minimum fraction of trials meeting the trial gaze-validity threshold
+trial_gaze_validity_threshold,0.75,trial-level gaze-validity threshold
+min_rt_ms,200,lower descriptive response-time plausibility bound
+max_rt_ms,10000,upper descriptive response-time plausibility bound
+sampling_rate_tolerance,0.20,fractional deviation from median sampling rate triggering review
+blink_quantile,0.95,cohort quantile used for extreme blink-cluster review

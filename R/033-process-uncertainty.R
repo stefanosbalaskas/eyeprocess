@@ -8,6 +8,7 @@
 #' @param seed Default seed.
 #' @return An `eye_process_uncertainty_spec` object.
 #' @export
+#' @noRd
 process_uncertainty_spec <- function(
     calibration = TRUE,
     aoi_assignment = TRUE,
@@ -49,6 +50,7 @@ print.eye_process_uncertainty_spec <- function(x, ...) {
 #' @param cluster Optional cluster column for cluster-robust sampling uncertainty.
 #' @return An `eye_process_uncertainty` object.
 #' @export
+#' @noRd
 estimate_process_uncertainty <- function(x, spec = process_uncertainty_spec(), metrics = NULL, cluster = NULL) {
   if (!inherits(spec, "eye_process_uncertainty_spec")) .mi_stop("`spec` must be created by process_uncertainty_spec().")
   if (is.numeric(x) && is.null(dim(x))) x <- data.frame(metric = x)
@@ -121,6 +123,7 @@ estimate_process_uncertainty <- function(x, spec = process_uncertainty_spec(), m
 #' @param seed Random seed.
 #' @return An `eye_process_uncertainty_propagation` object.
 #' @export
+#' @noRd
 propagate_process_uncertainty <- function(
     x,
     estimand = function(data) mean(data, na.rm = TRUE),
@@ -183,6 +186,7 @@ propagate_process_uncertainty <- function(
 #' @param x Process-uncertainty object.
 #' @return Source-by-metric budget table.
 #' @export
+#' @noRd
 uncertainty_budget <- function(x) {
   if (!inherits(x, "eye_process_uncertainty")) .mi_stop("`x` must be an `eye_process_uncertainty` object.")
   out <- x$components[, c("metric", "source", "source_sd", "source_variance", "variance_share")]
@@ -195,6 +199,7 @@ uncertainty_budget <- function(x) {
 #' @param ... Process-uncertainty objects.
 #' @return An `eye_uncertainty_budget_comparison` object.
 #' @export
+#' @noRd
 compare_uncertainty_budgets <- function(...) {
   objects <- list(...)
   if (!length(objects)) .mi_stop("Supply at least one uncertainty object.")

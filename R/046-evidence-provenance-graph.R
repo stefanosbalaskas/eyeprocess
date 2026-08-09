@@ -18,6 +18,7 @@
 #' @param edges Optional explicit edge table with `from` and `to`.
 #' @return An `eye_evidence_graph` object.
 #' @export
+#' @noRd
 build_evidence_graph <- function(raw_data, transformations = NULL, metrics = NULL, models = NULL, diagnostics = NULL, decisions = NULL, edges = NULL) {
   stages <- list(raw_data = raw_data, transformations = transformations, metrics = metrics, models = models, diagnostics = diagnostics, decisions = decisions)
   nodes <- do.call(rbind, lapply(names(stages), function(stage) .mi_nodes_from_stage(stages[[stage]], stage)))
@@ -62,6 +63,7 @@ build_evidence_graph <- function(raw_data, transformations = NULL, metrics = NUL
 #' @param item_id Decision node identifier or label fragment.
 #' @return An `eye_decision_trace` object.
 #' @export
+#' @noRd
 trace_item_decision <- function(graph, item_id) {
   if (!inherits(graph, "eye_evidence_graph")) .mi_stop("`graph` must be an `eye_evidence_graph` object.")
   candidates <- graph$nodes$node_id[graph$nodes$node_id == item_id | grepl(item_id, graph$nodes$label, fixed = TRUE)]
@@ -81,6 +83,7 @@ trace_item_decision <- function(graph, item_id) {
 #' @param graph_a,graph_b Evidence graphs.
 #' @return An `eye_provenance_comparison` object.
 #' @export
+#' @noRd
 compare_decision_provenance <- function(graph_a, graph_b) {
   if (!inherits(graph_a, "eye_evidence_graph") || !inherits(graph_b, "eye_evidence_graph")) .mi_stop("Both inputs must be evidence graphs.")
   nodes_a <- graph_a$nodes$node_id; nodes_b <- graph_b$nodes$node_id
@@ -114,6 +117,7 @@ compare_decision_provenance <- function(graph_a, graph_b) {
 #' @param graph Evidence graph.
 #' @return An `eye_evidence_dependency_audit` object.
 #' @export
+#' @noRd
 audit_evidence_dependencies <- function(graph) {
   if (!inherits(graph, "eye_evidence_graph")) .mi_stop("`graph` must be an `eye_evidence_graph` object.")
   nodes <- graph$nodes$node_id

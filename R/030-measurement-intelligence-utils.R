@@ -236,6 +236,7 @@ if (!exists("%||%", mode = "function")) {
 #' @param interactive Reserved for downstream interactive adapters.
 #' @return An `eye_plot_spec` object.
 #' @export
+#' @noRd
 eye_plot_spec <- function(
     type = "default",
     title = NULL,
@@ -271,6 +272,7 @@ print.eye_plot_spec <- function(x, ...) {
 #' @param x Result object.
 #' @param ... Unused.
 #' @export
+#' @noRd
 print.eye_mi_result <- function(x, ...) {
   primary <- class(x)[[1L]]
   cat(gsub("_", " ", primary), "\n", sep = "")
@@ -284,6 +286,7 @@ print.eye_mi_result <- function(x, ...) {
 #' @param x An eyeprocess result.
 #' @param ... Arguments passed to `plot()`.
 #' @export
+#' @noRd
 plot_diagnostics <- function(x, ...) UseMethod("plot_diagnostics")
 
 .mi_plot_with_fallback <- function(x, type, ...) {
@@ -308,6 +311,7 @@ plot_diagnostics.eye_mi_result <- function(x, ...) .mi_plot_with_fallback(x, "di
 #' @param x An eyeprocess result.
 #' @param ... Arguments passed to `plot()`.
 #' @export
+#' @noRd
 plot_evidence <- function(x, ...) UseMethod("plot_evidence")
 
 #' @export
@@ -321,6 +325,7 @@ plot_evidence.eye_mi_result <- function(x, ...) .mi_plot_with_fallback(x, "evide
 #' @param x An eyeprocess result.
 #' @param ... Arguments passed to `plot()`.
 #' @export
+#' @noRd
 plot_sensitivity <- function(x, ...) UseMethod("plot_sensitivity")
 
 #' @export
@@ -335,6 +340,7 @@ plot_sensitivity.eye_mi_result <- function(x, ...) .mi_plot_with_fallback(x, "se
 #' @param ... Arguments passed to `plot()`.
 #' @return The plotted object, invisibly.
 #' @export
+#' @noRd
 autoplot_eyeprocess <- function(object, ...) {
   plot(object, ...)
   invisible(object)

@@ -31,6 +31,7 @@
 #' @param id_cols Optional columns retained in the membership table.
 #' @return An `eye_probabilistic_aoi` object.
 #' @export
+#' @noRd
 assign_aois_probabilistic <- function(
     x,
     aois,
@@ -135,6 +136,7 @@ assign_aois_probabilistic <- function(
 #' @param aois AOI definition table.
 #' @return Pairwise AOI geometry audit.
 #' @export
+#' @noRd
 audit_aoi_separation <- function(x = NULL, aois = NULL) {
   if (inherits(x, "eye_probabilistic_aoi")) {
     aois <- x$aois
@@ -198,6 +200,7 @@ audit_aoi_separation <- function(x = NULL, aois = NULL) {
 #' @param by Optional grouping columns stored in the membership table.
 #' @return AOI probability summary.
 #' @export
+#' @noRd
 summarise_aoi_membership <- function(x, by = NULL) {
   if (!inherits(x, "eye_probabilistic_aoi")) .mi_stop("`x` must be an `eye_probabilistic_aoi` object.")
   membership <- x$membership
@@ -244,6 +247,7 @@ summarise_aoi_membership <- function(x, by = NULL) {
 #' @param seed Random seed.
 #' @return An `eye_aoi_uncertainty` object.
 #' @export
+#' @noRd
 propagate_aoi_uncertainty <- function(
     x,
     metrics = c("dwell", "ttff", "transitions", "entropy"),
@@ -371,6 +375,7 @@ plot.eye_aoi_uncertainty <- function(x, type = c("metric_uncertainty", "fuzzy_tr
 #' @param x Probabilistic AOI object.
 #' @param ... Plot arguments.
 #' @export
+#' @noRd
 plot_aoi_probability_map <- function(x, ...) plot(x, type = "probability_map", ...)
 
 #' @export

@@ -1,0 +1,7 @@
+criterion,default,interpretation
+difficulty_limit,0.40,absolute change in item difficulty triggering review
+discrimination_limit,0.35,absolute change in item discrimination triggering review
+gaze_validity_drop,0.10,decrease in gaze validity triggering review
+luminance_limit,25,absolute luminance change triggering review
+relative_metric_quantile,0.90,empirical absolute-delta quantile for process metrics without a fixed substantive threshold
+min_batches,2,minimum batches required for drift assessment

@@ -7,6 +7,7 @@
 #' @inheritParams fit_process_observation_model
 #' @return An `eye_process_observation_model` object.
 #' @export
+#' @noRd
 fit_process_missingness_model <- function(x, observed, predictors, random = c("person", "item")) {
   fit_process_observation_model(x, observed = observed, predictors = predictors, random = random)
 }
@@ -22,6 +23,7 @@ fit_process_missingness_model <- function(x, observed, predictors, random = c("p
 #'   in `outcome`.
 #' @return An `eye_crossmodal_recurrence_model` object.
 #' @export
+#' @noRd
 crossmodal_recurrence_model <- function(
     x,
     y,
