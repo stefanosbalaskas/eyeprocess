@@ -1,73 +1,23 @@
-EYEPROCESS STATIC SOURCE AUDIT
-------------------------------
-Generated: 2026-08-04T07:57:42.088903+00:00
+eyeprocess static API audit
 
-SCOPE
------
-This is a static source audit. No R executable is available in this build environment,
-so installation, unit tests, R CMD check, vignette rendering, pkgdown rendering, and the
-real Gazepoint workflow must be rerun on the Windows validation machine.
+Version: 0.8.0.9000
+Metadata closure date: 2026-08-09
+Validated 0.8 master baseline: 4c54bc9a814035bb1ab8b554974749259d76afc0
+Validated 0.8 pkgdown deployment baseline: 303f9159ac15edfb4d6415525f72bab77f54998f
 
-COUNTS
-------
-Package version: 0.3.0.9000
-R source files: 21
-Functions defined: 402
-Unique function names: 390
-Exported functions: 233
-S3 methods: 44
-Manual pages: 19
-Vignettes: 8
-Test files: 13
-Fixture files: 16
-Workflow tests: 1
+API surface
+Top-level function definitions: 1463
+Unique top-level function symbols: 1436
+Ordinary NAMESPACE exports: 812
+Registered S3 methods: 254
 
-CHECKS
-------
-PASS: All NAMESPACE exports resolve
-PASS: All S3 registrations resolve
-PASS: No duplicate NAMESPACE exports
-PASS: No duplicate S3 registrations
-PASS: All exported functions have Rd aliases
-PASS: All R source delimiters are balanced
-PASS: DESCRIPTION/CFF/CITATION/NEWS versions synchronized
-PASS: pkgdown and CFF YAML parse
-PASS: All pkgdown articles exist
-PASS: All explicit pkgdown references resolve
-PASS: No paths contain whitespace
-PASS: All packaged extdata filenames are portable
-PASS: No trailing whitespace
-PASS: No merge-conflict markers
-PASS: All workflow assets exist
-PASS: All custom top-level files are excluded from source builds
+Repository inventory coverage
+FUNCTION_INDEX.csv missing exports: 0
+FUNCTION_REFERENCE.md missing exports: 0
+FUNCTION_REFERENCE.md missing S3 methods: 0
 
-NEW INTEGRATED WORKFLOW ASSETS
-------------------------------
-- R/019-gazepoint-downstream-workflow.R
-- man/eyeprocess-gazepoint-workflow.Rd
-- vignettes/gazepoint-downstream-workflow.Rmd
-- tests/testthat/test-gazepoint-downstream-workflow.R
-- run_gazepoint_downstream_workflow.R
-- inst/scripts/run-gazepoint-downstream-workflow.R
-- inst/templates/gazepoint-item-map.csv
-- inst/templates/gazepoint-responses.csv
+Scientific governance
+Process-derived evidence is measurement evidence and is not automatically interpreted as a mental-state, clinical, ability, misconduct, or other person-level diagnosis.
+Frontier estimators without an exact validated implementation remain explicitly gated rather than silently substituting simpler estimators.
 
-INTEGRATED WORKFLOW PUBLIC API
-------------------------------
-- gazepoint_workflow_spec()
-- build_gazepoint_media_trials()
-- derive_gazepoint_workflow_features()
-- gazepoint_analysis_tables()
-- gazepoint_irt_tables()
-- plot_gazepoint_workflow()
-- write_gazepoint_workflow_report()
-- run_gazepoint_workflow()
-- validate_gazepoint_workflow()
-
-EVIDENCE BOUNDARY
------------------
-- 0.2.0.9002 is the last runtime-validated baseline on Windows.
-- 0.3.0.9000 is a feature candidate with static source validation only in this environment.
-- The workflow does not fabricate responses or scores; absent outcomes produce an IRT response template.
-- Optional pupil baseline correction remains disabled by default unless a defensible baseline is supplied.
-- Vendor/native values and provenance remain preserved alongside analysis series.
+Status: PASS
