@@ -1,0 +1,5 @@
+parameter,truth,interpretation
+beta,0.35,generic simulated process effect
+pupil_beta,0.12,generic simulated pupil effect
+missing_fraction,,design-dependent missing fraction
+sampling_rate_hz,,design-dependent nominal sampling rate

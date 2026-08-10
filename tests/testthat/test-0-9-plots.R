@@ -1,0 +1,18 @@
+test_that("0.9 plot methods draw without errors", {
+  tf <- tempfile(fileext=".pdf"); grDevices::pdf(tf); on.exit({grDevices::dev.off(); unlink(tf)}, add=TRUE)
+  d <- process_validation_design(n_persons=20,n_trials=8,missingness=0,sampling_rate_hz=60,aoi_error="low",calibration_error=0,pupil_dropout=0,heterogeneity="low",model_misspecification=FALSE,replications=1)
+  expect_silent(plot(d))
+  p <- process_feature_time_provenance(c("a","b"),c(1,3),c(2,2))
+  expect_silent(plot(audit_temporal_leakage(p)))
+  claims <- software_paper_claim_matrix(c("a","b"), c("E1","E2"), c("test","sim"), c("supported","pending"))
+  b <- software_paper_evidence_bundle(claims=claims)
+  expect_silent(plot(b))
+  sg <- process_sensitivity_grid(method=c("a","b"))
+  sx <- structure(list(grid=sg, results=data.frame(specification_id=sg$specification_id, effect=c(.1,.2), method=c("a","b")),
+                       failures=data.frame(), grid_hash=object_hash(sg)), class="eye_process_sensitivity")
+  expect_silent(plot(sx, type="decision_leverage"))
+  dm <- eye_decision_manifest(model=list(family="gaussian"))
+  expect_silent(plot(dm))
+  bm <- structure(list(results=data.frame(n_obs=c(10,100), elapsed_sec=c(.01,.03), status="success")), class="eye_benchmark_result")
+  expect_silent(plot(bm))
+})

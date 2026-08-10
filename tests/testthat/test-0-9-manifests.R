@@ -1,0 +1,11 @@
+test_that("0.9 decision manifests hash, lock, and compare", {
+  x <- eye_decision_manifest(preprocessing = list(blink = "linear"), model = list(family = "gaussian"))
+  expect_s3_class(x, "eye_decision_manifest")
+  expect_true(nzchar(decision_manifest_hash(x)))
+  lock <- lock_decision_manifest(x)
+  expect_true(verify_decision_manifest_lock(lock))
+  y <- eye_decision_manifest(preprocessing = list(blink = "none"), model = list(family = "gaussian"))
+  expect_true(nrow(compare_decision_manifests(x, y)) >= 1)
+  snap <- outcome_blind_snapshot(data.frame(x=1:3,y=4:6), outcome="y")
+  expect_true(verify_outcome_blind_snapshot(snap))
+})

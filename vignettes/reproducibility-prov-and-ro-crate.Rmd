@@ -1,0 +1,22 @@
+---
+title: "Reproducibility fingerprints, provenance, and RO-Crate"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Reproducibility fingerprints, provenance, and RO-Crate}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+```
+
+eyeprocess 0.9 consolidates hashes of data, decisions, model specifications, results, package versions, files, and the R environment into a reproducibility fingerprint.
+
+```{r, eval=FALSE}
+fp <- eye_reproducibility_fingerprint(data=data, analysis_spec=spec, decisions=manifest, result=fit)
+write_reproducibility_fingerprint(fp, "fingerprint.rds")
+verify_reproducibility_fingerprint(fp)
+```
+
+Lineage nodes and edges can be represented using PROV-like relation labels, exported as compact JSON, or written as Graphviz DOT. `export_ro_crate_metadata()` writes minimal RO-Crate 1.3 metadata. The package intentionally describes this as interoperability scaffolding rather than claiming full external conformance without independent validation.

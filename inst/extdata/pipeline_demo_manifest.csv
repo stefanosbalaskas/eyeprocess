@@ -1,0 +1,8 @@
+step,requires,description
+import,,read/process input
+quality,import,measurement quality audit
+preprocess,quality,declared preprocessing
+features,preprocess,process feature construction
+model,features,statistical/psychometric model
+validation,model,diagnostics and sensitivity
+report,validation,traceable report

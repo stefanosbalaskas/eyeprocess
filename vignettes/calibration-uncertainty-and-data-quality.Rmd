@@ -1,0 +1,27 @@
+---
+title: "Calibration uncertainty and eye-tracking data quality"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Calibration uncertainty and eye-tracking data quality}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+```
+
+Version 0.9 makes measurement quality visible in the analysis object. Calibration/validation error, successive-sample precision, effective sampling frequency, irregular sampling, and data loss can be summarized rather than hidden in preprocessing.
+
+```{r, eval=FALSE}
+cal <- read.csv(system.file("extdata","calibration_targets_demo.csv", package="eyeprocess"))
+m <- calibration_error_model(cal)
+gaze_uncertainty_ellipse(m)
+plot(m)
+
+g <- read.csv(system.file("extdata","gaze_quality_demo.csv", package="eyeprocess"))
+q <- gaze_data_quality_profile(g, valid="valid", by="person_id")
+data_quality_reporting_table(q)
+```
+
+`propagate_calibration_uncertainty()` and `probabilistic_aoi_assignment()` propagate empirical calibration error into AOI membership. These probabilities concern spatial membership under the error model; they are not probabilities of psychological attention.
