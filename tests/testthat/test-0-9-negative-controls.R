@@ -1,0 +1,20 @@
+test_that("0.9 leakage and negative controls are explicit", {
+  p <- process_feature_time_provenance(c("pre","post"), c(10,30), c(20,20))
+  a <- audit_temporal_leakage(p)
+  expect_s3_class(a, "eye_temporal_leakage_audit")
+  expect_equal(a$n_flagged, 1)
+  set.seed(9)
+  d <- data.frame(x=rnorm(80), y=rnorm(80))
+  fun <- function(z) unname(coef(lm(y~x,z))[[2]])
+  nc <- run_process_negative_controls(d, "y", fun, replications=4)
+  expect_s3_class(nc, "eye_process_negative_controls")
+  expect_equal(nrow(nc$results), 8)
+  expect_true(is.finite(process_null_benchmark(fun(d), nc)$two_sided_tail))
+})
+
+test_that("0.9 negative-control inputs fail safely", {
+  expect_error(process_negative_control_permute(data.frame(y = 1:3), "y", seed = -1), "seed")
+  expect_error(process_negative_control_shift(data.frame(y = 1:3), "y", lag = NA), "lag")
+  expect_error(run_process_negative_controls(data.frame(y = 1:3), "y", mean, controls = "shift", shift_lags = 0), "shift_lags")
+  expect_error(audit_temporal_leakage(process_feature_time_provenance("x", 1, 2), tolerance = -1), "tolerance")
+})

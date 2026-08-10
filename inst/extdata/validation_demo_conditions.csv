@@ -1,0 +1,17 @@
+condition_id,n_persons,n_trials,missingness,sampling_rate_hz,aoi_error,calibration_error,pupil_dropout,heterogeneity,model_misspecification,replications
+C001,50,10,0,60,low,0.5,0,moderate,False,25
+C002,50,10,0,120,low,0.0,0,moderate,False,25
+C003,50,10,0.15,60,moderate,0.5,0.15,moderate,False,25
+C004,50,10,0.15,120,moderate,0.0,0.15,moderate,False,25
+C005,50,30,0,60,low,0.5,0,moderate,False,25
+C006,50,30,0,120,low,0.0,0,moderate,False,25
+C007,50,30,0.15,60,moderate,0.5,0.15,moderate,False,25
+C008,50,30,0.15,120,moderate,0.0,0.15,moderate,False,25
+C009,150,10,0,60,low,0.5,0,moderate,False,25
+C010,150,10,0,120,low,0.0,0,moderate,False,25
+C011,150,10,0.15,60,moderate,0.5,0.15,moderate,False,25
+C012,150,10,0.15,120,moderate,0.0,0.15,moderate,False,25
+C013,150,30,0,60,low,0.5,0,moderate,False,25
+C014,150,30,0,120,low,0.0,0,moderate,False,25
+C015,150,30,0.15,60,moderate,0.5,0.15,moderate,False,25
+C016,150,30,0.15,120,moderate,0.0,0.15,moderate,False,25
