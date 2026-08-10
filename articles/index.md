@@ -1,5 +1,36 @@
 # Articles
 
+### Validated and governed research workflows (0.9)
+
+Empirical validation, governed pipelines, API lifecycle, sensitivity
+analysis, measurement reliability, calibration uncertainty, negative
+controls, reproducibility, benchmarking, and software-paper evidence.
+
+- [API lifecycle and canonical
+  interfaces](https://stefanosbalaskas.github.io/eyeprocess/articles/api-lifecycle-and-canonical-interfaces.md):
+- [Computational benchmarking and synthetic stress
+  testing](https://stefanosbalaskas.github.io/eyeprocess/articles/benchmarking-and-stress-testing.md):
+- [Calibration uncertainty and eye-tracking data
+  quality](https://stefanosbalaskas.github.io/eyeprocess/articles/calibration-uncertainty-and-data-quality.md):
+- [Empirical validation programmes in
+  eyeprocess](https://stefanosbalaskas.github.io/eyeprocess/articles/empirical-validation-programme.md):
+- [Governed end-to-end analysis
+  pipelines](https://stefanosbalaskas.github.io/eyeprocess/articles/governed-end-to-end-pipelines.md):
+- [Sensitivity, specification curves, and decision
+  stability](https://stefanosbalaskas.github.io/eyeprocess/articles/multiverse-sensitivity-and-decision-stability.md):
+- [Negative controls, placebo windows, and temporal
+  leakage](https://stefanosbalaskas.github.io/eyeprocess/articles/negative-controls-and-temporal-leakage.md):
+- [Process-measure registry, repeatability, and
+  reliability](https://stefanosbalaskas.github.io/eyeprocess/articles/process-measure-registry-and-reliability.md):
+- [Reproducibility fingerprints, provenance, and
+  RO-Crate](https://stefanosbalaskas.github.io/eyeprocess/articles/reproducibility-prov-and-ro-crate.md):
+- [Building a software-paper evidence
+  bundle](https://stefanosbalaskas.github.io/eyeprocess/articles/software-paper-evidence-bundle.md):
+- [Simulation-based calibration and measurement-resolution
+  guards](https://stefanosbalaskas.github.io/eyeprocess/articles/simulation-calibration-and-resolution-guards.md):
+- [Interoperability with targets-style
+  workflows](https://stefanosbalaskas.github.io/eyeprocess/articles/targets-interoperability.md):
+
 ### Foundations
 
 - [Getting Started with

@@ -1,5 +1,78 @@
 # Changelog
 
+## eyeprocess 0.9.0.9000
+
+### Empirical validation and recovery
+
+- Adds explicit process-validation designs, known-truth simulation
+  fixtures, recovery/bias/RMSE/coverage/convergence summaries, Monte
+  Carlo error diagnostics, frozen validation references, and validation
+  evidence matrices.
+- Adds simulation-based calibration rank diagnostics and
+  interval-coverage calibration curves for Bayesian/process estimators
+  where posterior draws are available.
+
+### Governed workflows
+
+- Adds explicit analysis specifications and dependency-aware pipelines
+  with manifests, resumable execution, audits, reports, Graphviz/Mermaid
+  views, and `targets` interoperability templates.
+- Substantive preprocessing/model choices remain user-declared; the
+  pipeline layer does not silently select methods.
+
+### API consolidation
+
+- Adds API inventory, lifecycle registry, canonical-interface mapping,
+  replacement audits, surface summaries, and migration-oriented
+  lifecycle diffs.
+- Existing interfaces are not aggressively removed in 0.9; unclassified
+  APIs remain explicitly `unreviewed`.
+
+### Measurement quality and reliability
+
+- Adds a guarded process-measure registry, split-half/test-retest
+  reliability, ICC(A,1), Bland-Altman repeatability, temporal stability,
+  and bootstrap reliability.
+- Adds empirical calibration-error models, RMS successive-sample gaze
+  precision, effective sampling frequency, sampling-irregularity audits,
+  data-loss profiles, calibration drift, uncertainty propagation,
+  probabilistic AOIs, and analysis-resolution compatibility checks.
+- Adds pupil preprocessing-order and baseline-window sensitivity audits.
+
+### Sensitivity and negative controls
+
+- Adds defensible multiverse grids, specification curves, decision
+  stability, decision leverage, fragility/rank diagnostics, and
+  method-comparison wrappers.
+- Adds temporal feature provenance, leakage sentinels, outcome-blind
+  feature construction audits, placebo-window summaries,
+  permutation/shift negative controls, and null benchmarks.
+
+### Reproducibility and evidence
+
+- Adds analysis/session manifests, reproducibility fingerprints, file
+  hash manifests, lightweight PROV-oriented lineage graphs, RO-Crate 1.3
+  metadata export, and provenance DOT export.
+- Adds software-paper claim matrices, evidence bundles, descriptive
+  readiness/gap audits, evidence freezing, and manuscript
+  reproducibility manifests.
+
+### Computational validation
+
+- Adds benchmark designs, runtime/memory summaries, synthetic corruption
+  plans, robustness stress tests, and stress-tolerance frontiers.
+
+### Scientific governance
+
+- Process features remain measurement channels rather than automatic
+  mental-state or diagnostic labels.
+- Data-quality thresholds, resolution guards, and stability thresholds
+  are explicit workflow rules rather than universal validity cutoffs.
+- Negative-control/leakage flags identify analysis properties and are
+  not misconduct labels.
+- Exact gated frontier methods remain gated; 0.9 does not substitute
+  easier estimators under existing frontier function names.
+
 ## eyeprocess 0.8.0
 
 ### Process measurement and deployment governance

@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">eyeprocess</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.0.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -69,6 +69,1248 @@
     </div>
 
     <div class="section level2">
+      <h2 id="validation-sensitivity-and-negative-controls-">Validation, sensitivity, and negative controls (0.9)<a class="anchor" aria-label="anchor" href="#validation-sensitivity-and-negative-controls-"></a></h2>
+
+
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="audit_temporal_leakage.html">audit_temporal_leakage()</a></code>
+
+        </dt>
+        <dd>Audit temporal leakage in a feature provenance table</dd>
+
+        <dt>
+
+          <code><a href="calibration_sensitivity_grid.html">calibration_sensitivity_grid()</a></code>
+
+        </dt>
+        <dd>Sensitivity grid for deterministic calibration offsets</dd>
+
+        <dt>
+
+          <code><a href="compare_aoi_methods.html">compare_aoi_methods()</a></code>
+
+        </dt>
+        <dd>Compare explicit AOI assignment methods</dd>
+
+        <dt>
+
+          <code><a href="compare_decision_manifests.html">compare_decision_manifests()</a></code>
+
+        </dt>
+        <dd>Compare two research decision manifests</dd>
+
+        <dt>
+
+          <code><a href="compare_fixation_methods.html">compare_fixation_methods()</a></code>
+
+        </dt>
+        <dd>Compare explicit fixation-detection methods</dd>
+
+        <dt>
+
+          <code><a href="compare_hard_probabilistic_aoi.html">compare_hard_probabilistic_aoi()</a></code>
+
+        </dt>
+        <dd>Compare hard and probabilistic AOI assignments</dd>
+
+        <dt>
+
+          <code><a href="compare_process_models.html">compare_process_models()</a></code>
+
+        </dt>
+        <dd>Compare explicit process-model specifications</dd>
+
+        <dt>
+
+          <code><a href="compare_pupil_preprocessing.html">compare_pupil_preprocessing()</a></code>
+
+        </dt>
+        <dd>Compare explicit pupil-preprocessing methods</dd>
+
+        <dt>
+
+          <code><a href="compare_reproducibility_fingerprints.html">compare_reproducibility_fingerprints()</a></code>
+
+        </dt>
+        <dd>Compare two reproducibility fingerprints</dd>
+
+        <dt>
+
+          <code><a href="coverage_calibration_curve.html">coverage_calibration_curve()</a></code>
+
+        </dt>
+        <dd>Interval coverage calibration curve</dd>
+
+        <dt>
+
+          <code><a href="decision_space_coverage.html">decision_space_coverage()</a></code>
+
+        </dt>
+        <dd>Coverage of a declared decision space by evaluated specifications</dd>
+
+        <dt>
+
+          <code><a href="decision_stability.html">decision_stability()</a></code>
+
+        </dt>
+        <dd>Overall decision-stability summary</dd>
+
+        <dt>
+
+          <code><a href="expand_process_validation_design.html">expand_process_validation_design()</a></code>
+
+        </dt>
+        <dd>Expand a process-validation design into explicit conditions</dd>
+
+        <dt>
+
+          <code><a href="freeze_validation_reference.html">freeze_validation_reference()</a></code>
+
+        </dt>
+        <dd>Freeze a compact validation reference for regression testing</dd>
+
+        <dt>
+
+          <code><a href="negative_control_concordance.html">negative_control_concordance()</a></code>
+
+        </dt>
+        <dd>Concordance of multiple negative-control families</dd>
+
+        <dt>
+
+          <code><a href="placebo_window_audit.html">placebo_window_audit()</a></code>
+
+        </dt>
+        <dd>Audit a placebo/pre-event window</dd>
+
+        <dt>
+
+          <code><a href="process_feature_time_provenance.html">process_feature_time_provenance()</a></code>
+
+        </dt>
+        <dd>Declare temporal provenance for process features</dd>
+
+        <dt>
+
+          <code><a href="process_measure_coverage.html">process_measure_coverage()</a></code>
+
+        </dt>
+        <dd>Process-measure coverage for an observed dataset</dd>
+
+        <dt>
+
+          <code><a href="process_negative_control_permute.html">process_negative_control_permute()</a></code>
+
+        </dt>
+        <dd>Permutation negative control</dd>
+
+        <dt>
+
+          <code><a href="process_negative_control_shift.html">process_negative_control_shift()</a></code>
+
+        </dt>
+        <dd>Temporal-shift negative control</dd>
+
+        <dt>
+
+          <code><a href="process_sensitivity_grid.html">process_sensitivity_grid()</a></code>
+
+        </dt>
+        <dd>Construct an explicit process-analysis sensitivity grid</dd>
+
+        <dt>
+
+          <code><a href="process_temporal_stability.html">process_temporal_stability()</a></code>
+
+        </dt>
+        <dd>Pairwise temporal stability across sessions</dd>
+
+        <dt>
+
+          <code><a href="process_validation_design.html">process_validation_design()</a></code>
+
+        </dt>
+        <dd>Define an empirical process-validation design</dd>
+
+        <dt>
+
+          <code><a href="pupil_baseline_sensitivity.html">pupil_baseline_sensitivity()</a></code>
+
+        </dt>
+        <dd>Evaluate pupil baseline-window sensitivity</dd>
+
+        <dt>
+
+          <code><a href="run_process_negative_controls.html">run_process_negative_controls()</a></code>
+
+        </dt>
+        <dd>Run repeated process negative controls</dd>
+
+        <dt>
+
+          <code><a href="run_process_sensitivity.html">run_process_sensitivity()</a></code>
+
+        </dt>
+        <dd>Run an explicit process-analysis multiverse</dd>
+
+        <dt>
+
+          <code><a href="run_process_validation.html">run_process_validation()</a></code>
+
+        </dt>
+        <dd>Run an empirical process-validation programme</dd>
+
+        <dt>
+
+          <code><a href="sbc_ecdf_deviation.html">sbc_ecdf_deviation()</a></code>
+
+        </dt>
+        <dd>ECDF deviation summary for SBC ranks</dd>
+
+        <dt>
+
+          <code><a href="sbc_rank_diagnostics.html">sbc_rank_diagnostics()</a></code>
+
+        </dt>
+        <dd>Build SBC rank diagnostics</dd>
+
+        <dt>
+
+          <code><a href="sensitivity_branch_fingerprint.html">sensitivity_branch_fingerprint()</a></code>
+
+        </dt>
+        <dd>Stable fingerprint of a sensitivity branch</dd>
+
+        <dt>
+
+          <code><a href="sensitivity_decision_leverage.html">sensitivity_decision_leverage()</a></code>
+
+        </dt>
+        <dd>Decision leverage of each analytical choice</dd>
+
+        <dt>
+
+          <code><a href="sensitivity_fragility_index.html">sensitivity_fragility_index()</a></code>
+
+        </dt>
+        <dd>Fragility index across analysis specifications</dd>
+
+        <dt>
+
+          <code><a href="sensitivity_multiverse_manifest.html">sensitivity_multiverse_manifest()</a></code>
+
+        </dt>
+        <dd>Machine-readable multiverse manifest</dd>
+
+        <dt>
+
+          <code><a href="sensitivity_rank_stability.html">sensitivity_rank_stability()</a></code>
+
+        </dt>
+        <dd>Rank stability across specifications</dd>
+
+        <dt>
+
+          <code><a href="sensitivity_sign_stability.html">sensitivity_sign_stability()</a></code>
+
+        </dt>
+        <dd>Effect-sign stability across specifications</dd>
+
+        <dt>
+
+          <code><a href="sensitivity_significance_stability.html">sensitivity_significance_stability()</a></code>
+
+        </dt>
+        <dd>Significance-decision stability across specifications</dd>
+
+        <dt>
+
+          <code><a href="sensitivity_threshold_stability.html">sensitivity_threshold_stability()</a></code>
+
+        </dt>
+        <dd>Substantive-threshold stability across specifications</dd>
+
+        <dt>
+
+          <code><a href="simulate_process_validation_data.html">simulate_process_validation_data()</a></code>
+
+        </dt>
+        <dd>Simulate a generic multimodal validation dataset with known truth</dd>
+
+        <dt>
+
+          <code><a href="simulation_rank_statistic.html">simulation_rank_statistic()</a></code>
+
+        </dt>
+        <dd>Compute a simulation-based calibration rank statistic</dd>
+
+        <dt>
+
+          <code><a href="software_paper_coverage.html">software_paper_coverage()</a></code>
+
+        </dt>
+        <dd>Compute descriptive evidence coverage</dd>
+
+        <dt>
+
+          <code><a href="software_paper_validation_table.html">software_paper_validation_table()</a></code>
+
+        </dt>
+        <dd>Summarise validation evidence for a software paper</dd>
+
+        <dt>
+
+          <code><a href="specification_coverage.html">specification_coverage()</a></code>
+
+        </dt>
+        <dd>Fraction of planned specifications successfully evaluated</dd>
+
+        <dt>
+
+          <code><a href="summarise_process_negative_controls.html">summarise_process_negative_controls()</a></code>
+
+        </dt>
+        <dd>Summarise process negative controls</dd>
+
+        <dt>
+
+          <code><a href="summarise_process_sensitivity.html">summarise_process_sensitivity()</a></code>
+
+        </dt>
+        <dd>Summarise process sensitivity results</dd>
+
+        <dt>
+
+          <code><a href="summarise_process_validation.html">summarise_process_validation()</a></code>
+
+        </dt>
+        <dd>Summarise a process-validation result</dd>
+
+        <dt>
+
+          <code><a href="validate_feature_availability.html">validate_feature_availability()</a></code>
+
+        </dt>
+        <dd>Validate feature availability against an analysis cutoff</dd>
+
+        <dt>
+
+          <code><a href="validate_process_validation_design.html">validate_process_validation_design()</a></code>
+
+        </dt>
+        <dd>Validate a process-validation design</dd>
+
+        <dt>
+
+          <code><a href="validation_condition_id.html">validation_condition_id()</a></code>
+
+        </dt>
+        <dd>Return stable validation condition identifiers</dd>
+
+        <dt>
+
+          <code><a href="validation_condition_ranking.html">validation_condition_ranking()</a></code>
+
+        </dt>
+        <dd>Rank validation conditions by a transparent robustness score</dd>
+
+        <dt>
+
+          <code><a href="validation_coverage_table.html">validation_coverage_table()</a></code>
+
+        </dt>
+        <dd>Interval-coverage table</dd>
+
+        <dt>
+
+          <code><a href="validation_evidence_matrix.html">validation_evidence_matrix()</a></code>
+
+        </dt>
+        <dd>Create a model-by-evidence validation matrix</dd>
+
+        <dt>
+
+          <code><a href="validation_failure_profile.html">validation_failure_profile()</a></code>
+
+        </dt>
+        <dd>Failure profile for a validation programme</dd>
+
+        <dt>
+
+          <code><a href="validation_summary_mcse.html">validation_summary_mcse()</a></code>
+
+        </dt>
+        <dd>Monte Carlo standard-error diagnostics for validation summaries</dd>
+
+        <dt>
+
+          <code><a href="validation_recovery_table.html">validation_recovery_table()</a></code>
+
+        </dt>
+        <dd>Parameter-recovery table</dd>
+
+        <dt>
+
+          <code><a href="validation_robustness_score.html">validation_robustness_score()</a></code>
+
+        </dt>
+        <dd>Overall validation robustness score</dd>
+      </dl></div><div class="section level2">
+      <h2 id="governed-pipelines-decisions-and-api-lifecycle-">Governed pipelines, decisions, and API lifecycle (0.9)<a class="anchor" aria-label="anchor" href="#governed-pipelines-decisions-and-api-lifecycle-"></a></h2>
+
+
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="analysis_decision_entropy.html">analysis_decision_entropy()</a></code>
+
+        </dt>
+        <dd>Entropy of an explicitly enumerated analysis-decision space</dd>
+
+        <dt>
+
+          <code><a href="api_family_map.html">api_family_map()</a></code>
+
+        </dt>
+        <dd>Map exported APIs to conceptual families</dd>
+
+        <dt>
+
+          <code><a href="api_lifecycle_diff.html">api_lifecycle_diff()</a></code>
+
+        </dt>
+        <dd>Compare two API lifecycle registries</dd>
+
+        <dt>
+
+          <code><a href="api_surface_summary.html">api_surface_summary()</a></code>
+
+        </dt>
+        <dd>Summarise API surface by family and lifecycle status</dd>
+
+        <dt>
+
+          <code><a href="audit_eye_pipeline.html">audit_eye_pipeline()</a></code>
+
+        </dt>
+        <dd>Audit a pipeline definition or completed run</dd>
+
+        <dt>
+
+          <code><a href="canonical_eye_api.html">canonical_eye_api()</a></code>
+
+        </dt>
+        <dd>Canonical API mapping</dd>
+
+        <dt>
+
+          <code><a href="decision_manifest_diff.html">decision_manifest_diff()</a></code>
+
+        </dt>
+        <dd>Alias for manifest comparison emphasizing changed decision paths</dd>
+
+        <dt>
+
+          <code><a href="decision_manifest_hash.html">decision_manifest_hash()</a></code>
+
+        </dt>
+        <dd>Stable hash of decision content</dd>
+
+        <dt>
+
+          <code><a href="decision_manifest_table.html">decision_manifest_table()</a></code>
+
+        </dt>
+        <dd>Flatten a decision manifest to a table</dd>
+
+        <dt>
+
+          <code><a href="export_eye_pipeline.html">export_eye_pipeline()</a></code>
+
+        </dt>
+        <dd>Export a pipeline manifest and optional run status</dd>
+
+        <dt>
+
+          <code><a href="eye_analysis_pipeline.html">eye_analysis_pipeline()</a></code>
+
+        </dt>
+        <dd>Construct a governed analysis pipeline</dd>
+
+        <dt>
+
+          <code><a href="eye_analysis_spec.html">eye_analysis_spec()</a></code>
+
+        </dt>
+        <dd>Define explicit analysis decisions for an eyeprocess workflow</dd>
+
+        <dt>
+
+          <code><a href="eye_api_inventory.html">eye_api_inventory()</a></code>
+
+        </dt>
+        <dd>Inventory the public eyeprocess API</dd>
+
+        <dt>
+
+          <code><a href="eye_api_lifecycle.html">eye_api_lifecycle()</a></code>
+
+        </dt>
+        <dd>Normalize or create an API lifecycle registry</dd>
+
+        <dt>
+
+          <code><a href="eye_api_recommendation.html">eye_api_recommendation()</a></code>
+
+        </dt>
+        <dd>Lifecycle recommendation for API review</dd>
+
+        <dt>
+
+          <code><a href="eye_api_status.html">eye_api_status()</a></code>
+
+        </dt>
+        <dd>Lookup lifecycle status for one or more APIs</dd>
+
+        <dt>
+
+          <code><a href="eye_api_superseded.html">eye_api_superseded()</a></code>
+
+        </dt>
+        <dd>Return superseded/deprecated compatibility interfaces</dd>
+
+        <dt>
+
+          <code><a href="eye_decision_manifest.html">eye_decision_manifest()</a></code>
+
+        </dt>
+        <dd>Create a machine-readable research decision manifest</dd>
+
+        <dt>
+
+          <code><a href="eye_pipeline_dot.html">eye_pipeline_dot()</a></code>
+
+        </dt>
+        <dd>Render pipeline dependencies as Graphviz DOT</dd>
+
+        <dt>
+
+          <code><a href="eye_pipeline_graph.html">eye_pipeline_graph()</a></code>
+
+        </dt>
+        <dd>Return pipeline vertices and dependency edges</dd>
+
+        <dt>
+
+          <code><a href="eye_pipeline_manifest.html">eye_pipeline_manifest()</a></code>
+
+        </dt>
+        <dd>Machine-readable pipeline manifest</dd>
+
+        <dt>
+
+          <code><a href="eye_pipeline_mermaid.html">eye_pipeline_mermaid()</a></code>
+
+        </dt>
+        <dd>Render pipeline dependencies as Mermaid flowchart text</dd>
+
+        <dt>
+
+          <code><a href="eye_pipeline_step.html">eye_pipeline_step()</a></code>
+
+        </dt>
+        <dd>Define a governed pipeline step</dd>
+
+        <dt>
+
+          <code><a href="eye_targets_manifest.html">eye_targets_manifest()</a></code>
+
+        </dt>
+        <dd>Create a targets-compatible dependency manifest</dd>
+
+        <dt>
+
+          <code><a href="lock_decision_manifest.html">lock_decision_manifest()</a></code>
+
+        </dt>
+        <dd>Lock a decision manifest by content hash</dd>
+
+        <dt>
+
+          <code><a href="outcome_blind_feature_audit.html">outcome_blind_feature_audit()</a></code>
+
+        </dt>
+        <dd>Audit whether candidate predictors can be constructed without an outcome column</dd>
+
+        <dt>
+
+          <code><a href="outcome_blind_snapshot.html">outcome_blind_snapshot()</a></code>
+
+        </dt>
+        <dd>Create an outcome-blind data snapshot</dd>
+
+        <dt>
+
+          <code><a href="pipeline_failures.html">pipeline_failures()</a></code>
+
+        </dt>
+        <dd>Return failed pipeline steps</dd>
+
+        <dt>
+
+          <code><a href="pipeline_result.html">pipeline_result()</a></code>
+
+        </dt>
+        <dd>Extract a pipeline result by step name</dd>
+
+        <dt>
+
+          <code><a href="pipeline_step_status.html">pipeline_step_status()</a></code>
+
+        </dt>
+        <dd>Pipeline step status table</dd>
+
+        <dt>
+
+          <code><a href="read_api_lifecycle_registry.html">read_api_lifecycle_registry()</a></code>
+
+        </dt>
+        <dd>Read API lifecycle registry from CSV</dd>
+
+        <dt>
+
+          <code><a href="read_decision_manifest.html">read_decision_manifest()</a></code>
+
+        </dt>
+        <dd>Read a decision manifest written by eyeprocess</dd>
+
+        <dt>
+
+          <code><a href="register_eye_api_status.html">register_eye_api_status()</a></code>
+
+        </dt>
+        <dd>Add or update API lifecycle metadata without global mutation</dd>
+
+        <dt>
+
+          <code><a href="resume_eye_pipeline.html">resume_eye_pipeline()</a></code>
+
+        </dt>
+        <dd>Resume a governed pipeline from a prior run</dd>
+
+        <dt>
+
+          <code><a href="run_eye_pipeline.html">run_eye_pipeline()</a></code>
+
+        </dt>
+        <dd>Run a governed eyeprocess pipeline</dd>
+
+        <dt>
+
+          <code><a href="stress_test_process_pipeline.html">stress_test_process_pipeline()</a></code>
+
+        </dt>
+        <dd>Stress-test an analysis under explicit synthetic corruptions</dd>
+
+        <dt>
+
+          <code><a href="validate_decision_manifest.html">validate_decision_manifest()</a></code>
+
+        </dt>
+        <dd>Validate a research decision manifest</dd>
+
+        <dt>
+
+          <code><a href="validate_eye_pipeline.html">validate_eye_pipeline()</a></code>
+
+        </dt>
+        <dd>Validate a governed eyeprocess pipeline</dd>
+
+        <dt>
+
+          <code><a href="verify_decision_manifest_lock.html">verify_decision_manifest_lock()</a></code>
+
+        </dt>
+        <dd>Verify that a locked manifest has not changed</dd>
+
+        <dt>
+
+          <code><a href="verify_outcome_blind_snapshot.html">verify_outcome_blind_snapshot()</a></code>
+
+        </dt>
+        <dd>Verify an outcome-blind snapshot has not changed</dd>
+
+        <dt>
+
+          <code><a href="write_api_lifecycle_registry.html">write_api_lifecycle_registry()</a></code>
+
+        </dt>
+        <dd>Write API lifecycle registry to CSV</dd>
+
+        <dt>
+
+          <code><a href="write_decision_manifest.html">write_decision_manifest()</a></code>
+
+        </dt>
+        <dd>Write a decision manifest</dd>
+
+        <dt>
+
+          <code><a href="write_eye_pipeline_report.html">write_eye_pipeline_report()</a></code>
+
+        </dt>
+        <dd>Write a conservative pipeline report</dd>
+
+        <dt>
+
+          <code><a href="write_eye_targets_template.html">write_eye_targets_template()</a></code>
+
+        </dt>
+        <dd>Write an explicit `_targets.R` template from a governed pipeline</dd>
+      </dl></div><div class="section level2">
+      <h2 id="measurement-reliability-quality-and-stress-testing-">Measurement reliability, quality, and stress testing (0.9)<a class="anchor" aria-label="anchor" href="#measurement-reliability-quality-and-stress-testing-"></a></h2>
+
+
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="analysis_resolution_guard.html">analysis_resolution_guard()</a></code>
+
+        </dt>
+        <dd>Audit compatibility between measurement resolution and an analysis target</dd>
+
+        <dt>
+
+          <code><a href="aoi_membership_probability.html">aoi_membership_probability()</a></code>
+
+        </dt>
+        <dd>AOI membership probabilities from uncertainty draws</dd>
+
+        <dt>
+
+          <code><a href="apply_synthetic_corruption.html">apply_synthetic_corruption()</a></code>
+
+        </dt>
+        <dd>Apply a synthetic corruption plan</dd>
+
+        <dt>
+
+          <code><a href="audit_pupil_preprocessing_order.html">audit_pupil_preprocessing_order()</a></code>
+
+        </dt>
+        <dd>Audit declared order of pupil preprocessing steps</dd>
+
+        <dt>
+
+          <code><a href="audit_sampling_irregularity.html">audit_sampling_irregularity()</a></code>
+
+        </dt>
+        <dd>Audit sampling irregularity</dd>
+
+        <dt>
+
+          <code><a href="benchmark_memory_estimate.html">benchmark_memory_estimate()</a></code>
+
+        </dt>
+        <dd>Memory estimate for an R object or generated problem size</dd>
+
+        <dt>
+
+          <code><a href="benchmark_scaling_curve.html">benchmark_scaling_curve()</a></code>
+
+        </dt>
+        <dd>Estimate scaling exponent from benchmark results</dd>
+
+        <dt>
+
+          <code><a href="bootstrap_process_reliability.html">bootstrap_process_reliability()</a></code>
+
+        </dt>
+        <dd>Bootstrap ICC reliability by resampling participants</dd>
+
+        <dt>
+
+          <code><a href="calibration_drift_profile.html">calibration_drift_profile()</a></code>
+
+        </dt>
+        <dd>Calibration drift profile across sessions/batches</dd>
+
+        <dt>
+
+          <code><a href="calibration_error_model.html">calibration_error_model()</a></code>
+
+        </dt>
+        <dd>Build an empirical bivariate calibration-error model</dd>
+
+        <dt>
+
+          <code><a href="data_quality_reporting_table.html">data_quality_reporting_table()</a></code>
+
+        </dt>
+        <dd>Compact reporting table for eye-tracking data quality</dd>
+
+        <dt>
+
+          <code><a href="effective_sampling_frequency.html">effective_sampling_frequency()</a></code>
+
+        </dt>
+        <dd>Estimate effective sampling frequency from timestamps</dd>
+
+        <dt>
+
+          <code><a href="estimate_calibration_error.html">estimate_calibration_error()</a></code>
+
+        </dt>
+        <dd>Estimate empirical calibration/validation error</dd>
+
+        <dt>
+
+          <code><a href="eye_benchmark_design.html">eye_benchmark_design()</a></code>
+
+        </dt>
+        <dd>Define a computational benchmark design</dd>
+
+        <dt>
+
+          <code><a href="find_process_measures.html">find_process_measures()</a></code>
+
+        </dt>
+        <dd>Find process measures by channel, level, status, or text</dd>
+
+        <dt>
+
+          <code><a href="gaze_data_quality_profile.html">gaze_data_quality_profile()</a></code>
+
+        </dt>
+        <dd>Empirical gaze data-quality profile</dd>
+
+        <dt>
+
+          <code><a href="gaze_precision_rms_s2s.html">gaze_precision_rms_s2s()</a></code>
+
+        </dt>
+        <dd>Estimate RMS successive-sample gaze imprecision</dd>
+
+        <dt>
+
+          <code><a href="gaze_uncertainty_ellipse.html">gaze_uncertainty_ellipse()</a></code>
+
+        </dt>
+        <dd>Uncertainty ellipse implied by an empirical calibration-error model</dd>
+
+        <dt>
+
+          <code><a href="inject_aoi_label_noise.html">inject_aoi_label_noise()</a></code>
+
+        </dt>
+        <dd>Inject AOI label noise</dd>
+
+        <dt>
+
+          <code><a href="inject_calibration_offset.html">inject_calibration_offset()</a></code>
+
+        </dt>
+        <dd>Inject additive gaze calibration offset in coordinate units</dd>
+
+        <dt>
+
+          <code><a href="inject_device_shift.html">inject_device_shift()</a></code>
+
+        </dt>
+        <dd>Inject an additive device/site shift in a numeric feature</dd>
+
+        <dt>
+
+          <code><a href="inject_eye_missingness.html">inject_eye_missingness()</a></code>
+
+        </dt>
+        <dd>Inject generic missingness into selected columns</dd>
+
+        <dt>
+
+          <code><a href="inject_pupil_dropout.html">inject_pupil_dropout()</a></code>
+
+        </dt>
+        <dd>Inject pupil dropout</dd>
+
+        <dt>
+
+          <code><a href="inject_sampling_jitter.html">inject_sampling_jitter()</a></code>
+
+        </dt>
+        <dd>Inject timestamp jitter</dd>
+
+        <dt>
+
+          <code><a href="inject_trial_imbalance.html">inject_trial_imbalance()</a></code>
+
+        </dt>
+        <dd>Inject trial/row imbalance by dropping observations</dd>
+
+        <dt>
+
+          <code><a href="measurement_error_budget.html">measurement_error_budget()</a></code>
+
+        </dt>
+        <dd>Build a non-collapsed measurement-error budget</dd>
+
+        <dt>
+
+          <code><a href="probabilistic_aoi_assignment.html">probabilistic_aoi_assignment()</a></code>
+
+        </dt>
+        <dd>Probabilistic AOI assignment under empirical calibration uncertainty</dd>
+
+        <dt>
+
+          <code><a href="process_bland_altman.html">process_bland_altman()</a></code>
+
+        </dt>
+        <dd>Bland-Altman repeatability summary for two sessions</dd>
+
+        <dt>
+
+          <code><a href="process_icc.html">process_icc()</a></code>
+
+        </dt>
+        <dd>Absolute-agreement ICC(A,1) for repeated process measures</dd>
+
+        <dt>
+
+          <code><a href="process_measure_card.html">process_measure_card()</a></code>
+
+        </dt>
+        <dd>Return a one-measure process card</dd>
+
+        <dt>
+
+          <code><a href="process_measure_guardrails.html">process_measure_guardrails()</a></code>
+
+        </dt>
+        <dd>Process-measure guardrail table</dd>
+
+        <dt>
+
+          <code><a href="process_measure_lineage.html">process_measure_lineage()</a></code>
+
+        </dt>
+        <dd>Process-measure lineage table</dd>
+
+        <dt>
+
+          <code><a href="process_measure_registry.html">process_measure_registry()</a></code>
+
+        </dt>
+        <dd>Unified process-measure registry</dd>
+
+        <dt>
+
+          <code><a href="process_measure_units.html">process_measure_units()</a></code>
+
+        </dt>
+        <dd>List units used by registered process measures</dd>
+
+        <dt>
+
+          <code><a href="process_null_benchmark.html">process_null_benchmark()</a></code>
+
+        </dt>
+        <dd>Compare an observed effect against a negative-control null distribution</dd>
+
+        <dt>
+
+          <code><a href="process_reliability_profile.html">process_reliability_profile()</a></code>
+
+        </dt>
+        <dd>Test-retest process reliability profile</dd>
+
+        <dt>
+
+          <code><a href="propagate_calibration_uncertainty.html">propagate_calibration_uncertainty()</a></code>
+
+        </dt>
+        <dd>Propagate empirical calibration uncertainty around gaze samples</dd>
+
+        <dt>
+
+          <code><a href="register_process_measure.html">register_process_measure()</a></code>
+
+        </dt>
+        <dd>Add a process measure to a registry without global mutation</dd>
+
+        <dt>
+
+          <code><a href="run_eye_benchmark.html">run_eye_benchmark()</a></code>
+
+        </dt>
+        <dd>Run a computational scaling benchmark</dd>
+
+        <dt>
+
+          <code><a href="split_half_process_reliability.html">split_half_process_reliability()</a></code>
+
+        </dt>
+        <dd>Split-half reliability for a trial-level process measure</dd>
+
+        <dt>
+
+          <code><a href="stress_test_summary.html">stress_test_summary()</a></code>
+
+        </dt>
+        <dd>Summarise stress-test metrics</dd>
+
+        <dt>
+
+          <code><a href="stress_tolerance_frontier.html">stress_tolerance_frontier()</a></code>
+
+        </dt>
+        <dd>Identify the empirical stress frontier for a metric</dd>
+
+        <dt>
+
+          <code><a href="summarise_eye_benchmark.html">summarise_eye_benchmark()</a></code>
+
+        </dt>
+        <dd>Summarise benchmark timing and memory by problem size</dd>
+
+        <dt>
+
+          <code><a href="synthetic_corruption_plan.html">synthetic_corruption_plan()</a></code>
+
+        </dt>
+        <dd>Define synthetic measurement corruptions for stress testing</dd>
+
+        <dt>
+
+          <code><a href="validate_process_measure_registry.html">validate_process_measure_registry()</a></code>
+
+        </dt>
+        <dd>Validate a process-measure registry</dd>
+      </dl></div><div class="section level2">
+      <h2 id="reproducibility-and-software-paper-evidence-">Reproducibility and software-paper evidence (0.9)<a class="anchor" aria-label="anchor" href="#reproducibility-and-software-paper-evidence-"></a></h2>
+
+
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="analysis_environment_snapshot.html">analysis_environment_snapshot()</a></code>
+
+        </dt>
+        <dd>Snapshot an eyeprocess analysis environment</dd>
+
+        <dt>
+
+          <code><a href="audit_decision_provenance.html">audit_decision_provenance()</a></code>
+
+        </dt>
+        <dd>Audit decision provenance and completeness</dd>
+
+        <dt>
+
+          <code><a href="export_prov_json.html">export_prov_json()</a></code>
+
+        </dt>
+        <dd>Export lightweight PROV-oriented JSON</dd>
+
+        <dt>
+
+          <code><a href="export_ro_crate_metadata.html">export_ro_crate_metadata()</a></code>
+
+        </dt>
+        <dd>Export minimal RO-Crate 1.3 metadata</dd>
+
+        <dt>
+
+          <code><a href="eye_prov_graph.html">eye_prov_graph()</a></code>
+
+        </dt>
+        <dd>Construct a lightweight provenance graph</dd>
+
+        <dt>
+
+          <code><a href="eye_reproducibility_fingerprint.html">eye_reproducibility_fingerprint()</a></code>
+
+        </dt>
+        <dd>Construct a reproducibility fingerprint</dd>
+
+        <dt>
+
+          <code><a href="eye_session_manifest.html">eye_session_manifest()</a></code>
+
+        </dt>
+        <dd>Create a session-level provenance manifest</dd>
+
+        <dt>
+
+          <code><a href="file_hash_manifest.html">file_hash_manifest()</a></code>
+
+        </dt>
+        <dd>Build a file hash manifest</dd>
+
+        <dt>
+
+          <code><a href="freeze_software_paper_evidence.html">freeze_software_paper_evidence()</a></code>
+
+        </dt>
+        <dd>Freeze software-paper evidence to an RDS with a hash</dd>
+
+        <dt>
+
+          <code><a href="object_hash.html">object_hash()</a></code>
+
+        </dt>
+        <dd>Hash an R object reproducibly within an R serialization version</dd>
+
+        <dt>
+
+          <code><a href="paper_reproducibility_manifest.html">paper_reproducibility_manifest()</a></code>
+
+        </dt>
+        <dd>Create a compact paper reproducibility manifest</dd>
+
+        <dt>
+
+          <code><a href="provenance_edge_table.html">provenance_edge_table()</a></code>
+
+        </dt>
+        <dd>Build a provenance edge table</dd>
+
+        <dt>
+
+          <code><a href="provenance_lineage_table.html">provenance_lineage_table()</a></code>
+
+        </dt>
+        <dd>Build a provenance lineage node table</dd>
+
+        <dt>
+
+          <code><a href="read_reproducibility_fingerprint.html">read_reproducibility_fingerprint()</a></code>
+
+        </dt>
+        <dd>Read a reproducibility fingerprint</dd>
+
+        <dt>
+
+          <code><a href="software_paper_claim_matrix.html">software_paper_claim_matrix()</a></code>
+
+        </dt>
+        <dd>Create or normalize a software-paper claim matrix</dd>
+
+        <dt>
+
+          <code><a href="software_paper_evidence_bundle.html">software_paper_evidence_bundle()</a></code>
+
+        </dt>
+        <dd>Construct a software-paper evidence bundle</dd>
+
+        <dt>
+
+          <code><a href="software_paper_gap_analysis.html">software_paper_gap_analysis()</a></code>
+
+        </dt>
+        <dd>Identify gaps in a software-paper evidence bundle</dd>
+
+        <dt>
+
+          <code><a href="software_paper_readiness.html">software_paper_readiness()</a></code>
+
+        </dt>
+        <dd>Descriptive software-paper readiness audit</dd>
+
+        <dt>
+
+          <code><a href="validate_eye_prov_graph.html">validate_eye_prov_graph()</a></code>
+
+        </dt>
+        <dd>Validate a provenance graph</dd>
+
+        <dt>
+
+          <code><a href="verify_reproducibility_fingerprint.html">verify_reproducibility_fingerprint()</a></code>
+
+        </dt>
+        <dd>Verify an internally stored fingerprint hash</dd>
+
+        <dt>
+
+          <code><a href="write_prov_dot.html">write_prov_dot()</a></code>
+
+        </dt>
+        <dd>Return Graphviz DOT for a provenance graph</dd>
+
+        <dt>
+
+          <code><a href="write_reproducibility_fingerprint.html">write_reproducibility_fingerprint()</a></code>
+
+        </dt>
+        <dd>Write a reproducibility fingerprint</dd>
+
+        <dt>
+
+          <code><a href="write_software_paper_evidence.html">write_software_paper_evidence()</a></code>
+
+        </dt>
+        <dd>Write a human-readable software-paper evidence report</dd>
+      </dl></div><div class="section level2">
+      <h2 id="-visualization-and-supporting-utilities-">0.9 visualization and supporting utilities (0.9)<a class="anchor" aria-label="anchor" href="#-visualization-and-supporting-utilities-"></a></h2>
+
+
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="audit_eye_api.html">audit_eye_api()</a></code>
+
+        </dt>
+        <dd>Audit API lifecycle completeness and replacement contracts</dd>
+
+        <dt>
+
+          <code><a href="fixation_boundary_uncertainty.html">fixation_boundary_uncertainty()</a></code>
+
+        </dt>
+        <dd>Distance to nearest rectangular AOI boundary</dd>
+
+        <dt>
+
+          <code><a href="specification_curve_data.html">specification_curve_data()</a></code>
+
+        </dt>
+        <dd>Prepare ordered specification-curve data</dd>
+
+        <dt>
+
+          <code><a href="validate_against_reference.html">validate_against_reference()</a></code>
+
+        </dt>
+        <dd>Compare a validation result with a frozen reference</dd>
+      </dl></div><div class="section level2">
       <h2 id="process-irt-and-validation-reference-">Process IRT and validation reference (0.7)<a class="anchor" aria-label="anchor" href="#process-irt-and-validation-reference-"></a></h2>
 
       <div class="section-desc"><p>Public process-aware IRT, semantic-validation, evidence-governance, simulation, recovery, transportability, and advanced measurement APIs introduced in the 0.7 development series.</p></div>
@@ -1713,10 +2955,31 @@
 
         <dt>
 
+          <code><a href="audit_decision_provenance.html">audit_decision_provenance()</a></code>
+
+        </dt>
+        <dd>Audit decision provenance and completeness</dd>
+
+        <dt>
+
           <code><a href="audit_distractor_attention.html">audit_distractor_attention()</a></code>
 
         </dt>
         <dd>Audit distractor attention patterns</dd>
+
+        <dt>
+
+          <code><a href="audit_eye_api.html">audit_eye_api()</a></code>
+
+        </dt>
+        <dd>Audit API lifecycle completeness and replacement contracts</dd>
+
+        <dt>
+
+          <code><a href="audit_eye_pipeline.html">audit_eye_pipeline()</a></code>
+
+        </dt>
+        <dd>Audit a pipeline definition or completed run</dd>
 
         <dt>
 
@@ -1860,6 +3123,13 @@
 
         <dt>
 
+          <code><a href="audit_pupil_preprocessing_order.html">audit_pupil_preprocessing_order()</a></code>
+
+        </dt>
+        <dd>Audit declared order of pupil preprocessing steps</dd>
+
+        <dt>
+
           <code><a href="audit_rmse.html">audit_rmse()</a></code>
 
         </dt>
@@ -1874,6 +3144,13 @@
 
         <dt>
 
+          <code><a href="audit_sampling_irregularity.html">audit_sampling_irregularity()</a></code>
+
+        </dt>
+        <dd>Audit sampling irregularity</dd>
+
+        <dt>
+
           <code><a href="audit_sbc.html">audit_sbc()</a></code>
 
         </dt>
@@ -1885,6 +3162,13 @@
 
         </dt>
         <dd>Summarize a signal-filter audit</dd>
+
+        <dt>
+
+          <code><a href="audit_temporal_leakage.html">audit_temporal_leakage()</a></code>
+
+        </dt>
+        <dd>Audit temporal leakage in a feature provenance table</dd>
 
         <dt>
 

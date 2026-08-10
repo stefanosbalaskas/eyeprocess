@@ -391,6 +391,366 @@ used.
 
 # Package index
 
+## Validation, sensitivity, and negative controls (0.9)
+
+- [`audit_temporal_leakage()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_temporal_leakage.md)
+  : Audit temporal leakage in a feature provenance table
+- [`calibration_sensitivity_grid()`](https://stefanosbalaskas.github.io/eyeprocess/reference/calibration_sensitivity_grid.md)
+  : Sensitivity grid for deterministic calibration offsets
+- [`compare_aoi_methods()`](https://stefanosbalaskas.github.io/eyeprocess/reference/compare_aoi_methods.md)
+  : Compare explicit AOI assignment methods
+- [`compare_decision_manifests()`](https://stefanosbalaskas.github.io/eyeprocess/reference/compare_decision_manifests.md)
+  : Compare two research decision manifests
+- [`compare_fixation_methods()`](https://stefanosbalaskas.github.io/eyeprocess/reference/compare_fixation_methods.md)
+  : Compare explicit fixation-detection methods
+- [`compare_hard_probabilistic_aoi()`](https://stefanosbalaskas.github.io/eyeprocess/reference/compare_hard_probabilistic_aoi.md)
+  : Compare hard and probabilistic AOI assignments
+- [`compare_process_models()`](https://stefanosbalaskas.github.io/eyeprocess/reference/compare_process_models.md)
+  : Compare explicit process-model specifications
+- [`compare_pupil_preprocessing()`](https://stefanosbalaskas.github.io/eyeprocess/reference/compare_pupil_preprocessing.md)
+  : Compare explicit pupil-preprocessing methods
+- [`compare_reproducibility_fingerprints()`](https://stefanosbalaskas.github.io/eyeprocess/reference/compare_reproducibility_fingerprints.md)
+  : Compare two reproducibility fingerprints
+- [`coverage_calibration_curve()`](https://stefanosbalaskas.github.io/eyeprocess/reference/coverage_calibration_curve.md)
+  : Interval coverage calibration curve
+- [`decision_space_coverage()`](https://stefanosbalaskas.github.io/eyeprocess/reference/decision_space_coverage.md)
+  : Coverage of a declared decision space by evaluated specifications
+- [`decision_stability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/decision_stability.md)
+  : Overall decision-stability summary
+- [`expand_process_validation_design()`](https://stefanosbalaskas.github.io/eyeprocess/reference/expand_process_validation_design.md)
+  : Expand a process-validation design into explicit conditions
+- [`freeze_validation_reference()`](https://stefanosbalaskas.github.io/eyeprocess/reference/freeze_validation_reference.md)
+  : Freeze a compact validation reference for regression testing
+- [`negative_control_concordance()`](https://stefanosbalaskas.github.io/eyeprocess/reference/negative_control_concordance.md)
+  : Concordance of multiple negative-control families
+- [`placebo_window_audit()`](https://stefanosbalaskas.github.io/eyeprocess/reference/placebo_window_audit.md)
+  : Audit a placebo/pre-event window
+- [`process_feature_time_provenance()`](https://stefanosbalaskas.github.io/eyeprocess/reference/process_feature_time_provenance.md)
+  : Declare temporal provenance for process features
+- [`process_measure_coverage()`](https://stefanosbalaskas.github.io/eyeprocess/reference/process_measure_coverage.md)
+  : Process-measure coverage for an observed dataset
+- [`process_negative_control_permute()`](https://stefanosbalaskas.github.io/eyeprocess/reference/process_negative_control_permute.md)
+  : Permutation negative control
+- [`process_negative_control_shift()`](https://stefanosbalaskas.github.io/eyeprocess/reference/process_negative_control_shift.md)
+  : Temporal-shift negative control
+- [`process_sensitivity_grid()`](https://stefanosbalaskas.github.io/eyeprocess/reference/process_sensitivity_grid.md)
+  : Construct an explicit process-analysis sensitivity grid
+- [`process_temporal_stability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/process_temporal_stability.md)
+  : Pairwise temporal stability across sessions
+- [`process_validation_design()`](https://stefanosbalaskas.github.io/eyeprocess/reference/process_validation_design.md)
+  : Define an empirical process-validation design
+- [`pupil_baseline_sensitivity()`](https://stefanosbalaskas.github.io/eyeprocess/reference/pupil_baseline_sensitivity.md)
+  : Evaluate pupil baseline-window sensitivity
+- [`run_process_negative_controls()`](https://stefanosbalaskas.github.io/eyeprocess/reference/run_process_negative_controls.md)
+  : Run repeated process negative controls
+- [`run_process_sensitivity()`](https://stefanosbalaskas.github.io/eyeprocess/reference/run_process_sensitivity.md)
+  : Run an explicit process-analysis multiverse
+- [`run_process_validation()`](https://stefanosbalaskas.github.io/eyeprocess/reference/run_process_validation.md)
+  : Run an empirical process-validation programme
+- [`sbc_ecdf_deviation()`](https://stefanosbalaskas.github.io/eyeprocess/reference/sbc_ecdf_deviation.md)
+  : ECDF deviation summary for SBC ranks
+- [`sbc_rank_diagnostics()`](https://stefanosbalaskas.github.io/eyeprocess/reference/sbc_rank_diagnostics.md)
+  : Build SBC rank diagnostics
+- [`sensitivity_branch_fingerprint()`](https://stefanosbalaskas.github.io/eyeprocess/reference/sensitivity_branch_fingerprint.md)
+  : Stable fingerprint of a sensitivity branch
+- [`sensitivity_decision_leverage()`](https://stefanosbalaskas.github.io/eyeprocess/reference/sensitivity_decision_leverage.md)
+  : Decision leverage of each analytical choice
+- [`sensitivity_fragility_index()`](https://stefanosbalaskas.github.io/eyeprocess/reference/sensitivity_fragility_index.md)
+  : Fragility index across analysis specifications
+- [`sensitivity_multiverse_manifest()`](https://stefanosbalaskas.github.io/eyeprocess/reference/sensitivity_multiverse_manifest.md)
+  : Machine-readable multiverse manifest
+- [`sensitivity_rank_stability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/sensitivity_rank_stability.md)
+  : Rank stability across specifications
+- [`sensitivity_sign_stability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/sensitivity_sign_stability.md)
+  : Effect-sign stability across specifications
+- [`sensitivity_significance_stability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/sensitivity_significance_stability.md)
+  : Significance-decision stability across specifications
+- [`sensitivity_threshold_stability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/sensitivity_threshold_stability.md)
+  : Substantive-threshold stability across specifications
+- [`simulate_process_validation_data()`](https://stefanosbalaskas.github.io/eyeprocess/reference/simulate_process_validation_data.md)
+  : Simulate a generic multimodal validation dataset with known truth
+- [`simulation_rank_statistic()`](https://stefanosbalaskas.github.io/eyeprocess/reference/simulation_rank_statistic.md)
+  : Compute a simulation-based calibration rank statistic
+- [`software_paper_coverage()`](https://stefanosbalaskas.github.io/eyeprocess/reference/software_paper_coverage.md)
+  : Compute descriptive evidence coverage
+- [`software_paper_validation_table()`](https://stefanosbalaskas.github.io/eyeprocess/reference/software_paper_validation_table.md)
+  : Summarise validation evidence for a software paper
+- [`specification_coverage()`](https://stefanosbalaskas.github.io/eyeprocess/reference/specification_coverage.md)
+  : Fraction of planned specifications successfully evaluated
+- [`summarise_process_negative_controls()`](https://stefanosbalaskas.github.io/eyeprocess/reference/summarise_process_negative_controls.md)
+  : Summarise process negative controls
+- [`summarise_process_sensitivity()`](https://stefanosbalaskas.github.io/eyeprocess/reference/summarise_process_sensitivity.md)
+  : Summarise process sensitivity results
+- [`summarise_process_validation()`](https://stefanosbalaskas.github.io/eyeprocess/reference/summarise_process_validation.md)
+  : Summarise a process-validation result
+- [`validate_feature_availability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validate_feature_availability.md)
+  : Validate feature availability against an analysis cutoff
+- [`validate_process_validation_design()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validate_process_validation_design.md)
+  : Validate a process-validation design
+- [`validation_condition_id()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validation_condition_id.md)
+  : Return stable validation condition identifiers
+- [`validation_condition_ranking()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validation_condition_ranking.md)
+  : Rank validation conditions by a transparent robustness score
+- [`validation_coverage_table()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validation_coverage_table.md)
+  : Interval-coverage table
+- [`validation_evidence_matrix()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validation_evidence_matrix.md)
+  : Create a model-by-evidence validation matrix
+- [`validation_failure_profile()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validation_failure_profile.md)
+  : Failure profile for a validation programme
+- [`validation_summary_mcse()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validation_summary_mcse.md)
+  : Monte Carlo standard-error diagnostics for validation summaries
+- [`validation_recovery_table()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validation_recovery_table.md)
+  : Parameter-recovery table
+- [`validation_robustness_score()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validation_robustness_score.md)
+  : Overall validation robustness score
+
+## Governed pipelines, decisions, and API lifecycle (0.9)
+
+- [`analysis_decision_entropy()`](https://stefanosbalaskas.github.io/eyeprocess/reference/analysis_decision_entropy.md)
+  : Entropy of an explicitly enumerated analysis-decision space
+- [`api_family_map()`](https://stefanosbalaskas.github.io/eyeprocess/reference/api_family_map.md)
+  : Map exported APIs to conceptual families
+- [`api_lifecycle_diff()`](https://stefanosbalaskas.github.io/eyeprocess/reference/api_lifecycle_diff.md)
+  : Compare two API lifecycle registries
+- [`api_surface_summary()`](https://stefanosbalaskas.github.io/eyeprocess/reference/api_surface_summary.md)
+  : Summarise API surface by family and lifecycle status
+- [`audit_eye_pipeline()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_eye_pipeline.md)
+  : Audit a pipeline definition or completed run
+- [`canonical_eye_api()`](https://stefanosbalaskas.github.io/eyeprocess/reference/canonical_eye_api.md)
+  : Canonical API mapping
+- [`decision_manifest_diff()`](https://stefanosbalaskas.github.io/eyeprocess/reference/decision_manifest_diff.md)
+  : Alias for manifest comparison emphasizing changed decision paths
+- [`decision_manifest_hash()`](https://stefanosbalaskas.github.io/eyeprocess/reference/decision_manifest_hash.md)
+  : Stable hash of decision content
+- [`decision_manifest_table()`](https://stefanosbalaskas.github.io/eyeprocess/reference/decision_manifest_table.md)
+  : Flatten a decision manifest to a table
+- [`export_eye_pipeline()`](https://stefanosbalaskas.github.io/eyeprocess/reference/export_eye_pipeline.md)
+  : Export a pipeline manifest and optional run status
+- [`eye_analysis_pipeline()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eye_analysis_pipeline.md)
+  : Construct a governed analysis pipeline
+- [`eye_analysis_spec()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eye_analysis_spec.md)
+  : Define explicit analysis decisions for an eyeprocess workflow
+- [`eye_api_inventory()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eye_api_inventory.md)
+  : Inventory the public eyeprocess API
+- [`eye_api_lifecycle()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eye_api_lifecycle.md)
+  : Normalize or create an API lifecycle registry
+- [`eye_api_recommendation()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eye_api_recommendation.md)
+  : Lifecycle recommendation for API review
+- [`eye_api_status()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eye_api_status.md)
+  : Lookup lifecycle status for one or more APIs
+- [`eye_api_superseded()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eye_api_superseded.md)
+  : Return superseded/deprecated compatibility interfaces
+- [`eye_decision_manifest()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eye_decision_manifest.md)
+  : Create a machine-readable research decision manifest
+- [`eye_pipeline_dot()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eye_pipeline_dot.md)
+  : Render pipeline dependencies as Graphviz DOT
+- [`eye_pipeline_graph()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eye_pipeline_graph.md)
+  : Return pipeline vertices and dependency edges
+- [`eye_pipeline_manifest()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eye_pipeline_manifest.md)
+  : Machine-readable pipeline manifest
+- [`eye_pipeline_mermaid()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eye_pipeline_mermaid.md)
+  : Render pipeline dependencies as Mermaid flowchart text
+- [`eye_pipeline_step()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eye_pipeline_step.md)
+  : Define a governed pipeline step
+- [`eye_targets_manifest()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eye_targets_manifest.md)
+  : Create a targets-compatible dependency manifest
+- [`lock_decision_manifest()`](https://stefanosbalaskas.github.io/eyeprocess/reference/lock_decision_manifest.md)
+  : Lock a decision manifest by content hash
+- [`outcome_blind_feature_audit()`](https://stefanosbalaskas.github.io/eyeprocess/reference/outcome_blind_feature_audit.md)
+  : Audit whether candidate predictors can be constructed without an
+  outcome column
+- [`outcome_blind_snapshot()`](https://stefanosbalaskas.github.io/eyeprocess/reference/outcome_blind_snapshot.md)
+  : Create an outcome-blind data snapshot
+- [`pipeline_failures()`](https://stefanosbalaskas.github.io/eyeprocess/reference/pipeline_failures.md)
+  : Return failed pipeline steps
+- [`pipeline_result()`](https://stefanosbalaskas.github.io/eyeprocess/reference/pipeline_result.md)
+  : Extract a pipeline result by step name
+- [`pipeline_step_status()`](https://stefanosbalaskas.github.io/eyeprocess/reference/pipeline_step_status.md)
+  : Pipeline step status table
+- [`read_api_lifecycle_registry()`](https://stefanosbalaskas.github.io/eyeprocess/reference/read_api_lifecycle_registry.md)
+  : Read API lifecycle registry from CSV
+- [`read_decision_manifest()`](https://stefanosbalaskas.github.io/eyeprocess/reference/read_decision_manifest.md)
+  : Read a decision manifest written by eyeprocess
+- [`register_eye_api_status()`](https://stefanosbalaskas.github.io/eyeprocess/reference/register_eye_api_status.md)
+  : Add or update API lifecycle metadata without global mutation
+- [`resume_eye_pipeline()`](https://stefanosbalaskas.github.io/eyeprocess/reference/resume_eye_pipeline.md)
+  : Resume a governed pipeline from a prior run
+- [`run_eye_pipeline()`](https://stefanosbalaskas.github.io/eyeprocess/reference/run_eye_pipeline.md)
+  : Run a governed eyeprocess pipeline
+- [`stress_test_process_pipeline()`](https://stefanosbalaskas.github.io/eyeprocess/reference/stress_test_process_pipeline.md)
+  : Stress-test an analysis under explicit synthetic corruptions
+- [`validate_decision_manifest()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validate_decision_manifest.md)
+  : Validate a research decision manifest
+- [`validate_eye_pipeline()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validate_eye_pipeline.md)
+  : Validate a governed eyeprocess pipeline
+- [`verify_decision_manifest_lock()`](https://stefanosbalaskas.github.io/eyeprocess/reference/verify_decision_manifest_lock.md)
+  : Verify that a locked manifest has not changed
+- [`verify_outcome_blind_snapshot()`](https://stefanosbalaskas.github.io/eyeprocess/reference/verify_outcome_blind_snapshot.md)
+  : Verify an outcome-blind snapshot has not changed
+- [`write_api_lifecycle_registry()`](https://stefanosbalaskas.github.io/eyeprocess/reference/write_api_lifecycle_registry.md)
+  : Write API lifecycle registry to CSV
+- [`write_decision_manifest()`](https://stefanosbalaskas.github.io/eyeprocess/reference/write_decision_manifest.md)
+  : Write a decision manifest
+- [`write_eye_pipeline_report()`](https://stefanosbalaskas.github.io/eyeprocess/reference/write_eye_pipeline_report.md)
+  : Write a conservative pipeline report
+- [`write_eye_targets_template()`](https://stefanosbalaskas.github.io/eyeprocess/reference/write_eye_targets_template.md)
+  : Write an explicit \`\_targets.R\` template from a governed pipeline
+
+## Measurement reliability, quality, and stress testing (0.9)
+
+- [`analysis_resolution_guard()`](https://stefanosbalaskas.github.io/eyeprocess/reference/analysis_resolution_guard.md)
+  : Audit compatibility between measurement resolution and an analysis
+  target
+- [`aoi_membership_probability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/aoi_membership_probability.md)
+  : AOI membership probabilities from uncertainty draws
+- [`apply_synthetic_corruption()`](https://stefanosbalaskas.github.io/eyeprocess/reference/apply_synthetic_corruption.md)
+  : Apply a synthetic corruption plan
+- [`audit_pupil_preprocessing_order()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_pupil_preprocessing_order.md)
+  : Audit declared order of pupil preprocessing steps
+- [`audit_sampling_irregularity()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_sampling_irregularity.md)
+  : Audit sampling irregularity
+- [`benchmark_memory_estimate()`](https://stefanosbalaskas.github.io/eyeprocess/reference/benchmark_memory_estimate.md)
+  : Memory estimate for an R object or generated problem size
+- [`benchmark_scaling_curve()`](https://stefanosbalaskas.github.io/eyeprocess/reference/benchmark_scaling_curve.md)
+  : Estimate scaling exponent from benchmark results
+- [`bootstrap_process_reliability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/bootstrap_process_reliability.md)
+  : Bootstrap ICC reliability by resampling participants
+- [`calibration_drift_profile()`](https://stefanosbalaskas.github.io/eyeprocess/reference/calibration_drift_profile.md)
+  : Calibration drift profile across sessions/batches
+- [`calibration_error_model()`](https://stefanosbalaskas.github.io/eyeprocess/reference/calibration_error_model.md)
+  : Build an empirical bivariate calibration-error model
+- [`data_quality_reporting_table()`](https://stefanosbalaskas.github.io/eyeprocess/reference/data_quality_reporting_table.md)
+  : Compact reporting table for eye-tracking data quality
+- [`effective_sampling_frequency()`](https://stefanosbalaskas.github.io/eyeprocess/reference/effective_sampling_frequency.md)
+  : Estimate effective sampling frequency from timestamps
+- [`estimate_calibration_error()`](https://stefanosbalaskas.github.io/eyeprocess/reference/estimate_calibration_error.md)
+  : Estimate empirical calibration/validation error
+- [`eye_benchmark_design()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eye_benchmark_design.md)
+  : Define a computational benchmark design
+- [`find_process_measures()`](https://stefanosbalaskas.github.io/eyeprocess/reference/find_process_measures.md)
+  : Find process measures by channel, level, status, or text
+- [`gaze_data_quality_profile()`](https://stefanosbalaskas.github.io/eyeprocess/reference/gaze_data_quality_profile.md)
+  : Empirical gaze data-quality profile
+- [`gaze_precision_rms_s2s()`](https://stefanosbalaskas.github.io/eyeprocess/reference/gaze_precision_rms_s2s.md)
+  : Estimate RMS successive-sample gaze imprecision
+- [`gaze_uncertainty_ellipse()`](https://stefanosbalaskas.github.io/eyeprocess/reference/gaze_uncertainty_ellipse.md)
+  : Uncertainty ellipse implied by an empirical calibration-error model
+- [`inject_aoi_label_noise()`](https://stefanosbalaskas.github.io/eyeprocess/reference/inject_aoi_label_noise.md)
+  : Inject AOI label noise
+- [`inject_calibration_offset()`](https://stefanosbalaskas.github.io/eyeprocess/reference/inject_calibration_offset.md)
+  : Inject additive gaze calibration offset in coordinate units
+- [`inject_device_shift()`](https://stefanosbalaskas.github.io/eyeprocess/reference/inject_device_shift.md)
+  : Inject an additive device/site shift in a numeric feature
+- [`inject_eye_missingness()`](https://stefanosbalaskas.github.io/eyeprocess/reference/inject_eye_missingness.md)
+  : Inject generic missingness into selected columns
+- [`inject_pupil_dropout()`](https://stefanosbalaskas.github.io/eyeprocess/reference/inject_pupil_dropout.md)
+  : Inject pupil dropout
+- [`inject_sampling_jitter()`](https://stefanosbalaskas.github.io/eyeprocess/reference/inject_sampling_jitter.md)
+  : Inject timestamp jitter
+- [`inject_trial_imbalance()`](https://stefanosbalaskas.github.io/eyeprocess/reference/inject_trial_imbalance.md)
+  : Inject trial/row imbalance by dropping observations
+- [`measurement_error_budget()`](https://stefanosbalaskas.github.io/eyeprocess/reference/measurement_error_budget.md)
+  : Build a non-collapsed measurement-error budget
+- [`probabilistic_aoi_assignment()`](https://stefanosbalaskas.github.io/eyeprocess/reference/probabilistic_aoi_assignment.md)
+  : Probabilistic AOI assignment under empirical calibration uncertainty
+- [`process_bland_altman()`](https://stefanosbalaskas.github.io/eyeprocess/reference/process_bland_altman.md)
+  : Bland-Altman repeatability summary for two sessions
+- [`process_icc()`](https://stefanosbalaskas.github.io/eyeprocess/reference/process_icc.md)
+  : Absolute-agreement ICC(A,1) for repeated process measures
+- [`process_measure_card()`](https://stefanosbalaskas.github.io/eyeprocess/reference/process_measure_card.md)
+  : Return a one-measure process card
+- [`process_measure_guardrails()`](https://stefanosbalaskas.github.io/eyeprocess/reference/process_measure_guardrails.md)
+  : Process-measure guardrail table
+- [`process_measure_lineage()`](https://stefanosbalaskas.github.io/eyeprocess/reference/process_measure_lineage.md)
+  : Process-measure lineage table
+- [`process_measure_registry()`](https://stefanosbalaskas.github.io/eyeprocess/reference/process_measure_registry.md)
+  : Unified process-measure registry
+- [`process_measure_units()`](https://stefanosbalaskas.github.io/eyeprocess/reference/process_measure_units.md)
+  : List units used by registered process measures
+- [`process_null_benchmark()`](https://stefanosbalaskas.github.io/eyeprocess/reference/process_null_benchmark.md)
+  : Compare an observed effect against a negative-control null
+  distribution
+- [`process_reliability_profile()`](https://stefanosbalaskas.github.io/eyeprocess/reference/process_reliability_profile.md)
+  : Test-retest process reliability profile
+- [`propagate_calibration_uncertainty()`](https://stefanosbalaskas.github.io/eyeprocess/reference/propagate_calibration_uncertainty.md)
+  : Propagate empirical calibration uncertainty around gaze samples
+- [`register_process_measure()`](https://stefanosbalaskas.github.io/eyeprocess/reference/register_process_measure.md)
+  : Add a process measure to a registry without global mutation
+- [`run_eye_benchmark()`](https://stefanosbalaskas.github.io/eyeprocess/reference/run_eye_benchmark.md)
+  : Run a computational scaling benchmark
+- [`split_half_process_reliability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/split_half_process_reliability.md)
+  : Split-half reliability for a trial-level process measure
+- [`stress_test_summary()`](https://stefanosbalaskas.github.io/eyeprocess/reference/stress_test_summary.md)
+  : Summarise stress-test metrics
+- [`stress_tolerance_frontier()`](https://stefanosbalaskas.github.io/eyeprocess/reference/stress_tolerance_frontier.md)
+  : Identify the empirical stress frontier for a metric
+- [`summarise_eye_benchmark()`](https://stefanosbalaskas.github.io/eyeprocess/reference/summarise_eye_benchmark.md)
+  : Summarise benchmark timing and memory by problem size
+- [`synthetic_corruption_plan()`](https://stefanosbalaskas.github.io/eyeprocess/reference/synthetic_corruption_plan.md)
+  : Define synthetic measurement corruptions for stress testing
+- [`validate_process_measure_registry()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validate_process_measure_registry.md)
+  : Validate a process-measure registry
+
+## Reproducibility and software-paper evidence (0.9)
+
+- [`analysis_environment_snapshot()`](https://stefanosbalaskas.github.io/eyeprocess/reference/analysis_environment_snapshot.md)
+  : Snapshot an eyeprocess analysis environment
+- [`audit_decision_provenance()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_decision_provenance.md)
+  : Audit decision provenance and completeness
+- [`export_prov_json()`](https://stefanosbalaskas.github.io/eyeprocess/reference/export_prov_json.md)
+  : Export lightweight PROV-oriented JSON
+- [`export_ro_crate_metadata()`](https://stefanosbalaskas.github.io/eyeprocess/reference/export_ro_crate_metadata.md)
+  : Export minimal RO-Crate 1.3 metadata
+- [`eye_prov_graph()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eye_prov_graph.md)
+  : Construct a lightweight provenance graph
+- [`eye_reproducibility_fingerprint()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eye_reproducibility_fingerprint.md)
+  : Construct a reproducibility fingerprint
+- [`eye_session_manifest()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eye_session_manifest.md)
+  : Create a session-level provenance manifest
+- [`file_hash_manifest()`](https://stefanosbalaskas.github.io/eyeprocess/reference/file_hash_manifest.md)
+  : Build a file hash manifest
+- [`freeze_software_paper_evidence()`](https://stefanosbalaskas.github.io/eyeprocess/reference/freeze_software_paper_evidence.md)
+  : Freeze software-paper evidence to an RDS with a hash
+- [`object_hash()`](https://stefanosbalaskas.github.io/eyeprocess/reference/object_hash.md)
+  : Hash an R object reproducibly within an R serialization version
+- [`paper_reproducibility_manifest()`](https://stefanosbalaskas.github.io/eyeprocess/reference/paper_reproducibility_manifest.md)
+  : Create a compact paper reproducibility manifest
+- [`provenance_edge_table()`](https://stefanosbalaskas.github.io/eyeprocess/reference/provenance_edge_table.md)
+  : Build a provenance edge table
+- [`provenance_lineage_table()`](https://stefanosbalaskas.github.io/eyeprocess/reference/provenance_lineage_table.md)
+  : Build a provenance lineage node table
+- [`read_reproducibility_fingerprint()`](https://stefanosbalaskas.github.io/eyeprocess/reference/read_reproducibility_fingerprint.md)
+  : Read a reproducibility fingerprint
+- [`software_paper_claim_matrix()`](https://stefanosbalaskas.github.io/eyeprocess/reference/software_paper_claim_matrix.md)
+  : Create or normalize a software-paper claim matrix
+- [`software_paper_evidence_bundle()`](https://stefanosbalaskas.github.io/eyeprocess/reference/software_paper_evidence_bundle.md)
+  : Construct a software-paper evidence bundle
+- [`software_paper_gap_analysis()`](https://stefanosbalaskas.github.io/eyeprocess/reference/software_paper_gap_analysis.md)
+  : Identify gaps in a software-paper evidence bundle
+- [`software_paper_readiness()`](https://stefanosbalaskas.github.io/eyeprocess/reference/software_paper_readiness.md)
+  : Descriptive software-paper readiness audit
+- [`validate_eye_prov_graph()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validate_eye_prov_graph.md)
+  : Validate a provenance graph
+- [`verify_reproducibility_fingerprint()`](https://stefanosbalaskas.github.io/eyeprocess/reference/verify_reproducibility_fingerprint.md)
+  : Verify an internally stored fingerprint hash
+- [`write_prov_dot()`](https://stefanosbalaskas.github.io/eyeprocess/reference/write_prov_dot.md)
+  : Return Graphviz DOT for a provenance graph
+- [`write_reproducibility_fingerprint()`](https://stefanosbalaskas.github.io/eyeprocess/reference/write_reproducibility_fingerprint.md)
+  : Write a reproducibility fingerprint
+- [`write_software_paper_evidence()`](https://stefanosbalaskas.github.io/eyeprocess/reference/write_software_paper_evidence.md)
+  : Write a human-readable software-paper evidence report
+
+## 0.9 visualization and supporting utilities (0.9)
+
+- [`audit_eye_api()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_eye_api.md)
+  : Audit API lifecycle completeness and replacement contracts
+- [`fixation_boundary_uncertainty()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fixation_boundary_uncertainty.md)
+  : Distance to nearest rectangular AOI boundary
+- [`specification_curve_data()`](https://stefanosbalaskas.github.io/eyeprocess/reference/specification_curve_data.md)
+  : Prepare ordered specification-curve data
+- [`validate_against_reference()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validate_against_reference.md)
+  : Compare a validation result with a frozen reference
+
 ## Process IRT and validation reference (0.7)
 
 Public process-aware IRT, semantic-validation, evidence-governance,
@@ -1103,8 +1463,14 @@ introduced in the 0.7 development series.
   : Audit convergence and classified failures
 - [`audit_coverage()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_coverage.md)
   : Audit coverage
+- [`audit_decision_provenance()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_decision_provenance.md)
+  : Audit decision provenance and completeness
 - [`audit_distractor_attention()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_distractor_attention.md)
   : Audit distractor attention patterns
+- [`audit_eye_api()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_eye_api.md)
+  : Audit API lifecycle completeness and replacement contracts
+- [`audit_eye_pipeline()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_eye_pipeline.md)
+  : Audit a pipeline definition or completed run
 - [`audit_frontier_model_contract()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_frontier_model_contract.md)
   : Audit whether a gated frontier model has a minimum evidence contract
 - [`audit_identifiability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_identifiability.md)
@@ -1147,14 +1513,20 @@ introduced in the 0.7 development series.
   : Audit within-person pupil fatigue/trial-order drift
 - [`audit_pupil_frequency_stability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_pupil_frequency_stability.md)
   : Audit stability of pupil frequency features across window lengths
+- [`audit_pupil_preprocessing_order()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_pupil_preprocessing_order.md)
+  : Audit declared order of pupil preprocessing steps
 - [`audit_rmse()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_rmse.md)
   : Audit rmse
 - [`audit_roundtrip_loss()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_roundtrip_loss.md)
   : Audit semantic and numerical loss after a round trip
+- [`audit_sampling_irregularity()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_sampling_irregularity.md)
+  : Audit sampling irregularity
 - [`audit_sbc()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_sbc.md)
   : Audit SBC rank uniformity
 - [`audit_signal_filter()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_signal_filter.md)
   : Summarize a signal-filter audit
+- [`audit_temporal_leakage()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_temporal_leakage.md)
+  : Audit temporal leakage in a feature provenance table
 - [`audit_validation_completion()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_validation_completion.md)
   : Audit whether a validation programme is complete
 - [`audit_vendor_field_coverage()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_vendor_field_coverage.md)
@@ -2446,6 +2818,37 @@ methods.
   : Write a validation report to disk
 
 # Articles
+
+### Validated and governed research workflows (0.9)
+
+Empirical validation, governed pipelines, API lifecycle, sensitivity
+analysis, measurement reliability, calibration uncertainty, negative
+controls, reproducibility, benchmarking, and software-paper evidence.
+
+- [API lifecycle and canonical
+  interfaces](https://stefanosbalaskas.github.io/eyeprocess/articles/api-lifecycle-and-canonical-interfaces.md):
+- [Computational benchmarking and synthetic stress
+  testing](https://stefanosbalaskas.github.io/eyeprocess/articles/benchmarking-and-stress-testing.md):
+- [Calibration uncertainty and eye-tracking data
+  quality](https://stefanosbalaskas.github.io/eyeprocess/articles/calibration-uncertainty-and-data-quality.md):
+- [Empirical validation programmes in
+  eyeprocess](https://stefanosbalaskas.github.io/eyeprocess/articles/empirical-validation-programme.md):
+- [Governed end-to-end analysis
+  pipelines](https://stefanosbalaskas.github.io/eyeprocess/articles/governed-end-to-end-pipelines.md):
+- [Sensitivity, specification curves, and decision
+  stability](https://stefanosbalaskas.github.io/eyeprocess/articles/multiverse-sensitivity-and-decision-stability.md):
+- [Negative controls, placebo windows, and temporal
+  leakage](https://stefanosbalaskas.github.io/eyeprocess/articles/negative-controls-and-temporal-leakage.md):
+- [Process-measure registry, repeatability, and
+  reliability](https://stefanosbalaskas.github.io/eyeprocess/articles/process-measure-registry-and-reliability.md):
+- [Reproducibility fingerprints, provenance, and
+  RO-Crate](https://stefanosbalaskas.github.io/eyeprocess/articles/reproducibility-prov-and-ro-crate.md):
+- [Building a software-paper evidence
+  bundle](https://stefanosbalaskas.github.io/eyeprocess/articles/software-paper-evidence-bundle.md):
+- [Simulation-based calibration and measurement-resolution
+  guards](https://stefanosbalaskas.github.io/eyeprocess/articles/simulation-calibration-and-resolution-guards.md):
+- [Interoperability with targets-style
+  workflows](https://stefanosbalaskas.github.io/eyeprocess/articles/targets-interoperability.md):
 
 ### Foundations
 

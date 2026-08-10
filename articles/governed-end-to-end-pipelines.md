@@ -1,0 +1,27 @@
+# Governed end-to-end analysis pipelines
+
+The pipeline layer links import, measurement quality, preprocessing,
+feature construction, modeling, diagnostics, sensitivity analysis, and
+reporting while preserving the researcher’s declared choices. Pipeline
+steps are explicit functions with declared dependencies; eyeprocess does
+not silently choose preprocessing or statistical specifications.
+
+``` r
+
+spec <- eye_analysis_spec(blink_correction="linear", pupil_baseline=c(-500,0), fixation_algorithm="ivt", aoi_rule="probabilistic")
+p <- eye_analysis_pipeline(list(
+  eye_pipeline_step("import", read_fun),
+  eye_pipeline_step("quality", quality_fun, requires="import"),
+  eye_pipeline_step("model", model_fun, requires="quality")
+), spec = spec)
+validate_eye_pipeline(p)
+r <- run_eye_pipeline(p, context=list(path="study.csv"))
+audit_eye_pipeline(r)
+plot(p)
+```
+
+[`eye_targets_manifest()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eye_targets_manifest.md)
+and
+[`write_eye_targets_template()`](https://stefanosbalaskas.github.io/eyeprocess/reference/write_eye_targets_template.md)
+provide interoperability scaffolding without pretending arbitrary
+closures can be losslessly translated into another pipeline engine.
