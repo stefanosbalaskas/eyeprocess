@@ -90,8 +90,8 @@
 </h1></div>
 <p><a href="https://doi.org/10.5281/zenodo.21844472" class="external-link"><img src="https://zenodo.org/badge/1322747590.svg" alt="DOI"></a></p>
 <!-- badges: start -->
-<p><strong>Latest archived release:</strong> 0.6.0</p>
-<p><strong>Release candidate:</strong> 0.8.0 <a href="https://github.com/stefanosbalaskas/eyeprocess/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/stefanosbalaskas/eyeprocess/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a> <!-- badges: end --></p>
+<p><strong>Latest archived release:</strong> 0.8.0</p>
+<p><strong>Current formal release:</strong> 0.8.0 <a href="https://github.com/stefanosbalaskas/eyeprocess/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/stefanosbalaskas/eyeprocess/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a> <!-- badges: end --></p>
 <p><code>eyeprocess</code> is a vendor-neutral R framework for transforming heterogeneous eye-tracking, pupillometry, behavioural, and biometric exports into validated, analysis-ready process data. It provides first-class support for Gazepoint Analysis and Gazepoint Biometrics exports, dedicated adapters for common eye-tracking ecosystems, and downstream psychometric modelling.</p>
 <div class="section level2">
 <h2 id="design-commitments">Design commitments<a class="anchor" aria-label="anchor" href="#design-commitments"></a>
@@ -204,7 +204,7 @@
 </h2>
 <p>Version 0.1.0.9003 is the validated baseline: on Windows 11 with R 4.6.1 it installed successfully, passed the complete unit-test suite, completed <code>R CMD check</code> with <strong>0 errors, 0 warnings, and 0 notes</strong>, passed <code><a href="https://pkgdown.r-lib.org/reference/check_pkgdown.html" class="external-link">pkgdown::check_pkgdown()</a></code>, and passed runtime smoke tests.</p>
 <p>Version 0.2.0.9002 established the validated real-structure Gazepoint Analysis 7.2.0 adapter baseline. Version 0.3.0.9000 adds the complete downstream workflow and requires a fresh runtime validation after installation. The regression corpus is derived from six paired de-identified Gazepoint sample/fixation exports and four Data Summary reports. Production compatibility remains version-specific and must be confirmed against additional independent exports before a general compatibility claim is made.</p>
-<p>Release candidate 0.8.0 is cut from the validated 0.8.0.9000 development baseline. That baseline passed the focused 0.8 test suite and the complete eyeprocess test suite, pkgdown validation, installation with vignettes, installed-package smoke validation, and R CMD check with 0 errors, 0 warnings, and 0 notes. The corresponding implementation pull request passed all eight CI checks before merging to master. The original joint-process and dynamic models are explicitly experimental. They must undergo parameter-recovery, calibration, coverage, misspecification, and empirical-reproduction studies before confirmatory use.</p>
+<p>Version 0.8.0 is the current formal release, cut from the validated 0.8.0.9000 development baseline. That baseline passed the focused 0.8 test suite and the complete eyeprocess test suite, pkgdown validation, installation with vignettes, installed-package smoke validation, and R CMD check with 0 errors, 0 warnings, and 0 notes. The formal release also passed definitive release-artifact validation and all six post-merge GitHub CI checks. The original joint-process and dynamic models are explicitly experimental. They must undergo parameter-recovery, calibration, coverage, misspecification, and empirical-reproduction studies before confirmatory use.</p>
 <p>See <a href="IMPLEMENTATION_STATUS.html"><code>IMPLEMENTATION_STATUS.md</code></a>, <a href="FUNCTION_REFERENCE.html"><code>FUNCTION_REFERENCE.md</code></a>, and <a href="STATIC_AUDIT.txt"><code>STATIC_AUDIT.txt</code></a>.</p>
 </div>
 <div class="section level2">
@@ -391,15 +391,15 @@
 <h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
 </h2>
 <p>If you use <code>eyeprocess</code> in research, please cite the archived software release:</p>
-<p>Balaskas, S. (2026). <em>eyeprocess: Harmonize Eye-Tracking, Pupillometry, Biometrics, and Psychometric Process Data</em> (Version 0.6.0). Zenodo. <a href="https://doi.org/10.5281/zenodo.21844473" class="external-link uri">https://doi.org/10.5281/zenodo.21844473</a></p>
+<p>Balaskas, S. (2026). <em>eyeprocess: Harmonize Eye-Tracking, Pupillometry, Biometrics, and Psychometric Process Data</em> (Version 0.8.0). Zenodo. <a href="https://doi.org/10.5281/zenodo.21865277" class="external-link uri">https://doi.org/10.5281/zenodo.21865277</a></p>
 <ul>
-<li>Version 0.6.0 DOI: <code>10.5281/zenodo.21844473</code>
+<li>Version 0.8.0 DOI: <code>10.5281/zenodo.21865277</code>
 </li>
 <li>Concept DOI: <code>10.5281/zenodo.21844472</code>
 </li>
 </ul>
 <p>See <code>CITATION.cff</code> for machine-readable citation metadata.</p>
-<p>Version 0.8.0 is being prepared as the next formal software release. Until its Zenodo archive is published, version 0.6.0 remains the latest archived release and its version DOI remains the current archived citation. No Zenodo version DOI is claimed for 0.8.0 at the release-candidate stage.</p>
+<p>Version 0.8.0 is the current formal archived software release. Its version-specific Zenodo DOI is <code>10.5281/zenodo.21865277</code>; the concept DOI remains <code>10.5281/zenodo.21844472</code>. Studies using eyeprocess should report the exact package version and, when relevant, the source commit used.</p>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">
