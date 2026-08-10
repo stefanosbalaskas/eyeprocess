@@ -3,9 +3,9 @@
 [![DOI](https://zenodo.org/badge/1322747590.svg)](https://doi.org/10.5281/zenodo.21844472)
 
 <!-- badges: start -->
-**Latest archived release:** 0.6.0
+**Latest archived release:** 0.8.0
 
-**Release candidate:** 0.8.0
+**Current formal release:** 0.8.0
 [![R-CMD-check](https://github.com/stefanosbalaskas/eyeprocess/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/stefanosbalaskas/eyeprocess/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
@@ -75,7 +75,7 @@ installed successfully, passed the complete unit-test suite, completed
 Version 0.2.0.9002 established the validated real-structure Gazepoint Analysis 7.2.0 adapter baseline. Version 0.3.0.9000 adds the complete downstream workflow and requires a fresh runtime validation after installation. The regression corpus is derived from six paired de-identified Gazepoint sample/fixation exports and four Data Summary reports. Production compatibility remains version-specific and must be confirmed against additional independent exports before a general compatibility claim is made.
 
 
-Release candidate 0.8.0 is cut from the validated 0.8.0.9000 development baseline. That baseline passed the focused 0.8 test suite and the complete eyeprocess test suite, pkgdown validation, installation with vignettes, installed-package smoke validation, and R CMD check with 0 errors, 0 warnings, and 0 notes. The corresponding implementation pull request passed all eight CI checks before merging to master.
+Version 0.8.0 is the current formal release, cut from the validated 0.8.0.9000 development baseline. That baseline passed the focused 0.8 test suite and the complete eyeprocess test suite, pkgdown validation, installation with vignettes, installed-package smoke validation, and R CMD check with 0 errors, 0 warnings, and 0 notes. The formal release also passed definitive release-artifact validation and all six post-merge GitHub CI checks.
 The original joint-process and dynamic models are explicitly experimental. They
 must undergo parameter-recovery, calibration, coverage, misspecification, and
 empirical-reproduction studies before confirmatory use.
@@ -298,11 +298,11 @@ The 0.8 milestone also makes frontier-estimator status explicit: methods without
 
 If you use `eyeprocess` in research, please cite the archived software release:
 
-Balaskas, S. (2026). *eyeprocess: Harmonize Eye-Tracking, Pupillometry, Biometrics, and Psychometric Process Data* (Version 0.6.0). Zenodo. https://doi.org/10.5281/zenodo.21844473
+Balaskas, S. (2026). *eyeprocess: Harmonize Eye-Tracking, Pupillometry, Biometrics, and Psychometric Process Data* (Version 0.8.0). Zenodo. https://doi.org/10.5281/zenodo.21865277
 
-- Version 0.6.0 DOI: `10.5281/zenodo.21844473`
+- Version 0.8.0 DOI: `10.5281/zenodo.21865277`
 - Concept DOI: `10.5281/zenodo.21844472`
 
 See `CITATION.cff` for machine-readable citation metadata.
 
-Version 0.8.0 is being prepared as the next formal software release. Until its Zenodo archive is published, version 0.6.0 remains the latest archived release and its version DOI remains the current archived citation. No Zenodo version DOI is claimed for 0.8.0 at the release-candidate stage.
+Version 0.8.0 is the current formal archived software release. Its version-specific Zenodo DOI is `10.5281/zenodo.21865277`; the concept DOI remains `10.5281/zenodo.21844472`. Studies using eyeprocess should report the exact package version and, when relevant, the source commit used.

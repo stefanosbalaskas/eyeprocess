@@ -4,6 +4,7 @@ title: "eyeprocess: Harmonize Eye-Tracking, Pupillometry, Biometrics, and Psycho
 type: software
 version: 0.8.0
 date-released: 2026-08-10
+doi: 10.5281/zenodo.21865277
 authors:
   - family-names: Balaskas
     given-names: Stefanos
