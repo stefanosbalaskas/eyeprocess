@@ -1,0 +1,28 @@
+---
+title: "Cognitive diagnosis and Q-matrix governance"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Cognitive diagnosis and Q-matrix governance}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+library(eyeprocess)
+```
+
+The cognitive-diagnosis layer supplies transparent Q-matrix audits, attribute-profile enumeration, and deterministic DINA ideal-response/probability calculations.
+
+```{r}
+Q <- rbind(c(1,0), c(0,1), c(1,1), c(1,0))
+aud <- eyeprocess_cdm_qmatrix_audit(Q)
+aud
+profiles <- eyeprocess_cdm_attribute_profiles(2)[, c("A1","A2")]
+eta <- eyeprocess_cdm_dina_ideal_response(Q, profiles)
+eyeprocess_cdm_dina_probability(eta)
+```
+
+These utilities do not replace full cognitive-diagnosis estimation, Q-matrix validation, or model comparison. `fit_eyeprocess_gdina()` delegates exact fitting to GDINA and gates cleanly when unavailable.
+
+Primary package source: <https://cran.r-project.org/package=GDINA>.

@@ -1,0 +1,26 @@
+---
+title: "Adaptive testing design and governance"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Adaptive testing design and governance}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+library(eyeprocess)
+```
+
+Native adaptive-design utilities deliberately remain simple and auditable: item-bank declaration, maximum-information selection, exposure summaries, content-balance audits, stopping rules, and step-by-step adaptive traces.
+
+```{r}
+items <- data.frame(item_id=paste0("I",1:6),a=c(.8,1,1.5,1.1,.9,1.2),b=seq(-1.5,1.5,length.out=6),c=0,d=1)
+bank <- eyeprocess_irt_item_bank(items, content = c("A","A","B","B","C","C"))
+eyeprocess_irt_item_selection(bank, theta = 0)
+eyeprocess_irt_stopping_rule(10, se = .25)
+```
+
+For mature CAT simulation and constrained/shadow-testing designs, eyeprocess delegates to `catR` and `mirtCAT`. Availability is explicit and no simpler CAT engine is silently substituted.
+
+Primary package sources: <https://cran.r-project.org/package=catR> and <https://cran.r-project.org/package=mirtCAT>.

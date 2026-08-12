@@ -1,0 +1,6 @@
+claim_id,claim,evidence_id,evidence_type,status,boundary
+M2-C01,Deterministic scenario expansion is reproducible,scenario-manifest,unit/integration test,pending,software behavior only
+M2-C02,Native IRT probability functions satisfy probability constraints,irt-math,unit test,pending,mathematical implementation only
+M2-C03,External estimators are never silently substituted,engine-gating,engine contract,pending,availability is environment dependent
+M2-C04,Frozen evidence detects object tampering,freeze-hash,integrity test,pending,integrity is not scientific validity
+M2-C05,Known temporal leakage is detectable in declared examples,leakage-control,negative control,pending,"diagnostic, not misconduct label"

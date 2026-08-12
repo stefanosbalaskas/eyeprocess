@@ -1,0 +1,9 @@
+engine,capability,policy
+mirt,multidimensional/polytomous/testlet/multiple-group/mixed IRT,exact optional engine
+TAM,Rasch/2PL/3PL/GPCM/latent regression/plausible values,exact optional engine
+GDINA,cognitive diagnosis/Q-matrix,exact optional engine
+LNIRT,joint response/response-time IRT,exact optional engine
+eRm,conditional Rasch/PCM/LLTM,exact optional engine
+equateIRT,linking/equating,exact optional engine
+catR,unidimensional CAT,exact optional engine
+mirtCAT,multidimensional/constrained CAT,exact optional engine

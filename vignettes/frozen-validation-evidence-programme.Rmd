@@ -1,0 +1,35 @@
+---
+title: "Frozen validation evidence programme"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Frozen validation evidence programme}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+library(eyeprocess)
+```
+
+Milestone #2 separates **software-validation evidence** from substantive construct validity. A reproducible plan fixes scenario families, sample sizes, missingness, perturbations, replications, and seeds before results are interpreted.
+
+```{r}
+plan <- eyeprocess_validation_plan(
+  sample_size = c(250L, 750L), n_items = c(12L, 24L),
+  missing_rate = c(0, .15), specification = c("correct", "misspecified"),
+  replications = 20L, seed = 20260811L
+)
+head(expand_eyeprocess_validation_plan(plan))
+```
+
+Acceptance criteria are declared as reporting contracts rather than universal scientific thresholds.
+
+```{r}
+rules <- list(
+  rmse = validation_acceptance_rule("rmse", "max", .20),
+  failure = validation_acceptance_rule("failure_rate", "max", .05)
+)
+```
+
+Frozen evidence objects contain integrity hashes and source-commit metadata. A passing release gate means only that the declared software-validation criteria were satisfied.

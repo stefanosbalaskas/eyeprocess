@@ -1,0 +1,17 @@
+scenario_id,sample_size,n_items,missing_rate,noise_level,specification,replications,master_seed
+M2S001,250,12,0.0,reference,correct,20,20260811
+M2S002,250,12,0.0,reference,misspecified,20,20260811
+M2S003,250,12,0.15,reference,correct,20,20260811
+M2S004,250,12,0.15,reference,misspecified,20,20260811
+M2S005,250,24,0.0,reference,correct,20,20260811
+M2S006,250,24,0.0,reference,misspecified,20,20260811
+M2S007,250,24,0.15,reference,correct,20,20260811
+M2S008,250,24,0.15,reference,misspecified,20,20260811
+M2S009,750,12,0.0,reference,correct,20,20260811
+M2S010,750,12,0.0,reference,misspecified,20,20260811
+M2S011,750,12,0.15,reference,correct,20,20260811
+M2S012,750,12,0.15,reference,misspecified,20,20260811
+M2S013,750,24,0.0,reference,correct,20,20260811
+M2S014,750,24,0.0,reference,misspecified,20,20260811
+M2S015,750,24,0.15,reference,correct,20,20260811
+M2S016,750,24,0.15,reference,misspecified,20,20260811

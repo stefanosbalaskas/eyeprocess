@@ -1,0 +1,27 @@
+---
+title: "IRT recovery, SBC, and misspecification evidence"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{IRT recovery, SBC, and misspecification evidence}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+library(eyeprocess)
+```
+
+Simulation-based calibration (SBC) and parameter recovery answer different software-validation questions. Recovery checks whether fitted estimates reproduce known generating quantities under declared scenarios; SBC checks calibration of posterior computation under the declared generative model.
+
+```{r}
+design <- eyeprocess_irt_recovery_design(sample_size = 250L, n_items = 12L,
+                                          missing_rate = c(0,.15), testlet_sd = c(0,.35),
+                                          replications = 5L, seed = 20260811L)
+head(design)
+eyeprocess_irt_misspecification_suite()
+```
+
+Exact recovery fitting currently requires `mirt`; absence produces a gated result. SBC rank summaries reuse eyeprocess's rank-diagnostic infrastructure.
+
+The SBC workflow follows the logic of Talts et al., *Validating Bayesian Inference Algorithms with Simulation-Based Calibration*: <https://arxiv.org/abs/1804.06788>.
