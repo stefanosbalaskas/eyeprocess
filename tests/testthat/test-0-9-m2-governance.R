@@ -1,0 +1,40 @@
+test_that("bank coverage, targeting, classification, and missing-design audits work", {
+  items <- data.frame(item_id=paste0("I",1:8),a=1,b=seq(-2,2,length.out=8),c=0,d=1)
+  cov <- eyeprocess_irt_bank_coverage(items, target_information=1)
+  expect_s3_class(cov,"eye_irt_bank_coverage")
+  tg <- eyeprocess_irt_targeting_gap(seq(-2,2,length.out=100),items)
+  expect_s3_class(tg,"eye_irt_targeting_gap")
+  cp <- eyeprocess_irt_classification_precision(c(-.2,.2),c(.2,.2),cut_score=0)
+  expect_equal(nrow(cp),2L)
+  y <- matrix(c(1,NA,0,1),2)
+  d <- matrix(c(1,0,1,1),2)
+  ma <- eyeprocess_irt_missing_by_design_audit(y,d)
+  expect_s3_class(ma,"eye_irt_missing_design_audit")
+})
+
+test_that("prior grids and IRT model cards are governed", {
+  g <- eyeprocess_irt_prior_sensitivity_grid()
+  expect_true(nrow(g) > 1L)
+  s <- eyeprocess_irt_model_spec("2pl")
+  id <- eyeprocess_irt_identification_audit(s, constraints = list(theta_mean_fixed = TRUE, theta_sd_fixed = TRUE))
+  card <- eyeprocess_irt_model_card(s, identification=id, intended_use="software validation")
+  expect_s3_class(card,"eye_irt_model_card")
+  au <- eyeprocess_irt_model_card_audit(card)
+  expect_true(au$present[au$field == "identification"])
+})
+
+test_that("advanced residual diagnostics respect missing response cells", {
+  y <- matrix(c(1,NA,0,NA), nrow=2)
+  p <- matrix(.5, nrow=2, ncol=2)
+  io <- eyeprocess_irt_infit_outfit(y,p,by="person")
+  expect_equal(io$n, c(2L,0L))
+  expect_true(is.na(io$infit[2]))
+  lz <- eyeprocess_irt_person_fit_lz(y,p)
+  expect_equal(lz$n_observed, c(2L,0L))
+  expect_true(is.na(lz$lz[2]))
+})
+
+test_that("targeting audit rejects break ranges that omit examinees", {
+  items <- data.frame(item_id=paste0("I",1:4),a=1,b=seq(-1,1,length.out=4),c=0,d=1)
+  expect_error(eyeprocess_irt_targeting_gap(c(-5,0,5),items,breaks=-4:4))
+})

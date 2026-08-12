@@ -1,0 +1,27 @@
+---
+title: "Validation evidence atlas and software-paper reporting"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Validation evidence atlas and software-paper reporting}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+library(eyeprocess)
+```
+
+The evidence atlas links claims to executed outputs, tables, figures, hashes, provenance, and limitations while preserving the distinction between software behavior and substantive validity.
+
+```{r}
+claims <- eyeprocess_validation_claim_matrix(
+  c("C1","C2"),
+  c("Scenario expansion is deterministic", "Exact engines are not silently substituted"),
+  c("E1","E2"), c("test","engine-contract"), c("supported","qualified")
+)
+atlas <- eyeprocess_validation_evidence_atlas(claims, recovery = data.frame(id="demo"))
+atlas
+```
+
+`freeze_eyeprocess_validation_atlas()` creates an integrity-checked snapshot. `write_eyeprocess_validation_report()` emits a compact Markdown report suitable for archival review. Paper-ready table helpers convert recovery, SBC, stress, reliability, negative-control, IRT precision, and external-engine status into compact data frames.

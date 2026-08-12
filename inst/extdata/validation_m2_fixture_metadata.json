@@ -1,0 +1,6 @@
+{
+  "label": "eyeprocess 0.9 Milestone #2 synthetic software-validation fixtures",
+  "seed": 20260811,
+  "scope": "software-validation examples only; not empirical construct-validity evidence",
+  "source_commit_expected": "995761a3dd01aa907823f1520f1ba278fc3aae18"
+}

@@ -1,0 +1,6 @@
+rule_id,metric,direction,threshold,upper,tolerance,boundary
+REC_RMSE,rmse,max,0.2,,0,software-recovery target; not universal validity threshold
+REC_BIAS,abs_bias,max,0.1,,0,software-recovery target; not universal validity threshold
+COVERAGE,coverage,between,0.9,0.99,0,simulation reporting target
+FAILURE,failure_rate,max,0.05,,0,computational robustness target
+SBC_ECDF,ecdf_deviation,max,0.1,,0,SBC diagnostic target

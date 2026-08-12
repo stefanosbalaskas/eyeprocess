@@ -1,0 +1,28 @@
+---
+title: "External IRT engines and exact-method gating"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{External IRT engines and exact-method gating}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+library(eyeprocess)
+```
+
+The engine registry makes estimation boundaries inspectable.
+
+```{r}
+eyeprocess_irt_engine_registry()
+```
+
+The current registry covers `mirt`, `TAM`, `GDINA`, `LNIRT`, `eRm`, `equateIRT`, `catR`, and `mirtCAT`. Wrappers return an `eye_external_irt_fit` when the requested package is available; otherwise they return an `eye_gated_irt_engine` with `fit = NULL`. They never switch to another estimator.
+
+```{r, eval=FALSE}
+fit <- fit_eyeprocess_mirt(response_matrix, model = 1, itemtype = "2PL")
+validate_eyeprocess_external_irt_fit(fit, engine = "mirt")
+```
+
+This is the same governance principle used for eyeprocess's existing frontier estimators: estimator identity is part of the scientific specification.

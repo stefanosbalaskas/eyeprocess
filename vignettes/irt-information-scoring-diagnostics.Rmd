@@ -1,0 +1,31 @@
+---
+title: "IRT information, scoring, and diagnostics"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{IRT information, scoring, and diagnostics}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+library(eyeprocess)
+```
+
+The native IRT layer provides transparent mathematical utilities for common dichotomous and polytomous families. Estimation is not silently approximated when a specialized external engine is required.
+
+```{r}
+items <- data.frame(
+  item_id = paste0("I", 1:8), a = seq(.8, 1.5, length.out = 8),
+  b = seq(-1.5, 1.5, length.out = 8), c = 0, d = 1
+)
+info <- eyeprocess_irt_test_information(seq(-3, 3, by = .25), items)
+head(info)
+eyeprocess_irt_measurement_precision_profile(info$theta, items)
+```
+
+The module also supplies EAP/MAP/MLE score utilities, conditional uncertainty, bank targeting, residual fit, Q3/local-dependence summaries, and Infit/Outfit-style diagnostics. Person-fit quantities are model diagnostics; they must not be converted into claims about cheating, disengagement, diagnosis, or mental state.
+
+Stan's current User Guide emphasizes explicit identification for IRT models and sparse encodings when response matrices are incomplete. These principles motivate `eyeprocess_irt_identification_audit()` and `eyeprocess_irt_sparse_design_audit()`.
+
+Primary source: <https://mc-stan.org/docs/stan-users-guide/item-response-models.html>.
