@@ -2,6 +2,30 @@
 
 ## eyeprocess 0.9.0.9000
 
+### Executed validation evidence and governed IRT — Milestone [\#2](https://github.com/stefanosbalaskas/eyeprocess/issues/2)
+
+- Adds deterministic validation-plan, acceptance-rule, MCSE, stress,
+  reliability, negative-control, evidence-freeze, and evidence-atlas
+  infrastructure.
+- Adds transparent IRT probability, information, scoring, residual-fit,
+  local-dependence, targeting, classification-precision,
+  missing-by-design, and prior-sensitivity utilities.
+- Adds multidimensional/testlet/latent-regression design support, scale
+  linking/equating diagnostics, DIF/DTF effect summaries, CDM/Q-matrix
+  utilities, adaptive-testing governance, and
+  response-time/process-aware IRT contracts.
+- Adds exact optional-engine adapters for `mirt`, `TAM`, `GDINA`,
+  `LNIRT`, `eRm`, `equateIRT`, `catR`, and `mirtCAT`; unavailable
+  engines are explicitly gated and never replaced by simpler estimators.
+- Adds 11 articles, deterministic synthetic fixtures,
+  validation-execution scripts, paper-ready evidence tables, and 12
+  standalone examples.
+- All Milestone
+  [\#2](https://github.com/stefanosbalaskas/eyeprocess/issues/2)
+  validation outputs are software-validation evidence. They do not
+  establish construct validity of gaze, pupil, response-time, sequence,
+  or psychometric measures.
+
 ### Empirical validation and recovery
 
 - Adds explicit process-validation designs, known-truth simulation

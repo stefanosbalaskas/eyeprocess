@@ -2,6 +2,7 @@ pandoc: 3.8.3
 pkgdown: 2.2.1
 pkgdown_sha: ~
 articles:
+  adaptive-testing-governance: adaptive-testing-governance.html
   advanced-model-validation-0-7: advanced-model-validation-0-7.html
   advanced-model-validation: advanced-model-validation.html
   advanced-pupillometry-representations: advanced-pupillometry-representations.html
@@ -12,11 +13,13 @@ articles:
   benchmark-reproduction: benchmark-reproduction.html
   benchmarking-and-stress-testing: benchmarking-and-stress-testing.html
   calibration-uncertainty-and-data-quality: calibration-uncertainty-and-data-quality.html
+  cognitive-diagnosis-qmatrix-governance: cognitive-diagnosis-qmatrix-governance.html
   deployment-drift-monitoring: deployment-drift-monitoring.html
   dynamic-irtree-hardening: dynamic-irtree-hardening.html
   empirical-validation-programme: empirical-validation-programme.html
   evidence-decision-provenance: evidence-decision-provenance.html
   experimental-process-irt-0-7: experimental-process-irt-0-7.html
+  frozen-validation-evidence-programme: frozen-validation-evidence-programme.html
   functional-pupil-irt-engine: functional-pupil-irt-engine.html
   gaze-diffusion-irt: gaze-diffusion-irt.html
   gazepoint-downstream-workflow: gazepoint-downstream-workflow.html
@@ -26,10 +29,16 @@ articles:
   importing-and-harmonizing: importing-and-harmonizing.html
   independent-vendor-corpus: independent-vendor-corpus.html
   interoperability-storage: interoperability-storage.html
+  irt-engines-and-gating: irt-engines-and-gating.html
+  irt-information-scoring-diagnostics: irt-information-scoring-diagnostics.html
+  irt-linking-dif-invariance: irt-linking-dif-invariance.html
+  irt-recovery-sbc-misspecification: irt-recovery-sbc-misspecification.html
   item-bank-fairness-norms: item-bank-fairness-norms.html
   item-seeding-accessibility-and-presentation-fairness: item-seeding-accessibility-and-presentation-fairness.html
+  measurement-stress-negative-controls: measurement-stress-negative-controls.html
   multi-vendor-validation: multi-vendor-validation.html
   multiblock-profiles-and-external-validity: multiblock-profiles-and-external-validity.html
+  multidimensional-testlet-latent-regression-irt: multidimensional-testlet-latent-regression-irt.html
   multimodal-process-irt-0-7: multimodal-process-irt-0-7.html
   multiple-response-and-revisiting-irt-0-7: multiple-response-and-revisiting-irt-0-7.html
   multiverse-sensitivity-and-decision-stability: multiverse-sensitivity-and-decision-stability.html
@@ -40,6 +49,7 @@ articles:
   process-irt-model-atlas-0-7: process-irt-model-atlas-0-7.html
   process-measure-registry-and-reliability: process-measure-registry-and-reliability.html
   process-preflight-and-anomaly-governance: process-preflight-and-anomaly-governance.html
+  process-response-time-irt: process-response-time-irt.html
   psychometric-process-models: psychometric-process-models.html
   pupil-registration-missingness: pupil-registration-missingness.html
   reliability-device-transportability: reliability-device-transportability.html
@@ -57,9 +67,10 @@ articles:
   uncertainty-calibration: uncertainty-calibration.html
   validating-real-exports: validating-real-exports.html
   validation-evidence-0-7: validation-evidence-0-7.html
+  validation-evidence-atlas-software-paper: validation-evidence-atlas-software-paper.html
   validation-execution-engine: validation-execution-engine.html
   visual-context-and-testlet-irt: visual-context-and-testlet-irt.html
-last_built: 2026-08-10T22:48Z
+last_built: 2026-08-12T23:42Z
 urls:
   reference: https://stefanosbalaskas.github.io/eyeprocess/reference
   article: https://stefanosbalaskas.github.io/eyeprocess/articles

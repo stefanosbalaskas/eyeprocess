@@ -1,5 +1,35 @@
 # Articles
 
+### Executed validation evidence and governed IRT (0.9 M2)
+
+Frozen software-validation programmes, IRT
+information/scoring/diagnostics, linking and invariance, process-aware
+IRT, cognitive diagnosis, adaptive testing, engine gating, and
+paper-ready evidence.
+
+- [Adaptive testing design and
+  governance](https://stefanosbalaskas.github.io/eyeprocess/articles/adaptive-testing-governance.md):
+- [Cognitive diagnosis and Q-matrix
+  governance](https://stefanosbalaskas.github.io/eyeprocess/articles/cognitive-diagnosis-qmatrix-governance.md):
+- [Frozen validation evidence
+  programme](https://stefanosbalaskas.github.io/eyeprocess/articles/frozen-validation-evidence-programme.md):
+- [External IRT engines and exact-method
+  gating](https://stefanosbalaskas.github.io/eyeprocess/articles/irt-engines-and-gating.md):
+- [IRT information, scoring, and
+  diagnostics](https://stefanosbalaskas.github.io/eyeprocess/articles/irt-information-scoring-diagnostics.md):
+- [IRT linking, DIF, DTF, and invariance
+  evidence](https://stefanosbalaskas.github.io/eyeprocess/articles/irt-linking-dif-invariance.md):
+- [IRT recovery, SBC, and misspecification
+  evidence](https://stefanosbalaskas.github.io/eyeprocess/articles/irt-recovery-sbc-misspecification.md):
+- [Measurement-quality stress tests and negative
+  controls](https://stefanosbalaskas.github.io/eyeprocess/articles/measurement-stress-negative-controls.md):
+- [Multidimensional, testlet, and latent-regression
+  IRT](https://stefanosbalaskas.github.io/eyeprocess/articles/multidimensional-testlet-latent-regression-irt.md):
+- [Response-time and process-aware
+  IRT](https://stefanosbalaskas.github.io/eyeprocess/articles/process-response-time-irt.md):
+- [Validation evidence atlas and software-paper
+  reporting](https://stefanosbalaskas.github.io/eyeprocess/articles/validation-evidence-atlas-software-paper.md):
+
 ### Validated and governed research workflows (0.9)
 
 Empirical validation, governed pipelines, API lifecycle, sensitivity

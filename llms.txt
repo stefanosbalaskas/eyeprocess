@@ -391,6 +391,339 @@ used.
 
 # Package index
 
+## Validation evidence programmes and freezing (0.9 M2)
+
+- [`evaluate_validation_acceptance()`](https://stefanosbalaskas.github.io/eyeprocess/reference/evaluate_validation_acceptance.md)
+  : Evaluate a validation acceptance rule
+- [`expand_eyeprocess_stress_evidence_plan()`](https://stefanosbalaskas.github.io/eyeprocess/reference/expand_eyeprocess_stress_evidence_plan.md)
+  : Expand a stress evidence plan into one-factor-at-a-time scenarios
+- [`expand_eyeprocess_validation_plan()`](https://stefanosbalaskas.github.io/eyeprocess/reference/expand_eyeprocess_validation_plan.md)
+  : Expand a validation-evidence plan to a scenario table
+- [`eyeprocess_irt_engine_evidence_table()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_engine_evidence_table.md)
+  : Build an external-engine capability and availability table
+- [`eyeprocess_irt_precision_evidence_table()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_precision_evidence_table.md)
+  : Build a paper-ready IRT information/precision table
+- [`eyeprocess_negative_control_evidence_plan()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_negative_control_evidence_plan.md)
+  : Declare negative-control evidence targets
+- [`eyeprocess_negative_control_evidence_table()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_negative_control_evidence_table.md)
+  : Build a paper-ready negative-control table
+- [`eyeprocess_recovery_evidence_table()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_recovery_evidence_table.md)
+  : Build a paper-ready parameter-recovery table
+- [`eyeprocess_reliability_evidence_plan()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_reliability_evidence_plan.md)
+  : Declare reliability evidence targets
+- [`eyeprocess_reliability_evidence_table()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_reliability_evidence_table.md)
+  : Build a paper-ready reliability table
+- [`eyeprocess_sbc_evidence_table()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_sbc_evidence_table.md)
+  : Build a paper-ready SBC table
+- [`eyeprocess_stress_evidence_plan()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_stress_evidence_plan.md)
+  : Declare the Milestone \#2 measurement-quality stress evidence plan
+- [`summarise_eyeprocess_stress_evidence()`](https://stefanosbalaskas.github.io/eyeprocess/reference/summarise_eyeprocess_stress_evidence.md)
+  : Summarise executed measurement-stress evidence
+- [`run_eyeprocess_stress_evidence()`](https://stefanosbalaskas.github.io/eyeprocess/reference/run_eyeprocess_stress_evidence.md)
+  : Execute a declared measurement-stress evidence plan
+- [`eyeprocess_stress_evidence_table()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_stress_evidence_table.md)
+  : Build a paper-ready stress-test table
+- [`eyeprocess_validation_atlas_gaps()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_validation_atlas_gaps.md)
+  : Summarise gaps in a validation evidence atlas
+- [`eyeprocess_validation_claim_matrix()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_validation_claim_matrix.md)
+  : Build a machine-readable validation claim/evidence matrix
+- [`eyeprocess_validation_evidence_atlas()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_validation_evidence_atlas.md)
+  : Assemble a validation evidence atlas
+- [`eyeprocess_validation_evidence_grade()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_validation_evidence_grade.md)
+  : Grade the completeness of validation evidence
+- [`eyeprocess_validation_evidence_index()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_validation_evidence_index.md)
+  : Create an index over frozen validation evidence artifacts
+- [`eyeprocess_validation_evidence_manifest()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_validation_evidence_manifest.md)
+  : Create an evidence manifest from files and in-memory objects
+- [`eyeprocess_validation_plan()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_validation_plan.md)
+  : Declare an eyeprocess validation-evidence plan
+- [`eyeprocess_validation_readiness()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_validation_readiness.md)
+  : Evaluate readiness of a Milestone \#2 validation evidence bundle
+- [`eyeprocess_validation_release_gate()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_validation_release_gate.md)
+  : Apply a conservative software-release evidence gate
+- [`eyeprocess_validation_seed()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_validation_seed.md)
+  : Derive a deterministic bounded validation seed
+- [`freeze_eyeprocess_validation_atlas()`](https://stefanosbalaskas.github.io/eyeprocess/reference/freeze_eyeprocess_validation_atlas.md)
+  : Freeze a validation atlas with a reproducibility fingerprint
+- [`freeze_eyeprocess_validation_evidence()`](https://stefanosbalaskas.github.io/eyeprocess/reference/freeze_eyeprocess_validation_evidence.md)
+  : Freeze a complete Milestone \#2 evidence bundle
+- [`read_eyeprocess_validation_evidence()`](https://stefanosbalaskas.github.io/eyeprocess/reference/read_eyeprocess_validation_evidence.md)
+  : Read and verify a frozen evidence bundle
+- [`read_validation_scenario_manifest()`](https://stefanosbalaskas.github.io/eyeprocess/reference/read_validation_scenario_manifest.md)
+  : Read a validation scenario manifest
+- [`summarise_validation_acceptance()`](https://stefanosbalaskas.github.io/eyeprocess/reference/summarise_validation_acceptance.md)
+  : Summarise an acceptance matrix
+- [`validate_eyeprocess_validation_plan()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validate_eyeprocess_validation_plan.md)
+  : Validate a validation-evidence plan
+- [`validation_acceptance_matrix()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validation_acceptance_matrix.md)
+  : Evaluate a table against named validation rules
+- [`validation_acceptance_rule()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validation_acceptance_rule.md)
+  : Define a validation acceptance rule
+- [`validation_mcse_profile()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validation_mcse_profile.md)
+  : Estimate Monte Carlo uncertainty for validation summaries
+- [`validation_replication_budget()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validation_replication_budget.md)
+  : Compute a replication budget from a target MCSE
+- [`validation_scenario_manifest()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validation_scenario_manifest.md)
+  : Create a scenario manifest for frozen validation work
+- [`verify_eyeprocess_validation_atlas()`](https://stefanosbalaskas.github.io/eyeprocess/reference/verify_eyeprocess_validation_atlas.md)
+  : Verify a frozen validation atlas
+- [`verify_eyeprocess_validation_evidence()`](https://stefanosbalaskas.github.io/eyeprocess/reference/verify_eyeprocess_validation_evidence.md)
+  : Verify the integrity hash of a frozen evidence bundle
+- [`write_eyeprocess_validation_evidence()`](https://stefanosbalaskas.github.io/eyeprocess/reference/write_eyeprocess_validation_evidence.md)
+  : Write a frozen evidence bundle
+- [`write_eyeprocess_validation_report()`](https://stefanosbalaskas.github.io/eyeprocess/reference/write_eyeprocess_validation_report.md)
+  : Write a compact Markdown validation report
+- [`write_validation_scenario_manifest()`](https://stefanosbalaskas.github.io/eyeprocess/reference/write_validation_scenario_manifest.md)
+  : Write a validation scenario manifest
+
+## IRT foundations, information, scoring, and diagnostics (0.9 M2)
+
+- [`eyeprocess_irt_2pl_probability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_2pl_probability.md)
+  : 2PL item-response probability
+- [`eyeprocess_irt_3pl_probability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_3pl_probability.md)
+  : 3PL item-response probability
+- [`eyeprocess_irt_4pl_probability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_4pl_probability.md)
+  : 4PL item-response probability
+- [`eyeprocess_irt_adaptive_trace()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_adaptive_trace.md)
+  : Create an auditable adaptive-testing trace
+- [`eyeprocess_irt_bank_coverage()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_bank_coverage.md)
+  : Audit item-bank information coverage across a theta region
+- [`eyeprocess_irt_category_function_audit()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_category_function_audit.md)
+  : Audit category probability functions
+- [`eyeprocess_irt_classification_precision()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_classification_precision.md)
+  : Summarise decision precision at one or more theta cut scores
+- [`eyeprocess_irt_conditional_sem()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_conditional_sem.md)
+  : Conditional standard error from information
+- [`eyeprocess_irt_content_balance_audit()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_content_balance_audit.md)
+  : Audit content balance in an administered adaptive form
+- [`eyeprocess_irt_eap_score()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_eap_score.md)
+  : EAP score for dichotomous IRT item parameters
+- [`eyeprocess_irt_expected_score()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_expected_score.md)
+  : Expected item score
+- [`eyeprocess_irt_exposure_summary()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_exposure_summary.md)
+  : Summarise item exposure rates
+- [`eyeprocess_irt_extreme_score_audit()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_extreme_score_audit.md)
+  : Audit extreme response scores without assigning behavioral labels
+- [`eyeprocess_irt_fit_dashboard()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_fit_dashboard.md)
+  : Build an integrated IRT diagnostic dashboard object
+- [`eyeprocess_irt_gpcm_probability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_gpcm_probability.md)
+  : Generalized partial-credit category probabilities
+- [`eyeprocess_irt_grm_probability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_grm_probability.md)
+  : Graded-response category probabilities
+- [`eyeprocess_irt_identification_audit()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_identification_audit.md)
+  : Audit IRT scale/location identification
+- [`eyeprocess_irt_infit_outfit()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_infit_outfit.md)
+  : Compute residual-based Infit and Outfit summaries
+- [`eyeprocess_irt_information_area()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_information_area.md)
+  : Area under an information curve
+- [`eyeprocess_irt_information_gain()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_information_gain.md)
+  : Information gain between two conditional standard errors
+- [`eyeprocess_irt_information_targeting()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_information_targeting.md)
+  : Audit how well item information targets a theta distribution
+- [`eyeprocess_irt_item_bank()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_item_bank.md)
+  : Item bank object for adaptive design
+- [`eyeprocess_irt_item_fit_residuals()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_item_fit_residuals.md)
+  : Compute item residual fit summaries from observed and predicted
+  probabilities
+- [`eyeprocess_irt_item_information()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_item_information.md)
+  : Compute item information for transparent IRT families
+- [`eyeprocess_irt_item_selection()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_item_selection.md)
+  : Select the most informative eligible item at a theta estimate
+- [`eyeprocess_irt_local_dependence_pairs()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_local_dependence_pairs.md)
+  : Extract high residual-dependence item pairs
+- [`eyeprocess_irt_map_score()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_map_score.md)
+  : MAP score for dichotomous IRT item parameters
+- [`eyeprocess_irt_marginal_reliability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_marginal_reliability.md)
+  : Marginal reliability from latent-score variance and conditional
+  error variance
+- [`eyeprocess_irt_measurement_precision_profile()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_measurement_precision_profile.md)
+  : Summarise measurement precision across a theta region
+- [`eyeprocess_irt_missing_by_design_audit()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_missing_by_design_audit.md)
+  : Audit missing-by-design structure in an IRT response matrix
+- [`eyeprocess_irt_mle_score()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_mle_score.md)
+  : Bounded ML score for dichotomous IRT item parameters
+- [`eyeprocess_irt_model_card()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_model_card.md)
+  : Create a governed IRT model card
+- [`eyeprocess_irt_model_card_audit()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_model_card_audit.md)
+  : Audit completeness of an IRT model card
+- [`eyeprocess_irt_model_spec()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_model_spec.md)
+  : Declare an eyeprocess IRT model specification
+- [`eyeprocess_irt_monotonicity_audit()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_monotonicity_audit.md)
+  : Audit monotonicity of an item response curve
+- [`eyeprocess_irt_nominal_probability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_nominal_probability.md)
+  : Nominal-response category probabilities
+- [`eyeprocess_irt_parameter_plausibility_audit()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_parameter_plausibility_audit.md)
+  : Audit basic plausibility of dichotomous item parameters
+- [`eyeprocess_irt_person_fit_lz()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_person_fit_lz.md)
+  : Standardized log-likelihood person-fit diagnostic
+- [`eyeprocess_irt_person_fit_residuals()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_person_fit_residuals.md)
+  : Compute person residual fit summaries
+- [`eyeprocess_irt_plausible_values()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_plausible_values.md)
+  : Draw plausible values from a discrete posterior grid
+- [`eyeprocess_irt_ppc_discrepancy()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_ppc_discrepancy.md)
+  : Compare observed and replicated IRT discrepancy statistics
+- [`eyeprocess_irt_prior_sensitivity_grid()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_prior_sensitivity_grid.md)
+  : Construct a prior-sensitivity grid for Bayesian IRT analyses
+- [`eyeprocess_irt_prior_sensitivity_summary()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_prior_sensitivity_summary.md)
+  : Summarise sensitivity of an estimand across declared prior
+  specifications
+- [`eyeprocess_irt_prior_spec()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_prior_spec.md)
+  : Declare prior families for Bayesian IRT engine adapters
+- [`eyeprocess_irt_process_aware_selection_penalty()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_process_aware_selection_penalty.md)
+  : Process-aware selection penalty without mental-state inference
+- [`eyeprocess_irt_q3()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_q3.md)
+  : Compute Yen-style Q3 residual correlations
+- [`eyeprocess_irt_score_table()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_score_table.md)
+  : Score a response matrix with EAP, MAP, or ML
+- [`eyeprocess_irt_score_uncertainty()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_score_uncertainty.md)
+  : Summarise score uncertainty
+- [`eyeprocess_irt_sparse_design_audit()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_sparse_design_audit.md)
+  : Audit sparse person-item response coverage
+- [`eyeprocess_irt_stopping_rule()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_stopping_rule.md)
+  : Evaluate a simple adaptive stopping rule
+- [`eyeprocess_irt_targeting_gap()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_targeting_gap.md)
+  : Compare an examinee distribution with item-bank targeting
+- [`eyeprocess_irt_test_characteristic_curve()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_test_characteristic_curve.md)
+  : Test characteristic curve for dichotomous item parameters
+- [`eyeprocess_irt_test_information()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_test_information.md)
+  : Compute a test information curve from item parameters
+- [`eyeprocess_irt_threshold_order_audit()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_threshold_order_audit.md)
+  : Audit ordered category thresholds
+- [`validate_eyeprocess_irt_item_bank()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validate_eyeprocess_irt_item_bank.md)
+  : Validate an adaptive IRT item bank
+- [`validate_eyeprocess_irt_model_spec()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validate_eyeprocess_irt_model_spec.md)
+  : Validate an eyeprocess IRT model specification
+
+## IRT linking, invariance, process, and external engines (0.9 M2)
+
+- [`eyeprocess_irt_anchor_audit()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_anchor_audit.md)
+  : Audit candidate anchor items using supplied DIF evidence
+- [`eyeprocess_irt_anchor_purification()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_anchor_purification.md)
+  : Iteratively remove anchors exceeding a supplied effect threshold
+- [`eyeprocess_irt_apply_link()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_apply_link.md)
+  : Apply linear IRT scale-linking coefficients
+- [`eyeprocess_irt_device_drift()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_device_drift.md)
+  : Summarise parameter drift across acquisition devices
+- [`eyeprocess_irt_dif_effect_curve()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_dif_effect_curve.md)
+  : Differential item functioning effect curve from two parameter sets
+- [`eyeprocess_irt_dtf_curve()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_dtf_curve.md)
+  : Differential test functioning effect curve
+- [`eyeprocess_irt_engine_registry()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_engine_registry.md)
+  : Registry of specialized external IRT engines
+- [`eyeprocess_irt_engine_status()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_engine_status.md)
+  : Query an external IRT engine
+- [`eyeprocess_irt_functioning_effect_summary()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_functioning_effect_summary.md)
+  : Summarise DIF/DTF curve magnitude
+- [`eyeprocess_irt_haebara_link()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_haebara_link.md)
+  : Haebara item-characteristic-curve linking
+- [`eyeprocess_irt_invariance_evidence()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_invariance_evidence.md)
+  : Combine invariance evidence without converting it to a binary
+  validity claim
+- [`eyeprocess_irt_link_stability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_link_stability.md)
+  : Compare linking estimates across anchor subsets
+- [`eyeprocess_irt_mean_mean_link()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_mean_mean_link.md)
+  : Mean-mean IRT linking coefficients
+- [`eyeprocess_irt_mean_sigma_link()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_mean_sigma_link.md)
+  : Mean-sigma IRT linking coefficients
+- [`eyeprocess_irt_process_alignment()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_process_alignment.md)
+  : Align item parameters with process-channel summaries
+- [`eyeprocess_irt_process_dif_concordance()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_process_dif_concordance.md)
+  : Compare psychometric DIF effect sizes with process-channel contrasts
+- [`eyeprocess_irt_session_drift()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_session_drift.md)
+  : Summarise item-parameter drift over sessions
+- [`eyeprocess_irt_stocking_lord_link()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_stocking_lord_link.md)
+  : Stocking-Lord characteristic-curve linking
+- [`eyeprocess_joint_process_irt_spec()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_joint_process_irt_spec.md)
+  : Declare a response/process joint IRT specification
+- [`eyeprocess_multichannel_measurement_map()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_multichannel_measurement_map.md)
+  : Construct a multichannel measurement map
+- [`eyeprocess_process_irt_data_bundle()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_process_irt_data_bundle.md)
+  : Prepare a sparse response/process bundle for external joint engines
+- [`eyeprocess_process_item_profile()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_process_item_profile.md)
+  : Aggregate process channels by item
+- [`eyeprocess_process_missingness_pattern()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_process_missingness_pattern.md)
+  : Summarise missingness patterns across response and process channels
+- [`eyeprocess_process_person_profile()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_process_person_profile.md)
+  : Aggregate process channels by person
+- [`eyeprocess_response_time_profile()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_response_time_profile.md)
+  : Summarise response-time structure for joint IRT work
+- [`eyeprocess_speed_accuracy_profile()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_speed_accuracy_profile.md)
+  : Describe speed-accuracy association without causal interpretation
+- [`fit_eyeprocess_erm()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_eyeprocess_erm.md)
+  : Fit an eRm Rasch-family model without fallback substitution
+- [`fit_eyeprocess_gdina()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_eyeprocess_gdina.md)
+  : Fit a G-DINA cognitive-diagnosis model without fallback substitution
+- [`fit_eyeprocess_lnirt()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_eyeprocess_lnirt.md)
+  : Fit a joint response/response-time LNIRT model without fallback
+  substitution
+- [`fit_eyeprocess_mirt()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_eyeprocess_mirt.md)
+  : Fit a model with mirt without substituting another estimator
+- [`fit_eyeprocess_tam()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_eyeprocess_tam.md)
+  : Fit a TAM model without substituting another estimator
+- [`run_eyeprocess_equateirt()`](https://stefanosbalaskas.github.io/eyeprocess/reference/run_eyeprocess_equateirt.md)
+  : Run a named equateIRT linking/equating function without fallback
+  substitution
+- [`run_eyeprocess_mirtcat()`](https://stefanosbalaskas.github.io/eyeprocess/reference/run_eyeprocess_mirtcat.md)
+  : Run a mirtCAT adaptive-testing workflow without fallback
+  substitution
+- [`simulate_eyeprocess_catr()`](https://stefanosbalaskas.github.io/eyeprocess/reference/simulate_eyeprocess_catr.md)
+  : Run a catR adaptive-testing simulation without fallback substitution
+- [`validate_eyeprocess_external_irt_fit()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validate_eyeprocess_external_irt_fit.md)
+  : Validate that an external IRT fit used the requested engine
+- [`validate_eyeprocess_joint_process_irt_spec()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validate_eyeprocess_joint_process_irt_spec.md)
+  : Validate a joint process IRT specification
+
+## IRT recovery, multidimensional models, and cognitive diagnosis (0.9 M2)
+
+- [`eyeprocess_cdm_attribute_profiles()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_cdm_attribute_profiles.md)
+  : Enumerate latent attribute profiles
+- [`eyeprocess_cdm_classification_uncertainty()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_cdm_classification_uncertainty.md)
+  : Summarise CDM classification uncertainty from profile probabilities
+- [`eyeprocess_cdm_dina_ideal_response()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_cdm_dina_ideal_response.md)
+  : Compute deterministic DINA ideal responses from a Q-matrix
+- [`eyeprocess_cdm_dina_probability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_cdm_dina_probability.md)
+  : DINA response probabilities from slip and guess parameters
+- [`eyeprocess_cdm_qmatrix_audit()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_cdm_qmatrix_audit.md)
+  : Audit a cognitive-diagnosis Q-matrix
+- [`eyeprocess_irt_latent_regression_design()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_latent_regression_design.md)
+  : Build a latent-regression design matrix with explicit centering
+  metadata
+- [`eyeprocess_irt_misspecification_metrics()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_misspecification_metrics.md)
+  : Compare recovery under reference and misspecified scenarios
+- [`eyeprocess_irt_misspecification_suite()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_misspecification_suite.md)
+  : Create a model-misspecification suite
+- [`eyeprocess_irt_recovery_design()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_recovery_design.md)
+  : Create an IRT recovery design
+- [`eyeprocess_irt_recovery_failures()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_recovery_failures.md)
+  : Summarise recovery failure rates
+- [`eyeprocess_irt_recovery_summary()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_recovery_summary.md)
+  : Summarise IRT parameter recovery
+- [`run_eyeprocess_irt_ability_sbc()`](https://stefanosbalaskas.github.io/eyeprocess/reference/run_eyeprocess_irt_ability_sbc.md)
+  : Run simulation-based calibration for known-item IRT ability scoring
+- [`eyeprocess_irt_sbc_ranks()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_sbc_ranks.md)
+  : Construct SBC ranks from scalar truths and posterior draws
+- [`eyeprocess_irt_sbc_summary()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_sbc_summary.md)
+  : Summarise IRT SBC ranks with the package SBC diagnostics
+- [`eyeprocess_irt_testlet_audit()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_testlet_audit.md)
+  : Audit testlet sizes and singleton structures
+- [`eyeprocess_irt_testlet_spec()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_irt_testlet_spec.md)
+  : Declare a testlet structure for bifactor/two-tier IRT engines
+- [`eyeprocess_mirt_directional_information()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_mirt_directional_information.md)
+  : Directional multidimensional 2PL information
+- [`eyeprocess_mirt_information_matrix()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_mirt_information_matrix.md)
+  : Multidimensional 2PL item information matrix
+- [`eyeprocess_mirt_loading_audit()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_mirt_loading_audit.md)
+  : Audit multidimensional IRT loading coverage
+- [`eyeprocess_mirt_loading_spec()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess_mirt_loading_spec.md)
+  : Declare a multidimensional IRT loading structure
+- [`freeze_eyeprocess_irt_reference()`](https://stefanosbalaskas.github.io/eyeprocess/reference/freeze_eyeprocess_irt_reference.md)
+  : Freeze IRT validation reference summaries
+- [`run_eyeprocess_irt_recovery()`](https://stefanosbalaskas.github.io/eyeprocess/reference/run_eyeprocess_irt_recovery.md)
+  : Run IRT parameter recovery with the exact mirt engine
+- [`simulate_eyeprocess_irt_binary()`](https://stefanosbalaskas.github.io/eyeprocess/reference/simulate_eyeprocess_irt_binary.md)
+  : Simulate dichotomous IRT responses with optional local dependence
+  and missingness
+
 ## Validation, sensitivity, and negative controls (0.9)
 
 - [`audit_temporal_leakage()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_temporal_leakage.md)
@@ -2818,6 +3151,36 @@ methods.
   : Write a validation report to disk
 
 # Articles
+
+### Executed validation evidence and governed IRT (0.9 M2)
+
+Frozen software-validation programmes, IRT
+information/scoring/diagnostics, linking and invariance, process-aware
+IRT, cognitive diagnosis, adaptive testing, engine gating, and
+paper-ready evidence.
+
+- [Adaptive testing design and
+  governance](https://stefanosbalaskas.github.io/eyeprocess/articles/adaptive-testing-governance.md):
+- [Cognitive diagnosis and Q-matrix
+  governance](https://stefanosbalaskas.github.io/eyeprocess/articles/cognitive-diagnosis-qmatrix-governance.md):
+- [Frozen validation evidence
+  programme](https://stefanosbalaskas.github.io/eyeprocess/articles/frozen-validation-evidence-programme.md):
+- [External IRT engines and exact-method
+  gating](https://stefanosbalaskas.github.io/eyeprocess/articles/irt-engines-and-gating.md):
+- [IRT information, scoring, and
+  diagnostics](https://stefanosbalaskas.github.io/eyeprocess/articles/irt-information-scoring-diagnostics.md):
+- [IRT linking, DIF, DTF, and invariance
+  evidence](https://stefanosbalaskas.github.io/eyeprocess/articles/irt-linking-dif-invariance.md):
+- [IRT recovery, SBC, and misspecification
+  evidence](https://stefanosbalaskas.github.io/eyeprocess/articles/irt-recovery-sbc-misspecification.md):
+- [Measurement-quality stress tests and negative
+  controls](https://stefanosbalaskas.github.io/eyeprocess/articles/measurement-stress-negative-controls.md):
+- [Multidimensional, testlet, and latent-regression
+  IRT](https://stefanosbalaskas.github.io/eyeprocess/articles/multidimensional-testlet-latent-regression-irt.md):
+- [Response-time and process-aware
+  IRT](https://stefanosbalaskas.github.io/eyeprocess/articles/process-response-time-irt.md):
+- [Validation evidence atlas and software-paper
+  reporting](https://stefanosbalaskas.github.io/eyeprocess/articles/validation-evidence-atlas-software-paper.md):
 
 ### Validated and governed research workflows (0.9)
 
