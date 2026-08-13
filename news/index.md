@@ -25,6 +25,9 @@
   validation outputs are software-validation evidence. They do not
   establish construct validity of gaze, pupil, response-time, sequence,
   or psychometric measures.
+- Closes the 0.9 public-API lifecycle registry across all 1,139 current
+  exports using a curated module policy and explicit experimental/gated
+  overrides; future unregistered exports remain `unreviewed` by design.
 
 ### Empirical validation and recovery
 

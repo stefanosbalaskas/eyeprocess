@@ -16,7 +16,7 @@ atlas
 #> eyeprocess validation evidence atlas
 #>   claims     : 2 
 #>   components : 1 / 8 
-#>   hash       : 8237b9eaf340ec405aa4e3fee3f1a683
+#>   hash       : bfeba4a52e1e0ddc54b37b141f515485
 ```
 
 [`freeze_eyeprocess_validation_atlas()`](https://stefanosbalaskas.github.io/eyeprocess/reference/freeze_eyeprocess_validation_atlas.md)

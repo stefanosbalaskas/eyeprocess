@@ -12,7 +12,8 @@ eye_api_lifecycle(registry = NULL)
 
 - registry:
 
-  Optional data frame with at least \`name\` and \`status\`.
+  Optional data frame with at least \`name\` and \`status\`. \`NULL\`
+  loads the packaged 0.9 lifecycle registry.
 
 ## Value
 

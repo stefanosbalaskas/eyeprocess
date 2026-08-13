@@ -30,7 +30,7 @@
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
-<li class="nav-item dropdown">
+<li class="active nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><hr class="dropdown-divider"></li>
@@ -92,7 +92,7 @@
       <h1>API lifecycle and canonical interfaces</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/stefanosbalaskas/eyeprocess/blob/HEAD/vignettes/api-lifecycle-and-canonical-interfaces.Rmd" class="external-link"><code>vignettes/api-lifecycle-and-canonical-interfaces.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/stefanosbalaskas/eyeprocess/blob/master/vignettes/api-lifecycle-and-canonical-interfaces.Rmd" class="external-link"><code>vignettes/api-lifecycle-and-canonical-interfaces.Rmd</code></a></small>
       <div class="d-none name"><code>api-lifecycle-and-canonical-interfaces.Rmd</code></div>
     </div>
 
@@ -113,6 +113,81 @@ a name alone.</p>
 <span><span class="fu"><a href="../reference/eye_api_recommendation.html">eye_api_recommendation</a></span><span class="op">(</span><span class="va">audit</span><span class="op">)</span></span></code></pre></div>
 <p>The purpose is staged consolidation. Version 0.9 does not
 aggressively remove established interfaces.</p>
+<!-- BEGIN EYEPROCESS 0.9 API LIFECYCLE CLOSURE -->
+<div class="section level2">
+<h2 id="packaged-lifecycle-closure">Packaged lifecycle closure<a class="anchor" aria-label="anchor" href="#packaged-lifecycle-closure"></a>
+</h2>
+<p>The 0.9 development surface is accompanied by a packaged lifecycle
+registry covering every currently exported API symbol. Classification is
+deliberately conservative: foundational front-door interfaces are
+<code>core</code>; orchestration and governance interfaces are
+<code>workflow</code>; specialist scientific interfaces are
+<code>advanced</code>; research-facing interfaces with explicit
+provisional contracts are <code>experimental</code>; and frontier or
+optional-engine interfaces may be <code>gated</code>.</p>
+<p>Lifecycle status describes software-interface maturity and
+governance. It does not establish construct validity, empirical
+adequacy, device equivalence, or the scientific interpretation of gaze,
+pupil, response-time, sequence, or psychometric measures.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">lifecycle</span> <span class="op">&lt;-</span> <span class="fu">eyeprocess</span><span class="fu">::</span><span class="fu"><a href="../reference/eye_api_lifecycle.html">eye_api_lifecycle</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">inventory</span> <span class="op">&lt;-</span> <span class="fu">eyeprocess</span><span class="fu">::</span><span class="fu"><a href="../reference/eye_api_inventory.html">eye_api_inventory</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">audit</span> <span class="op">&lt;-</span> <span class="fu">eyeprocess</span><span class="fu">::</span><span class="fu"><a href="../reference/audit_eye_api.html">audit_eye_api</a></span><span class="op">(</span><span class="va">inventory</span>, <span class="va">lifecycle</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">eyeprocess</span><span class="fu">::</span><span class="fu"><a href="../reference/api_surface_summary.html">api_surface_summary</a></span><span class="op">(</span><span class="va">inventory</span><span class="op">)</span></span>
+<span><span class="co">#&gt;        family       status Freq</span></span>
+<span><span class="co">#&gt; 1          io     advanced    0</span></span>
+<span><span class="co">#&gt; 2       model     advanced   46</span></span>
+<span><span class="co">#&gt; 3        plot     advanced   91</span></span>
+<span><span class="co">#&gt; 4  simulation     advanced   26</span></span>
+<span><span class="co">#&gt; 5     summary     advanced   34</span></span>
+<span><span class="co">#&gt; 6     utility     advanced  301</span></span>
+<span><span class="co">#&gt; 7  validation     advanced   47</span></span>
+<span><span class="co">#&gt; 8    workflow     advanced    7</span></span>
+<span><span class="co">#&gt; 9          io         core   26</span></span>
+<span><span class="co">#&gt; 10      model         core    0</span></span>
+<span><span class="co">#&gt; 11       plot         core   19</span></span>
+<span><span class="co">#&gt; 12 simulation         core    0</span></span>
+<span><span class="co">#&gt; 13    summary         core    4</span></span>
+<span><span class="co">#&gt; 14    utility         core  114</span></span>
+<span><span class="co">#&gt; 15 validation         core   22</span></span>
+<span><span class="co">#&gt; 16   workflow         core    0</span></span>
+<span><span class="co">#&gt; 17         io experimental    0</span></span>
+<span><span class="co">#&gt; 18      model experimental   32</span></span>
+<span><span class="co">#&gt; 19       plot experimental    0</span></span>
+<span><span class="co">#&gt; 20 simulation experimental    2</span></span>
+<span><span class="co">#&gt; 21    summary experimental    2</span></span>
+<span><span class="co">#&gt; 22    utility experimental   43</span></span>
+<span><span class="co">#&gt; 23 validation experimental    7</span></span>
+<span><span class="co">#&gt; 24   workflow experimental    1</span></span>
+<span><span class="co">#&gt; 25         io        gated    0</span></span>
+<span><span class="co">#&gt; 26      model        gated   11</span></span>
+<span><span class="co">#&gt; 27       plot        gated    0</span></span>
+<span><span class="co">#&gt; 28 simulation        gated    1</span></span>
+<span><span class="co">#&gt; 29    summary        gated    0</span></span>
+<span><span class="co">#&gt; 30    utility        gated    5</span></span>
+<span><span class="co">#&gt; 31 validation        gated    2</span></span>
+<span><span class="co">#&gt; 32   workflow        gated    0</span></span>
+<span><span class="co">#&gt; 33         io     workflow   45</span></span>
+<span><span class="co">#&gt; 34      model     workflow   15</span></span>
+<span><span class="co">#&gt; 35       plot     workflow   10</span></span>
+<span><span class="co">#&gt; 36 simulation     workflow    5</span></span>
+<span><span class="co">#&gt; 37    summary     workflow   10</span></span>
+<span><span class="co">#&gt; 38    utility     workflow  149</span></span>
+<span><span class="co">#&gt; 39 validation     workflow   49</span></span>
+<span><span class="co">#&gt; 40   workflow     workflow   13</span></span>
+<span><span class="va">audit</span></span>
+<span><span class="co">#&gt; eyeprocess API lifecycle audit</span></span>
+<span><span class="co">#&gt;   APIs             : 1139 </span></span>
+<span><span class="co">#&gt;   reviewed fraction: 100.0% </span></span>
+<span><span class="co">#&gt;   invalid mappings : 0</span></span></code></pre></div>
+<p>The current registry is intentionally frozen to the current exported
+surface. A future exported symbol that is absent from the registry
+continues to resolve as <code>unreviewed</code>; this makes lifecycle
+review an explicit release obligation rather than an inference from
+function naming.</p>
+<!-- END EYEPROCESS 0.9 API LIFECYCLE CLOSURE -->
+</div>
   </main>
 </div>
 

@@ -5,7 +5,7 @@ Inventory the public eyeprocess API
 ## Usage
 
 ``` r
-eye_api_inventory(package = "eyeprocess", lifecycle = NULL)
+eye_api_inventory(package = "eyeprocess", lifecycle = eye_api_lifecycle())
 ```
 
 ## Arguments
@@ -16,7 +16,8 @@ eye_api_inventory(package = "eyeprocess", lifecycle = NULL)
 
 - lifecycle:
 
-  Optional lifecycle registry from \`eye_api_lifecycle()\`.
+  Lifecycle registry. Defaults to the packaged 0.9 registry from
+  \`eye_api_lifecycle()\`.
 
 ## Value
 
