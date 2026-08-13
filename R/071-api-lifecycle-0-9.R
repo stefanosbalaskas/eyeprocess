@@ -15,10 +15,10 @@
 #' Inventory the public eyeprocess API
 #'
 #' @param package Package name or namespace environment.
-#' @param lifecycle Optional lifecycle registry from `eye_api_lifecycle()`.
+#' @param lifecycle Lifecycle registry. Defaults to the packaged 0.9 registry from `eye_api_lifecycle()`.
 #' @return Data frame of exported symbols and lifecycle metadata.
 #' @export
-eye_api_inventory <- function(package = "eyeprocess", lifecycle = NULL) {
+eye_api_inventory <- function(package = "eyeprocess", lifecycle = eye_api_lifecycle()) {
   ns <- if (is.environment(package)) package else {
     if (!requireNamespace(package, quietly = TRUE)) stop("Package `", package, "` is not installed/loaded.", call. = FALSE)
     asNamespace(package)
@@ -47,14 +47,23 @@ eye_api_inventory <- function(package = "eyeprocess", lifecycle = NULL) {
 
 #' Normalize or create an API lifecycle registry
 #'
-#' @param registry Optional data frame with at least `name` and `status`.
+#' @param registry Optional data frame with at least `name` and `status`. `NULL` loads the packaged 0.9 lifecycle registry.
 #' @return `eye_api_lifecycle` data frame.
 #' @export
 eye_api_lifecycle <- function(registry = NULL) {
   allowed <- c("core", "workflow", "advanced", "experimental", "gated", "compatibility", "deprecated", "internal-candidate", "unreviewed")
   if (is.null(registry)) {
-    registry <- data.frame(name = character(), status = character(), canonical = character(),
-                           replacement = character(), since = character(), notes = character(), stringsAsFactors = FALSE)
+    registry_path <- system.file("extdata", "api-lifecycle-registry-0.9.csv", package = "eyeprocess")
+    if (!nzchar(registry_path)) {
+      source_candidate <- file.path("inst", "extdata", "api-lifecycle-registry-0.9.csv")
+      if (file.exists(source_candidate)) registry_path <- source_candidate
+    }
+    if (nzchar(registry_path) && file.exists(registry_path)) {
+      registry <- utils::read.csv(registry_path, stringsAsFactors = FALSE, na.strings = c("", "NA"))
+    } else {
+      registry <- data.frame(name = character(), status = character(), canonical = character(),
+                             replacement = character(), since = character(), notes = character(), stringsAsFactors = FALSE)
+    }
   }
   registry <- .ep09_as_df(registry)
   .ep09_req_cols(registry, c("name", "status"), "registry")
