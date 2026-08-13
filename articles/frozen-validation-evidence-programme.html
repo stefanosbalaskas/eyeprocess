@@ -133,6 +133,48 @@ universal scientific thresholds.</p>
 <p>Frozen evidence objects contain integrity hashes and source-commit
 metadata. A passing release gate means only that the declared
 software-validation criteria were satisfied.</p>
+<!-- BEGIN EYEPROCESS ARTICLE VISUALS FREEZE -->
+<div class="section level2">
+<h2 id="frozen-evidence-as-a-visual-object">Frozen evidence as a visual object<a class="anchor" aria-label="anchor" href="#frozen-evidence-as-a-visual-object"></a>
+</h2>
+<p>A minimal deterministic freeze demonstrates the provenance-aware
+graphical interface. The example records software evidence only and
+should not be interpreted as a validity assessment of a psychological
+construct.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">viz_claim</span> <span class="op">&lt;-</span> <span class="fu">eyeprocess</span><span class="fu">::</span><span class="fu"><a href="../reference/eyeprocess_validation_claim_matrix.html">eyeprocess_validation_claim_matrix</a></span><span class="op">(</span></span>
+<span>  <span class="st">'C1'</span>,</span>
+<span>  <span class="st">'software behaviour is reproducible'</span>,</span>
+<span>  <span class="st">'E1'</span>,</span>
+<span>  <span class="st">'test'</span>,</span>
+<span>  <span class="st">'supported'</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">viz_freeze</span> <span class="op">&lt;-</span> <span class="fu">eyeprocess</span><span class="fu">::</span><span class="fu"><a href="../reference/freeze_eyeprocess_validation_evidence.html">freeze_eyeprocess_validation_evidence</a></span><span class="op">(</span></span>
+<span>  design <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>id <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,</span>
+<span>  recovery <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,</span>
+<span>  stress <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,</span>
+<span>  reliability <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,</span>
+<span>  negative_controls <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,</span>
+<span>  claims <span class="op">=</span> <span class="va">viz_claim</span>,</span>
+<span>  provenance <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>commit <span class="op">=</span> <span class="st">'documentation-example'</span><span class="op">)</span>,</span>
+<span>  source_commit <span class="op">=</span> <span class="st">'documentation-example'</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/stopifnot.html" class="external-link">stopifnot</a></span><span class="op">(</span></span>
+<span>  <span class="fu">eyeprocess</span><span class="fu">::</span><span class="fu"><a href="../reference/verify_eyeprocess_validation_evidence.html">verify_eyeprocess_validation_evidence</a></span><span class="op">(</span></span>
+<span>    <span class="va">viz_freeze</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">viz_freeze</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<img src="frozen-validation-evidence-programme_files/figure-html/m2-visual-validation-freeze-1.png" class="r-plt" alt="Illustrative frozen validation-evidence object." width="672"><p class="caption">
+Illustrative frozen validation-evidence object.
+</p>
+</div>
+<!-- END EYEPROCESS ARTICLE VISUALS FREEZE -->
+</div>
   </main>
 </div>
 

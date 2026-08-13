@@ -79,3 +79,67 @@ and
 
 Primary source:
 <https://mc-stan.org/docs/stan-users-guide/item-response-models.html>.
+
+## Visual diagnostics
+
+The following deterministic example illustrates two native diagnostic
+views. These figures demonstrate software behaviour for a synthetic item
+bank; they are not empirical evidence of construct validity.
+
+``` r
+
+viz_items <- data.frame(
+  item_id = paste0('I', 1:8),
+  a = seq(0.8, 1.5, length.out = 8),
+  b = seq(-1.5, 1.5, length.out = 8),
+  c = 0,
+  d = 1
+)
+
+viz_theta <- seq(-3, 3, by = 0.25)
+
+viz_information <- eyeprocess::eyeprocess_irt_test_information(
+  viz_theta,
+  viz_items
+)
+
+stopifnot(
+  inherits(viz_information, 'eye_irt_information_profile')
+)
+
+plot(viz_information)
+```
+
+![Test information across the latent-trait continuum for a deterministic
+illustrative item
+bank.](irt-information-scoring-diagnostics_files/figure-html/m2-visual-test-information-1.png)
+
+Test information across the latent-trait continuum for a deterministic
+illustrative item bank.
+
+``` r
+
+viz_sim <- eyeprocess::simulate_eyeprocess_irt_binary(
+  80L,
+  viz_items,
+  missing_rate = 0.10,
+  seed = 12L
+)
+
+viz_q3 <- eyeprocess::eyeprocess_irt_q3(
+  viz_sim$responses,
+  viz_sim$probabilities
+)
+
+stopifnot(
+  inherits(viz_q3, 'eye_irt_q3_matrix')
+)
+
+plot(viz_q3)
+```
+
+![Residual Q3 dependence matrix for a deterministic simulated response
+set.](irt-information-scoring-diagnostics_files/figure-html/m2-visual-q3-1.png)
+
+Residual Q3 dependence matrix for a deterministic simulated response
+set.

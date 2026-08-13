@@ -43,3 +43,45 @@ rules <- list(
 Frozen evidence objects contain integrity hashes and source-commit
 metadata. A passing release gate means only that the declared
 software-validation criteria were satisfied.
+
+## Frozen evidence as a visual object
+
+A minimal deterministic freeze demonstrates the provenance-aware
+graphical interface. The example records software evidence only and
+should not be interpreted as a validity assessment of a psychological
+construct.
+
+``` r
+
+viz_claim <- eyeprocess::eyeprocess_validation_claim_matrix(
+  'C1',
+  'software behaviour is reproducible',
+  'E1',
+  'test',
+  'supported'
+)
+
+viz_freeze <- eyeprocess::freeze_eyeprocess_validation_evidence(
+  design = data.frame(id = 1),
+  recovery = data.frame(x = 1),
+  stress = data.frame(x = 1),
+  reliability = data.frame(x = 1),
+  negative_controls = data.frame(x = 1),
+  claims = viz_claim,
+  provenance = list(commit = 'documentation-example'),
+  source_commit = 'documentation-example'
+)
+
+stopifnot(
+  eyeprocess::verify_eyeprocess_validation_evidence(
+    viz_freeze
+  )
+)
+
+plot(viz_freeze)
+```
+
+![Illustrative frozen validation-evidence
+object.](frozen-validation-evidence-programme_files/figure-html/m2-visual-validation-freeze-1.png)
+
+Illustrative frozen validation-evidence object.

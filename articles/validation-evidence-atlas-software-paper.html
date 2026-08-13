@@ -119,6 +119,57 @@ integrity-checked snapshot.
 Markdown report suitable for archival review. Paper-ready table helpers
 convert recovery, SBC, stress, reliability, negative-control, IRT
 precision, and external-engine status into compact data frames.</p>
+<!-- BEGIN EYEPROCESS ARTICLE VISUALS ATLAS -->
+<div class="section level2">
+<h2 id="visual-evidence-atlas">Visual evidence atlas<a class="anchor" aria-label="anchor" href="#visual-evidence-atlas"></a>
+</h2>
+<p>The next views show how declared claims and evidence are represented
+before and after freezing. They describe evidence organisation and
+provenance, not substantive construct validity.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">viz_claims</span> <span class="op">&lt;-</span> <span class="fu">eyeprocess</span><span class="fu">::</span><span class="fu"><a href="../reference/eyeprocess_validation_claim_matrix.html">eyeprocess_validation_claim_matrix</a></span><span class="op">(</span></span>
+<span>  <span class="st">'C1'</span>,</span>
+<span>  <span class="st">'software behaviour is reproducible'</span>,</span>
+<span>  <span class="st">'E1'</span>,</span>
+<span>  <span class="st">'test'</span>,</span>
+<span>  <span class="st">'supported'</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">viz_atlas</span> <span class="op">&lt;-</span> <span class="fu">eyeprocess</span><span class="fu">::</span><span class="fu"><a href="../reference/eyeprocess_validation_evidence_atlas.html">eyeprocess_validation_evidence_atlas</a></span><span class="op">(</span></span>
+<span>  <span class="va">viz_claims</span>,</span>
+<span>  recovery <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/stopifnot.html" class="external-link">stopifnot</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">inherits</a></span><span class="op">(</span><span class="va">viz_atlas</span>, <span class="st">'eye_validation_evidence_atlas'</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">viz_atlas</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<img src="validation-evidence-atlas-software-paper_files/figure-html/m2-visual-atlas-1.png" class="r-plt" alt="Illustrative validation-evidence atlas linking a declared software claim to recorded evidence." width="672"><p class="caption">
+Illustrative validation-evidence atlas linking a declared software claim
+to recorded evidence.
+</p>
+</div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">viz_atlas_freeze</span> <span class="op">&lt;-</span> <span class="fu">eyeprocess</span><span class="fu">::</span><span class="fu"><a href="../reference/freeze_eyeprocess_validation_atlas.html">freeze_eyeprocess_validation_atlas</a></span><span class="op">(</span></span>
+<span>  <span class="va">viz_atlas</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/stopifnot.html" class="external-link">stopifnot</a></span><span class="op">(</span></span>
+<span>  <span class="fu">eyeprocess</span><span class="fu">::</span><span class="fu"><a href="../reference/verify_eyeprocess_validation_atlas.html">verify_eyeprocess_validation_atlas</a></span><span class="op">(</span></span>
+<span>    <span class="va">viz_atlas_freeze</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">viz_atlas_freeze</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<img src="validation-evidence-atlas-software-paper_files/figure-html/m2-visual-atlas-freeze-1.png" class="r-plt" alt="Frozen form of the illustrative validation-evidence atlas." width="672"><p class="caption">
+Frozen form of the illustrative validation-evidence atlas.
+</p>
+</div>
+<!-- END EYEPROCESS ARTICLE VISUALS ATLAS -->
+</div>
   </main>
 </div>
 

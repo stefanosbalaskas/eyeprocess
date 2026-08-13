@@ -122,6 +122,41 @@ Q-matrix validation, or model comparison.
 <code><a href="../reference/fit_eyeprocess_gdina.html">fit_eyeprocess_gdina()</a></code> delegates exact fitting to GDINA and
 gates cleanly when unavailable.</p>
 <p>Primary package source: <a href="https://cran.r-project.org/package=GDINA" class="external-link uri">https://cran.r-project.org/package=GDINA</a>.</p>
+<!-- BEGIN EYEPROCESS ARTICLE VISUALS QMATRIX -->
+<div class="section level2">
+<h2 id="visual-audit">Visual audit<a class="anchor" aria-label="anchor" href="#visual-audit"></a>
+</h2>
+<p>A compact deterministic Q-matrix makes the structural audit visible.
+The display concerns declared item-attribute structure and does not by
+itself establish substantive validity.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">viz_Q</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span>,</span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>,</span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span>,</span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span>,</span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>,</span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">viz_Q</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">'Item '</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">viz_Q</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">viz_Q</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'Attribute 1'</span>, <span class="st">'Attribute 2'</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">viz_qmatrix</span> <span class="op">&lt;-</span> <span class="fu">eyeprocess</span><span class="fu">::</span><span class="fu"><a href="../reference/eyeprocess_cdm_qmatrix_audit.html">eyeprocess_cdm_qmatrix_audit</a></span><span class="op">(</span><span class="va">viz_Q</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/stopifnot.html" class="external-link">stopifnot</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">inherits</a></span><span class="op">(</span><span class="va">viz_qmatrix</span>, <span class="st">'eye_cdm_qmatrix_audit'</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">viz_qmatrix</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<img src="cognitive-diagnosis-qmatrix-governance_files/figure-html/m2-visual-qmatrix-1.png" class="r-plt" alt="Q-matrix structure for a small deterministic cognitive-diagnosis example." width="624"><p class="caption">
+Q-matrix structure for a small deterministic cognitive-diagnosis
+example.
+</p>
+</div>
+<!-- END EYEPROCESS ARTICLE VISUALS QMATRIX -->
+</div>
   </main>
 </div>
 

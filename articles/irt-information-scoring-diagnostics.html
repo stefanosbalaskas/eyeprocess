@@ -168,6 +168,66 @@ models and sparse encodings when response matrices are incomplete. These
 principles motivate <code><a href="../reference/eyeprocess_irt_identification_audit.html">eyeprocess_irt_identification_audit()</a></code>
 and <code><a href="../reference/eyeprocess_irt_sparse_design_audit.html">eyeprocess_irt_sparse_design_audit()</a></code>.</p>
 <p>Primary source: <a href="https://mc-stan.org/docs/stan-users-guide/item-response-models.html" class="external-link uri">https://mc-stan.org/docs/stan-users-guide/item-response-models.html</a>.</p>
+<!-- BEGIN EYEPROCESS ARTICLE VISUALS IRT INFORMATION -->
+<div class="section level2">
+<h2 id="visual-diagnostics">Visual diagnostics<a class="anchor" aria-label="anchor" href="#visual-diagnostics"></a>
+</h2>
+<p>The following deterministic example illustrates two native diagnostic
+views. These figures demonstrate software behaviour for a synthetic item
+bank; they are not empirical evidence of construct validity.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">viz_items</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
+<span>  item_id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">'I'</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span>,</span>
+<span>  a <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.8</span>, <span class="fl">1.5</span>, length.out <span class="op">=</span> <span class="fl">8</span><span class="op">)</span>,</span>
+<span>  b <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1.5</span>, <span class="fl">1.5</span>, length.out <span class="op">=</span> <span class="fl">8</span><span class="op">)</span>,</span>
+<span>  c <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  d <span class="op">=</span> <span class="fl">1</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">viz_theta</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">3</span>, <span class="fl">3</span>, by <span class="op">=</span> <span class="fl">0.25</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">viz_information</span> <span class="op">&lt;-</span> <span class="fu">eyeprocess</span><span class="fu">::</span><span class="fu"><a href="../reference/eyeprocess_irt_test_information.html">eyeprocess_irt_test_information</a></span><span class="op">(</span></span>
+<span>  <span class="va">viz_theta</span>,</span>
+<span>  <span class="va">viz_items</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/stopifnot.html" class="external-link">stopifnot</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">inherits</a></span><span class="op">(</span><span class="va">viz_information</span>, <span class="st">'eye_irt_information_profile'</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">viz_information</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<img src="irt-information-scoring-diagnostics_files/figure-html/m2-visual-test-information-1.png" class="r-plt" alt="Test information across the latent-trait continuum for a deterministic illustrative item bank." width="672"><p class="caption">
+Test information across the latent-trait continuum for a deterministic
+illustrative item bank.
+</p>
+</div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">viz_sim</span> <span class="op">&lt;-</span> <span class="fu">eyeprocess</span><span class="fu">::</span><span class="fu"><a href="../reference/simulate_eyeprocess_irt_binary.html">simulate_eyeprocess_irt_binary</a></span><span class="op">(</span></span>
+<span>  <span class="fl">80L</span>,</span>
+<span>  <span class="va">viz_items</span>,</span>
+<span>  missing_rate <span class="op">=</span> <span class="fl">0.10</span>,</span>
+<span>  seed <span class="op">=</span> <span class="fl">12L</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">viz_q3</span> <span class="op">&lt;-</span> <span class="fu">eyeprocess</span><span class="fu">::</span><span class="fu"><a href="../reference/eyeprocess_irt_q3.html">eyeprocess_irt_q3</a></span><span class="op">(</span></span>
+<span>  <span class="va">viz_sim</span><span class="op">$</span><span class="va">responses</span>,</span>
+<span>  <span class="va">viz_sim</span><span class="op">$</span><span class="va">probabilities</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/stopifnot.html" class="external-link">stopifnot</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">inherits</a></span><span class="op">(</span><span class="va">viz_q3</span>, <span class="st">'eye_irt_q3_matrix'</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">viz_q3</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<img src="irt-information-scoring-diagnostics_files/figure-html/m2-visual-q3-1.png" class="r-plt" alt="Residual Q3 dependence matrix for a deterministic simulated response set." width="624"><p class="caption">
+Residual Q3 dependence matrix for a deterministic simulated response
+set.
+</p>
+</div>
+<!-- END EYEPROCESS ARTICLE VISUALS IRT INFORMATION -->
+</div>
   </main>
 </div>
 

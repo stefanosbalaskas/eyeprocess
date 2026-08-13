@@ -41,3 +41,41 @@ infrastructure.
 The SBC workflow follows the logic of Talts et al., *Validating Bayesian
 Inference Algorithms with Simulation-Based Calibration*:
 <https://arxiv.org/abs/1804.06788>.
+
+## Simulation-based calibration view
+
+The figure below is generated from a small deterministic known-item
+simulation. It is a computational calibration diagnostic under the
+declared generative model, not evidence of empirical model adequacy.
+
+``` r
+
+viz_items <- data.frame(
+  item_id = paste0('I', 1:8),
+  a = seq(0.8, 1.5, length.out = 8),
+  b = seq(-1.5, 1.5, length.out = 8),
+  c = 0,
+  d = 1
+)
+
+viz_sbc <- eyeprocess::run_eyeprocess_irt_ability_sbc(
+  items = viz_items,
+  replications = 20L,
+  posterior_draws = 19L,
+  theta_grid = seq(-5, 5, length.out = 201L),
+  seed = 902L
+)
+
+stopifnot(
+  inherits(viz_sbc, 'eye_irt_sbc_evidence')
+)
+
+plot(viz_sbc)
+```
+
+![Simulation-based calibration diagnostic for the deterministic
+known-item
+example.](irt-recovery-sbc-misspecification_files/figure-html/m2-visual-sbc-1.png)
+
+Simulation-based calibration diagnostic for the deterministic known-item
+example.

@@ -133,6 +133,43 @@ produces a gated result. SBC rank summaries reuse eyeprocess’s
 rank-diagnostic infrastructure.</p>
 <p>The SBC workflow follows the logic of Talts et al., <em>Validating
 Bayesian Inference Algorithms with Simulation-Based Calibration</em>: <a href="https://arxiv.org/abs/1804.06788" class="external-link uri">https://arxiv.org/abs/1804.06788</a>.</p>
+<!-- BEGIN EYEPROCESS ARTICLE VISUALS SBC -->
+<div class="section level2">
+<h2 id="simulation-based-calibration-view">Simulation-based calibration view<a class="anchor" aria-label="anchor" href="#simulation-based-calibration-view"></a>
+</h2>
+<p>The figure below is generated from a small deterministic known-item
+simulation. It is a computational calibration diagnostic under the
+declared generative model, not evidence of empirical model adequacy.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">viz_items</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
+<span>  item_id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">'I'</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span>,</span>
+<span>  a <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.8</span>, <span class="fl">1.5</span>, length.out <span class="op">=</span> <span class="fl">8</span><span class="op">)</span>,</span>
+<span>  b <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1.5</span>, <span class="fl">1.5</span>, length.out <span class="op">=</span> <span class="fl">8</span><span class="op">)</span>,</span>
+<span>  c <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  d <span class="op">=</span> <span class="fl">1</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">viz_sbc</span> <span class="op">&lt;-</span> <span class="fu">eyeprocess</span><span class="fu">::</span><span class="fu"><a href="../reference/run_eyeprocess_irt_ability_sbc.html">run_eyeprocess_irt_ability_sbc</a></span><span class="op">(</span></span>
+<span>  items <span class="op">=</span> <span class="va">viz_items</span>,</span>
+<span>  replications <span class="op">=</span> <span class="fl">20L</span>,</span>
+<span>  posterior_draws <span class="op">=</span> <span class="fl">19L</span>,</span>
+<span>  theta_grid <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">5</span>, <span class="fl">5</span>, length.out <span class="op">=</span> <span class="fl">201L</span><span class="op">)</span>,</span>
+<span>  seed <span class="op">=</span> <span class="fl">902L</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/stopifnot.html" class="external-link">stopifnot</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">inherits</a></span><span class="op">(</span><span class="va">viz_sbc</span>, <span class="st">'eye_irt_sbc_evidence'</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">viz_sbc</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<img src="irt-recovery-sbc-misspecification_files/figure-html/m2-visual-sbc-1.png" class="r-plt" alt="Simulation-based calibration diagnostic for the deterministic known-item example." width="672"><p class="caption">
+Simulation-based calibration diagnostic for the deterministic known-item
+example.
+</p>
+</div>
+<!-- END EYEPROCESS ARTICLE VISUALS SBC -->
+</div>
   </main>
 </div>
 
