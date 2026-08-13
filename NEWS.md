@@ -9,6 +9,7 @@
 - Adds exact optional-engine adapters for `mirt`, `TAM`, `GDINA`, `LNIRT`, `eRm`, `equateIRT`, `catR`, and `mirtCAT`; unavailable engines are explicitly gated and never replaced by simpler estimators.
 - Adds 11 articles, deterministic synthetic fixtures, validation-execution scripts, paper-ready evidence tables, and 12 standalone examples.
 - All Milestone #2 validation outputs are software-validation evidence. They do not establish construct validity of gaze, pupil, response-time, sequence, or psychometric measures.
+- Closes the 0.9 public-API lifecycle registry across all 1,139 current exports using a curated module policy and explicit experimental/gated overrides; future unregistered exports remain `unreviewed` by design.
 <!-- END EYEPROCESS 0.9 M2 NEWS -->
 
 

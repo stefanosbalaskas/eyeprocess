@@ -23,3 +23,24 @@ eye_api_recommendation(audit)
 ```
 
 The purpose is staged consolidation. Version 0.9 does not aggressively remove established interfaces.
+
+<!-- BEGIN EYEPROCESS 0.9 API LIFECYCLE CLOSURE -->
+
+## Packaged lifecycle closure
+
+The 0.9 development surface is accompanied by a packaged lifecycle registry covering every currently exported API symbol. Classification is deliberately conservative: foundational front-door interfaces are `core`; orchestration and governance interfaces are `workflow`; specialist scientific interfaces are `advanced`; research-facing interfaces with explicit provisional contracts are `experimental`; and frontier or optional-engine interfaces may be `gated`.
+
+Lifecycle status describes software-interface maturity and governance. It does not establish construct validity, empirical adequacy, device equivalence, or the scientific interpretation of gaze, pupil, response-time, sequence, or psychometric measures.
+
+```{r lifecycle-closure}
+lifecycle <- eyeprocess::eye_api_lifecycle()
+inventory <- eyeprocess::eye_api_inventory()
+audit <- eyeprocess::audit_eye_api(inventory, lifecycle)
+
+eyeprocess::api_surface_summary(inventory)
+audit
+```
+
+The current registry is intentionally frozen to the current exported surface. A future exported symbol that is absent from the registry continues to resolve as `unreviewed`; this makes lifecycle review an explicit release obligation rather than an inference from function naming.
+
+<!-- END EYEPROCESS 0.9 API LIFECYCLE CLOSURE -->

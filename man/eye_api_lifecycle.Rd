@@ -7,7 +7,7 @@
 eye_api_lifecycle(registry = NULL)
 }
 \arguments{
-\item{registry}{Optional data frame with at least `name` and `status`.}
+\item{registry}{Optional data frame with at least `name` and `status`. `NULL` loads the packaged 0.9 lifecycle registry.}
 }
 \value{
 `eye_api_lifecycle` data frame.

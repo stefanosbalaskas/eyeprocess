@@ -4,12 +4,12 @@
 \alias{eye_api_inventory}
 \title{Inventory the public eyeprocess API}
 \usage{
-eye_api_inventory(package = "eyeprocess", lifecycle = NULL)
+eye_api_inventory(package = "eyeprocess", lifecycle = eye_api_lifecycle())
 }
 \arguments{
 \item{package}{Package name or namespace environment.}
 
-\item{lifecycle}{Optional lifecycle registry from `eye_api_lifecycle()`.}
+\item{lifecycle}{Lifecycle registry. Defaults to the packaged 0.9 registry from `eye_api_lifecycle()`.}
 }
 \value{
 Data frame of exported symbols and lifecycle metadata.
