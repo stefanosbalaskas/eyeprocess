@@ -1,0 +1,58 @@
+---
+title: "M2 Recovery and Identifiability"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{M2 Recovery and Identifiability}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+```
+
+## Why recovery precedes promotion
+
+A multimodal model is not validated because it compiles or produces finite estimates. The M2 evidence program therefore separates structural support, numerical diagnostics, parameter recovery, uncertainty calibration, and later empirical reproduction.
+
+```{r}
+library(eyeprocess)
+
+sim <- simulate_multimodal_m2(
+  n_person = 100,
+  n_item = 10,
+  dropout = c(response = .02, rt = .05, gaze = .10),
+  seed = 101
+)
+
+audit_multimodal_m2_identifiability(sim$data)
+```
+
+The simulation retains complete latent and item truth even after observed-channel dropout is applied.
+
+## Recovery experiment
+
+`multimodal_m2_recovery()` repeatedly simulates and fits the complete M2 estimator. It summarizes bias, RMSE, posterior SD, and 95% interval coverage across person latent parameters, item locations, item dispersions, covariance parameters, and hyperparameters.
+
+```{r, eval=FALSE}
+rec <- multimodal_m2_recovery(
+  n_rep = 25,
+  n_person = 150,
+  n_item = 15,
+  chains = 4,
+  parallel_chains = 4,
+  iter_warmup = 1000,
+  iter_sampling = 1000,
+  base_seed = 20261001
+)
+
+rec
+plot(rec, type = "truth_vs_estimate")
+plot(rec, type = "coverage")
+```
+
+A publication-grade recovery grid should vary sample size, item count, latent correlations, item correlations, count dispersion, RT discrimination, and channel dropout rather than relying on one favorable condition.
+
+## What recovery does not show
+
+Recovery under the generating model establishes that the estimator can recover parameters when its assumptions are true. It does not show robustness to misspecified count distributions, local dependence, device artifacts, nonignorable missingness, or construct validity. Those are distinct validation layers.

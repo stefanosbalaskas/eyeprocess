@@ -1,0 +1,69 @@
+---
+title: "M2 Process Information and Channel Ablation"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{M2 Process Information and Channel Ablation}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+```
+
+## A common response target
+
+The central M2 question is not whether RT and gaze have their own likelihood information. It is whether they improve measurement of the scored-response trait under a joint model.
+
+`multimodal_m2_ablation()` therefore fits a compatible sequence:
+
+- M0: response only;
+- M1: response + RT;
+- M2: response + RT + gaze.
+
+`multimodal_m2_process_information()` compares all three models on the **same response observations**.
+
+```{r, eval=FALSE}
+library(eyeprocess)
+
+sim <- simulate_multimodal_m2(
+  n_person = 150,
+  n_item = 15,
+  seed = 220
+)
+
+abl <- multimodal_m2_ablation(
+  sim,
+  chains = 4,
+  parallel_chains = 4,
+  iter_warmup = 1000,
+  iter_sampling = 1000,
+  seed = 221
+)
+
+info <- multimodal_m2_process_information(abl)
+info
+
+plot(info, type = "response_elpd")
+plot(info, type = "theta_variance")
+```
+
+## Two complementary quantities
+
+The evidence object reports:
+
+1. **response-target PSIS-LOO ELPD**, using only the scored-response log-likelihood in every model and MCMC relative-efficiency adjustment, for held-out response cells among the observed persons and items;
+2. **the corresponding pointwise ELPD-difference uncertainty and maximum Pareto-k diagnostic**; and
+3. **posterior variance of ability**, summarized across persons.
+
+This LOO target is conditional on the study's observed person/item population. It is not a transport estimate for entirely new persons or new items.
+
+A useful process channel may improve response-target held-out prediction, reduce posterior uncertainty, both, or neither. A destabilizing channel may worsen predictive performance or inflate uncertainty.
+
+## Non-additivity
+
+The package does not sum channel Fisher information by default. Under correlated latent and item structures, information is generally not additive in the simple independent-channel sense. The ablation sequence preserves this point explicitly.
+
+## Interpretation
+
+An incremental response-target gain supports a model-based measurement claim under the fitted assumptions. It does not by itself establish that gaze measures attention, that RT measures strategy, or that either channel is causally informative.

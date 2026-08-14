@@ -122,6 +122,13 @@ articles:
   - pupil-measurement-boundaries-0-10
   - manual-multimodal-backends-0-10
 
+- title: "0.10 M2 three-way measurement evidence"
+  contents:
+    - m2-three-way-reference-model-0-10
+    - m2-recovery-identifiability-0-10
+    - m2-ppc-negative-controls-0-10
+    - m2-process-information-ablation-0-10
+
 reference:
 # BEGIN EYEPROCESS 0.9 M2 REFERENCE
 - title: "Validation evidence programmes and freezing (0.9 M2)"
@@ -1225,3 +1232,15 @@ reference:
   - process_information
   - simulate_multimodal_irt
   - validate_multimodal_irt
+
+- title: "0.10 M2 response + RT + gaze evidence"
+  contents:
+    - fit_multimodal_m2
+    - multimodal_m2_ablation
+    - multimodal_m2_negative_controls
+    - multimodal_m2_ppc
+    - multimodal_m2_process_information
+    - multimodal_m2_recovery
+    - multimodal_m2_spec
+    - simulate_multimodal_m2
+    - validate_multimodal_m2
