@@ -1429,6 +1429,10 @@ introduced in the 0.7 development series.
   : Summarise measurement transportability across held-out groups
 - [`audit_model_promotion()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_model_promotion.md)
   : Audit promotion readiness for advanced model families
+- [`audit_multimodal_identifiability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_multimodal_identifiability.md)
+  : Audit basic multimodal design identifiability
+- [`audit_multimodal_measurement()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_multimodal_measurement.md)
+  : Audit a multimodal measurement object
 - [`audit_multivariate_process_quality()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_multivariate_process_quality.md)
   : Alias emphasizing data-quality interpretation of process anomaly
   auditing
@@ -2758,3 +2762,25 @@ methods.
   : Build an item-to-visual-context registry
 - [`write_validation_report()`](https://stefanosbalaskas.github.io/eyeprocess/reference/write_validation_report.md)
   : Write a validation report to disk
+
+## Multimodal Process-IRT (0.10 development)
+
+Canonical multimodal measurement, process-information, simulation, and
+validation interfaces.
+
+- [`ablate_multimodal_channels()`](https://stefanosbalaskas.github.io/eyeprocess/reference/ablate_multimodal_channels.md)
+  : Create formal channel-ablation datasets
+- [`multimodal_backend_status()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_backend_status.md)
+  : Report multimodal backend availability
+- [`multimodal_irt_spec()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_irt_spec.md)
+  : Consolidated multimodal IRT specification
+- [`multimodal_ppc()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_ppc.md)
+  : Posterior predictive checks for multimodal development fits
+- [`prepare_multimodal_irt_data()`](https://stefanosbalaskas.github.io/eyeprocess/reference/prepare_multimodal_irt_data.md)
+  : Prepare a canonical multimodal person-item-trial measurement object
+- [`process_information()`](https://stefanosbalaskas.github.io/eyeprocess/reference/process_information.md)
+  : Quantify incremental process information
+- [`simulate_multimodal_irt()`](https://stefanosbalaskas.github.io/eyeprocess/reference/simulate_multimodal_irt.md)
+  : Simulate multimodal IRT process data
+- [`validate_multimodal_irt()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validate_multimodal_irt.md)
+  : Validate a multimodal IRT development object

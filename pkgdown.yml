@@ -35,6 +35,7 @@ articles:
   irt-recovery-sbc-misspecification: irt-recovery-sbc-misspecification.html
   item-bank-fairness-norms: item-bank-fairness-norms.html
   item-seeding-accessibility-and-presentation-fairness: item-seeding-accessibility-and-presentation-fairness.html
+  manual-multimodal-backends-0-10: manual-multimodal-backends-0-10.html
   measurement-stress-negative-controls: measurement-stress-negative-controls.html
   multi-vendor-validation: multi-vendor-validation.html
   multiblock-profiles-and-external-validity: multiblock-profiles-and-external-validity.html
@@ -46,11 +47,13 @@ articles:
   preprocessing-features: preprocessing-features.html
   probabilistic-aoi-compositions: probabilistic-aoi-compositions.html
   process-decision-proxies-and-frontier-gates: process-decision-proxies-and-frontier-gates.html
+  process-information-and-ablation-0-10: process-information-and-ablation-0-10.html
   process-irt-model-atlas-0-7: process-irt-model-atlas-0-7.html
   process-measure-registry-and-reliability: process-measure-registry-and-reliability.html
   process-preflight-and-anomaly-governance: process-preflight-and-anomaly-governance.html
   process-response-time-irt: process-response-time-irt.html
   psychometric-process-models: psychometric-process-models.html
+  pupil-measurement-boundaries-0-10: pupil-measurement-boundaries-0-10.html
   pupil-registration-missingness: pupil-registration-missingness.html
   reliability-device-transportability: reliability-device-transportability.html
   reproducibility-prov-and-ro-crate: reproducibility-prov-and-ro-crate.html
@@ -65,12 +68,13 @@ articles:
   temporal-spatial-process-science: temporal-spatial-process-science.html
   theory-strategy-mixtures: theory-strategy-mixtures.html
   uncertainty-calibration: uncertainty-calibration.html
+  unified-multimodal-process-irt-0-10: unified-multimodal-process-irt-0-10.html
   validating-real-exports: validating-real-exports.html
   validation-evidence-0-7: validation-evidence-0-7.html
   validation-evidence-atlas-software-paper: validation-evidence-atlas-software-paper.html
   validation-execution-engine: validation-execution-engine.html
   visual-context-and-testlet-irt: visual-context-and-testlet-irt.html
-last_built: 2026-08-13T22:01Z
+last_built: 2026-08-14T07:28Z
 urls:
   reference: https://stefanosbalaskas.github.io/eyeprocess/reference
   article: https://stefanosbalaskas.github.io/eyeprocess/articles

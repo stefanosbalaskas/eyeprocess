@@ -171,3 +171,16 @@ optional sensitivity diagnostics, and evidence-gated frontier workflows.
   trajectories](https://stefanosbalaskas.github.io/eyeprocess/articles/temporal-process-representations.md):
 - [Visual-context and testlet
   IRT](https://stefanosbalaskas.github.io/eyeprocess/articles/visual-context-and-testlet-irt.md):
+
+### eyeprocess 0.10 — Unified Multimodal Process-IRT
+
+Development articles for multimodal latent process measurement.
+
+- [Unified Multimodal
+  Process-IRT](https://stefanosbalaskas.github.io/eyeprocess/articles/unified-multimodal-process-irt-0-10.md):
+- [Process Information and Channel
+  Ablation](https://stefanosbalaskas.github.io/eyeprocess/articles/process-information-and-ablation-0-10.md):
+- [Pupil Measurement Boundaries in Multimodal
+  IRT](https://stefanosbalaskas.github.io/eyeprocess/articles/pupil-measurement-boundaries-0-10.md):
+- [Manual Installation of Multimodal
+  Backends](https://stefanosbalaskas.github.io/eyeprocess/articles/manual-multimodal-backends-0-10.md):
