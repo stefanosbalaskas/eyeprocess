@@ -1,5 +1,13 @@
 # eyeprocess 0.10.0.9000
 
+### M2 three-way response + RT + gaze evidence
+
+- Added a likelihood-faithful M2 reference implementation for Rasch responses, lognormal response times, and negative-binomial gaze-fixation counts with correlated person-side and item-side parameter structures.
+- Added compatible M0/M1 Stan reference models for response-target channel ablation.
+- Added M2 simulation with retained truth, structural/data identifiability audit, posterior predictive W/L/M checks, response-target PSIS-LOO and ability-variance process-information summaries, negative controls, and repeated estimator recovery.
+- Added consolidated M2 plot methods, six examples, four development articles, and explicit no-fallback CmdStan gating.
+- M2 remains experimental/evidence-gated: synthetic recovery and model diagnostics do not establish construct validity, empirical generalizability, or causal interpretation of process channels.
+
 * Starts the Unified Multimodal Latent Process-IRT development programme
   with a canonical person-item-trial measurement contract, deterministic
   four-channel simulation, posterior process-information metrics, channel

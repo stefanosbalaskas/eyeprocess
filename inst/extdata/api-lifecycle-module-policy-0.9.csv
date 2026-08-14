@@ -95,3 +95,7 @@
 "R/098-multimodal-fit-contract-0-10.R","experimental","Experimental multimodal backend/PPC integration with an internal gated CmdStan development fitter; existing public fitter preserved."
 "R/099-multimodal-validation-0-10.R","advanced","Development validation and structural identifiability audits."
 "R/100-multimodal-plots-0-10.R","advanced","Native publication-oriented S3 visualisations."
+"R/101-multimodal-m2-reference-0-10.R","advanced","Native publication-oriented S3 visualisations."
+"R/102-multimodal-m2-evidence-0-10.R","advanced","Native publication-oriented S3 visualisations."
+"R/103-multimodal-m2-recovery-0-10.R","advanced","Native publication-oriented S3 visualisations."
+"R/104-multimodal-m2-plots-0-10.R","advanced","Native publication-oriented S3 visualisations."
