@@ -1,0 +1,37 @@
+---
+title: "Unified Multimodal Process-IRT"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Unified Multimodal Process-IRT}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+library(eyeprocess)
+```
+
+## Objective
+
+`eyeprocess` 0.10 treats response, RT, gaze and pupil as coordinated
+measurement channels while retaining neutral interpretation of process signals.
+
+```{r}
+sim <- simulate_multimodal_irt(n_person=60, n_item=10, seed=42)
+sim
+audit_multimodal_measurement(sim$measurement)
+```
+
+## Native visualization
+
+```{r}
+plot(sim, type="latent_correlation")
+plot(sim$measurement, type="availability")
+```
+
+## Interpretation boundary
+
+The simulated gaze dimension is a gaze-process propensity and the pupil
+dimension is pupil responsivity. Neither is automatically a psychological
+construct.

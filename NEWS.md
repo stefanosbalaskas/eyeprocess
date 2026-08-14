@@ -1,3 +1,14 @@
+# eyeprocess 0.10.0.9000
+
+* Starts the Unified Multimodal Latent Process-IRT development programme
+  with a canonical person-item-trial measurement contract, deterministic
+  four-channel simulation, posterior process-information metrics, channel
+  ablation, explicit backend gating, validation objects, native plots,
+  development Stan programmes, examples, tests, and articles.
+* M2/M3 CmdStan estimators remain experimental/gated until recovery, SBC,
+  misspecification, identifiability, and empirical-reproduction evidence
+  is frozen. Availability is not treated as construct validity.
+
 # eyeprocess 0.9.0.9000
 
 <!-- BEGIN EYEPROCESS 0.9 M2 NEWS -->

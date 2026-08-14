@@ -1,0 +1,13 @@
+test_that("multimodal plots return ggplot objects", {
+  skip_if_not_installed("ggplot2")
+  sim <- simulate_multimodal_irt(n_person=20,n_item=6,seed=4)
+  expect_s3_class(plot(sim$measurement, type="availability"), "ggplot")
+  expect_s3_class(plot(sim, type="latent_correlation"), "ggplot")
+  set.seed(2)
+  b <- matrix(rnorm(1000), ncol=2)
+  a <- matrix(rnorm(1000, sd=.8), ncol=2)
+  info <- process_information(b,a)
+  expect_s3_class(plot(info), "ggplot")
+  val <- validate_multimodal_irt(sim)
+  expect_s3_class(plot(val), "ggplot")
+})
