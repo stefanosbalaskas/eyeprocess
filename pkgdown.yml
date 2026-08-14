@@ -1,4 +1,4 @@
-pandoc: 3.8.3
+pandoc: '3.10'
 pkgdown: 2.2.1
 pkgdown_sha: ~
 articles:
@@ -35,6 +35,10 @@ articles:
   irt-recovery-sbc-misspecification: irt-recovery-sbc-misspecification.html
   item-bank-fairness-norms: item-bank-fairness-norms.html
   item-seeding-accessibility-and-presentation-fairness: item-seeding-accessibility-and-presentation-fairness.html
+  m2-ppc-negative-controls-0-10: m2-ppc-negative-controls-0-10.html
+  m2-process-information-ablation-0-10: m2-process-information-ablation-0-10.html
+  m2-recovery-identifiability-0-10: m2-recovery-identifiability-0-10.html
+  m2-three-way-reference-model-0-10: m2-three-way-reference-model-0-10.html
   manual-multimodal-backends-0-10: manual-multimodal-backends-0-10.html
   measurement-stress-negative-controls: measurement-stress-negative-controls.html
   multi-vendor-validation: multi-vendor-validation.html
@@ -74,7 +78,7 @@ articles:
   validation-evidence-atlas-software-paper: validation-evidence-atlas-software-paper.html
   validation-execution-engine: validation-execution-engine.html
   visual-context-and-testlet-irt: visual-context-and-testlet-irt.html
-last_built: 2026-08-14T07:28Z
+last_built: 2026-08-14T22:44Z
 urls:
   reference: https://stefanosbalaskas.github.io/eyeprocess/reference
   article: https://stefanosbalaskas.github.io/eyeprocess/articles

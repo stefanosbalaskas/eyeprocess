@@ -1431,6 +1431,8 @@ introduced in the 0.7 development series.
   : Audit promotion readiness for advanced model families
 - [`audit_multimodal_identifiability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_multimodal_identifiability.md)
   : Audit basic multimodal design identifiability
+- [`audit_multimodal_m2_identifiability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_multimodal_m2_identifiability.md)
+  : Audit structural and data identifiability for M0-M2
 - [`audit_multimodal_measurement()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_multimodal_measurement.md)
   : Audit a multimodal measurement object
 - [`audit_multivariate_process_quality()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_multivariate_process_quality.md)
@@ -2784,3 +2786,24 @@ validation interfaces.
   : Simulate multimodal IRT process data
 - [`validate_multimodal_irt()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validate_multimodal_irt.md)
   : Validate a multimodal IRT development object
+
+## 0.10 M2 response + RT + gaze evidence
+
+- [`fit_multimodal_m2()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_multimodal_m2.md)
+  : Fit the M2 response + RT + gaze reference model
+- [`multimodal_m2_ablation()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_m2_ablation.md)
+  : Fit M0, M1, and M2 as a response-target ablation sequence
+- [`multimodal_m2_negative_controls()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_m2_negative_controls.md)
+  : Generate M2 alignment negative controls
+- [`multimodal_m2_ppc()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_m2_ppc.md)
+  : Posterior predictive checks for the M2 three-way model
+- [`multimodal_m2_process_information()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_m2_process_information.md)
+  : Quantify response-target process information in the M0-M2 sequence
+- [`multimodal_m2_recovery()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_m2_recovery.md)
+  : Run repeated M2 estimator recovery
+- [`multimodal_m2_spec()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_m2_spec.md)
+  : M2 response + RT + gaze reference specification
+- [`simulate_multimodal_m2()`](https://stefanosbalaskas.github.io/eyeprocess/reference/simulate_multimodal_m2.md)
+  : Simulate from the M2 response + RT + gaze generative model
+- [`validate_multimodal_m2()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validate_multimodal_m2.md)
+  : Validate an M2 fit or simulation

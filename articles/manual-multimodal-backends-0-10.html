@@ -30,7 +30,7 @@
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
-<li class="active nav-item dropdown">
+<li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><hr class="dropdown-divider"></li>
@@ -92,7 +92,7 @@
       <h1>Manual Installation of Multimodal Backends</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/stefanosbalaskas/eyeprocess/blob/master/vignettes/manual-multimodal-backends-0-10.Rmd" class="external-link"><code>vignettes/manual-multimodal-backends-0-10.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/stefanosbalaskas/eyeprocess/blob/HEAD/vignettes/manual-multimodal-backends-0-10.Rmd" class="external-link"><code>vignettes/manual-multimodal-backends-0-10.Rmd</code></a></small>
       <div class="d-none name"><code>manual-multimodal-backends-0-10.Rmd</code></div>
     </div>
 
@@ -105,10 +105,10 @@
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/multimodal_backend_status.html">multimodal_backend_status</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt;             backend installed version engine_ready</span></span>
 <span><span class="co">#&gt; mirt           mirt      TRUE  1.46.1           NA</span></span>
-<span><span class="co">#&gt; cmdstanr   cmdstanr      TRUE   0.9.0        FALSE</span></span>
+<span><span class="co">#&gt; cmdstanr   cmdstanr      TRUE   0.9.0         TRUE</span></span>
 <span><span class="co">#&gt; posterior posterior      TRUE   1.7.0           NA</span></span>
-<span><span class="co">#&gt; loo             loo      TRUE  2.10.1           NA</span></span>
-<span><span class="co">#&gt; TMB             TMB     FALSE    &lt;NA&gt;           NA</span></span>
+<span><span class="co">#&gt; loo             loo      TRUE  2.10.0           NA</span></span>
+<span><span class="co">#&gt; TMB             TMB      TRUE  1.9.21           NA</span></span>
 <span><span class="co">#&gt; brms           brms      TRUE  2.23.0           NA</span></span></code></pre></div>
 <p>Custom M2/M3 engines require CmdStanR plus CmdStan. Missing engines
 are gated; <code>eyeprocess</code> does not silently substitute a

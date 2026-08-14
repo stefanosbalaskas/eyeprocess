@@ -46,10 +46,10 @@ eyeprocess::api_surface_summary(inventory)
 #> 1          io     advanced    0
 #> 2       model     advanced   46
 #> 3        plot     advanced   91
-#> 4  simulation     advanced   27
+#> 4  simulation     advanced   28
 #> 5     summary     advanced   34
-#> 6     utility     advanced  303
-#> 7  validation     advanced   50
+#> 6     utility     advanced  306
+#> 7  validation     advanced   52
 #> 8    workflow     advanced    7
 #> 9          io         core   26
 #> 10      model         core    0
@@ -64,11 +64,11 @@ eyeprocess::api_surface_summary(inventory)
 #> 19       plot experimental    0
 #> 20 simulation experimental    2
 #> 21    summary experimental    2
-#> 22    utility experimental   45
+#> 22    utility experimental   48
 #> 23 validation experimental    7
 #> 24   workflow experimental    1
 #> 25         io        gated    0
-#> 26      model        gated   11
+#> 26      model        gated   12
 #> 27       plot        gated    0
 #> 28 simulation        gated    1
 #> 29    summary        gated    0
@@ -85,7 +85,7 @@ eyeprocess::api_surface_summary(inventory)
 #> 40   workflow     workflow   13
 audit
 #> eyeprocess API lifecycle audit
-#>   APIs             : 1149 
+#>   APIs             : 1159 
 #>   reviewed fraction: 100.0% 
 #>   invalid mappings : 0
 ```

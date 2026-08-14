@@ -184,3 +184,14 @@ Development articles for multimodal latent process measurement.
   IRT](https://stefanosbalaskas.github.io/eyeprocess/articles/pupil-measurement-boundaries-0-10.md):
 - [Manual Installation of Multimodal
   Backends](https://stefanosbalaskas.github.io/eyeprocess/articles/manual-multimodal-backends-0-10.md):
+
+### 0.10 M2 three-way measurement evidence
+
+- [M2 Three-Way Reference Model: Response, RT, and
+  Gaze](https://stefanosbalaskas.github.io/eyeprocess/articles/m2-three-way-reference-model-0-10.md):
+- [M2 Recovery and
+  Identifiability](https://stefanosbalaskas.github.io/eyeprocess/articles/m2-recovery-identifiability-0-10.md):
+- [M2 Posterior Predictive Checks and Negative
+  Controls](https://stefanosbalaskas.github.io/eyeprocess/articles/m2-ppc-negative-controls-0-10.md):
+- [M2 Process Information and Channel
+  Ablation](https://stefanosbalaskas.github.io/eyeprocess/articles/m2-process-information-ablation-0-10.md):

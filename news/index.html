@@ -66,14 +66,22 @@
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Changelog</h1>
-      <small>Source: <a href="https://github.com/stefanosbalaskas/eyeprocess/blob/master/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
+      <small>Source: <a href="https://github.com/stefanosbalaskas/eyeprocess/blob/HEAD/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.10.0.9000" id="eyeprocess-01009000">eyeprocess 0.10.0.9000<a class="anchor" aria-label="anchor" href="#eyeprocess-01009000"></a></h2>
-<ul><li>Starts the Unified Multimodal Latent Process-IRT development programme with a canonical person-item-trial measurement contract, deterministic four-channel simulation, posterior process-information metrics, channel ablation, explicit backend gating, validation objects, native plots, development Stan programmes, examples, tests, and articles.</li>
-<li>M2/M3 CmdStan estimators remain experimental/gated until recovery, SBC, misspecification, identifiability, and empirical-reproduction evidence is frozen. Availability is not treated as construct validity.</li>
+<div class="section level4">
+<h4 id="m2-three-way-response--rt--gaze-evidence-0-10-0-9000">M2 three-way response + RT + gaze evidence<a class="anchor" aria-label="anchor" href="#m2-three-way-response--rt--gaze-evidence-0-10-0-9000"></a></h4>
+<ul><li><p>Added a likelihood-faithful M2 reference implementation for Rasch responses, lognormal response times, and negative-binomial gaze-fixation counts with correlated person-side and item-side parameter structures.</p></li>
+<li><p>Added compatible M0/M1 Stan reference models for response-target channel ablation.</p></li>
+<li><p>Added M2 simulation with retained truth, structural/data identifiability audit, posterior predictive W/L/M checks, response-target PSIS-LOO and ability-variance process-information summaries, negative controls, and repeated estimator recovery.</p></li>
+<li><p>Added consolidated M2 plot methods, six examples, four development articles, and explicit no-fallback CmdStan gating.</p></li>
+<li><p>M2 remains experimental/evidence-gated: synthetic recovery and model diagnostics do not establish construct validity, empirical generalizability, or causal interpretation of process channels.</p></li>
+<li><p>Starts the Unified Multimodal Latent Process-IRT development programme with a canonical person-item-trial measurement contract, deterministic four-channel simulation, posterior process-information metrics, channel ablation, explicit backend gating, validation objects, native plots, development Stan programmes, examples, tests, and articles.</p></li>
+<li><p>M2/M3 CmdStan estimators remain experimental/gated until recovery, SBC, misspecification, identifiability, and empirical-reproduction evidence is frozen. Availability is not treated as construct validity.</p></li>
 </ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.9.0.9000" id="eyeprocess-0909000">eyeprocess 0.9.0.9000<a class="anchor" aria-label="anchor" href="#eyeprocess-0909000"></a></h2>
 <!-- BEGIN EYEPROCESS 0.9 M2 NEWS -->
