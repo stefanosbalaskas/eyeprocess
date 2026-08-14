@@ -1505,3 +1505,32 @@ export(run_eyeprocess_stress_evidence)
 export(summarise_eyeprocess_stress_evidence)
 S3method(print,eye_stress_evidence_result)
 S3method(plot,eye_stress_evidence_result)
+
+# eyeprocess 0.10 multimodal public API
+export(ablate_multimodal_channels)
+export(audit_multimodal_identifiability)
+export(audit_multimodal_measurement)
+export(multimodal_backend_status)
+export(multimodal_irt_spec)
+export(multimodal_ppc)
+export(prepare_multimodal_irt_data)
+export(process_information)
+export(simulate_multimodal_irt)
+export(validate_multimodal_irt)
+
+# eyeprocess 0.10 multimodal S3 methods
+S3method(plot,eye_multimodal_measurement)
+S3method(plot,eye_multimodal_simulation)
+S3method(plot,eye_multimodal_validation)
+S3method(plot,eye_process_information)
+S3method(print,eye_multimodal_ablation)
+S3method(print,eye_multimodal_audit)
+S3method(print,eye_multimodal_irt_spec)
+S3method(print,eye_multimodal_measurement)
+S3method(print,eye_multimodal_simulation)
+S3method(print,eye_multimodal_validation)
+S3method(print,eye_process_information)
+
+# eyeprocess 0.10 multimodal S3 methods
+S3method(print,eye_multimodal_irt_fit_0_10_dev)
+S3method(summary,eye_multimodal_irt_fit_0_10_dev)

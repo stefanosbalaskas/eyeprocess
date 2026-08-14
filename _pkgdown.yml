@@ -113,6 +113,15 @@ articles:
   - temporal-process-representations
   - visual-context-and-testlet-irt
 # END eyeprocess 0.8 articles
+
+- title: eyeprocess 0.10 — Unified Multimodal Process-IRT
+  desc: Development articles for multimodal latent process measurement.
+  contents:
+  - unified-multimodal-process-irt-0-10
+  - process-information-and-ablation-0-10
+  - pupil-measurement-boundaries-0-10
+  - manual-multimodal-backends-0-10
+
 reference:
 # BEGIN EYEPROCESS 0.9 M2 REFERENCE
 - title: "Validation evidence programmes and freezing (0.9 M2)"
@@ -1204,3 +1213,15 @@ reference:
   - "visual_context_registry"
   - "write_validation_report"
 # END eyeprocess 0.8 reference
+
+- title: Multimodal Process-IRT (0.10 development)
+  desc: Canonical multimodal measurement, process-information, simulation, and validation interfaces.
+  contents:
+  - ablate_multimodal_channels
+  - multimodal_backend_status
+  - multimodal_irt_spec
+  - multimodal_ppc
+  - prepare_multimodal_irt_data
+  - process_information
+  - simulate_multimodal_irt
+  - validate_multimodal_irt

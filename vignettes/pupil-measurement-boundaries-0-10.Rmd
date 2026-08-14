@@ -1,0 +1,35 @@
+---
+title: "Pupil Measurement Boundaries in Multimodal IRT"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Pupil Measurement Boundaries in Multimodal IRT}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+library(eyeprocess)
+```
+
+## Why pupil needs a measurement layer
+
+The 0.10 development simulator explicitly separates a neutral pupil
+responsivity dimension from nuisance effects of luminance and gaze position.
+
+```{r}
+sim <- simulate_multimodal_irt(
+  n_person=80, n_item=12, seed=21,
+  pupil_luminance=-.25,
+  gaze_x_effect=.10,
+  gaze_y_effect=-.06
+)
+summary(sim$data[c("pupil_response","luminance_z","gaze_x_z","gaze_y_z")])
+```
+
+```{r}
+plot(sim, type="channel_distributions")
+```
+
+The presence of a pupil effect does not establish cognitive load, effort, or
+arousal.

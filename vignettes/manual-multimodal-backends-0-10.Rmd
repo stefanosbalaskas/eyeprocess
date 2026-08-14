@@ -1,0 +1,22 @@
+---
+title: "Manual Installation of Multimodal Backends"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Manual Installation of Multimodal Backends}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+library(eyeprocess)
+```
+
+## Backend status
+
+```{r}
+multimodal_backend_status()
+```
+
+Custom M2/M3 engines require CmdStanR plus CmdStan. Missing engines are gated;
+`eyeprocess` does not silently substitute a simpler model.

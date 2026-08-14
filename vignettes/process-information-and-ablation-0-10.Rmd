@@ -1,0 +1,39 @@
+---
+title: "Process Information and Channel Ablation"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Process Information and Channel Ablation}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+library(eyeprocess)
+```
+
+## Posterior uncertainty as measurement value
+
+`process_information()` compares matched posterior targets without assuming
+that heterogeneous Fisher information components can simply be added.
+
+```{r}
+set.seed(10)
+base <- matrix(rnorm(6000, sd=1), ncol=3)
+aug  <- matrix(rnorm(6000, sd=.8), ncol=3)
+colnames(base) <- colnames(aug) <- c("A","B","C")
+info <- process_information(base, aug, metric="entropy_reduction")
+info
+plot(info)
+```
+
+## Channel ablation
+
+```{r}
+sim <- simulate_multimodal_irt(n_person=50,n_item=8,seed=5)
+abl <- ablate_multimodal_channels(sim$measurement)
+names(abl$scenarios)
+```
+
+Ablation is an inferential comparison design, not automatically a causal
+counterfactual.
