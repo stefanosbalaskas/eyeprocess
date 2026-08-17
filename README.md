@@ -306,3 +306,27 @@ Balaskas, S. (2026). *eyeprocess: Harmonize Eye-Tracking, Pupillometry, Biometri
 See `CITATION.cff` for machine-readable citation metadata.
 
 Version 0.8.0 is the current formal archived software release. Its version-specific Zenodo DOI is `10.5281/zenodo.21865277`; the concept DOI remains `10.5281/zenodo.21844472`. Studies using eyeprocess should report the exact package version and, when relevant, the source commit used.
+
+## 0.10 M3: response + RT + gaze + pupil
+
+The current 0.10 development line now contains a unified four-channel measurement layer built on the frozen M2 response + RT + gaze model. M3 adds pupil as a **neutral observed process channel**, not as an automatic cognitive-load, effort, attention, or arousal label.
+
+Reference ladder: **M0 response -> M1 response + RT -> M2 response + RT + gaze -> M3 response + RT + gaze + pupil**. M3 reuses the existing `irt_*_channel()` / `multimodal_irt_spec()` architecture and the package's functional-pupil, deconvolution, confound, blink/quality and device-audit machinery rather than creating a parallel pupil subsystem.
+
+The M3 summary-level pupil likelihood carries eight explicit nuisance terms: baseline, luminance, gaze X/Y, measurement quality, blink status, interpolation status, and time-on-task. Missing supplied nuisance values on observed-pupil trials are not silently imputed.
+
+M3 provides: a four-channel CmdStan reference likelihood; explicit baseline/luminance/gaze-position/quality/blink/interpolation/time-on-task pupil nuisance adjustment; retained-truth simulation; identifiability/support audits; PPC; the complete eight-model response-anchored RT/gaze/pupil ablation lattice; process-information, redundancy and channel-conflict evidence; sensor value-of-information screens; pupil falsification controls; missingness/device stress; parameter recovery; and an explicit bridge to existing functional-pupil/deconvolution workflows.
+
+Public M3 interfaces: `multimodal_m3_spec()`, `simulate_multimodal_m3()`, `fit_multimodal_m3()`, `audit_multimodal_m3_identifiability()`, `multimodal_m3_ppc()`, `multimodal_m3_ablation()`, `multimodal_m3_process_information()`, `multimodal_m3_negative_controls()`, `multimodal_m3_functional_bridge()`, `multimodal_m3_recovery()`, and `validate_multimodal_m3()`; publication-oriented visual diagnostics are consolidated behind S3 `plot(..., type = )` methods.
+
+```r
+sim <- simulate_multimodal_m3(n_person = 80, n_item = 10, seed = 20260815)
+audit_multimodal_m3_identifiability(sim)
+spec <- multimodal_m3_spec()
+# fit <- fit_multimodal_m3(sim)  # requires CmdStanR/CmdStan
+neg <- multimodal_m3_negative_controls(sim)
+```
+
+The evidence contract explicitly permits a scientifically important negative conclusion: **pupil may add no clear defensible response-target measurement information after RT, gaze, nuisance adjustment, and uncertainty are considered**. M3 uses ignorable channel omission in its current reference likelihood; informative missingness, device transport/equivalence, construct validity, and functional-trajectory sufficiency remain explicit validation questions rather than defaults.
+
+M3 remains development/evidence-gated until the full recovery, missingness, device, negative-control, installed-package, multi-chain and empirical validation programme is frozen.

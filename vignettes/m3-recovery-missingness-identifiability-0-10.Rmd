@@ -1,0 +1,73 @@
+---
+title: "M3 recovery, identifiability, and failure-case validation"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{M3 recovery, identifiability, and failure-case validation}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+library(eyeprocess)
+```
+
+## Validation must include failure cases
+
+A four-channel model is not validated because one synthetic dataset samples successfully. M3 therefore separates structural support, parameter recovery, posterior predictive behavior, MCMC diagnostics, missingness stress and falsification controls.
+
+The simulator provides five pupil signal regimes: `informative`, `weak`, `null`, `redundant`, and `confounded`. The last three are particularly important. A framework that always reports pupil as useful even when it is null, duplicative of gaze, or generated only by nuisance variables has failed its scientific purpose.
+
+```{r}
+scenarios <- c("informative", "weak", "null", "redundant", "confounded")
+examples <- lapply(seq_along(scenarios), function(k) {
+  simulate_multimodal_m3(
+    n_person = 40,
+    n_item = 8,
+    pupil_signal = scenarios[k],
+    seed = 20260815 + k
+  )
+})
+
+vapply(examples, function(z) audit_multimodal_m3_identifiability(z)$supported, logical(1))
+```
+
+Structural support is deliberately different from incremental information. A null pupil channel can vary and be identifiable as a measurement dimension while still adding no response-target value.
+
+## Recovery programme
+
+```{r, eval=FALSE}
+rec <- multimodal_m3_recovery(
+  reps = 20,
+  pupil_signal = c("informative", "weak", "null", "redundant", "confounded"),
+  pupil_missingness = c("mcar", "quality", "device"),
+  n_person = 150,
+  n_item = 15,
+  seed = 20260815,
+  fit_args = list(
+    chains = 4,
+    parallel_chains = 4,
+    iter_warmup = 750,
+    iter_sampling = 750,
+    refresh = 0,
+    init = 0
+  )
+)
+
+rec$summary
+plot(rec, type = "rmse")
+plot(rec, type = "coverage")
+plot(rec, type = "pupil")
+```
+
+The recovery table reports bias, RMSE, posterior SD, 95% interval coverage, maximum R-hat and minimum bulk ESS by parameter family and stress condition. A tiny replication count is only a software smoke test; publication evidence should use a predeclared grid large enough to assess Monte Carlo uncertainty.
+
+## Identifiability boundaries
+
+M3 fixes person latent means at zero, response discrimination at one, RT person loading at -1, and gaze/pupil person loadings at +1. Correlated person and item structures are estimated using Cholesky factors. The audit checks whether the observed person-item graph is connected for each required channel and whether each channel varies.
+
+These constraints make the implemented parameterization estimable under supported designs; they do not constitute a proof of global identifiability for every extension or missing-data mechanism.
+
+## What counts as a successful negative result?
+
+For null or confound-only pupil simulations, a good framework should recover near-zero process signal within uncertainty, avoid systematic response-target gains under pupil ablation, and expose nuisance-driven apparent pupil effects through the negative-control and confound diagnostics. M3 therefore treats “pupil adds no clear defensible information” as a legitimate validation outcome.

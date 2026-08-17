@@ -1,0 +1,6 @@
+sim <- simulate_multimodal_m3(n_person = 60, n_item = 10, seed = 20260815)
+audit <- audit_multimodal_m3_identifiability(sim)
+print(sim)
+print(audit)
+plot(sim, type = "pupil_confounds")
+plot(audit, type = "missingness")

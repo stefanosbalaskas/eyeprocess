@@ -1,0 +1,68 @@
+---
+title: "M3 device transport, falsification controls, and sensor value"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{M3 device transport, falsification controls, and sensor value}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+library(eyeprocess)
+```
+
+## More sensors can create more failure modes
+
+Pupil measurements can vary with device, sampling rate, gaze geometry, missingness and preprocessing. A four-channel model therefore needs falsification and transport diagnostics in addition to a richer likelihood. M3 exposes those concerns without asserting that a device label itself explains measurement differences.
+
+## Device-dependent stress
+
+```{r}
+sim <- simulate_multimodal_m3(
+  n_person = 80,
+  n_item = 10,
+  pupil_missingness = "device",
+  seed = 20260815
+)
+
+audit <- audit_multimodal_m3_identifiability(sim)
+audit$device
+```
+
+```{r, fig.width=7, fig.height=4}
+plot(sim, type = "device")
+plot(audit, type = "device")
+```
+
+These outputs identify device-specific shifts or availability patterns in the simulation. They do not establish measurement invariance. Empirical device transport requires repeated-device or appropriately linked data, explicit equivalence/invariance analysis and validation of the underlying pupil units and preprocessing semantics.
+
+## Falsification controls
+
+```{r}
+neg <- multimodal_m3_negative_controls(sim, seed = 20260816)
+neg$provenance
+```
+
+M3 includes pupil permutations within item and within person, phase randomization, a luminance-only pseudo-pupil, and an irrelevant synthetic pupil channel. These deliberately break different aspects of person/item alignment. They are tests of whether the analysis pipeline is too willing to manufacture process value; they are not causal interventions and not participant-behavior or misconduct detectors.
+
+```{r, fig.width=8, fig.height=5}
+plot(neg, type = "pupil_alignment")
+```
+
+## Sensor value is conditional
+
+After an ablation lattice has been fitted, `multimodal_m3_process_information()` reports the response-target pupil gain per usable pupil observation and per analyst-supplied relative sensor cost. This can support design discussions about whether a pupil channel is worth collecting under a specific model and target.
+
+```{r, eval=FALSE}
+ab <- multimodal_m3_ablation(sim, chains = 4, parallel_chains = 4)
+info <- multimodal_m3_process_information(ab, pupil_cost = 1.5)
+info$sensor_value
+plot(info, type = "sensor_value")
+```
+
+The calculation is intentionally labeled a **sensor value-of-information screen**, not an economic cost-effectiveness analysis. It does not account automatically for equipment depreciation, staff time, participant burden, calibration failures, or the value of non-response outcomes.
+
+## Channel conflict
+
+The same information object places response ELPD beside convergence diagnostics. This makes a useful failure mode visible: a channel can look incrementally predictive while substantially worsening computational stability, or can sharpen latent estimates without improving held-out response prediction. M3 keeps those dimensions separate so that a single improvement cannot hide a meaningful trade-off.

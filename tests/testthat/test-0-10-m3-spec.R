@@ -1,0 +1,12 @@
+test_that("M3 specification extends the existing IRT architecture", {
+  s <- multimodal_m3_spec()
+  expect_s3_class(s, "eye_multimodal_m3_spec")
+  expect_s3_class(s, "eye_multimodal_irt_spec")
+  expect_s3_class(s, "eye_irt_model_spec")
+  expect_identical(s$model, "M3")
+  expect_identical(s$backend, "cmdstanr")
+  expect_true(all(c("response", "rt", "gaze", "pupil") %in% names(s$channels)))
+  expect_match(s$interpretation, "not automatically interpreted", fixed = TRUE)
+  expect_error(multimodal_m3_spec(backend = "brms"), "no fallback")
+  expect_error(multimodal_m3_spec(missingness = "MNAR"), "ignorable")
+})

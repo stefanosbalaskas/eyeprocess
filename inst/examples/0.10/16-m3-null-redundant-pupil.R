@@ -1,0 +1,6 @@
+null <- simulate_multimodal_m3(n_person = 50, n_item = 8, pupil_signal = "null", seed = 1)
+redundant <- simulate_multimodal_m3(n_person = 50, n_item = 8, pupil_signal = "redundant", seed = 2)
+print(audit_multimodal_m3_identifiability(null))
+print(audit_multimodal_m3_identifiability(redundant))
+plot(null, type = "pupil_truth")
+plot(redundant, type = "pupil_truth")

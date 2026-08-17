@@ -3,14 +3,18 @@ template:
   bootstrap: 5
 navbar:
   structure:
-    left: [intro, reference, articles, news]
-    right: [search, github]
+    left:
+    - intro
+    - reference
+    - articles
+    - news
+    right:
+    - search
+    - github
 articles:
-# BEGIN EYEPROCESS 0.9 M2 ARTICLES
-- title: "Executed validation evidence and governed IRT (0.9 M2)"
-  desc: >
-    Frozen software-validation programmes, IRT information/scoring/diagnostics, linking and invariance,
-    process-aware IRT, cognitive diagnosis, adaptive testing, engine gating, and paper-ready evidence.
+- title: Executed validation evidence and governed IRT (0.9 M2)
+  desc: |
+    Frozen software-validation programmes, IRT information/scoring/diagnostics, linking and invariance, process-aware IRT, cognitive diagnosis, adaptive testing, engine gating, and paper-ready evidence.
   contents:
   - adaptive-testing-governance
   - cognitive-diagnosis-qmatrix-governance
@@ -23,13 +27,9 @@ articles:
   - multidimensional-testlet-latent-regression-irt
   - process-response-time-irt
   - validation-evidence-atlas-software-paper
-# END EYEPROCESS 0.9 M2 ARTICLES
-# BEGIN EYEPROCESS 0.9 ARTICLES
-- title: "Validated and governed research workflows (0.9)"
-  desc: >
-    Empirical validation, governed pipelines, API lifecycle, sensitivity analysis,
-    measurement reliability, calibration uncertainty, negative controls, reproducibility,
-    benchmarking, and software-paper evidence.
+- title: Validated and governed research workflows (0.9)
+  desc: |
+    Empirical validation, governed pipelines, API lifecycle, sensitivity analysis, measurement reliability, calibration uncertainty, negative controls, reproducibility, benchmarking, and software-paper evidence.
   contents:
   - api-lifecycle-and-canonical-interfaces
   - benchmarking-and-stress-testing
@@ -43,7 +43,6 @@ articles:
   - software-paper-evidence-bundle
   - simulation-calibration-and-resolution-guards
   - targets-interoperability
-# END EYEPROCESS 0.9 ARTICLES
 - title: Foundations
   navbar: Foundations
   contents:
@@ -70,7 +69,6 @@ articles:
   - gaze-diffusion-irt
   - api-storage-adapters
   - benchmark-reproduction
-  # eyeprocess research-scale articles
   - probabilistic-aoi-compositions
   - uncertainty-calibration
   - reliability-device-transportability
@@ -79,13 +77,9 @@ articles:
   - scanpaths-and-cognitive-episodes
   - item-bank-fairness-norms
   - evidence-decision-provenance
-  # eyeprocess measurement-intelligence articles
-
-- title: "Process IRT and validation (0.7)"
-  desc: >
-    Multimodal process-aware IRT models, semantic validation,
-    evidence grading, recovery studies, and experimental
-    measurement architectures introduced for the 0.7 series.
+- title: Process IRT and validation (0.7)
+  desc: |
+    Multimodal process-aware IRT models, semantic validation, evidence grading, recovery studies, and experimental measurement architectures introduced for the 0.7 series.
   contents:
   - advanced-model-validation-0-7
   - experimental-process-irt-0-7
@@ -93,13 +87,9 @@ articles:
   - multiple-response-and-revisiting-irt-0-7
   - process-irt-model-atlas-0-7
   - validation-evidence-0-7
-  # BEGIN eyeprocess 0.8 articles
-- title: "Process measurement and deployment governance (0.8)"
-  desc: >
-    Pre-flight quality governance, temporal representations, advanced pupillometry,
-    visual-context measurement, multiblock structure, Bayesian/3PL diagnostics,
-    streaming scoring, validation bundles, optional sensitivity diagnostics, and
-    evidence-gated frontier workflows.
+- title: Process measurement and deployment governance (0.8)
+  desc: |
+    Pre-flight quality governance, temporal representations, advanced pupillometry, visual-context measurement, multiblock structure, Bayesian/3PL diagnostics, streaming scoring, validation bundles, optional sensitivity diagnostics, and evidence-gated frontier workflows.
   contents:
   - advanced-pupillometry-representations
   - advanced-rasch-mixture-and-imputation-sensitivity
@@ -112,8 +102,6 @@ articles:
   - streaming-scoring-and-validation-bundles
   - temporal-process-representations
   - visual-context-and-testlet-irt
-# END eyeprocess 0.8 articles
-
 - title: eyeprocess 0.10 — Unified Multimodal Process-IRT
   desc: Development articles for multimodal latent process measurement.
   contents:
@@ -121,555 +109,556 @@ articles:
   - process-information-and-ablation-0-10
   - pupil-measurement-boundaries-0-10
   - manual-multimodal-backends-0-10
-
-- title: "0.10 M2 three-way measurement evidence"
+- title: 0.10 M2 three-way measurement evidence
   contents:
-    - m2-three-way-reference-model-0-10
-    - m2-recovery-identifiability-0-10
-    - m2-ppc-negative-controls-0-10
-    - m2-process-information-ablation-0-10
-
+  - m2-three-way-reference-model-0-10
+  - m2-recovery-identifiability-0-10
+  - m2-ppc-negative-controls-0-10
+  - m2-process-information-ablation-0-10
+- title: 0.10 M3 pupil measurement evidence
+  desc: Four-channel response, response-time, gaze, and pupil measurement workflows;
+    confound-aware pupil modelling; ablation, recovery, missingness, device stress,
+    functional-score bridging, and sensor-value evidence.
+  contents:
+  - m3-four-channel-reference-model-0-10
+  - m3-pupil-confounds-measurement-0-10
+  - m3-process-information-ablation-0-10
+  - m3-recovery-missingness-identifiability-0-10
+  - m3-functional-pupil-bridge-0-10
+  - m3-device-transport-sensor-value-0-10
 reference:
-# BEGIN EYEPROCESS 0.9 M2 REFERENCE
-- title: "Validation evidence programmes and freezing (0.9 M2)"
+- title: Validation evidence programmes and freezing (0.9 M2)
   contents:
-  - "evaluate_validation_acceptance"
-  - "expand_eyeprocess_stress_evidence_plan"
-  - "expand_eyeprocess_validation_plan"
-  - "eyeprocess_irt_engine_evidence_table"
-  - "eyeprocess_irt_precision_evidence_table"
-  - "eyeprocess_negative_control_evidence_plan"
-  - "eyeprocess_negative_control_evidence_table"
-  - "eyeprocess_recovery_evidence_table"
-  - "eyeprocess_reliability_evidence_plan"
-  - "eyeprocess_reliability_evidence_table"
-  - "eyeprocess_sbc_evidence_table"
-  - "eyeprocess_stress_evidence_plan"
-  - "summarise_eyeprocess_stress_evidence"
-  - "run_eyeprocess_stress_evidence"
-  - "eyeprocess_stress_evidence_table"
-  - "eyeprocess_validation_atlas_gaps"
-  - "eyeprocess_validation_claim_matrix"
-  - "eyeprocess_validation_evidence_atlas"
-  - "eyeprocess_validation_evidence_grade"
-  - "eyeprocess_validation_evidence_index"
-  - "eyeprocess_validation_evidence_manifest"
-  - "eyeprocess_validation_plan"
-  - "eyeprocess_validation_readiness"
-  - "eyeprocess_validation_release_gate"
-  - "eyeprocess_validation_seed"
-  - "freeze_eyeprocess_validation_atlas"
-  - "freeze_eyeprocess_validation_evidence"
-  - "read_eyeprocess_validation_evidence"
-  - "read_validation_scenario_manifest"
-  - "summarise_validation_acceptance"
-  - "validate_eyeprocess_validation_plan"
-  - "validation_acceptance_matrix"
-  - "validation_acceptance_rule"
-  - "validation_mcse_profile"
-  - "validation_replication_budget"
-  - "validation_scenario_manifest"
-  - "verify_eyeprocess_validation_atlas"
-  - "verify_eyeprocess_validation_evidence"
-  - "write_eyeprocess_validation_evidence"
-  - "write_eyeprocess_validation_report"
-  - "write_validation_scenario_manifest"
-- title: "IRT foundations, information, scoring, and diagnostics (0.9 M2)"
+  - evaluate_validation_acceptance
+  - expand_eyeprocess_stress_evidence_plan
+  - expand_eyeprocess_validation_plan
+  - eyeprocess_irt_engine_evidence_table
+  - eyeprocess_irt_precision_evidence_table
+  - eyeprocess_negative_control_evidence_plan
+  - eyeprocess_negative_control_evidence_table
+  - eyeprocess_recovery_evidence_table
+  - eyeprocess_reliability_evidence_plan
+  - eyeprocess_reliability_evidence_table
+  - eyeprocess_sbc_evidence_table
+  - eyeprocess_stress_evidence_plan
+  - summarise_eyeprocess_stress_evidence
+  - run_eyeprocess_stress_evidence
+  - eyeprocess_stress_evidence_table
+  - eyeprocess_validation_atlas_gaps
+  - eyeprocess_validation_claim_matrix
+  - eyeprocess_validation_evidence_atlas
+  - eyeprocess_validation_evidence_grade
+  - eyeprocess_validation_evidence_index
+  - eyeprocess_validation_evidence_manifest
+  - eyeprocess_validation_plan
+  - eyeprocess_validation_readiness
+  - eyeprocess_validation_release_gate
+  - eyeprocess_validation_seed
+  - freeze_eyeprocess_validation_atlas
+  - freeze_eyeprocess_validation_evidence
+  - read_eyeprocess_validation_evidence
+  - read_validation_scenario_manifest
+  - summarise_validation_acceptance
+  - validate_eyeprocess_validation_plan
+  - validation_acceptance_matrix
+  - validation_acceptance_rule
+  - validation_mcse_profile
+  - validation_replication_budget
+  - validation_scenario_manifest
+  - verify_eyeprocess_validation_atlas
+  - verify_eyeprocess_validation_evidence
+  - write_eyeprocess_validation_evidence
+  - write_eyeprocess_validation_report
+  - write_validation_scenario_manifest
+- title: IRT foundations, information, scoring, and diagnostics (0.9 M2)
   contents:
-  - "eyeprocess_irt_2pl_probability"
-  - "eyeprocess_irt_3pl_probability"
-  - "eyeprocess_irt_4pl_probability"
-  - "eyeprocess_irt_adaptive_trace"
-  - "eyeprocess_irt_bank_coverage"
-  - "eyeprocess_irt_category_function_audit"
-  - "eyeprocess_irt_classification_precision"
-  - "eyeprocess_irt_conditional_sem"
-  - "eyeprocess_irt_content_balance_audit"
-  - "eyeprocess_irt_eap_score"
-  - "eyeprocess_irt_expected_score"
-  - "eyeprocess_irt_exposure_summary"
-  - "eyeprocess_irt_extreme_score_audit"
-  - "eyeprocess_irt_fit_dashboard"
-  - "eyeprocess_irt_gpcm_probability"
-  - "eyeprocess_irt_grm_probability"
-  - "eyeprocess_irt_identification_audit"
-  - "eyeprocess_irt_infit_outfit"
-  - "eyeprocess_irt_information_area"
-  - "eyeprocess_irt_information_gain"
-  - "eyeprocess_irt_information_targeting"
-  - "eyeprocess_irt_item_bank"
-  - "eyeprocess_irt_item_fit_residuals"
-  - "eyeprocess_irt_item_information"
-  - "eyeprocess_irt_item_selection"
-  - "eyeprocess_irt_local_dependence_pairs"
-  - "eyeprocess_irt_map_score"
-  - "eyeprocess_irt_marginal_reliability"
-  - "eyeprocess_irt_measurement_precision_profile"
-  - "eyeprocess_irt_missing_by_design_audit"
-  - "eyeprocess_irt_mle_score"
-  - "eyeprocess_irt_model_card"
-  - "eyeprocess_irt_model_card_audit"
-  - "eyeprocess_irt_model_spec"
-  - "eyeprocess_irt_monotonicity_audit"
-  - "eyeprocess_irt_nominal_probability"
-  - "eyeprocess_irt_parameter_plausibility_audit"
-  - "eyeprocess_irt_person_fit_lz"
-  - "eyeprocess_irt_person_fit_residuals"
-  - "eyeprocess_irt_plausible_values"
-  - "eyeprocess_irt_ppc_discrepancy"
-  - "eyeprocess_irt_prior_sensitivity_grid"
-  - "eyeprocess_irt_prior_sensitivity_summary"
-  - "eyeprocess_irt_prior_spec"
-  - "eyeprocess_irt_process_aware_selection_penalty"
-  - "eyeprocess_irt_q3"
-  - "eyeprocess_irt_score_table"
-  - "eyeprocess_irt_score_uncertainty"
-  - "eyeprocess_irt_sparse_design_audit"
-  - "eyeprocess_irt_stopping_rule"
-  - "eyeprocess_irt_targeting_gap"
-  - "eyeprocess_irt_test_characteristic_curve"
-  - "eyeprocess_irt_test_information"
-  - "eyeprocess_irt_threshold_order_audit"
-  - "validate_eyeprocess_irt_item_bank"
-  - "validate_eyeprocess_irt_model_spec"
-- title: "IRT linking, invariance, process, and external engines (0.9 M2)"
+  - eyeprocess_irt_2pl_probability
+  - eyeprocess_irt_3pl_probability
+  - eyeprocess_irt_4pl_probability
+  - eyeprocess_irt_adaptive_trace
+  - eyeprocess_irt_bank_coverage
+  - eyeprocess_irt_category_function_audit
+  - eyeprocess_irt_classification_precision
+  - eyeprocess_irt_conditional_sem
+  - eyeprocess_irt_content_balance_audit
+  - eyeprocess_irt_eap_score
+  - eyeprocess_irt_expected_score
+  - eyeprocess_irt_exposure_summary
+  - eyeprocess_irt_extreme_score_audit
+  - eyeprocess_irt_fit_dashboard
+  - eyeprocess_irt_gpcm_probability
+  - eyeprocess_irt_grm_probability
+  - eyeprocess_irt_identification_audit
+  - eyeprocess_irt_infit_outfit
+  - eyeprocess_irt_information_area
+  - eyeprocess_irt_information_gain
+  - eyeprocess_irt_information_targeting
+  - eyeprocess_irt_item_bank
+  - eyeprocess_irt_item_fit_residuals
+  - eyeprocess_irt_item_information
+  - eyeprocess_irt_item_selection
+  - eyeprocess_irt_local_dependence_pairs
+  - eyeprocess_irt_map_score
+  - eyeprocess_irt_marginal_reliability
+  - eyeprocess_irt_measurement_precision_profile
+  - eyeprocess_irt_missing_by_design_audit
+  - eyeprocess_irt_mle_score
+  - eyeprocess_irt_model_card
+  - eyeprocess_irt_model_card_audit
+  - eyeprocess_irt_model_spec
+  - eyeprocess_irt_monotonicity_audit
+  - eyeprocess_irt_nominal_probability
+  - eyeprocess_irt_parameter_plausibility_audit
+  - eyeprocess_irt_person_fit_lz
+  - eyeprocess_irt_person_fit_residuals
+  - eyeprocess_irt_plausible_values
+  - eyeprocess_irt_ppc_discrepancy
+  - eyeprocess_irt_prior_sensitivity_grid
+  - eyeprocess_irt_prior_sensitivity_summary
+  - eyeprocess_irt_prior_spec
+  - eyeprocess_irt_process_aware_selection_penalty
+  - eyeprocess_irt_q3
+  - eyeprocess_irt_score_table
+  - eyeprocess_irt_score_uncertainty
+  - eyeprocess_irt_sparse_design_audit
+  - eyeprocess_irt_stopping_rule
+  - eyeprocess_irt_targeting_gap
+  - eyeprocess_irt_test_characteristic_curve
+  - eyeprocess_irt_test_information
+  - eyeprocess_irt_threshold_order_audit
+  - validate_eyeprocess_irt_item_bank
+  - validate_eyeprocess_irt_model_spec
+- title: IRT linking, invariance, process, and external engines (0.9 M2)
   contents:
-  - "eyeprocess_irt_anchor_audit"
-  - "eyeprocess_irt_anchor_purification"
-  - "eyeprocess_irt_apply_link"
-  - "eyeprocess_irt_device_drift"
-  - "eyeprocess_irt_dif_effect_curve"
-  - "eyeprocess_irt_dtf_curve"
-  - "eyeprocess_irt_engine_registry"
-  - "eyeprocess_irt_engine_status"
-  - "eyeprocess_irt_functioning_effect_summary"
-  - "eyeprocess_irt_haebara_link"
-  - "eyeprocess_irt_invariance_evidence"
-  - "eyeprocess_irt_link_stability"
-  - "eyeprocess_irt_mean_mean_link"
-  - "eyeprocess_irt_mean_sigma_link"
-  - "eyeprocess_irt_process_alignment"
-  - "eyeprocess_irt_process_dif_concordance"
-  - "eyeprocess_irt_session_drift"
-  - "eyeprocess_irt_stocking_lord_link"
-  - "eyeprocess_joint_process_irt_spec"
-  - "eyeprocess_multichannel_measurement_map"
-  - "eyeprocess_process_irt_data_bundle"
-  - "eyeprocess_process_item_profile"
-  - "eyeprocess_process_missingness_pattern"
-  - "eyeprocess_process_person_profile"
-  - "eyeprocess_response_time_profile"
-  - "eyeprocess_speed_accuracy_profile"
-  - "fit_eyeprocess_erm"
-  - "fit_eyeprocess_gdina"
-  - "fit_eyeprocess_lnirt"
-  - "fit_eyeprocess_mirt"
-  - "fit_eyeprocess_tam"
-  - "run_eyeprocess_equateirt"
-  - "run_eyeprocess_mirtcat"
-  - "simulate_eyeprocess_catr"
-  - "validate_eyeprocess_external_irt_fit"
-  - "validate_eyeprocess_joint_process_irt_spec"
-- title: "IRT recovery, multidimensional models, and cognitive diagnosis (0.9 M2)"
+  - eyeprocess_irt_anchor_audit
+  - eyeprocess_irt_anchor_purification
+  - eyeprocess_irt_apply_link
+  - eyeprocess_irt_device_drift
+  - eyeprocess_irt_dif_effect_curve
+  - eyeprocess_irt_dtf_curve
+  - eyeprocess_irt_engine_registry
+  - eyeprocess_irt_engine_status
+  - eyeprocess_irt_functioning_effect_summary
+  - eyeprocess_irt_haebara_link
+  - eyeprocess_irt_invariance_evidence
+  - eyeprocess_irt_link_stability
+  - eyeprocess_irt_mean_mean_link
+  - eyeprocess_irt_mean_sigma_link
+  - eyeprocess_irt_process_alignment
+  - eyeprocess_irt_process_dif_concordance
+  - eyeprocess_irt_session_drift
+  - eyeprocess_irt_stocking_lord_link
+  - eyeprocess_joint_process_irt_spec
+  - eyeprocess_multichannel_measurement_map
+  - eyeprocess_process_irt_data_bundle
+  - eyeprocess_process_item_profile
+  - eyeprocess_process_missingness_pattern
+  - eyeprocess_process_person_profile
+  - eyeprocess_response_time_profile
+  - eyeprocess_speed_accuracy_profile
+  - fit_eyeprocess_erm
+  - fit_eyeprocess_gdina
+  - fit_eyeprocess_lnirt
+  - fit_eyeprocess_mirt
+  - fit_eyeprocess_tam
+  - run_eyeprocess_equateirt
+  - run_eyeprocess_mirtcat
+  - simulate_eyeprocess_catr
+  - validate_eyeprocess_external_irt_fit
+  - validate_eyeprocess_joint_process_irt_spec
+- title: IRT recovery, multidimensional models, and cognitive diagnosis (0.9 M2)
   contents:
-  - "eyeprocess_cdm_attribute_profiles"
-  - "eyeprocess_cdm_classification_uncertainty"
-  - "eyeprocess_cdm_dina_ideal_response"
-  - "eyeprocess_cdm_dina_probability"
-  - "eyeprocess_cdm_qmatrix_audit"
-  - "eyeprocess_irt_latent_regression_design"
-  - "eyeprocess_irt_misspecification_metrics"
-  - "eyeprocess_irt_misspecification_suite"
-  - "eyeprocess_irt_recovery_design"
-  - "eyeprocess_irt_recovery_failures"
-  - "eyeprocess_irt_recovery_summary"
-  - "run_eyeprocess_irt_ability_sbc"
-  - "eyeprocess_irt_sbc_ranks"
-  - "eyeprocess_irt_sbc_summary"
-  - "eyeprocess_irt_testlet_audit"
-  - "eyeprocess_irt_testlet_spec"
-  - "eyeprocess_mirt_directional_information"
-  - "eyeprocess_mirt_information_matrix"
-  - "eyeprocess_mirt_loading_audit"
-  - "eyeprocess_mirt_loading_spec"
-  - "freeze_eyeprocess_irt_reference"
-  - "run_eyeprocess_irt_recovery"
-  - "simulate_eyeprocess_irt_binary"
-# END EYEPROCESS 0.9 M2 REFERENCE
-# BEGIN EYEPROCESS 0.9 REFERENCE
-- title: "Validation, sensitivity, and negative controls (0.9)"
+  - eyeprocess_cdm_attribute_profiles
+  - eyeprocess_cdm_classification_uncertainty
+  - eyeprocess_cdm_dina_ideal_response
+  - eyeprocess_cdm_dina_probability
+  - eyeprocess_cdm_qmatrix_audit
+  - eyeprocess_irt_latent_regression_design
+  - eyeprocess_irt_misspecification_metrics
+  - eyeprocess_irt_misspecification_suite
+  - eyeprocess_irt_recovery_design
+  - eyeprocess_irt_recovery_failures
+  - eyeprocess_irt_recovery_summary
+  - run_eyeprocess_irt_ability_sbc
+  - eyeprocess_irt_sbc_ranks
+  - eyeprocess_irt_sbc_summary
+  - eyeprocess_irt_testlet_audit
+  - eyeprocess_irt_testlet_spec
+  - eyeprocess_mirt_directional_information
+  - eyeprocess_mirt_information_matrix
+  - eyeprocess_mirt_loading_audit
+  - eyeprocess_mirt_loading_spec
+  - freeze_eyeprocess_irt_reference
+  - run_eyeprocess_irt_recovery
+  - simulate_eyeprocess_irt_binary
+- title: Validation, sensitivity, and negative controls (0.9)
   contents:
-  - "audit_temporal_leakage"
-  - "calibration_sensitivity_grid"
-  - "compare_aoi_methods"
-  - "compare_decision_manifests"
-  - "compare_fixation_methods"
-  - "compare_hard_probabilistic_aoi"
-  - "compare_process_models"
-  - "compare_pupil_preprocessing"
-  - "compare_reproducibility_fingerprints"
-  - "coverage_calibration_curve"
-  - "decision_space_coverage"
-  - "decision_stability"
-  - "expand_process_validation_design"
-  - "freeze_validation_reference"
-  - "negative_control_concordance"
-  - "placebo_window_audit"
-  - "process_feature_time_provenance"
-  - "process_measure_coverage"
-  - "process_negative_control_permute"
-  - "process_negative_control_shift"
-  - "process_sensitivity_grid"
-  - "process_temporal_stability"
-  - "process_validation_design"
-  - "pupil_baseline_sensitivity"
-  - "run_process_negative_controls"
-  - "run_process_sensitivity"
-  - "run_process_validation"
-  - "sbc_ecdf_deviation"
-  - "sbc_rank_diagnostics"
-  - "sensitivity_branch_fingerprint"
-  - "sensitivity_decision_leverage"
-  - "sensitivity_fragility_index"
-  - "sensitivity_multiverse_manifest"
-  - "sensitivity_rank_stability"
-  - "sensitivity_sign_stability"
-  - "sensitivity_significance_stability"
-  - "sensitivity_threshold_stability"
-  - "simulate_process_validation_data"
-  - "simulation_rank_statistic"
-  - "software_paper_coverage"
-  - "software_paper_validation_table"
-  - "specification_coverage"
-  - "summarise_process_negative_controls"
-  - "summarise_process_sensitivity"
-  - "summarise_process_validation"
-  - "validate_feature_availability"
-  - "validate_process_validation_design"
-  - "validation_condition_id"
-  - "validation_condition_ranking"
-  - "validation_coverage_table"
-  - "validation_evidence_matrix"
-  - "validation_failure_profile"
-  - "validation_summary_mcse"
-  - "validation_recovery_table"
-  - "validation_robustness_score"
-- title: "Governed pipelines, decisions, and API lifecycle (0.9)"
+  - audit_temporal_leakage
+  - calibration_sensitivity_grid
+  - compare_aoi_methods
+  - compare_decision_manifests
+  - compare_fixation_methods
+  - compare_hard_probabilistic_aoi
+  - compare_process_models
+  - compare_pupil_preprocessing
+  - compare_reproducibility_fingerprints
+  - coverage_calibration_curve
+  - decision_space_coverage
+  - decision_stability
+  - expand_process_validation_design
+  - freeze_validation_reference
+  - negative_control_concordance
+  - placebo_window_audit
+  - process_feature_time_provenance
+  - process_measure_coverage
+  - process_negative_control_permute
+  - process_negative_control_shift
+  - process_sensitivity_grid
+  - process_temporal_stability
+  - process_validation_design
+  - pupil_baseline_sensitivity
+  - run_process_negative_controls
+  - run_process_sensitivity
+  - run_process_validation
+  - sbc_ecdf_deviation
+  - sbc_rank_diagnostics
+  - sensitivity_branch_fingerprint
+  - sensitivity_decision_leverage
+  - sensitivity_fragility_index
+  - sensitivity_multiverse_manifest
+  - sensitivity_rank_stability
+  - sensitivity_sign_stability
+  - sensitivity_significance_stability
+  - sensitivity_threshold_stability
+  - simulate_process_validation_data
+  - simulation_rank_statistic
+  - software_paper_coverage
+  - software_paper_validation_table
+  - specification_coverage
+  - summarise_process_negative_controls
+  - summarise_process_sensitivity
+  - summarise_process_validation
+  - validate_feature_availability
+  - validate_process_validation_design
+  - validation_condition_id
+  - validation_condition_ranking
+  - validation_coverage_table
+  - validation_evidence_matrix
+  - validation_failure_profile
+  - validation_summary_mcse
+  - validation_recovery_table
+  - validation_robustness_score
+- title: Governed pipelines, decisions, and API lifecycle (0.9)
   contents:
-  - "analysis_decision_entropy"
-  - "api_family_map"
-  - "api_lifecycle_diff"
-  - "api_surface_summary"
-  - "audit_eye_pipeline"
-  - "canonical_eye_api"
-  - "decision_manifest_diff"
-  - "decision_manifest_hash"
-  - "decision_manifest_table"
-  - "export_eye_pipeline"
-  - "eye_analysis_pipeline"
-  - "eye_analysis_spec"
-  - "eye_api_inventory"
-  - "eye_api_lifecycle"
-  - "eye_api_recommendation"
-  - "eye_api_status"
-  - "eye_api_superseded"
-  - "eye_decision_manifest"
-  - "eye_pipeline_dot"
-  - "eye_pipeline_graph"
-  - "eye_pipeline_manifest"
-  - "eye_pipeline_mermaid"
-  - "eye_pipeline_step"
-  - "eye_targets_manifest"
-  - "lock_decision_manifest"
-  - "outcome_blind_feature_audit"
-  - "outcome_blind_snapshot"
-  - "pipeline_failures"
-  - "pipeline_result"
-  - "pipeline_step_status"
-  - "read_api_lifecycle_registry"
-  - "read_decision_manifest"
-  - "register_eye_api_status"
-  - "resume_eye_pipeline"
-  - "run_eye_pipeline"
-  - "stress_test_process_pipeline"
-  - "validate_decision_manifest"
-  - "validate_eye_pipeline"
-  - "verify_decision_manifest_lock"
-  - "verify_outcome_blind_snapshot"
-  - "write_api_lifecycle_registry"
-  - "write_decision_manifest"
-  - "write_eye_pipeline_report"
-  - "write_eye_targets_template"
-- title: "Measurement reliability, quality, and stress testing (0.9)"
+  - analysis_decision_entropy
+  - api_family_map
+  - api_lifecycle_diff
+  - api_surface_summary
+  - audit_eye_pipeline
+  - canonical_eye_api
+  - decision_manifest_diff
+  - decision_manifest_hash
+  - decision_manifest_table
+  - export_eye_pipeline
+  - eye_analysis_pipeline
+  - eye_analysis_spec
+  - eye_api_inventory
+  - eye_api_lifecycle
+  - eye_api_recommendation
+  - eye_api_status
+  - eye_api_superseded
+  - eye_decision_manifest
+  - eye_pipeline_dot
+  - eye_pipeline_graph
+  - eye_pipeline_manifest
+  - eye_pipeline_mermaid
+  - eye_pipeline_step
+  - eye_targets_manifest
+  - lock_decision_manifest
+  - outcome_blind_feature_audit
+  - outcome_blind_snapshot
+  - pipeline_failures
+  - pipeline_result
+  - pipeline_step_status
+  - read_api_lifecycle_registry
+  - read_decision_manifest
+  - register_eye_api_status
+  - resume_eye_pipeline
+  - run_eye_pipeline
+  - stress_test_process_pipeline
+  - validate_decision_manifest
+  - validate_eye_pipeline
+  - verify_decision_manifest_lock
+  - verify_outcome_blind_snapshot
+  - write_api_lifecycle_registry
+  - write_decision_manifest
+  - write_eye_pipeline_report
+  - write_eye_targets_template
+- title: Measurement reliability, quality, and stress testing (0.9)
   contents:
-  - "analysis_resolution_guard"
-  - "aoi_membership_probability"
-  - "apply_synthetic_corruption"
-  - "audit_pupil_preprocessing_order"
-  - "audit_sampling_irregularity"
-  - "benchmark_memory_estimate"
-  - "benchmark_scaling_curve"
-  - "bootstrap_process_reliability"
-  - "calibration_drift_profile"
-  - "calibration_error_model"
-  - "data_quality_reporting_table"
-  - "effective_sampling_frequency"
-  - "estimate_calibration_error"
-  - "eye_benchmark_design"
-  - "find_process_measures"
-  - "gaze_data_quality_profile"
-  - "gaze_precision_rms_s2s"
-  - "gaze_uncertainty_ellipse"
-  - "inject_aoi_label_noise"
-  - "inject_calibration_offset"
-  - "inject_device_shift"
-  - "inject_eye_missingness"
-  - "inject_pupil_dropout"
-  - "inject_sampling_jitter"
-  - "inject_trial_imbalance"
-  - "measurement_error_budget"
-  - "probabilistic_aoi_assignment"
-  - "process_bland_altman"
-  - "process_icc"
-  - "process_measure_card"
-  - "process_measure_guardrails"
-  - "process_measure_lineage"
-  - "process_measure_registry"
-  - "process_measure_units"
-  - "process_null_benchmark"
-  - "process_reliability_profile"
-  - "propagate_calibration_uncertainty"
-  - "register_process_measure"
-  - "run_eye_benchmark"
-  - "split_half_process_reliability"
-  - "stress_test_summary"
-  - "stress_tolerance_frontier"
-  - "summarise_eye_benchmark"
-  - "synthetic_corruption_plan"
-  - "validate_process_measure_registry"
-- title: "Reproducibility and software-paper evidence (0.9)"
+  - analysis_resolution_guard
+  - aoi_membership_probability
+  - apply_synthetic_corruption
+  - audit_pupil_preprocessing_order
+  - audit_sampling_irregularity
+  - benchmark_memory_estimate
+  - benchmark_scaling_curve
+  - bootstrap_process_reliability
+  - calibration_drift_profile
+  - calibration_error_model
+  - data_quality_reporting_table
+  - effective_sampling_frequency
+  - estimate_calibration_error
+  - eye_benchmark_design
+  - find_process_measures
+  - gaze_data_quality_profile
+  - gaze_precision_rms_s2s
+  - gaze_uncertainty_ellipse
+  - inject_aoi_label_noise
+  - inject_calibration_offset
+  - inject_device_shift
+  - inject_eye_missingness
+  - inject_pupil_dropout
+  - inject_sampling_jitter
+  - inject_trial_imbalance
+  - measurement_error_budget
+  - probabilistic_aoi_assignment
+  - process_bland_altman
+  - process_icc
+  - process_measure_card
+  - process_measure_guardrails
+  - process_measure_lineage
+  - process_measure_registry
+  - process_measure_units
+  - process_null_benchmark
+  - process_reliability_profile
+  - propagate_calibration_uncertainty
+  - register_process_measure
+  - run_eye_benchmark
+  - split_half_process_reliability
+  - stress_test_summary
+  - stress_tolerance_frontier
+  - summarise_eye_benchmark
+  - synthetic_corruption_plan
+  - validate_process_measure_registry
+- title: Reproducibility and software-paper evidence (0.9)
   contents:
-  - "analysis_environment_snapshot"
-  - "audit_decision_provenance"
-  - "export_prov_json"
-  - "export_ro_crate_metadata"
-  - "eye_prov_graph"
-  - "eye_reproducibility_fingerprint"
-  - "eye_session_manifest"
-  - "file_hash_manifest"
-  - "freeze_software_paper_evidence"
-  - "object_hash"
-  - "paper_reproducibility_manifest"
-  - "provenance_edge_table"
-  - "provenance_lineage_table"
-  - "read_reproducibility_fingerprint"
-  - "software_paper_claim_matrix"
-  - "software_paper_evidence_bundle"
-  - "software_paper_gap_analysis"
-  - "software_paper_readiness"
-  - "validate_eye_prov_graph"
-  - "verify_reproducibility_fingerprint"
-  - "write_prov_dot"
-  - "write_reproducibility_fingerprint"
-  - "write_software_paper_evidence"
-- title: "0.9 visualization and supporting utilities (0.9)"
+  - analysis_environment_snapshot
+  - audit_decision_provenance
+  - export_prov_json
+  - export_ro_crate_metadata
+  - eye_prov_graph
+  - eye_reproducibility_fingerprint
+  - eye_session_manifest
+  - file_hash_manifest
+  - freeze_software_paper_evidence
+  - object_hash
+  - paper_reproducibility_manifest
+  - provenance_edge_table
+  - provenance_lineage_table
+  - read_reproducibility_fingerprint
+  - software_paper_claim_matrix
+  - software_paper_evidence_bundle
+  - software_paper_gap_analysis
+  - software_paper_readiness
+  - validate_eye_prov_graph
+  - verify_reproducibility_fingerprint
+  - write_prov_dot
+  - write_reproducibility_fingerprint
+  - write_software_paper_evidence
+- title: 0.9 visualization and supporting utilities (0.9)
   contents:
-  - "audit_eye_api"
-  - "fixation_boundary_uncertainty"
-  - "specification_curve_data"
-  - "validate_against_reference"
-# END EYEPROCESS 0.9 REFERENCE
-- title: "Process IRT and validation reference (0.7)"
-  desc: >
-    Public process-aware IRT, semantic-validation,
-    evidence-governance, simulation, recovery,
-    transportability, and advanced measurement APIs
-    introduced in the 0.7 development series.
+  - audit_eye_api
+  - fixation_boundary_uncertainty
+  - specification_curve_data
+  - validate_against_reference
+- title: Process IRT and validation reference (0.7)
+  desc: |
+    Public process-aware IRT, semantic-validation, evidence-governance, simulation, recovery, transportability, and advanced measurement APIs introduced in the 0.7 development series.
 - contents:
-  - "algorithm_facet_effects"
-  - "as_irt_recovery_results"
-  - "audit_bias"
-  - "audit_channel_incremental_information"
-  - "audit_convergence"
-  - "audit_coverage"
-  - "audit_distractor_attention"
-  - "audit_identifiability"
-  - "audit_interval_width"
-  - "audit_irf_shape"
-  - "audit_latent_distribution"
-  - "audit_measurement_transportability"
-  - "audit_process_adjusted_dif"
-  - "audit_process_local_dependence"
-  - "audit_process_measurement_invariance"
-  - "audit_rmse"
-  - "audit_sbc"
-  - "calibration_transfer_audit"
-  - "classify_item_missingness"
-  - "compare_irt_models"
-  - "compare_latent_distribution_models"
-  - "compare_parametric_nonparametric_irf"
-  - "compare_validation_engines"
-  - "compatibility_evidence_matrix"
-  - "coordinate_fidelity_audit"
-  - "cross_device_process_equating_audit"
-  - "cross_version_adapter_regression"
-  - "detect_irt_changepoints"
-  - "detect_process_changepoint"
-  - "device_facet_effects"
-  - "distractor_process_map"
-  - "encode_response_combinations"
-  - "equate_irt_scales"
-  - "estimate_visual_exposure_probability"
-  - "event_roundtrip_audit"
-  - "event_semantics_audit"
-  - "expected_process_information"
-  - "explain_latent_interaction"
-  - "external_validate_irt"
-  - "extract_parameter_truth"
-  - "eye_stream_fidelity_audit"
-  - "facet_effects"
-  - "field_fidelity_report"
-  - "fit_censored_normal_process_irt"
-  - "fit_changepoint_multimodal_irt"
-  - "fit_changepoint_rt_irt"
-  - "fit_cognitive_diagnosis_process"
-  - "fit_continuous_time_irt"
-  - "fit_crossclassified_process_irt"
-  - "fit_dynamic_gpirt"
-  - "fit_event_time_irt"
-  - "fit_flow_mirt"
-  - "fit_gaze_informed_missingness_irt"
-  - "fit_gpirt"
-  - "fit_irt_model"
-  - "fit_joint_gaze_rt_irt"
-  - "fit_joint_graded_rt_process_irt"
-  - "fit_latent_class_process_irt"
-  - "fit_latent_space_irt"
-  - "fit_manyfacet_process_irt"
-  - "fit_multimodal_trait_irt"
-  - "fit_multiple_response_process_irt"
-  - "fit_nominal_gaze_irt"
-  - "fit_omission_survival_irt"
-  - "fit_process_hmm_irt"
-  - "fit_response_process_embedding_irt"
-  - "fit_revisit_process_cdm"
-  - "fit_speed_accuracy_engagement_irt"
-  - "fit_validation_replicate"
-  - "fit_variational_irt"
-  - "generalizability_process_study"
-  - "get_irt_model"
-  - "grade_model_evidence"
-  - "irt_compositional_channel"
-  - "irt_continuous_channel"
-  - "irt_count_channel"
-  - "irt_functional_channel"
-  - "irt_model_spec"
-  - "irt_nominal_channel"
-  - "irt_response_channel"
-  - "irt_rt_channel"
-  - "irt_sequence_channel"
-  - "irt_survival_channel"
-  - "irt_validation_spec"
-  - "latent_distribution_stress_test"
-  - "latent_trait_trajectory"
-  - "leave_device_out_validation"
-  - "leave_item_out_validation"
-  - "leave_session_out_validation"
-  - "leave_site_out_validation"
-  - "list_irt_models"
-  - "negative_control_process_test"
-  - "option_process_information"
-  - "plot.eye_adapter_regression_audit"
-  - "plot.eye_bids_roundtrip"
-  - "plot.eye_compatibility_evidence_matrix"
-  - "plot.eye_event_roundtrip_audit"
-  - "plot.eye_event_time_irt"
-  - "plot.eye_gaze_informed_missingness_irt"
-  - "plot.eye_gpirt"
-  - "plot.eye_incremental_information_audit"
-  - "plot.eye_irt_changepoints"
-  - "plot.eye_irt_equating"
-  - "plot.eye_irt_ppc"
-  - "plot.eye_irt_recovery_summary"
-  - "plot.eye_irt_sbc"
-  - "plot.eye_joint_gaze_rt_irt"
-  - "plot.eye_joint_graded_rt_process_irt"
-  - "plot.eye_latent_distribution_comparison"
-  - "plot.eye_latent_space_irt"
-  - "plot.eye_manyfacet_process_irt"
-  - "plot.eye_nominal_gaze_irt"
-  - "plot.eye_omission_survival_irt"
-  - "plot.eye_process_cat_simulation"
-  - "plot.eye_process_channel_ablation"
-  - "plot.eye_process_dependent_discrimination"
-  - "plot.eye_process_facet_effects"
-  - "plot.eye_process_g_study"
-  - "plot.eye_process_hmm_irt"
-  - "plot.eye_process_local_dependence_audit"
-  - "plot.eye_process_negative_control"
-  - "plot.eye_process_person_fit"
-  - "plot.eye_sbc_audit"
-  - "plot.eye_semantic_roundtrip"
-  - "plot.eye_vendor_semantic_validation"
-  - "plot_distractor_information"
-  - "plot_irf_uncertainty"
-  - "plot_person_item_space"
-  - "plot_process_changepoint"
-  - "posterior_predictive_discrepancies"
-  - "posterior_sbc_contract"
-  - "predict.eye_censored_normal_process_irt"
-  - "predict_theta_at_time"
-  - "print.eye_irt_evidence_grade"
-  - "print.eye_irt_model_spec"
-  - "print.eye_irt_validation_spec"
-  - "print.eye_process_negative_control"
-  - "print.eye_vendor_schema_contract"
-  - "process_channel_ablation"
-  - "process_dependent_discrimination_audit"
-  - "process_dif_nuisance_surrogate"
-  - "process_item_information"
-  - "process_ngram_features"
-  - "process_person_fit"
-  - "process_residual_map"
-  - "process_sequence_embedding"
-  - "process_state_occupancy"
-  - "process_state_transition_summary"
-  - "promote_irt_model"
-  - "public_validation_corpus"
-  - "pupil_unit_fidelity_audit"
-  - "recalibrate_after_changepoint"
-  - "recommended_validation_replications"
-  - "register_irt_model"
-  - "roundtrip_eye_bids"
-  - "run_posterior_sbc"
-  - "run_sbc"
-  - "select_next_item_process"
-  - "semantic_fidelity_spec"
-  - "semantic_loss_map"
-  - "semantic_roundtrip_audit"
-  - "session_facet_effects"
-  - "simulate_from_model"
-  - "simulate_irt_model"
-  - "simulate_process_cat"
-  - "stress_test_latent_distribution"
-  - "stress_test_local_dependence"
-  - "stress_test_missingness"
-  - "stress_test_misspecification"
-  - "stress_test_preprocessing"
-  - "stress_test_speededness"
-  - "summarize_parameter_recovery"
-  - "timestamp_fidelity_audit"
-  - "validate_bids_eye_semantics"
-  - "validate_hed_event_semantics"
-  - "validate_irt_model"
-  - "validate_latent_space_process_similarity"
-  - "validate_vendor_semantics"
-  - "validate_vendor_timestamp_semantics"
-  - "validation_evidence_levels"
-  - "validation_failure_taxonomy"
-  - "validation_mcse"
-  - "vendor_schema_contract"
-
+  - algorithm_facet_effects
+  - as_irt_recovery_results
+  - audit_bias
+  - audit_channel_incremental_information
+  - audit_convergence
+  - audit_coverage
+  - audit_distractor_attention
+  - audit_identifiability
+  - audit_interval_width
+  - audit_irf_shape
+  - audit_latent_distribution
+  - audit_measurement_transportability
+  - audit_process_adjusted_dif
+  - audit_process_local_dependence
+  - audit_process_measurement_invariance
+  - audit_rmse
+  - audit_sbc
+  - calibration_transfer_audit
+  - classify_item_missingness
+  - compare_irt_models
+  - compare_latent_distribution_models
+  - compare_parametric_nonparametric_irf
+  - compare_validation_engines
+  - compatibility_evidence_matrix
+  - coordinate_fidelity_audit
+  - cross_device_process_equating_audit
+  - cross_version_adapter_regression
+  - detect_irt_changepoints
+  - detect_process_changepoint
+  - device_facet_effects
+  - distractor_process_map
+  - encode_response_combinations
+  - equate_irt_scales
+  - estimate_visual_exposure_probability
+  - event_roundtrip_audit
+  - event_semantics_audit
+  - expected_process_information
+  - explain_latent_interaction
+  - external_validate_irt
+  - extract_parameter_truth
+  - eye_stream_fidelity_audit
+  - facet_effects
+  - field_fidelity_report
+  - fit_censored_normal_process_irt
+  - fit_changepoint_multimodal_irt
+  - fit_changepoint_rt_irt
+  - fit_cognitive_diagnosis_process
+  - fit_continuous_time_irt
+  - fit_crossclassified_process_irt
+  - fit_dynamic_gpirt
+  - fit_event_time_irt
+  - fit_flow_mirt
+  - fit_gaze_informed_missingness_irt
+  - fit_gpirt
+  - fit_irt_model
+  - fit_joint_gaze_rt_irt
+  - fit_joint_graded_rt_process_irt
+  - fit_latent_class_process_irt
+  - fit_latent_space_irt
+  - fit_manyfacet_process_irt
+  - fit_multimodal_trait_irt
+  - fit_multiple_response_process_irt
+  - fit_nominal_gaze_irt
+  - fit_omission_survival_irt
+  - fit_process_hmm_irt
+  - fit_response_process_embedding_irt
+  - fit_revisit_process_cdm
+  - fit_speed_accuracy_engagement_irt
+  - fit_validation_replicate
+  - fit_variational_irt
+  - generalizability_process_study
+  - get_irt_model
+  - grade_model_evidence
+  - irt_compositional_channel
+  - irt_continuous_channel
+  - irt_count_channel
+  - irt_functional_channel
+  - irt_model_spec
+  - irt_nominal_channel
+  - irt_response_channel
+  - irt_rt_channel
+  - irt_sequence_channel
+  - irt_survival_channel
+  - irt_validation_spec
+  - latent_distribution_stress_test
+  - latent_trait_trajectory
+  - leave_device_out_validation
+  - leave_item_out_validation
+  - leave_session_out_validation
+  - leave_site_out_validation
+  - list_irt_models
+  - negative_control_process_test
+  - option_process_information
+  - plot.eye_adapter_regression_audit
+  - plot.eye_bids_roundtrip
+  - plot.eye_compatibility_evidence_matrix
+  - plot.eye_event_roundtrip_audit
+  - plot.eye_event_time_irt
+  - plot.eye_gaze_informed_missingness_irt
+  - plot.eye_gpirt
+  - plot.eye_incremental_information_audit
+  - plot.eye_irt_changepoints
+  - plot.eye_irt_equating
+  - plot.eye_irt_ppc
+  - plot.eye_irt_recovery_summary
+  - plot.eye_irt_sbc
+  - plot.eye_joint_gaze_rt_irt
+  - plot.eye_joint_graded_rt_process_irt
+  - plot.eye_latent_distribution_comparison
+  - plot.eye_latent_space_irt
+  - plot.eye_manyfacet_process_irt
+  - plot.eye_nominal_gaze_irt
+  - plot.eye_omission_survival_irt
+  - plot.eye_process_cat_simulation
+  - plot.eye_process_channel_ablation
+  - plot.eye_process_dependent_discrimination
+  - plot.eye_process_facet_effects
+  - plot.eye_process_g_study
+  - plot.eye_process_hmm_irt
+  - plot.eye_process_local_dependence_audit
+  - plot.eye_process_negative_control
+  - plot.eye_process_person_fit
+  - plot.eye_sbc_audit
+  - plot.eye_semantic_roundtrip
+  - plot.eye_vendor_semantic_validation
+  - plot_distractor_information
+  - plot_irf_uncertainty
+  - plot_person_item_space
+  - plot_process_changepoint
+  - posterior_predictive_discrepancies
+  - posterior_sbc_contract
+  - predict.eye_censored_normal_process_irt
+  - predict_theta_at_time
+  - print.eye_irt_evidence_grade
+  - print.eye_irt_model_spec
+  - print.eye_irt_validation_spec
+  - print.eye_process_negative_control
+  - print.eye_vendor_schema_contract
+  - process_channel_ablation
+  - process_dependent_discrimination_audit
+  - process_dif_nuisance_surrogate
+  - process_item_information
+  - process_ngram_features
+  - process_person_fit
+  - process_residual_map
+  - process_sequence_embedding
+  - process_state_occupancy
+  - process_state_transition_summary
+  - promote_irt_model
+  - public_validation_corpus
+  - pupil_unit_fidelity_audit
+  - recalibrate_after_changepoint
+  - recommended_validation_replications
+  - register_irt_model
+  - roundtrip_eye_bids
+  - run_posterior_sbc
+  - run_sbc
+  - select_next_item_process
+  - semantic_fidelity_spec
+  - semantic_loss_map
+  - semantic_roundtrip_audit
+  - session_facet_effects
+  - simulate_from_model
+  - simulate_irt_model
+  - simulate_process_cat
+  - stress_test_latent_distribution
+  - stress_test_local_dependence
+  - stress_test_missingness
+  - stress_test_misspecification
+  - stress_test_preprocessing
+  - stress_test_speededness
+  - summarize_parameter_recovery
+  - timestamp_fidelity_audit
+  - validate_bids_eye_semantics
+  - validate_hed_event_semantics
+  - validate_irt_model
+  - validate_latent_space_process_similarity
+  - validate_vendor_semantics
+  - validate_vendor_timestamp_semantics
+  - validation_evidence_levels
+  - validation_failure_taxonomy
+  - validation_mcse
+  - vendor_schema_contract
 - title: Package overview
   contents:
   - eyeprocess-package
@@ -752,8 +741,7 @@ reference:
   - interpretive_warnings
   - provenance_manifest
 - title: Visualisation
-  contents:
-  - starts_with("plot_")
+  contents: starts_with("plot_")
 - title: Psychometrics
   contents:
   - fit_irt
@@ -816,7 +804,6 @@ reference:
   - simulate_process_irt
   - parameter_recovery
   - report_eye_dataset
-
 - title: Validation evidence and reports
   contents:
   - grouped_folds
@@ -825,7 +812,6 @@ reference:
   - sbc_summary
   - write_vendor_validation_report
   - write_advanced_model_evidence_report
-
 - title: Research-scale validation, models, storage, and reproducibility
   desc: Deterministic orchestration and explicitly gated advanced research infrastructure.
   contents:
@@ -986,10 +972,9 @@ reference:
   - write_validation_release_report
   - write_vendor_case_report
   - write_vendor_registry
-  # eyeprocess research-scale reference
-
 - title: Measurement intelligence, uncertainty, transportability, and decision evidence
-  desc: Reference implementations with explicit uncertainty, validation, and interpretation boundaries.
+  desc: Reference implementations with explicit uncertainty, validation, and interpretation
+    boundaries.
   contents:
   - aoi_balance_coordinates
   - apply_device_linking
@@ -1052,177 +1037,171 @@ reference:
   - transform_aoi_composition
   - uncertainty_budget
   - windowed_recurrence
-  - "print.eye_mi_result"
-  # eyeprocess measurement-intelligence reference
-  # BEGIN eyeprocess 0.8 reference
-- title: "Process measurement and deployment governance reference (0.8)"
-  desc: >
-    Public 0.8 APIs for process pre-flight, deployment drift, temporal and pupil
-    representations, contextual and mixture IRT, exploratory structure, external
-    validity, Bayesian/3PL diagnostics, streaming scoring, sensitivity analysis,
-    validation reporting, and gated frontier methods.
+  - print.eye_mi_result
+- title: Process measurement and deployment governance reference (0.8)
+  desc: |
+    Public 0.8 APIs for process pre-flight, deployment drift, temporal and pupil representations, contextual and mixture IRT, exploratory structure, external validity, Bayesian/3PL diagnostics, streaming scoring, sensitivity analysis, validation reporting, and gated frontier methods.
   contents:
-  - "addm_glam_proxy_features"
-  - "adjust_pupil_confounds"
-  - "aoi_trajectory_features"
-  - "apply_preflight_decision"
-  - "assign_process_feature_family"
-  - "audit_3pl_process_signatures"
-  - "audit_biometric_imputation"
-  - "audit_biometric_preflight"
-  - "audit_candidate_item_bank"
-  - "audit_frontier_model_contract"
-  - "audit_item_reduction_sensitivity"
-  - "audit_multivariate_process_quality"
-  - "audit_nonparametric_rasch"
-  - "audit_presentation_accessibility"
-  - "audit_process_anomalies"
-  - "audit_process_drift"
-  - "audit_process_external_validity"
-  - "audit_process_window_sensitivity"
-  - "audit_pupil_fatigue_drift"
-  - "audit_pupil_frequency_stability"
-  - "audit_signal_filter"
-  - "audit_visual_context_dependence"
-  - "bayesian_process_diagnostic_flags"
-  - "bayesian_process_diagnostics_dashboard"
-  - "bind_process_windows"
-  - "biometric_imputation_sensitivity"
-  - "collect_validation_evidence"
-  - "compare_aoi_trajectories"
-  - "compare_bayesian_process_models"
-  - "compare_deployment_batches"
-  - "compare_presentation_fairness"
-  - "compare_process_criterion_models"
-  - "compare_process_profile_solutions"
-  - "compare_pupil_kernels"
-  - "compare_raw_adjusted_pupil"
-  - "compare_signal_filters"
-  - "compare_visual_context_irt"
-  - "context_factor_effects"
-  - "drift_by_device"
-  - "drift_by_site"
-  - "drift_by_stimulus_version"
-  - "drift_by_vendor"
-  - "export_validation_bundle"
-  - "extract_process_windows"
-  - "filter_eye_signal"
-  - "filter_pupil_signal"
-  - "fit_aoi_growth_curve"
-  - "fit_crossclassified_process_irt_mhrm"
-  - "fit_gaze_anchored_3pl_audit"
-  - "fit_item_parameter_seed_model"
-  - "fit_kde_latent_distribution_irt"
-  - "fit_mixture_irt_process_classes"
-  - "fit_multiblock_process_map"
-  - "fit_nonignorable_missing_irt"
-  - "fit_persistence_gaze_diffusion_irt"
-  - "fit_process_profile_mixture"
-  - "fit_process_rasch_tree"
-  - "fit_pupil_confound_model"
-  - "fit_pupil_event_deconvolution"
-  - "fit_visual_context_irt"
-  - "gaze_anchored_3pl_alignment"
-  - "incremental_process_validity"
-  - "map_latent_classes_to_process_profiles"
-  - "multiblock_contributions"
-  - "multiblock_person_coordinates"
-  - "multiblock_variable_coordinates"
-  - "plot.eye_aoi_growth_curve"
-  - "plot.eye_aoi_trajectory"
-  - "plot.eye_bayesian_process_dashboard"
-  - "plot.eye_biometric_imputation_sensitivity"
-  - "plot.eye_biometric_preflight"
-  - "plot.eye_candidate_item_bank_audit"
-  - "plot.eye_decision_process_proxy"
-  - "plot.eye_gated_process_model"
-  - "plot.eye_gaze_anchored_3pl_audit"
-  - "plot.eye_item_parameter_seed"
-  - "plot.eye_item_reduction_sensitivity"
-  - "plot.eye_latent_process_alignment"
-  - "plot.eye_mixture_irt_process"
-  - "plot.eye_multiblock_process_map"
-  - "plot.eye_nonparametric_rasch_audit"
-  - "plot.eye_preaction_process_features"
-  - "plot.eye_presentation_accessibility"
-  - "plot.eye_presentation_fairness_comparison"
-  - "plot.eye_process_anomaly_audit"
-  - "plot.eye_process_drift_audit"
-  - "plot.eye_process_external_validity"
-  - "plot.eye_process_feature_blocks"
-  - "plot.eye_process_profile_mixture"
-  - "plot.eye_process_rasch_tree"
-  - "plot.eye_process_window_sensitivity"
-  - "plot.eye_process_windows"
-  - "plot.eye_pupil_confound_model"
-  - "plot.eye_pupil_deconvolution"
-  - "plot.eye_pupil_fatigue_drift"
-  - "plot.eye_pupil_frequency_features"
-  - "plot.eye_pupil_frequency_stability"
-  - "plot.eye_signal_filter_audit"
-  - "plot.eye_streaming_score"
-  - "plot.eye_validation_bundle"
-  - "plot.eye_visual_context_irt"
-  - "plot_aoi_transition_matrix"
-  - "plot_aoi_transition_rank"
-  - "plot_process_channel_ablation_delta"
-  - "plot_process_feature_stability"
-  - "plot_process_window_sensitivity"
-  - "plot_pupil_activity_sensitivity"
-  - "plot_pupil_activity_windows"
-  - "plot_pupil_band_power"
-  - "plot_pupil_components"
-  - "plot_pupil_preprocessing_audit"
-  - "plot_pupil_spectrum"
-  - "preaction_process_features"
-  - "predict_aoi_trajectory"
-  - "predict_item_parameter_priors"
-  - "preflight_decisions"
-  - "preflight_exclusion_manifest"
-  - "preflight_failures"
-  - "preflight_passed"
-  - "prepare_structured_unstructured_process_features"
-  - "print.eye_gated_process_model"
-  - "print.eye_process_drift_spec"
-  - "print.eye_process_preflight_spec"
-  - "print.eye_process_window_spec"
-  - "print.eye_validation_bundle"
-  - "print.eye_visual_context_registry"
-  - "process_anomaly_distance"
-  - "process_criterion_associations"
-  - "process_drift_alerts"
-  - "process_drift_spec"
-  - "process_feature_blocks"
-  - "process_feature_family_registry"
-  - "process_feature_stability"
-  - "process_preflight_spec"
-  - "process_profile_probabilities"
-  - "process_profile_summary"
-  - "process_window_spec"
-  - "pupil_activity_index"
-  - "pupil_band_power"
-  - "pupil_confound_effects"
-  - "pupil_event_effects"
-  - "pupil_event_regressor"
-  - "pupil_frequency_features"
-  - "pupil_response_kernel"
-  - "pupil_velocity_activity"
-  - "score_partial_response_pattern"
-  - "score_response_stream"
-  - "simulate_presentation_variants"
-  - "streaming_score_history"
-  - "summarize_process_windows"
-  - "summary.eye_validation_bundle"
-  - "update_person_score"
-  - "validate_process_windows"
-  - "validation_bundle_manifest"
-  - "validation_report"
-  - "visual_context_registry"
-  - "write_validation_report"
-# END eyeprocess 0.8 reference
-
+  - addm_glam_proxy_features
+  - adjust_pupil_confounds
+  - aoi_trajectory_features
+  - apply_preflight_decision
+  - assign_process_feature_family
+  - audit_3pl_process_signatures
+  - audit_biometric_imputation
+  - audit_biometric_preflight
+  - audit_candidate_item_bank
+  - audit_frontier_model_contract
+  - audit_item_reduction_sensitivity
+  - audit_multivariate_process_quality
+  - audit_nonparametric_rasch
+  - audit_presentation_accessibility
+  - audit_process_anomalies
+  - audit_process_drift
+  - audit_process_external_validity
+  - audit_process_window_sensitivity
+  - audit_pupil_fatigue_drift
+  - audit_pupil_frequency_stability
+  - audit_signal_filter
+  - audit_visual_context_dependence
+  - bayesian_process_diagnostic_flags
+  - bayesian_process_diagnostics_dashboard
+  - bind_process_windows
+  - biometric_imputation_sensitivity
+  - collect_validation_evidence
+  - compare_aoi_trajectories
+  - compare_bayesian_process_models
+  - compare_deployment_batches
+  - compare_presentation_fairness
+  - compare_process_criterion_models
+  - compare_process_profile_solutions
+  - compare_pupil_kernels
+  - compare_raw_adjusted_pupil
+  - compare_signal_filters
+  - compare_visual_context_irt
+  - context_factor_effects
+  - drift_by_device
+  - drift_by_site
+  - drift_by_stimulus_version
+  - drift_by_vendor
+  - export_validation_bundle
+  - extract_process_windows
+  - filter_eye_signal
+  - filter_pupil_signal
+  - fit_aoi_growth_curve
+  - fit_crossclassified_process_irt_mhrm
+  - fit_gaze_anchored_3pl_audit
+  - fit_item_parameter_seed_model
+  - fit_kde_latent_distribution_irt
+  - fit_mixture_irt_process_classes
+  - fit_multiblock_process_map
+  - fit_nonignorable_missing_irt
+  - fit_persistence_gaze_diffusion_irt
+  - fit_process_profile_mixture
+  - fit_process_rasch_tree
+  - fit_pupil_confound_model
+  - fit_pupil_event_deconvolution
+  - fit_visual_context_irt
+  - gaze_anchored_3pl_alignment
+  - incremental_process_validity
+  - map_latent_classes_to_process_profiles
+  - multiblock_contributions
+  - multiblock_person_coordinates
+  - multiblock_variable_coordinates
+  - plot.eye_aoi_growth_curve
+  - plot.eye_aoi_trajectory
+  - plot.eye_bayesian_process_dashboard
+  - plot.eye_biometric_imputation_sensitivity
+  - plot.eye_biometric_preflight
+  - plot.eye_candidate_item_bank_audit
+  - plot.eye_decision_process_proxy
+  - plot.eye_gated_process_model
+  - plot.eye_gaze_anchored_3pl_audit
+  - plot.eye_item_parameter_seed
+  - plot.eye_item_reduction_sensitivity
+  - plot.eye_latent_process_alignment
+  - plot.eye_mixture_irt_process
+  - plot.eye_multiblock_process_map
+  - plot.eye_nonparametric_rasch_audit
+  - plot.eye_preaction_process_features
+  - plot.eye_presentation_accessibility
+  - plot.eye_presentation_fairness_comparison
+  - plot.eye_process_anomaly_audit
+  - plot.eye_process_drift_audit
+  - plot.eye_process_external_validity
+  - plot.eye_process_feature_blocks
+  - plot.eye_process_profile_mixture
+  - plot.eye_process_rasch_tree
+  - plot.eye_process_window_sensitivity
+  - plot.eye_process_windows
+  - plot.eye_pupil_confound_model
+  - plot.eye_pupil_deconvolution
+  - plot.eye_pupil_fatigue_drift
+  - plot.eye_pupil_frequency_features
+  - plot.eye_pupil_frequency_stability
+  - plot.eye_signal_filter_audit
+  - plot.eye_streaming_score
+  - plot.eye_validation_bundle
+  - plot.eye_visual_context_irt
+  - plot_aoi_transition_matrix
+  - plot_aoi_transition_rank
+  - plot_process_channel_ablation_delta
+  - plot_process_feature_stability
+  - plot_process_window_sensitivity
+  - plot_pupil_activity_sensitivity
+  - plot_pupil_activity_windows
+  - plot_pupil_band_power
+  - plot_pupil_components
+  - plot_pupil_preprocessing_audit
+  - plot_pupil_spectrum
+  - preaction_process_features
+  - predict_aoi_trajectory
+  - predict_item_parameter_priors
+  - preflight_decisions
+  - preflight_exclusion_manifest
+  - preflight_failures
+  - preflight_passed
+  - prepare_structured_unstructured_process_features
+  - print.eye_gated_process_model
+  - print.eye_process_drift_spec
+  - print.eye_process_preflight_spec
+  - print.eye_process_window_spec
+  - print.eye_validation_bundle
+  - print.eye_visual_context_registry
+  - process_anomaly_distance
+  - process_criterion_associations
+  - process_drift_alerts
+  - process_drift_spec
+  - process_feature_blocks
+  - process_feature_family_registry
+  - process_feature_stability
+  - process_preflight_spec
+  - process_profile_probabilities
+  - process_profile_summary
+  - process_window_spec
+  - pupil_activity_index
+  - pupil_band_power
+  - pupil_confound_effects
+  - pupil_event_effects
+  - pupil_event_regressor
+  - pupil_frequency_features
+  - pupil_response_kernel
+  - pupil_velocity_activity
+  - score_partial_response_pattern
+  - score_response_stream
+  - simulate_presentation_variants
+  - streaming_score_history
+  - summarize_process_windows
+  - summary.eye_validation_bundle
+  - update_person_score
+  - validate_process_windows
+  - validation_bundle_manifest
+  - validation_report
+  - visual_context_registry
+  - write_validation_report
 - title: Multimodal Process-IRT (0.10 development)
-  desc: Canonical multimodal measurement, process-information, simulation, and validation interfaces.
+  desc: Canonical multimodal measurement, process-information, simulation, and validation
+    interfaces.
   contents:
   - ablate_multimodal_channels
   - multimodal_backend_status
@@ -1232,15 +1211,29 @@ reference:
   - process_information
   - simulate_multimodal_irt
   - validate_multimodal_irt
-
-- title: "0.10 M2 response + RT + gaze evidence"
+- title: 0.10 M2 response + RT + gaze evidence
   contents:
-    - fit_multimodal_m2
-    - multimodal_m2_ablation
-    - multimodal_m2_negative_controls
-    - multimodal_m2_ppc
-    - multimodal_m2_process_information
-    - multimodal_m2_recovery
-    - multimodal_m2_spec
-    - simulate_multimodal_m2
-    - validate_multimodal_m2
+  - fit_multimodal_m2
+  - multimodal_m2_ablation
+  - multimodal_m2_negative_controls
+  - multimodal_m2_ppc
+  - multimodal_m2_process_information
+  - multimodal_m2_recovery
+  - multimodal_m2_spec
+  - simulate_multimodal_m2
+  - validate_multimodal_m2
+- title: 0.10 M3 response + RT + gaze + pupil
+  desc: Experimental/gated four-channel multimodal measurement, simulation, fitting,
+    diagnostics, falsification, recovery, ablation, and information assessment.
+  contents:
+  - audit_multimodal_m3_identifiability
+  - fit_multimodal_m3
+  - multimodal_m3_ablation
+  - multimodal_m3_functional_bridge
+  - multimodal_m3_negative_controls
+  - multimodal_m3_ppc
+  - multimodal_m3_process_information
+  - multimodal_m3_recovery
+  - multimodal_m3_spec
+  - simulate_multimodal_m3
+  - validate_multimodal_m3
