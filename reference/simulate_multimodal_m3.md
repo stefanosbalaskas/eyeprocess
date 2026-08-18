@@ -1,0 +1,116 @@
+# Simulate the M3 response + RT + gaze + pupil generative model
+
+Generates a four-dimensional correlated person process and
+four-dimensional correlated item process, explicit pupil nuisance
+variables, complete-data truth, device/session metadata,
+blink/interpolation indicators and pupil dropout. Pupil scenarios
+include informative, weak, null, redundant and confound-only conditions
+so that validation includes cases where pupil should add no defensible
+psychometric information.
+
+## Usage
+
+``` r
+simulate_multimodal_m3(
+  n_person = 120L,
+  n_item = 12L,
+  pupil_signal = c("informative", "weak", "null", "redundant", "confounded"),
+  pupil_missingness = c("mcar", "quality", "gaze", "ability", "device", "none"),
+  mu_item = c(difficulty = 0, time_intensity = 4, gaze_intensity = 3.5, pupil_intensity =
+    0),
+  sd_person = c(ability = 1, speed = 0.5, gaze_process = 0.5, pupil_responsivity = 0.55),
+  cor_person = matrix(c(1, 0.3, -0.3, 0.2, 0.3, 1, -0.25, -0.15, -0.3, -0.25, 1, 0.25,
+    0.2, -0.15, 0.25, 1), 4L, 4L, byrow = TRUE),
+  sd_item = c(difficulty = 0.75, time_intensity = 0.35, gaze_intensity = 0.6,
+    pupil_intensity = 0.4),
+  cor_item = matrix(c(1, 0.25, 0.2, 0.1, 0.25, 1, 0.3, 0.15, 0.2, 0.3, 1, 0.2, 0.1, 0.15,
+    0.2, 1), 4L, 4L, byrow = TRUE),
+  nu_range = c(0.5, 0.8),
+  gaze_shape = c(shape = 2, scale = 6),
+  pupil_noise = 0.65,
+  confound_strength = c(baseline = 0.25, luminance = -0.35, gaze_x = 0.12, gaze_y = -0.1,
+    quality = 0.2, blink = -0.18, interpolated = -0.12, time_on_task = 0.15),
+  dropout = c(response = 0, rt = 0, gaze = 0.05, pupil = 0.12),
+  device_effect = 0,
+  session_effect = 0,
+  seed = 20260815L
+)
+```
+
+## Arguments
+
+- n_person, n_item:
+
+  Design size.
+
+- pupil_signal:
+
+  Pupil signal scenario.
+
+- pupil_missingness:
+
+  Missingness stress mechanism.
+
+- mu_item:
+
+  Named numeric vector of population means for item difficulty,
+  response-time intensity, gaze intensity, and pupil intensity.
+
+- sd_person:
+
+  Named positive numeric vector of population standard deviations for
+  person ability, speed, gaze-process propensity, and pupil
+  responsivity.
+
+- cor_person:
+
+  A 4 x 4 correlation matrix for person ability, speed, gaze-process,
+  and pupil-responsivity effects, in that order.
+
+- sd_item:
+
+  Named positive numeric vector of population standard deviations for
+  item difficulty, response-time intensity, gaze intensity, and pupil
+  intensity.
+
+- cor_item:
+
+  A 4 x 4 correlation matrix for item difficulty, response-time
+  intensity, gaze intensity, and pupil intensity, in that order.
+
+- nu_range:
+
+  Length-two positive increasing numeric vector giving the lower and
+  upper bounds for the item-specific response-time inverse-scale
+  parameter \`nu\`; the log-response-time residual standard deviation is
+  \`1 / nu\`.
+
+- gaze_shape:
+
+  Named positive numeric vector with elements \`shape\` and \`scale\`
+  defining the inverse-gamma generator for item-specific
+  negative-binomial gaze dispersion.
+
+- pupil_noise:
+
+  Residual SD for the pupil channel.
+
+- confound_strength:
+
+  Named standardized nuisance coefficients.
+
+- dropout:
+
+  Named base dropout probabilities for response, RT, gaze, pupil.
+
+- device_effect, session_effect:
+
+  Additive pupil measurement shifts.
+
+- seed:
+
+  Reproducibility seed.
+
+## Value
+
+An \`eye_multimodal_m3_simulation\` retaining complete truth.

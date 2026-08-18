@@ -195,3 +195,23 @@ Development articles for multimodal latent process measurement.
   Controls](https://stefanosbalaskas.github.io/eyeprocess/articles/m2-ppc-negative-controls-0-10.md):
 - [M2 Process Information and Channel
   Ablation](https://stefanosbalaskas.github.io/eyeprocess/articles/m2-process-information-ablation-0-10.md):
+
+### 0.10 M3 pupil measurement evidence
+
+Four-channel response, response-time, gaze, and pupil measurement
+workflows; confound-aware pupil modelling; ablation, recovery,
+missingness, device stress, functional-score bridging, and sensor-value
+evidence.
+
+- [M3: Four-channel response, RT, gaze, and pupil
+  measurement](https://stefanosbalaskas.github.io/eyeprocess/articles/m3-four-channel-reference-model-0-10.md):
+- [M3 pupil measurement: confounds, quality, and
+  missingness](https://stefanosbalaskas.github.io/eyeprocess/articles/m3-pupil-confounds-measurement-0-10.md):
+- [M3 process information: ablation, redundancy, and sensor
+  value](https://stefanosbalaskas.github.io/eyeprocess/articles/m3-process-information-ablation-0-10.md):
+- [M3 recovery, identifiability, and failure-case
+  validation](https://stefanosbalaskas.github.io/eyeprocess/articles/m3-recovery-missingness-identifiability-0-10.md):
+- [M3 functional pupil bridge: from trajectories to joint
+  measurement](https://stefanosbalaskas.github.io/eyeprocess/articles/m3-functional-pupil-bridge-0-10.md):
+- [M3 device transport, falsification controls, and sensor
+  value](https://stefanosbalaskas.github.io/eyeprocess/articles/m3-device-transport-sensor-value-0-10.md):

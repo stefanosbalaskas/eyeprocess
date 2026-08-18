@@ -1433,6 +1433,8 @@ introduced in the 0.7 development series.
   : Audit basic multimodal design identifiability
 - [`audit_multimodal_m2_identifiability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_multimodal_m2_identifiability.md)
   : Audit structural and data identifiability for M0-M2
+- [`audit_multimodal_m3_identifiability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_multimodal_m3_identifiability.md)
+  : Audit structural and measurement support for M3
 - [`audit_multimodal_measurement()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_multimodal_measurement.md)
   : Audit a multimodal measurement object
 - [`audit_multivariate_process_quality()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_multivariate_process_quality.md)
@@ -2807,3 +2809,34 @@ validation interfaces.
   : Simulate from the M2 response + RT + gaze generative model
 - [`validate_multimodal_m2()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validate_multimodal_m2.md)
   : Validate an M2 fit or simulation
+
+## 0.10 M3 response + RT + gaze + pupil
+
+Experimental/gated four-channel multimodal measurement, simulation,
+fitting, diagnostics, falsification, recovery, ablation, and information
+assessment.
+
+- [`audit_multimodal_m3_identifiability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_multimodal_m3_identifiability.md)
+  : Audit structural and measurement support for M3
+- [`fit_multimodal_m3()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_multimodal_m3.md)
+  : Fit the M3 response + RT + gaze + pupil reference model
+- [`multimodal_m3_ablation()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_m3_ablation.md)
+  : Fit the complete M3 response-anchored channel-ablation lattice
+- [`multimodal_m3_functional_bridge()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_m3_functional_bridge.md)
+  : Bridge existing functional pupil outputs into the scalar M3
+  reference layer
+- [`multimodal_m3_negative_controls()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_m3_negative_controls.md)
+  : Generate M3 multimodal falsification controls
+- [`multimodal_m3_ppc()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_m3_ppc.md)
+  : Posterior predictive checks for the M3 four-channel model
+- [`multimodal_m3_process_information()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_m3_process_information.md)
+  : Quantify M3 process information, pupil increment, redundancy and
+  sensor value
+- [`multimodal_m3_recovery()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_m3_recovery.md)
+  : Run M3 parameter-recovery and stress evidence
+- [`multimodal_m3_spec()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_m3_spec.md)
+  : M3 response + RT + gaze + pupil specification
+- [`simulate_multimodal_m3()`](https://stefanosbalaskas.github.io/eyeprocess/reference/simulate_multimodal_m3.md)
+  : Simulate the M3 response + RT + gaze + pupil generative model
+- [`validate_multimodal_m3()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validate_multimodal_m3.md)
+  : Validate an M3 simulation or fitted four-channel model

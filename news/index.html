@@ -66,11 +66,19 @@
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Changelog</h1>
-      <small>Source: <a href="https://github.com/stefanosbalaskas/eyeprocess/blob/HEAD/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
+      <small>Source: <a href="https://github.com/stefanosbalaskas/eyeprocess/blob/master/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.10.0.9000" id="eyeprocess-01009000">eyeprocess 0.10.0.9000<a class="anchor" aria-label="anchor" href="#eyeprocess-01009000"></a></h2>
+<div class="section level4">
+<h4 id="m3-response--rt--gaze--pupil-measurement-evidence-0-10-0-9000">M3 response + RT + gaze + pupil measurement evidence<a class="anchor" aria-label="anchor" href="#m3-response--rt--gaze--pupil-measurement-evidence-0-10-0-9000"></a></h4>
+<ul><li>Added the M3 four-channel response + RT + gaze + pupil reference likelihood with correlated person/item structures and explicit pupil measurement nuisance terms for baseline, luminance, gaze position, quality, blink status, interpolation status, and time-on-task.</li>
+<li>Added retained-truth simulation with informative, weak, null, redundant, and confound-only pupil scenarios plus MCAR/quality/gaze/ability/device pupil-dropout stress mechanisms.</li>
+<li>Added the full eight-model response-anchored channel-ablation lattice, response-target PSIS-LOO/ability-uncertainty process-information evidence, non-additivity/redundancy contrasts, channel-conflict diagnostics, and sensor value-of-information screens.</li>
+<li>Added pupil-specific negative controls, an explicit functional-pupil score bridge to the existing trajectory/deconvolution machinery, recovery/coverage tooling, M3 PPC, consolidated S3 plots, nine examples, and six articles.</li>
+<li>Pupil remains a neutral measurement channel: M3 does not equate pupil dilation with cognitive load, effort, attention, or arousal; device equivalence and nonignorable missingness remain validation questions rather than defaults.</li>
+</ul></div>
 <div class="section level4">
 <h4 id="m2-three-way-response--rt--gaze-evidence-0-10-0-9000">M2 three-way response + RT + gaze evidence<a class="anchor" aria-label="anchor" href="#m2-three-way-response--rt--gaze-evidence-0-10-0-9000"></a></h4>
 <ul><li><p>Added a likelihood-faithful M2 reference implementation for Rasch responses, lognormal response times, and negative-binomial gaze-fixation counts with correlated person-side and item-side parameter structures.</p></li>

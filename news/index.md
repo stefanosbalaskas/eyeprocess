@@ -2,6 +2,28 @@
 
 ## eyeprocess 0.10.0.9000
 
+#### M3 response + RT + gaze + pupil measurement evidence
+
+- Added the M3 four-channel response + RT + gaze + pupil reference
+  likelihood with correlated person/item structures and explicit pupil
+  measurement nuisance terms for baseline, luminance, gaze position,
+  quality, blink status, interpolation status, and time-on-task.
+- Added retained-truth simulation with informative, weak, null,
+  redundant, and confound-only pupil scenarios plus
+  MCAR/quality/gaze/ability/device pupil-dropout stress mechanisms.
+- Added the full eight-model response-anchored channel-ablation lattice,
+  response-target PSIS-LOO/ability-uncertainty process-information
+  evidence, non-additivity/redundancy contrasts, channel-conflict
+  diagnostics, and sensor value-of-information screens.
+- Added pupil-specific negative controls, an explicit functional-pupil
+  score bridge to the existing trajectory/deconvolution machinery,
+  recovery/coverage tooling, M3 PPC, consolidated S3 plots, nine
+  examples, and six articles.
+- Pupil remains a neutral measurement channel: M3 does not equate pupil
+  dilation with cognitive load, effort, attention, or arousal; device
+  equivalence and nonignorable missingness remain validation questions
+  rather than defaults.
+
 #### M2 three-way response + RT + gaze evidence
 
 - Added a likelihood-faithful M2 reference implementation for Rasch
