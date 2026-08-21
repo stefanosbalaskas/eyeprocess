@@ -1,0 +1,5 @@
+sim <- simulate_multimodal_m4(n_person = 30L, n_item = 8L, seed = 20260820L)
+spec <- multimodal_m4_spec(n_states = 2L)
+audit <- audit_multimodal_m4_identifiability(sim, spec = spec, include_posterior = FALSE)
+stopifnot(inherits(audit, "eye_multimodal_m4_identifiability"))
+print(audit)

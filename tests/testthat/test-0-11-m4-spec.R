@@ -1,0 +1,11 @@
+testthat::test_that("M4 specification preserves the M3 architecture", {
+  s <- multimodal_m4_spec()
+  testthat::expect_s3_class(s, "eye_multimodal_m4_spec")
+  testthat::expect_s3_class(s, "eye_multimodal_m3_spec")
+  testthat::expect_identical(s$model, "M4")
+  testthat::expect_identical(s$n_states, 2L)
+  k1 <- multimodal_m4_spec(n_states = 1L, trait_conditioning = character())
+  testthat::expect_true(k1$state_null)
+  testthat::expect_error(multimodal_m4_spec(n_states = 5L), "1 through 4")
+  testthat::expect_error(multimodal_m4_spec(n_states = 2L, state_channels = c("gaze", "pupil")), "requires `rt`")
+})

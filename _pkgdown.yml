@@ -126,6 +126,14 @@ articles:
   - m3-recovery-missingness-identifiability-0-10
   - m3-functional-pupil-bridge-0-10
   - m3-device-transport-sensor-value-0-10
+- title: "0.11 M4 latent response-process states"
+  contents:
+  - m4-trait-conditioned-process-states-0-11
+  - m4-reference-model-fitting-0-11
+  - m4-identifiability-state-uncertainty-0-11
+  - m4-process-information-ablation-0-11
+  - m4-negative-controls-state-count-0-11
+  - m4-recovery-validation-0-11
 reference:
 - title: Validation evidence programmes and freezing (0.9 M2)
   contents:
@@ -1237,3 +1245,17 @@ reference:
   - multimodal_m3_spec
   - simulate_multimodal_m3
   - validate_multimodal_m3
+- title: "0.11 M4 latent response-process states"
+  contents:
+  - audit_multimodal_m4_identifiability
+  - fit_multimodal_m4
+  - multimodal_m4_ablation
+  - multimodal_m4_negative_controls
+  - multimodal_m4_ppc
+  - multimodal_m4_process_information
+  - multimodal_m4_recovery
+  - multimodal_m4_sensitivity
+  - multimodal_m4_spec
+  - multimodal_m4_state_diagnostics
+  - simulate_multimodal_m4
+  - validate_multimodal_m4

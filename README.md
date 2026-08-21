@@ -330,3 +330,24 @@ neg <- multimodal_m3_negative_controls(sim)
 The evidence contract explicitly permits a scientifically important negative conclusion: **pupil may add no clear defensible response-target measurement information after RT, gaze, nuisance adjustment, and uncertainty are considered**. M3 uses ignorable channel omission in its current reference likelihood; informative missingness, device transport/equivalence, construct validity, and functional-trajectory sufficiency remain explicit validation questions rather than defaults.
 
 M3 remains development/evidence-gated until the full recovery, missingness, device, negative-control, installed-package, multi-chain and empirical validation programme is frozen.
+
+## 0.11 M4: trait-conditioned latent response-process states
+
+M4 extends the frozen M3 response + RT + gaze + pupil measurement model with an explicitly ordered, marginalized latent response-process state layer. The reference scored-response Rasch equation remains state-independent; states shift process channels only.
+
+Progression: **M0 response -> M1 + RT -> M2 + gaze -> M3 + pupil -> M4 + trait-conditioned latent response-process state**.
+
+M4 is probability-first: trial-level posterior state probabilities, entropy, occupancy and transition uncertainty are retained; MAP paths are secondary summaries. `K = 1` is a first-class null, not an error. The K>1 reference identification orders centered RT state deviations, so RT remains the state-label anchor.
+
+```r
+sim <- simulate_multimodal_m4(n_person = 80, n_item = 12, n_states = 2, seed = 20260820)
+audit_multimodal_m4_identifiability(sim, spec = multimodal_m4_spec(), include_posterior = FALSE)
+spec <- multimodal_m4_spec(n_states = 2, trait_conditioning = c("theta", "tau"))
+# fit <- fit_multimodal_m4(sim, spec = spec)  # deliberate CmdStanR fit
+controls <- multimodal_m4_negative_controls(sim)  # design/data transformations only
+recovery <- multimodal_m4_recovery()              # five-scenario design only
+```
+
+Public M4 interfaces: `multimodal_m4_spec()`, `simulate_multimodal_m4()`, `fit_multimodal_m4()`, `audit_multimodal_m4_identifiability()`, `multimodal_m4_state_diagnostics()`, `multimodal_m4_ppc()`, `multimodal_m4_ablation()`, `multimodal_m4_process_information()`, `multimodal_m4_negative_controls()`, `multimodal_m4_sensitivity()`, `multimodal_m4_recovery()`, and `validate_multimodal_m4()`.
+
+**Interpretation boundary:** M4 states are model-based statistical response-process states. Numeric state labels do not by themselves establish cognitive strategy, attention, engagement, cognitive load, effort, emotion, guessing, misconduct, comprehension, or another psychological construct.
