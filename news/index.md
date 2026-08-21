@@ -1,6 +1,6 @@
 # Changelog
 
-## eyeprocess 0.11.0.9000
+## eyeprocess 0.11.0
 
 #### M4 trait-conditioned latent response-process states
 
