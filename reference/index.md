@@ -1435,6 +1435,8 @@ introduced in the 0.7 development series.
   : Audit structural and data identifiability for M0-M2
 - [`audit_multimodal_m3_identifiability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_multimodal_m3_identifiability.md)
   : Audit structural and measurement support for M3
+- [`audit_multimodal_m4_identifiability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_multimodal_m4_identifiability.md)
+  : Audit M4 structural and posterior identifiability
 - [`audit_multimodal_measurement()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_multimodal_measurement.md)
   : Audit a multimodal measurement object
 - [`audit_multivariate_process_quality()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_multivariate_process_quality.md)
@@ -2840,3 +2842,33 @@ assessment.
   : Simulate the M3 response + RT + gaze + pupil generative model
 - [`validate_multimodal_m3()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validate_multimodal_m3.md)
   : Validate an M3 simulation or fitted four-channel model
+
+## 0.11 M4 latent response-process states
+
+- [`audit_multimodal_m4_identifiability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_multimodal_m4_identifiability.md)
+  : Audit M4 structural and posterior identifiability
+- [`fit_multimodal_m4()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_multimodal_m4.md)
+  : Fit the M4 latent response-process state model
+- [`multimodal_m4_ablation()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_m4_ablation.md)
+  : Plan or fit the focused M3-to-M4 ablation set
+- [`multimodal_m4_negative_controls()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_m4_negative_controls.md)
+  : Construct M4 temporal, nuisance, device, and overfitting negative
+  controls
+- [`multimodal_m4_ppc()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_m4_ppc.md)
+  : Posterior predictive checks for M4 measurement and sequential
+  behavior
+- [`multimodal_m4_process_information()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_m4_process_information.md)
+  : Quantify incremental response-target information supplied by M4
+  state structure
+- [`multimodal_m4_recovery()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_m4_recovery.md)
+  : Evaluate deterministic M4 parameter and state recovery
+- [`multimodal_m4_sensitivity()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_m4_sensitivity.md)
+  : Plan or run M4 state-count and modelling sensitivity analyses
+- [`multimodal_m4_spec()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_m4_spec.md)
+  : Specify M4 trait-conditioned latent response-process states
+- [`multimodal_m4_state_diagnostics()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_m4_state_diagnostics.md)
+  : Summarize M4 latent-state uncertainty and dynamics
+- [`simulate_multimodal_m4()`](https://stefanosbalaskas.github.io/eyeprocess/reference/simulate_multimodal_m4.md)
+  : Simulate M4 multimodal sequential measurement data
+- [`validate_multimodal_m4()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validate_multimodal_m4.md)
+  : Validate M4 data, computation, state behavior, and evidence

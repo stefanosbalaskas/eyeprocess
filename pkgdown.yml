@@ -45,6 +45,12 @@ articles:
   m3-process-information-ablation-0-10: m3-process-information-ablation-0-10.html
   m3-pupil-confounds-measurement-0-10: m3-pupil-confounds-measurement-0-10.html
   m3-recovery-missingness-identifiability-0-10: m3-recovery-missingness-identifiability-0-10.html
+  m4-identifiability-state-uncertainty-0-11: m4-identifiability-state-uncertainty-0-11.html
+  m4-negative-controls-state-count-0-11: m4-negative-controls-state-count-0-11.html
+  m4-process-information-ablation-0-11: m4-process-information-ablation-0-11.html
+  m4-recovery-validation-0-11: m4-recovery-validation-0-11.html
+  m4-reference-model-fitting-0-11: m4-reference-model-fitting-0-11.html
+  m4-trait-conditioned-process-states-0-11: m4-trait-conditioned-process-states-0-11.html
   manual-multimodal-backends-0-10: manual-multimodal-backends-0-10.html
   measurement-stress-negative-controls: measurement-stress-negative-controls.html
   multi-vendor-validation: multi-vendor-validation.html
@@ -84,7 +90,7 @@ articles:
   validation-evidence-atlas-software-paper: validation-evidence-atlas-software-paper.html
   validation-execution-engine: validation-execution-engine.html
   visual-context-and-testlet-irt: visual-context-and-testlet-irt.html
-last_built: 2026-08-18T00:01Z
+last_built: 2026-08-21T20:05Z
 urls:
   reference: https://stefanosbalaskas.github.io/eyeprocess/reference
   article: https://stefanosbalaskas.github.io/eyeprocess/articles

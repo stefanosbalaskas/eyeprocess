@@ -12,12 +12,12 @@ Source:
 
 Balaskas, S. (2026). eyeprocess: Harmonize Eye-Tracking, Pupillometry,
 Biometrics, and Psychometric Process Data. R package version
-0.10.0.9000.
+0.11.0.9000.
 
     @Manual{,
       title = {eyeprocess: Harmonize Eye-Tracking, Pupillometry, Biometrics, and Psychometric Process Data},
       author = {Stefanos Balaskas},
       year = {2026},
-      note = {R package version 0.10.0.9000},
+      note = {R package version 0.11.0.9000},
       url = {https://github.com/stefanosbalaskas/eyeprocess},
     }

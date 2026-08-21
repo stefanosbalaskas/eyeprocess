@@ -75,6 +75,12 @@
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/articles/m3-process-information-ablation-0-10.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/articles/m3-pupil-confounds-measurement-0-10.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/articles/m3-recovery-missingness-identifiability-0-10.html</loc></url>
+<url><loc>https://stefanosbalaskas.github.io/eyeprocess/articles/m4-identifiability-state-uncertainty-0-11.html</loc></url>
+<url><loc>https://stefanosbalaskas.github.io/eyeprocess/articles/m4-negative-controls-state-count-0-11.html</loc></url>
+<url><loc>https://stefanosbalaskas.github.io/eyeprocess/articles/m4-process-information-ablation-0-11.html</loc></url>
+<url><loc>https://stefanosbalaskas.github.io/eyeprocess/articles/m4-recovery-validation-0-11.html</loc></url>
+<url><loc>https://stefanosbalaskas.github.io/eyeprocess/articles/m4-reference-model-fitting-0-11.html</loc></url>
+<url><loc>https://stefanosbalaskas.github.io/eyeprocess/articles/m4-trait-conditioned-process-states-0-11.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/articles/manual-multimodal-backends-0-10.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/articles/measurement-stress-negative-controls.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/articles/multi-vendor-validation.html</loc></url>
@@ -178,6 +184,7 @@
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/audit_multimodal_identifiability.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/audit_multimodal_m2_identifiability.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/audit_multimodal_m3_identifiability.html</loc></url>
+<url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/audit_multimodal_m4_identifiability.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/audit_multimodal_measurement.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/audit_multivariate_process_quality.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/audit_nonparametric_rasch.html</loc></url>
@@ -522,6 +529,7 @@
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/fit_multiblock_process_map.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/fit_multimodal_m2.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/fit_multimodal_m3.html</loc></url>
+<url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/fit_multimodal_m4.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/fit_multimodal_trait_irt.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/fit_multinomial_transition.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/fit_multiple_response_process_irt.html</loc></url>
@@ -626,6 +634,14 @@
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_m3_process_information.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_m3_recovery.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_m3_spec.html</loc></url>
+<url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_m4_ablation.html</loc></url>
+<url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_m4_negative_controls.html</loc></url>
+<url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_m4_ppc.html</loc></url>
+<url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_m4_process_information.html</loc></url>
+<url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_m4_recovery.html</loc></url>
+<url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_m4_sensitivity.html</loc></url>
+<url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_m4_spec.html</loc></url>
+<url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_m4_state_diagnostics.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_ppc.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/negative_control_concordance.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/negative_control_process_test.html</loc></url>
@@ -938,6 +954,7 @@
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/simulate_multimodal_irt.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/simulate_multimodal_m2.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/simulate_multimodal_m3.html</loc></url>
+<url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/simulate_multimodal_m4.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/simulate_presentation_variants.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/simulate_process_cat.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/simulate_process_validation_data.html</loc></url>
@@ -1009,6 +1026,7 @@
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/validate_multimodal_irt.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/validate_multimodal_m2.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/validate_multimodal_m3.html</loc></url>
+<url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/validate_multimodal_m4.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/validate_process_measure_registry.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/validate_process_validation_design.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/validate_process_windows.html</loc></url>

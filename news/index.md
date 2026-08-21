@@ -1,5 +1,31 @@
 # Changelog
 
+## eyeprocess 0.11.0.9000
+
+#### M4 trait-conditioned latent response-process states
+
+- Added M4 as a sequential extension of the frozen M3 response + RT +
+  gaze + pupil measurement backbone, with marginalized latent
+  response-process states over explicitly ordered sequences.
+- Added K=1 as a formal null, K=2 as the conservative reference,
+  RT-anchored state-label identification, posterior state
+  probabilities/entropy, trait-conditioned initial/transition
+  probabilities, and state-dependent RT/gaze/pupil deviations while
+  keeping the scored-response Rasch equation state-independent.
+- Added structural/posterior identifiability auditing, state
+  diagnostics, PPC, focused M3-to-M4 ablation and response-target
+  process-information evidence, six negative controls, K/modelling
+  sensitivity, deterministic state-aligned recovery, and multi-domain
+  validation statuses.
+- Added consolidated S3 plots, twelve versioned examples, six M4
+  articles, and an explicit computational boundary:
+  recovery/sensitivity/controls are design-only unless analysts opt into
+  backend fitting.
+- M4 state labels remain neutral statistical response-process states.
+  State detection is not construct validation and does not automatically
+  identify strategy, attention, engagement, effort, cognitive load,
+  emotion, guessing, or misconduct.
+
 ## eyeprocess 0.10.0.9000
 
 #### M3 response + RT + gaze + pupil measurement evidence

@@ -455,3 +455,50 @@ sufficiency remain explicit validation questions rather than defaults.
 M3 remains development/evidence-gated until the full recovery,
 missingness, device, negative-control, installed-package, multi-chain
 and empirical validation programme is frozen.
+
+## 0.11 M4: trait-conditioned latent response-process states
+
+M4 extends the frozen M3 response + RT + gaze + pupil measurement model
+with an explicitly ordered, marginalized latent response-process state
+layer. The reference scored-response Rasch equation remains
+state-independent; states shift process channels only.
+
+Progression: **M0 response -\> M1 + RT -\> M2 + gaze -\> M3 + pupil -\>
+M4 + trait-conditioned latent response-process state**.
+
+M4 is probability-first: trial-level posterior state probabilities,
+entropy, occupancy and transition uncertainty are retained; MAP paths
+are secondary summaries. `K = 1` is a first-class null, not an error.
+The K\>1 reference identification orders centered RT state deviations,
+so RT remains the state-label anchor.
+
+``` r
+
+sim <- simulate_multimodal_m4(n_person = 80, n_item = 12, n_states = 2, seed = 20260820)
+audit_multimodal_m4_identifiability(sim, spec = multimodal_m4_spec(), include_posterior = FALSE)
+spec <- multimodal_m4_spec(n_states = 2, trait_conditioning = c("theta", "tau"))
+# fit <- fit_multimodal_m4(sim, spec = spec)  # deliberate CmdStanR fit
+controls <- multimodal_m4_negative_controls(sim)  # design/data transformations only
+recovery <- multimodal_m4_recovery()              # five-scenario design only
+```
+
+Public M4 interfaces:
+[`multimodal_m4_spec()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_m4_spec.md),
+[`simulate_multimodal_m4()`](https://stefanosbalaskas.github.io/eyeprocess/reference/simulate_multimodal_m4.md),
+[`fit_multimodal_m4()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_multimodal_m4.md),
+[`audit_multimodal_m4_identifiability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_multimodal_m4_identifiability.md),
+[`multimodal_m4_state_diagnostics()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_m4_state_diagnostics.md),
+[`multimodal_m4_ppc()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_m4_ppc.md),
+[`multimodal_m4_ablation()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_m4_ablation.md),
+[`multimodal_m4_process_information()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_m4_process_information.md),
+[`multimodal_m4_negative_controls()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_m4_negative_controls.md),
+[`multimodal_m4_sensitivity()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_m4_sensitivity.md),
+[`multimodal_m4_recovery()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_m4_recovery.md),
+and
+[`validate_multimodal_m4()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validate_multimodal_m4.md).
+
+**Interpretation boundary:** M4 states are model-based statistical
+response-process states. Numeric state labels do not by themselves
+establish cognitive strategy, attention, engagement, cognitive load,
+effort, emotion, guessing, misconduct, comprehension, or another
+psychological construct.

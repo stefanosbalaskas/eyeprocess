@@ -215,3 +215,18 @@ evidence.
   measurement](https://stefanosbalaskas.github.io/eyeprocess/articles/m3-functional-pupil-bridge-0-10.md):
 - [M3 device transport, falsification controls, and sensor
   value](https://stefanosbalaskas.github.io/eyeprocess/articles/m3-device-transport-sensor-value-0-10.md):
+
+### 0.11 M4 latent response-process states
+
+- [Trait-Conditioned Latent Response-Process
+  States](https://stefanosbalaskas.github.io/eyeprocess/articles/m4-trait-conditioned-process-states-0-11.md):
+- [Specifying and Fitting the M4 Reference
+  Model](https://stefanosbalaskas.github.io/eyeprocess/articles/m4-reference-model-fitting-0-11.md):
+- [Identifiability, State Separation, and Label
+  Uncertainty](https://stefanosbalaskas.github.io/eyeprocess/articles/m4-identifiability-state-uncertainty-0-11.md):
+- [Does Latent State Structure Add Measurement
+  Information?](https://stefanosbalaskas.github.io/eyeprocess/articles/m4-process-information-ablation-0-11.md):
+- [Negative Controls and State-Count
+  Sensitivity](https://stefanosbalaskas.github.io/eyeprocess/articles/m4-negative-controls-state-count-0-11.md):
+- [Recovery and Validation of Latent Response-Process
+  States](https://stefanosbalaskas.github.io/eyeprocess/articles/m4-recovery-validation-0-11.md):
