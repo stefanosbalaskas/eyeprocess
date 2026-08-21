@@ -1,0 +1,28 @@
+---
+title: "Does Latent State Structure Add Measurement Information?"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Does Latent State Structure Add Measurement Information?}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+library(eyeprocess)
+```
+
+M4 is evaluated incrementally against M3 rather than assumed to be useful. The core comparison is M3 versus M4, with K=1 and no-trait-conditioning models used as focused diagnostic references.
+
+```{r}
+sim <- simulate_multimodal_m4(n_person = 30, n_item = 8, seed = 20260820)
+multimodal_m4_ablation(sim)
+```
+
+```{r eval=FALSE}
+abl <- multimodal_m4_ablation(sim, run = TRUE)
+info <- multimodal_m4_process_information(abl)
+info
+```
+
+Response-target ELPD and uncertainty changes are interpreted as predictive/inferential evidence, not causal effects.

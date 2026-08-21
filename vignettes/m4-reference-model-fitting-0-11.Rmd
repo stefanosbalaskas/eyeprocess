@@ -1,0 +1,29 @@
+---
+title: "Specifying and Fitting the M4 Reference Model"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Specifying and Fitting the M4 Reference Model}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+library(eyeprocess)
+```
+
+The reference model uses a marginalized finite-state Markov process over explicitly ordered participant/session sequences. K=1 is a formal null and K=2 is the conservative default.
+
+```{r}
+sim <- simulate_multimodal_m4(n_person = 30, n_item = 8, seed = 20260820)
+audit <- audit_multimodal_m4_identifiability(sim, include_posterior = FALSE)
+audit
+```
+
+A deliberate CmdStanR fit is required for posterior inference; documentation does not compile or sample automatically.
+
+```{r eval=FALSE}
+fit <- fit_multimodal_m4(sim, spec = multimodal_m4_spec())
+summary(fit)
+fitted(fit, type = "state")
+```

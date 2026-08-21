@@ -1,0 +1,27 @@
+---
+title: "Recovery and Validation of Latent Response-Process States"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Recovery and Validation of Latent Response-Process States}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+library(eyeprocess)
+```
+
+Development recovery is deliberately bounded to five deterministic scenarios: clear K=2, weak K=2, true K=1, trait-conditioned K=2, and nuisance/confounded structure.
+
+```{r}
+rec <- multimodal_m4_recovery()
+rec
+```
+
+The default returns the recovery design without fitting. Real recovery requires an explicit `run = TRUE`. State labels are aligned before evaluating state effects and transition structure; posterior probability calibration is preferred to MAP accuracy alone.
+
+```{r eval=FALSE}
+rec_fit <- multimodal_m4_recovery(run = TRUE)
+plot(rec_fit, type = "probability_calibration")
+```
