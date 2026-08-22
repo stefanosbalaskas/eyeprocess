@@ -1,5 +1,7 @@
 # eyeprocess
 
+![eyeprocess logo](reference/figures/logo.png)
+
 [![DOI](https://zenodo.org/badge/1322747590.svg)](https://doi.org/10.5281/zenodo.21844472)
 
 **Latest archived release:** 0.8.0
