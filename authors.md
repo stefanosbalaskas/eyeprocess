@@ -8,15 +8,15 @@
 ## Citation
 
 Source:
-[`inst/CITATION`](https://github.com/stefanosbalaskas/eyeprocess/blob/v0.11.0/inst/CITATION)
+[`inst/CITATION`](https://github.com/stefanosbalaskas/eyeprocess/blob/master/inst/CITATION)
 
 Balaskas, S. (2026). eyeprocess: Harmonize Eye-Tracking, Pupillometry,
-Biometrics, and Psychometric Process Data. R package version 0.11.0.
+Biometrics, and Psychometric Process Data. R package version 0.11.1.
 
     @Manual{,
       title = {eyeprocess: Harmonize Eye-Tracking, Pupillometry, Biometrics, and Psychometric Process Data},
       author = {Stefanos Balaskas},
       year = {2026},
-      note = {R package version 0.11.0},
+      note = {R package version 0.11.1},
       url = {https://github.com/stefanosbalaskas/eyeprocess},
     }

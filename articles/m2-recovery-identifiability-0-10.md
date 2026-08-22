@@ -10,7 +10,7 @@ calibration, and later empirical reproduction.
 ``` r
 
 library(eyeprocess)
-#> eyeprocess 0.11.0: vendor-neutral eye/process data harmonization with first-class Gazepoint support.
+#> eyeprocess 0.11.1: vendor-neutral eye/process data harmonization with first-class Gazepoint support.
 
 sim <- simulate_multimodal_m2(
   n_person = 100,

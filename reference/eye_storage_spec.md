@@ -34,7 +34,10 @@ eye_storage_spec(
 
 - compression:
 
-  Parquet compression codec.
+  Parquet compression codec. For writes, the default \`"zstd"\` is
+  preferred; when the argument is omitted and that codec is unavailable,
+  storage falls back to \`"snappy"\` and then \`"uncompressed"\`. An
+  explicitly requested unavailable codec errors.
 
 ## Value
 

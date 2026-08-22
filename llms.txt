@@ -103,10 +103,10 @@ parameter-recovery, calibration, coverage, misspecification, and
 empirical-reproduction studies before confirmatory use.
 
 See
-[`IMPLEMENTATION_STATUS.md`](https://stefanosbalaskas.github.io/eyeprocess/IMPLEMENTATION_STATUS.md),
-[`FUNCTION_REFERENCE.md`](https://stefanosbalaskas.github.io/eyeprocess/FUNCTION_REFERENCE.md),
+[`IMPLEMENTATION_STATUS.md`](https://github.com/stefanosbalaskas/eyeprocess/blob/master/IMPLEMENTATION_STATUS.md),
+[`FUNCTION_REFERENCE.md`](https://github.com/stefanosbalaskas/eyeprocess/blob/master/FUNCTION_REFERENCE.md),
 and
-[`STATIC_AUDIT.txt`](https://stefanosbalaskas.github.io/eyeprocess/STATIC_AUDIT.txt).
+[`STATIC_AUDIT.txt`](https://github.com/stefanosbalaskas/eyeprocess/blob/master/STATIC_AUDIT.txt).
 
 ## Gazepoint Analysis 7.2.0 real-export workflow
 

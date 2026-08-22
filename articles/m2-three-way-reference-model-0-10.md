@@ -24,7 +24,7 @@ load, guessing, strategy, or difficulty.
 ``` r
 
 library(eyeprocess)
-#> eyeprocess 0.11.0: vendor-neutral eye/process data harmonization with first-class Gazepoint support.
+#> eyeprocess 0.11.1: vendor-neutral eye/process data harmonization with first-class Gazepoint support.
 
 spec <- multimodal_m2_spec()
 spec
