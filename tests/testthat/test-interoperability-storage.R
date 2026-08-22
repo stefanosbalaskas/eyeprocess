@@ -59,6 +59,57 @@ test_that("external and sequence adapters return declared contracts", {
   expect_s3_class(hmm, "eye_seqhmm_data")
 })
 
+test_that("Arrow compression resolution is portable across builds", {
+  snappy_build <- function(codec) {
+    tolower(codec) %in% c("snappy", "uncompressed")
+  }
+
+  uncompressed_build <- function(codec) {
+    identical(tolower(codec), "uncompressed")
+  }
+
+  gzip_build <- function(codec) {
+    tolower(codec) %in% c("gzip", "uncompressed")
+  }
+
+  expect_identical(
+    eyeprocess:::.ep_arrow_resolve_compression(
+      "zstd",
+      allow_fallback = TRUE,
+      codec_available = snappy_build
+    ),
+    "snappy"
+  )
+
+  expect_identical(
+    eyeprocess:::.ep_arrow_resolve_compression(
+      "zstd",
+      allow_fallback = TRUE,
+      codec_available = uncompressed_build
+    ),
+    "uncompressed"
+  )
+
+  expect_identical(
+    eyeprocess:::.ep_arrow_resolve_compression(
+      "gzip",
+      allow_fallback = FALSE,
+      codec_available = gzip_build
+    ),
+    "gzip"
+  )
+
+  expect_error(
+    eyeprocess:::.ep_arrow_resolve_compression(
+      "zstd",
+      allow_fallback = FALSE,
+      codec_available = snappy_build
+    ),
+    "unavailable in this Arrow build",
+    fixed = TRUE
+  )
+})
+
 test_that("Parquet storage round trips when Arrow is available", {
   skip_if_not_installed("arrow")
   x <- simulate_eye_dataset(n_person = 3, n_item = 2, sampling_rate = 10, trial_duration = .3, seed = 105)

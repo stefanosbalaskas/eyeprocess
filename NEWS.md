@@ -1,3 +1,12 @@
+# eyeprocess 0.11.1
+
+## CRAN portability hotfix
+
+- Make default Arrow/Parquet compression portable across Arrow builds: prefer `zstd`, fall back to `snappy`, then `uncompressed` when the default codec is unavailable.
+- Preserve explicit compression requests: an explicitly requested unavailable Arrow codec fails with a clear error instead of being silently substituted.
+- Replace repository-relative README links with absolute GitHub URLs.
+- Add a package spelling allowlist for legitimate eye-tracking, biometric, and storage terminology flagged by CRAN incoming checks.
+
 # eyeprocess 0.11.0
 
 ### M4 trait-conditioned latent response-process states

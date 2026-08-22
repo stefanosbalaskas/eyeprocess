@@ -87,7 +87,10 @@
 #' @param format One of `"rds"`, `"parquet"`, or `"arrow_dataset"`.
 #' @param tables Canonical tables to store.
 #' @param partitioning Optional Arrow partition columns.
-#' @param compression Parquet compression codec.
+#' @param compression Parquet compression codec. For writes, the default
+#'   `"zstd"` is preferred; when the argument is omitted and that codec
+#'   is unavailable, storage falls back to `"snappy"` and then
+#'   `"uncompressed"`. An explicitly requested unavailable codec errors.
 #' @return An `eye_storage_spec` object.
 #' @export
 eye_storage_spec <- function(
@@ -111,6 +114,41 @@ eye_storage_spec <- function(
   )
 }
 
+.ep_arrow_resolve_compression <- function(
+    compression,
+    allow_fallback = FALSE,
+    codec_available = NULL) {
+  codec <- tolower(trimws(as.character(compression)))
+  if (length(codec) != 1L || is.na(codec) || !nzchar(codec)) {
+    .eye_stop("`compression` must be one non-empty codec name.")
+  }
+  if (is.null(codec_available)) {
+    .require_namespace(
+      "arrow",
+      "to determine available Parquet compression codecs"
+    )
+    codec_available <- arrow::codec_is_available
+  }
+  available <- function(x) {
+    isTRUE(
+      tryCatch(
+        codec_available(x),
+        error = function(e) FALSE
+      )
+    )
+  }
+  if (available(codec)) return(codec)
+  if (!isTRUE(allow_fallback)) {
+    .eye_stop(
+      "Arrow compression codec `",
+      codec,
+      "` is unavailable in this Arrow build."
+    )
+  }
+  if (available("snappy")) return("snappy")
+  "uncompressed"
+}
+
 #' Write an eye dataset to RDS or Arrow/Parquet storage
 #'
 #' @param x An `eye_dataset`.
@@ -118,7 +156,10 @@ eye_storage_spec <- function(
 #' @param format Storage format.
 #' @param tables Canonical tables to write.
 #' @param partitioning Optional partition columns for Arrow datasets.
-#' @param compression Parquet compression codec.
+#' @param compression Parquet compression codec. For writes, the default
+#'   `"zstd"` is preferred; when the argument is omitted and that codec
+#'   is unavailable, storage falls back to `"snappy"` and then
+#'   `"uncompressed"`. An explicitly requested unavailable codec errors.
 #' @param overwrite Whether to replace an existing target.
 #' @param retain_metadata Whether to retain raw/vendor metadata in a sidecar RDS.
 #' @return An `eye_storage` handle.
@@ -132,6 +173,7 @@ write_eye_storage <- function(
     compression = "zstd",
     overwrite = FALSE,
     retain_metadata = TRUE) {
+  compression_defaulted <- missing(compression)
   .assert_eye_dataset(x)
   format <- match.arg(format)
   spec <- eye_storage_spec(path, format, tables, partitioning, compression)
@@ -145,20 +187,25 @@ write_eye_storage <- function(
     handle <- list(spec = spec, manifest = data.frame(table = "eye_dataset", path = spec$path, rows = NA_integer_))
   } else {
     .require_namespace("arrow", "for Parquet and Arrow dataset storage")
+    compression <- .ep_arrow_resolve_compression(
+      compression,
+      allow_fallback = compression_defaulted
+    )
+    spec$compression <- compression
     dir.create(spec$path, recursive = TRUE, showWarnings = FALSE)
     manifest <- lapply(spec$tables, function(nm) {
       d <- x[[nm]]
       table_path <- file.path(spec$path, nm)
       if (format == "parquet") {
         table_path <- paste0(table_path, ".parquet")
-        arrow::write_parquet(d, table_path, compression = compression)
+        arrow::write_parquet(d, table_path, compression = spec$compression)
       } else {
         dir.create(table_path, recursive = TRUE, showWarnings = FALSE)
         part <- intersect(as.character(partitioning), names(d))
         arrow::write_dataset(
           d, table_path, format = "parquet",
           partitioning = if (length(part)) part else NULL,
-          compression = compression,
+          compression = spec$compression,
           existing_data_behavior = "overwrite"
         )
       }
