@@ -1,20 +1,34 @@
 # eyeprocess
 
-![eyeprocess logo](reference/figures/logo.png)
+**Vendor-neutral infrastructure for reproducible eye-tracking and
+multimodal process-data research.**
 
-[![DOI](https://zenodo.org/badge/1322747590.svg)](https://doi.org/10.5281/zenodo.21844472)
+`eyeprocess` transforms heterogeneous eye-tracking, pupillometry,
+behavioural, and biometric exports into validated, analysis-ready
+process data. It combines vendor-neutral harmonization with first-class
+Gazepoint support, explicit quality and provenance controls,
+gaze/AOI/scanpath analysis, pupillometry and biometric workflows,
+interoperability, and psychometric/process modelling.
 
-**Latest archived release:** 0.8.0
+**Current formal release:** **0.11.1**
 
-**Current formal release:** 0.8.0
-[![R-CMD-check](https://github.com/stefanosbalaskas/eyeprocess/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/stefanosbalaskas/eyeprocess/actions/workflows/R-CMD-check.yaml)
+[Website](https://stefanosbalaskas.github.io/eyeprocess/) ·
+[Reference](https://stefanosbalaskas.github.io/eyeprocess/reference/index.html)
+·
+[Articles](https://stefanosbalaskas.github.io/eyeprocess/articles/index.html)
+· [GitHub](https://github.com/stefanosbalaskas/eyeprocess) ·
+[Releases](https://github.com/stefanosbalaskas/eyeprocess/releases)
 
-`eyeprocess` is a vendor-neutral R framework for transforming
-heterogeneous eye-tracking, pupillometry, behavioural, and biometric
-exports into validated, analysis-ready process data. It provides
-first-class support for Gazepoint Analysis and Gazepoint Biometrics
-exports, dedicated adapters for common eye-tracking ecosystems, and
-downstream psychometric modelling.
+## What eyeprocess provides
+
+| Area | Capabilities |
+|----|----|
+| Import and harmonization | Vendor-aware readers, generic mappings, canonical schemas, explicit timebase and coordinate handling |
+| Validation and provenance | Source inspection, schema coverage, quality audits, source fingerprints, validation corpora, provenance manifests |
+| Gaze and AOI analysis | Trial construction, AOI registration and assignment, fixation summaries, scanpaths, transitions, visual diagnostics |
+| Pupil and biometrics | Pupil preprocessing, binocular handling, physiological synchronization, quality-aware feature derivation |
+| Process and psychometric modelling | IRT, response-time models, multimodal process measurement, validation and sensitivity infrastructure |
+| Interoperability and storage | Eye-Tracking-BIDS, Arrow/Parquet workflows, conversion bridges, auditable storage contracts |
 
 ## Design commitments
 
@@ -23,7 +37,8 @@ downstream psychometric modelling.
 - Record every timebase and coordinate transformation.
 - Keep vendor-produced and package-derived ocular events
   distinguishable.
-- Never resample, interpolate, clip, or exclude observations silently.
+- Never resample, interpolate, clip, reconstruct, or exclude
+  observations silently.
 - Treat gaze, pupil, and physiology as observations—not automatic
   psychological constructs.
 - Keep Gazepoint support deep while the canonical representation remains
@@ -45,125 +60,31 @@ downstream psychometric modelling.
 | SMI BeGaze ASCII | [`read_smi()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-vendors.md) | Legacy dedicated |
 | Custom adapters | [`register_eye_adapter()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-adapters.md) | Extensible |
 
-## Empirical export validation
+Support level and empirical validation are deliberately kept separate.
+The existence of an adapter is not treated as proof of production
+compatibility with every exporter or software version.
 
-Version 0.2.0.9002 adds a formal evidence framework for validating real
-export files rather than treating adapter availability as proof of
-production compatibility. It provides:
+## Installation
 
-- [`inspect_eye_source()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-format-validation.md)
-  for file structure, fields, delimiters, hashes, and format-detection
-  evidence;
-- [`validate_eye_source()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-format-validation.md)
-  for adapter, canonical-schema, timebase, coordinate, provenance,
-  quality, and round-trip checks;
-- [`init_validation_corpus()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-format-validation.md),
-  [`validation_manifest()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-format-validation.md),
-  and
-  [`validate_eye_corpus()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-format-validation.md)
-  for versioned multi-vendor compatibility corpora;
-- [`schema_coverage()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-format-validation.md)
-  and
-  [`source_preservation_audit()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-format-validation.md)
-  for loss-aware harmonization evidence;
-- [`anonymize_eye_dataset()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-format-validation.md)
-  and
-  [`create_validation_bundle()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-format-validation.md)
-  for reviewable, non-raw compatibility bundles.
-
-Support levels are reported separately as declared, fixture-tested, or
-empirically validated. Real vendor exports remain necessary before
-production compatibility claims are made.
-
-## Development validation status
-
-Version 0.1.0.9003 is the validated baseline: on Windows 11 with R 4.6.1
-it installed successfully, passed the complete unit-test suite,
-completed `R CMD check` with **0 errors, 0 warnings, and 0 notes**,
-passed
-[`pkgdown::check_pkgdown()`](https://pkgdown.r-lib.org/reference/check_pkgdown.html),
-and passed runtime smoke tests.
-
-Version 0.2.0.9002 established the validated real-structure Gazepoint
-Analysis 7.2.0 adapter baseline. Version 0.3.0.9000 adds the complete
-downstream workflow and requires a fresh runtime validation after
-installation. The regression corpus is derived from six paired
-de-identified Gazepoint sample/fixation exports and four Data Summary
-reports. Production compatibility remains version-specific and must be
-confirmed against additional independent exports before a general
-compatibility claim is made.
-
-Version 0.8.0 is the current formal release, cut from the validated
-0.8.0.9000 development baseline. That baseline passed the focused 0.8
-test suite and the complete eyeprocess test suite, pkgdown validation,
-installation with vignettes, installed-package smoke validation, and R
-CMD check with 0 errors, 0 warnings, and 0 notes. The formal release
-also passed definitive release-artifact validation and all six
-post-merge GitHub CI checks. The original joint-process and dynamic
-models are explicitly experimental. They must undergo
-parameter-recovery, calibration, coverage, misspecification, and
-empirical-reproduction studies before confirmatory use.
-
-See
-[`IMPLEMENTATION_STATUS.md`](https://github.com/stefanosbalaskas/eyeprocess/blob/master/IMPLEMENTATION_STATUS.md),
-[`FUNCTION_REFERENCE.md`](https://github.com/stefanosbalaskas/eyeprocess/blob/master/FUNCTION_REFERENCE.md),
-and
-[`STATIC_AUDIT.txt`](https://github.com/stefanosbalaskas/eyeprocess/blob/master/STATIC_AUDIT.txt).
-
-## Gazepoint Analysis 7.2.0 real-export workflow
-
-The enhanced Gazepoint adapter recognizes current export names and
-report structures:
+Install the exact formal GitHub release:
 
 ``` r
 
-x <- read_gazepoint_folder(
-  "path/to/eyeprocess-validation-corpus/cases/gazepoint-analysis-v7.2.0-demo"
-)
-
-gp_pair_exports(
-  "path/to/eyeprocess-validation-corpus/cases/gazepoint-analysis-v7.2.0-demo"
-)
-
-validate_eye_dataset(x)
-schema_coverage_summary(x)
-source_preservation_audit(x, require_raw = TRUE)
+install.packages("remotes")
+remotes::install_github("stefanosbalaskas/eyeprocess", ref = "v0.11.1")
 ```
 
-For these exports, `TIMETICK(f=10000000)` is the monotonic recording
-clock. The `TIME(...)` field is retained as media-relative time because
-it restarts when the media changes. Gazepoint fixation identifiers are
-namespaced by media for the same reason. Multi-section Data Summary
-reports are imported with
-[`read_gazepoint_summary()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-import-gazepoint.md)
-and converted to AOI definitions and participant-AOI features.
-
-## Installation from the local source tree
+For the current development branch:
 
 ``` r
 
-install.packages(c(
-  "ggplot2", "testthat", "knitr", "rmarkdown", "jsonlite"
-))
-
-install.packages(
-  "path/to/eyeprocess",
-  repos = NULL,
-  type = "source"
-)
+remotes::install_github("stefanosbalaskas/eyeprocess")
 ```
 
-For development:
+Optional modelling backends are deliberately not mandatory dependencies.
+Install only the engines required for a specific analysis.
 
-``` r
-
-install.packages(c("devtools", "roxygen2", "pkgdown"))
-devtools::load_all("path/to/eyeprocess")
-devtools::test("path/to/eyeprocess")
-devtools::check("path/to/eyeprocess")
-```
-
-## Gazepoint workflow
+## Quick start
 
 ``` r
 
@@ -174,92 +95,87 @@ x <- read_gazepoint_folder(
   include = c("gaze", "fixations", "events", "biometrics")
 )
 
-x
 validate_eye_dataset(x)
-audit_signal_quality(x)
 audit_timebase(x)
+audit_signal_quality(x)
 
 x <- build_trials(x, start_events = "TRIAL_START", end_events = "TRIAL_END")
+
 x <- register_aois(
   x,
-  new_aoi("prompt", x = 0, y = 0, width = 0.50, height = 1),
+  new_aoi("prompt",  x = 0,    y = 0, width = 0.50, height = 1),
   new_aoi("options", x = 0.50, y = 0, width = 0.50, height = 1)
 )
+
 x <- assign_aois(x)
 x <- derive_all_features(x)
 
-plot_signal_quality(x)
 plot_scanpath(x, trial_id = x$intervals$trial_id[1])
 plot_pupil_timeseries(x, trial_id = x$intervals$trial_id[1])
 ```
 
-## Generic export
+For generic exports, Tobii, Pupil Labs, EyeLink, SMI, real-export
+validation, preprocessing, storage, and complete Gazepoint workflows,
+see the
+[articles](https://stefanosbalaskas.github.io/eyeprocess/articles/index.html).
 
-``` r
+## Process measurement and psychometrics
 
-mapping <- eye_mapping(
-  participant = "subject",
-  recording = "recording",
-  timestamp = "timestamp_us",
-  x = "gaze_x",
-  y = "gaze_y",
-  pupil_left = "pupil_left_mm",
-  pupil_right = "pupil_right_mm",
-  trial = "trial_id",
-  stimulus = "stimulus"
-)
+`eyeprocess` connects behavioural responses with process evidence while
+keeping measurement assumptions explicit. The multimodal measurement
+ladder is:
 
-x <- read_eye_generic(
-  "data/export.csv",
-  mapping = mapping,
-  time_unit = "microseconds",
-  coordinate_space = "display_pixels_top_left",
-  screen_width = 1920,
-  screen_height = 1080
-)
-```
+**M0 response → M1 + RT → M2 + gaze → M3 + pupil → M4 +
+trait-conditioned latent response-process state**
 
-## Psychometric workflow
+Examples of public interfaces include
+[`fit_irt()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-models.md),
+[`fit_explanatory_irt()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-models.md),
+[`fit_accuracy_rt()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-models.md),
+[`fit_process_irt()`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-experimental.md),
+[`multimodal_m3_spec()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_m3_spec.md),
+[`fit_multimodal_m3()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_multimodal_m3.md),
+[`multimodal_m4_spec()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_m4_spec.md),
+and
+[`fit_multimodal_m4()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_multimodal_m4.md).
 
-``` r
+**M4 remains REVIEW / evidence-gated.** The availability of an estimator
+or model interface is not treated as evidence of unrestricted
+confirmatory validity. M4 states are model-based statistical
+response-process states; state labels do not by themselves establish
+cognitive strategy, attention, engagement, cognitive load, effort,
+emotion, guessing, misconduct, comprehension, or another psychological
+construct.
 
-x <- derive_all_features(x)
+## Validation and reproducibility
 
-fit <- fit_explanatory_irt(
-  x,
-  score ~ dwell_time + first_fixation_latency + pupil_auc,
-  engine = "lme4"
-)
+The 0.11.1 release line preserves an auditable validation contract
+across data import, transformations, storage, modelling, and reporting.
+Release validation included the complete test suite and exact
+source-tarball checking with **0 errors and 0 warnings**; the remaining
+incoming NOTE concerns submission/optional repository metadata rather
+than a package failure.
 
-fit_rt <- fit_accuracy_rt(x, engine = "LNIRT")
-```
+The package also provides infrastructure for real-export validation,
+grouped validation, parameter recovery, simulation-based calibration,
+leakage checks, sensitivity analysis, model-evidence audits, benchmark
+generation, and reproducible reporting.
 
-Optional engines are deliberately not installed as mandatory
-dependencies. Install only the modelling engines required for a study:
+Detailed implementation and validation records are maintained in:
 
-``` r
-
-install.packages(c("mirt", "TAM", "LNIRT", "lme4"))
-```
-
-## Simulation
-
-``` r
-
-sim <- simulate_eye_dataset(
-  n_person = 80,
-  n_item = 20,
-  seed = 42
-)
-
-sim <- derive_all_features(sim)
-plot_eye_trace(sim, trial_id = sim$intervals$trial_id[1])
-plot_transition_matrix(sim)
-```
+- [IMPLEMENTATION_STATUS.md](https://github.com/stefanosbalaskas/eyeprocess/blob/master/IMPLEMENTATION_STATUS.md)
+- [FUNCTION_REFERENCE.md](https://github.com/stefanosbalaskas/eyeprocess/blob/master/FUNCTION_REFERENCE.md)
+- [STATIC_AUDIT.txt](https://github.com/stefanosbalaskas/eyeprocess/blob/master/STATIC_AUDIT.txt)
+- [VALIDATION_GAZEPOINT_7_2_0.md](https://github.com/stefanosbalaskas/eyeprocess/blob/master/VALIDATION_GAZEPOINT_7_2_0.md)
 
 ## Responsible interpretation
 
-Run:
+`eyeprocess` does not equate fixation with attention, dwell time with
+difficulty, pupil dilation with cognitive load, rapid response with
+guessing, physiological variation with a named mental state, or a
+data-derived process factor with a psychological construct.
+
+Useful audit interfaces include:
 
 ``` r
 
@@ -268,242 +184,50 @@ analysis_readiness(x)
 provenance_manifest(x)
 ```
 
-The package does not equate fixation with attention, dwell time with
-difficulty, pupil dilation with cognitive load, rapid response with
-guessing, or a data-derived process factor with a named psychological
-construct.
+## Documentation
 
-## Complete Gazepoint downstream workflow
-
-The integrated workflow converts a real Gazepoint Analysis folder into a
-canonical dataset and every major downstream research artifact:
-
-``` r
-
-library(eyeprocess)
-
-result <- run_gazepoint_workflow(
-  "path/to/eyeprocess-validation-corpus/cases/gazepoint-analysis-v7.2.0-demo",
-  output_dir = "path/to/eyeprocess-downstream-output",
-  overwrite = TRUE
-)
-
-result
-validate_gazepoint_workflow(result)
-```
-
-The output includes QC evidence, media/trial reconstruction,
-vendor-fixation and AOI summaries, processed pupil and valid-only
-biometric features, gaze and physiological plots, a
-person-by-item-by-trial process table, IRT-ready response templates,
-canonical exports, provenance, source fingerprints, a rerun script, and
-Markdown/HTML reports. The workflow does not fabricate responses or fit
-an IRT model automatically when observed response data are unavailable.
-
-## Validation and interoperability programme
-
-Development version 0.4.0.9000 adds Eye-Tracking-BIDS import/export,
-optional Arrow/Parquet storage, explicit multi-vendor
-empirical-validation gates, advanced-model evidence audits,
-parameter-recovery and SBC harnesses, grouped validation, leakage and
-multiverse diagnostics, benchmark/reporting assets, and four explicitly
-experimental advanced model families.
-
-Software availability is not evidence of scientific validity: vendor
-claims require independent real exports, and advanced models remain
-experimental until their declared recovery, calibration,
-misspecification, grouped validation, equivalence, and
-empirical-reproduction gates pass.
-
-## Research-scale validation programme (0.5.0.9000)
-
-The development programme now supports deterministic and resumable
-validation jobs, independent vendor-evidence corpora, stable
-object/storage contracts, optional Stan engines, and a synthetic
-multimodal benchmark.
-
-Advanced dynamic-state, functional-pupil, strategy-mixture, and
-gaze-diffusion models remain explicitly experimental until their
-declared recovery, calibration, misspecification, grouped-validation,
-equivalence, sensitivity, and empirical-reproduction gates pass.
-
-## Measurement-intelligence programme (0.6.0)
-
-This development programme adds probabilistic and compositional AOI
-analysis, explicit process-measurement uncertainty, recalibration and
-device-linking audits, process reliability, pupil phase-amplitude
-registration, missingness sensitivity, recurrence and point-process
-models, representative scanpaths, cognitive episodes, multi-objective
-item-bank decisions, process-DIF monitoring, conditional reference
-centiles, and evidence-provenance graphs.
-
-The implementations are auditable reference engines. Experimental
-spatial, temporal, fairness, normative, and anomaly outputs are review
-evidence rather than automatic causal, clinical, ability, or misconduct
-determinations.
-
-## Process-IRT validation framework (0.7.0.9000)
-
-Version 0.7.0.9000 established the process-IRT validation framework:
-explicit validation contracts, model-evidence workflows, advanced
-process-model infrastructure, parameter-recovery and diagnostic support,
-and conservative estimator maturity boundaries.
-
-Advanced process models remain subject to their declared validation
-requirements; availability of a model interface is not treated as
-evidence that the estimator is suitable for unrestricted confirmatory
-use.
-
-## Process measurement and deployment governance (0.8.0)
-
-Version 0.8.0 extends eyeprocess with process-measurement and
-deployment-governance infrastructure for biometric/process pre-flight
-audits, exclusion manifests, deployment drift, temporal process windows,
-AOI trajectories, advanced pupillometry, visual-context/testlet IRT,
-multiblock representations, process-profile mixtures, external validity,
-streaming scoring, validation bundles, item seeding, presentation
-sensitivity, process-decision features, and advanced sensitivity and
-Bayesian/3PL diagnostics.
-
-The 0.8 milestone also makes frontier-estimator status explicit: methods
-without an exact validated implementation remain gated rather than
-silently falling back to a simpler estimator. Process evidence is not
-interpreted automatically as a mental-state, clinical, ability,
-misconduct, or other person-level diagnosis.
+- [Getting
+  started](https://stefanosbalaskas.github.io/eyeprocess/articles/getting-started.html)
+- [Importing and harmonizing
+  exports](https://stefanosbalaskas.github.io/eyeprocess/articles/importing-and-harmonizing.html)
+- [Gazepoint
+  workflows](https://stefanosbalaskas.github.io/eyeprocess/articles/gazepoint-workflows.html)
+- [Validating real
+  exports](https://stefanosbalaskas.github.io/eyeprocess/articles/validating-real-exports.html)
+- [Preprocessing and
+  features](https://stefanosbalaskas.github.io/eyeprocess/articles/preprocessing-features.html)
+- [Psychometric process
+  models](https://stefanosbalaskas.github.io/eyeprocess/articles/psychometric-process-models.html)
+- [Responsible
+  use](https://stefanosbalaskas.github.io/eyeprocess/articles/responsible-use.html)
+- [Complete function
+  reference](https://stefanosbalaskas.github.io/eyeprocess/reference/index.html)
 
 ## Citation
 
-If you use `eyeprocess` in research, please cite the archived software
-release:
-
-Balaskas, S. (2026). *eyeprocess: Harmonize Eye-Tracking, Pupillometry,
-Biometrics, and Psychometric Process Data* (Version 0.8.0). Zenodo.
-<https://doi.org/10.5281/zenodo.21865277>
-
-- Version 0.8.0 DOI: `10.5281/zenodo.21865277`
-- Concept DOI: `10.5281/zenodo.21844472`
-
-See `CITATION.cff` for machine-readable citation metadata.
-
-Version 0.8.0 is the current formal archived software release. Its
-version-specific Zenodo DOI is `10.5281/zenodo.21865277`; the concept
-DOI remains `10.5281/zenodo.21844472`. Studies using eyeprocess should
-report the exact package version and, when relevant, the source commit
-used.
-
-## 0.10 M3: response + RT + gaze + pupil
-
-The current 0.10 development line now contains a unified four-channel
-measurement layer built on the frozen M2 response + RT + gaze model. M3
-adds pupil as a **neutral observed process channel**, not as an
-automatic cognitive-load, effort, attention, or arousal label.
-
-Reference ladder: **M0 response -\> M1 response + RT -\> M2 response +
-RT + gaze -\> M3 response + RT + gaze + pupil**. M3 reuses the existing
-`irt_*_channel()` /
-[`multimodal_irt_spec()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_irt_spec.md)
-architecture and the package’s functional-pupil, deconvolution,
-confound, blink/quality and device-audit machinery rather than creating
-a parallel pupil subsystem.
-
-The M3 summary-level pupil likelihood carries eight explicit nuisance
-terms: baseline, luminance, gaze X/Y, measurement quality, blink status,
-interpolation status, and time-on-task. Missing supplied nuisance values
-on observed-pupil trials are not silently imputed.
-
-M3 provides: a four-channel CmdStan reference likelihood; explicit
-baseline/luminance/gaze-position/quality/blink/interpolation/time-on-task
-pupil nuisance adjustment; retained-truth simulation;
-identifiability/support audits; PPC; the complete eight-model
-response-anchored RT/gaze/pupil ablation lattice; process-information,
-redundancy and channel-conflict evidence; sensor value-of-information
-screens; pupil falsification controls; missingness/device stress;
-parameter recovery; and an explicit bridge to existing
-functional-pupil/deconvolution workflows.
-
-Public M3 interfaces:
-[`multimodal_m3_spec()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_m3_spec.md),
-[`simulate_multimodal_m3()`](https://stefanosbalaskas.github.io/eyeprocess/reference/simulate_multimodal_m3.md),
-[`fit_multimodal_m3()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_multimodal_m3.md),
-[`audit_multimodal_m3_identifiability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_multimodal_m3_identifiability.md),
-[`multimodal_m3_ppc()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_m3_ppc.md),
-[`multimodal_m3_ablation()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_m3_ablation.md),
-[`multimodal_m3_process_information()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_m3_process_information.md),
-[`multimodal_m3_negative_controls()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_m3_negative_controls.md),
-[`multimodal_m3_functional_bridge()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_m3_functional_bridge.md),
-[`multimodal_m3_recovery()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_m3_recovery.md),
-and
-[`validate_multimodal_m3()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validate_multimodal_m3.md);
-publication-oriented visual diagnostics are consolidated behind S3
-`plot(..., type = )` methods.
+For the citation associated with the installed package, run:
 
 ``` r
 
-sim <- simulate_multimodal_m3(n_person = 80, n_item = 10, seed = 20260815)
-audit_multimodal_m3_identifiability(sim)
-spec <- multimodal_m3_spec()
-# fit <- fit_multimodal_m3(sim)  # requires CmdStanR/CmdStan
-neg <- multimodal_m3_negative_controls(sim)
+citation("eyeprocess")
+packageVersion("eyeprocess")
 ```
 
-The evidence contract explicitly permits a scientifically important
-negative conclusion: **pupil may add no clear defensible response-target
-measurement information after RT, gaze, nuisance adjustment, and
-uncertainty are considered**. M3 uses ignorable channel omission in its
-current reference likelihood; informative missingness, device
-transport/equivalence, construct validity, and functional-trajectory
-sufficiency remain explicit validation questions rather than defaults.
+Studies should report the exact package version and, when relevant, the
+source commit and modelling backend used.
 
-M3 remains development/evidence-gated until the full recovery,
-missingness, device, negative-control, installed-package, multi-chain
-and empirical validation programme is frozen.
+## Contributing and issues
 
-## 0.11 M4: trait-conditioned latent response-process states
+- [Report an
+  issue](https://github.com/stefanosbalaskas/eyeprocess/issues)
+- [Contributing
+  guide](https://github.com/stefanosbalaskas/eyeprocess/blob/master/CONTRIBUTING.md)
+- [Code of
+  conduct](https://github.com/stefanosbalaskas/eyeprocess/blob/master/CODE_OF_CONDUCT.md)
 
-M4 extends the frozen M3 response + RT + gaze + pupil measurement model
-with an explicitly ordered, marginalized latent response-process state
-layer. The reference scored-response Rasch equation remains
-state-independent; states shift process channels only.
+## License
 
-Progression: **M0 response -\> M1 + RT -\> M2 + gaze -\> M3 + pupil -\>
-M4 + trait-conditioned latent response-process state**.
-
-M4 is probability-first: trial-level posterior state probabilities,
-entropy, occupancy and transition uncertainty are retained; MAP paths
-are secondary summaries. `K = 1` is a first-class null, not an error.
-The K\>1 reference identification orders centered RT state deviations,
-so RT remains the state-label anchor.
-
-``` r
-
-sim <- simulate_multimodal_m4(n_person = 80, n_item = 12, n_states = 2, seed = 20260820)
-audit_multimodal_m4_identifiability(sim, spec = multimodal_m4_spec(), include_posterior = FALSE)
-spec <- multimodal_m4_spec(n_states = 2, trait_conditioning = c("theta", "tau"))
-# fit <- fit_multimodal_m4(sim, spec = spec)  # deliberate CmdStanR fit
-controls <- multimodal_m4_negative_controls(sim)  # design/data transformations only
-recovery <- multimodal_m4_recovery()              # five-scenario design only
-```
-
-Public M4 interfaces:
-[`multimodal_m4_spec()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_m4_spec.md),
-[`simulate_multimodal_m4()`](https://stefanosbalaskas.github.io/eyeprocess/reference/simulate_multimodal_m4.md),
-[`fit_multimodal_m4()`](https://stefanosbalaskas.github.io/eyeprocess/reference/fit_multimodal_m4.md),
-[`audit_multimodal_m4_identifiability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/audit_multimodal_m4_identifiability.md),
-[`multimodal_m4_state_diagnostics()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_m4_state_diagnostics.md),
-[`multimodal_m4_ppc()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_m4_ppc.md),
-[`multimodal_m4_ablation()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_m4_ablation.md),
-[`multimodal_m4_process_information()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_m4_process_information.md),
-[`multimodal_m4_negative_controls()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_m4_negative_controls.md),
-[`multimodal_m4_sensitivity()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_m4_sensitivity.md),
-[`multimodal_m4_recovery()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_m4_recovery.md),
-and
-[`validate_multimodal_m4()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validate_multimodal_m4.md).
-
-**Interpretation boundary:** M4 states are model-based statistical
-response-process states. Numeric state labels do not by themselves
-establish cognitive strategy, attention, engagement, cognitive load,
-effort, emotion, guessing, misconduct, comprehension, or another
-psychological construct.
+MIT License.
 
 # Package index
 
