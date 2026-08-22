@@ -1,5 +1,9 @@
 # eyeprocess
 
+<p align="center">
+  <img src="man/figures/logo.png" alt="eyeprocess logo" width="260" />
+</p>
+
 [![DOI](https://zenodo.org/badge/1322747590.svg)](https://doi.org/10.5281/zenodo.21844472)
 
 <!-- badges: start -->
