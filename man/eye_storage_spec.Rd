@@ -21,7 +21,10 @@ eye_storage_spec(
 
 \item{partitioning}{Optional Arrow partition columns.}
 
-\item{compression}{Parquet compression codec.}
+\item{compression}{Parquet compression codec. For writes, the default
+`"zstd"` is preferred; when the argument is omitted and that codec
+is unavailable, storage falls back to `"snappy"` and then
+`"uncompressed"`. An explicitly requested unavailable codec errors.}
 }
 \value{
 An `eye_storage_spec` object.

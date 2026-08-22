@@ -26,7 +26,10 @@ write_eye_storage(
 
 \item{partitioning}{Optional partition columns for Arrow datasets.}
 
-\item{compression}{Parquet compression codec.}
+\item{compression}{Parquet compression codec. For writes, the default
+`"zstd"` is preferred; when the argument is omitted and that codec
+is unavailable, storage falls back to `"snappy"` and then
+`"uncompressed"`. An explicitly requested unavailable codec errors.}
 
 \item{overwrite}{Whether to replace an existing target.}
 

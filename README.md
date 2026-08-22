@@ -80,9 +80,9 @@ The original joint-process and dynamic models are explicitly experimental. They
 must undergo parameter-recovery, calibration, coverage, misspecification, and
 empirical-reproduction studies before confirmatory use.
 
-See [`IMPLEMENTATION_STATUS.md`](IMPLEMENTATION_STATUS.md),
-[`FUNCTION_REFERENCE.md`](FUNCTION_REFERENCE.md), and
-[`STATIC_AUDIT.txt`](STATIC_AUDIT.txt).
+See [`IMPLEMENTATION_STATUS.md`](https://github.com/stefanosbalaskas/eyeprocess/blob/master/IMPLEMENTATION_STATUS.md),
+[`FUNCTION_REFERENCE.md`](https://github.com/stefanosbalaskas/eyeprocess/blob/master/FUNCTION_REFERENCE.md), and
+[`STATIC_AUDIT.txt`](https://github.com/stefanosbalaskas/eyeprocess/blob/master/STATIC_AUDIT.txt).
 
 
 ## Gazepoint Analysis 7.2.0 real-export workflow
