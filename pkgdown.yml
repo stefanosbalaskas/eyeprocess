@@ -52,6 +52,7 @@ articles:
   m4-reference-model-fitting-0-11: m4-reference-model-fitting-0-11.html
   m4-trait-conditioned-process-states-0-11: m4-trait-conditioned-process-states-0-11.html
   manual-multimodal-backends-0-10: manual-multimodal-backends-0-10.html
+  measurement-accountability-0-11: measurement-accountability-0-11.html
   measurement-stress-negative-controls: measurement-stress-negative-controls.html
   multi-vendor-validation: multi-vendor-validation.html
   multiblock-profiles-and-external-validity: multiblock-profiles-and-external-validity.html
@@ -90,7 +91,7 @@ articles:
   validation-evidence-atlas-software-paper: validation-evidence-atlas-software-paper.html
   validation-execution-engine: validation-execution-engine.html
   visual-context-and-testlet-irt: visual-context-and-testlet-irt.html
-last_built: 2026-09-07T17:37Z
+last_built: 2026-09-07T22:51Z
 urls:
   reference: https://stefanosbalaskas.github.io/eyeprocess/reference
   article: https://stefanosbalaskas.github.io/eyeprocess/articles

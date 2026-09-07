@@ -1,5 +1,14 @@
 # Package index
 
+## Measurement accountability diagnostics (0.11)
+
+- [`pupil_latency_sensitivity()`](https://stefanosbalaskas.github.io/eyeprocess/reference/pupil_latency_sensitivity.md)
+  : Pupil latency estimator sensitivity and resolvability audit
+- [`event_marker_qc()`](https://stefanosbalaskas.github.io/eyeprocess/reference/event_marker_qc.md)
+  : Event-marker plausibility audit
+- [`validation_ladder()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validation_ladder.md)
+  : Build a measurement-to-generalization validation ladder
+
 ## Validation evidence programmes and freezing (0.9 M2)
 
 - [`evaluate_validation_acceptance()`](https://stefanosbalaskas.github.io/eyeprocess/reference/evaluate_validation_acceptance.md)

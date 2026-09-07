@@ -1,0 +1,33 @@
+# Measurement accountability: pupil latency, event plausibility, and validation
+
+This workflow adds three conservative measurement-accountability
+diagnostics.
+
+## Pupil latency sensitivity
+
+[`pupil_latency_sensitivity()`](https://stefanosbalaskas.github.io/eyeprocess/reference/pupil_latency_sensitivity.md)
+compares a sustained-threshold onset, maximum-slope tangent onset, and
+piecewise breakpoint. Report estimator spread and the
+`latency_resolvability` assessment rather than treating one latency as
+hardware- or algorithm-independent.
+
+## Event-marker plausibility
+
+[`event_marker_qc()`](https://stefanosbalaskas.github.io/eyeprocess/reference/event_marker_qc.md)
+evaluates corroborating channel offsets and returns `confirmed`,
+`plausible`, `ambiguous`, or `implausible`, plus a consensus offset and
+uncertainty. It is explicitly **not** a clock-synchronization or
+drift-correction routine; use the existing timebase/synchronization
+tools for that layer.
+
+## Validation ladder
+
+[`validation_ladder()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validation_ladder.md)
+separates acquisition QC, analytical QC, construct checking,
+within-person evidence, and held-out-person generalization. A
+generalization claim cannot be marked supported unless held-out-person
+validation passes.
+
+The implementation is independent and transparent. Methodological
+motivation includes DOI 10.1038/s41598-026-68921-9, DOI
+10.3389/fnrgo.2026.1911259, and DOI 10.1007/s12028-026-02637-6.

@@ -90,6 +90,8 @@ controls, reproducibility, benchmarking, and software-paper evidence.
   validation](https://stefanosbalaskas.github.io/eyeprocess/articles/advanced-model-validation.md):
 - [Research validation and software-paper
   programme](https://stefanosbalaskas.github.io/eyeprocess/articles/research-validation-program.md):
+- [Measurement accountability: pupil latency, event plausibility, and
+  validation](https://stefanosbalaskas.github.io/eyeprocess/articles/measurement-accountability-0-11.md):
 - [Research-scale validation
   execution](https://stefanosbalaskas.github.io/eyeprocess/articles/validation-execution-engine.md):
 - [Dynamic IRTree and transition-model
