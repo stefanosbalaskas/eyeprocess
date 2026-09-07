@@ -136,6 +136,11 @@ articles:
   - m4-negative-controls-state-count-0-11
   - m4-recovery-validation-0-11
 reference:
+- title: Measurement accountability diagnostics (0.11)
+  contents:
+  - pupil_latency_sensitivity
+  - event_marker_qc
+  - validation_ladder
 - title: Validation evidence programmes and freezing (0.9 M2)
   contents:
   - evaluate_validation_acceptance
