@@ -19,6 +19,16 @@
 | Process and psychometric modelling | IRT, response-time models, multimodal process measurement, validation and sensitivity infrastructure |
 | Interoperability and storage | Eye-Tracking-BIDS, Arrow/Parquet workflows, conversion bridges, auditable storage contracts |
 
+## September 2026 measurement-accountability additions
+
+The current development branch adds three conservative diagnostics that make timing uncertainty and validation scope explicit without changing the package's existing synchronization or modelling engines:
+
+- `pupil_latency_sensitivity()` compares sustained-threshold, maximum-slope-tangent, and piecewise-breakpoint pupil onsets and reports estimator spread, signal diagnostics, and latency resolvability instead of presenting one onset as hardware- or algorithm-independent.
+- `event_marker_qc()` audits whether independent channel offsets corroborate a nominal event and reports consensus offset and uncertainty. It is event-plausibility QC only: it does **not** synchronize clocks, correct drift, or modify timestamps.
+- `validation_ladder()` separates acquisition QC, analytical QC, construct checking, within-person evidence, and held-out-person generalization. A generalization claim cannot be marked supported without held-out-person validation.
+
+See the [Measurement accountability article](https://stefanosbalaskas.github.io/eyeprocess/articles/measurement-accountability-0-11.html) and the [measurement-accountability reference section](https://stefanosbalaskas.github.io/eyeprocess/reference/index.html#measurement-accountability-diagnostics-0-11).
+
 ## Design commitments
 
 - Harmonize semantics, not merely column names.
@@ -138,6 +148,7 @@ provenance_manifest(x)
 - [Validating real exports](https://stefanosbalaskas.github.io/eyeprocess/articles/validating-real-exports.html)
 - [Preprocessing and features](https://stefanosbalaskas.github.io/eyeprocess/articles/preprocessing-features.html)
 - [Psychometric process models](https://stefanosbalaskas.github.io/eyeprocess/articles/psychometric-process-models.html)
+- [Measurement accountability](https://stefanosbalaskas.github.io/eyeprocess/articles/measurement-accountability-0-11.html)
 - [Responsible use](https://stefanosbalaskas.github.io/eyeprocess/articles/responsible-use.html)
 - [Complete function reference](https://stefanosbalaskas.github.io/eyeprocess/reference/index.html)
 
