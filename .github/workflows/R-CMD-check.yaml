@@ -67,18 +67,30 @@ jobs:
         shell: bash
         run: |
           echo '::group::R-devel check logs'
+          mkdir -p r-devel-diagnostics
           found=0
           while IFS= read -r -d '' log; do
             found=1
             echo
             echo "===== ${log} ====="
             cat "$log"
+            cp --parents "$log" r-devel-diagnostics/
           done < <(find . -type f \( -name '00check.log' -o -name 'testthat.Rout.fail' -o -name '*.Rout.fail' \) -print0 2>/dev/null)
+          find . -maxdepth 4 -type d -name '*.Rcheck' -print > r-devel-diagnostics/check-directories.txt 2>/dev/null || true
           if [ "$found" -eq 0 ]; then
             echo 'No standard R CMD check failure logs were found; listing check directories instead.'
-            find . -maxdepth 4 -type d -name '*.Rcheck' -print 2>/dev/null || true
+            cat r-devel-diagnostics/check-directories.txt
           fi
           echo '::endgroup::'
+
+      - name: Upload R-devel check diagnostics
+        if: ${{ always() && matrix.config.r == 'devel' && steps.check-package.outcome == 'failure' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: r-devel-check-diagnostics
+          path: r-devel-diagnostics
+          if-no-files-found: warn
+          retention-days: 7
 
       - name: Preserve R-devel check failure
         if: ${{ always() && matrix.config.r == 'devel' && steps.check-package.outcome == 'failure' }}
