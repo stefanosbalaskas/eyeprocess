@@ -161,11 +161,14 @@ validation_ladder <- function(acquisition_qc = "not_assessed", analytical_qc = "
   stages <- c(acquisition_qc = acquisition_qc, analytical_qc = analytical_qc,
               construct_check = construct_check, within_person = within_person,
               held_out_person = held_out_person)
+  stage_names <- names(stages)
   stages <- tolower(gsub("-", "_", as.character(stages)))
+  names(stages) <- stage_names
   valid <- c("pass", "warning", "fail", "not_assessed")
   if (any(!stages %in% valid)) stop("Stage status must be pass, warning, fail, or not_assessed.", call. = FALSE)
-  general <- tolower(gsub("-", "_", claim)) %in% c("generalizable", "generalization", "out_of_person", "population")
-  held <- unname(stages["held_out_person"]) == "pass"
+  general <- isTRUE(tolower(gsub("-", "_", as.character(claim)[1L])) %in%
+                    c("generalizable", "generalization", "out_of_person", "population"))
+  held <- identical(unname(stages[["held_out_person"]]), "pass")
   status <- if (any(stages == "fail") || (general && !held)) {
     "not_supported"
   } else if (any(stages %in% c("warning", "not_assessed"))) {
