@@ -54,7 +54,33 @@ jobs:
           needs: check
           dependencies: ${{ matrix.config.dependencies }}
 
-      - uses: r-lib/actions/check-r-package@v2
+      - name: Check package
+        id: check-package
+        uses: r-lib/actions/check-r-package@v2
+        continue-on-error: ${{ matrix.config.r == 'devel' }}
         with:
           upload-snapshots: true
           build_args: 'c("--no-manual","--compact-vignettes=gs+qpdf")'
+
+      - name: Expose R-devel check diagnostics
+        if: ${{ always() && matrix.config.r == 'devel' && steps.check-package.outcome == 'failure' }}
+        shell: bash
+        run: |
+          echo '::group::R-devel check logs'
+          found=0
+          while IFS= read -r -d '' log; do
+            found=1
+            echo
+            echo "===== ${log} ====="
+            cat "$log"
+          done < <(find . -type f \( -name '00check.log' -o -name 'testthat.Rout.fail' -o -name '*.Rout.fail' \) -print0 2>/dev/null)
+          if [ "$found" -eq 0 ]; then
+            echo 'No standard R CMD check failure logs were found; listing check directories instead.'
+            find . -maxdepth 4 -type d -name '*.Rcheck' -print 2>/dev/null || true
+          fi
+          echo '::endgroup::'
+
+      - name: Preserve R-devel check failure
+        if: ${{ always() && matrix.config.r == 'devel' && steps.check-package.outcome == 'failure' }}
+        shell: bash
+        run: exit 1
