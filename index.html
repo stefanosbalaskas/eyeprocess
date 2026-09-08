@@ -137,6 +137,20 @@
 </table>
 </div>
 <div class="section level2">
+<h2 id="september-2026-measurement-accountability-additions">September 2026 measurement-accountability additions<a class="anchor" aria-label="anchor" href="#september-2026-measurement-accountability-additions"></a>
+</h2>
+<p>The current development branch adds three conservative diagnostics that make timing uncertainty and validation scope explicit without changing the package’s existing synchronization or modelling engines:</p>
+<ul>
+<li>
+<code><a href="reference/pupil_latency_sensitivity.html">pupil_latency_sensitivity()</a></code> compares sustained-threshold, maximum-slope-tangent, and piecewise-breakpoint pupil onsets and reports estimator spread, signal diagnostics, and latency resolvability instead of presenting one onset as hardware- or algorithm-independent.</li>
+<li>
+<code><a href="reference/event_marker_qc.html">event_marker_qc()</a></code> audits whether independent channel offsets corroborate a nominal event and reports consensus offset and uncertainty. It is event-plausibility QC only: it does <strong>not</strong> synchronize clocks, correct drift, or modify timestamps.</li>
+<li>
+<code><a href="reference/validation_ladder.html">validation_ladder()</a></code> separates acquisition QC, analytical QC, construct checking, within-person evidence, and held-out-person generalization. A generalization claim cannot be marked supported without held-out-person validation.</li>
+</ul>
+<p>See the <a href="https://stefanosbalaskas.github.io/eyeprocess/articles/measurement-accountability-0-11.html">Measurement accountability article</a> and the <a href="https://stefanosbalaskas.github.io/eyeprocess/reference/index.html#measurement-accountability-diagnostics-0-11">measurement-accountability reference section</a>.</p>
+</div>
+<div class="section level2">
 <h2 id="design-commitments">Design commitments<a class="anchor" aria-label="anchor" href="#design-commitments"></a>
 </h2>
 <ul>
@@ -308,6 +322,7 @@
 <li><a href="https://stefanosbalaskas.github.io/eyeprocess/articles/validating-real-exports.html">Validating real exports</a></li>
 <li><a href="https://stefanosbalaskas.github.io/eyeprocess/articles/preprocessing-features.html">Preprocessing and features</a></li>
 <li><a href="https://stefanosbalaskas.github.io/eyeprocess/articles/psychometric-process-models.html">Psychometric process models</a></li>
+<li><a href="https://stefanosbalaskas.github.io/eyeprocess/articles/measurement-accountability-0-11.html">Measurement accountability</a></li>
 <li><a href="https://stefanosbalaskas.github.io/eyeprocess/articles/responsible-use.html">Responsible use</a></li>
 <li><a href="https://stefanosbalaskas.github.io/eyeprocess/reference/index.html">Complete function reference</a></li>
 </ul>
