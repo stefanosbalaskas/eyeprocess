@@ -62,10 +62,41 @@ jobs:
           upload-snapshots: true
           build_args: 'c("--no-manual","--compact-vignettes=gs+qpdf")'
 
-      - name: Check package (R-devel, retained output)
+      - name: Build package (R-devel, retained output)
         if: ${{ matrix.config.r == 'devel' }}
+        id: build-devel
+        shell: bash
+        run: |
+          mkdir -p r-devel-check
+          set +e
+          R CMD build . --no-manual --compact-vignettes=gs+qpdf > r-devel-check/build.log 2>&1
+          status=$?
+          set -e
+
+          cat r-devel-check/build.log
+          echo "status=${status}" >> "$GITHUB_OUTPUT"
+
+          if [ "$status" -ne 0 ]; then
+            echo "failed=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          tarball=$(find . -maxdepth 1 -type f -name '*.tar.gz' -printf '%f\n' | sort | tail -n 1)
+          if [ -z "$tarball" ]; then
+            echo 'R CMD build exited successfully but no package tarball was found.' | tee -a r-devel-check/build.log
+            echo "failed=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          echo "tarball=${tarball}" >> "$GITHUB_OUTPUT"
+          echo "failed=false" >> "$GITHUB_OUTPUT"
+
+      - name: Check package (R-devel, retained output)
+        if: ${{ matrix.config.r == 'devel' && steps.build-devel.outputs.failed == 'false' }}
         id: check-devel
         shell: Rscript {0}
+        env:
+          R_DEVEL_TARBALL: ${{ steps.build-devel.outputs.tarball }}
         run: |
           options(crayon.enabled = TRUE)
           cat("LOGNAME=", Sys.info()[["user"]], "\n", sep = "", file = Sys.getenv("GITHUB_ENV"), append = TRUE)
@@ -73,13 +104,13 @@ jobs:
           if (Sys.getenv("_R_CHECK_CRAN_INCOMING_", "") == "") Sys.setenv("_R_CHECK_CRAN_INCOMING_" = "false")
 
           check_dir <- file.path(getwd(), "r-devel-check")
-          dir.create(check_dir, recursive = TRUE, showWarnings = FALSE)
+          tarball <- file.path(getwd(), Sys.getenv("R_DEVEL_TARBALL"))
           failed <- TRUE
 
           tryCatch({
             check_results <- rcmdcheck::rcmdcheck(
+              path = tarball,
               args = c("--no-manual", "--as-cran"),
-              build_args = c("--no-manual", "--compact-vignettes=gs+qpdf"),
               error_on = "never",
               check_dir = check_dir
             )
@@ -99,12 +130,12 @@ jobs:
 
           cat("failed=", if (failed) "true" else "false", "\n", sep = "", file = Sys.getenv("GITHUB_OUTPUT"), append = TRUE)
 
-      - name: Show R-devel check diagnostics
+      - name: Show R-devel build/check diagnostics
         if: ${{ always() && matrix.config.r == 'devel' }}
         shell: bash
         run: |
-          echo '::group::R-devel 00check/test logs'
-          find r-devel-check -type f \( -name '00check.log' -o -name 'testthat.Rout*' -o -name '*.Rout.fail' -o -name 'rcmdcheck-summary.txt' -o -name 'rcmdcheck-driver-error.txt' \) -print -exec cat '{}' \; 2>/dev/null || true
+          echo '::group::R-devel build/check logs'
+          find r-devel-check -type f \( -name 'build.log' -o -name '00check.log' -o -name 'testthat.Rout*' -o -name '*.Rout.fail' -o -name 'rcmdcheck-summary.txt' -o -name 'rcmdcheck-driver-error.txt' \) -print -exec cat '{}' \; 2>/dev/null || true
           echo '::endgroup::'
 
       - name: Upload R-devel check results
@@ -117,6 +148,6 @@ jobs:
           retention-days: 7
 
       - name: Preserve R-devel check failure
-        if: ${{ always() && matrix.config.r == 'devel' && steps.check-devel.outputs.failed == 'true' }}
+        if: ${{ always() && matrix.config.r == 'devel' && (steps.build-devel.outputs.failed == 'true' || steps.check-devel.outputs.failed == 'true') }}
         shell: bash
         run: exit 1
