@@ -56,16 +56,67 @@ jobs:
           dependencies: ${{ matrix.config.dependencies }}
 
       - name: Check package
-        id: check-package
+        if: ${{ matrix.config.r != 'devel' }}
         uses: r-lib/actions/check-r-package@v2
-        continue-on-error: ${{ matrix.config.r == 'devel' }}
         with:
           upload-snapshots: true
-          upload-results: ${{ matrix.config.r == 'devel' && 'always' || 'false' }}
-          artifact-name: r-devel-check-results
           build_args: 'c("--no-manual","--compact-vignettes=gs+qpdf")'
 
+      - name: Check package (R-devel, retained output)
+        if: ${{ matrix.config.r == 'devel' }}
+        id: check-devel
+        shell: Rscript {0}
+        run: |
+          options(crayon.enabled = TRUE)
+          cat("LOGNAME=", Sys.info()[["user"]], "\n", sep = "", file = Sys.getenv("GITHUB_ENV"), append = TRUE)
+          if (Sys.getenv("_R_CHECK_FORCE_SUGGESTS_", "") == "") Sys.setenv("_R_CHECK_FORCE_SUGGESTS_" = "false")
+          if (Sys.getenv("_R_CHECK_CRAN_INCOMING_", "") == "") Sys.setenv("_R_CHECK_CRAN_INCOMING_" = "false")
+
+          check_dir <- file.path(getwd(), "r-devel-check")
+          dir.create(check_dir, recursive = TRUE, showWarnings = FALSE)
+          failed <- TRUE
+
+          tryCatch({
+            check_results <- rcmdcheck::rcmdcheck(
+              args = c("--no-manual", "--as-cran"),
+              build_args = c("--no-manual", "--compact-vignettes=gs+qpdf"),
+              error_on = "never",
+              check_dir = check_dir
+            )
+            saveRDS(check_results, file.path(check_dir, "rcmdcheck-result.rds"))
+            failed <- length(check_results$errors) > 0L || length(check_results$warnings) > 0L
+            writeLines(
+              c(
+                paste0("errors=", length(check_results$errors)),
+                paste0("warnings=", length(check_results$warnings)),
+                paste0("notes=", length(check_results$notes))
+              ),
+              file.path(check_dir, "rcmdcheck-summary.txt")
+            )
+          }, error = function(e) {
+            writeLines(conditionMessage(e), file.path(check_dir, "rcmdcheck-driver-error.txt"))
+          })
+
+          cat("failed=", if (failed) "true" else "false", "\n", sep = "", file = Sys.getenv("GITHUB_OUTPUT"), append = TRUE)
+
+      - name: Show R-devel check diagnostics
+        if: ${{ always() && matrix.config.r == 'devel' }}
+        shell: bash
+        run: |
+          echo '::group::R-devel 00check/test logs'
+          find r-devel-check -type f \( -name '00check.log' -o -name 'testthat.Rout*' -o -name '*.Rout.fail' -o -name 'rcmdcheck-summary.txt' -o -name 'rcmdcheck-driver-error.txt' \) -print -exec cat '{}' \; 2>/dev/null || true
+          echo '::endgroup::'
+
+      - name: Upload R-devel check results
+        if: ${{ always() && matrix.config.r == 'devel' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: r-devel-check-results
+          path: r-devel-check
+          if-no-files-found: error
+          retention-days: 7
+
       - name: Preserve R-devel check failure
-        if: ${{ always() && matrix.config.r == 'devel' && steps.check-package.outcome == 'failure' }}
+        if: ${{ always() && matrix.config.r == 'devel' && steps.check-devel.outputs.failed == 'true' }}
         shell: bash
         run: exit 1
