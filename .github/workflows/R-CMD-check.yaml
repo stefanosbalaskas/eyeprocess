@@ -20,15 +20,19 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - {os: macos-latest,   r: 'release'}
-          - {os: windows-latest, r: 'release'}
-          - {os: ubuntu-latest,   r: 'devel', http-user-agent: 'release'}
-          - {os: ubuntu-latest,   r: 'release'}
-          - {os: ubuntu-latest,   r: 'oldrel-1'}
+          - {os: macos-latest,   r: 'release',  dependencies: '"all"',  force-suggests: 'true'}
+          - {os: windows-latest, r: 'release',  dependencies: '"all"',  force-suggests: 'true'}
+          # R-devel is a core-compatibility lane. Optional Suggests are exercised
+          # by the release/oldrel lanes so upstream development stacks (notably
+          # transient rstan/StanHeaders mismatches) cannot mask eyeprocess checks.
+          - {os: ubuntu-latest,  r: 'devel', http-user-agent: 'release', dependencies: '"hard"', force-suggests: 'false'}
+          - {os: ubuntu-latest,  r: 'release',  dependencies: '"all"',  force-suggests: 'true'}
+          - {os: ubuntu-latest,  r: 'oldrel-1', dependencies: '"all"',  force-suggests: 'true'}
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       R_KEEP_PKG_SOURCE: yes
+      _R_CHECK_FORCE_SUGGESTS_: ${{ matrix.config.force-suggests }}
 
     steps:
       - uses: actions/checkout@v6
@@ -42,8 +46,13 @@ jobs:
           extra-repositories: https://stan-dev.r-universe.dev
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          extra-packages: any::rcmdcheck
+          extra-packages: |
+            any::rcmdcheck
+            any::testthat
+            any::knitr
+            any::rmarkdown
           needs: check
+          dependencies: ${{ matrix.config.dependencies }}
 
       - uses: r-lib/actions/check-r-package@v2
         with:
