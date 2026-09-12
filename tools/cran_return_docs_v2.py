@@ -237,13 +237,20 @@ def split_call_args(expr: str) -> list[str]:
 
 
 def classes_in(expr: str) -> list[str]:
-    m = re.search(r"\bclass\s*=\s*(c\s*\((.*?)\)|(['\"])(.*?)\3)", expr, re.S)
+    # Only accept literal class declarations. Dynamic expressions such as
+    # class = c(paste0("eye_irt_", type, "_channel"), "eye_irt_channel")
+    # must not be misreported as literal fragments inside paste0().
+    m = re.search(r"\bclass\s*=\s*(['\"])([^'\"]+)\1", expr, re.S)
+    if m:
+        return [m.group(2)]
+    m = re.search(r"\bclass\s*=\s*c\s*\(([^()]*)\)", expr, re.S)
     if not m:
         return []
-    if m.group(2) is not None:
-        return re.findall(r"['\"]([^'\"]+)['\"]", m.group(2))
-    return [m.group(4)] if m.group(4) else []
-
+    parts = [p.strip() for p in m.group(1).split(",") if p.strip()]
+    parsed = [re.fullmatch(r"(['\"])([^'\"]+)\1", p) for p in parts]
+    if not parsed or not all(parsed):
+        return []
+    return [p.group(2) for p in parsed]
 
 def list_components(expr: str) -> list[str]:
     m = re.search(r"\blist\s*\(", expr)
@@ -275,6 +282,12 @@ def call_name(expr: str) -> str | None:
 def infer_expr(expr: str, assigns: dict[str, str], funcs: dict[str, FunctionInfo], seen: set[str]) -> ReturnInfo:
     expr = expr.strip().rstrip(";")
     compact = re.sub(r"\s+", " ", expr)
+    if expr in {"NA_real_", "NA_integer_"}:
+        return ReturnInfo("numeric", [], [], compact, "terminal")
+    if expr == "NA_character_":
+        return ReturnInfo("character", [], [], compact, "terminal")
+    if expr in {"NA", "NA_logical_"}:
+        return ReturnInfo("logical", [], [], compact, "terminal")
     if re.fullmatch(r"[A-Za-z.][A-Za-z0-9._]*", expr):
         if expr in assigns:
             return infer_expr(assigns[expr], assigns, funcs, seen)
@@ -300,6 +313,9 @@ def infer_expr(expr: str, assigns: dict[str, str], funcs: dict[str, FunctionInfo
         comps = list_components(expr)
         kind = "data.frame" if "data.frame" in cls else ("list" if "list(" in expr else "classed")
         return ReturnInfo(kind, cls, comps, compact, "terminal-class")
+    if name == "structure" and not cls:
+        comps = list_components(expr)
+        return ReturnInfo("list" if "list(" in expr else "classed", [], comps, compact, "terminal-dynamic-class")
 
     if name in {"data.frame", "as.data.frame"}:
         return ReturnInfo("data.frame", ["data.frame"], [], compact, "terminal")
@@ -313,11 +329,11 @@ def infer_expr(expr: str, assigns: dict[str, str], funcs: dict[str, FunctionInfo
         return ReturnInfo("factor", ["factor"], [], compact, "terminal")
 
     numeric_calls = {
-        "as.numeric", "numeric", "double", "mean", "median", "sum", "prod", "min", "max", "var", "sd",
-        "quantile", "cor", "cov", "plogis", "qlogis", "pnorm", "qnorm", "dnorm", "runif", "rnorm", "rbinom",
+        "as.numeric", "as.integer", "numeric", "integer", "double", "mean", "median", "sum", "prod", "min", "max", "var", "sd",
+        "quantile", "plogis", "qlogis", "pnorm", "qnorm", "dnorm", "runif", "rnorm", "rbinom",
         "rnbinom", "sqrt", "exp", "log", "log1p", "expm1", "abs", "round", "floor", "ceiling", "signif",
-        "seq", "seq_len", "seq_along", "sample", "sample.int", "rowMeans", "colMeans", "rowSums", "colSums",
-        "length", "nrow", "ncol", "which", "match", "findInterval", "uniroot", "optimize",
+        "seq", "seq_len", "seq_along", "sample.int", "rowMeans", "colMeans", "rowSums", "colSums",
+        "length", "nrow", "ncol", "which", "match", "findInterval",
     }
     logical_calls = {"isTRUE", "identical", "all", "any", "is.na", "is.null", "is.finite", "is.infinite", "grepl", "nzchar"}
     character_calls = {"as.character", "character", "paste", "paste0", "sprintf", "format", "formatC", "normalizePath", "file.path", "basename", "dirname"}
@@ -330,6 +346,10 @@ def infer_expr(expr: str, assigns: dict[str, str], funcs: dict[str, FunctionInfo
         return ReturnInfo("character", [], [], compact, "terminal-call")
     if name in list_calls:
         return ReturnInfo("list", ["list"], [], compact, "terminal-call")
+    if name in {"uniroot", "optimize"}:
+        return ReturnInfo("list", ["list"], [], compact, "terminal-call")
+    if name in {"sample", "cor", "cov"}:
+        return ReturnInfo("object", [], [], compact, "terminal-call-polymorphic")
     if name in {"vapply", "sapply"}:
         return ReturnInfo("vector-or-matrix", [], [], compact, "terminal-call")
     if name == "do.call" and re.search(r"\b(?:rbind|cbind)\b", expr):
@@ -340,6 +360,30 @@ def infer_expr(expr: str, assigns: dict[str, str], funcs: dict[str, FunctionInfo
         return ReturnInfo("ggplot", ["ggplot"], [], compact, "terminal-call")
     if name in {"writeLines", "write.table", "write.csv", "saveRDS", "save", "cat"}:
         return ReturnInfo("null", [], [], compact, "terminal-side-effect")
+
+    # Preserve structured terminal subsetting before arithmetic-token
+    # heuristics; e.g. order(-score) does not make the return numeric.
+    subset = re.match(r"^([A-Za-z.][A-Za-z0-9._]*)\s*\[", expr)
+    if subset:
+        base = subset.group(1)
+        if base in assigns:
+            base_info = infer_expr(assigns[base], assigns, funcs, seen)
+            if base_info.kind in {"data.frame", "matrix", "array", "tabular"}:
+                return ReturnInfo(base_info.kind, base_info.classes, base_info.components, compact, "terminal-subset")
+        if re.search(r"\bdrop\s*=\s*FALSE\b", expr):
+            return ReturnInfo("tabular", [], [], compact, "terminal-subset")
+        return ReturnInfo("object", [], [], compact, "terminal-subset")
+
+    # Infer simple terminal if/else expressions from both value branches.
+    if expr.startswith("if ") or expr.startswith("if("):
+        simple_if = re.match(r"^if\s*\((.*?)\)\s*(.*?)\s+else\s+(.*)$", expr, re.S)
+        if simple_if:
+            infos = [infer_expr(simple_if.group(i).strip(), assigns, funcs, seen) for i in (2, 3)]
+            non_null = [x for x in infos if x.kind != "null"]
+            kinds = {x.kind for x in non_null}
+            if len(kinds) == 1 and non_null:
+                x = non_null[0]
+                return ReturnInfo(x.kind, x.classes, x.components, compact, "conditional")
 
     # Arithmetic/comparison expressions are common terminal expressions.
     if re.search(r"(?:==|!=|<=|>=|<|>|%in%|\&\&|\|\|)", expr):
