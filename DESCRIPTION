@@ -27,7 +27,7 @@ URL: https://stefanosbalaskas.github.io/eyeprocess/, https://github.com/stefanos
 BugReports: https://github.com/stefanosbalaskas/eyeprocess/issues
 Encoding: UTF-8
 Depends: R (>= 4.1.0)
-Imports: graphics, grDevices, methods, splines, stats, utils
+Imports: graphics, grDevices, methods, splines, stats, utils, withr
 Suggests: brms, ggplot2, jsonlite, knitr, lme4, LNIRT, mirt, rmarkdown, TAM, arrow, diffIRT, GDINA, OpenMx, TraMineR, testthat (>= 3.0.0), callr, cmdstanr, eyetrackingR, future, future.apply, openssl, PupillometryR, rtdists, seqHMM, LSMjml, MASS, mgcv, nnet, survival, eRm, FactoMineR, mice, missForest, plm, psychotree, ranger, robfilter, tidyLPA, loo, posterior, targets, equateIRT, catR, mirtCAT
 Additional_repositories: https://stan-dev.r-universe.dev
 VignetteBuilder: knitr
