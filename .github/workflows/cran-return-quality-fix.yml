@@ -63,8 +63,8 @@ jobs:
           assert "A data frame containing the fitted model data" in adjust
           assert "pupil_confound_residual" in adjust and "pupil_confound_adjusted" in adjust
           assert "A numeric coefficient table" in effects
-          assert "\\code{mgcv::gam()}" in effects
-          assert "\\code{stats::lm()}" in effects
+          assert "smooth-term table" in effects
+          assert "coefficient matrix" in effects
           print("TIGHTENED_RETURN_CONTRACTS=PASS")
           PY
           python tools/cran_policy_audit.py
