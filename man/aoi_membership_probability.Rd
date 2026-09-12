@@ -11,6 +11,9 @@ aoi_membership_probability(draws, aois)
 
 \item{aois}{Rectangular AOI table with aoi/x_min/x_max/y_min/y_max.}
 }
+\value{
+A tabular R object containing aOI membership probabilities from uncertainty draws; rows represent analysis units and columns contain the returned quantities.
+}
 \description{
 AOI membership probabilities from uncertainty draws
 }

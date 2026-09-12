@@ -29,6 +29,9 @@ audit_process_adjusted_dif(
 
 \item{person}{Person or participant identifier column.}
 }
+\value{
+An object of class "eye_process_adjusted_dif", stored as a named list, with components "unadjusted_model", "adjusted_model", "coefficients", "surrogate", "note". It contains dIF before and after process-data adjustment and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 Audit DIF before and after process-data adjustment
 }

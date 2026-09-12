@@ -13,6 +13,9 @@ eyeprocess_irt_content_balance_audit(administered, item_bank, target = NULL)
 
 \item{target}{Target level, distribution, or criterion.}
 }
+\value{
+A data frame containing content balance in an administered adaptive form. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
+}
 \description{
 Audit content balance in an administered adaptive form
 }

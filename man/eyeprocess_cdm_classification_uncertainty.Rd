@@ -9,6 +9,9 @@ eyeprocess_cdm_classification_uncertainty(profile_probabilities)
 \arguments{
 \item{profile_probabilities}{Posterior attribute-profile probabilities.}
 }
+\value{
+A data frame containing cDM classification uncertainty from profile probabilities. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
+}
 \description{
 Summarise CDM classification uncertainty from profile probabilities
 }

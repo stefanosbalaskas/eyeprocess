@@ -23,6 +23,9 @@ eyeprocess_irt_stopping_rule(
 
 \item{target_se}{Target conditional standard error for stopping.}
 }
+\value{
+A named list with components "stop", "reason", "n_administered", "se", containing a simple adaptive stopping rule and associated metadata or diagnostics.
+}
 \description{
 Evaluate a simple adaptive stopping rule
 }

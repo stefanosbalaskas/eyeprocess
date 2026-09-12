@@ -9,6 +9,9 @@ preflight_failures(x)
 \arguments{
 \item{x}{Object to process, inspect, compare, or plot.}
 }
+\value{
+A logical value or vector indicating pre-flight failures/review cases.
+}
 \description{
 Extract pre-flight failures/review cases
 }

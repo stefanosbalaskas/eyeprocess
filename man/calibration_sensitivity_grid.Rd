@@ -12,6 +12,9 @@ calibration_sensitivity_grid(
 \arguments{
 \item{offset_x, offset_y}{Candidate offsets in coordinate units.}
 }
+\value{
+An R object containing sensitivity grid for deterministic calibration offsets. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
+}
 \description{
 Sensitivity grid for deterministic calibration offsets
 }

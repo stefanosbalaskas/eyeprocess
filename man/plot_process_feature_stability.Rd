@@ -23,6 +23,9 @@ plot_process_feature_stability(
 
 \item{...}{Additional arguments passed to the underlying method or helper.}
 }
+\value{
+An R object containing plot process-feature stability across resamples/splits. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
+}
 \description{
 Plot process-feature stability across resamples/splits
 }

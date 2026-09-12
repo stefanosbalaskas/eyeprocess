@@ -11,6 +11,9 @@ register_irt_model(spec, overwrite = FALSE)
 
 \item{overwrite}{Whether to replace an existing model with the same id.}
 }
+\value{
+An R object containing a multimodal IRT model. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
+}
 \description{
 Register a multimodal IRT model
 }

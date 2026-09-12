@@ -17,6 +17,9 @@ audit_process_local_dependence(
 
 \item{threshold}{Absolute correlation threshold used only for flagging.}
 }
+\value{
+An object of class "eye_process_local_dependence_audit", stored as a named list, with components "pairs", "threshold", "max_absolute_response", "note". It contains inter-option/process local dependence and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 Computes pairwise residual correlations (a Q3-style diagnostic) across item
 or option columns and, when supplied, analogous process-residual

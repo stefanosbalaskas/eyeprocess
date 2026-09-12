@@ -17,6 +17,9 @@ compare_parametric_nonparametric_irf(
 
 \item{theta_grid}{Grid of latent-trait values used for evaluation.}
 }
+\value{
+An object of class "eye_irf_comparison", "data.frame", stored as a data frame, containing conventional logistic and flexible IRF shapes and associated metadata needed to interpret the result.
+}
 \description{
 Compare conventional logistic and flexible IRF shapes
 }

@@ -24,6 +24,9 @@ scalar out-of-sample score. The evaluator owns all fitting/splitting logic.}
 
 \item{higher_is_better}{Direction of the score.}
 }
+\value{
+An object of class "eye_process_channel_ablation", "data.frame", stored as a data frame, containing ablate process channels under a common out-of-sample evaluator and associated metadata needed to interpret the result.
+}
 \description{
 Ablate process channels under a common out-of-sample evaluator
 }

@@ -21,6 +21,9 @@ compare_hard_probabilistic_aoi(
 
 \item{x, y}{Gaze-coordinate columns.}
 }
+\value{
+An R object containing hard and probabilistic AOI assignments. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
+}
 \description{
 Compare hard and probabilistic AOI assignments
 }

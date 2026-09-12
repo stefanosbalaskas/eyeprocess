@@ -13,6 +13,9 @@ fit_changepoint_rt_irt(data, ..., refit = TRUE)
 
 \item{refit}{Whether the model is refitted after segmentation.}
 }
+\value{
+An object of class "eye_changepoint_rt_irt", stored as a named list, with components "changepoints", "refit_requested", "status". It contains a change-point RT IRT workflow and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 Fit a change-point RT IRT workflow
 }

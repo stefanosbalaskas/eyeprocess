@@ -28,6 +28,9 @@ test_structured, test_unstructured, fold_value, ...)` returning a fold result.}
 
 \item{...}{Passed to `builder`.}
 }
+\value{
+An object of class "eye_structured_unstructured_process_features", stored as a named list, with components "contract", "folds", "status". It contains leakage-safe structured/unstructured process representations and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 Prepare leakage-safe structured/unstructured process representations
 }

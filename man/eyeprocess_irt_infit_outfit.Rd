@@ -20,6 +20,9 @@ eyeprocess_irt_infit_outfit(
 
 \item{min_variance}{Minimum variance used to stabilize residual calculations.}
 }
+\value{
+A data frame containing residual-based Infit and Outfit summaries. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
+}
 \description{
 These statistics summarize response-model residual behavior. They are not
 labels for motivation, misconduct, diagnosis, or respondent intent.

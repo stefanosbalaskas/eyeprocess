@@ -11,6 +11,9 @@ summarise_validation_acceptance(x, by = character())
 
 \item{by}{Grouping variables or aggregation level.}
 }
+\value{
+A tabular R object containing an acceptance matrix; rows represent analysis units and columns contain the returned quantities.
+}
 \description{
 Summarise an acceptance matrix
 }

@@ -20,6 +20,9 @@ irt_sequence_channel(
 
 \item{options}{Additional channel/model options.}
 }
+\value{
+An object of class "eye_irt_", "_channel", stored as a named list, with components "type", "family", "role", "link", "variables", "latent", "options". It contains sequence/process-state channel and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 Sequence/process-state channel
 }

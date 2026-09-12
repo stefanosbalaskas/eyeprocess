@@ -13,6 +13,9 @@ process_sequence_embedding(sequence, n = c(1L, 2L, 3L), dimensions = 5L)
 
 \item{dimensions}{Number of embedding dimensions.}
 }
+\value{
+An object of class "eye_process_sequence_embedding", stored as an R object, containing low-dimensional embedding of response-process sequences and associated metadata needed to interpret the result.
+}
 \description{
 Uses TF-IDF-weighted n-gram features and truncated SVD. This is a transparent
 classical embedding; sequence autoencoders can be supplied later through an

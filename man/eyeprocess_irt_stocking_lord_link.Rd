@@ -26,6 +26,9 @@ eyeprocess_irt_stocking_lord_link(
 
 \item{start}{Starting values for numerical optimization.}
 }
+\value{
+An object of class "eye_irt_link", stored as a named list, with components "A", "B", "method", "anchors", "objective", "convergence". It contains stocking-Lord characteristic-curve linking and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 Stocking-Lord characteristic-curve linking
 }

@@ -11,6 +11,9 @@ export_eye_pipeline(x, path)
 
 \item{path}{CSV path.}
 }
+\value{
+An R object containing a pipeline manifest and optional run status. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
+}
 \description{
 Export a pipeline manifest and optional run status
 }

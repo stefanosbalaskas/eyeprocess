@@ -26,6 +26,9 @@ eyeprocess_irt_eap_score(
 
 \item{D}{Logistic scaling constant.}
 }
+\value{
+An object of class "eye_irt_score", stored as a named list, with components "estimate", "se", "theta", "posterior", "method". It contains eAP score for dichotomous IRT item parameters and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 EAP score for dichotomous IRT item parameters
 }

@@ -28,6 +28,9 @@ process_dependent_discrimination_audit(
 \item{nonlinear}{If TRUE and mgcv is installed, additionally estimate a
 smooth theta-by-process diagnostic surface.}
 }
+\value{
+An object of class "eye_process_dependent_discrimination", stored as a named list, with components "process_model", "response_model", "interaction", "smooth_model", "residual_process", "status", "caveat". It contains process-dependent item discrimination and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 Residualises a process variable against person/item baselines, then tests
 whether the theta-response slope changes with that residual process value.

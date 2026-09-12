@@ -11,6 +11,9 @@ eyeprocess_cdm_dina_ideal_response(Q, profiles)
 
 \item{profiles}{Attribute mastery profiles, with rows representing profiles.}
 }
+\value{
+A vector or matrix containing deterministic DINA ideal responses from a Q-matrix, with shape determined by the supplied analysis units.
+}
 \description{
 Compute deterministic DINA ideal responses from a Q-matrix
 }

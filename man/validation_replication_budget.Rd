@@ -20,6 +20,9 @@ validation_replication_budget(
 
 \item{maximum}{Maximum permitted replication count.}
 }
+\value{
+An R object containing a replication budget from a target MCSE. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
+}
 \description{
 Compute a replication budget from a target MCSE
 }

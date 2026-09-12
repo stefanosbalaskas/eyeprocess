@@ -26,6 +26,9 @@ pupil_baseline_sensitivity(
 
 \item{correction}{`subtractive` or `divisive`.}
 }
+\value{
+A tabular R object containing pupil baseline-window sensitivity; rows represent analysis units and columns contain the returned quantities.
+}
 \description{
 Evaluate pupil baseline-window sensitivity
 }

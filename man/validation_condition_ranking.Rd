@@ -14,6 +14,9 @@ validation_condition_ranking(
 
 \item{weights}{Named weights for rmse, absolute bias, coverage error, and failure rate.}
 }
+\value{
+A numeric value or vector containing rank validation conditions by a transparent robustness score.
+}
 \description{
 Rank validation conditions by a transparent robustness score
 }

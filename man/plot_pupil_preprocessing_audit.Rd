@@ -20,6 +20,9 @@ plot_pupil_preprocessing_audit(
 
 \item{...}{Additional arguments passed to the underlying method or helper.}
 }
+\value{
+An R object containing plot raw-to-processed pupil preprocessing stages. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
+}
 \description{
 Plot raw-to-processed pupil preprocessing stages
 }

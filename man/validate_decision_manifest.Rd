@@ -18,6 +18,9 @@ validate_decision_manifest(
 
 \item{require_nonempty}{If TRUE, required domains must contain at least one decision.}
 }
+\value{
+A logical value or vector indicating a research decision manifest.
+}
 \description{
 Validate a research decision manifest
 }

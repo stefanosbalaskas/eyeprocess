@@ -11,6 +11,9 @@ validation_recovery_table(x, by = NULL)
 
 \item{by}{Optional grouping variables.}
 }
+\value{
+An R object containing parameter-recovery table. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
+}
 \description{
 Parameter-recovery table
 }

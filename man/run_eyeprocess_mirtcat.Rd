@@ -11,6 +11,9 @@ run_eyeprocess_mirtcat(..., engine = "mirtCAT")
 
 \item{engine}{Requested estimation or analysis engine.}
 }
+\value{
+An object of class "eye_external_irt_fit", stored as a named list, with components "status", "engine", "fit", "call". It contains a mirtCAT adaptive-testing workflow without fallback substitution and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 Run a mirtCAT adaptive-testing workflow without fallback substitution
 }

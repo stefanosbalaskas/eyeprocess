@@ -13,6 +13,9 @@ fit_nonignorable_missing_irt(data, engine = NULL, ...)
 
 \item{...}{Passed to `engine`.}
 }
+\value{
+An object of class "eye_gated_process_model", stored as a named list, with components "id", "purpose", "required_evidence", "engine", "fit", "status", "notes", "caveat". It contains a gated Bayesian nonignorable-missing IRT interface and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 Create a gated Bayesian nonignorable-missing IRT interface
 }

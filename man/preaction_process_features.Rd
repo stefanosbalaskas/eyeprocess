@@ -26,6 +26,9 @@ preaction_process_features(
 
 \item{aoi, pupil, blink}{Optional feature columns.}
 }
+\value{
+An object of class "eye_preaction_process_features", stored as a named list, with components "data", "windows_ms", "by", "status", "caveat". It contains pre-action process features and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 Build pre-action process features
 }

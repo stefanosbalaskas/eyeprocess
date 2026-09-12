@@ -13,6 +13,9 @@ eyeprocess_irt_plausible_values(score, n = 5L, seed = 1L)
 
 \item{seed}{Random-number seed for reproducible execution.}
 }
+\value{
+A numeric value or vector containing plausible values from a discrete posterior grid.
+}
 \description{
 Draw plausible values from a discrete posterior grid
 }

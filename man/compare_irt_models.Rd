@@ -11,6 +11,9 @@ compare_irt_models(..., names = NULL)
 
 \item{names}{Value supplied to `names`; see Details for its model-specific role.}
 }
+\value{
+An object of class "eye_irt_model_comparison", stored as an R object, containing multimodal IRT model objects and associated metadata needed to interpret the result.
+}
 \description{
 Uses supplied scoring functions when models expose different engines. The
 default extracts AIC/BIC/logLik when available and never treats in-sample fit

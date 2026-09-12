@@ -13,6 +13,9 @@ validation_coverage_table(x, nominal = 0.95, by = NULL)
 
 \item{by}{Optional grouping variables.}
 }
+\value{
+An R object containing interval-coverage table. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
+}
 \description{
 Interval-coverage table
 }

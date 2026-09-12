@@ -15,6 +15,9 @@ eyeprocess_irt_grm_probability(theta, a = 1, thresholds, D = 1)
 
 \item{D}{Logistic scaling constant.}
 }
+\value{
+A logical value or vector indicating graded-response category probabilities.
+}
 \description{
 Graded-response category probabilities
 }

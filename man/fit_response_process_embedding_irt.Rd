@@ -29,6 +29,9 @@ fit_response_process_embedding_irt(
 
 \item{n}{Requested count or n-gram order, depending on context.}
 }
+\value{
+An object of class "eye_response_process_embedding_irt", stored as a named list, with components "model", "embedding", "data", "status". It contains an IRT response model augmented by sequence embeddings and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 Fit an IRT response model augmented by sequence embeddings
 }

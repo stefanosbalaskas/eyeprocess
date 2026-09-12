@@ -26,6 +26,9 @@ audit_measurement_transportability(
 
 \item{maximum}{Maximum acceptable value or threshold.}
 }
+\value{
+An object of class "eye_measurement_transportability_audit", "data.frame", stored as a data frame, containing measurement transportability across held-out groups and associated metadata needed to interpret the result.
+}
 \description{
 Summarise measurement transportability across held-out groups
 }

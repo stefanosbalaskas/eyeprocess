@@ -17,6 +17,9 @@ eyeprocess_irt_prior_sensitivity_grid(
 
 \item{guessing_mean}{Prior mean for the lower-asymptote or guessing parameter.}
 }
+\value{
+An R object containing a prior-sensitivity grid for Bayesian IRT analyses. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
+}
 \description{
 Construct a prior-sensitivity grid for Bayesian IRT analyses
 }

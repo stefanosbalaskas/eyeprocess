@@ -23,6 +23,9 @@ audit_sampling_irregularity(
 
 \item{cv_threshold}{Review threshold for interval coefficient of variation.}
 }
+\value{
+An object of class "eye_sampling_irregularity_audit", stored as a named list, with components "table", "cv_threshold", "caveat". It contains sampling irregularity and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 Audit sampling irregularity
 }

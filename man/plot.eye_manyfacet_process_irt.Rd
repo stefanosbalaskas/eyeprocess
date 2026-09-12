@@ -13,6 +13,9 @@
 
 \item{...}{Additional arguments passed to the selected model, engine, or method.}
 }
+\value{
+Invisibly returns the plotting result when available; the primary effect is drawing plot many-facet process IRT effects.
+}
 \description{
 Plot many-facet process IRT effects
 }

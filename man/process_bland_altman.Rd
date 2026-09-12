@@ -17,6 +17,9 @@ process_bland_altman(data, person, session, measure, sessions = NULL)
 
 \item{sessions}{Optional two session labels.}
 }
+\value{
+An object of class "eye_process_bland_altman", stored as a named list, with components "pairs", "summary", "sessions". It contains bland-Altman repeatability summary for two sessions and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 Bland-Altman repeatability summary for two sessions
 }

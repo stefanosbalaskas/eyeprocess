@@ -9,6 +9,9 @@ expand_eyeprocess_stress_evidence_plan(plan)
 \arguments{
 \item{plan}{Validation or stress-evidence plan object.}
 }
+\value{
+A tabular R object containing expand a stress evidence plan into one-factor-at-a-time scenarios; rows represent analysis units and columns contain the returned quantities.
+}
 \description{
 Expand a stress evidence plan into one-factor-at-a-time scenarios
 }

@@ -20,6 +20,9 @@ eyeprocess_irt_link_stability(
 
 \item{method}{Scoring, linking, or analysis method.}
 }
+\value{
+An object of class "eye_irt_link_stability", stored as a named list, with components "table", "sd_A", "sd_B", "method". It contains linking estimates across anchor subsets and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 Compare linking estimates across anchor subsets
 }

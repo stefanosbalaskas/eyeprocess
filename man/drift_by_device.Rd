@@ -13,6 +13,9 @@ drift_by_device(data, device = "device_id", ...)
 
 \item{...}{Additional arguments passed to the underlying method or helper.}
 }
+\value{
+An R object containing drift audit stratified by device. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
+}
 \description{
 Drift audit stratified by device
 }

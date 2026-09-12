@@ -67,6 +67,7 @@
 #' @param replications Number of simulation or validation replications.
 #' @param seed Random-number seed for reproducible execution.
 #' @param label Human-readable label.
+#' @return An object of class "eye_validation_evidence_plan", stored as a named list, with components "families", "sample_size", "n_items", "missing_rate", "noise_level", "specification", "replications", "seed", "label". It contains declare an eyeprocess validation-evidence plan and associated metadata or diagnostics needed to interpret the result.
 #' @export
 eyeprocess_validation_plan <- function(
     families = c("recovery", "sbc", "stress", "reliability", "negative_control"),
@@ -113,6 +114,7 @@ eyeprocess_validation_plan <- function(
 
 #' Validate a validation-evidence plan
 #' @param x Object to validate, summarize, verify, or otherwise process.
+#' @return A logical value or vector indicating a validation-evidence plan.
 #' @export
 validate_eyeprocess_validation_plan <- function(x) {
   if (!inherits(x, "eye_validation_evidence_plan")) stop("x must inherit from eye_validation_evidence_plan.", call. = FALSE)
@@ -124,6 +126,7 @@ validate_eyeprocess_validation_plan <- function(x) {
 
 #' Expand a validation-evidence plan to a scenario table
 #' @param x Object to validate, summarize, verify, or otherwise process.
+#' @return An R object containing expand a validation-evidence plan to a scenario table. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 expand_eyeprocess_validation_plan <- function(x) {
   validate_eyeprocess_validation_plan(x)
@@ -151,6 +154,7 @@ expand_eyeprocess_validation_plan <- function(x) {
 #' @param master_seed Master random-number seed.
 #' @param index Deterministic substream index.
 #' @param stream Named random-number stream.
+#' @return A numeric value or vector containing a deterministic bounded validation seed.
 #' @export
 eyeprocess_validation_seed <- function(master_seed, index, stream = 0L) {
   master_seed <- as.integer(master_seed)
@@ -170,6 +174,7 @@ eyeprocess_validation_seed <- function(master_seed, index, stream = 0L) {
 #' @param threshold Decision or diagnostic threshold.
 #' @param upper Optional upper threshold for interval-style acceptance rules.
 #' @param tolerance Numerical or decision tolerance.
+#' @return An object of class "eye_validation_acceptance_rule", stored as a named list, with components "metric", "direction", "threshold", "upper", "tolerance". It contains define a validation acceptance rule and associated metadata or diagnostics needed to interpret the result.
 #' @export
 validation_acceptance_rule <- function(metric, direction = c("max", "min", "between", "equals"), threshold, upper = NULL, tolerance = 0) {
   .ep09m2_assert_scalar(metric, "metric", "character")
@@ -190,6 +195,7 @@ validation_acceptance_rule <- function(metric, direction = c("max", "min", "betw
 #' Evaluate a validation acceptance rule
 #' @param value Observed metric value to evaluate.
 #' @param rule Validation acceptance rule to apply.
+#' @return A logical value or vector indicating a validation acceptance rule.
 #' @export
 evaluate_validation_acceptance <- function(value, rule) {
   if (!inherits(rule, "eye_validation_acceptance_rule")) stop("rule must be created by validation_acceptance_rule().", call. = FALSE)
@@ -209,6 +215,7 @@ evaluate_validation_acceptance <- function(value, rule) {
 #' @param summary Validation summary table.
 #' @param rules Collection of validation acceptance rules.
 #' @param id_cols Columns identifying validation scenarios.
+#' @return A tabular R object containing a table against named validation rules; rows represent analysis units and columns contain the returned quantities.
 #' @export
 validation_acceptance_matrix <- function(summary, rules, id_cols = character()) {
   summary <- .ep09m2_as_df(summary, "summary")
@@ -241,6 +248,7 @@ validation_acceptance_matrix <- function(summary, rules, id_cols = character()) 
 #' Summarise an acceptance matrix
 #' @param x Object to validate, summarize, verify, or otherwise process.
 #' @param by Grouping variables or aggregation level.
+#' @return A tabular R object containing an acceptance matrix; rows represent analysis units and columns contain the returned quantities.
 #' @export
 summarise_validation_acceptance <- function(x, by = character()) {
   x <- .ep09m2_as_df(x, "x")
@@ -262,6 +270,7 @@ summarise_validation_acceptance <- function(x, by = character()) {
 #' @param x Object to validate, summarize, verify, or otherwise process.
 #' @param metric Metric name or metric column.
 #' @param by Grouping variables or aggregation level.
+#' @return A tabular R object containing monte Carlo uncertainty for validation summaries; rows represent analysis units and columns contain the returned quantities.
 #' @export
 validation_mcse_profile <- function(x, metric, by = character()) {
   x <- .ep09m2_as_df(x, "x")
@@ -284,6 +293,7 @@ validation_mcse_profile <- function(x, metric, by = character()) {
 #' @param target_mcse Target Monte Carlo standard error.
 #' @param minimum Minimum permitted replication count.
 #' @param maximum Maximum permitted replication count.
+#' @return An R object containing a replication budget from a target MCSE. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 validation_replication_budget <- function(pilot_sd, target_mcse, minimum = 20L, maximum = 10000L) {
   pilot_sd <- as.numeric(pilot_sd); target_mcse <- as.numeric(target_mcse)
@@ -299,6 +309,7 @@ validation_replication_budget <- function(pilot_sd, target_mcse, minimum = 20L, 
 #' @param plan Validation or stress-evidence plan object.
 #' @param source_commit Source-control commit associated with the evidence.
 #' @param generated_at Generation timestamp stored in the manifest.
+#' @return An object of class "eye_validation_scenario_manifest", stored as a named list, with components "label", "plan_hash", "scenarios", "source_commit", "generated_at", "scientific_scope". It contains a scenario manifest for frozen validation work and associated metadata or diagnostics needed to interpret the result.
 #' @export
 validation_scenario_manifest <- function(plan, source_commit = NA_character_, generated_at = Sys.time()) {
   validate_eyeprocess_validation_plan(plan)
@@ -316,6 +327,7 @@ validation_scenario_manifest <- function(plan, source_commit = NA_character_, ge
 #' Write a validation scenario manifest
 #' @param x Object to validate, summarize, verify, or otherwise process.
 #' @param path File path for reading or writing.
+#' @return A character string or vector giving the path or identifier for a validation scenario manifest.
 #' @export
 write_validation_scenario_manifest <- function(x, path) {
   if (!inherits(x, "eye_validation_scenario_manifest")) stop("x must be a validation scenario manifest.", call. = FALSE)
@@ -325,6 +337,7 @@ write_validation_scenario_manifest <- function(x, path) {
 
 #' Read a validation scenario manifest
 #' @param path File path for reading or writing.
+#' @return An R object containing a validation scenario manifest. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 read_validation_scenario_manifest <- function(path) {
   x <- readRDS(path)
@@ -335,6 +348,7 @@ read_validation_scenario_manifest <- function(path) {
 #' Grade the completeness of validation evidence
 #' @param components Named evidence components.
 #' @param required Required evidence components or requirements.
+#' @return An object of class "eye_validation_evidence_grade", stored as a named list, with components "grade", "required", "present", "coverage". It contains grade the completeness of validation evidence and associated metadata or diagnostics needed to interpret the result.
 #' @export
 eyeprocess_validation_evidence_grade <- function(components, required = c("design", "execution", "summary", "provenance", "hash")) {
   components <- as.character(components)

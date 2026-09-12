@@ -11,6 +11,9 @@ read_reproducibility_fingerprint(path, format = NULL)
 
 \item{format}{Optional format.}
 }
+\value{
+A logical value or vector indicating a reproducibility fingerprint.
+}
 \description{
 Read a reproducibility fingerprint
 }

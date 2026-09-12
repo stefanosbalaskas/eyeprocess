@@ -9,6 +9,9 @@ process_drift_alerts(x)
 \arguments{
 \item{x}{Object to process, inspect, compare, or plot.}
 }
+\value{
+A logical value or vector indicating drift alerts.
+}
 \description{
 Extract drift alerts
 }

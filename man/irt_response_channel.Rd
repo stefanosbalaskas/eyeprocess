@@ -20,6 +20,9 @@ irt_response_channel(
 
 \item{options}{Additional channel/model options.}
 }
+\value{
+An object of class "eye_irt_", "_channel", stored as a named list, with components "type", "family", "role", "link", "variables", "latent", "options". It contains binary/ordinal response channel for multimodal IRT and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 Binary/ordinal response channel for multimodal IRT
 }

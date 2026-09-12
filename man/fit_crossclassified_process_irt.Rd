@@ -29,6 +29,9 @@ fit_crossclassified_process_irt(
 
 \item{fixed}{Fixed-effects specification.}
 }
+\value{
+An object of class "eye_crossclassified_process_irt", stored as a named list, with components "model", "family", "person", "item", "context", "status". It contains cross-classified process IRT reference model and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 Treats the process outcome as repeated evidence crossed by person and item,
 with optional contextual grouping factors. This is useful when process events

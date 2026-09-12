@@ -15,6 +15,9 @@ inject_aoi_label_noise(data, aoi = "aoi", proportion, seed = 1L)
 
 \item{seed}{Seed.}
 }
+\value{
+An R object containing inject AOI label noise. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
+}
 \description{
 Inject AOI label noise
 }

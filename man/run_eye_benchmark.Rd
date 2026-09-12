@@ -23,6 +23,9 @@ run_eye_benchmark(
 
 \item{progress}{Print progress.}
 }
+\value{
+An object of class "eye_benchmark_result", stored as a named list, with components "design", "results", "created_at", "status", "caveat". It contains a computational scaling benchmark and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 Run a computational scaling benchmark
 }

@@ -23,6 +23,9 @@ find_process_measures(
 
 \item{query}{Optional text query.}
 }
+\value{
+An R object containing find process measures by channel, level, status, or text. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
+}
 \description{
 Find process measures by channel, level, status, or text
 }

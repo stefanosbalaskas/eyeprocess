@@ -6,6 +6,7 @@
 #' @param ... Named vectors of defensible analysis options.
 #' @param label Grid label.
 #' @param max_specifications Safety cap.
+#' @return An R object containing an explicit process-analysis sensitivity grid. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 process_sensitivity_grid <- function(..., label = "process_sensitivity", max_specifications = 100000L) {
   opts <- list(...)
@@ -39,6 +40,7 @@ process_sensitivity_grid <- function(..., label = "process_sensitivity", max_spe
 #' @param analysis_fun Function `(data, specification)`.
 #' @param extract_fun Function `(fit, specification)` returning one or more rows.
 #' @param progress Print progress.
+#' @return An object of class "eye_process_sensitivity", stored as a named list, with components "grid", "results", "failures", "warnings", "grid_hash", "created_at", "status", "caveat". It contains an explicit process-analysis multiverse and associated metadata or diagnostics needed to interpret the result.
 #' @export
 run_process_sensitivity <- function(data, grid, analysis_fun, extract_fun = .ep09_default_sensitivity_extract,
                                     progress = interactive()) {
@@ -99,6 +101,7 @@ run_process_sensitivity <- function(data, grid, analysis_fun, extract_fun = .ep0
 #' @param p_value Optional p-value column.
 #' @param threshold Optional substantive effect threshold.
 #' @param alpha Significance threshold used only when `p_value` is supplied.
+#' @return A data frame containing process sensitivity results. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 summarise_process_sensitivity <- function(x, effect = "effect", p_value = NULL,
                                           threshold = 0, alpha = .05) {
@@ -126,6 +129,7 @@ summarise_process_sensitivity <- function(x, effect = "effect", p_value = NULL,
 #' Effect-sign stability across specifications
 #' @param x Sensitivity result.
 #' @param effect Effect column.
+#' @return A numeric value or vector containing effect-sign stability across specifications.
 #' @export
 sensitivity_sign_stability <- function(x, effect = "effect") {
   d <- x$results; .ep09_req_cols(d, effect, "x$results")
@@ -138,6 +142,7 @@ sensitivity_sign_stability <- function(x, effect = "effect") {
 #' @param x Sensitivity result.
 #' @param p_value P-value column.
 #' @param alpha Decision threshold.
+#' @return A numeric value or vector containing significance-decision stability across specifications.
 #' @export
 sensitivity_significance_stability <- function(x, p_value = "p_value", alpha = .05) {
   if (length(alpha) != 1L || !is.finite(alpha) || alpha < 0 || alpha > 1) stop("alpha must lie in [0, 1].", call. = FALSE)
@@ -152,6 +157,7 @@ sensitivity_significance_stability <- function(x, p_value = "p_value", alpha = .
 #' @param effect Effect column.
 #' @param threshold Threshold.
 #' @param direction `above`, `below`, or `absolute`.
+#' @return A numeric value or vector containing substantive-threshold stability across specifications.
 #' @export
 sensitivity_threshold_stability <- function(x, effect = "effect", threshold = 0,
                                             direction = c("above", "below", "absolute")) {
@@ -170,6 +176,7 @@ sensitivity_threshold_stability <- function(x, effect = "effect", threshold = 0,
 #' @param p_value Optional p-value column.
 #' @param alpha Significance threshold.
 #' @param threshold Substantive threshold.
+#' @return An object of class "eye_decision_stability", stored as a named list, with components "summary", "stable_sign", "stable_threshold", "stable_significance", "thresholds", "caveat". It contains overall decision-stability summary and associated metadata or diagnostics needed to interpret the result.
 #' @export
 decision_stability <- function(x, effect = "effect", p_value = NULL, alpha = .05, threshold = 0) {
   s <- summarise_process_sensitivity(x, effect = effect, p_value = p_value, threshold = threshold, alpha = alpha)
@@ -195,6 +202,7 @@ decision_stability <- function(x, effect = "effect", p_value = NULL, alpha = .05
 #' @param effect Effect column.
 #' @param lower Optional lower interval column.
 #' @param upper Optional upper interval column.
+#' @return An R object containing ordered specification-curve data. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 specification_curve_data <- function(x, effect = "effect", lower = NULL, upper = NULL) {
   d <- x$results; .ep09_req_cols(d, effect, "x$results")
@@ -208,6 +216,7 @@ specification_curve_data <- function(x, effect = "effect", lower = NULL, upper =
 
 #' Fraction of planned specifications successfully evaluated
 #' @param x Sensitivity result.
+#' @return A numeric value or vector containing fraction of planned specifications successfully evaluated.
 #' @export
 specification_coverage <- function(x) {
   if (!inherits(x, "eye_process_sensitivity")) stop("x must be an eye_process_sensitivity.", call. = FALSE)
@@ -221,6 +230,7 @@ specification_coverage <- function(x) {
 #' not causal attribution of researcher decisions.
 #' @param x Sensitivity result.
 #' @param effect Effect column.
+#' @return A numeric value or vector containing decision leverage of each analytical choice.
 #' @export
 sensitivity_decision_leverage <- function(x, effect = "effect") {
   d <- x$results; .ep09_req_cols(d, c("specification_id", effect), "x$results")
@@ -243,6 +253,7 @@ sensitivity_decision_leverage <- function(x, effect = "effect") {
 #' @param x Sensitivity result.
 #' @param effect Effect column.
 #' @param threshold Decision threshold.
+#' @return A numeric value or vector containing fragility index across analysis specifications.
 #' @export
 sensitivity_fragility_index <- function(x, effect = "effect", threshold = 0) {
   d <- x$results; .ep09_req_cols(d, effect, "x$results")
@@ -257,6 +268,7 @@ sensitivity_fragility_index <- function(x, effect = "effect", threshold = 0) {
 #' @param id Optional item identifier when x is a long data frame.
 #' @param rank Optional rank/value column when x is a long data frame.
 #' @param specification Optional specification column.
+#' @return An R object containing rank stability across specifications. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 sensitivity_rank_stability <- function(x, id = NULL, rank = NULL, specification = NULL) {
   if (is.list(x) && !is.data.frame(x)) {
@@ -281,6 +293,7 @@ sensitivity_rank_stability <- function(x, id = NULL, rank = NULL, specification 
 
 #' Stable fingerprint of a sensitivity branch
 #' @param specification One-row specification table or named list.
+#' @return An R object containing stable fingerprint of a sensitivity branch. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 sensitivity_branch_fingerprint <- function(specification) {
   .ep09_hash_object(specification)
@@ -288,6 +301,7 @@ sensitivity_branch_fingerprint <- function(specification) {
 
 #' Machine-readable multiverse manifest
 #' @param x Sensitivity result.
+#' @return A data frame containing machine-readable multiverse manifest. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 sensitivity_multiverse_manifest <- function(x) {
   if (!inherits(x, "eye_process_sensitivity")) stop("x must be an eye_process_sensitivity.", call. = FALSE)
@@ -313,6 +327,7 @@ sensitivity_multiverse_manifest <- function(x) {
 #' @param methods Named methods/specifications.
 #' @param analysis_fun Function `(data, method, specification)`.
 #' @param extract_fun Result extractor.
+#' @return An object of class "eye_process_sensitivity", stored as a named list, with components "grid", "results", "failures", "warnings", "grid_hash", "created_at", "status", "caveat". It contains explicit AOI assignment methods and associated metadata or diagnostics needed to interpret the result.
 #' @export
 compare_aoi_methods <- function(data, methods, analysis_fun, extract_fun = .ep09_default_sensitivity_extract) {
   .ep09_compare_methods(data, methods, analysis_fun, extract_fun, "aoi")
@@ -320,6 +335,7 @@ compare_aoi_methods <- function(data, methods, analysis_fun, extract_fun = .ep09
 
 #' Compare explicit fixation-detection methods
 #' @inheritParams compare_aoi_methods
+#' @return An object of class "eye_process_sensitivity", stored as a named list, with components "grid", "results", "failures", "warnings", "grid_hash", "created_at", "status", "caveat". It contains explicit fixation-detection methods and associated metadata or diagnostics needed to interpret the result.
 #' @export
 compare_fixation_methods <- function(data, methods, analysis_fun, extract_fun = .ep09_default_sensitivity_extract) {
   .ep09_compare_methods(data, methods, analysis_fun, extract_fun, "fixation")
@@ -327,6 +343,7 @@ compare_fixation_methods <- function(data, methods, analysis_fun, extract_fun = 
 
 #' Compare explicit pupil-preprocessing methods
 #' @inheritParams compare_aoi_methods
+#' @return An object of class "eye_process_sensitivity", stored as a named list, with components "grid", "results", "failures", "warnings", "grid_hash", "created_at", "status", "caveat". It contains explicit pupil-preprocessing methods and associated metadata or diagnostics needed to interpret the result.
 #' @export
 compare_pupil_preprocessing <- function(data, methods, analysis_fun, extract_fun = .ep09_default_sensitivity_extract) {
   .ep09_compare_methods(data, methods, analysis_fun, extract_fun, "pupil_preprocessing")
@@ -334,6 +351,7 @@ compare_pupil_preprocessing <- function(data, methods, analysis_fun, extract_fun
 
 #' Compare explicit process-model specifications
 #' @inheritParams compare_aoi_methods
+#' @return An object of class "eye_process_sensitivity", stored as a named list, with components "grid", "results", "failures", "warnings", "grid_hash", "created_at", "status", "caveat". It contains explicit process-model specifications and associated metadata or diagnostics needed to interpret the result.
 #' @export
 compare_process_models <- function(data, methods, analysis_fun, extract_fun = .ep09_default_sensitivity_extract) {
   .ep09_compare_methods(data, methods, analysis_fun, extract_fun, "process_model")

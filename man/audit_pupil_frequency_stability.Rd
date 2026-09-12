@@ -20,6 +20,9 @@ audit_pupil_frequency_stability(
 
 \item{by, time, pupil, sampling_rate_hz}{Passed through to feature construction.}
 }
+\value{
+An object of class "eye_pupil_frequency_stability", stored as a named list, with components "table", "windows_ms", "caveat". It contains stability of pupil frequency features across window lengths and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 Audit stability of pupil frequency features across window lengths
 }

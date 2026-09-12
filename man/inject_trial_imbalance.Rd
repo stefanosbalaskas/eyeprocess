@@ -13,6 +13,9 @@ inject_trial_imbalance(data, proportion, seed = 1L)
 
 \item{seed}{Seed.}
 }
+\value{
+An R object containing inject trial/row imbalance by dropping observations. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
+}
 \description{
 Inject trial/row imbalance by dropping observations
 }

@@ -9,6 +9,9 @@ validate_eyeprocess_irt_model_spec(x)
 \arguments{
 \item{x}{Object to validate, summarize, verify, or otherwise process.}
 }
+\value{
+A logical value or vector indicating an eyeprocess IRT model specification.
+}
 \description{
 Validate an eyeprocess IRT model specification
 }

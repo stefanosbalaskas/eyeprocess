@@ -18,6 +18,9 @@ as the fitted latent coordinates.}
 
 \item{entity}{Entity type to map or validate.}
 }
+\value{
+An object of class "eye_latent_space_process_validation", stored as a named list, with components "entity", "spearman_distance_correlation", "latent_distance", "process_distance", "interpretation". It contains latent-space proximity against process similarity and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 Validate latent-space proximity against process similarity
 }

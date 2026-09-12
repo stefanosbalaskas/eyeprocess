@@ -9,6 +9,9 @@ eye_api_superseded(registry = eye_api_lifecycle())
 \arguments{
 \item{registry}{Lifecycle registry.}
 }
+\value{
+A logical value or vector indicating return superseded/deprecated compatibility interfaces.
+}
 \description{
 Return superseded/deprecated compatibility interfaces
 }

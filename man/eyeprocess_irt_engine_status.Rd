@@ -9,6 +9,9 @@ eyeprocess_irt_engine_status(engine)
 \arguments{
 \item{engine}{Requested estimation or analysis engine.}
 }
+\value{
+A logical value or vector indicating query an external IRT engine.
+}
 \description{
 Query an external IRT engine
 }

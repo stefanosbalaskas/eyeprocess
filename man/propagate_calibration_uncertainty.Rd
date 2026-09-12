@@ -24,6 +24,9 @@ propagate_calibration_uncertainty(
 
 \item{seed}{Seed.}
 }
+\value{
+A tabular R object containing propagate empirical calibration uncertainty around gaze samples; rows represent analysis units and columns contain the returned quantities.
+}
 \description{
 Propagate empirical calibration uncertainty around gaze samples
 }

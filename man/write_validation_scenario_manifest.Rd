@@ -11,6 +11,9 @@ write_validation_scenario_manifest(x, path)
 
 \item{path}{File path for reading or writing.}
 }
+\value{
+A character string or vector giving the path or identifier for a validation scenario manifest.
+}
 \description{
 Write a validation scenario manifest
 }

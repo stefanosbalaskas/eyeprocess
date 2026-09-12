@@ -6,6 +6,7 @@
 #' @param truth Scalar simulated truth.
 #' @param draws Posterior draws for the same parameter.
 #' @param seed Seed used only to randomize ties.
+#' @return A numeric value or vector containing a simulation-based calibration rank statistic.
 #' @export
 simulation_rank_statistic <- function(truth, draws, seed = NULL) {
   truth <- .ep09_num(truth)[1L]; draws <- .ep09_num(draws); draws <- draws[is.finite(draws)]
@@ -61,6 +62,7 @@ sbc_rank_diagnostics <- function(ranks, n_draws, bins = NULL) {
 #' ECDF deviation summary for SBC ranks
 #' @param x SBC diagnostics or ranks.
 #' @param n_draws Required if x is ranks.
+#' @return An R object containing eCDF deviation summary for SBC ranks. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 sbc_ecdf_deviation <- function(x, n_draws = NULL) {
   if (!inherits(x, "eye_sbc_diagnostics")) x <- sbc_rank_diagnostics(x, n_draws)
@@ -72,6 +74,7 @@ sbc_ecdf_deviation <- function(x, n_draws = NULL) {
 #' @param lower Matrix/data.frame of lower limits or numeric vector.
 #' @param upper Matrix/data.frame of upper limits or numeric vector.
 #' @param nominal Nominal coverage labels, one per interval column.
+#' @return A data frame containing interval coverage calibration curve. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 coverage_calibration_curve <- function(truth, lower, upper, nominal = NULL) {
   truth <- .ep09_num(truth); L <- as.matrix(lower); U <- as.matrix(upper)
@@ -96,6 +99,7 @@ coverage_calibration_curve <- function(truth, lower, upper, nominal = NULL) {
 #' @param effective_hz Effective sampling frequency.
 #' @param calibration_drift Optional drift metric.
 #' @param units Optional named units.
+#' @return A data frame containing a non-collapsed measurement-error budget. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 measurement_error_budget <- function(accuracy = NA_real_, precision = NA_real_, data_loss = NA_real_,
                                      effective_hz = NA_real_, calibration_drift = NA_real_, units = NULL) {
@@ -118,6 +122,7 @@ measurement_error_budget <- function(accuracy = NA_real_, precision = NA_real_, 
 #' @param radial_error Optional empirical radial error in the same spatial units.
 #' @param min_samples User-declared minimum samples per temporal feature.
 #' @param max_error_fraction User-declared maximum spatial-error / feature-size ratio.
+#' @return A named list with components "expected_samples", "temporal_ok", "spatial_error_fraction", "spatial_ok", "min_samples", "max_error_fraction", "overall", "caveat", containing compatibility between measurement resolution and an analysis target and associated metadata or diagnostics.
 #' @export
 analysis_resolution_guard <- function(event_duration_ms, effective_hz,
                                       spatial_feature_size = NA_real_, radial_error = NA_real_,
@@ -148,6 +153,7 @@ analysis_resolution_guard <- function(event_duration_ms, effective_hz,
 #' @param steps Character vector in execution order.
 #' @param cleaning_patterns Patterns considered cleaning/preprocessing.
 #' @param baseline_pattern Pattern identifying baseline correction.
+#' @return A named list with components "steps", "baseline_positions", "cleaning_positions", "cleaning_after_baseline", "status", "caveat", containing declared order of pupil preprocessing steps and associated metadata or diagnostics.
 #' @export
 audit_pupil_preprocessing_order <- function(steps,
                                             cleaning_patterns = c("blink", "missing", "interpol", "artifact", "smooth", "filter"),
@@ -176,6 +182,7 @@ audit_pupil_preprocessing_order <- function(steps,
 #' @param windows Named list of two-element baseline windows.
 #' @param by Optional grouping columns.
 #' @param correction `subtractive` or `divisive`.
+#' @return A tabular R object containing pupil baseline-window sensitivity; rows represent analysis units and columns contain the returned quantities.
 #' @export
 pupil_baseline_sensitivity <- function(data, time = "time_ms", pupil = "pupil", windows,
                                        by = NULL, correction = c("subtractive", "divisive")) {

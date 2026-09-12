@@ -11,6 +11,9 @@ read_decision_manifest(path, format = NULL)
 
 \item{format}{Optional format; inferred from extension when omitted.}
 }
+\value{
+A logical value or vector indicating a decision manifest written by eyeprocess.
+}
 \description{
 Read a decision manifest written by eyeprocess
 }

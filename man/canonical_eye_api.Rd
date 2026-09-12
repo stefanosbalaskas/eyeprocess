@@ -9,6 +9,9 @@ canonical_eye_api(registry = eye_api_lifecycle())
 \arguments{
 \item{registry}{Lifecycle registry.}
 }
+\value{
+An R object containing canonical API mapping. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
+}
 \description{
 Canonical API mapping
 }

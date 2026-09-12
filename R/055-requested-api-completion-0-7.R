@@ -150,6 +150,7 @@ fit_gaze_informed_missingness_irt <- function(
 #' Extract device facet effects
 #' @param object A fitted eyeprocess model or audit object.
 #' @param channel Measurement channel to inspect.
+#' @return An object of class "eye_process_facet_effects", stored as a named list, with components "facet", "column", "channel", "random_effects", "variance_component". It contains device facet effects and associated metadata or diagnostics needed to interpret the result.
 #' @export
 device_facet_effects <- function(object, channel = c("response", "process")) {
   .ep07_named_facet_effects(object, "device", channel)
@@ -158,6 +159,7 @@ device_facet_effects <- function(object, channel = c("response", "process")) {
 #' Extract session facet effects
 #' @param object A fitted eyeprocess model or audit object.
 #' @param channel Measurement channel to inspect.
+#' @return An object of class "eye_process_facet_effects", stored as a named list, with components "facet", "column", "channel", "random_effects", "variance_component". It contains session facet effects and associated metadata or diagnostics needed to interpret the result.
 #' @export
 session_facet_effects <- function(object, channel = c("response", "process")) {
   .ep07_named_facet_effects(object, "session", channel)
@@ -166,6 +168,7 @@ session_facet_effects <- function(object, channel = c("response", "process")) {
 #' Extract algorithm facet effects
 #' @param object A fitted eyeprocess model or audit object.
 #' @param channel Measurement channel to inspect.
+#' @return An object of class "eye_process_facet_effects", stored as a named list, with components "facet", "column", "channel", "random_effects", "variance_component". It contains algorithm facet effects and associated metadata or diagnostics needed to interpret the result.
 #' @export
 algorithm_facet_effects <- function(object, channel = c("response", "process")) {
   .ep07_named_facet_effects(object, "algorithm", channel)
@@ -175,6 +178,7 @@ algorithm_facet_effects <- function(object, channel = c("response", "process")) 
 #'
 #' Public roadmap alias for `detect_irt_changepoints()`.
 #' @param ... Additional arguments passed to the selected model, engine, or method.
+#' @return An R object containing a response-process change point. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 detect_process_changepoint <- function(...) detect_irt_changepoints(...)
 
@@ -183,6 +187,7 @@ detect_process_changepoint <- function(...) detect_irt_changepoints(...)
 #' @param object An `eye_irt_changepoints`, `eye_changepoint_rt_irt`, or
 #'   `eye_changepoint_multimodal_irt` object.
 #' @param ... Graphical arguments.
+#' @return An R object containing plot detected process change points. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 plot_process_changepoint <- function(object, ...) {
   cp <- if (inherits(object, "eye_irt_changepoints")) object else object$changepoints
@@ -206,6 +211,7 @@ plot_process_changepoint <- function(object, ...) {
 #' @param dimensions Two coordinate dimensions to display.
 #' @param labels Whether to add entity labels.
 #' @param ... Graphical arguments.
+#' @return A named list with components "person", "item", "dimensions", containing plot person/item latent-space coordinates and associated metadata or diagnostics.
 #' @export
 plot_person_item_space <- function(object, dimensions = c(1L, 2L), labels = FALSE, ...) {
   if (!inherits(object, "eye_latent_space_irt"))
@@ -242,6 +248,7 @@ plot_person_item_space <- function(object, dimensions = c(1L, 2L), labels = FALS
 #' @param person Optional person row/index/name to restrict.
 #' @param item Optional item row/index/name to restrict.
 #' @param top Number of closest pairs to return.
+#' @return An R object containing explain local person-item latent-space interactions. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 explain_latent_interaction <- function(object, person = NULL, item = NULL, top = 10L) {
   if (!inherits(object, "eye_latent_space_irt"))
@@ -278,6 +285,7 @@ explain_latent_interaction <- function(object, person = NULL, item = NULL, top =
 #' @param theta_grid Trait grid.
 #' @param level Pointwise confidence level for the spline-reference diagnostic.
 #' @param ... Graphical arguments.
+#' @return A data frame containing plot uncertainty for flexible item response functions. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 plot_irf_uncertainty <- function(object, item = 1L,
                                  theta_grid = seq(-4, 4, length.out = 101),
@@ -306,6 +314,7 @@ plot_irf_uncertainty <- function(object, item = 1L,
 #'
 #' @param theta Numeric latent-trait draws/estimates.
 #' @param tail_z Absolute standardized threshold used for tail-rate diagnostics.
+#' @return A data frame containing the empirical latent-trait distribution. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 audit_latent_distribution <- function(theta, tail_z = 3) {
   x <- as.numeric(theta); x <- x[is.finite(x)]
@@ -374,6 +383,7 @@ audit_latent_distribution <- function(theta, tail_z = 3) {
 #' change the latent distribution inside an already fitted IRT model.
 #'
 #' @param theta Numeric latent-trait draws/estimates.
+#' @return An object of class "eye_latent_distribution_comparison", stored as a named list, with components "comparison", "audit", "student_t", "mixture", "status". It contains simple latent-distribution reference models and associated metadata or diagnostics needed to interpret the result.
 #' @export
 compare_latent_distribution_models <- function(theta) {
   x <- as.numeric(theta); x <- x[is.finite(x)]
@@ -404,6 +414,7 @@ compare_latent_distribution_models <- function(theta) {
 #'
 #' Public roadmap alias for `stress_test_latent_distribution()`.
 #' @param ... Additional arguments passed to the selected model, engine, or method.
+#' @return An R object containing stress-test IRT estimators across latent distributions. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 latent_distribution_stress_test <- function(...) stress_test_latent_distribution(...)
 
@@ -422,6 +433,7 @@ latent_distribution_stress_test <- function(...) stress_test_latent_distribution
 #' @param engine `cox_reference` or `external`.
 #' @param external_engine Function implementing a study-specific event-time IRT.
 #' @param ... Additional arguments passed to the external engine.
+#' @return An object of class "eye_event_time_irt", stored as a named list, with components "model", "engine", "theta_conditioned", "status", "note". It contains an event-time IRT reference workflow and associated metadata or diagnostics needed to interpret the result.
 #' @export
 fit_event_time_irt <- function(
     data, event_time = "event_time", event = "event", theta = "theta",
@@ -457,6 +469,7 @@ fit_event_time_irt <- function(
 #' @param model Registered model id/specification, simulation function, or an
 #'   object exposing a `simulate_fun` function.
 #' @param ... Arguments passed to the simulator.
+#' @return An R object containing data from a model or registered model specification. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 simulate_from_model <- function(model, ...) {
   if (is.function(model)) return(model(...))
@@ -504,6 +517,7 @@ extract_parameter_truth <- function(simulation) {
 #'   least `parameter` and `estimate`; optional `lower`/`upper` are retained.
 #' @param scenario Scenario label/object passed to the generator.
 #' @param engine Engine label.
+#' @return A logical value or vector indicating one model-validation replicate.
 #' @export
 fit_validation_replicate <- function(replicate, generator, fitter, extractor,
                                      scenario = "baseline", engine = "unspecified") {
@@ -544,6 +558,7 @@ fit_validation_replicate <- function(replicate, generator, fitter, extractor,
 #' @param units Named list of expected units for canonical fields.
 #' @param eye_streams Expected eye streams (`left`, `right`, `cyclopean`, etc.).
 #' @param event_fields Event/annotation fields expected to survive.
+#' @return An object of class "eye_vendor_schema_contract", stored as a named list, with components "vendor", "version", "required_fields", "optional_fields", "aliases", "timestamp", "coordinate", "units", "eye_streams", "event_fields", "contract_version". It contains declare a vendor semantic schema contract and associated metadata or diagnostics needed to interpret the result.
 #' @export
 vendor_schema_contract <- function(
     vendor, version = NA_character_, required_fields = character(),
@@ -564,6 +579,7 @@ vendor_schema_contract <- function(
 #' @param data Imported/canonical table.
 #' @param contract `eye_vendor_schema_contract`.
 #' @param metadata Optional named metadata list.
+#' @return An object of class "eye_vendor_semantic_validation", stored as a named list, with components "pass", "vendor", "version", "fields", "aliases", "timestamp", "units", "contract". It contains imported data against a vendor semantic contract and associated metadata or diagnostics needed to interpret the result.
 #' @export
 validate_vendor_semantics <- function(data, contract, metadata = list()) {
   d <- .ep07_as_data_frame(data, "data")
@@ -624,6 +640,7 @@ validate_vendor_semantics <- function(data, contract, metadata = list()) {
 #' @param source_events,roundtrip_events Event tables.
 #' @param hed_column Optional HED annotation column to compare structurally.
 #' @param ... Arguments forwarded to `event_semantics_audit()`.
+#' @return An object of class "eye_event_roundtrip_audit", stored as a named list, with components "status", "event_semantics", "hed". It contains event survival across an interchange round trip and associated metadata or diagnostics needed to interpret the result.
 #' @export
 event_roundtrip_audit <- function(source_events, roundtrip_events,
                                   hed_column = NULL, ...) {
@@ -674,6 +691,7 @@ event_roundtrip_audit <- function(source_events, roundtrip_events,
 #' @param extract_samples Function extracting the canonical sample table from
 #'   source and reconstructed objects.
 #' @param audit_args Arguments forwarded to `semantic_roundtrip_audit()`.
+#' @return An object of class "eye_bids_roundtrip", stored as a named list, with components "exported", "reconstructed", "audit", "status". It contains execute and audit an Eye-Tracking-BIDS round trip and associated metadata or diagnostics needed to interpret the result.
 #' @export
 roundtrip_eye_bids <- function(source, exporter, importer,
                                export_args = list(), import_args = list(),
@@ -696,6 +714,7 @@ roundtrip_eye_bids <- function(source, exporter, importer,
 #' @param baseline_version,candidate_version Version labels.
 #' @param extract_samples Function extracting comparable sample tables.
 #' @param audit_args Arguments passed to `field_fidelity_report()`.
+#' @return An object of class "eye_adapter_regression_audit", stored as a named list, with components "status", "baseline_version", "candidate_version", "fidelity", "baseline", "candidate". It contains adapter output across software/format versions and associated metadata or diagnostics needed to interpret the result.
 #' @export
 cross_version_adapter_regression <- function(
     input, baseline_adapter, candidate_adapter,

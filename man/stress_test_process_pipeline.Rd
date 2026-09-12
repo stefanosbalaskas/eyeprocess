@@ -23,6 +23,9 @@ stress_test_process_pipeline(
 
 \item{...}{Passed to `apply_synthetic_corruption()`.}
 }
+\value{
+An object of class "eye_process_stress_test", stored as a named list, with components "plans", "results", "baseline_hash", "created_at", "caveat". It contains stress-test an analysis under explicit synthetic corruptions and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 Stress-test an analysis under explicit synthetic corruptions
 }

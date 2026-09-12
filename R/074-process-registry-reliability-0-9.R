@@ -58,6 +58,7 @@
 
 #' Unified process-measure registry
 #' @param include_experimental Include experimental registry entries.
+#' @return A data frame containing unified process-measure registry. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 process_measure_registry <- function(include_experimental = TRUE) {
   x <- .ep09_builtin_process_registry()
@@ -68,6 +69,7 @@ process_measure_registry <- function(include_experimental = TRUE) {
 
 #' Validate a process-measure registry
 #' @param registry Registry data frame.
+#' @return A logical value or vector indicating a process-measure registry.
 #' @export
 validate_process_measure_registry <- function(registry) {
   registry <- .ep09_as_df(registry)
@@ -83,6 +85,7 @@ validate_process_measure_registry <- function(registry) {
 #' Add a process measure to a registry without global mutation
 #' @param registry Registry.
 #' @param name,channel,unit,level,interpretation,guardrail,status Measure metadata.
+#' @return A tabular R object containing add a process measure to a registry without global mutation; rows represent analysis units and columns contain the returned quantities.
 #' @export
 register_process_measure <- function(registry = process_measure_registry(), name, channel, unit, level,
                                      interpretation, guardrail, status = "user_defined") {
@@ -106,6 +109,7 @@ register_process_measure <- function(registry = process_measure_registry(), name
 #' @param level Optional level pattern.
 #' @param status Optional status filter.
 #' @param query Optional text query.
+#' @return An R object containing find process measures by channel, level, status, or text. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 find_process_measures <- function(registry = process_measure_registry(), channel = NULL,
                                   level = NULL, status = NULL, query = NULL) {
@@ -124,6 +128,7 @@ find_process_measures <- function(registry = process_measure_registry(), channel
 #' Return a one-measure process card
 #' @param name Measure name.
 #' @param registry Registry.
+#' @return An object of class "eye_process_measure_card", stored as a named list, containing return a one-measure process card and associated metadata needed to interpret the result.
 #' @export
 process_measure_card <- function(name, registry = process_measure_registry()) {
   reg <- .ep09_as_df(registry); validate_process_measure_registry(reg)
@@ -136,6 +141,7 @@ process_measure_card <- function(name, registry = process_measure_registry()) {
 
 #' Process-measure guardrail table
 #' @param registry Registry.
+#' @return An R object containing process-measure guardrail table. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 process_measure_guardrails <- function(registry = process_measure_registry()) {
   reg <- .ep09_as_df(registry); validate_process_measure_registry(reg)
@@ -145,6 +151,7 @@ process_measure_guardrails <- function(registry = process_measure_registry()) {
 #' Process-measure coverage for an observed dataset
 #' @param data Data frame.
 #' @param registry Registry.
+#' @return A data frame containing process-measure coverage for an observed dataset. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 process_measure_coverage <- function(data, registry = process_measure_registry()) {
   d <- .ep09_as_df(data); reg <- .ep09_as_df(registry); validate_process_measure_registry(reg)
@@ -165,6 +172,7 @@ process_measure_coverage <- function(data, registry = process_measure_registry()
 #' @param inputs Required input variable names.
 #' @param transformations Ordered transformation labels.
 #' @param output_level Output aggregation level.
+#' @return An object of class "eye_process_measure_lineage", stored as a named list, with components "measure", "inputs", "transformations", "output_level", "lineage_hash". It contains process-measure lineage table and associated metadata or diagnostics needed to interpret the result.
 #' @export
 process_measure_lineage <- function(measure, inputs, transformations = character(), output_level = NA_character_) {
   structure(list(
@@ -178,6 +186,7 @@ process_measure_lineage <- function(measure, inputs, transformations = character
 
 #' List units used by registered process measures
 #' @param registry Registry.
+#' @return An R object containing list units used by registered process measures. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 process_measure_units <- function(registry = process_measure_registry()) {
   reg <- .ep09_as_df(registry)
@@ -194,6 +203,7 @@ process_measure_units <- function(registry = process_measure_registry()) {
 #' @param repetitions Number of random splits.
 #' @param seed Seed.
 #' @param aggregate_fun Within-half aggregation function.
+#' @return A tabular R object containing split-half reliability for a trial-level process measure; rows represent analysis units and columns contain the returned quantities.
 #' @export
 split_half_process_reliability <- function(data, person, trial, measure,
                                            split = c("odd_even", "random"), repetitions = 100L,
@@ -256,6 +266,7 @@ split_half_process_reliability <- function(data, person, trial, measure,
 #' @param person Participant column.
 #' @param session Session/repetition column.
 #' @param measure Measure column.
+#' @return A data frame containing absolute-agreement ICC(A,1) for repeated process measures. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 process_icc <- function(data, person, session, measure) {
   d <- .ep09_as_df(data); .ep09_req_cols(d, c(person, session, measure), "data")
@@ -274,6 +285,7 @@ process_icc <- function(data, person, session, measure) {
 #' @param session Session column containing exactly two selected sessions.
 #' @param measure Measure column.
 #' @param sessions Optional two session labels.
+#' @return An object of class "eye_process_bland_altman", stored as a named list, with components "pairs", "summary", "sessions". It contains bland-Altman repeatability summary for two sessions and associated metadata or diagnostics needed to interpret the result.
 #' @export
 process_bland_altman <- function(data, person, session, measure, sessions = NULL) {
   d <- .ep09_as_df(data); .ep09_req_cols(d, c(person, session, measure), "data")
@@ -299,6 +311,7 @@ process_bland_altman <- function(data, person, session, measure, sessions = NULL
 #' Test-retest process reliability profile
 #' @param data Long data.
 #' @param person,session,measure Column names.
+#' @return An object of class "eye_process_reliability_profile", stored as a named list, with components "measure", "icc", "bland_altman", "caveat". It contains test-retest process reliability profile and associated metadata or diagnostics needed to interpret the result.
 #' @export
 process_reliability_profile <- function(data, person, session, measure) {
   d <- .ep09_as_df(data); .ep09_req_cols(d, c(person, session, measure), "data")
@@ -317,6 +330,7 @@ process_reliability_profile <- function(data, person, session, measure) {
 #' @param data Long data.
 #' @param person,session,measure Column names.
 #' @param method Correlation method.
+#' @return A logical value or vector indicating pairwise temporal stability across sessions.
 #' @export
 process_temporal_stability <- function(data, person, session, measure,
                                        method = c("pearson", "spearman")) {
@@ -340,6 +354,7 @@ process_temporal_stability <- function(data, person, session, measure,
 #' @param person,session,measure Column names.
 #' @param replications Bootstrap replications.
 #' @param seed Seed.
+#' @return A data frame containing bootstrap ICC reliability by resampling participants. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 bootstrap_process_reliability <- function(data, person, session, measure, replications = 500L, seed = 1L) {
   d <- .ep09_as_df(data); .ep09_req_cols(d, c(person, session, measure), "data")

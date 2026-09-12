@@ -11,6 +11,9 @@ eyeprocess_irt_marginal_reliability(theta_estimate, se)
 
 \item{se}{Standard-error values.}
 }
+\value{
+A numeric value or vector containing marginal reliability from latent-score variance and conditional error variance.
+}
 \description{
 Marginal reliability from latent-score variance and conditional error variance
 }

@@ -11,6 +11,9 @@ validate_feature_availability(provenance, cutoff)
 
 \item{cutoff}{Scalar cutoff or named vector by feature.}
 }
+\value{
+A data frame containing feature availability against an analysis cutoff. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
+}
 \description{
 Validate feature availability against an analysis cutoff
 }

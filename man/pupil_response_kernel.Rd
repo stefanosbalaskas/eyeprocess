@@ -20,6 +20,9 @@ pupil_response_kernel(
 
 \item{normalize}{Normalize peak to one.}
 }
+\value{
+A numeric value or vector containing canonical gamma-shaped pupil response kernel.
+}
 \description{
 Canonical gamma-shaped pupil response kernel
 }
