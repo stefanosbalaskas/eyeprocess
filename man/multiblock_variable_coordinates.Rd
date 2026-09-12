@@ -9,6 +9,9 @@ multiblock_variable_coordinates(x)
 \arguments{
 \item{x}{Object to process, inspect, compare, or plot.}
 }
+\value{
+An R object containing multiblock variable coordinates. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
+}
 \description{
 Extract multiblock variable coordinates
 }

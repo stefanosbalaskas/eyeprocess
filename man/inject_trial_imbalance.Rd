@@ -13,6 +13,9 @@ inject_trial_imbalance(data, proportion, seed = 1L)
 
 \item{seed}{Seed.}
 }
+\value{
+A tabular R object containing inject trial/row imbalance by dropping observations; rows represent analysis units and columns contain the returned quantities.
+}
 \description{
 Inject trial/row imbalance by dropping observations
 }

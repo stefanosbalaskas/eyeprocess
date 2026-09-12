@@ -13,6 +13,9 @@ fit_persistence_gaze_diffusion_irt(data, engine = NULL, ...)
 
 \item{...}{Passed to `engine`.}
 }
+\value{
+An object of class "eye_gated_process_model", stored as a named list, with components "id", "purpose", "required_evidence", "engine", "fit", "status", "notes", "caveat". It contains a gated persistence-augmented gaze-diffusion IRT interface and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 Create a gated persistence-augmented gaze-diffusion IRT interface
 }

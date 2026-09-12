@@ -138,6 +138,7 @@ bayesian_process_diagnostics_dashboard <- function(
 #' @param x An `eye_bayesian_process_dashboard`.
 #' @param rhat_threshold Review threshold for R-hat.
 #' @param ess_threshold Review threshold for bulk/tail effective sample size.
+#' @return An R object containing compact Bayesian process-model diagnostic flags. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 bayesian_process_diagnostic_flags <- function(x, rhat_threshold = 1.01, ess_threshold = 400) {
   if (!inherits(x, "eye_bayesian_process_dashboard"))
@@ -250,6 +251,7 @@ fit_gaze_anchored_3pl_audit <- function(
 
 #' Return the process-alignment table from a gaze-anchored 3PL audit
 #' @param x An `eye_gaze_anchored_3pl_audit`.
+#' @return An R object containing return the process-alignment table from a gaze-anchored 3PL audit. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 gaze_anchored_3pl_alignment <- function(x) {
   if (!inherits(x, "eye_gaze_anchored_3pl_audit"))
@@ -294,6 +296,7 @@ audit_3pl_process_signatures <- function(
 }
 
 #' Plot bayesian process dashboard diagnostics
+#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot bayesian process dashboard diagnostics.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 #' @param type Type of summary or visual representation to produce.
@@ -328,6 +331,7 @@ plot.eye_bayesian_process_dashboard <- function(x, type = c("loo", "rhat", "ess"
 }
 
 #' Plot gaze anchored 3pl audit diagnostics
+#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot gaze anchored 3pl audit diagnostics.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 #' @param type Type of summary or visual representation to produce.

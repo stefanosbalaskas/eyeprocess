@@ -9,6 +9,9 @@ specification_coverage(x)
 \arguments{
 \item{x}{Sensitivity result.}
 }
+\value{
+A numeric value or vector containing fraction of planned specifications successfully evaluated.
+}
 \description{
 Fraction of planned specifications successfully evaluated
 }

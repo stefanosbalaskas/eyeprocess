@@ -13,6 +13,9 @@ validation_coverage_table(x, nominal = 0.95, by = NULL)
 
 \item{by}{Optional grouping variables.}
 }
+\value{
+A tabular R object containing interval-coverage table; rows represent analysis units and columns contain the returned quantities.
+}
 \description{
 Interval-coverage table
 }

@@ -26,6 +26,9 @@ eyeprocess_irt_adaptive_trace(
 
 \item{response}{Observed item response or response variable.}
 }
+\value{
+An object of class "eye_irt_adaptive_trace", "data.frame", stored as a data frame, containing an auditable adaptive-testing trace and associated metadata needed to interpret the result.
+}
 \description{
 Create an auditable adaptive-testing trace
 }

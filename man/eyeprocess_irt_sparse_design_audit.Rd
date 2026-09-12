@@ -26,6 +26,9 @@ eyeprocess_irt_sparse_design_audit(
 
 \item{min_item_persons}{Minimum number of observed persons required per item.}
 }
+\value{
+An object of class "eye_irt_sparse_design_audit", stored as a named list, with components "n_persons", "n_items", "n_observed", "density", "person_counts", "item_counts", "sparse_persons", "sparse_items", "min_person_items", "min_item_persons". It contains sparse person-item response coverage and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 Audit sparse person-item response coverage
 }

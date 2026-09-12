@@ -11,6 +11,9 @@ write_eyeprocess_validation_evidence(x, path)
 
 \item{path}{File path for reading or writing.}
 }
+\value{
+A character string or vector giving the path or identifier for a frozen evidence bundle.
+}
 \description{
 Write a frozen evidence bundle
 }

@@ -17,6 +17,9 @@ eye_benchmark_design(
 
 \item{label}{Benchmark label.}
 }
+\value{
+A tabular R object containing define a computational benchmark design; rows represent analysis units and columns contain the returned quantities.
+}
 \description{
 Define a computational benchmark design
 }

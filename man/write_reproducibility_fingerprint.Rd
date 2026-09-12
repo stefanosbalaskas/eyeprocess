@@ -13,6 +13,9 @@ write_reproducibility_fingerprint(x, path, format = c("rds", "dput", "json"))
 
 \item{format}{`rds`, `dput`, or `json`.}
 }
+\value{
+A character string or vector giving the path or identifier for a reproducibility fingerprint.
+}
 \description{
 Write a reproducibility fingerprint
 }

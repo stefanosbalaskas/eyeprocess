@@ -19,6 +19,9 @@ process_temporal_stability(
 
 \item{method}{Correlation method.}
 }
+\value{
+A logical value or vector indicating pairwise temporal stability across sessions.
+}
 \description{
 Pairwise temporal stability across sessions
 }

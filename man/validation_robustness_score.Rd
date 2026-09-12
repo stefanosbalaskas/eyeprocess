@@ -9,6 +9,9 @@ validation_robustness_score(x)
 \arguments{
 \item{x}{Validation result.}
 }
+\value{
+A single numeric robustness score: the mean finite condition-level robustness score, or `NA_real_` when no finite score is available.
+}
 \description{
 Overall validation robustness score
 }

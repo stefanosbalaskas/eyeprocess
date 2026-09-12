@@ -13,6 +13,9 @@ sensitivity_fragility_index(x, effect = "effect", threshold = 0)
 
 \item{threshold}{Decision threshold.}
 }
+\value{
+A numeric value or vector containing fragility index across analysis specifications.
+}
 \description{
 Fragility index across analysis specifications
 }

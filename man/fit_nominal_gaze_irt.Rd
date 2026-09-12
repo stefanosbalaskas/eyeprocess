@@ -36,6 +36,9 @@ option. Names should correspond to option labels when possible.}
 
 \item{...}{Additional arguments passed to the selected model, engine, or method.}
 }
+\value{
+An object of class "eye_nominal_gaze_irt", stored as a named list, with components "model", "baseline_model", "data", "option_gaze", "gaze_proportion_columns", "ability", "person", "item", "logLik_gain", "status", "note". It contains nominal/distractor IRT with option-level gaze and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 The bundled estimator is a transparent two-stage process-augmented nominal
 model: participant ability may be supplied, or a shrinkage logit accuracy

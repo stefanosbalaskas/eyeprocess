@@ -20,6 +20,9 @@ plot_pupil_preprocessing_audit(
 
 \item{...}{Additional arguments passed to the underlying method or helper.}
 }
+\value{
+A tabular R object containing plot raw-to-processed pupil preprocessing stages; rows represent analysis units and columns contain the returned quantities.
+}
 \description{
 Plot raw-to-processed pupil preprocessing stages
 }

@@ -19,6 +19,9 @@ per row.}
 
 \item{discrepancies}{Named list of functions mapping a dataset to one number.}
 }
+\value{
+An object of class "eye_irt_ppc", "data.frame", stored as a data frame, containing posterior predictive discrepancy table and associated metadata needed to interpret the result.
+}
 \description{
 Posterior predictive discrepancy table
 }

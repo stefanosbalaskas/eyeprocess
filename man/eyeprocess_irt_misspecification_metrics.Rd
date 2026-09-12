@@ -14,6 +14,9 @@ eyeprocess_irt_misspecification_metrics(
 
 \item{misspecified_summary}{Misspecified-model validation summary.}
 }
+\value{
+An R object containing recovery under reference and misspecified scenarios. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
+}
 \description{
 Compare recovery under reference and misspecified scenarios
 }

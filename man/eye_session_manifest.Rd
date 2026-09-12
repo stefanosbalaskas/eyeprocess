@@ -29,6 +29,9 @@ eye_session_manifest(
 
 \item{notes}{Optional notes.}
 }
+\value{
+A named list with components "created_utc", "eyeprocess_version", "data_hash", "files", "adapter", "decisions_hash", "pipeline_hash", "seeds", "environment", "notes", containing a session-level provenance manifest and associated metadata or diagnostics.
+}
 \description{
 Create a session-level provenance manifest
 }

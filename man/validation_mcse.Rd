@@ -11,6 +11,9 @@ validation_mcse(results, metric = c("bias", "rmse", "coverage"))
 
 \item{metric}{Metric to calculate or audit.}
 }
+\value{
+A data frame containing monte Carlo standard errors for validation metrics. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
+}
 \description{
 Monte Carlo standard errors for validation metrics
 }

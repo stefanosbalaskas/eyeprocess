@@ -29,6 +29,9 @@ register_eye_api_status(
 
 \item{notes}{Notes.}
 }
+\value{
+An R object containing add or update API lifecycle metadata without global mutation. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
+}
 \description{
 Add or update API lifecycle metadata without global mutation
 }

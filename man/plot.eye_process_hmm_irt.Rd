@@ -13,6 +13,9 @@
 
 \item{...}{Additional arguments passed to the selected model, engine, or method.}
 }
+\value{
+Invisibly returns the plotting result when available; the primary effect is drawing plot a process-HMM IRT fit.
+}
 \description{
 Plot a process-HMM IRT fit
 }

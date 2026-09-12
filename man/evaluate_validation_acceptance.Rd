@@ -11,6 +11,9 @@ evaluate_validation_acceptance(value, rule)
 
 \item{rule}{Validation acceptance rule to apply.}
 }
+\value{
+A logical value or vector indicating a validation acceptance rule.
+}
 \description{
 Evaluate a validation acceptance rule
 }

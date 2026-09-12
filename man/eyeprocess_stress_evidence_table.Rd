@@ -11,6 +11,9 @@ eyeprocess_stress_evidence_table(x, digits = 4L)
 
 \item{digits}{Number of decimal digits used for presentation.}
 }
+\value{
+An R object containing a paper-ready stress-test table. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
+}
 \description{
 Build a paper-ready stress-test table
 }

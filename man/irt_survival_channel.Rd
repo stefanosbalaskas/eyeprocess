@@ -23,6 +23,9 @@ irt_survival_channel(
 
 \item{options}{Additional channel/model options.}
 }
+\value{
+A named list with components "type", "family", "role", "link", "variables", "latent", "options", containing survival/event-time channel for multimodal IRT and associated metadata or diagnostics.
+}
 \description{
 Survival/event-time channel for multimodal IRT
 }

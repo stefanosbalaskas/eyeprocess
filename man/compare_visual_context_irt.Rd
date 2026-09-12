@@ -9,6 +9,9 @@ compare_visual_context_irt(x)
 \arguments{
 \item{x}{Object to process, inspect, compare, or plot.}
 }
+\value{
+A data frame containing base and visual-context IRT models. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
+}
 \description{
 Compare base and visual-context IRT models
 }

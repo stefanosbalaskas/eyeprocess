@@ -23,6 +23,9 @@ validation_acceptance_rule(
 
 \item{tolerance}{Numerical or decision tolerance.}
 }
+\value{
+An object of class "eye_validation_acceptance_rule", stored as a named list, with components "metric", "direction", "threshold", "upper", "tolerance". It contains define a validation acceptance rule and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 Define a validation acceptance rule
 }

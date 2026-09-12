@@ -17,6 +17,9 @@ eyeprocess_irt_prior_sensitivity_summary(
 
 \item{estimate}{Estimate column or numerical estimates to summarize.}
 }
+\value{
+An object of class "eye_irt_prior_sensitivity", stored as a named list, with components "n_specifications", "n_finite", "median", "range", "sd", "table", "guardrail". It contains sensitivity of an estimand across declared prior specifications and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 Summarise sensitivity of an estimand across declared prior specifications
 }

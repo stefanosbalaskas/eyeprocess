@@ -16,6 +16,7 @@
 #' @param sampling_rate_hz Sampling rate in Hz.
 #' @param lower_hz,upper_hz Frequency-band limits.
 #' @param detrend Remove the mean before FFT.
+#' @return A numeric value or vector containing pupil signal power in a frequency band.
 #' @export
 pupil_band_power <- function(y, sampling_rate_hz, lower_hz, upper_hz, detrend = TRUE) {
   y <- .ep08_interp_signal(y)
@@ -37,6 +38,7 @@ pupil_band_power <- function(y, sampling_rate_hz, lower_hz, upper_hz, detrend = 
 #' Derivative-based pupil activity magnitude
 #' @param y Pupil signal.
 #' @param time_ms Time in milliseconds.
+#' @return A numeric value or vector containing derivative-based pupil activity magnitude.
 #' @export
 pupil_velocity_activity <- function(y, time_ms) {
   y <- .ep08_interp_signal(y); t <- .ep08_num(time_ms) / 1000
@@ -88,6 +90,7 @@ pupil_velocity_activity <- function(y, time_ms) {
 #' @param method `velocity`, `frequency_contrast`, or `ripa_proxy`.
 #' @param low_band,high_band Frequency bands for frequency contrast.
 #' @param fast_window_ms,slow_window_ms Smoothing windows for the RIPA-style proxy.
+#' @return A numeric value or vector containing a transparent pupil activity index.
 #' @export
 pupil_activity_index <- function(
     y, time_ms = seq_along(y), sampling_rate_hz = NULL,
@@ -116,6 +119,7 @@ pupil_activity_index <- function(
 #' @param time,pupil Column names.
 #' @param sampling_rate_hz Either a scalar or a column name.
 #' @param low_band,high_band Frequency bands.
+#' @return An object of class "eye_pupil_frequency_features", stored as a named list, with components "features", "low_band", "high_band", "by", "pupil", "time", "caveat". It contains pupil frequency-domain and activity features by group and associated metadata or diagnostics needed to interpret the result.
 #' @export
 pupil_frequency_features <- function(
     data, by = c("person_id", "trial_id"), time = "time_ms", pupil = "pupil_bc",
@@ -156,6 +160,7 @@ pupil_frequency_features <- function(
 #' @param data Sample-level data.
 #' @param windows_ms Window lengths to evaluate.
 #' @param by,time,pupil,sampling_rate_hz Passed through to feature construction.
+#' @return An object of class "eye_pupil_frequency_stability", stored as a named list, with components "table", "windows_ms", "caveat". It contains stability of pupil frequency features across window lengths and associated metadata or diagnostics needed to interpret the result.
 #' @export
 audit_pupil_frequency_stability <- function(
     data, windows_ms = c(500, 1000, 2000), by = c("person_id", "trial_id"),
@@ -190,6 +195,7 @@ audit_pupil_frequency_stability <- function(
 #' @param tmax_ms Approximate response peak time.
 #' @param shape Shape parameter.
 #' @param normalize Normalize peak to one.
+#' @return A numeric value or vector containing canonical gamma-shaped pupil response kernel.
 #' @export
 pupil_response_kernel <- function(time_since_event_ms, tmax_ms = 930, shape = 10.1, normalize = TRUE) {
   t <- pmax(.ep08_num(time_since_event_ms), 0) / 1000
@@ -207,6 +213,7 @@ pupil_response_kernel <- function(time_since_event_ms, tmax_ms = 930, shape = 10
 #' @param time_ms Sample times.
 #' @param event_time_ms Event onset.
 #' @param tmax_ms,shape Kernel parameters.
+#' @return A numeric value or vector containing an event-locked pupil regressor.
 #' @export
 pupil_event_regressor <- function(time_ms, event_time_ms, tmax_ms = 930, shape = 10.1) {
   pupil_response_kernel(.ep08_num(time_ms) - as.numeric(event_time_ms), tmax_ms = tmax_ms, shape = shape)
@@ -233,6 +240,7 @@ pupil_event_regressor <- function(time_ms, event_time_ms, tmax_ms = 930, shape =
 #' @param events Named list mapping event labels to scalar event times or columns.
 #' @param tmax_ms,shape Kernel parameters.
 #' @param min_samples Minimum usable samples per group.
+#' @return An object of class "eye_pupil_deconvolution", stored as a named list, with components "fits", "effects", "fitted", "events", "tmax_ms", "shape", "by", "status", "caveat". It contains transparent event-related pupil deconvolution models and associated metadata or diagnostics needed to interpret the result.
 #' @export
 fit_pupil_event_deconvolution <- function(
     data, by = c("person_id", "trial_id"), time = "time_ms", pupil = "pupil_bc",
@@ -293,6 +301,7 @@ fit_pupil_event_deconvolution <- function(
 }
 
 #' Extract event effects from pupil deconvolution
+#' @return An R object containing event effects from pupil deconvolution. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 pupil_event_effects <- function(x) {
@@ -304,6 +313,7 @@ pupil_event_effects <- function(x) {
 #' @param data Same input used for fitting.
 #' @param tmax_values Candidate peak times.
 #' @param ... Passed to `fit_pupil_event_deconvolution()`.
+#' @return A tabular R object containing pupil deconvolution kernels; rows represent analysis units and columns contain the returned quantities.
 #' @export
 compare_pupil_kernels <- function(data, tmax_values = c(512, 930), ...) {
   rows <- lapply(tmax_values, function(tm) {
@@ -398,6 +408,7 @@ fit_pupil_confound_model <- function(
 }
 
 #' Extract confound-adjusted pupil values
+#' @return An R object containing confound-adjusted pupil values. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 adjust_pupil_confounds <- function(x) {
@@ -406,6 +417,7 @@ adjust_pupil_confounds <- function(x) {
 }
 
 #' Extract pupil confound-model effects
+#' @return An R object containing pupil confound-model effects. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 pupil_confound_effects <- function(x) {
@@ -420,6 +432,7 @@ pupil_confound_effects <- function(x) {
 #' @param pupil,trial_order,person Required columns.
 #' @param luminance,difficulty Optional covariates.
 #' @param engine `auto`, `plm`, or `lm_fixed_effects`.
+#' @return An object of class "eye_pupil_fatigue_drift", stored as a named list, with components "model", "coefficients", "data", "engine", "status", "caveat". It contains within-person pupil fatigue/trial-order drift and associated metadata or diagnostics needed to interpret the result.
 #' @export
 audit_pupil_fatigue_drift <- function(
     data, pupil = "pupil_peak", trial_order = "trial_sequence", person = "person_id",
@@ -461,6 +474,7 @@ audit_pupil_fatigue_drift <- function(
 }
 
 #' Compare raw and confound-adjusted pupil values
+#' @return A data frame containing raw and confound-adjusted pupil values. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 compare_raw_adjusted_pupil <- function(x) {
@@ -518,11 +532,13 @@ filter_eye_signal <- function(signal, width = 9L,
 }
 
 #' Filter pupil signal robustly
+#' @return An R object containing filter pupil signal robustly. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 #' @param ... Additional arguments passed to the underlying method or helper.
 filter_pupil_signal <- function(...) filter_eye_signal(...)
 
 #' Summarize a signal-filter audit
+#' @return A data frame containing a signal-filter audit. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 audit_signal_filter <- function(x) {
@@ -538,6 +554,7 @@ audit_signal_filter <- function(x) {
 #' @param signal Numeric signal.
 #' @param widths Widths to compare.
 #' @param methods Methods to compare.
+#' @return A tabular R object containing multiple signal filters; rows represent analysis units and columns contain the returned quantities.
 #' @export
 compare_signal_filters <- function(signal, widths = c(5L, 9L, 15L), methods = c("runmed", "robfilter")) {
   rows <- list(); k <- 0L

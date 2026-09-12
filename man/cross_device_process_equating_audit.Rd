@@ -23,6 +23,9 @@ cross_device_process_equating_audit(
 
 \item{anchor}{Anchor or reference group used for linking.}
 }
+\value{
+An object of class "eye_cross_device_equating_audit", "data.frame", stored as a data frame, containing cross-device process-scale equating audit and associated metadata needed to interpret the result.
+}
 \description{
 Fits a simple affine linking map on anchor observations and reports residual
 bias/RMSE by device. It complements, rather than replaces, IRT anchor linking.

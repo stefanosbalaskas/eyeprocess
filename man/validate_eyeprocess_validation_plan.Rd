@@ -9,6 +9,9 @@ validate_eyeprocess_validation_plan(x)
 \arguments{
 \item{x}{Object to validate, summarize, verify, or otherwise process.}
 }
+\value{
+A logical value or vector indicating a validation-evidence plan.
+}
 \description{
 Validate a validation-evidence plan
 }

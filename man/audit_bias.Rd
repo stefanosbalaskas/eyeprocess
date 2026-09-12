@@ -13,6 +13,9 @@ audit_bias(results, threshold = 0.1, by = c("scenario", "engine", "parameter"))
 
 \item{by}{Grouping variables used when summarizing results.}
 }
+\value{
+An R object containing bias. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
+}
 \description{
 Audit bias
 }

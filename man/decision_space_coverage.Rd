@@ -11,6 +11,9 @@ decision_space_coverage(grid, evaluated)
 
 \item{evaluated}{Sensitivity result or vector of evaluated specification IDs.}
 }
+\value{
+A data frame containing coverage of a declared decision space by evaluated specifications. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
+}
 \description{
 Coverage of a declared decision space by evaluated specifications
 }

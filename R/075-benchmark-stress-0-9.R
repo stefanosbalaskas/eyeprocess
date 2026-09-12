@@ -5,6 +5,7 @@
 #' @param n_obs Observation counts.
 #' @param repetitions Repetitions per size.
 #' @param label Benchmark label.
+#' @return A tabular R object containing define a computational benchmark design; rows represent analysis units and columns contain the returned quantities.
 #' @export
 eye_benchmark_design <- function(n_obs = c(1e4, 1e5, 1e6), repetitions = 3L,
                                  label = "eyeprocess_scaling") {
@@ -39,6 +40,7 @@ eye_benchmark_design <- function(n_obs = c(1e4, 1e5, 1e6), repetitions = 3L,
 #' @param operation Function `(data, row)` representing the operation under test.
 #' @param gc_before Run garbage collection before timing.
 #' @param progress Print progress.
+#' @return An object of class "eye_benchmark_result", stored as a named list, with components "design", "results", "created_at", "status", "caveat". It contains a computational scaling benchmark and associated metadata or diagnostics needed to interpret the result.
 #' @export
 run_eye_benchmark <- function(design = eye_benchmark_design(),
                               generator = .ep09_default_benchmark_generator,
@@ -81,6 +83,7 @@ run_eye_benchmark <- function(design = eye_benchmark_design(),
 
 #' Summarise benchmark timing and memory by problem size
 #' @param x Benchmark result.
+#' @return A logical value or vector indicating benchmark timing and memory by problem size.
 #' @export
 summarise_eye_benchmark <- function(x) {
   if (!inherits(x, "eye_benchmark_result")) stop("x must be an eye_benchmark_result.", call. = FALSE)
@@ -100,6 +103,7 @@ summarise_eye_benchmark <- function(x) {
 
 #' Estimate scaling exponent from benchmark results
 #' @param x Benchmark result.
+#' @return A data frame containing scaling exponent from benchmark results. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 benchmark_scaling_curve <- function(x) {
   s <- summarise_eye_benchmark(x)
@@ -112,6 +116,7 @@ benchmark_scaling_curve <- function(x) {
 #' Memory estimate for an R object or generated problem size
 #' @param x Object, or numeric n when `generator` is supplied.
 #' @param generator Optional function taking n.
+#' @return A data frame containing memory estimate for an R object or generated problem size. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 benchmark_memory_estimate <- function(x, generator = NULL) {
   obj <- if (is.function(generator)) generator(as.integer(x)[1L]) else x
@@ -128,6 +133,7 @@ benchmark_memory_estimate <- function(x, generator = NULL) {
 #' @param device_shift Additive shift for a declared device-sensitive numeric column.
 #' @param trial_drop Proportion of rows/trials removed.
 #' @param seed Seed.
+#' @return An object of class "eye_synthetic_corruption_plan", stored as a named list, with components "missingness", "pupil_dropout", "gaze_offset_x", "gaze_offset_y", "sampling_jitter_sd", "aoi_label_noise", "device_shift", "trial_drop", "seed", "status". It contains define synthetic measurement corruptions for stress testing and associated metadata or diagnostics needed to interpret the result.
 #' @export
 synthetic_corruption_plan <- function(missingness = 0, pupil_dropout = 0,
                                       gaze_offset_x = 0, gaze_offset_y = 0,
@@ -153,6 +159,7 @@ synthetic_corruption_plan <- function(missingness = 0, pupil_dropout = 0,
 #' @param columns Columns.
 #' @param proportion Missingness proportion.
 #' @param seed Seed.
+#' @return An R object containing inject generic missingness into selected columns. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 inject_eye_missingness <- function(data, columns, proportion, seed = 1L) {
   d <- .ep09_as_df(data); .ep09_req_cols(d, columns, "data")
@@ -171,6 +178,7 @@ inject_eye_missingness <- function(data, columns, proportion, seed = 1L) {
 #' @param pupil Pupil column.
 #' @param proportion Dropout proportion.
 #' @param seed Seed.
+#' @return An R object containing inject pupil dropout. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 inject_pupil_dropout <- function(data, pupil = "pupil", proportion, seed = 1L) {
   inject_eye_missingness(data, pupil, proportion, seed)
@@ -180,6 +188,7 @@ inject_pupil_dropout <- function(data, pupil = "pupil", proportion, seed = 1L) {
 #' @param data Data.
 #' @param x,y Gaze coordinate columns.
 #' @param offset_x,offset_y Additive offsets in the same units as x/y.
+#' @return An R object containing inject additive gaze calibration offset in coordinate units. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 inject_calibration_offset <- function(data, x = "gaze_x", y = "gaze_y", offset_x = 0, offset_y = 0) {
   d <- .ep09_as_df(data); .ep09_req_cols(d, c(x, y), "data")
@@ -193,6 +202,7 @@ inject_calibration_offset <- function(data, x = "gaze_x", y = "gaze_y", offset_x
 #' @param time Timestamp column.
 #' @param sd Jitter standard deviation in timestamp units.
 #' @param seed Seed.
+#' @return An R object containing inject timestamp jitter. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 inject_sampling_jitter <- function(data, time = "timestamp_ms", sd, seed = 1L) {
   d <- .ep09_as_df(data); .ep09_req_cols(d, time, "data")
@@ -208,6 +218,7 @@ inject_sampling_jitter <- function(data, time = "timestamp_ms", sd, seed = 1L) {
 #' @param aoi AOI label column.
 #' @param proportion Proportion reassigned to another observed label.
 #' @param seed Seed.
+#' @return An R object containing inject AOI label noise. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 inject_aoi_label_noise <- function(data, aoi = "aoi", proportion, seed = 1L) {
   d <- .ep09_as_df(data); .ep09_req_cols(d, aoi, "data")
@@ -229,6 +240,7 @@ inject_aoi_label_noise <- function(data, aoi = "aoi", proportion, seed = 1L) {
 #' @param column Numeric column.
 #' @param shift Additive shift.
 #' @param rows Optional logical/index rows affected.
+#' @return An R object containing inject an additive device/site shift in a numeric feature. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 inject_device_shift <- function(data, column, shift, rows = NULL) {
   d <- .ep09_as_df(data); .ep09_req_cols(d, column, "data")
@@ -243,6 +255,7 @@ inject_device_shift <- function(data, column, shift, rows = NULL) {
 #' @param data Data.
 #' @param proportion Proportion dropped.
 #' @param seed Seed.
+#' @return A tabular R object containing inject trial/row imbalance by dropping observations; rows represent analysis units and columns contain the returned quantities.
 #' @export
 inject_trial_imbalance <- function(data, proportion, seed = 1L) {
   d <- .ep09_as_df(data)
@@ -261,6 +274,7 @@ inject_trial_imbalance <- function(data, proportion, seed = 1L) {
 #' @param time Timestamp column.
 #' @param aoi Optional AOI column.
 #' @param device_column Optional numeric column receiving device shift.
+#' @return An R object containing a synthetic corruption plan. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 apply_synthetic_corruption <- function(data, plan,
                                        gaze_columns = c("gaze_x", "gaze_y"), pupil = "pupil",
@@ -288,6 +302,7 @@ apply_synthetic_corruption <- function(data, plan,
 #' @param analysis_fun Function `(data, plan)`.
 #' @param metric_fun Function `(analysis_result, plan)` returning scalar/list/data.frame metrics.
 #' @param ... Passed to `apply_synthetic_corruption()`.
+#' @return An object of class "eye_process_stress_test", stored as a named list, with components "plans", "results", "baseline_hash", "created_at", "caveat". It contains stress-test an analysis under explicit synthetic corruptions and associated metadata or diagnostics needed to interpret the result.
 #' @export
 stress_test_process_pipeline <- function(data, plans, analysis_fun,
                                          metric_fun = .ep09_default_sensitivity_extract, ...) {
@@ -322,6 +337,7 @@ stress_test_process_pipeline <- function(data, plans, analysis_fun,
 #' Summarise stress-test metrics
 #' @param x Stress-test result.
 #' @param metric Numeric metric column.
+#' @return A data frame containing stress-test metrics. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 stress_test_summary <- function(x, metric = "effect") {
   if (!inherits(x, "eye_process_stress_test")) stop("x must be an eye_process_stress_test.", call. = FALSE)
@@ -339,6 +355,7 @@ stress_test_summary <- function(x, metric = "effect") {
 #' @param severity Numeric corruption/severity column.
 #' @param metric Metric column.
 #' @param acceptable Function returning TRUE/FALSE for metric values.
+#' @return A data frame containing the empirical stress frontier for a metric. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 stress_tolerance_frontier <- function(x, severity, metric, acceptable) {
   if (!is.function(acceptable)) stop("acceptable must be a function.", call. = FALSE)

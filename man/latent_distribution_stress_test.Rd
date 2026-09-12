@@ -9,6 +9,9 @@ latent_distribution_stress_test(...)
 \arguments{
 \item{...}{Additional arguments passed to the selected model, engine, or method.}
 }
+\value{
+An R object containing stress-test IRT estimators across latent distributions. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
+}
 \description{
 Public roadmap alias for `stress_test_latent_distribution()`.
 }

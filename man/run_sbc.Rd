@@ -25,6 +25,9 @@ columns match names in `truth`.}
 
 \item{seed}{RNG seed.}
 }
+\value{
+An object of class "eye_irt_sbc", stored as a named list, with components "ranks", "failures", "replications", "seed", "method". It contains generic simulation-based calibration and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 Run generic simulation-based calibration
 }

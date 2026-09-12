@@ -9,6 +9,9 @@ data_quality_reporting_table(x)
 \arguments{
 \item{x}{Data-quality profile.}
 }
+\value{
+An R object containing compact reporting table for eye-tracking data quality. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
+}
 \description{
 Compact reporting table for eye-tracking data quality
 }

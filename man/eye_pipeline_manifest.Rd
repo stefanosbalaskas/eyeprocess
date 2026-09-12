@@ -9,6 +9,9 @@ eye_pipeline_manifest(x)
 \arguments{
 \item{x}{Pipeline.}
 }
+\value{
+A data frame containing machine-readable pipeline manifest. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
+}
 \description{
 Machine-readable pipeline manifest
 }

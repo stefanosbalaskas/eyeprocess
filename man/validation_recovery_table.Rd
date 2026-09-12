@@ -11,6 +11,9 @@ validation_recovery_table(x, by = NULL)
 
 \item{by}{Optional grouping variables.}
 }
+\value{
+A tabular R object containing parameter-recovery table; rows represent analysis units and columns contain the returned quantities.
+}
 \description{
 Parameter-recovery table
 }

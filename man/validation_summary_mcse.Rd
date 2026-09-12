@@ -11,6 +11,9 @@ validation_summary_mcse(x, by = NULL)
 
 \item{by}{Optional grouping variables.}
 }
+\value{
+A tabular R object containing monte Carlo standard-error diagnostics for validation summaries; rows represent analysis units and columns contain the returned quantities.
+}
 \description{
 Monte Carlo standard-error diagnostics for validation summaries
 }

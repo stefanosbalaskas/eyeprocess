@@ -11,6 +11,9 @@ audit_frontier_model_contract(x, evidence = list())
 
 \item{evidence}{Named evidence objects.}
 }
+\value{
+A data frame containing whether a gated frontier model has a minimum evidence contract. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
+}
 \description{
 Audit whether a gated frontier model has a minimum evidence contract
 }

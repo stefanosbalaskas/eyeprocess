@@ -13,6 +13,7 @@
 #' Plot eye gaze informed missingness irt
 #' @param x Object to print, plot, summarize, or audit.
 #' @param ... Additional arguments passed to the selected model, engine, or method.
+#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot eye gaze informed missingness irt.
 #' @export
 plot.eye_gaze_informed_missingness_irt <- function(x, ...) {
   d <- x$data
@@ -37,6 +38,7 @@ plot.eye_gaze_informed_missingness_irt <- function(x, ...) {
 #' Plot eye process facet effects
 #' @param x Object to print, plot, summarize, or audit.
 #' @param ... Additional arguments passed to the selected model, engine, or method.
+#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot eye process facet effects.
 #' @export
 plot.eye_process_facet_effects <- function(x, ...) {
   re <- x$random_effects
@@ -56,6 +58,7 @@ plot.eye_process_facet_effects <- function(x, ...) {
 #' Plot eye latent distribution comparison
 #' @param x Object to print, plot, summarize, or audit.
 #' @param ... Additional arguments passed to the selected model, engine, or method.
+#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot eye latent distribution comparison.
 #' @export
 plot.eye_latent_distribution_comparison <- function(x, ...) {
   tab <- x$comparison
@@ -71,6 +74,7 @@ plot.eye_latent_distribution_comparison <- function(x, ...) {
 #' Plot eye event time irt
 #' @param x Object to print, plot, summarize, or audit.
 #' @param ... Additional arguments passed to the selected model, engine, or method.
+#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot eye event time irt.
 #' @export
 plot.eye_event_time_irt <- function(x, ...) {
   if (!inherits(x, "eye_event_time_irt")) stop("Invalid event-time IRT object.", call. = FALSE)
@@ -88,6 +92,7 @@ plot.eye_event_time_irt <- function(x, ...) {
 #' Plot eye vendor semantic validation
 #' @param x Object to print, plot, summarize, or audit.
 #' @param ... Additional arguments passed to the selected model, engine, or method.
+#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot eye vendor semantic validation.
 #' @export
 plot.eye_vendor_semantic_validation <- function(x, ...) {
   z <- x$fields
@@ -104,6 +109,7 @@ plot.eye_vendor_semantic_validation <- function(x, ...) {
 #' Plot eye event roundtrip audit
 #' @param x Object to print, plot, summarize, or audit.
 #' @param ... Additional arguments passed to the selected model, engine, or method.
+#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot eye event roundtrip audit.
 #' @export
 plot.eye_event_roundtrip_audit <- function(x, ...) {
   core <- x$event_semantics
@@ -120,6 +126,7 @@ plot.eye_event_roundtrip_audit <- function(x, ...) {
 #' Plot eye bids roundtrip
 #' @param x Object to print, plot, summarize, or audit.
 #' @param ... Additional arguments passed to the selected model, engine, or method.
+#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot eye bids roundtrip.
 #' @export
 plot.eye_bids_roundtrip <- function(x, ...) {
   if (!inherits(x$audit, "eye_semantic_roundtrip")) stop("BIDS roundtrip does not contain a semantic audit.", call. = FALSE)
@@ -129,6 +136,7 @@ plot.eye_bids_roundtrip <- function(x, ...) {
 #' Plot eye adapter regression audit
 #' @param x Object to print, plot, summarize, or audit.
 #' @param ... Additional arguments passed to the selected model, engine, or method.
+#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot eye adapter regression audit.
 #' @export
 plot.eye_adapter_regression_audit <- function(x, ...) {
   f <- x$fidelity$fields
@@ -146,6 +154,7 @@ plot.eye_adapter_regression_audit <- function(x, ...) {
 #' Print eye vendor schema contract
 #' @param x Object to print, plot, summarize, or audit.
 #' @param ... Additional arguments passed to the selected model, engine, or method.
+#' @return Invisibly returns the input object after printing its summary; the object's class and contents are unchanged.
 #' @export
 print.eye_vendor_schema_contract <- function(x, ...) {
   cat("<eye_vendor_schema_contract>", x$vendor)

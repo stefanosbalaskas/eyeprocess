@@ -17,6 +17,9 @@ summarize_parameter_recovery(
 
 \item{interval_level}{Nominal interval level, used only for labelling.}
 }
+\value{
+A tabular R object containing parameter recovery; rows represent analysis units and columns contain the returned quantities.
+}
 \description{
 Summarise parameter recovery
 }

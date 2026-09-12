@@ -25,6 +25,9 @@ cross_version_adapter_regression(
 
 \item{audit_args}{Arguments passed to `field_fidelity_report()`.}
 }
+\value{
+An object of class "eye_adapter_regression_audit", stored as a named list, with components "status", "baseline_version", "candidate_version", "fidelity", "baseline", "candidate". It contains adapter output across software/format versions and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 Compare adapter output across software/format versions
 }

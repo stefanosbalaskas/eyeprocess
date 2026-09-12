@@ -9,6 +9,9 @@ analysis_environment_snapshot(packages = loadedNamespaces())
 \arguments{
 \item{packages}{Optional package names; defaults to loaded namespaces.}
 }
+\value{
+A named list with components "r_version", "platform", "os", "locale", "timezone", "packages", containing snapshot an eyeprocess analysis environment and associated metadata or diagnostics.
+}
 \description{
 Snapshot an eyeprocess analysis environment
 }

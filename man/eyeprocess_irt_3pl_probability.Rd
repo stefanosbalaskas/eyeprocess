@@ -17,6 +17,9 @@ eyeprocess_irt_3pl_probability(theta, a = 1, b = 0, c = 0.2, D = 1)
 
 \item{D}{Logistic scaling constant.}
 }
+\value{
+A numeric value or vector containing 3PL item-response probability.
+}
 \description{
 3PL item-response probability
 }

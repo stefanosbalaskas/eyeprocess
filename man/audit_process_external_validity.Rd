@@ -20,6 +20,9 @@ audit_process_external_validity(
 
 \item{baseline_predictors}{Optional baseline predictors for incremental validity.}
 }
+\value{
+An object of class "eye_process_external_validity", stored as a named list, with components "full_model", "baseline_model", "comparison", "associations", "criterion", "predictors", "baseline_predictors", "data", "incremental_r2", "status", "caveat". It contains external/structural validity of process traits and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 Audit external/structural validity of process traits
 }

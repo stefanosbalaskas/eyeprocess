@@ -11,6 +11,9 @@ stress_test_summary(x, metric = "effect")
 
 \item{metric}{Numeric metric column.}
 }
+\value{
+A data frame containing stress-test metrics. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
+}
 \description{
 Summarise stress-test metrics
 }

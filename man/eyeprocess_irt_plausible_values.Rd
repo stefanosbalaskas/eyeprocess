@@ -13,6 +13,9 @@ eyeprocess_irt_plausible_values(score, n = 5L, seed = 1L)
 
 \item{seed}{Random-number seed for reproducible execution.}
 }
+\value{
+An R object containing plausible values from a discrete posterior grid. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
+}
 \description{
 Draw plausible values from a discrete posterior grid
 }

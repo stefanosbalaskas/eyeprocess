@@ -26,6 +26,9 @@ simulate_process_cat(
 
 \item{seed}{Random-number seed.}
 }
+\value{
+An object of class "eye_process_cat_simulation", "data.frame", stored as a data frame, containing a simple process-aware CAT policy and associated metadata needed to interpret the result.
+}
 \description{
 This is a design simulator, not a production testing engine.
 }

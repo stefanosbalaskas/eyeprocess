@@ -15,6 +15,9 @@ specification_curve_data(x, effect = "effect", lower = NULL, upper = NULL)
 
 \item{upper}{Optional upper interval column.}
 }
+\value{
+A tabular R object containing ordered specification-curve data; rows represent analysis units and columns contain the returned quantities.
+}
 \description{
 Prepare ordered specification-curve data
 }

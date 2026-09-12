@@ -11,6 +11,9 @@ write_api_lifecycle_registry(registry, path)
 
 \item{path}{Output path.}
 }
+\value{
+An R object containing aPI lifecycle registry to CSV. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
+}
 \description{
 Write API lifecycle registry to CSV
 }
