@@ -27,33 +27,37 @@ jobs:
           path = Path("tools/cran_return_docs_v2.py")
           text = path.read_text(encoding="utf-8")
 
-          old_symbol = '''    if re.fullmatch(r"[A-Za-z.][A-Za-z0-9._]*", expr):
-              if expr in assigns:
-                  return infer_expr(assigns[expr], assigns, funcs, seen)
-          '''
-          new_symbol = '''    if re.fullmatch(r"[A-Za-z.][A-Za-z0-9._]*", expr):
-              if expr in assigns:
-                  marker = f"assign:{expr}"
-                  if marker in seen:
-                      return ReturnInfo("object", [], [], compact, "assignment-cycle")
-                  return infer_expr(assigns[expr], assigns, funcs, seen | {marker})
-          '''
+          old_symbol = (
+              '    if re.fullmatch(r"[A-Za-z.][A-Za-z0-9._]*", expr):\n'
+              '        if expr in assigns:\n'
+              '            return infer_expr(assigns[expr], assigns, funcs, seen)\n'
+          )
+          new_symbol = (
+              '    if re.fullmatch(r"[A-Za-z.][A-Za-z0-9._]*", expr):\n'
+              '        if expr in assigns:\n'
+              '            marker = f"assign:{expr}"\n'
+              '            if marker in seen:\n'
+              '                return ReturnInfo("object", [], [], compact, "assignment-cycle")\n'
+              '            return infer_expr(assigns[expr], assigns, funcs, seen | {marker})\n'
+          )
           if text.count(old_symbol) != 1:
               raise SystemExit(f"symbol assignment anchor count={text.count(old_symbol)}")
           text = text.replace(old_symbol, new_symbol, 1)
 
-          old_subset = '''        if base in assigns:
-              base_info = infer_expr(assigns[base], assigns, funcs, seen)
-              if base_info.kind in {"data.frame", "matrix", "array", "tabular"}:
-                  return ReturnInfo(base_info.kind, base_info.classes, base_info.components, compact, "terminal-subset")
-          '''
-          new_subset = '''        if base in assigns:
-              marker = f"assign:{base}"
-              if marker not in seen:
-                  base_info = infer_expr(assigns[base], assigns, funcs, seen | {marker})
-                  if base_info.kind in {"data.frame", "matrix", "array", "tabular"}:
-                      return ReturnInfo(base_info.kind, base_info.classes, base_info.components, compact, "terminal-subset")
-          '''
+          old_subset = (
+              '        if base in assigns:\n'
+              '            base_info = infer_expr(assigns[base], assigns, funcs, seen)\n'
+              '            if base_info.kind in {"data.frame", "matrix", "array", "tabular"}:\n'
+              '                return ReturnInfo(base_info.kind, base_info.classes, base_info.components, compact, "terminal-subset")\n'
+          )
+          new_subset = (
+              '        if base in assigns:\n'
+              '            marker = f"assign:{base}"\n'
+              '            if marker not in seen:\n'
+              '                base_info = infer_expr(assigns[base], assigns, funcs, seen | {marker})\n'
+              '                if base_info.kind in {"data.frame", "matrix", "array", "tabular"}:\n'
+              '                    return ReturnInfo(base_info.kind, base_info.classes, base_info.components, compact, "terminal-subset")\n'
+          )
           if text.count(old_subset) != 1:
               raise SystemExit(f"subset assignment anchor count={text.count(old_subset)}")
           text = text.replace(old_subset, new_subset, 1)
@@ -66,11 +70,13 @@ jobs:
           python -m py_compile tools/cran_return_docs_v2.py
           python - <<'PY'
           import importlib.util
+          import sys
           from pathlib import Path
 
           path = Path("tools/cran_return_docs_v2.py")
           spec = importlib.util.spec_from_file_location("cran_return_docs_v2", path)
           mod = importlib.util.module_from_spec(spec)
+          sys.modules[spec.name] = mod
           spec.loader.exec_module(mod)
 
           cyc = {"out": "out[order(-score), , drop = FALSE]"}
