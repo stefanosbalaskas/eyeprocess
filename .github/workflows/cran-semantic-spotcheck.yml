@@ -1,0 +1,102 @@
+name: CRAN semantic return spotcheck
+
+on:
+  push:
+    branches:
+      - cran-remediation-0.11.1
+    paths:
+      - .github/workflows/cran-semantic-spotcheck.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  semantic-spotcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Audit high-risk return contracts
+        run: |
+          python - <<'PY'
+          import importlib.util
+          import re
+          import sys
+          from pathlib import Path
+
+          path = Path("tools/cran_return_docs_v2.py")
+          spec = importlib.util.spec_from_file_location("cran_return_docs_v2", path)
+          mod = importlib.util.module_from_spec(spec)
+          sys.modules[spec.name] = mod
+          spec.loader.exec_module(mod)
+          funcs = mod.build_functions()
+
+          def value_for(name):
+              candidates = []
+              for rd in Path("man").glob("*.Rd"):
+                  text = rd.read_text(encoding="utf-8", errors="replace")
+                  if re.search(r"\\(?:name|alias)\{" + re.escape(name) + r"\}", text):
+                      candidates.append((rd, text))
+              if not candidates:
+                  return "<NO MANUAL>"
+              text = candidates[0][1]
+              m = re.search(r"\\value\{(.*?)\}\s*(?:\\(?:description|details|examples|seealso|references|author|note|format|source|keyword)|$)", text, re.S)
+              if not m:
+                  return "<NO VALUE>"
+              return re.sub(r"\s+", " ", m.group(1)).strip()
+
+          rows = []
+          token_hits = {"uniroot": [], "optimize": [], "sample": []}
+          assignment = []
+          dynamic = []
+          plots = []
+          failures = []
+
+          for name, fn in sorted(funcs.items()):
+              info = mod.infer_function(name, funcs)
+              val = value_for(name)
+              body = fn.body
+              for token in token_hits:
+                  if re.search(r"(?:^|[^A-Za-z0-9._])(?:stats::)?" + token + r"\s*\(", body):
+                      token_hits[token].append((name, info.kind, info.confidence, info.expr, val))
+              if "assignment-cycle" in info.confidence:
+                  assignment.append((name, info.kind, info.confidence, info.expr, val))
+              if "dynamic-class" in info.confidence:
+                  dynamic.append((name, info.kind, info.confidence, info.expr, val))
+              if name.startswith("plot.") and len(plots) < 10:
+                  plots.append((name, info.kind, info.confidence, info.expr, val))
+
+          for token in ("uniroot", "optimize"):
+              for name, kind, confidence, expr, val in token_hits[token]:
+                  if confidence in {"terminal-call", "wrapper->terminal-call", "wrapper->wrapper->terminal-call"} and kind != "list":
+                      failures.append(f"{name}: terminal {token} classified {kind}/{confidence}")
+
+          for name, kind, confidence, expr, val in token_hits["sample"]:
+              if "sample" in expr and ("A numeric value or vector" in val or "A logical value or vector" in val):
+                  failures.append(f"{name}: polymorphic sample falsely documented as scalar/vector type: {val}")
+
+          for name, kind, confidence, expr, val in dynamic:
+              if '"eye_irt_", "_channel"' in val or 'class "eye_irt_", "_channel"' in val:
+                  failures.append(f"{name}: fake dynamic class fragments leaked into value docs")
+
+          print("SEMANTIC_HIGH_RISK_INVENTORY")
+          for token, hits in token_hits.items():
+              print(f"TOKEN_{token.upper()}_FUNCTIONS={len(hits)}")
+              for row in hits:
+                  print("TOKEN|" + token + "|" + "|".join(str(x).replace("\n", " ") for x in row))
+          print(f"ASSIGNMENT_CYCLE_FUNCTIONS={len(assignment)}")
+          for row in assignment:
+              print("ASSIGNMENT|" + "|".join(str(x).replace("\n", " ") for x in row))
+          print(f"DYNAMIC_CLASS_FUNCTIONS={len(dynamic)}")
+          for row in dynamic:
+              print("DYNAMIC|" + "|".join(str(x).replace("\n", " ") for x in row))
+          print(f"PLOT_SAMPLE={len(plots)}")
+          for row in plots:
+              print("PLOT|" + "|".join(str(x).replace("\n", " ") for x in row))
+          print(f"SEMANTIC_HIGH_RISK_FAILURES={len(failures)}")
+          for failure in failures:
+              print("FAIL|" + failure)
+          if failures:
+              raise SystemExit("High-risk semantic return audit failed")
+          print("SEMANTIC_HIGH_RISK_AUDIT=PASS")
+          PY
