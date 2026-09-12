@@ -13,9 +13,6 @@ negative_control_concordance(x, effect = "effect", tolerance = 0.05)
 
 \item{tolerance}{Absolute mean-effect tolerance.}
 }
-\value{
-A named list with components "summary", "all_within_tolerance", "tolerance", containing concordance of multiple negative-control families and associated metadata or diagnostics.
-}
 \description{
 Concordance of multiple negative-control families
 }

@@ -17,9 +17,6 @@ bayesian_process_diagnostic_flags(
 
 \item{ess_threshold}{Review threshold for bulk/tail effective sample size.}
 }
-\value{
-An R object containing compact Bayesian process-model diagnostic flags. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
-}
 \description{
 Extract compact Bayesian process-model diagnostic flags
 }

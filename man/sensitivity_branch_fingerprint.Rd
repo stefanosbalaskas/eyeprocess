@@ -9,9 +9,6 @@ sensitivity_branch_fingerprint(specification)
 \arguments{
 \item{specification}{One-row specification table or named list.}
 }
-\value{
-An R object containing stable fingerprint of a sensitivity branch. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
-}
 \description{
 Stable fingerprint of a sensitivity branch
 }

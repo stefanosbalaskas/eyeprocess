@@ -9,9 +9,6 @@ api_surface_summary(inventory)
 \arguments{
 \item{inventory}{Output of `eye_api_inventory()` or compatible table.}
 }
-\value{
-A data frame containing aPI surface by family and lifecycle status. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
-}
 \description{
 Summarise API surface by family and lifecycle status
 }

@@ -29,9 +29,6 @@ software_paper_evidence_bundle(
 
 \item{metadata}{Optional metadata.}
 }
-\value{
-A named list with components "schema_version", "claims", "validation", "examples", "articles", "benchmarks", "reproducibility", "metadata", "created_utc", containing a software-paper evidence bundle and associated metadata or diagnostics.
-}
 \description{
 Construct a software-paper evidence bundle
 }

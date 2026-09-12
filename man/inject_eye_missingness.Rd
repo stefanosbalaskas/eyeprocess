@@ -15,9 +15,6 @@ inject_eye_missingness(data, columns, proportion, seed = 1L)
 
 \item{seed}{Seed.}
 }
-\value{
-An R object containing inject generic missingness into selected columns. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
-}
 \description{
 Inject generic missingness into selected columns
 }

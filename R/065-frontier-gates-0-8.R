@@ -17,7 +17,6 @@
 }
 
 #' Print a gated process model object
-#' @return Invisibly returns the input object after printing its summary; the object's class and contents are unchanged.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 #' @param ... Additional arguments passed to the underlying method or helper.
@@ -30,7 +29,6 @@ print.eye_gated_process_model <- function(x, ...) {
 }
 
 #' Plot gated process model diagnostics
-#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot gated process model diagnostics.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 #' @param ... Additional arguments passed to the underlying method or helper.
@@ -50,7 +48,6 @@ plot.eye_gated_process_model <- function(x, ...) {
 #' @param engine Optional function implementing the exact/nonparametric marginal
 #'   likelihood estimator. If omitted, a gated specification is returned.
 #' @param ... Passed to `engine` when supplied.
-#' @return An object of class "eye_gated_process_model", stored as a named list, with components "id", "purpose", "required_evidence", "engine", "fit", "status", "notes", "caveat". It contains a gated KDE latent-distribution IRT interface and associated metadata or diagnostics needed to interpret the result.
 #' @export
 fit_kde_latent_distribution_irt <- function(response_matrix, engine = NULL, ...) {
   req <- c("nonparametric latent-density integration inside the IRT marginal likelihood",
@@ -71,7 +68,6 @@ fit_kde_latent_distribution_irt <- function(response_matrix, engine = NULL, ...)
 #' @param data Response/RT/process data.
 #' @param engine Optional externally validated estimator function.
 #' @param ... Passed to `engine`.
-#' @return An object of class "eye_gated_process_model", stored as a named list, with components "id", "purpose", "required_evidence", "engine", "fit", "status", "notes", "caveat". It contains a gated persistence-augmented gaze-diffusion IRT interface and associated metadata or diagnostics needed to interpret the result.
 #' @export
 fit_persistence_gaze_diffusion_irt <- function(data, engine = NULL, ...) {
   req <- c("separate capability, caution, and persistence identification",
@@ -92,7 +88,6 @@ fit_persistence_gaze_diffusion_irt <- function(data, engine = NULL, ...) {
 #' @param data Response/missingness data.
 #' @param engine Optional externally validated Bayesian estimator.
 #' @param ... Passed to `engine`.
-#' @return An object of class "eye_gated_process_model", stored as a named list, with components "id", "purpose", "required_evidence", "engine", "fit", "status", "notes", "caveat". It contains a gated Bayesian nonignorable-missing IRT interface and associated metadata or diagnostics needed to interpret the result.
 #' @export
 fit_nonignorable_missing_irt <- function(data, engine = NULL, ...) {
   req <- c("explicit nonignorable missingness mechanism", "prior specification",
@@ -118,7 +113,6 @@ fit_nonignorable_missing_irt <- function(data, engine = NULL, ...) {
 #'   test_structured, test_unstructured, fold_value, ...)` returning a fold result.
 #' @param id Optional identifier columns retained in the representation contract.
 #' @param ... Passed to `builder`.
-#' @return An object of class "eye_structured_unstructured_process_features", stored as a named list, with components "contract", "folds", "status". It contains leakage-safe structured/unstructured process representations and associated metadata or diagnostics needed to interpret the result.
 #' @export
 prepare_structured_unstructured_process_features <- function(
     structured, unstructured = NULL, fold = NULL, builder = NULL,
@@ -168,7 +162,6 @@ prepare_structured_unstructured_process_features <- function(
 #' @param data Data supplied to an optional external engine.
 #' @param engine Optional estimator implementing the intended scalable MH-RM model.
 #' @param ... Passed to engine.
-#' @return An object of class "eye_gated_process_model", stored as a named list, with components "id", "purpose", "required_evidence", "engine", "fit", "status", "notes", "caveat". It contains a gated scalable cross-classified MH-RM process IRT interface and associated metadata or diagnostics needed to interpret the result.
 #' @export
 fit_crossclassified_process_irt_mhrm <- function(data, engine = NULL, ...) {
   req <- c("cross-classified outcome/process likelihood", "study-design nesting",
@@ -187,7 +180,6 @@ fit_crossclassified_process_irt_mhrm <- function(data, engine = NULL, ...) {
 #' Audit whether a gated frontier model has a minimum evidence contract
 #' @param x Gated model object.
 #' @param evidence Named evidence objects.
-#' @return A data frame containing whether a gated frontier model has a minimum evidence contract. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 audit_frontier_model_contract <- function(x, evidence = list()) {
   if (!inherits(x, "eye_gated_process_model")) stop("x must be eye_gated_process_model.", call. = FALSE)

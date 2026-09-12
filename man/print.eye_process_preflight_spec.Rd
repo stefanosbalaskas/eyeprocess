@@ -11,9 +11,6 @@
 
 \item{...}{Additional arguments passed to the underlying method or helper.}
 }
-\value{
-Invisibly returns the input object after printing its summary; the object's class and contents are unchanged.
-}
 \description{
 Print a process preflight spec object
 }

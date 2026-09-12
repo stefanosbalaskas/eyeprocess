@@ -13,9 +13,6 @@ freeze_validation_reference(x, path = NULL, digits = 8L)
 
 \item{digits}{Numeric rounding applied before hashing.}
 }
-\value{
-An object of class "eye_validation_reference", stored as a named list, with components "summary", "failure_profile", "design_hash", "summary_hash", "created_at", "status". It contains freeze a compact validation reference for regression testing and associated metadata or diagnostics needed to interpret the result.
-}
 \description{
 Freeze a compact validation reference for regression testing
 }

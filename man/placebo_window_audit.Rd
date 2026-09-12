@@ -19,9 +19,6 @@ placebo_window_audit(data, time, value, window, expected = 0, by = NULL)
 
 \item{by}{Optional grouping columns.}
 }
-\value{
-An R object containing a placebo/pre-event window. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
-}
 \description{
 Audit a placebo/pre-event window
 }

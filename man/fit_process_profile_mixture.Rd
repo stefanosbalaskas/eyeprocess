@@ -26,9 +26,6 @@ fit_process_profile_mixture(
 
 \item{seed}{Random seed.}
 }
-\value{
-An object of class "eye_process_profile_mixture", stored as a named list, with components "model", "assignment", "summary", "variables", "k", "engine", "scaled_data", "status", "caveat". It contains exploratory process profiles and associated metadata or diagnostics needed to interpret the result.
-}
 \description{
 Fit exploratory process profiles
 }

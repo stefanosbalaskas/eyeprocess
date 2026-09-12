@@ -13,9 +13,6 @@ audit_temporal_leakage(provenance, allow_equal = TRUE, tolerance = 0)
 
 \item{tolerance}{Numeric tolerance in the provenance time unit.}
 }
-\value{
-A named list with components "status", "n_features", "n_flagged", "flagged_fraction", "detail", "interpretation", containing temporal leakage in a feature provenance table and associated metadata or diagnostics.
-}
 \description{
 Leakage here means information becoming available after the declared outcome
 boundary. It is a data/analysis property and is not an allegation of misconduct.

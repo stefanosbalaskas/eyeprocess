@@ -24,7 +24,6 @@
 #' @param x Object to print, plot, summarize, or audit.
 #' @param type Plot or result type.
 #' @param ... Additional arguments passed to the selected model, engine, or method.
-#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot a joint gaze-response-time IRT fit.
 #' @export
 plot.eye_joint_gaze_rt_irt <- function(x, type = c("latent", "components"), ...) {
   type <- match.arg(type)
@@ -50,7 +49,6 @@ plot.eye_joint_gaze_rt_irt <- function(x, type = c("latent", "components"), ...)
 #' Plot a graded response + RT/process fit
 #' @param x Object to print, plot, summarize, or audit.
 #' @param ... Additional arguments passed to the selected model, engine, or method.
-#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot a graded response + RT/process fit.
 #' @export
 plot.eye_joint_graded_rt_process_irt <- function(x, ...) {
   if (!is.null(x$person_scores)) {
@@ -71,7 +69,6 @@ plot.eye_joint_graded_rt_process_irt <- function(x, ...) {
 #' @param x Object to print, plot, summarize, or audit.
 #' @param type Plot or result type.
 #' @param ... Additional arguments passed to the selected model, engine, or method.
-#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot nominal-response gaze results.
 #' @export
 plot.eye_nominal_gaze_irt <- function(x, type = c("distractor_map", "coefficients"), ...) {
   type <- match.arg(type)
@@ -103,7 +100,6 @@ plot.eye_nominal_gaze_irt <- function(x, type = c("distractor_map", "coefficient
 #' @param x Object to print, plot, summarize, or audit.
 #' @param type Plot or result type.
 #' @param ... Additional arguments passed to the selected model, engine, or method.
-#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot omission/not-reached survival IRT diagnostics.
 #' @export
 plot.eye_omission_survival_irt <- function(x, type = c("survival", "missingness"), ...) {
   type <- match.arg(type)
@@ -131,7 +127,6 @@ plot.eye_omission_survival_irt <- function(x, type = c("survival", "missingness"
 #' @param x Object to print, plot, summarize, or audit.
 #' @param facet Facet to display or extract.
 #' @param ... Additional arguments passed to the selected model, engine, or method.
-#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot many-facet process IRT effects.
 #' @export
 plot.eye_manyfacet_process_irt <- function(x, facet = NULL, ...) {
   z <- tryCatch({
@@ -180,7 +175,6 @@ plot.eye_manyfacet_process_irt <- function(x, facet = NULL, ...) {
 #' @param x Object to print, plot, summarize, or audit.
 #' @param person Person or participant identifier column.
 #' @param ... Additional arguments passed to the selected model, engine, or method.
-#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot detected process changepoints.
 #' @export
 plot.eye_irt_changepoints <- function(x, person = NULL, ...) {
   d <- if (inherits(x, "eye_irt_changepoints")) x else as.data.frame(x)
@@ -209,7 +203,6 @@ plot.eye_irt_changepoints <- function(x, person = NULL, ...) {
 #' @param x Object to print, plot, summarize, or audit.
 #' @param type Plot or result type.
 #' @param ... Additional arguments passed to the selected model, engine, or method.
-#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot a process-HMM IRT fit.
 #' @export
 plot.eye_process_hmm_irt <- function(x, type = c("occupancy", "transition"), ...) {
   type <- match.arg(type)
@@ -248,7 +241,6 @@ plot.eye_process_hmm_irt <- function(x, type = c("occupancy", "transition"), ...
 #' Plot a latent-space IRT adapter fit
 #' @param x Object to print, plot, summarize, or audit.
 #' @param ... Additional arguments passed to the selected model, engine, or method.
-#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot a latent-space IRT adapter fit.
 #' @export
 plot.eye_latent_space_irt <- function(x, ...) {
   z <- tryCatch(process_residual_map(x), error = function(e) NULL)
@@ -273,7 +265,6 @@ plot.eye_latent_space_irt <- function(x, ...) {
 #' @param x Object to print, plot, summarize, or audit.
 #' @param top Number of highest-ranked cases to display.
 #' @param ... Additional arguments passed to the selected model, engine, or method.
-#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot process person-fit discrepancies.
 #' @export
 plot.eye_process_person_fit <- function(x, top = 25L, ...) {
   d <- as.data.frame(x$person_fit %||% x)
@@ -296,7 +287,6 @@ plot.eye_process_person_fit <- function(x, top = 25L, ...) {
 #' @param x Object to print, plot, summarize, or audit.
 #' @param theta Latent-trait values.
 #' @param ... Additional arguments passed to the selected model, engine, or method.
-#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot an IRT linking/equating transformation.
 #' @export
 plot.eye_irt_equating <- function(x, theta = seq(-4, 4, length.out = 201), ...) {
   A <- x$A %||% x$slope %||% 1
@@ -312,7 +302,6 @@ plot.eye_irt_equating <- function(x, theta = seq(-4, 4, length.out = 201), ...) 
 #' @param x Object to print, plot, summarize, or audit.
 #' @param item Item identifier, name, or item column.
 #' @param ... Additional arguments passed to the selected model, engine, or method.
-#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot flexible IRF shape diagnostics.
 #' @export
 plot.eye_gpirt <- function(x, item = NULL, ...) {
   z <- NULL
@@ -367,7 +356,6 @@ plot.eye_gpirt <- function(x, item = NULL, ...) {
 #' Plot CAT simulation information accumulation
 #' @param x Object to print, plot, summarize, or audit.
 #' @param ... Additional arguments passed to the selected model, engine, or method.
-#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot CAT simulation information accumulation.
 #' @export
 plot.eye_process_cat_simulation <- function(x, ...) {
   d <- as.data.frame(x$history %||% x)
@@ -388,7 +376,6 @@ plot.eye_process_cat_simulation <- function(x, ...) {
 #' @param x Object to print, plot, summarize, or audit.
 #' @param metric Metric to calculate or audit.
 #' @param ... Additional arguments passed to the selected model, engine, or method.
-#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot parameter-recovery bias or RMSE.
 #' @export
 plot.eye_irt_recovery_summary <- function(x, metric = c("rmse", "absolute_bias", "coverage"), ...) {
   metric <- match.arg(metric)
@@ -405,7 +392,6 @@ plot.eye_irt_recovery_summary <- function(x, metric = c("rmse", "absolute_bias",
 #' @param parameter Value supplied to `parameter`; see Details for its model-specific role.
 #' @param breaks Histogram or discretization breaks.
 #' @param ... Additional arguments passed to the selected model, engine, or method.
-#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot SBC rank histograms by parameter.
 #' @export
 plot.eye_irt_sbc <- function(x, parameter = NULL, breaks = 10L, ...) {
   d <- x$ranks
@@ -419,7 +405,6 @@ plot.eye_irt_sbc <- function(x, parameter = NULL, breaks = 10L, ...) {
 #' Plot SBC audit summaries
 #' @param x Object to print, plot, summarize, or audit.
 #' @param ... Additional arguments passed to the selected model, engine, or method.
-#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot SBC audit summaries.
 #' @export
 plot.eye_sbc_audit <- function(x, ...) {
   d <- as.data.frame(x)
@@ -434,7 +419,6 @@ plot.eye_sbc_audit <- function(x, ...) {
 #' Plot posterior predictive discrepancy tail probabilities
 #' @param x Object to print, plot, summarize, or audit.
 #' @param ... Additional arguments passed to the selected model, engine, or method.
-#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot posterior predictive discrepancy tail probabilities.
 #' @export
 plot.eye_irt_ppc <- function(x, ...) {
   d <- as.data.frame(x)
@@ -448,7 +432,6 @@ plot.eye_irt_ppc <- function(x, ...) {
 #' Plot incremental process-channel information by fold
 #' @param x Object to print, plot, summarize, or audit.
 #' @param ... Additional arguments passed to the selected model, engine, or method.
-#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot incremental process-channel information by fold.
 #' @export
 plot.eye_incremental_information_audit <- function(x, ...) {
   d <- as.data.frame(x)
@@ -462,7 +445,6 @@ plot.eye_incremental_information_audit <- function(x, ...) {
 #' Plot a process-channel negative-control distribution
 #' @param x Object to print, plot, summarize, or audit.
 #' @param ... Additional arguments passed to the selected model, engine, or method.
-#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot a process-channel negative-control distribution.
 #' @export
 plot.eye_process_negative_control <- function(x, ...) {
   graphics::hist(x$null, xlab = "Permuted-channel score",

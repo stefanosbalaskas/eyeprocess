@@ -19,7 +19,6 @@
 }
 
 #' Registry of specialized external IRT engines
-#' @return An object of class "eye_irt_engine_registry", "data.frame", stored as a data frame, containing registry of specialized external IRT engines and associated metadata needed to interpret the result.
 #' @export
 eyeprocess_irt_engine_registry <- function() {
   x <- .ep09m2_engine_registry()
@@ -29,7 +28,6 @@ eyeprocess_irt_engine_registry <- function() {
 
 #' Query an external IRT engine
 #' @param engine Requested estimation or analysis engine.
-#' @return A logical value or vector indicating query an external IRT engine.
 #' @export
 eyeprocess_irt_engine_status <- function(engine) {
   reg <- eyeprocess_irt_engine_registry(); engine <- as.character(engine)
@@ -48,7 +46,6 @@ eyeprocess_irt_engine_status <- function(engine) {
 #' @param itemtype Item type specification for mirt.
 #' @param ... Additional arguments passed to the selected method or external engine.
 #' @param engine Requested estimation or analysis engine.
-#' @return An object of class "eye_external_irt_fit", stored as a named list, with components "status", "engine", "fit", "call". It contains a model with mirt without substituting another estimator and associated metadata or diagnostics needed to interpret the result.
 #' @export
 fit_eyeprocess_mirt <- function(data, model = 1, itemtype = "2PL", ..., engine = "mirt") {
   if (!identical(engine, "mirt")) stop("fit_eyeprocess_mirt() only accepts engine='mirt'.", call. = FALSE)
@@ -62,7 +59,6 @@ fit_eyeprocess_mirt <- function(data, model = 1, itemtype = "2PL", ..., engine =
 #' @param model Model specification passed to the selected external engine.
 #' @param ... Additional arguments passed to the selected method or external engine.
 #' @param engine Requested estimation or analysis engine.
-#' @return An object of class "eye_external_irt_fit", stored as a named list, with components "status", "engine", "fit", "call". It contains a TAM model without substituting another estimator and associated metadata or diagnostics needed to interpret the result.
 #' @export
 fit_eyeprocess_tam <- function(resp, model = c("rasch", "2pl", "gpcm"), ..., engine = "TAM") {
   if (!identical(engine, "TAM")) stop("fit_eyeprocess_tam() only accepts engine='TAM'.", call. = FALSE)
@@ -82,7 +78,6 @@ fit_eyeprocess_tam <- function(resp, model = c("rasch", "2pl", "gpcm"), ..., eng
 #' @param model Model specification passed to the selected external engine.
 #' @param ... Additional arguments passed to the selected method or external engine.
 #' @param engine Requested estimation or analysis engine.
-#' @return An object of class "eye_external_irt_fit", stored as a named list, with components "status", "engine", "fit", "call". It contains a G-DINA cognitive-diagnosis model without fallback substitution and associated metadata or diagnostics needed to interpret the result.
 #' @export
 fit_eyeprocess_gdina <- function(dat, Q, model = "GDINA", ..., engine = "GDINA") {
   if (!identical(engine, "GDINA")) stop("fit_eyeprocess_gdina() only accepts engine='GDINA'.", call. = FALSE)
@@ -97,7 +92,6 @@ fit_eyeprocess_gdina <- function(dat, Q, model = "GDINA", ..., engine = "GDINA")
 #' @param quadratic Whether the LNIRT quadratic option is requested.
 #' @param ... Additional arguments passed to the selected method or external engine.
 #' @param engine Requested estimation or analysis engine.
-#' @return An object of class "eye_external_irt_fit", stored as a named list, with components "status", "engine", "fit", "call", "rt_scale". It contains a joint response/response-time LNIRT model without fallback substitution and associated metadata or diagnostics needed to interpret the result.
 #' @export
 fit_eyeprocess_lnirt <- function(Y, RT, quadratic = FALSE, ..., engine = "LNIRT") {
   if (!identical(engine, "LNIRT")) stop("fit_eyeprocess_lnirt() only accepts engine='LNIRT'.", call. = FALSE)
@@ -113,7 +107,6 @@ fit_eyeprocess_lnirt <- function(Y, RT, quadratic = FALSE, ..., engine = "LNIRT"
 #' @param model Model specification passed to the selected external engine.
 #' @param ... Additional arguments passed to the selected method or external engine.
 #' @param engine Requested estimation or analysis engine.
-#' @return An object of class "eye_external_irt_fit", stored as a named list, with components "status", "engine", "fit", "call". It contains an eRm Rasch-family model without fallback substitution and associated metadata or diagnostics needed to interpret the result.
 #' @export
 fit_eyeprocess_erm <- function(data, model = c("RM", "PCM"), ..., engine = "eRm") {
   if (!identical(engine, "eRm")) stop("fit_eyeprocess_erm() only accepts engine='eRm'.", call. = FALSE)
@@ -128,7 +121,6 @@ fit_eyeprocess_erm <- function(data, model = c("RM", "PCM"), ..., engine = "eRm"
 #' @param trueTheta Known true latent-trait value used for CAT simulation.
 #' @param ... Additional arguments passed to the selected method or external engine.
 #' @param engine Requested estimation or analysis engine.
-#' @return An object of class "eye_external_irt_fit", stored as a named list, with components "status", "engine", "fit", "call". It contains a catR adaptive-testing simulation without fallback substitution and associated metadata or diagnostics needed to interpret the result.
 #' @export
 simulate_eyeprocess_catr <- function(itemBank, trueTheta = 0, ..., engine = "catR") {
   if (!identical(engine, "catR")) stop("simulate_eyeprocess_catr() only accepts engine='catR'.", call. = FALSE)
@@ -145,7 +137,6 @@ simulate_eyeprocess_catr <- function(itemBank, trueTheta = 0, ..., engine = "cat
 #' @param function_name Name of the external equateIRT function to call.
 #' @param ... Additional arguments passed to the selected method or external engine.
 #' @param engine Requested estimation or analysis engine.
-#' @return An object of class "eye_external_irt_fit", stored as a named list, with components "status", "engine", "function_name", "fit", "call". It contains a named equateIRT linking/equating function without fallback substitution and associated metadata or diagnostics needed to interpret the result.
 #' @export
 run_eyeprocess_equateirt <- function(function_name, ..., engine = "equateIRT") {
   if (!identical(engine, "equateIRT")) stop("run_eyeprocess_equateirt() only accepts engine='equateIRT'.", call. = FALSE)
@@ -163,7 +154,6 @@ run_eyeprocess_equateirt <- function(function_name, ..., engine = "equateIRT") {
 #' Run a mirtCAT adaptive-testing workflow without fallback substitution
 #' @param ... Additional arguments passed to the selected method or external engine.
 #' @param engine Requested estimation or analysis engine.
-#' @return An object of class "eye_external_irt_fit", stored as a named list, with components "status", "engine", "fit", "call". It contains a mirtCAT adaptive-testing workflow without fallback substitution and associated metadata or diagnostics needed to interpret the result.
 #' @export
 run_eyeprocess_mirtcat <- function(..., engine = "mirtCAT") {
   if (!identical(engine, "mirtCAT")) stop("run_eyeprocess_mirtcat() only accepts engine='mirtCAT'.", call. = FALSE)
@@ -176,7 +166,6 @@ run_eyeprocess_mirtcat <- function(..., engine = "mirtCAT") {
 #' Validate that an external IRT fit used the requested engine
 #' @param x Object to validate, summarize, verify, or otherwise process.
 #' @param engine Requested estimation or analysis engine.
-#' @return A logical value or vector indicating that an external IRT fit used the requested engine.
 #' @export
 validate_eyeprocess_external_irt_fit <- function(x, engine = NULL) {
   if (!(inherits(x, "eye_external_irt_fit") || inherits(x, "eye_gated_irt_engine"))) stop("x is not an eyeprocess external IRT result.", call. = FALSE)

@@ -15,9 +15,6 @@ eyeprocess_irt_information_targeting(items, theta, weights = NULL, D = 1)
 
 \item{D}{Logistic scaling constant.}
 }
-\value{
-An object of class "eye_irt_information_targeting", stored as a named list, with components "weighted_information", "weighted_sem", "curve", "weights". It contains how well item information targets a theta distribution and associated metadata or diagnostics needed to interpret the result.
-}
 \description{
 Audit how well item information targets a theta distribution
 }

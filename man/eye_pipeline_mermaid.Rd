@@ -9,9 +9,6 @@ eye_pipeline_mermaid(x)
 \arguments{
 \item{x}{Pipeline.}
 }
-\value{
-A character value or vector containing render pipeline dependencies as Mermaid flowchart text.
-}
 \description{
 Render pipeline dependencies as Mermaid flowchart text
 }

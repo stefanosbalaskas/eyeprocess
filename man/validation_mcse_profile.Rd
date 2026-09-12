@@ -13,9 +13,6 @@ validation_mcse_profile(x, metric, by = character())
 
 \item{by}{Grouping variables or aggregation level.}
 }
-\value{
-A tabular R object containing monte Carlo uncertainty for validation summaries; rows represent analysis units and columns contain the returned quantities.
-}
 \description{
 Estimate Monte Carlo uncertainty for validation summaries
 }

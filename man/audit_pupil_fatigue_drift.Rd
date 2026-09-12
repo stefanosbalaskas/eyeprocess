@@ -23,9 +23,6 @@ audit_pupil_fatigue_drift(
 
 \item{engine}{`auto`, `plm`, or `lm_fixed_effects`.}
 }
-\value{
-An object of class "eye_pupil_fatigue_drift", stored as a named list, with components "model", "coefficients", "data", "engine", "status", "caveat". It contains within-person pupil fatigue/trial-order drift and associated metadata or diagnostics needed to interpret the result.
-}
 \description{
 Audit within-person pupil fatigue/trial-order drift
 }

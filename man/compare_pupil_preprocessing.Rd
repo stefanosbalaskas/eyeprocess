@@ -20,9 +20,6 @@ compare_pupil_preprocessing(
 
 \item{extract_fun}{Result extractor.}
 }
-\value{
-An object of class "eye_process_sensitivity", stored as a named list, with components "grid", "results", "failures", "warnings", "grid_hash", "created_at", "status", "caveat". It contains explicit pupil-preprocessing methods and associated metadata or diagnostics needed to interpret the result.
-}
 \description{
 Compare explicit pupil-preprocessing methods
 }

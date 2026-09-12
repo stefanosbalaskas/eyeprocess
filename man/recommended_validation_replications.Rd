@@ -23,9 +23,6 @@ recommended_validation_replications(
 
 \item{minimum}{Minimum acceptable value or threshold.}
 }
-\value{
-An R object containing approximate simulation replications needed for a target Monte Carlo error. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
-}
 \description{
 Approximate simulation replications needed for a target Monte Carlo error
 }

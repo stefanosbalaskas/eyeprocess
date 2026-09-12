@@ -11,9 +11,6 @@
 
 \item{...}{Additional arguments passed to the underlying method or helper.}
 }
-\value{
-Invisibly returns the plotting result when available; the primary effect is drawing plot validation bundle diagnostics.
-}
 \description{
 Plot validation bundle diagnostics
 }

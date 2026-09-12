@@ -9,9 +9,6 @@ audit_multivariate_process_quality(...)
 \arguments{
 \item{...}{Additional arguments passed to the underlying method or helper.}
 }
-\value{
-An R object containing alias emphasizing data-quality interpretation of process anomaly auditing. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
-}
 \description{
 Alias emphasizing data-quality interpretation of process anomaly auditing
 }

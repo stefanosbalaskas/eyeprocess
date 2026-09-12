@@ -11,9 +11,6 @@ lock_decision_manifest(x, label = "analysis_decisions")
 
 \item{label}{Optional lock label.}
 }
-\value{
-An object of class "eye_decision_manifest_lock", stored as a named list, with components "manifest", "manifest_hash", "label", "locked_at", "status". It contains lock a decision manifest by content hash and associated metadata or diagnostics needed to interpret the result.
-}
 \description{
 Lock a decision manifest by content hash
 }

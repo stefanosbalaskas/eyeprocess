@@ -26,9 +26,6 @@ update_person_score(
 
 \item{...}{Additional arguments passed to the underlying method or helper.}
 }
-\value{
-A named list with components "pattern", "score", containing update a partial person score with one new response and associated metadata or diagnostics.
-}
 \description{
 Update a partial person score with one new response
 }

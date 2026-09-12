@@ -9,9 +9,6 @@ process_state_transition_summary(object)
 \arguments{
 \item{object}{A fitted eyeprocess model or audit object.}
 }
-\value{
-A data frame containing hMM process-state transitions. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
-}
 \description{
 Summarize HMM process-state transitions
 }

@@ -17,9 +17,6 @@ eyeprocess_negative_control_evidence_plan(
 
 \item{seed}{Random-number seed for reproducible execution.}
 }
-\value{
-An object of class "eye_negative_control_evidence_plan", stored as a named list, with components "controls", "replications", "seed", "guardrail". It contains declare negative-control evidence targets and associated metadata or diagnostics needed to interpret the result.
-}
 \description{
 Declare negative-control evidence targets
 }

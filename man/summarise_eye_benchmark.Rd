@@ -9,9 +9,6 @@ summarise_eye_benchmark(x)
 \arguments{
 \item{x}{Benchmark result.}
 }
-\value{
-A logical value or vector indicating benchmark timing and memory by problem size.
-}
 \description{
 Summarise benchmark timing and memory by problem size
 }

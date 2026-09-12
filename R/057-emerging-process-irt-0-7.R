@@ -9,7 +9,6 @@
 #' @param person,item,option,selected Column names.
 #' @param sort_options Sort selected option labels before combining.
 #' @param empty_code Code for no selected options.
-#' @return A tabular R object containing encode multiple-response item response combinations; rows represent analysis units and columns contain the returned quantities.
 #' @export
 encode_response_combinations <- function(data,
                                          person = "participant_id",
@@ -47,7 +46,6 @@ encode_response_combinations <- function(data,
 #' @param response_residuals Person-by-item/option residual matrix.
 #' @param process_residuals Optional aligned process-residual matrix.
 #' @param threshold Absolute correlation threshold used only for flagging.
-#' @return An object of class "eye_process_local_dependence_audit", stored as a named list, with components "pairs", "threshold", "max_absolute_response", "note". It contains inter-option/process local dependence and associated metadata or diagnostics needed to interpret the result.
 #' @export
 audit_process_local_dependence <- function(response_residuals,
                                            process_residuals = NULL,
@@ -96,7 +94,6 @@ audit_process_local_dependence <- function(response_residuals,
 #' @param engine `reference` or `external`.
 #' @param external_engine Validated external fitter.
 #' @param ... Arguments passed to the external engine.
-#' @return An object of class "eye_multiple_response_process_irt", stored as a named list, with components "model", "data", "gaze", "engine", "exact_multiple_response", "status", "note". It contains a multiple-response process-IRT reference model and associated metadata or diagnostics needed to interpret the result.
 #' @export
 fit_multiple_response_process_irt <- function(
     data, selected = "selected", theta = "theta",
@@ -153,7 +150,6 @@ fit_multiple_response_process_irt <- function(
 #' @param rt Response-time column.
 #' @param gaze Optional gaze process columns.
 #' @param ... Passed to `fit_cognitive_diagnosis_process()`.
-#' @return An object of class "eye_cognitive_diagnosis_process", stored as a named list, with components "response_model", "process_summary", "process_mastery_correlation", "q_matrix", "status". It contains a revisiting-aware cognitive-diagnosis process workflow and associated metadata or diagnostics needed to interpret the result.
 #' @export
 fit_revisit_process_cdm <- function(response_matrix, q_matrix, process_data,
                                     person_id = "participant_id",
@@ -181,7 +177,6 @@ fit_revisit_process_cdm <- function(response_matrix, q_matrix, process_data,
 #' Plot process/local-dependence diagnostics
 #' @param x Object to print, plot, summarize, or audit.
 #' @param ... Additional arguments passed to the selected model, engine, or method.
-#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot process/local-dependence diagnostics.
 #' @export
 plot.eye_process_local_dependence_audit <- function(x, ...) {
   z <- x$pairs

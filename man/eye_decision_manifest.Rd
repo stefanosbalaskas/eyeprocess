@@ -41,9 +41,6 @@ eye_decision_manifest(
 
 \item{...}{Additional named decision domains.}
 }
-\value{
-An object of class "eye_decision_manifest", stored as a named list, with components "domains", "notes", "created_at", "schema_version", "status", "caveat". It contains a machine-readable research decision manifest and associated metadata or diagnostics needed to interpret the result.
-}
 \description{
 Create a machine-readable research decision manifest
 }

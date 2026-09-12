@@ -11,9 +11,6 @@ as_irt_recovery_results(results)
 and `estimate`; optional `lower`, `upper`, `converged`, `scenario`,
 `engine`, and `failure_type` columns are retained.}
 }
-\value{
-A data frame containing canonicalise parameter-recovery results. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
-}
 \description{
 Canonicalise parameter-recovery results
 }

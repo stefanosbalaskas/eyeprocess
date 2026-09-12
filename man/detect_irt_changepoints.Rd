@@ -35,9 +35,6 @@ detect_irt_changepoints(
 
 \item{max_changes}{Maximum number of change points.}
 }
-\value{
-An object of class "eye_irt_changepoints", stored as a named list, with components "results", "channels", "method", "min_segment", "min_delta_sic", "max_changes". It contains iRT/process change points using an SIC-inspired multichannel score and associated metadata or diagnostics needed to interpret the result.
-}
 \description{
 This implementation is a transparent package reference inspired by the 2026
 SIC-CPA literature. It combines Bernoulli response likelihood with normal

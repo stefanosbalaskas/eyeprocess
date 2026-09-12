@@ -21,9 +21,6 @@ tidy data frame. Errors are retained as classified failures.}
 
 \item{seed}{Random-number seed.}
 }
-\value{
-An object of class "eye_irt_stress_test", "data.frame", stored as a data frame, containing a generic misspecification stress-test grid and associated metadata needed to interpret the result.
-}
 \description{
 Run a generic misspecification stress-test grid
 }

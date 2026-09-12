@@ -13,9 +13,6 @@ write_validation_report(x, path, ...)
 
 \item{...}{Passed to `validation_report()`.}
 }
-\value{
-A character string or vector giving the path or identifier for a validation report to disk.
-}
 \description{
 Write a validation report to disk
 }

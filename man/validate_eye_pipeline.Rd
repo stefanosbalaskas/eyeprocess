@@ -9,9 +9,6 @@ validate_eye_pipeline(x)
 \arguments{
 \item{x}{Pipeline.}
 }
-\value{
-A logical value or vector indicating a governed eyeprocess pipeline.
-}
 \description{
 Validate a governed eyeprocess pipeline
 }

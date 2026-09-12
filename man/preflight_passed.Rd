@@ -9,9 +9,6 @@ preflight_passed(x)
 \arguments{
 \item{x}{Object to process, inspect, compare, or plot.}
 }
-\value{
-A logical value or vector indicating pre-flight passes.
-}
 \description{
 Extract pre-flight passes
 }

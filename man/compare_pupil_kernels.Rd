@@ -13,9 +13,6 @@ compare_pupil_kernels(data, tmax_values = c(512, 930), ...)
 
 \item{...}{Passed to `fit_pupil_event_deconvolution()`.}
 }
-\value{
-A tabular R object containing pupil deconvolution kernels; rows represent analysis units and columns contain the returned quantities.
-}
 \description{
 Compare pupil deconvolution kernels
 }

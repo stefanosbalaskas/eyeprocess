@@ -26,9 +26,6 @@ aoi_trajectory_features(
 
 \item{aois}{Optional AOIs to encode; defaults to observed AOIs.}
 }
-\value{
-An object of class "eye_aoi_trajectory", stored as a named list, with components "features", "aois", "degree", "bin_ms", "person", "trial", "caveat". It contains aOI growth-curve/trajectory features and associated metadata or diagnostics needed to interpret the result.
-}
 \description{
 Converts AOI occupancy over binned time into orthogonal-polynomial trajectory
 coefficients. Coefficients summarize temporal shape and are not latent

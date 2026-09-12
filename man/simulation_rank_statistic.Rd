@@ -13,9 +13,6 @@ simulation_rank_statistic(truth, draws, seed = NULL)
 
 \item{seed}{Seed used only to randomize ties.}
 }
-\value{
-A numeric value or vector containing a simulation-based calibration rank statistic.
-}
 \description{
 Compute a simulation-based calibration rank statistic
 }

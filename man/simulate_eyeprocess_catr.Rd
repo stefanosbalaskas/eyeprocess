@@ -15,9 +15,6 @@ simulate_eyeprocess_catr(itemBank, trueTheta = 0, ..., engine = "catR")
 
 \item{engine}{Requested estimation or analysis engine.}
 }
-\value{
-An object of class "eye_external_irt_fit", stored as a named list, with components "status", "engine", "fit", "call". It contains a catR adaptive-testing simulation without fallback substitution and associated metadata or diagnostics needed to interpret the result.
-}
 \description{
 Run a catR adaptive-testing simulation without fallback substitution
 }

@@ -13,9 +13,6 @@ summarise_process_negative_controls(x, effect = "effect", threshold = 0)
 
 \item{threshold}{Optional absolute effect threshold.}
 }
-\value{
-A logical value or vector indicating process negative controls.
-}
 \description{
 Summarise process negative controls
 }

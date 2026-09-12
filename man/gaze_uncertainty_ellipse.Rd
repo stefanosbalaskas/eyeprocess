@@ -13,9 +13,6 @@ gaze_uncertainty_ellipse(model, level = 0.95, center = NULL)
 
 \item{center}{Optional center; defaults to model mean error.}
 }
-\value{
-A data frame containing uncertainty ellipse implied by an empirical calibration-error model. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
-}
 \description{
 Uncertainty ellipse implied by an empirical calibration-error model
 }

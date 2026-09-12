@@ -20,9 +20,6 @@ fit_eyeprocess_tam(
 
 \item{engine}{Requested estimation or analysis engine.}
 }
-\value{
-An object of class "eye_external_irt_fit", stored as a named list, with components "status", "engine", "fit", "call". It contains a TAM model without substituting another estimator and associated metadata or diagnostics needed to interpret the result.
-}
 \description{
 Fit a TAM model without substituting another estimator
 }

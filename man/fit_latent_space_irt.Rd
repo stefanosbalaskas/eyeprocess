@@ -29,9 +29,6 @@ fit_latent_space_irt(
 
 \item{silent}{Whether engine messages are suppressed.}
 }
-\value{
-An object of class "eye_latent_space_irt", stored as a named list, with components "model", "person_coordinates", "item_coordinates", "person_intercept", "item_intercept", "dimensions", "engine", "status". It contains a latent-space IRT model using LSMjml and associated metadata or diagnostics needed to interpret the result.
-}
 \description{
 Fit a latent-space IRT model using LSMjml
 }

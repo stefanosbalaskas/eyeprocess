@@ -13,9 +13,6 @@
 
 \item{...}{Additional arguments passed to the selected model, engine, or method.}
 }
-\value{
-Invisibly returns the plotting result when available; the primary effect is drawing plot flexible IRF shape diagnostics.
-}
 \description{
 Plot flexible IRF shape diagnostics
 }

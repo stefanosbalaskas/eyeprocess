@@ -32,9 +32,6 @@ fit_revisit_process_cdm(
 
 \item{...}{Passed to `fit_cognitive_diagnosis_process()`.}
 }
-\value{
-An object of class "eye_cognitive_diagnosis_process", stored as a named list, with components "response_model", "process_summary", "process_mastery_correlation", "q_matrix", "status". It contains a revisiting-aware cognitive-diagnosis process workflow and associated metadata or diagnostics needed to interpret the result.
-}
 \description{
 Convenience adapter motivated by current work combining response time and
 item revisiting with cognitive diagnosis. The response layer is delegated to

@@ -20,9 +20,6 @@ score_partial_response_pattern(
 
 \item{...}{Passed to `mirt::fscores()`.}
 }
-\value{
-A data frame containing a partial response pattern from a calibrated mirt model. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
-}
 \description{
 Score a partial response pattern from a calibrated mirt model
 }

@@ -35,9 +35,6 @@ fit_multimodal_trait_irt(
 
 \item{...}{Additional arguments passed to the selected model, engine, or method.}
 }
-\value{
-An object of class "eye_joint_gaze_rt_irt", stored as a named list, with components "engine", "response_model", "rt_model", "gaze_model", "person_scores", "item_scores", "person_covariance", "item_covariance", "data_n", "gaze_family", "columns", "status", and additional components. It contains multimodal trait-model convenience wrapper and associated metadata or diagnostics needed to interpret the result.
-}
 \description{
 Extends the gaze/RT architecture to noncognitive or other latent traits by
 allowing caller-defined semantic labels. The statistical engine is delegated

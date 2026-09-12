@@ -11,9 +11,6 @@ validate_eyeprocess_external_irt_fit(x, engine = NULL)
 
 \item{engine}{Requested estimation or analysis engine.}
 }
-\value{
-A logical value or vector indicating that an external IRT fit used the requested engine.
-}
 \description{
 Validate that an external IRT fit used the requested engine
 }

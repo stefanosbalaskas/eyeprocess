@@ -11,9 +11,6 @@ write_eye_targets_template(x, path = "_targets.R")
 
 \item{path}{Output path.}
 }
-\value{
-An R object containing an explicit `_targets.R` template from a governed pipeline. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
-}
 \description{
 Write an explicit `_targets.R` template from a governed pipeline
 }

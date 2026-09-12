@@ -31,9 +31,6 @@ gaze_data_quality_profile(
 
 \item{time_unit}{Timestamp unit.}
 }
-\value{
-An object of class "eye_data_quality_profile", stored as a named list, with components "table", "coordinate_units", "caveat". It contains empirical gaze data-quality profile and associated metadata or diagnostics needed to interpret the result.
-}
 \description{
 Empirical gaze data-quality profile
 }

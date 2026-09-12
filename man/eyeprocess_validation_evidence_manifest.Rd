@@ -20,9 +20,6 @@ eyeprocess_validation_evidence_manifest(
 
 \item{label}{Human-readable label.}
 }
-\value{
-An object of class "eye_validation_evidence_manifest", stored as a named list, with components "label", "source_commit", "files", "objects", "generated_at". It contains an evidence manifest from files and in-memory objects and associated metadata or diagnostics needed to interpret the result.
-}
 \description{
 Create an evidence manifest from files and in-memory objects
 }

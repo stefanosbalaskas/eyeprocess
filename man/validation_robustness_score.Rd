@@ -9,9 +9,6 @@ validation_robustness_score(x)
 \arguments{
 \item{x}{Validation result.}
 }
-\value{
-An R object containing overall validation robustness score. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
-}
 \description{
 Overall validation robustness score
 }

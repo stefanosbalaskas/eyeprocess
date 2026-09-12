@@ -28,9 +28,6 @@ plot_process_channel_ablation_delta(
 
 \item{...}{Additional arguments passed to the underlying method or helper.}
 }
-\value{
-A data frame containing plot channel-ablation delta from a full/reference model. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
-}
 \description{
 Plot channel-ablation delta from a full/reference model
 }

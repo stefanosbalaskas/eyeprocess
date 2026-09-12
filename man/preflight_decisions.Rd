@@ -9,9 +9,6 @@ preflight_decisions(x)
 \arguments{
 \item{x}{An `eye_biometric_preflight` object.}
 }
-\value{
-An R object containing pre-flight decisions. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
-}
 \description{
 Extract pre-flight decisions
 }

@@ -13,9 +13,6 @@ eyeprocess_irt_mean_mean_link(reference, focal, anchors = NULL)
 
 \item{anchors}{Anchor-item identifiers.}
 }
-\value{
-An object of class "eye_irt_link", stored as a named list, with components "A", "B", "method", "anchors", "objective". It contains mean-mean IRT linking coefficients and associated metadata or diagnostics needed to interpret the result.
-}
 \description{
 Mean-mean IRT linking coefficients
 }

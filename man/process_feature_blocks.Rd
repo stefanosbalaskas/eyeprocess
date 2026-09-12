@@ -15,9 +15,6 @@ process_feature_blocks(data, blocks, id = NULL, drop_constant = TRUE)
 
 \item{drop_constant}{Remove non-varying columns.}
 }
-\value{
-An object of class "eye_process_feature_blocks", stored as a named list, with components "data", "blocks", "id", "block_sizes", "status". It contains define conceptual process-feature blocks and associated metadata or diagnostics needed to interpret the result.
-}
 \description{
 Define conceptual process-feature blocks
 }

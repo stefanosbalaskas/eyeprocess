@@ -23,9 +23,6 @@ process_feature_stability(
 
 \item{top_n}{Number of top features counted per split.}
 }
-\value{
-An R object containing process-feature stability across repeated analyses. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
-}
 \description{
 Summarize process-feature stability across repeated analyses
 }

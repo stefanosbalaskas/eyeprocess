@@ -7,7 +7,6 @@
 #' @param response_pattern Full-length response vector with future/unobserved items as NA.
 #' @param method mirt scoring method, typically MAP or EAP.
 #' @param ... Passed to `mirt::fscores()`.
-#' @return A data frame containing a partial response pattern from a calibrated mirt model. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 score_partial_response_pattern <- function(model, response_pattern,
                                            method = c("MAP", "EAP"), ...) {
@@ -78,7 +77,6 @@ score_response_stream <- function(model, response_pattern, observed_order = NULL
 #' @param item_position Item receiving the new response.
 #' @param response New response.
 #' @param method Scoring method.
-#' @return A named list with components "pattern", "score", containing update a partial person score with one new response and associated metadata or diagnostics.
 #' @export
 #' @param ... Additional arguments passed to the underlying method or helper.
 update_person_score <- function(model, current_pattern, item_position, response,
@@ -95,7 +93,6 @@ update_person_score <- function(model, current_pattern, item_position, response,
 }
 
 #' Extract streaming score history
-#' @return An R object containing streaming score history. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 streaming_score_history <- function(x) {
@@ -143,7 +140,6 @@ collect_validation_evidence <- function(..., model_name = NULL, notes = NULL) {
 }
 
 #' Create a machine-readable validation manifest
-#' @return A data frame containing a machine-readable validation manifest. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 validation_bundle_manifest <- function(x) {
@@ -237,7 +233,6 @@ validation_report <- function(x, include_session = TRUE) {
 #' @param x Validation bundle.
 #' @param path Output text-file path.
 #' @param ... Passed to `validation_report()`.
-#' @return A character string or vector giving the path or identifier for a validation report to disk.
 #' @export
 write_validation_report <- function(x, path, ...) {
   path <- normalizePath(path, winslash = "/", mustWork = FALSE)
@@ -257,7 +252,6 @@ write_validation_report <- function(x, path, ...) {
 #' @param directory Output directory.
 #' @param overwrite Allow writing into a non-empty target directory.
 #' @param include_rds Save full R objects as RDS.
-#' @return An object of class "eye_validation_export", stored as a named list, with components "directory", "files", "manifest". It contains a validation evidence bundle and associated metadata or diagnostics needed to interpret the result.
 #' @export
 export_validation_bundle <- function(x, directory, overwrite = FALSE, include_rds = TRUE) {
   if (!inherits(x, "eye_validation_bundle")) stop("x must be eye_validation_bundle.", call. = FALSE)
@@ -295,7 +289,6 @@ export_validation_bundle <- function(x, directory, overwrite = FALSE, include_rd
 }
 
 #' Print a validation bundle object
-#' @return Invisibly returns the input object after printing its summary; the object's class and contents are unchanged.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 #' @param ... Additional arguments passed to the underlying method or helper.
@@ -307,7 +300,6 @@ print.eye_validation_bundle <- function(x, ...) {
 }
 
 #' Summarize a validation bundle object
-#' @return A named list with components "model_name", "manifest", "report", containing a validation bundle object and associated metadata or diagnostics.
 #' @export
 #' @param object Object supplied to the S3 method.
 #' @param ... Additional arguments passed to the underlying method or helper.

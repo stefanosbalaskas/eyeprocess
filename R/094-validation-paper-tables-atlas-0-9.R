@@ -10,7 +10,6 @@
 #' Build a paper-ready parameter-recovery table
 #' @param x Object to validate, summarize, verify, or otherwise process.
 #' @param digits Number of decimal digits used for presentation.
-#' @return An R object containing a paper-ready parameter-recovery table. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 eyeprocess_recovery_evidence_table <- function(x, digits = 4L) {
   tab <- if (inherits(x, "eye_irt_recovery_result")) eyeprocess_irt_recovery_summary(x) else .ep09m2_as_df(x, "x")
@@ -22,7 +21,6 @@ eyeprocess_recovery_evidence_table <- function(x, digits = 4L) {
 #' Build a paper-ready SBC table
 #' @param x Object to validate, summarize, verify, or otherwise process.
 #' @param digits Number of decimal digits used for presentation.
-#' @return An R object containing a paper-ready SBC table. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 eyeprocess_sbc_evidence_table <- function(x, digits = 4L) {
   if (inherits(x, "eye_sbc_diagnostics")) {
@@ -40,7 +38,6 @@ eyeprocess_sbc_evidence_table <- function(x, digits = 4L) {
 #' Build a paper-ready stress-test table
 #' @param x Object to validate, summarize, verify, or otherwise process.
 #' @param digits Number of decimal digits used for presentation.
-#' @return An R object containing a paper-ready stress-test table. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 eyeprocess_stress_evidence_table <- function(x, digits = 4L) {
   tab <- if (inherits(x, "eye_stress_test_summary")) x$table else .ep09m2_as_df(x, "x")
@@ -50,7 +47,6 @@ eyeprocess_stress_evidence_table <- function(x, digits = 4L) {
 #' Build a paper-ready reliability table
 #' @param x Object to validate, summarize, verify, or otherwise process.
 #' @param digits Number of decimal digits used for presentation.
-#' @return An R object containing a paper-ready reliability table. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 eyeprocess_reliability_evidence_table <- function(x, digits = 4L) {
   if (inherits(x, "eye_process_reliability_profile")) {
@@ -63,7 +59,6 @@ eyeprocess_reliability_evidence_table <- function(x, digits = 4L) {
 #' Build a paper-ready negative-control table
 #' @param x Object to validate, summarize, verify, or otherwise process.
 #' @param digits Number of decimal digits used for presentation.
-#' @return An R object containing a paper-ready negative-control table. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 eyeprocess_negative_control_evidence_table <- function(x, digits = 4L) {
   tab <- if (inherits(x, "eye_process_negative_controls")) summarise_process_negative_controls(x) else .ep09m2_as_df(x, "x")
@@ -74,7 +69,6 @@ eyeprocess_negative_control_evidence_table <- function(x, digits = 4L) {
 #' @param items Item-parameter data frame or item collection.
 #' @param theta Latent-trait value or vector of latent-trait values.
 #' @param digits Number of decimal digits used for presentation.
-#' @return An R object containing a paper-ready IRT information/precision table. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 eyeprocess_irt_precision_evidence_table <- function(items, theta = seq(-3, 3, by = 0.5), digits = 4L) {
   tab <- eyeprocess_irt_test_information(theta, items)
@@ -82,7 +76,6 @@ eyeprocess_irt_precision_evidence_table <- function(items, theta = seq(-3, 3, by
 }
 
 #' Build an external-engine capability and availability table
-#' @return A data frame containing an external-engine capability and availability table. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 eyeprocess_irt_engine_evidence_table <- function() {
   x <- as.data.frame(eyeprocess_irt_engine_registry())
@@ -93,7 +86,6 @@ eyeprocess_irt_engine_evidence_table <- function() {
 #' Create an index over frozen validation evidence artifacts
 #' @param root Root directory for evidence indexing.
 #' @param recursive Whether evidence files are indexed recursively.
-#' @return A data frame containing an index over frozen validation evidence artifacts. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 eyeprocess_validation_evidence_index <- function(root, recursive = TRUE) {
   root <- normalizePath(root, mustWork = TRUE)
@@ -122,7 +114,6 @@ eyeprocess_validation_evidence_index <- function(root, recursive = TRUE) {
 #' @param irt IRT-specific evidence object or table.
 #' @param provenance Provenance metadata or provenance object.
 #' @param artifacts Artifact table or file-index information.
-#' @return An object of class "eye_validation_evidence_atlas", stored as a named list, with components "claims", "components", "component_status", "coverage", "hash", "guardrail". It contains assemble a validation evidence atlas and associated metadata or diagnostics needed to interpret the result.
 #' @export
 eyeprocess_validation_evidence_atlas <- function(claims, recovery = NULL, sbc = NULL, stress = NULL,
                                                  reliability = NULL, negative_controls = NULL,
@@ -144,7 +135,6 @@ eyeprocess_validation_evidence_atlas <- function(claims, recovery = NULL, sbc = 
 
 #' Summarise gaps in a validation evidence atlas
 #' @param atlas Validation-evidence atlas object.
-#' @return A named list with components "missing_components", "unresolved_claims", "complete", containing gaps in a validation evidence atlas and associated metadata or diagnostics.
 #' @export
 eyeprocess_validation_atlas_gaps <- function(atlas) {
   if (!inherits(atlas, "eye_validation_evidence_atlas")) stop("atlas must be created by eyeprocess_validation_evidence_atlas().", call. = FALSE)
@@ -157,7 +147,6 @@ eyeprocess_validation_atlas_gaps <- function(atlas) {
 #' Freeze a validation atlas with a reproducibility fingerprint
 #' @param atlas Validation-evidence atlas object.
 #' @param metadata Named metadata to store with the frozen object.
-#' @return An object of class "eye_validation_atlas_freeze", stored as a named list, with components "payload", "hash", "frozen". It contains freeze a validation atlas with a reproducibility fingerprint and associated metadata or diagnostics needed to interpret the result.
 #' @export
 freeze_eyeprocess_validation_atlas <- function(atlas, metadata = list()) {
   if (!inherits(atlas, "eye_validation_evidence_atlas")) stop("atlas must be an eye_validation_evidence_atlas.", call. = FALSE)
@@ -168,7 +157,6 @@ freeze_eyeprocess_validation_atlas <- function(atlas, metadata = list()) {
 
 #' Verify a frozen validation atlas
 #' @param x Object to validate, summarize, verify, or otherwise process.
-#' @return A logical value or vector indicating verify a frozen validation atlas.
 #' @export
 verify_eyeprocess_validation_atlas <- function(x) {
   if (!inherits(x, "eye_validation_atlas_freeze")) stop("x must be an eye_validation_atlas_freeze.", call. = FALSE)
@@ -179,7 +167,6 @@ verify_eyeprocess_validation_atlas <- function(x) {
 #' @param atlas Validation-evidence atlas object.
 #' @param path File path for reading or writing.
 #' @param title Report title.
-#' @return A character string or vector giving the path or identifier for a compact Markdown validation report.
 #' @export
 write_eyeprocess_validation_report <- function(atlas, path, title = "eyeprocess validation evidence report") {
   if (!inherits(atlas, "eye_validation_evidence_atlas")) stop("atlas must be an eye_validation_evidence_atlas.", call. = FALSE)

@@ -23,9 +23,6 @@ eyeprocess_irt_process_aware_selection_penalty(
 
 \item{quality_weight}{Weight applied to the quality-risk penalty.}
 }
-\value{
-A numeric value or vector containing process-aware selection penalty without mental-state inference.
-}
 \description{
 Process-aware selection penalty without mental-state inference
 }

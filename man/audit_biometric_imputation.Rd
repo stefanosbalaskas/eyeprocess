@@ -9,9 +9,6 @@ audit_biometric_imputation(...)
 \arguments{
 \item{...}{Additional arguments passed to the underlying method or helper.}
 }
-\value{
-An R object containing alias emphasizing sensitivity rather than automatic replacement. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
-}
 \description{
 Alias emphasizing sensitivity rather than automatic replacement
 }

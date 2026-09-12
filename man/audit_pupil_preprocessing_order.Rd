@@ -17,9 +17,6 @@ audit_pupil_preprocessing_order(
 
 \item{baseline_pattern}{Pattern identifying baseline correction.}
 }
-\value{
-A named list with components "steps", "baseline_positions", "cleaning_positions", "cleaning_after_baseline", "status", "caveat", containing declared order of pupil preprocessing steps and associated metadata or diagnostics.
-}
 \description{
 Audit declared order of pupil preprocessing steps
 }

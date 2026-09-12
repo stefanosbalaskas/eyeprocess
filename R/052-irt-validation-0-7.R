@@ -62,7 +62,6 @@
 #' @param thresholds Named evidence thresholds.
 #' @param seed Reproducibility seed.
 #' @param notes Free-text scientific notes.
-#' @return An object of class "eye_irt_validation_spec", stored as a named list, with components "model_id", "replications", "parameters", "metrics", "grouped_validation", "preprocessing_variants", "misspecification_scenarios", "thresholds", "seed", "notes", "contract_version", "created_with". It contains specify a validation programme for a process-IRT model and associated metadata or diagnostics needed to interpret the result.
 #' @export
 irt_validation_spec <- function(
     model_id,
@@ -108,7 +107,6 @@ irt_validation_spec <- function(
 #' @param results Data frame with at least `replicate`, `parameter`, `truth`,
 #'   and `estimate`; optional `lower`, `upper`, `converged`, `scenario`,
 #'   `engine`, and `failure_type` columns are retained.
-#' @return A data frame containing canonicalise parameter-recovery results. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 as_irt_recovery_results <- function(results) {
   d <- .ep07_v_as_df(results)
@@ -130,7 +128,6 @@ as_irt_recovery_results <- function(results) {
 #' @param results Canonical or raw recovery results.
 #' @param by Grouping columns.
 #' @param interval_level Nominal interval level, used only for labelling.
-#' @return A tabular R object containing parameter recovery; rows represent analysis units and columns contain the returned quantities.
 #' @export
 summarize_parameter_recovery <- function(
     results,
@@ -178,7 +175,6 @@ summarize_parameter_recovery <- function(
 #' @param results Validation or model results.
 #' @param threshold Decision or diagnostic threshold.
 #' @param by Grouping variables used when summarizing results.
-#' @return An R object containing bias. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 audit_bias <- function(results, threshold = 0.10, by = c("scenario", "engine", "parameter")) {
   s <- if (inherits(results, "eye_irt_recovery_summary")) results else
@@ -192,7 +188,6 @@ audit_bias <- function(results, threshold = 0.10, by = c("scenario", "engine", "
 #' @param results Validation or model results.
 #' @param threshold Decision or diagnostic threshold.
 #' @param by Grouping variables used when summarizing results.
-#' @return An R object containing rmse. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 audit_rmse <- function(results, threshold = 0.30, by = c("scenario", "engine", "parameter")) {
   s <- if (inherits(results, "eye_irt_recovery_summary")) results else
@@ -207,7 +202,6 @@ audit_rmse <- function(results, threshold = 0.30, by = c("scenario", "engine", "
 #' @param minimum Minimum acceptable value or threshold.
 #' @param maximum Maximum acceptable value or threshold.
 #' @param by Grouping variables used when summarizing results.
-#' @return An R object containing coverage. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 audit_coverage <- function(results, minimum = 0.90, maximum = 1,
                            by = c("scenario", "engine", "parameter")) {
@@ -223,7 +217,6 @@ audit_coverage <- function(results, minimum = 0.90, maximum = 1,
 #' @param results Validation or model results.
 #' @param maximum Maximum acceptable value or threshold.
 #' @param by Grouping variables used when summarizing results.
-#' @return An R object containing interval width. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 audit_interval_width <- function(results, maximum = Inf,
                                  by = c("scenario", "engine", "parameter")) {
@@ -238,7 +231,6 @@ audit_interval_width <- function(results, maximum = Inf,
 #' @param results Validation or model results.
 #' @param minimum Minimum acceptable value or threshold.
 #' @param by Grouping variables used when summarizing results.
-#' @return An object of class "eye_irt_convergence_audit", "data.frame", stored as a data frame, containing convergence and classified failures and associated metadata needed to interpret the result.
 #' @export
 audit_convergence <- function(results, minimum = 0.95,
                               by = c("scenario", "engine")) {
@@ -264,7 +256,6 @@ audit_convergence <- function(results, minimum = 0.95,
 #' Classify common estimator failures without hiding the original message
 #'
 #' @param x Error/condition/message vector.
-#' @return A data frame containing classify common estimator failures without hiding the original message. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 validation_failure_taxonomy <- function(x) {
   msg <- if (inherits(x, "condition")) conditionMessage(x) else as.character(x)
@@ -290,7 +281,6 @@ validation_failure_taxonomy <- function(x) {
 #' @param max_sd_ratio Maximum acceptable standard-deviation ratio.
 #' @param correlation_matrix Optional parameter-correlation matrix.
 #' @param max_abs_correlation Maximum acceptable absolute parameter correlation.
-#' @return An object of class "eye_irt_identifiability_audit", "data.frame", stored as a data frame, containing empirical identifiability from replicate estimates and associated metadata needed to interpret the result.
 #' @export
 audit_identifiability <- function(results, max_missing = 0.05,
                                   max_sd_ratio = 10,
@@ -329,7 +319,6 @@ audit_identifiability <- function(results, max_missing = 0.05,
 #' Monte Carlo standard errors for validation metrics
 #' @param results Validation or model results.
 #' @param metric Metric to calculate or audit.
-#' @return A data frame containing monte Carlo standard errors for validation metrics. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 validation_mcse <- function(results, metric = c("bias", "rmse", "coverage")) {
   metric <- match.arg(metric)
@@ -360,7 +349,6 @@ validation_mcse <- function(results, metric = c("bias", "rmse", "coverage")) {
 #' @param anticipated_sd Anticipated standard deviation.
 #' @param anticipated_probability Anticipated probability for a binary metric.
 #' @param minimum Minimum acceptable value or threshold.
-#' @return An R object containing approximate simulation replications needed for a target Monte Carlo error. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 recommended_validation_replications <- function(
     target_mcse = 0.01,
@@ -388,7 +376,6 @@ recommended_validation_replications <- function(
 #'   columns match names in `truth`.
 #' @param replications Number of SBC replications.
 #' @param seed RNG seed.
-#' @return An object of class "eye_irt_sbc", stored as a named list, with components "ranks", "failures", "replications", "seed", "method". It contains generic simulation-based calibration and associated metadata or diagnostics needed to interpret the result.
 #' @export
 run_sbc <- function(simulator, fitter, posterior_draws, replications = 100L,
                     seed = 20260808L) {
@@ -446,7 +433,6 @@ run_sbc <- function(simulator, fitter, posterior_draws, replications = 100L,
 #'   responsible for the conditional posterior-SBC construction appropriate to
 #'   the model, including fitting to the observed data and the required
 #'   self-consistency experiment.
-#' @return An object of class "eye_posterior_sbc_contract", stored as a named list, with components "replication", "requirement". It contains define a posterior-SBC replication contract and associated metadata or diagnostics needed to interpret the result.
 #' @export
 posterior_sbc_contract <- function(replication) {
   if (!is.function(replication)) stop("replication must be a function.", call. = FALSE)
@@ -463,7 +449,6 @@ posterior_sbc_contract <- function(replication) {
 #' @param contract Posterior-SBC or validation contract.
 #' @param replications Number of simulation or validation replications.
 #' @param seed Random-number seed.
-#' @return An object of class "eye_posterior_sbc", "eye_irt_sbc", stored as a named list, with components "ranks", "failures", "replications", "seed", "method", "requirement". It contains posterior simulation-based calibration from an explicit contract and associated metadata or diagnostics needed to interpret the result.
 #' @export
 run_posterior_sbc <- function(observed_data, contract, replications = 100L,
                               seed = 20260808L) {
@@ -510,7 +495,6 @@ run_posterior_sbc <- function(observed_data, contract, replications = 100L,
 #' @param x Object to print, plot, summarize, or audit.
 #' @param bins Number of bins used by the diagnostic.
 #' @param alpha Significance or tail-probability level.
-#' @return An object of class "eye_sbc_audit", "data.frame", stored as a data frame, containing sBC rank uniformity and associated metadata needed to interpret the result.
 #' @export
 audit_sbc <- function(x, bins = 10L, alpha = 0.01) {
   d <- if (inherits(x, "eye_irt_sbc")) x$ranks else .ep07_v_as_df(x)
@@ -549,7 +533,6 @@ audit_sbc <- function(x, bins = 10L, alpha = 0.01) {
 #' @param replicated List of replicated datasets, or matrix with one replicate
 #'   per row.
 #' @param discrepancies Named list of functions mapping a dataset to one number.
-#' @return An object of class "eye_irt_ppc", "data.frame", stored as a data frame, containing posterior predictive discrepancy table and associated metadata needed to interpret the result.
 #' @export
 posterior_predictive_discrepancies <- function(
     observed,
@@ -590,7 +573,6 @@ posterior_predictive_discrepancies <- function(
 #'   tidy data frame. Errors are retained as classified failures.
 #' @param replications Number of simulation or validation replications.
 #' @param seed Random-number seed.
-#' @return An object of class "eye_irt_stress_test", "data.frame", stored as a data frame, containing a generic misspecification stress-test grid and associated metadata needed to interpret the result.
 #' @export
 stress_test_misspecification <- function(scenarios, runner, replications = 50L,
                                          seed = 20260808L) {
@@ -629,7 +611,6 @@ stress_test_misspecification <- function(scenarios, runner, replications = 50L,
 #' @param runner Function that executes one stress-test scenario.
 #' @param replications Number of simulation or validation replications.
 #' @param seed Random-number seed.
-#' @return An object of class "eye_irt_stress_test", "data.frame", stored as a data frame, containing stress test latent distribution and associated metadata needed to interpret the result.
 #' @export
 stress_test_latent_distribution <- function(runner, replications = 50L,
                                             seed = 20260808L) {
@@ -645,7 +626,6 @@ stress_test_latent_distribution <- function(runner, replications = 50L,
 #' @param strengths Local-dependence strengths to evaluate.
 #' @param replications Number of simulation or validation replications.
 #' @param seed Random-number seed.
-#' @return An object of class "eye_irt_stress_test", "data.frame", stored as a data frame, containing stress test local dependence and associated metadata needed to interpret the result.
 #' @export
 stress_test_local_dependence <- function(runner, strengths = c(0, 0.2, 0.5, 0.8),
                                          replications = 50L, seed = 20260808L) {
@@ -659,7 +639,6 @@ stress_test_local_dependence <- function(runner, strengths = c(0, 0.2, 0.5, 0.8)
 #' @param proportions Speededness proportions to evaluate.
 #' @param replications Number of simulation or validation replications.
 #' @param seed Random-number seed.
-#' @return An object of class "eye_irt_stress_test", "data.frame", stored as a data frame, containing stress test speededness and associated metadata needed to interpret the result.
 #' @export
 stress_test_speededness <- function(runner, proportions = c(0, .10, .25, .40),
                                     replications = 50L, seed = 20260808L) {
@@ -674,7 +653,6 @@ stress_test_speededness <- function(runner, proportions = c(0, .10, .25, .40),
 #' @param rates Missingness rates to evaluate.
 #' @param replications Number of simulation or validation replications.
 #' @param seed Random-number seed.
-#' @return An object of class "eye_irt_stress_test", "data.frame", stored as a data frame, containing stress test missingness and associated metadata needed to interpret the result.
 #' @export
 stress_test_missingness <- function(runner,
                                     mechanisms = c("MCAR", "MAR", "MNAR_omission", "not_reached"),
@@ -691,7 +669,6 @@ stress_test_missingness <- function(runner,
 #' @param variants Preprocessing variants to evaluate.
 #' @param replications Number of simulation or validation replications.
 #' @param seed Random-number seed.
-#' @return An object of class "eye_irt_stress_test", "data.frame", stored as a data frame, containing stress test preprocessing and associated metadata needed to interpret the result.
 #' @export
 stress_test_preprocessing <- function(runner, variants,
                                       replications = 25L, seed = 20260808L) {
@@ -741,7 +718,6 @@ stress_test_preprocessing <- function(runner, variants,
 #' @param predictor Prediction function.
 #' @param scorer Function that scores predictions.
 #' @param label Value supplied to `label`; see Details for its model-specific role.
-#' @return A logical value or vector indicating external validation on a completely held-out dataset.
 #' @export
 external_validate_irt <- function(train_data, external_data, fitter, predictor, scorer,
                                   label = "external") {
@@ -767,7 +743,6 @@ external_validate_irt <- function(train_data, external_data, fitter, predictor, 
 #' @param fitter Model-fitting function.
 #' @param predictor Prediction function.
 #' @param scorer Function that scores predictions.
-#' @return An object of class "eye_leave_device_out_validation", "data.frame", stored as a data frame, containing leave device out validation and associated metadata needed to interpret the result.
 #' @export
 leave_device_out_validation <- function(data, device, fitter, predictor, scorer) {
   structure(.ep07_leave_group_out(data, device, fitter, predictor, scorer),
@@ -780,7 +755,6 @@ leave_device_out_validation <- function(data, device, fitter, predictor, scorer)
 #' @param fitter Model-fitting function.
 #' @param predictor Prediction function.
 #' @param scorer Function that scores predictions.
-#' @return An object of class "eye_leave_session_out_validation", "data.frame", stored as a data frame, containing leave session out validation and associated metadata needed to interpret the result.
 #' @export
 leave_session_out_validation <- function(data, session, fitter, predictor, scorer) {
   structure(.ep07_leave_group_out(data, session, fitter, predictor, scorer),
@@ -793,7 +767,6 @@ leave_session_out_validation <- function(data, session, fitter, predictor, score
 #' @param fitter Model-fitting function.
 #' @param predictor Prediction function.
 #' @param scorer Function that scores predictions.
-#' @return An object of class "eye_leave_site_out_validation", "data.frame", stored as a data frame, containing leave site out validation and associated metadata needed to interpret the result.
 #' @export
 leave_site_out_validation <- function(data, site, fitter, predictor, scorer) {
   structure(.ep07_leave_group_out(data, site, fitter, predictor, scorer),
@@ -806,7 +779,6 @@ leave_site_out_validation <- function(data, site, fitter, predictor, scorer) {
 #' @param fitter Model-fitting function.
 #' @param predictor Prediction function.
 #' @param scorer Function that scores predictions.
-#' @return An object of class "eye_leave_item_out_validation", "data.frame", stored as a data frame, containing leave item out validation and associated metadata needed to interpret the result.
 #' @export
 leave_item_out_validation <- function(data, item, fitter, predictor, scorer) {
   structure(.ep07_leave_group_out(data, item, fitter, predictor, scorer),
@@ -820,7 +792,6 @@ leave_item_out_validation <- function(data, item, fitter, predictor, scorer) {
 #' @param max_range Maximum allowed range across held-out groups.
 #' @param minimum Minimum acceptable value or threshold.
 #' @param maximum Maximum acceptable value or threshold.
-#' @return An object of class "eye_measurement_transportability_audit", "data.frame", stored as a data frame, containing measurement transportability across held-out groups and associated metadata needed to interpret the result.
 #' @export
 audit_measurement_transportability <- function(validation, metric, higher_is_better = TRUE,
                                                max_range = NULL,
@@ -853,7 +824,6 @@ audit_measurement_transportability <- function(validation, metric, higher_is_bet
 
 #' Compare validation engines on common recovery output
 #' @param results Validation or model results.
-#' @return An object of class "eye_validation_engine_comparison", "data.frame", stored as a data frame, containing validation engines on common recovery output and associated metadata needed to interpret the result.
 #' @export
 compare_validation_engines <- function(results) {
   s <- summarize_parameter_recovery(results, by = c("engine", "parameter"))
@@ -875,7 +845,6 @@ compare_validation_engines <- function(results) {
 #' @param predictor Function `(fit, test)` returning predictions.
 #' @param scorer Function `(test, prediction)` returning a scalar score.
 #' @param higher_is_better Direction of the score.
-#' @return A tabular R object containing out-of-sample incremental information from a process channel; rows represent analysis units and columns contain the returned quantities.
 #' @export
 audit_channel_incremental_information <- function(
     data, fold, baseline_fitter, process_fitter, predictor, scorer,
@@ -921,7 +890,6 @@ audit_channel_incremental_information <- function(
 #' @param higher_is_better Score direction.
 #' @param permutations Number of negative-control permutations.
 #' @param seed Random-number seed.
-#' @return An object of class "eye_process_negative_control", stored as a named list, with components "observed", "null", "p_value", "permutations", "process_columns", "within", "higher_is_better", "seed". It contains negative-control test for an allegedly informative process channel and associated metadata or diagnostics needed to interpret the result.
 #' @export
 negative_control_process_test <- function(
     data, process_columns, evaluator, within = NULL, permutations = 100L,
@@ -958,7 +926,6 @@ negative_control_process_test <- function(
 #' @param group Grouping column.
 #' @param observed Observed binary/numeric outcome column.
 #' @param predicted Predicted probability/numeric score column.
-#' @return An object of class "eye_calibration_transfer_audit", "data.frame", stored as a data frame, containing transfer of calibration across devices/sessions/sites and associated metadata needed to interpret the result.
 #' @export
 calibration_transfer_audit <- function(data, group, observed, predicted) {
   d <- .ep07_v_as_df(data)
@@ -1004,7 +971,6 @@ calibration_transfer_audit <- function(data, group, observed, predicted) {
 #' @param sbc Value supplied to `sbc`; see Details for its model-specific role.
 #' @param ppc Value supplied to `ppc`; see Details for its model-specific role.
 #' @param semantic_roundtrip Value supplied to `semantic_roundtrip`; see Details for its model-specific role.
-#' @return An object of class "eye_irt_evidence_grade", stored as a named list, with components "model_id", "grade", "checks", "recovery", "contract", "warning". It contains grade model evidence against an explicit validation contract and associated metadata or diagnostics needed to interpret the result.
 #' @export
 grade_model_evidence <- function(
     recovery,
@@ -1070,7 +1036,6 @@ grade_model_evidence <- function(
 #' Print eye irt validation spec
 #' @param x Object to print, plot, summarize, or audit.
 #' @param ... Additional arguments passed to the selected model, engine, or method.
-#' @return Invisibly returns the input object after printing its summary; the object's class and contents are unchanged.
 #' @export
 print.eye_irt_validation_spec <- function(x, ...) {
   cat("eyeprocess IRT validation specification\n")
@@ -1085,7 +1050,6 @@ print.eye_irt_validation_spec <- function(x, ...) {
 #' Print eye irt evidence grade
 #' @param x Object to print, plot, summarize, or audit.
 #' @param ... Additional arguments passed to the selected model, engine, or method.
-#' @return Invisibly returns the input object after printing its summary; the object's class and contents are unchanged.
 #' @export
 print.eye_irt_evidence_grade <- function(x, ...) {
   cat("eyeprocess model-evidence grade\n")
@@ -1098,7 +1062,6 @@ print.eye_irt_evidence_grade <- function(x, ...) {
 #' Print eye process negative control
 #' @param x Object to print, plot, summarize, or audit.
 #' @param ... Additional arguments passed to the selected model, engine, or method.
-#' @return Invisibly returns the input object after printing its summary; the object's class and contents are unchanged.
 #' @export
 print.eye_process_negative_control <- function(x, ...) {
   cat("eyeprocess process-channel negative control\n")

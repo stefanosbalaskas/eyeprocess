@@ -24,9 +24,6 @@ compare_deployment_batches(
 
 \item{item}{Optional item identifier for item-matched differences.}
 }
-\value{
-A data frame containing two deployment batches descriptively. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
-}
 \description{
 Compare two deployment batches descriptively
 }

@@ -15,9 +15,6 @@
 
 \item{...}{Additional arguments passed to the selected model, engine, or method.}
 }
-\value{
-A vector or matrix containing expected bounded response from a censored-normal process IRT fit, with shape determined by the supplied analysis units.
-}
 \description{
 Predict expected bounded response from a censored-normal process IRT fit
 }

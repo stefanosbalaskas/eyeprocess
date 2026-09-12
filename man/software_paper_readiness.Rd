@@ -26,9 +26,6 @@ software_paper_readiness(
 
 \item{require_articles}{Require articles.}
 }
-\value{
-A named list with components "ready", "checks", "interpretation", containing descriptive software-paper readiness audit and associated metadata or diagnostics.
-}
 \description{
 Readiness is defined only against caller-specified requirements; it is not a
 journal acceptance prediction.

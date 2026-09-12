@@ -17,9 +17,6 @@ process_sensitivity_grid(
 
 \item{max_specifications}{Safety cap.}
 }
-\value{
-An R object containing an explicit process-analysis sensitivity grid. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
-}
 \description{
 Construct an explicit process-analysis sensitivity grid
 }

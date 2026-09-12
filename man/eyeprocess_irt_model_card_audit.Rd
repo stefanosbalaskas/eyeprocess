@@ -9,9 +9,6 @@ eyeprocess_irt_model_card_audit(card)
 \arguments{
 \item{card}{Value supplied for the card argument.}
 }
-\value{
-A data frame containing completeness of an IRT model card. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
-}
 \description{
 Audit completeness of an IRT model card
 }

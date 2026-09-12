@@ -23,9 +23,6 @@ eyeprocess_irt_process_dif_concordance(
 
 \item{process_effect}{Process-side item effect used for concordance.}
 }
-\value{
-An object of class "eye_irt_process_dif_concordance", stored as a named list, with components "n", "correlation", "table", "guardrail". It contains psychometric DIF effect sizes with process-channel contrasts and associated metadata or diagnostics needed to interpret the result.
-}
 \description{
 Compare psychometric DIF effect sizes with process-channel contrasts
 }

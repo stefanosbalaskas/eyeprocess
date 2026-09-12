@@ -19,9 +19,6 @@ inject_calibration_offset(
 
 \item{offset_x, offset_y}{Additive offsets in the same units as x/y.}
 }
-\value{
-An R object containing inject additive gaze calibration offset in coordinate units. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
-}
 \description{
 Inject additive gaze calibration offset in coordinate units
 }

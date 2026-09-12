@@ -9,9 +9,6 @@ validate_eyeprocess_joint_process_irt_spec(x)
 \arguments{
 \item{x}{Object to validate, summarize, verify, or otherwise process.}
 }
-\value{
-A logical value or vector indicating a joint process IRT specification.
-}
 \description{
 Validate a joint process IRT specification
 }

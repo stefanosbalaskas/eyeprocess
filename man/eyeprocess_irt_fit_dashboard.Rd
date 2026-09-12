@@ -23,9 +23,6 @@ eyeprocess_irt_fit_dashboard(
 
 \item{identification}{Identification specification or identification audit.}
 }
-\value{
-An object of class "eye_irt_fit_dashboard", stored as a named list, with components "components", "present", "n_components", "interpretation". It contains an integrated IRT diagnostic dashboard object and associated metadata or diagnostics needed to interpret the result.
-}
 \description{
 Build an integrated IRT diagnostic dashboard object
 }

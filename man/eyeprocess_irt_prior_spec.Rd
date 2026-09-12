@@ -29,9 +29,6 @@ eyeprocess_irt_prior_spec(
 
 \item{label}{Human-readable label.}
 }
-\value{
-An object of class "eye_irt_prior_spec", stored as a named list, with components "discrimination", "difficulty", "guessing", "location", "scale", "guessing_shape", "label". It contains declare prior families for Bayesian IRT engine adapters and associated metadata or diagnostics needed to interpret the result.
-}
 \description{
 Declare prior families for Bayesian IRT engine adapters
 }

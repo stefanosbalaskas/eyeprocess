@@ -9,9 +9,6 @@ eye_targets_manifest(x)
 \arguments{
 \item{x}{Pipeline.}
 }
-\value{
-A data frame containing a targets-compatible dependency manifest. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
-}
 \description{
 This function does not execute or silently translate arbitrary closures into
 a targets pipeline. It provides the dependency contract required to build an

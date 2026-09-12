@@ -9,9 +9,6 @@ process_measure_units(registry = process_measure_registry())
 \arguments{
 \item{registry}{Registry.}
 }
-\value{
-An R object containing list units used by registered process measures. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
-}
 \description{
 List units used by registered process measures
 }

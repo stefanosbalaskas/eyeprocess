@@ -13,9 +13,6 @@ eyeprocess_process_person_profile(data, person, channels)
 
 \item{channels}{Names or definitions of measurement channels.}
 }
-\value{
-A tabular R object containing aggregate process channels by person; rows represent analysis units and columns contain the returned quantities.
-}
 \description{
 Aggregate process channels by person
 }

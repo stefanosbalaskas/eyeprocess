@@ -13,9 +13,6 @@ run_eyeprocess_equateirt(function_name, ..., engine = "equateIRT")
 
 \item{engine}{Requested estimation or analysis engine.}
 }
-\value{
-An object of class "eye_external_irt_fit", stored as a named list, with components "status", "engine", "function_name", "fit", "call". It contains a named equateIRT linking/equating function without fallback substitution and associated metadata or diagnostics needed to interpret the result.
-}
 \description{
 The caller supplies an exported equateIRT function name and its arguments.
 eyeprocess does not replace the requested equating estimator when the engine

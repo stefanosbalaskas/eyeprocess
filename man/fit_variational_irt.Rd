@@ -13,9 +13,6 @@ fit_variational_irt(response_matrix, external_engine = NULL, ...)
 
 \item{...}{Additional arguments passed to the selected model, engine, or method.}
 }
-\value{
-An object of class "eye_variational_irt", stored as a named list, with components "model", "status", "engine". It contains variational IRT external-engine gate and associated metadata or diagnostics needed to interpret the result.
-}
 \description{
 Variational IRT external-engine gate
 }

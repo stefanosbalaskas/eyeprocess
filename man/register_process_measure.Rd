@@ -20,9 +20,6 @@ register_process_measure(
 
 \item{name, channel, unit, level, interpretation, guardrail, status}{Measure metadata.}
 }
-\value{
-A tabular R object containing add a process measure to a registry without global mutation; rows represent analysis units and columns contain the returned quantities.
-}
 \description{
 Add a process measure to a registry without global mutation
 }

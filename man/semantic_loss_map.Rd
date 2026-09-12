@@ -9,9 +9,6 @@ semantic_loss_map(x)
 \arguments{
 \item{x}{Object to print, plot, summarize, or audit.}
 }
-\value{
-A tabular R object containing a semantic round-trip audit into a loss map; rows represent analysis units and columns contain the returned quantities.
-}
 \description{
 Convert a semantic round-trip audit into a loss map
 }

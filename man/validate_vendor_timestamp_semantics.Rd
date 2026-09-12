@@ -23,9 +23,6 @@ validate_vendor_timestamp_semantics(
 
 \item{media_time}{Media/stimulus timestamp column.}
 }
-\value{
-An object of class "eye_vendor_timestamp_semantics", stored as a named list, with components "vendor", "pass", "clocks". It contains vendor-specific timestamp semantics and associated metadata or diagnostics needed to interpret the result.
-}
 \description{
 The audit records expected semantics rather than silently coercing clocks.
 Tobii data can carry device/system timing; Pupil Labs Neon timestamps are

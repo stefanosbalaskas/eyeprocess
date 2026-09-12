@@ -11,9 +11,6 @@ api_lifecycle_diff(old, new)
 
 \item{new}{New registry.}
 }
-\value{
-A tabular R object containing two API lifecycle registries; rows represent analysis units and columns contain the returned quantities.
-}
 \description{
 Compare two API lifecycle registries
 }

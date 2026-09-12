@@ -9,7 +9,6 @@
 #' @param context Optional explicit context column.
 #' @param context_candidates Candidate metadata columns searched in order.
 #' @param min_items_per_context Minimum items required for a shared context.
-#' @return An object of class "eye_visual_context_registry", stored as a named list, with components "mapping", "source_item_column", "source_context_column", "min_items_per_context", "caveat". It contains an item-to-visual-context registry and associated metadata or diagnostics needed to interpret the result.
 #' @export
 visual_context_registry <- function(
     item_metadata, item = "item_id", context = NULL,
@@ -46,7 +45,6 @@ visual_context_registry <- function(
 }
 
 #' Print a visual context registry object
-#' @return Invisibly returns the input object after printing its summary; the object's class and contents are unchanged.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 #' @param ... Additional arguments passed to the underlying method or helper.
@@ -78,7 +76,6 @@ print.eye_visual_context_registry <- function(x, ...) {
 #' @param model_dimension Name for the primary latent dimension.
 #' @param context_dimension Name for the context/testlet dimension.
 #' @param SE Request standard errors from mirt.
-#' @return An object of class "eye_visual_context_irt", stored as a named list, with components "base_model", "context_model", "comparison", "registry", "context", "positions", "itemtype", "model_string", "status", "caveat". It contains an explicit visual-context/testlet IRT model and associated metadata or diagnostics needed to interpret the result.
 #' @export
 fit_visual_context_irt <- function(
     response_matrix, registry, context = NULL, itemtype = "2PL",
@@ -119,7 +116,6 @@ fit_visual_context_irt <- function(
 }
 
 #' Compare base and visual-context IRT models
-#' @return A data frame containing base and visual-context IRT models. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 compare_visual_context_irt <- function(x) {
@@ -129,7 +125,6 @@ compare_visual_context_irt <- function(x) {
 }
 
 #' Extract visual-context factor effects/loadings
-#' @return An R object containing visual-context factor effects/loadings. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 #' @param IRTpars Passed to the underlying IRT coefficient extractor to request IRT parameterization when supported.
@@ -141,7 +136,6 @@ context_factor_effects <- function(x, IRTpars = FALSE) {
 }
 
 #' Audit visual-context dependence
-#' @return A data frame containing visual-context dependence. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 audit_visual_context_dependence <- function(x) {
@@ -163,7 +157,6 @@ audit_visual_context_dependence <- function(x) {
 #' @param blocks Named list of column names for conceptual blocks.
 #' @param id Optional identifier column.
 #' @param drop_constant Remove non-varying columns.
-#' @return An object of class "eye_process_feature_blocks", stored as a named list, with components "data", "blocks", "id", "block_sizes", "status". It contains define conceptual process-feature blocks and associated metadata or diagnostics needed to interpret the result.
 #' @export
 process_feature_blocks <- function(data, blocks, id = NULL, drop_constant = TRUE) {
   data <- .ep08_as_df(data)
@@ -199,7 +192,6 @@ process_feature_blocks <- function(data, blocks, id = NULL, drop_constant = TRUE
 #' @param id Optional identifier.
 #' @param engine `auto`, `FactoMineR`, or `pca_block_scaled`.
 #' @param ncp Number of components retained where supported.
-#' @return An object of class "eye_multiblock_process_map", stored as a named list, with components "model", "person_coordinates", "variable_coordinates", "block_coordinates", "blocks", "engine", "status", "caveat". It contains a multiblock psychometric/gaze/pupil/quality structure map and associated metadata or diagnostics needed to interpret the result.
 #' @export
 fit_multiblock_process_map <- function(x, blocks = NULL, id = NULL,
                                        engine = c("auto", "FactoMineR", "pca_block_scaled"), ncp = 5L) {
@@ -260,7 +252,6 @@ fit_multiblock_process_map <- function(x, blocks = NULL, id = NULL,
 }
 
 #' Extract multiblock block contributions/coordinates
-#' @return An R object containing multiblock block contributions/coordinates. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 multiblock_contributions <- function(x) {
@@ -269,7 +260,6 @@ multiblock_contributions <- function(x) {
 }
 
 #' Extract multiblock person coordinates
-#' @return An R object containing multiblock person coordinates. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 multiblock_person_coordinates <- function(x) {
@@ -278,7 +268,6 @@ multiblock_person_coordinates <- function(x) {
 }
 
 #' Extract multiblock variable coordinates
-#' @return An R object containing multiblock variable coordinates. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 multiblock_variable_coordinates <- function(x) {
@@ -301,7 +290,6 @@ multiblock_variable_coordinates <- function(x) {
 #' @param id Optional person identifier.
 #' @param engine `auto`, `tidyLPA`, or `kmeans_reference`.
 #' @param seed Random seed.
-#' @return An object of class "eye_process_profile_mixture", stored as a named list, with components "model", "assignment", "summary", "variables", "k", "engine", "scaled_data", "status", "caveat". It contains exploratory process profiles and associated metadata or diagnostics needed to interpret the result.
 #' @export
 fit_process_profile_mixture <- function(
     data, variables, k = 3L, id = "person_id",
@@ -358,7 +346,6 @@ fit_process_profile_mixture <- function(
 }
 
 #' Extract process-profile probabilities
-#' @return An R object containing process-profile probabilities. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 process_profile_probabilities <- function(x) {
@@ -367,7 +354,6 @@ process_profile_probabilities <- function(x) {
 }
 
 #' Summarize process profiles
-#' @return An R object containing process profiles. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 process_profile_summary <- function(x) {
@@ -380,7 +366,6 @@ process_profile_summary <- function(x) {
 #' @param variables Variables used for profiling.
 #' @param k_values Candidate numbers of profiles.
 #' @param seed Seed.
-#' @return A tabular R object containing candidate process-profile solutions; rows represent analysis units and columns contain the returned quantities.
 #' @export
 compare_process_profile_solutions <- function(data, variables, k_values = 2:6, seed = 777) {
   data <- .ep08_as_df(data); .ep08_req_cols(data, variables)
@@ -408,7 +393,6 @@ compare_process_profile_solutions <- function(data, variables, k_values = 2:6, s
 #' @param criterion External criterion column.
 #' @param predictors Process predictors.
 #' @param baseline_predictors Optional baseline predictors for incremental validity.
-#' @return An object of class "eye_process_external_validity", stored as a named list, with components "full_model", "baseline_model", "comparison", "associations", "criterion", "predictors", "baseline_predictors", "data", "incremental_r2", "status", "caveat". It contains external/structural validity of process traits and associated metadata or diagnostics needed to interpret the result.
 #' @export
 audit_process_external_validity <- function(data, criterion, predictors,
                                             baseline_predictors = NULL) {
@@ -440,7 +424,6 @@ audit_process_external_validity <- function(data, criterion, predictors,
 }
 
 #' Extract process-criterion associations
-#' @return An R object containing process-criterion associations. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 process_criterion_associations <- function(x) {
@@ -449,7 +432,6 @@ process_criterion_associations <- function(x) {
 }
 
 #' Extract incremental process validity
-#' @return A data frame containing incremental process validity. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 incremental_process_validity <- function(x) {
@@ -460,7 +442,6 @@ incremental_process_validity <- function(x) {
 }
 
 #' Compare process external-validity models
-#' @return A data frame containing process external-validity models. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 compare_process_criterion_models <- function(x) {
@@ -479,7 +460,6 @@ compare_process_criterion_models <- function(x) {
 #' @param predictors Design/process predictors.
 #' @param engine `auto`, `ranger`, or `lm`.
 #' @param seed Seed.
-#' @return An object of class "eye_item_parameter_seed", stored as a named list, with components "difficulty_model", "discrimination_model", "difficulty", "discrimination", "predictors", "engine", "training_data", "status", "caveat". It contains an experimental pre-pilot item-parameter seeding model and associated metadata or diagnostics needed to interpret the result.
 #' @export
 fit_item_parameter_seed_model <- function(
     item_data, difficulty = "irt_difficulty", discrimination = "irt_discrimination",
@@ -521,7 +501,6 @@ fit_item_parameter_seed_model <- function(
 #' Predict pre-pilot item-parameter priors
 #' @param object Seed model.
 #' @param newdata Candidate item feature data.
-#' @return An R object containing pre-pilot item-parameter priors. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 predict_item_parameter_priors <- function(object, newdata) {
   if (!inherits(object, "eye_item_parameter_seed")) stop("object must be eye_item_parameter_seed.", call. = FALSE)
@@ -547,7 +526,6 @@ predict_item_parameter_priors <- function(object, newdata) {
 #' @param candidate_data Candidate item feature data.
 #' @param difficulty_range Plausible screening range for predicted difficulty.
 #' @param discrimination_min Minimum screening discrimination.
-#' @return An object of class "eye_candidate_item_bank_audit", stored as a named list, with components "table", "seed_model", "status", "caveat". It contains a candidate item bank against a seed model and associated metadata or diagnostics needed to interpret the result.
 #' @export
 audit_candidate_item_bank <- function(object, candidate_data,
                                       difficulty_range = c(-3, 3), discrimination_min = 0.3) {

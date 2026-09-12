@@ -38,7 +38,6 @@
 #' @param process_channels Declared process-measure channels.
 #' @param status Evidence, model, or governance status.
 #' @param notes Value supplied for the notes argument.
-#' @return An object of class "eyeprocess_irt_model_spec", stored as a named list, with components "family", "dimensions", "identification", "engine", "process_channels", "status", "notes". It contains declare an eyeprocess IRT model specification and associated metadata or diagnostics needed to interpret the result.
 #' @export
 eyeprocess_irt_model_spec <- function(
     family = c("rasch", "2pl", "3pl", "4pl", "grm", "gpcm", "nominal", "multidimensional", "testlet", "latent_regression", "cdm", "joint_rt"),
@@ -63,7 +62,6 @@ eyeprocess_irt_model_spec <- function(
 
 #' Validate an eyeprocess IRT model specification
 #' @param x Object to validate, summarize, verify, or otherwise process.
-#' @return A logical value or vector indicating an eyeprocess IRT model specification.
 #' @export
 validate_eyeprocess_irt_model_spec <- function(x) {
   if (!inherits(x, "eyeprocess_irt_model_spec")) stop("x must inherit from eyeprocess_irt_model_spec.", call. = FALSE)
@@ -78,7 +76,6 @@ validate_eyeprocess_irt_model_spec <- function(x) {
 #' @param constraints Identification or model constraints.
 #' @param n_items Number of items.
 #' @param n_persons Number of persons.
-#' @return An object of class "eye_irt_identification_audit", stored as a named list, with components "spec", "location_identified", "scale_identified", "anchors", "warnings", "valid", "n_items", "n_persons". It contains iRT scale/location identification and associated metadata or diagnostics needed to interpret the result.
 #' @export
 eyeprocess_irt_identification_audit <- function(spec, constraints = list(), n_items = NULL, n_persons = NULL) {
   validate_eyeprocess_irt_model_spec(spec)
@@ -117,7 +114,6 @@ eyeprocess_irt_identification_audit <- function(spec, constraints = list(), n_it
 #' @param response Observed item response or response variable.
 #' @param min_person_items Minimum number of observed items required per person.
 #' @param min_item_persons Minimum number of observed persons required per item.
-#' @return An object of class "eye_irt_sparse_design_audit", stored as a named list, with components "n_persons", "n_items", "n_observed", "density", "person_counts", "item_counts", "sparse_persons", "sparse_items", "min_person_items", "min_item_persons". It contains sparse person-item response coverage and associated metadata or diagnostics needed to interpret the result.
 #' @export
 eyeprocess_irt_sparse_design_audit <- function(data, person, item, response = NULL, min_person_items = 3L, min_item_persons = 10L) {
   data <- .ep09m2_as_df(data, "data")
@@ -148,7 +144,6 @@ eyeprocess_irt_sparse_design_audit <- function(data, person, item, response = NU
 #' @param a Item discrimination parameter or vector.
 #' @param b Item difficulty or location parameter or vector.
 #' @param D Logistic scaling constant.
-#' @return A numeric value or vector containing 2PL item-response probability.
 #' @export
 eyeprocess_irt_2pl_probability <- function(theta, a = 1, b = 0, D = 1) {
   theta <- .ep09m2_theta(theta); a <- as.numeric(a); b <- as.numeric(b); D <- as.numeric(D)
@@ -163,7 +158,6 @@ eyeprocess_irt_2pl_probability <- function(theta, a = 1, b = 0, D = 1) {
 #' @param b Item difficulty or location parameter or vector.
 #' @param c Lower-asymptote parameter or vector.
 #' @param D Logistic scaling constant.
-#' @return A numeric value or vector containing 3PL item-response probability.
 #' @export
 eyeprocess_irt_3pl_probability <- function(theta, a = 1, b = 0, c = 0.2, D = 1) {
   c <- as.numeric(c)
@@ -178,7 +172,6 @@ eyeprocess_irt_3pl_probability <- function(theta, a = 1, b = 0, c = 0.2, D = 1) 
 #' @param c Lower-asymptote parameter or vector.
 #' @param d Upper-asymptote parameter or vector.
 #' @param D Logistic scaling constant.
-#' @return A numeric value or vector containing 4PL item-response probability.
 #' @export
 eyeprocess_irt_4pl_probability <- function(theta, a = 1, b = 0, c = 0, d = 1, D = 1) {
   c <- as.numeric(c); d <- as.numeric(d)
@@ -192,7 +185,6 @@ eyeprocess_irt_4pl_probability <- function(theta, a = 1, b = 0, c = 0, d = 1, D 
 #' @param a Item discrimination parameter or vector.
 #' @param thresholds Ordered response-category thresholds.
 #' @param D Logistic scaling constant.
-#' @return A logical value or vector indicating graded-response category probabilities.
 #' @export
 eyeprocess_irt_grm_probability <- function(theta, a = 1, thresholds, D = 1) {
   theta <- .ep09m2_theta(theta); thresholds <- as.numeric(thresholds)
@@ -213,7 +205,6 @@ eyeprocess_irt_grm_probability <- function(theta, a = 1, thresholds, D = 1) {
 #' @param a Item discrimination parameter or vector.
 #' @param steps Step parameters for a generalized partial-credit model.
 #' @param D Logistic scaling constant.
-#' @return A logical value or vector indicating generalized partial-credit category probabilities.
 #' @export
 eyeprocess_irt_gpcm_probability <- function(theta, a = 1, steps, D = 1) {
   theta <- .ep09m2_theta(theta); steps <- as.numeric(steps)
@@ -232,7 +223,6 @@ eyeprocess_irt_gpcm_probability <- function(theta, a = 1, steps, D = 1) {
 #' @param theta Latent-trait value or vector of latent-trait values.
 #' @param slopes Nominal-category slope parameters.
 #' @param intercepts Nominal-category intercept parameters.
-#' @return A numeric value or vector containing nominal-response category probabilities.
 #' @export
 eyeprocess_irt_nominal_probability <- function(theta, slopes, intercepts) {
   theta <- .ep09m2_theta(theta); slopes <- as.numeric(slopes); intercepts <- as.numeric(intercepts)
@@ -258,7 +248,6 @@ eyeprocess_irt_nominal_probability <- function(theta, slopes, intercepts) {
 #' @param family IRT response family or model family.
 #' @param ... Additional arguments passed to the selected method or external engine.
 #' @param D Logistic scaling constant.
-#' @return A numeric value or vector containing item information for transparent IRT families.
 #' @export
 eyeprocess_irt_item_information <- function(theta, family = c("2pl", "3pl", "4pl", "grm", "gpcm", "nominal"), ..., D = 1) {
   family <- match.arg(family); theta <- .ep09m2_theta(theta); dots <- list(...)
@@ -293,7 +282,6 @@ eyeprocess_irt_item_information <- function(theta, family = c("2pl", "3pl", "4pl
 #' @param theta Latent-trait value or vector of latent-trait values.
 #' @param items Item-parameter data frame or item collection.
 #' @param D Logistic scaling constant.
-#' @return An object of class "eye_irt_information_profile", "data.frame", stored as a data frame, containing a test information curve from item parameters and associated metadata needed to interpret the result.
 #' @export
 eyeprocess_irt_test_information <- function(theta, items, D = 1) {
   theta <- .ep09m2_theta(theta); items <- .ep09m2_item_pars(items)
@@ -307,7 +295,6 @@ eyeprocess_irt_test_information <- function(theta, items, D = 1) {
 
 #' Conditional standard error from information
 #' @param information Item or test information value or vector.
-#' @return A logical value or vector indicating conditional standard error from information.
 #' @export
 eyeprocess_irt_conditional_sem <- function(information) {
   information <- as.numeric(information)
@@ -319,7 +306,6 @@ eyeprocess_irt_conditional_sem <- function(information) {
 #' @param theta Latent-trait value or vector of latent-trait values.
 #' @param family IRT response family or model family.
 #' @param ... Additional arguments passed to the selected method or external engine.
-#' @return A numeric value or vector containing expected item score.
 #' @export
 eyeprocess_irt_expected_score <- function(theta, family = c("2pl", "3pl", "4pl", "grm", "gpcm", "nominal"), ...) {
   family <- match.arg(family); theta <- .ep09m2_theta(theta); dots <- list(...)
@@ -338,7 +324,6 @@ eyeprocess_irt_expected_score <- function(theta, family = c("2pl", "3pl", "4pl",
 #' @param theta Latent-trait value or vector of latent-trait values.
 #' @param items Item-parameter data frame or item collection.
 #' @param D Logistic scaling constant.
-#' @return An object of class "eye_irt_test_characteristic_curve", "data.frame", stored as a data frame, containing characteristic curve for dichotomous item parameters and associated metadata needed to interpret the result.
 #' @export
 eyeprocess_irt_test_characteristic_curve <- function(theta, items, D = 1) {
   theta <- .ep09m2_theta(theta); items <- .ep09m2_item_pars(items)
@@ -350,7 +335,6 @@ eyeprocess_irt_test_characteristic_curve <- function(theta, items, D = 1) {
 #' Area under an information curve
 #' @param theta Latent-trait value or vector of latent-trait values.
 #' @param information Item or test information value or vector.
-#' @return A numeric value or vector containing area under an information curve.
 #' @export
 eyeprocess_irt_information_area <- function(theta, information) {
   theta <- as.numeric(theta); information <- as.numeric(information)
@@ -364,7 +348,6 @@ eyeprocess_irt_information_area <- function(theta, information) {
 #' @param items Item-parameter data frame or item collection.
 #' @param target Target level, distribution, or criterion.
 #' @param D Logistic scaling constant.
-#' @return An object of class "eye_irt_precision_profile", stored as a named list, with components "curve", "target", "area", "min_information", "max_sem". It contains measurement precision across a theta region and associated metadata or diagnostics needed to interpret the result.
 #' @export
 eyeprocess_irt_measurement_precision_profile <- function(theta, items, target = c(-2, 2), D = 1) {
   target <- as.numeric(target)

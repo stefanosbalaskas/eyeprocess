@@ -13,9 +13,6 @@ validation_acceptance_matrix(summary, rules, id_cols = character())
 
 \item{id_cols}{Columns identifying validation scenarios.}
 }
-\value{
-A tabular R object containing a table against named validation rules; rows represent analysis units and columns contain the returned quantities.
-}
 \description{
 Evaluate a table against named validation rules
 }

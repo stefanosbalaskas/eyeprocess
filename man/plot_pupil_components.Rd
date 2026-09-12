@@ -26,9 +26,6 @@ plot_pupil_components(
 
 \item{...}{Additional arguments passed to the underlying method or helper.}
 }
-\value{
-An R object containing plot tonic/phasic pupil components. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
-}
 \description{
 Plot tonic/phasic pupil components
 }

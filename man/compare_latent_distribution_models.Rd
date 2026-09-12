@@ -9,9 +9,6 @@ compare_latent_distribution_models(theta)
 \arguments{
 \item{theta}{Numeric latent-trait draws/estimates.}
 }
-\value{
-An object of class "eye_latent_distribution_comparison", stored as a named list, with components "comparison", "audit", "student_t", "mixture", "status". It contains simple latent-distribution reference models and associated metadata or diagnostics needed to interpret the result.
-}
 \description{
 Compares Gaussian, location/scale Student-t, and two-normal-mixture
 reference densities by AIC/BIC. This is a stress-test diagnostic; it does not

@@ -26,9 +26,6 @@ software_paper_claim_matrix(
 
 \item{source}{Optional source/location.}
 }
-\value{
-A data frame containing or normalize a software-paper claim matrix. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
-}
 \description{
 Create or normalize a software-paper claim matrix
 }

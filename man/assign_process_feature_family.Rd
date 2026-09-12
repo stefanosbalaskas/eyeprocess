@@ -14,9 +14,6 @@ assign_process_feature_family(
 
 \item{registry}{Feature-family registry.}
 }
-\value{
-A vector or matrix containing assign features to conservative process-feature families, with shape determined by the supplied analysis units.
-}
 \description{
 Assign features to conservative process-feature families
 }

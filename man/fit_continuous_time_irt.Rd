@@ -13,9 +13,6 @@ fit_continuous_time_irt(data, external_engine = NULL, ...)
 
 \item{...}{Additional arguments passed to the selected model, engine, or method.}
 }
-\value{
-An object of class "eye_continuous_time_irt", stored as a named list, with components "model", "status". It contains continuous-time IRT external-engine gate and associated metadata or diagnostics needed to interpret the result.
-}
 \description{
 Continuous-time IRT external-engine gate
 }

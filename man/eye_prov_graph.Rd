@@ -17,9 +17,6 @@ eye_prov_graph(
 
 \item{metadata}{Optional metadata.}
 }
-\value{
-A named list with components "nodes", "edges", "metadata", containing a lightweight provenance graph and associated metadata or diagnostics.
-}
 \description{
 Construct a lightweight provenance graph
 }

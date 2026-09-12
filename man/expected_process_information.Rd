@@ -11,9 +11,6 @@ expected_process_information(info, theta_weights = NULL)
 
 \item{theta_weights}{Weights over the theta distribution.}
 }
-\value{
-An R object containing expected process-aware item utility under a theta distribution. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
-}
 \description{
 Expected process-aware item utility under a theta distribution
 }

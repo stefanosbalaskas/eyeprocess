@@ -11,9 +11,6 @@
 
 \item{...}{Additional arguments passed to the selected model, engine, or method.}
 }
-\value{
-Invisibly returns the input object after printing its summary; the object's class and contents are unchanged.
-}
 \description{
 Print eye irt evidence grade
 }

@@ -11,9 +11,6 @@ eyeprocess_irt_information_area(theta, information)
 
 \item{information}{Item or test information value or vector.}
 }
-\value{
-A numeric value or vector containing area under an information curve.
-}
 \description{
 Area under an information curve
 }

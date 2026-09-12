@@ -23,9 +23,6 @@ stress_test_missingness(
 
 \item{seed}{Random-number seed.}
 }
-\value{
-An object of class "eye_irt_stress_test", "data.frame", stored as a data frame, containing stress test missingness and associated metadata needed to interpret the result.
-}
 \description{
 Stress test missingness
 }

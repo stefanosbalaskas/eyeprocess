@@ -13,9 +13,6 @@ eyeprocess_irt_local_dependence_pairs(q3, threshold = 0.2, absolute = TRUE)
 
 \item{absolute}{Whether diagnostic thresholds apply to absolute values.}
 }
-\value{
-An R object containing high residual-dependence item pairs. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
-}
 \description{
 Extract high residual-dependence item pairs
 }

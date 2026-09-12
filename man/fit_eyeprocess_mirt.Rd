@@ -17,9 +17,6 @@ fit_eyeprocess_mirt(data, model = 1, itemtype = "2PL", ..., engine = "mirt")
 
 \item{engine}{Requested estimation or analysis engine.}
 }
-\value{
-An object of class "eye_external_irt_fit", stored as a named list, with components "status", "engine", "fit", "call". It contains a model with mirt without substituting another estimator and associated metadata or diagnostics needed to interpret the result.
-}
 \description{
 Fit a model with mirt without substituting another estimator
 }

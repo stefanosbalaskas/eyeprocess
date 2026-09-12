@@ -13,9 +13,6 @@ eyeprocess_irt_q3(responses, probabilities, use = "pairwise.complete.obs")
 
 \item{use}{Missing-data handling mode passed to the residual correlation calculation.}
 }
-\value{
-An R object containing yen-style Q3 residual correlations. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
-}
 \description{
 Compute Yen-style Q3 residual correlations
 }

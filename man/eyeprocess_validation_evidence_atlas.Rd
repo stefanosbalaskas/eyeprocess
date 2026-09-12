@@ -35,9 +35,6 @@ eyeprocess_validation_evidence_atlas(
 
 \item{artifacts}{Artifact table or file-index information.}
 }
-\value{
-An object of class "eye_validation_evidence_atlas", stored as a named list, with components "claims", "components", "component_status", "coverage", "hash", "guardrail". It contains assemble a validation evidence atlas and associated metadata or diagnostics needed to interpret the result.
-}
 \description{
 The atlas is an organizational object. It preserves links between claims,
 software-validation results, figures, tables, and provenance; it does not

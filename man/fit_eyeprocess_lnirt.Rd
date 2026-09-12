@@ -17,9 +17,6 @@ fit_eyeprocess_lnirt(Y, RT, quadratic = FALSE, ..., engine = "LNIRT")
 
 \item{engine}{Requested estimation or analysis engine.}
 }
-\value{
-An object of class "eye_external_irt_fit", stored as a named list, with components "status", "engine", "fit", "call", "rt_scale". It contains a joint response/response-time LNIRT model without fallback substitution and associated metadata or diagnostics needed to interpret the result.
-}
 \description{
 Fit a joint response/response-time LNIRT model without fallback substitution
 }

@@ -11,9 +11,6 @@
 
 \item{...}{Additional arguments passed to the selected model, engine, or method.}
 }
-\value{
-Invisibly returns the plotting result when available; the primary effect is drawing plot eye bids roundtrip.
-}
 \description{
 Plot eye bids roundtrip
 }

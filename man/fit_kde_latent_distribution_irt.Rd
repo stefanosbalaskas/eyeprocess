@@ -14,9 +14,6 @@ likelihood estimator. If omitted, a gated specification is returned.}
 
 \item{...}{Passed to `engine` when supplied.}
 }
-\value{
-An object of class "eye_gated_process_model", stored as a named list, with components "id", "purpose", "required_evidence", "engine", "fit", "status", "notes", "caveat". It contains a gated KDE latent-distribution IRT interface and associated metadata or diagnostics needed to interpret the result.
-}
 \description{
 Create a gated KDE latent-distribution IRT interface
 }

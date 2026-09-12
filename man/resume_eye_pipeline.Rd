@@ -15,9 +15,6 @@ resume_eye_pipeline(x, previous, context = list(), stop_on_error = TRUE)
 
 \item{stop_on_error}{Stop on non-optional error.}
 }
-\value{
-An object of class "eye_pipeline_run", stored as a named list, with components "pipeline", "pipeline_hash", "outputs", "records", "errors", "warnings", "context_hash", "completed", "created_at", "status". It contains resume a governed pipeline from a prior run and associated metadata or diagnostics needed to interpret the result.
-}
 \description{
 Resume a governed pipeline from a prior run
 }

@@ -13,9 +13,6 @@ eyeprocess_irt_testlet_spec(item_id, testlet, general_dimension = "general")
 
 \item{general_dimension}{General dimension name or index.}
 }
-\value{
-An object of class "eye_irt_testlet_spec", "data.frame", stored as a data frame, containing declare a testlet structure for bifactor/two-tier IRT engines and associated metadata needed to interpret the result.
-}
 \description{
 Declare a testlet structure for bifactor/two-tier IRT engines
 }

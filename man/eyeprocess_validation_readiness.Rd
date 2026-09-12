@@ -15,9 +15,6 @@ eyeprocess_validation_readiness(
 
 \item{required}{Required evidence components or requirements.}
 }
-\value{
-An object of class "eye_validation_readiness", stored as a named list, with components "ready", "table", "hash_valid", "source_commit". It contains readiness of a Milestone #2 validation evidence bundle and associated metadata or diagnostics needed to interpret the result.
-}
 \description{
 Evaluate readiness of a Milestone #2 validation evidence bundle
 }

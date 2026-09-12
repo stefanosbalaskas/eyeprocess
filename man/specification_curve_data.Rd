@@ -15,9 +15,6 @@ specification_curve_data(x, effect = "effect", lower = NULL, upper = NULL)
 
 \item{upper}{Optional upper interval column.}
 }
-\value{
-An R object containing ordered specification-curve data. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
-}
 \description{
 Prepare ordered specification-curve data
 }

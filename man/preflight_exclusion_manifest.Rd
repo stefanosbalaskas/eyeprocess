@@ -9,9 +9,6 @@ preflight_exclusion_manifest(x)
 \arguments{
 \item{x}{Object to process, inspect, compare, or plot.}
 }
-\value{
-An R object containing an explicit pre-flight exclusion/review manifest. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
-}
 \description{
 The manifest records recommendations only. It does not remove observations.
 }

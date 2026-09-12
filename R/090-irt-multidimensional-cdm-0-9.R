@@ -5,7 +5,6 @@
 #' @param loadings Item-by-dimension loading matrix.
 #' @param dimension_names Optional names for latent dimensions.
 #' @param simple_structure Whether a simple-structure loading pattern is required.
-#' @return An object of class "eye_mirt_loading_spec", stored as a named list, with components "items", "loadings", "dimensions", "simple_structure", "violations". It contains declare a multidimensional IRT loading structure and associated metadata or diagnostics needed to interpret the result.
 #' @export
 eyeprocess_mirt_loading_spec <- function(items, loadings, dimension_names = colnames(loadings), simple_structure = FALSE) {
   items <- as.character(items); loadings <- as.matrix(loadings); storage.mode(loadings) <- "numeric"
@@ -20,7 +19,6 @@ eyeprocess_mirt_loading_spec <- function(items, loadings, dimension_names = coln
 #' Audit multidimensional IRT loading coverage
 #' @param spec Model, validation, or analysis specification object.
 #' @param min_items_per_dimension Minimum number of items required per dimension.
-#' @return A data frame containing multidimensional IRT loading coverage. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 eyeprocess_mirt_loading_audit <- function(spec, min_items_per_dimension = 3L) {
   if (!inherits(spec, "eye_mirt_loading_spec")) stop("spec must be created by eyeprocess_mirt_loading_spec().", call. = FALSE)
@@ -36,7 +34,6 @@ eyeprocess_mirt_loading_audit <- function(spec, min_items_per_dimension = 3L) {
 #' @param difficulty Item difficulty or location parameter.
 #' @param direction Direction vector used to project multidimensional information.
 #' @param D Logistic scaling constant.
-#' @return A numeric value or vector containing directional multidimensional 2PL information.
 #' @export
 eyeprocess_mirt_directional_information <- function(theta, discrimination, difficulty = 0, direction = NULL, D = 1) {
   theta <- as.numeric(theta); discrimination <- as.numeric(discrimination)
@@ -53,7 +50,6 @@ eyeprocess_mirt_directional_information <- function(theta, discrimination, diffi
 #' @param discrimination Discrimination vector or matrix.
 #' @param difficulty Item difficulty or location parameter.
 #' @param D Logistic scaling constant.
-#' @return A numeric value or vector containing multidimensional 2PL item information matrix.
 #' @export
 eyeprocess_mirt_information_matrix <- function(theta, discrimination, difficulty = 0, D = 1) {
   theta <- as.numeric(theta); discrimination <- as.numeric(discrimination)
@@ -66,7 +62,6 @@ eyeprocess_mirt_information_matrix <- function(theta, discrimination, difficulty
 #' @param item_id Item identifier or vector of item identifiers.
 #' @param testlet Testlet membership identifier.
 #' @param general_dimension General dimension name or index.
-#' @return An object of class "eye_irt_testlet_spec", "data.frame", stored as a data frame, containing declare a testlet structure for bifactor/two-tier IRT engines and associated metadata needed to interpret the result.
 #' @export
 eyeprocess_irt_testlet_spec <- function(item_id, testlet, general_dimension = "general") {
   item_id <- as.character(item_id); testlet <- as.character(testlet)
@@ -77,7 +72,6 @@ eyeprocess_irt_testlet_spec <- function(item_id, testlet, general_dimension = "g
 #' Audit testlet sizes and singleton structures
 #' @param spec Model, validation, or analysis specification object.
 #' @param min_items Minimum number of items required.
-#' @return A data frame containing testlet sizes and singleton structures. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 eyeprocess_irt_testlet_audit <- function(spec, min_items = 2L) {
   if (!inherits(spec, "eye_irt_testlet_spec")) stop("spec must be an eye_irt_testlet_spec.", call. = FALSE)
@@ -89,7 +83,6 @@ eyeprocess_irt_testlet_audit <- function(spec, min_items = 2L) {
 #' @param data Input data frame, matrix, or compatible analysis object.
 #' @param formula Model formula.
 #' @param center_numeric Whether numeric predictors are centered.
-#' @return An object of class "eye_irt_latent_regression_design", stored as a named list, with components "matrix", "formula", "centers", "complete". It contains a latent-regression design matrix with explicit centering metadata and associated metadata or diagnostics needed to interpret the result.
 #' @export
 eyeprocess_irt_latent_regression_design <- function(data, formula, center_numeric = TRUE) {
   data <- .ep09m2_as_df(data, "data"); formula <- stats::as.formula(formula)
@@ -111,7 +104,6 @@ eyeprocess_irt_latent_regression_design <- function(data, formula, center_numeri
 #' @param Q Binary item-by-attribute Q-matrix.
 #' @param item_ids Optional item identifiers.
 #' @param attribute_names Optional names for the cognitive-diagnosis attributes.
-#' @return An object of class "eye_cdm_qmatrix_audit", stored as a named list, with components "item", "attribute", "duplicate_rows", "complete_identity_block". It contains a cognitive-diagnosis Q-matrix and associated metadata or diagnostics needed to interpret the result.
 #' @export
 eyeprocess_cdm_qmatrix_audit <- function(Q, item_ids = rownames(Q), attribute_names = colnames(Q)) {
   Q <- as.matrix(Q); storage.mode(Q) <- "numeric"
@@ -132,7 +124,6 @@ eyeprocess_cdm_qmatrix_audit <- function(Q, item_ids = rownames(Q), attribute_na
 #' Enumerate latent attribute profiles
 #' @param n_attributes Number of cognitive-diagnosis attributes.
 #' @param attribute_names Optional names for the cognitive-diagnosis attributes.
-#' @return An R object containing enumerate latent attribute profiles. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 eyeprocess_cdm_attribute_profiles <- function(n_attributes, attribute_names = paste0("A", seq_len(n_attributes))) {
   n_attributes <- as.integer(n_attributes); if (length(n_attributes) != 1L || is.na(n_attributes) || n_attributes < 1L || n_attributes > 20L) stop("n_attributes must be a scalar integer between 1 and 20.", call. = FALSE)
@@ -143,7 +134,6 @@ eyeprocess_cdm_attribute_profiles <- function(n_attributes, attribute_names = pa
 #' Compute deterministic DINA ideal responses from a Q-matrix
 #' @param Q Binary item-by-attribute Q-matrix.
 #' @param profiles Attribute mastery profiles, with rows representing profiles.
-#' @return A vector or matrix containing deterministic DINA ideal responses from a Q-matrix, with shape determined by the supplied analysis units.
 #' @export
 eyeprocess_cdm_dina_ideal_response <- function(Q, profiles) {
   Q <- as.matrix(Q); profiles <- as.matrix(profiles); storage.mode(Q) <- storage.mode(profiles) <- "numeric"
@@ -156,7 +146,6 @@ eyeprocess_cdm_dina_ideal_response <- function(Q, profiles) {
 #' @param ideal_response Ideal-response indicator or matrix implied by the cognitive-diagnosis model.
 #' @param slip DINA slip parameter or vector of slip parameters.
 #' @param guess DINA guessing parameter or vector of guessing parameters.
-#' @return An object of class "matrix", stored as an R object, containing dINA response probabilities from slip and guess parameters and associated metadata needed to interpret the result.
 #' @export
 eyeprocess_cdm_dina_probability <- function(ideal_response, slip = 0.1, guess = 0.2) {
   eta <- as.matrix(ideal_response); if (any(!eta %in% c(0, 1))) stop("ideal_response must be binary.", call. = FALSE)
@@ -170,7 +159,6 @@ eyeprocess_cdm_dina_probability <- function(ideal_response, slip = 0.1, guess = 
 
 #' Summarise CDM classification uncertainty from profile probabilities
 #' @param profile_probabilities Posterior attribute-profile probabilities.
-#' @return A data frame containing cDM classification uncertainty from profile probabilities. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 eyeprocess_cdm_classification_uncertainty <- function(profile_probabilities) {
   p <- as.matrix(profile_probabilities); storage.mode(p) <- "numeric"

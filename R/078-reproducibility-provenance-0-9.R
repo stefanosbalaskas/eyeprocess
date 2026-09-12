@@ -3,14 +3,12 @@
 
 #' Hash an R object reproducibly within an R serialization version
 #' @param x R object.
-#' @return An R object containing hash an R object reproducibly within an R serialization version. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 object_hash <- function(x) .ep09_hash_object(x)
 
 #' Build a file hash manifest
 #' @param paths File paths.
 #' @param algorithm Hash algorithm; currently `md5` uses base R, `sha256` uses openssl when available.
-#' @return A data frame containing a file hash manifest. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 file_hash_manifest <- function(paths, algorithm = c("md5", "sha256")) {
   algorithm <- match.arg(algorithm)
@@ -30,7 +28,6 @@ file_hash_manifest <- function(paths, algorithm = c("md5", "sha256")) {
 
 #' Snapshot an eyeprocess analysis environment
 #' @param packages Optional package names; defaults to loaded namespaces.
-#' @return A named list with components "r_version", "platform", "os", "locale", "timezone", "packages", containing snapshot an eyeprocess analysis environment and associated metadata or diagnostics.
 #' @export
 analysis_environment_snapshot <- function(packages = loadedNamespaces()) {
   packages <- sort(unique(as.character(packages)))
@@ -54,7 +51,6 @@ analysis_environment_snapshot <- function(packages = loadedNamespaces()) {
 #' @param pipeline Optional pipeline or run object.
 #' @param seeds Optional named random seeds.
 #' @param notes Optional notes.
-#' @return A named list with components "created_utc", "eyeprocess_version", "data_hash", "files", "adapter", "decisions_hash", "pipeline_hash", "seeds", "environment", "notes", containing a session-level provenance manifest and associated metadata or diagnostics.
 #' @export
 eye_session_manifest <- function(data = NULL, files = NULL, adapter = NA_character_, decisions = NULL,
                                  pipeline = NULL, seeds = NULL, notes = NULL) {
@@ -81,7 +77,6 @@ eye_session_manifest <- function(data = NULL, files = NULL, adapter = NA_charact
 #' @param files Optional input file paths.
 #' @param seeds Optional seeds.
 #' @param label Fingerprint label.
-#' @return A named list with components "schema_version", "label", "eyeprocess_version", "data_hash", "analysis_spec_hash", "model_spec_hash", "decisions_hash", "result_hash", "file_manifest", "seeds", "environment", containing a reproducibility fingerprint and associated metadata or diagnostics.
 #' @export
 eye_reproducibility_fingerprint <- function(data = NULL, analysis_spec = NULL, model_spec = NULL,
                                             decisions = NULL, result = NULL, files = NULL,
@@ -108,7 +103,6 @@ eye_reproducibility_fingerprint <- function(data = NULL, analysis_spec = NULL, m
 
 #' Compare two reproducibility fingerprints
 #' @param old,new Fingerprints.
-#' @return A named list with components "detail", "identical", "old_hash", "new_hash", containing two reproducibility fingerprints and associated metadata or diagnostics.
 #' @export
 compare_reproducibility_fingerprints <- function(old, new) {
   fields <- c("eyeprocess_version", "data_hash", "analysis_spec_hash", "model_spec_hash", "decisions_hash", "result_hash")
@@ -122,7 +116,6 @@ compare_reproducibility_fingerprints <- function(old, new) {
 
 #' Verify an internally stored fingerprint hash
 #' @param x Fingerprint.
-#' @return A logical value or vector indicating verify an internally stored fingerprint hash.
 #' @export
 verify_reproducibility_fingerprint <- function(x) {
   if (!inherits(x, "eye_reproducibility_fingerprint")) stop("x must be an eye_reproducibility_fingerprint.", call. = FALSE)
@@ -134,7 +127,6 @@ verify_reproducibility_fingerprint <- function(x) {
 #' @param x Fingerprint.
 #' @param path Output path.
 #' @param format `rds`, `dput`, or `json`.
-#' @return A character string or vector giving the path or identifier for a reproducibility fingerprint.
 #' @export
 write_reproducibility_fingerprint <- function(x, path, format = c("rds", "dput", "json")) {
   format <- match.arg(format)
@@ -148,7 +140,6 @@ write_reproducibility_fingerprint <- function(x, path, format = c("rds", "dput",
 #' Read a reproducibility fingerprint
 #' @param path Input path.
 #' @param format Optional format.
-#' @return A logical value or vector indicating a reproducibility fingerprint.
 #' @export
 read_reproducibility_fingerprint <- function(path, format = NULL) {
   if (is.null(format)) format <- tolower(tools::file_ext(path))
@@ -166,7 +157,6 @@ read_reproducibility_fingerprint <- function(path, format = NULL) {
 #' @param type Node types such as entity, activity, agent.
 #' @param label Human-readable labels.
 #' @param value Optional values/locations.
-#' @return A data frame containing a provenance lineage node table. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 provenance_lineage_table <- function(id, type = "entity", label = id, value = NA_character_) {
   n <- max(length(id), length(type), length(label), length(value)); r <- function(x) rep(x, length.out = n)
@@ -182,7 +172,6 @@ provenance_lineage_table <- function(id, type = "entity", label = id, value = NA
 #' Build a provenance edge table
 #' @param from,to Node identifiers.
 #' @param relation PROV-like relation labels.
-#' @return A data frame containing a provenance edge table. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 provenance_edge_table <- function(from, to, relation = "wasDerivedFrom") {
   n <- max(length(from), length(to), length(relation)); r <- function(x) rep(x, length.out = n)
@@ -197,7 +186,6 @@ provenance_edge_table <- function(from, to, relation = "wasDerivedFrom") {
 #' @param nodes Node table.
 #' @param edges Edge table.
 #' @param metadata Optional metadata.
-#' @return A named list with components "nodes", "edges", "metadata", containing a lightweight provenance graph and associated metadata or diagnostics.
 #' @export
 eye_prov_graph <- function(nodes, edges = data.frame(from = character(), to = character(), relation = character()), metadata = list()) {
   nodes <- .ep09_as_df(nodes); edges <- .ep09_as_df(edges)
@@ -209,7 +197,6 @@ eye_prov_graph <- function(nodes, edges = data.frame(from = character(), to = ch
 
 #' Validate a provenance graph
 #' @param x Provenance graph.
-#' @return A logical value or vector indicating a provenance graph.
 #' @export
 validate_eye_prov_graph <- function(x) {
   if (!inherits(x, "eye_prov_graph")) stop("x must be an eye_prov_graph.", call. = FALSE)
@@ -228,7 +215,6 @@ validate_eye_prov_graph <- function(x) {
 #' conformance should validate/transform it externally.
 #' @param x Provenance graph.
 #' @param path Output JSON path.
-#' @return An R object containing lightweight PROV-oriented JSON. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 export_prov_json <- function(x, path) {
   validate_eye_prov_graph(x)
@@ -247,7 +233,6 @@ export_prov_json <- function(x, path) {
 #' @param creator Optional creator name.
 #' @param license Optional license URL or identifier.
 #' @param doi Optional DOI for the software/data product.
-#' @return An R object containing minimal RO-Crate 1.3 metadata. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 export_ro_crate_metadata <- function(path = "ro-crate-metadata.json", name = "eyeprocess analysis",
                                      description = "Reproducible eyeprocess analysis crate", files = NULL,
@@ -278,7 +263,6 @@ export_ro_crate_metadata <- function(path = "ro-crate-metadata.json", name = "ey
 
 #' Return Graphviz DOT for a provenance graph
 #' @param x Provenance graph.
-#' @return A character value or vector containing return Graphviz DOT for a provenance graph.
 #' @export
 write_prov_dot <- function(x) {
   validate_eye_prov_graph(x)

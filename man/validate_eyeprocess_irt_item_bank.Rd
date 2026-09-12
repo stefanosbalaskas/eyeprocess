@@ -9,9 +9,6 @@ validate_eyeprocess_irt_item_bank(x)
 \arguments{
 \item{x}{Object to validate, summarize, verify, or otherwise process.}
 }
-\value{
-A logical value or vector indicating an adaptive IRT item bank.
-}
 \description{
 Validate an adaptive IRT item bank
 }

@@ -20,9 +20,6 @@ sensitivity_threshold_stability(
 
 \item{direction}{`above`, `below`, or `absolute`.}
 }
-\value{
-A numeric value or vector containing substantive-threshold stability across specifications.
-}
 \description{
 Substantive-threshold stability across specifications
 }

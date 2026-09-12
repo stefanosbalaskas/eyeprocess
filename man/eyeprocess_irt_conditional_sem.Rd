@@ -9,9 +9,6 @@ eyeprocess_irt_conditional_sem(information)
 \arguments{
 \item{information}{Item or test information value or vector.}
 }
-\value{
-A logical value or vector indicating conditional standard error from information.
-}
 \description{
 Conditional standard error from information
 }

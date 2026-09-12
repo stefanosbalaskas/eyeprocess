@@ -9,9 +9,6 @@ eye_api_recommendation(audit)
 \arguments{
 \item{audit}{`eye_api_audit` object.}
 }
-\value{
-A data frame containing lifecycle recommendation for API review. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
-}
 \description{
 Lifecycle recommendation for API review
 }

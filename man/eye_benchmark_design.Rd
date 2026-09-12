@@ -17,9 +17,6 @@ eye_benchmark_design(
 
 \item{label}{Benchmark label.}
 }
-\value{
-An R object containing define a computational benchmark design. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
-}
 \description{
 Define a computational benchmark design
 }

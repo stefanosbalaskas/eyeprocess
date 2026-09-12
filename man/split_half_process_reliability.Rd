@@ -32,9 +32,6 @@ split_half_process_reliability(
 
 \item{aggregate_fun}{Within-half aggregation function.}
 }
-\value{
-A tabular R object containing split-half reliability for a trial-level process measure; rows represent analysis units and columns contain the returned quantities.
-}
 \description{
 Split-half reliability for a trial-level process measure
 }

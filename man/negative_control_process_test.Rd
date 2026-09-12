@@ -29,9 +29,6 @@ negative_control_process_test(
 
 \item{seed}{Random-number seed.}
 }
-\value{
-An object of class "eye_process_negative_control", stored as a named list, with components "observed", "null", "p_value", "permutations", "process_columns", "within", "higher_is_better", "seed". It contains negative-control test for an allegedly informative process channel and associated metadata or diagnostics needed to interpret the result.
-}
 \description{
 The user supplies a complete evaluation callback. eyeprocess permutes the
 named process columns, optionally within grouping strata, and compares the

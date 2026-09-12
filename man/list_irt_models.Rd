@@ -6,9 +6,6 @@
 \usage{
 list_irt_models()
 }
-\value{
-A tabular R object containing list registered multimodal IRT models; rows represent analysis units and columns contain the returned quantities.
-}
 \description{
 List registered multimodal IRT models
 }

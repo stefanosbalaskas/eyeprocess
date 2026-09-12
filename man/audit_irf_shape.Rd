@@ -17,9 +17,6 @@ audit_irf_shape(
 
 \item{max_absolute_threshold}{Threshold for maximum absolute IRF departure.}
 }
-\value{
-A tabular R object containing item response-function shape departures; rows represent analysis units and columns contain the returned quantities.
-}
 \description{
 Audit item response-function shape departures
 }

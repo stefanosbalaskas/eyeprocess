@@ -33,9 +33,6 @@ synthetic_corruption_plan(
 
 \item{seed}{Seed.}
 }
-\value{
-An object of class "eye_synthetic_corruption_plan", stored as a named list, with components "missingness", "pupil_dropout", "gaze_offset_x", "gaze_offset_y", "sampling_jitter_sd", "aoi_label_noise", "device_shift", "trial_drop", "seed", "status". It contains define synthetic measurement corruptions for stress testing and associated metadata or diagnostics needed to interpret the result.
-}
 \description{
 Define synthetic measurement corruptions for stress testing
 }

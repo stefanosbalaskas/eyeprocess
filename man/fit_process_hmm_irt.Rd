@@ -41,9 +41,6 @@ fit_process_hmm_irt(
 
 \item{seed}{Random-number seed.}
 }
-\value{
-An object of class "eye_process_hmm_irt", stored as a named list, with components "pi", "transition", "means", "sds", "posterior_state", "state", "row_data", "occupancy", "summary_data", "response_model", "logLik", "logLik_history", and additional components. It contains process-state HMM with an IRT response layer and associated metadata or diagnostics needed to interpret the result.
-}
 \description{
 Fits a diagonal-Gaussian HMM to standardized process features within each
 sequence, then uses state occupancy as explicit process evidence in a

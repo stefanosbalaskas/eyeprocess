@@ -18,7 +18,6 @@
 #' @param prior_mean Mean of the normal latent-trait prior.
 #' @param prior_sd Standard deviation of the normal latent-trait prior.
 #' @param D Logistic scaling constant.
-#' @return An object of class "eye_irt_score", stored as a named list, with components "estimate", "se", "theta", "posterior", "method". It contains eAP score for dichotomous IRT item parameters and associated metadata or diagnostics needed to interpret the result.
 #' @export
 eyeprocess_irt_eap_score <- function(response, items, theta_grid = seq(-4, 4, length.out = 81), prior_mean = 0, prior_sd = 1, D = 1) {
   theta_grid <- .ep09m2_theta(theta_grid)
@@ -39,7 +38,6 @@ eyeprocess_irt_eap_score <- function(response, items, theta_grid = seq(-4, 4, le
 #' @param prior_mean Mean of the normal latent-trait prior.
 #' @param prior_sd Standard deviation of the normal latent-trait prior.
 #' @param D Logistic scaling constant.
-#' @return An object of class "eye_irt_score", stored as a named list, with components "estimate", "objective", "method", "bounds". It contains mAP score for dichotomous IRT item parameters and associated metadata or diagnostics needed to interpret the result.
 #' @export
 eyeprocess_irt_map_score <- function(response, items, bounds = c(-6, 6), prior_mean = 0, prior_sd = 1, D = 1) {
   bounds <- as.numeric(bounds); prior_mean <- as.numeric(prior_mean); prior_sd <- as.numeric(prior_sd)
@@ -54,7 +52,6 @@ eyeprocess_irt_map_score <- function(response, items, bounds = c(-6, 6), prior_m
 #' @param items Item-parameter data frame or item collection.
 #' @param bounds Numerical lower and upper optimization bounds.
 #' @param D Logistic scaling constant.
-#' @return An object of class "eye_irt_score", stored as a named list, with components "estimate", "objective", "method", "bounds", "boundary". It contains bounded ML score for dichotomous IRT item parameters and associated metadata or diagnostics needed to interpret the result.
 #' @export
 eyeprocess_irt_mle_score <- function(response, items, bounds = c(-6, 6), D = 1) {
   bounds <- as.numeric(bounds)
@@ -70,7 +67,6 @@ eyeprocess_irt_mle_score <- function(response, items, bounds = c(-6, 6), D = 1) 
 #' @param method Scoring, linking, or analysis method.
 #' @param person_ids Optional person identifiers.
 #' @param ... Additional arguments passed to the selected method or external engine.
-#' @return A tabular R object containing a response matrix with EAP, MAP, or ML; rows represent analysis units and columns contain the returned quantities.
 #' @export
 eyeprocess_irt_score_table <- function(responses, items, method = c("EAP", "MAP", "ML"), person_ids = rownames(responses), ...) {
   y <- .ep09m2_binary_matrix(responses); method <- match.arg(method)
@@ -88,7 +84,6 @@ eyeprocess_irt_score_table <- function(responses, items, method = c("EAP", "MAP"
 #' @param score Score object containing posterior or uncertainty information.
 #' @param n Number of values, draws, or plausible values to generate.
 #' @param seed Random-number seed for reproducible execution.
-#' @return A numeric value or vector containing plausible values from a discrete posterior grid.
 #' @export
 eyeprocess_irt_plausible_values <- function(score, n = 5L, seed = 1L) {
   if (!inherits(score, "eye_irt_score") || is.null(score$posterior) || is.null(score$theta)) stop("score must be an EAP eye_irt_score with posterior grid weights.", call. = FALSE)
@@ -101,7 +96,6 @@ eyeprocess_irt_plausible_values <- function(score, n = 5L, seed = 1L) {
 #' Marginal reliability from latent-score variance and conditional error variance
 #' @param theta_estimate Estimated latent-trait values.
 #' @param se Standard-error values.
-#' @return A numeric value or vector containing marginal reliability from latent-score variance and conditional error variance.
 #' @export
 eyeprocess_irt_marginal_reliability <- function(theta_estimate, se) {
   theta_estimate <- as.numeric(theta_estimate); se <- as.numeric(se)
@@ -114,7 +108,6 @@ eyeprocess_irt_marginal_reliability <- function(theta_estimate, se) {
 
 #' Summarise score uncertainty
 #' @param scores Score object or score table.
-#' @return An object of class "eye_irt_score_uncertainty", stored as a named list, with components "n", "mean_se", "median_se", "p95_se", "marginal_reliability". It contains score uncertainty and associated metadata or diagnostics needed to interpret the result.
 #' @export
 eyeprocess_irt_score_uncertainty <- function(scores) {
   scores <- .ep09m2_as_df(scores, "scores"); .ep09m2_req_cols(scores, c("estimate", "se"), "scores")
@@ -128,7 +121,6 @@ eyeprocess_irt_score_uncertainty <- function(scores) {
 #' @param theta Latent-trait value or vector of latent-trait values.
 #' @param weights Optional numerical weights.
 #' @param D Logistic scaling constant.
-#' @return An object of class "eye_irt_information_targeting", stored as a named list, with components "weighted_information", "weighted_sem", "curve", "weights". It contains how well item information targets a theta distribution and associated metadata or diagnostics needed to interpret the result.
 #' @export
 eyeprocess_irt_information_targeting <- function(items, theta, weights = NULL, D = 1) {
   theta <- .ep09m2_theta(theta)
@@ -144,7 +136,6 @@ eyeprocess_irt_information_targeting <- function(items, theta, weights = NULL, D
 #' @param items Item-parameter data frame or item collection.
 #' @param content Item content/category metadata.
 #' @param exposure_limit Maximum permitted item exposure.
-#' @return An object of class "eye_irt_item_bank", stored as a named list, with components "items", "exposure_limit". It contains item bank object for adaptive design and associated metadata or diagnostics needed to interpret the result.
 #' @export
 eyeprocess_irt_item_bank <- function(items, content = NULL, exposure_limit = 1) {
   items <- .ep09m2_item_pars(items)
@@ -160,7 +151,6 @@ eyeprocess_irt_item_bank <- function(items, content = NULL, exposure_limit = 1) 
 
 #' Validate an adaptive IRT item bank
 #' @param x Object to validate, summarize, verify, or otherwise process.
-#' @return A logical value or vector indicating an adaptive IRT item bank.
 #' @export
 validate_eyeprocess_irt_item_bank <- function(x) {
   if (!inherits(x, "eye_irt_item_bank")) stop("x must be an eye_irt_item_bank.", call. = FALSE)
@@ -175,7 +165,6 @@ validate_eyeprocess_irt_item_bank <- function(x) {
 #' @param exposure Item exposure information used by the adaptive-selection rule.
 #' @param content_required Content constraints required for item selection.
 #' @param D Logistic scaling constant.
-#' @return An object of class "eye_irt_item_selection", stored as a named list, with components "selected", "information", "theta", "reason", "candidate_count". It contains the most informative eligible item at a theta estimate and associated metadata or diagnostics needed to interpret the result.
 #' @export
 eyeprocess_irt_item_selection <- function(bank, theta, administered = character(), exposure = NULL, content_required = NULL, D = 1) {
   validate_eyeprocess_irt_item_bank(bank); theta <- as.numeric(theta)
@@ -203,7 +192,6 @@ eyeprocess_irt_item_selection <- function(bank, theta, administered = character(
 #' @param min_items Minimum number of items required.
 #' @param max_items Maximum permitted test length.
 #' @param target_se Target conditional standard error for stopping.
-#' @return A named list with components "stop", "reason", "n_administered", "se", containing a simple adaptive stopping rule and associated metadata or diagnostics.
 #' @export
 eyeprocess_irt_stopping_rule <- function(n_administered, se = NA_real_, min_items = 5L, max_items = 30L, target_se = 0.30) {
   n_administered <- as.integer(n_administered); min_items <- as.integer(min_items); max_items <- as.integer(max_items); target_se <- as.numeric(target_se); se <- as.numeric(se)
@@ -216,7 +204,6 @@ eyeprocess_irt_stopping_rule <- function(n_administered, se = NA_real_, min_item
 #' Summarise item exposure rates
 #' @param administered Identifiers or records for administered items.
 #' @param item_bank_ids Complete set of item identifiers in the bank.
-#' @return A data frame containing item exposure rates. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 eyeprocess_irt_exposure_summary <- function(administered, item_bank_ids = unique(administered)) {
   administered <- as.character(administered); item_bank_ids <- unique(as.character(item_bank_ids))
@@ -228,7 +215,6 @@ eyeprocess_irt_exposure_summary <- function(administered, item_bank_ids = unique
 #' @param administered Identifiers or records for administered items.
 #' @param item_bank Item bank or item-bank data frame.
 #' @param target Target level, distribution, or criterion.
-#' @return A data frame containing content balance in an administered adaptive form. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 eyeprocess_irt_content_balance_audit <- function(administered, item_bank, target = NULL) {
   validate_eyeprocess_irt_item_bank(item_bank)
@@ -252,7 +238,6 @@ eyeprocess_irt_content_balance_audit <- function(administered, item_bank, target
 #' @param se_after Conditional standard error after item administration.
 #' @param information Item or test information value or vector.
 #' @param response Observed item response or response variable.
-#' @return An object of class "eye_irt_adaptive_trace", "data.frame", stored as a data frame, containing an auditable adaptive-testing trace and associated metadata needed to interpret the result.
 #' @export
 eyeprocess_irt_adaptive_trace <- function(item_id, theta_before, theta_after, se_after, information, response = NA_real_) {
   n <- length(item_id)
@@ -267,7 +252,6 @@ eyeprocess_irt_adaptive_trace <- function(item_id, theta_before, theta_after, se
 #' Information gain between two conditional standard errors
 #' @param se_before Conditional standard error before an item is administered.
 #' @param se_after Conditional standard error after item administration.
-#' @return A numeric value or vector containing information gain between two conditional standard errors.
 #' @export
 eyeprocess_irt_information_gain <- function(se_before, se_after) {
   se_before <- as.numeric(se_before); se_after <- as.numeric(se_after)
@@ -281,7 +265,6 @@ eyeprocess_irt_information_gain <- function(se_before, se_after) {
 #' @param burden_weight Weight applied to the burden penalty.
 #' @param quality_risk Item-level measurement-quality risk.
 #' @param quality_weight Weight applied to the quality-risk penalty.
-#' @return A numeric value or vector containing process-aware selection penalty without mental-state inference.
 #' @export
 eyeprocess_irt_process_aware_selection_penalty <- function(information, burden, burden_weight = 0, quality_risk = 0, quality_weight = 0) {
   information <- as.numeric(information); burden <- as.numeric(burden); quality_risk <- as.numeric(quality_risk)

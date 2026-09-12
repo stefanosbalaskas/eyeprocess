@@ -9,9 +9,6 @@ compare_raw_adjusted_pupil(x)
 \arguments{
 \item{x}{Object to process, inspect, compare, or plot.}
 }
-\value{
-A data frame containing raw and confound-adjusted pupil values. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
-}
 \description{
 Compare raw and confound-adjusted pupil values
 }

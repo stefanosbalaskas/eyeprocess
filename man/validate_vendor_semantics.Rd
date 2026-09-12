@@ -13,9 +13,6 @@ validate_vendor_semantics(data, contract, metadata = list())
 
 \item{metadata}{Optional named metadata list.}
 }
-\value{
-An object of class "eye_vendor_semantic_validation", stored as a named list, with components "pass", "vendor", "version", "fields", "aliases", "timestamp", "units", "contract". It contains imported data against a vendor semantic contract and associated metadata or diagnostics needed to interpret the result.
-}
 \description{
 Validate imported data against a vendor semantic contract
 }

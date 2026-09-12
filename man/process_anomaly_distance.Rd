@@ -9,9 +9,6 @@ process_anomaly_distance(x)
 \arguments{
 \item{x}{Object to process, inspect, compare, or plot.}
 }
-\value{
-An R object containing multivariate process anomaly distances. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
-}
 \description{
 Extract multivariate process anomaly distances
 }

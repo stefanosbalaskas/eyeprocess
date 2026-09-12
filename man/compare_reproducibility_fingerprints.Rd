@@ -9,9 +9,6 @@ compare_reproducibility_fingerprints(old, new)
 \arguments{
 \item{old, new}{Fingerprints.}
 }
-\value{
-A named list with components "detail", "identical", "old_hash", "new_hash", containing two reproducibility fingerprints and associated metadata or diagnostics.
-}
 \description{
 Compare two reproducibility fingerprints
 }

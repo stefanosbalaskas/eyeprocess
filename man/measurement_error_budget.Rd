@@ -26,9 +26,6 @@ measurement_error_budget(
 
 \item{units}{Optional named units.}
 }
-\value{
-A data frame containing a non-collapsed measurement-error budget. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
-}
 \description{
 Build a non-collapsed measurement-error budget
 }

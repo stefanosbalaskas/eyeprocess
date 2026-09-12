@@ -23,9 +23,6 @@ select_next_item_process(
 
 \item{burden_weight}{Penalty applied to expected burden.}
 }
-\value{
-A named list with components "item_id", "utility", "row", "all_utilities", containing the next item using response/process utility and associated metadata or diagnostics.
-}
 \description{
 Select the next item using response/process utility
 }

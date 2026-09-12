@@ -26,9 +26,6 @@ analysis_resolution_guard(
 
 \item{max_error_fraction}{User-declared maximum spatial-error / feature-size ratio.}
 }
-\value{
-A named list with components "expected_samples", "temporal_ok", "spatial_error_fraction", "spatial_ok", "min_samples", "max_error_fraction", "overall", "caveat", containing compatibility between measurement resolution and an analysis target and associated metadata or diagnostics.
-}
 \description{
 Audit compatibility between measurement resolution and an analysis target
 }

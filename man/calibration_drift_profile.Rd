@@ -22,9 +22,6 @@ calibration_drift_profile(
 
 \item{target_x, target_y}{Known target-coordinate columns.}
 }
-\value{
-An object of class "eye_calibration_drift_profile", stored as a named list, with components "table", "by", "caveat". It contains calibration drift profile across sessions/batches and associated metadata or diagnostics needed to interpret the result.
-}
 \description{
 Calibration drift profile across sessions/batches
 }

@@ -11,9 +11,6 @@ eyeprocess_mirt_loading_audit(spec, min_items_per_dimension = 3L)
 
 \item{min_items_per_dimension}{Minimum number of items required per dimension.}
 }
-\value{
-A data frame containing multidimensional IRT loading coverage. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
-}
 \description{
 Audit multidimensional IRT loading coverage
 }

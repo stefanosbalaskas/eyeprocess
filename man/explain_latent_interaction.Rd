@@ -15,9 +15,6 @@ explain_latent_interaction(object, person = NULL, item = NULL, top = 10L)
 
 \item{top}{Number of closest pairs to return.}
 }
-\value{
-An R object containing explain local person-item latent-space interactions. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
-}
 \description{
 Returns the closest person-item pairs in the fitted residual latent space.
 Closeness is descriptive residual structure, not a causal explanation.

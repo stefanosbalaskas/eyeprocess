@@ -9,9 +9,6 @@ pipeline_failures(x)
 \arguments{
 \item{x}{Pipeline run.}
 }
-\value{
-A logical value or vector indicating return failed pipeline steps.
-}
 \description{
 Return failed pipeline steps
 }

@@ -20,9 +20,6 @@ audit_item_reduction_sensitivity(
 
 \item{maxstep}{Maximum elimination steps.}
 }
-\value{
-An object of class "eye_item_reduction_sensitivity", stored as a named list, with components "model", "eliminated_items", "alpha", "maxstep", "status", "caveat". It contains stepwise Rasch item-reduction as a sensitivity analysis and associated metadata or diagnostics needed to interpret the result.
-}
 \description{
 Run stepwise Rasch item-reduction as a sensitivity analysis
 }

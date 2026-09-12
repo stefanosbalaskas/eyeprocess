@@ -13,9 +13,6 @@ eyeprocess_irt_dtf_curve(reference, focal, theta = seq(-4, 4, length.out = 81))
 
 \item{theta}{Latent-trait value or vector of latent-trait values.}
 }
-\value{
-An object of class "eye_irt_dtf_curve", "data.frame", stored as a data frame, containing differential test functioning effect curve and associated metadata needed to interpret the result.
-}
 \description{
 Differential test functioning effect curve
 }

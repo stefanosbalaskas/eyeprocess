@@ -20,9 +20,6 @@ compare_fixation_methods(
 
 \item{extract_fun}{Result extractor.}
 }
-\value{
-An object of class "eye_process_sensitivity", stored as a named list, with components "grid", "results", "failures", "warnings", "grid_hash", "created_at", "status", "caveat". It contains explicit fixation-detection methods and associated metadata or diagnostics needed to interpret the result.
-}
 \description{
 Compare explicit fixation-detection methods
 }

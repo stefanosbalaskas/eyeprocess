@@ -17,9 +17,6 @@ audit_process_measurement_invariance(
 
 \item{relative_sd_threshold}{Value supplied to `relative_sd_threshold`; see Details for its model-specific role.}
 }
-\value{
-An object of class "eye_process_measurement_invariance", stored as a named list, with components "pass", "threshold", "components", "channel", "note". It contains process measurement invariance across facets and associated metadata or diagnostics needed to interpret the result.
-}
 \description{
 Audit process measurement invariance across facets
 }

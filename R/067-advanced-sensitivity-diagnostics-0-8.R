@@ -16,7 +16,6 @@
 #' @param model mirt model specification, default one dimension.
 #' @param itemtype Item type.
 #' @param SE Request standard errors.
-#' @return An object of class "eye_mixture_irt_process", stored as a named list, with components "model", "coefficients", "n_classes", "itemtype", "status", "caveat". It contains a true mirt mixture-IRT response model and associated metadata or diagnostics needed to interpret the result.
 #' @export
 fit_mixture_irt_process_classes <- function(
     response_matrix, n_classes = 2L, model = 1, itemtype = "2PL", SE = FALSE) {
@@ -50,7 +49,6 @@ fit_mixture_irt_process_classes <- function(
 #' @param person Person identifier present in both objects.
 #' @param class_col Class-assignment column.
 #' @param process_features Numeric process features.
-#' @return An object of class "eye_latent_process_alignment", stored as a named list, with components "data", "summary", "process_features", "class_col", "caveat". It contains supplied latent-class memberships to process summaries and associated metadata or diagnostics needed to interpret the result.
 #' @export
 map_latent_classes_to_process_profiles <- function(
     class_membership, process_data, person = "person_id", class_col = "class",
@@ -83,7 +81,6 @@ map_latent_classes_to_process_profiles <- function(
 #' @param n Number of sampled matrices.
 #' @param splitcr Split criterion for tests that use one.
 #' @param seed Seed.
-#' @return An object of class "eye_nonparametric_rasch_audit", stored as a named list, with components "tests", "status", "n", "splitcr", "caveat". It contains nonparametric Rasch diagnostics with eRm and associated metadata or diagnostics needed to interpret the result.
 #' @export
 audit_nonparametric_rasch <- function(
     response_matrix, methods = c("T1", "T10"), n = 100L,
@@ -123,7 +120,6 @@ audit_nonparametric_rasch <- function(
 #' @param criterion Criterion list passed to `eRm::stepwiseIt()`.
 #' @param alpha Significance threshold.
 #' @param maxstep Maximum elimination steps.
-#' @return An object of class "eye_item_reduction_sensitivity", stored as a named list, with components "model", "eliminated_items", "alpha", "maxstep", "status", "caveat". It contains stepwise Rasch item-reduction as a sensitivity analysis and associated metadata or diagnostics needed to interpret the result.
 #' @export
 audit_item_reduction_sensitivity <- function(
     erm_model, criterion = list("itemfit"), alpha = 0.05, maxstep = 5L) {
@@ -206,7 +202,6 @@ biometric_imputation_sensitivity <- function(
 }
 
 #' Alias emphasizing sensitivity rather than automatic replacement
-#' @return An R object containing alias emphasizing sensitivity rather than automatic replacement. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 #' @param ... Additional arguments passed to the underlying method or helper.
 audit_biometric_imputation <- function(...) biometric_imputation_sensitivity(...)
@@ -217,7 +212,6 @@ audit_biometric_imputation <- function(...) biometric_imputation_sensitivity(...
 #' @param covariates Person-level response-process covariates.
 #' @param formula Optional splitting formula. If omitted, all covariates are used.
 #' @param maxit Maximum model iterations.
-#' @return An object of class "eye_process_rasch_tree", stored as a named list, with components "model", "covariates", "formula", "status", "caveat". It contains a process-informed Rasch tree and associated metadata or diagnostics needed to interpret the result.
 #' @export
 fit_process_rasch_tree <- function(response_matrix, covariates, formula = NULL, maxit = 60L) {
   if (!requireNamespace("psychotree", quietly = TRUE))
@@ -247,7 +241,6 @@ fit_process_rasch_tree <- function(response_matrix, covariates, formula = NULL, 
 #'
 #' @param ... Fitted brms models.
 #' @param method `loo` or `bayes_factor`.
-#' @return An R object containing bayesian process models by LOO or Bayes factor. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 compare_bayesian_process_models <- function(..., method = c("loo", "bayes_factor")) {
   method <- match.arg(method)
@@ -264,7 +257,6 @@ compare_bayesian_process_models <- function(..., method = c("loo", "bayes_factor
 }
 
 #' Plot mixture irt process diagnostics
-#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot mixture irt process diagnostics.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 #' @param ... Additional arguments passed to the underlying method or helper.
@@ -278,7 +270,6 @@ plot.eye_mixture_irt_process <- function(x, ...) {
 }
 
 #' Plot latent process alignment diagnostics
-#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot latent process alignment diagnostics.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 #' @param ... Additional arguments passed to the underlying method or helper.
@@ -296,7 +287,6 @@ plot.eye_latent_process_alignment <- function(x, ...) {
 }
 
 #' Plot nonparametric rasch audit diagnostics
-#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot nonparametric rasch audit diagnostics.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 #' @param method Method used for the requested diagnostic or summary.
@@ -310,7 +300,6 @@ plot.eye_nonparametric_rasch_audit <- function(x, method = names(x$tests)[1L], .
 }
 
 #' Plot item reduction sensitivity diagnostics
-#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot item reduction sensitivity diagnostics.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 #' @param ... Additional arguments passed to the underlying method or helper.
@@ -324,7 +313,6 @@ plot.eye_item_reduction_sensitivity <- function(x, ...) {
 }
 
 #' Plot biometric imputation sensitivity diagnostics
-#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot biometric imputation sensitivity diagnostics.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 #' @param ... Additional arguments passed to the underlying method or helper.
@@ -336,7 +324,6 @@ plot.eye_biometric_imputation_sensitivity <- function(x, ...) {
 }
 
 #' Plot process rasch tree diagnostics
-#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot process rasch tree diagnostics.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 #' @param ... Additional arguments passed to the underlying method or helper.

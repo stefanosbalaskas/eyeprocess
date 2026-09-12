@@ -11,9 +11,6 @@ validate_hed_event_semantics(events, hed_column = "HED")
 
 \item{hed_column}{Column containing HED annotations.}
 }
-\value{
-A data frame containing minimal HED annotation audit for event tables. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
-}
 \description{
 This function checks presence, non-empty annotations and balanced grouping.
 It is deliberately a structural audit rather than a full HED validator; use

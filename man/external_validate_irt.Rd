@@ -26,9 +26,6 @@ external_validate_irt(
 
 \item{label}{Value supplied to `label`; see Details for its model-specific role.}
 }
-\value{
-A logical value or vector indicating external validation on a completely held-out dataset.
-}
 \description{
 External validation on a completely held-out dataset
 }

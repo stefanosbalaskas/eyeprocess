@@ -13,9 +13,6 @@ drift_by_stimulus_version(data, stimulus_version = "stimulus_version", ...)
 
 \item{...}{Additional arguments passed to the underlying method or helper.}
 }
-\value{
-An R object containing drift audit stratified by stimulus version. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
-}
 \description{
 Drift audit stratified by stimulus version
 }

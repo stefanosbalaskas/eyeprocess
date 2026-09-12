@@ -9,9 +9,6 @@ validation_condition_id(x)
 \arguments{
 \item{x}{Validation design or expanded condition table.}
 }
-\value{
-A character value or vector containing return stable validation condition identifiers.
-}
 \description{
 Return stable validation condition identifiers
 }

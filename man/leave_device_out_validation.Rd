@@ -17,9 +17,6 @@ leave_device_out_validation(data, device, fitter, predictor, scorer)
 
 \item{scorer}{Function that scores predictions.}
 }
-\value{
-An object of class "eye_leave_device_out_validation", "data.frame", stored as a data frame, containing leave device out validation and associated metadata needed to interpret the result.
-}
 \description{
 Leave device out validation
 }

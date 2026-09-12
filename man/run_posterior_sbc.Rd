@@ -20,9 +20,6 @@ run_posterior_sbc(
 
 \item{seed}{Random-number seed.}
 }
-\value{
-An object of class "eye_posterior_sbc", "eye_irt_sbc", stored as a named list, with components "ranks", "failures", "replications", "seed", "method", "requirement". It contains posterior simulation-based calibration from an explicit contract and associated metadata or diagnostics needed to interpret the result.
-}
 \description{
 Run posterior simulation-based calibration from an explicit contract
 }

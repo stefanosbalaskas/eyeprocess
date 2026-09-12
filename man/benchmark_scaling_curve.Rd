@@ -9,9 +9,6 @@ benchmark_scaling_curve(x)
 \arguments{
 \item{x}{Benchmark result.}
 }
-\value{
-A data frame containing scaling exponent from benchmark results. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
-}
 \description{
 Estimate scaling exponent from benchmark results
 }

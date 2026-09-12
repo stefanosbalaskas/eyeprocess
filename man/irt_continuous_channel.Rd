@@ -24,9 +24,6 @@ irt_continuous_channel(
 
 \item{options}{Additional channel metadata.}
 }
-\value{
-An object of class "eye_irt_", "_channel", stored as a named list, with components "type", "family", "role", "link", "variables", "latent", "options". It contains continuous/bounded process channel for multimodal IRT and associated metadata or diagnostics needed to interpret the result.
-}
 \description{
 Continuous/bounded process channel for multimodal IRT
 }

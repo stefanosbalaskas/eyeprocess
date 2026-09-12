@@ -11,9 +11,6 @@ software_paper_coverage(x, supported = c("supported", "qualified"))
 
 \item{supported}{Status labels counted as covered.}
 }
-\value{
-A data frame containing descriptive evidence coverage. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
-}
 \description{
 Compute descriptive evidence coverage
 }

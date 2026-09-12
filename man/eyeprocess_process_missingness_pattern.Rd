@@ -13,9 +13,6 @@ eyeprocess_process_missingness_pattern(data, response, channels)
 
 \item{channels}{Names or definitions of measurement channels.}
 }
-\value{
-A data frame containing missingness patterns across response and process channels. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
-}
 \description{
 Summarise missingness patterns across response and process channels
 }

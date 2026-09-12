@@ -17,9 +17,6 @@ eyeprocess_irt_expected_score(
 
 \item{...}{Additional arguments passed to the selected method or external engine.}
 }
-\value{
-A numeric value or vector containing expected item score.
-}
 \description{
 Expected item score
 }

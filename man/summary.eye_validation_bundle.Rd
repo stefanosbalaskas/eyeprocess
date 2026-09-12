@@ -11,9 +11,6 @@
 
 \item{...}{Additional arguments passed to the underlying method or helper.}
 }
-\value{
-A named list with components "model_name", "manifest", "report", containing a validation bundle object and associated metadata or diagnostics.
-}
 \description{
 Summarize a validation bundle object
 }

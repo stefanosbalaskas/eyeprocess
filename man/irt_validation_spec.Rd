@@ -39,9 +39,6 @@ irt_validation_spec(
 
 \item{notes}{Free-text scientific notes.}
 }
-\value{
-An object of class "eye_irt_validation_spec", stored as a named list, with components "model_id", "replications", "parameters", "metrics", "grouped_validation", "preprocessing_variants", "misspecification_scenarios", "thresholds", "seed", "notes", "contract_version", "created_with". It contains specify a validation programme for a process-IRT model and associated metadata or diagnostics needed to interpret the result.
-}
 \description{
 Creates an evidence contract rather than executing a particular estimator.
 The object can be passed to stress-test and evidence-grading helpers.

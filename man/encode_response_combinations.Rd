@@ -23,9 +23,6 @@ encode_response_combinations(
 
 \item{empty_code}{Code for no selected options.}
 }
-\value{
-A tabular R object containing encode multiple-response item response combinations; rows represent analysis units and columns contain the returned quantities.
-}
 \description{
 Encode multiple-response item response combinations
 }

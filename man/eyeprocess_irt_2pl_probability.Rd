@@ -15,9 +15,6 @@ eyeprocess_irt_2pl_probability(theta, a = 1, b = 0, D = 1)
 
 \item{D}{Logistic scaling constant.}
 }
-\value{
-A numeric value or vector containing 2PL item-response probability.
-}
 \description{
 2PL item-response probability
 }

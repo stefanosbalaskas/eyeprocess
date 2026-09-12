@@ -9,9 +9,6 @@ verify_outcome_blind_snapshot(x)
 \arguments{
 \item{x}{Snapshot.}
 }
-\value{
-A logical value or vector indicating verify an outcome-blind snapshot has not changed.
-}
 \description{
 Verify an outcome-blind snapshot has not changed
 }

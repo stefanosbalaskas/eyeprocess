@@ -29,9 +29,6 @@ source and reconstructed objects.}
 
 \item{audit_args}{Arguments forwarded to `semantic_roundtrip_audit()`.}
 }
-\value{
-An object of class "eye_bids_roundtrip", stored as a named list, with components "exported", "reconstructed", "audit", "status". It contains execute and audit an Eye-Tracking-BIDS round trip and associated metadata or diagnostics needed to interpret the result.
-}
 \description{
 This is a callback harness so it remains stable even if the package's BIDS
 writer/reader signatures evolve. `exporter` receives the source object plus

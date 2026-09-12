@@ -13,9 +13,6 @@ drift_by_site(data, site = "site_id", ...)
 
 \item{...}{Additional arguments passed to the underlying method or helper.}
 }
-\value{
-An R object containing drift audit stratified by study site. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
-}
 \description{
 Drift audit stratified by study site
 }

@@ -9,7 +9,6 @@
 #' @param benchmarks Optional benchmark evidence.
 #' @param reproducibility Optional reproducibility fingerprint.
 #' @param metadata Optional metadata.
-#' @return A named list with components "schema_version", "claims", "validation", "examples", "articles", "benchmarks", "reproducibility", "metadata", "created_utc", containing a software-paper evidence bundle and associated metadata or diagnostics.
 #' @export
 software_paper_evidence_bundle <- function(claims = NULL, validation = NULL, examples = NULL, articles = NULL,
                                            benchmarks = NULL, reproducibility = NULL, metadata = list()) {
@@ -26,7 +25,6 @@ software_paper_evidence_bundle <- function(claims = NULL, validation = NULL, exa
 #' @param status Status such as supported, qualified, pending, or unsupported.
 #' @param scope Explicit scope/qualification.
 #' @param source Optional source/location.
-#' @return A data frame containing or normalize a software-paper claim matrix. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 software_paper_claim_matrix <- function(claim, evidence_id = NA_character_, evidence_type = NA_character_,
                                         status = "pending", scope = NA_character_, source = NA_character_) {
@@ -42,7 +40,6 @@ software_paper_claim_matrix <- function(claim, evidence_id = NA_character_, evid
 
 #' Summarise validation evidence for a software paper
 #' @param x Validation result/evidence matrix/table.
-#' @return An R object containing validation evidence for a software paper. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 software_paper_validation_table <- function(x) {
   if (inherits(x, "eye_process_validation_result")) return(summarise_process_validation(x))
@@ -56,7 +53,6 @@ software_paper_validation_table <- function(x) {
 #' Compute descriptive evidence coverage
 #' @param x Evidence bundle or claim matrix.
 #' @param supported Status labels counted as covered.
-#' @return A data frame containing descriptive evidence coverage. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 software_paper_coverage <- function(x, supported = c("supported", "qualified")) {
   claims <- if (inherits(x, "eye_software_paper_evidence")) x$claims else x
@@ -77,7 +73,6 @@ software_paper_coverage <- function(x, supported = c("supported", "qualified")) 
 #' @param require_reproducibility Require a reproducibility fingerprint.
 #' @param require_examples Require examples.
 #' @param require_articles Require articles.
-#' @return A named list with components "ready", "checks", "interpretation", containing descriptive software-paper readiness audit and associated metadata or diagnostics.
 #' @export
 software_paper_readiness <- function(x, required_statuses = c("supported", "qualified"), require_validation = TRUE,
                                      require_reproducibility = TRUE, require_examples = TRUE, require_articles = TRUE) {
@@ -104,7 +99,6 @@ software_paper_readiness <- function(x, required_statuses = c("supported", "qual
 
 #' Identify gaps in a software-paper evidence bundle
 #' @param x Evidence bundle.
-#' @return A named list with components "requirement_gaps", "claim_gaps", containing gaps in a software-paper evidence bundle and associated metadata or diagnostics.
 #' @export
 software_paper_gap_analysis <- function(x) {
   r <- software_paper_readiness(x)
@@ -117,7 +111,6 @@ software_paper_gap_analysis <- function(x) {
 #' Freeze software-paper evidence to an RDS with a hash
 #' @param x Evidence bundle.
 #' @param path Output path.
-#' @return A data frame containing freeze software-paper evidence to an RDS with a hash. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 freeze_software_paper_evidence <- function(x, path) {
   if (!inherits(x, "eye_software_paper_evidence")) stop("x must be an eye_software_paper_evidence object.", call. = FALSE)
@@ -128,7 +121,6 @@ freeze_software_paper_evidence <- function(x, path) {
 #' Write a human-readable software-paper evidence report
 #' @param x Evidence bundle.
 #' @param path Markdown output path.
-#' @return An R object containing a human-readable software-paper evidence report. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 write_software_paper_evidence <- function(x, path) {
   if (!inherits(x, "eye_software_paper_evidence")) stop("x must be an eye_software_paper_evidence object.", call. = FALSE)
@@ -147,7 +139,6 @@ write_software_paper_evidence <- function(x, path) {
 #' @param manuscript Optional manuscript path.
 #' @param figures Optional figure paths.
 #' @param tables Optional table paths.
-#' @return A named list with components "evidence_hash", "manuscript", "files", "reproducibility", "generated_utc", containing a compact paper reproducibility manifest and associated metadata or diagnostics.
 #' @export
 paper_reproducibility_manifest <- function(evidence, manuscript = NULL, figures = NULL, tables = NULL) {
   if (!inherits(evidence, "eye_software_paper_evidence")) stop("evidence must be an eye_software_paper_evidence object.", call. = FALSE)

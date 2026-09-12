@@ -35,9 +35,6 @@ run_eyeprocess_irt_ability_sbc(
 
 \item{D}{Logistic scaling constant.}
 }
-\value{
-An object of class "eye_irt_sbc_evidence", stored as a named list, with components "diagnostics", "ecdf_deviation", "n", "n_draws". It contains simulation-based calibration for known-item IRT ability scoring and associated metadata or diagnostics needed to interpret the result.
-}
 \description{
 Simulates abilities from the declared normal prior, responses from the known
 item-response model, and posterior draws from the same grid-based scoring

@@ -20,9 +20,6 @@ promote_irt_model(
 
 \item{update_registry}{Whether the in-memory registry is updated.}
 }
-\value{
-An object of class "eye_irt_promotion", stored as a named list, with components "model", "from", "to", "evidence_grade", "evidence_pass", "timestamp". It contains promote an IRT model after evidence gates are met and associated metadata or diagnostics needed to interpret the result.
-}
 \description{
 Promotion is an evidence record, not a mutable global status change unless
 `update_registry = TRUE` is requested.

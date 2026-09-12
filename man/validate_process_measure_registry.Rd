@@ -9,9 +9,6 @@ validate_process_measure_registry(registry)
 \arguments{
 \item{registry}{Registry data frame.}
 }
-\value{
-A logical value or vector indicating a process-measure registry.
-}
 \description{
 Validate a process-measure registry
 }

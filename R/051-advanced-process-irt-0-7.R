@@ -60,7 +60,6 @@
 #' @param max_iter Maximum number of iterations.
 #' @param tol Numerical convergence tolerance.
 #' @param seed Random-number seed.
-#' @return An object of class "eye_process_hmm_irt", stored as a named list, with components "pi", "transition", "means", "sds", "posterior_state", "state", "row_data", "occupancy", "summary_data", "response_model", "logLik", "logLik_history", and additional components. It contains process-state HMM with an IRT response layer and associated metadata or diagnostics needed to interpret the result.
 #' @export
 fit_process_hmm_irt <- function(data,
                                 sequence_id = "trial_id", order = "timestamp",
@@ -165,7 +164,6 @@ fit_process_hmm_irt <- function(data,
 
 #' Summarize HMM state occupancy
 #' @param object A fitted eyeprocess model or audit object.
-#' @return An R object containing hMM state occupancy. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 process_state_occupancy <- function(object) {
   if (!inherits(object, "eye_process_hmm_irt")) stop("`object` must be an eye_process_hmm_irt.", call. = FALSE)
@@ -174,7 +172,6 @@ process_state_occupancy <- function(object) {
 
 #' Summarize HMM process-state transitions
 #' @param object A fitted eyeprocess model or audit object.
-#' @return A data frame containing hMM process-state transitions. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 process_state_transition_summary <- function(object) {
   if (!inherits(object, "eye_process_hmm_irt")) stop("`object` must be an eye_process_hmm_irt.", call. = FALSE)
@@ -198,7 +195,6 @@ process_state_transition_summary <- function(object) {
 #' @param engine Estimation engine.
 #' @param external_engine Validated external fitting function.
 #' @param ... Additional arguments passed to the selected model, engine, or method.
-#' @return An object of class "eye_cognitive_diagnosis_process", stored as a named list, with components "response_model", "process_summary", "process_mastery_correlation", "q_matrix", "status". It contains cognitive-diagnosis model with process indicators and associated metadata or diagnostics needed to interpret the result.
 #' @export
 fit_cognitive_diagnosis_process <- function(response_matrix, q_matrix,
                                             process_data = NULL,
@@ -252,7 +248,6 @@ fit_cognitive_diagnosis_process <- function(response_matrix, q_matrix,
 #' @param item Item identifier, name, or item column.
 #' @param n_classes Number of latent classes.
 #' @param seed Random-number seed.
-#' @return An object of class "eye_latent_class_process_irt", stored as a named list, with components "response_model", "class", "centers", "data", "process_features", "status". It contains latent process-class IRT reference model and associated metadata or diagnostics needed to interpret the result.
 #' @export
 fit_latent_class_process_irt <- function(data,
                                          response = "response",
@@ -292,7 +287,6 @@ fit_latent_class_process_irt <- function(data,
 #' @param context Context or grouping variable.
 #' @param family Statistical family used by the channel or model.
 #' @param fixed Fixed-effects specification.
-#' @return An object of class "eye_crossclassified_process_irt", stored as a named list, with components "model", "family", "person", "item", "context", "status". It contains cross-classified process IRT reference model and associated metadata or diagnostics needed to interpret the result.
 #' @export
 fit_crossclassified_process_irt <- function(data, outcome,
                                             person = "participant_id", item = "item_id",
@@ -327,7 +321,6 @@ fit_crossclassified_process_irt <- function(data, outcome,
 #' @param starts Starting-value strategy.
 #' @param tol Numerical convergence tolerance.
 #' @param silent Whether engine messages are suppressed.
-#' @return An object of class "eye_latent_space_irt", stored as a named list, with components "model", "person_coordinates", "item_coordinates", "person_intercept", "item_intercept", "dimensions", "engine", "status". It contains a latent-space IRT model using LSMjml and associated metadata or diagnostics needed to interpret the result.
 #' @export
 fit_latent_space_irt <- function(response_matrix, dimensions = 2L,
                                  penalty = NULL, constraint = NULL,
@@ -348,7 +341,6 @@ fit_latent_space_irt <- function(response_matrix, dimensions = 2L,
 #' Return person/item latent-space coordinates
 #' @param object A fitted eyeprocess model or audit object.
 #' @param entity Entity type to map or validate.
-#' @return A tabular R object containing return person/item latent-space coordinates; rows represent analysis units and columns contain the returned quantities.
 #' @export
 process_residual_map <- function(object, entity = c("both", "person", "item")) {
   if (!inherits(object, "eye_latent_space_irt")) stop("`object` must be an eye_latent_space_irt.", call. = FALSE)
@@ -368,7 +360,6 @@ process_residual_map <- function(object, entity = c("both", "person", "item")) {
 #'   as the fitted latent coordinates.
 #' @param object A fitted eyeprocess model or audit object.
 #' @param entity Entity type to map or validate.
-#' @return An object of class "eye_latent_space_process_validation", stored as a named list, with components "entity", "spearman_distance_correlation", "latent_distance", "process_distance", "interpretation". It contains latent-space proximity against process similarity and associated metadata or diagnostics needed to interpret the result.
 #' @export
 validate_latent_space_process_similarity <- function(object, process_matrix,
                                                      entity = c("person", "item")) {
@@ -398,7 +389,6 @@ validate_latent_space_process_similarity <- function(object, process_matrix,
 #' @param new New-scale parameters or data.
 #' @param method Method used for estimation, linking, or comparison.
 #' @param theta_grid Grid of latent-trait values used for evaluation.
-#' @return An object of class "eye_irt_equating", stored as a named list, with components "A", "B", "method", "transformed", "reference", "new", "equation". It contains equate IRT scales using anchor item parameters and associated metadata or diagnostics needed to interpret the result.
 #' @export
 equate_irt_scales <- function(reference, new,
                                method = c("stocking-lord", "haebara", "mean-sigma", "mean-mean"),
@@ -450,7 +440,6 @@ equate_irt_scales <- function(reference, new,
 #' @param response_weight Weight assigned to response discrepancy.
 #' @param rt_weight Weight assigned to response-time discrepancy.
 #' @param process_weight Weight assigned to process discrepancy.
-#' @return An object of class "eye_process_person_fit", "data.frame", stored as a data frame, containing joint response-process person-fit diagnostic and associated metadata needed to interpret the result.
 #' @export
 process_person_fit <- function(object, data = NULL, person = NULL,
                                response_weight = 1, rt_weight = 1, process_weight = 1) {
@@ -490,7 +479,6 @@ process_person_fit <- function(object, data = NULL, person = NULL,
 #' @param process_features Names of process-derived features.
 #' @param person Person or participant identifier column.
 #' @param aggregate Aggregation rule for process features.
-#' @return A data frame containing a process-data nuisance surrogate for DIF analysis. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 process_dif_nuisance_surrogate <- function(data, process_features,
                                            person = "participant_id",
@@ -513,7 +501,6 @@ process_dif_nuisance_surrogate <- function(data, process_features,
 #' @param item Item identifier, name, or item column.
 #' @param process_features Names of process-derived features.
 #' @param person Person or participant identifier column.
-#' @return An object of class "eye_process_adjusted_dif", stored as a named list, with components "unadjusted_model", "adjusted_model", "coefficients", "surrogate", "note". It contains dIF before and after process-data adjustment and associated metadata or diagnostics needed to interpret the result.
 #' @export
 audit_process_adjusted_dif <- function(data,
                                        response = "response", ability,
@@ -547,7 +534,6 @@ audit_process_adjusted_dif <- function(data,
 #' @param sequence Sequence input.
 #' @param n Requested count or n-gram order, depending on context.
 #' @param separator Sequence-token separator.
-#' @return An object of class "matrix", stored as an R object, containing n-gram features from process sequences and associated metadata needed to interpret the result.
 #' @export
 process_ngram_features <- function(sequence, n = c(1L, 2L, 3L), separator = ">") {
   if (is.factor(sequence)) sequence <- as.character(sequence)
@@ -579,7 +565,6 @@ process_ngram_features <- function(sequence, n = c(1L, 2L, 3L), separator = ">")
 #' @param sequence Sequence input.
 #' @param n Requested count or n-gram order, depending on context.
 #' @param dimensions Number of embedding dimensions.
-#' @return An object of class "eye_process_sequence_embedding", stored as an R object, containing low-dimensional embedding of response-process sequences and associated metadata needed to interpret the result.
 #' @export
 process_sequence_embedding <- function(sequence, n = c(1L, 2L, 3L), dimensions = 5L) {
   X <- process_ngram_features(sequence, n = n)
@@ -603,7 +588,6 @@ process_sequence_embedding <- function(sequence, n = c(1L, 2L, 3L), dimensions =
 #' @param item Item identifier, name, or item column.
 #' @param dimensions Number of embedding dimensions.
 #' @param n Requested count or n-gram order, depending on context.
-#' @return An object of class "eye_response_process_embedding_irt", stored as a named list, with components "model", "embedding", "data", "status". It contains an IRT response model augmented by sequence embeddings and associated metadata or diagnostics needed to interpret the result.
 #' @export
 fit_response_process_embedding_irt <- function(data, sequences,
                                                response = "response",
@@ -637,7 +621,6 @@ fit_response_process_embedding_irt <- function(data, sequences,
 #' @param external_engine Validated external fitting function.
 #' @param spline_df Degrees of freedom for the spline reference model.
 #' @param ... Additional arguments passed to the selected model, engine, or method.
-#' @return An object of class "eye_gpirt", stored as a named list, with components "response_matrix", "models", "theta_proxy", "engine", "exact_gpirt", "status", "note". It contains gPIRT model-criticism interface and associated metadata or diagnostics needed to interpret the result.
 #' @export
 fit_gpirt <- function(response_matrix,
                       engine = c("spline_reference", "external"),
@@ -668,7 +651,6 @@ fit_gpirt <- function(response_matrix,
 #' @param response_matrix Person-by-item response matrix.
 #' @param gpirt_object Value supplied to `gpirt_object`; see Details for its model-specific role.
 #' @param theta_grid Grid of latent-trait values used for evaluation.
-#' @return An object of class "eye_irf_comparison", "data.frame", stored as a data frame, containing conventional logistic and flexible IRF shapes and associated metadata needed to interpret the result.
 #' @export
 compare_parametric_nonparametric_irf <- function(response_matrix, gpirt_object = NULL,
                                                  theta_grid = seq(-4, 4, length.out = 101)) {
@@ -695,7 +677,6 @@ compare_parametric_nonparametric_irf <- function(response_matrix, gpirt_object =
 #' @param comparison Value supplied to `comparison`; see Details for its model-specific role.
 #' @param mean_absolute_threshold Threshold for mean absolute IRF departure.
 #' @param max_absolute_threshold Threshold for maximum absolute IRF departure.
-#' @return A tabular R object containing item response-function shape departures; rows represent analysis units and columns contain the returned quantities.
 #' @export
 audit_irf_shape <- function(comparison, mean_absolute_threshold = 0.05,
                             max_absolute_threshold = 0.15) {
@@ -715,7 +696,6 @@ audit_irf_shape <- function(comparison, mean_absolute_threshold = 0.05,
 #' @param data Input data frame or compatible tabular object.
 #' @param external_engine Validated external fitting function.
 #' @param ... Additional arguments passed to the selected model, engine, or method.
-#' @return An object of class "eye_dynamic_gpirt", stored as a named list, with components "model", "engine", "status". It contains dynamic GPIRT external-engine gate and associated metadata or diagnostics needed to interpret the result.
 #' @export
 fit_dynamic_gpirt <- function(data, external_engine = NULL, ...) {
   if (!is.function(external_engine)) {
@@ -729,7 +709,6 @@ fit_dynamic_gpirt <- function(data, external_engine = NULL, ...) {
 #' @param data Input data frame or compatible tabular object.
 #' @param external_engine Validated external fitting function.
 #' @param ... Additional arguments passed to the selected model, engine, or method.
-#' @return An object of class "eye_continuous_time_irt", stored as a named list, with components "model", "status". It contains continuous-time IRT external-engine gate and associated metadata or diagnostics needed to interpret the result.
 #' @export
 fit_continuous_time_irt <- function(data, external_engine = NULL, ...) {
   if (!is.function(external_engine)) {
@@ -744,7 +723,6 @@ fit_continuous_time_irt <- function(data, external_engine = NULL, ...) {
 #' @param time Time values.
 #' @param theta Latent-trait values.
 #' @param spar Value supplied to `spar`; see Details for its model-specific role.
-#' @return An object of class "eye_latent_trait_trajectory", stored as a named list, with components "model", "time", "theta". It contains a descriptive continuous-time latent trajectory and associated metadata or diagnostics needed to interpret the result.
 #' @export
 latent_trait_trajectory <- function(time, theta, spar = NULL) {
   ok <- is.finite(time) & is.finite(theta)
@@ -756,7 +734,6 @@ latent_trait_trajectory <- function(time, theta, spar = NULL) {
 #' Predict a latent trait at arbitrary times
 #' @param object A fitted eyeprocess model or audit object.
 #' @param time Time values.
-#' @return An R object containing a latent trait at arbitrary times. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 predict_theta_at_time <- function(object, time) {
   if (!inherits(object, "eye_latent_trait_trajectory")) stop("`object` must come from latent_trait_trajectory().", call. = FALSE)
@@ -767,7 +744,6 @@ predict_theta_at_time <- function(object, time) {
 #' @param response_matrix Person-by-item response matrix.
 #' @param external_engine Validated external fitting function.
 #' @param ... Additional arguments passed to the selected model, engine, or method.
-#' @return An object of class "eye_flow_mirt", stored as a named list, with components "model", "status", "engine". It contains flow-MIRT external-engine gate and associated metadata or diagnostics needed to interpret the result.
 #' @export
 fit_flow_mirt <- function(response_matrix, external_engine = NULL, ...) {
   if (!is.function(external_engine)) {
@@ -781,7 +757,6 @@ fit_flow_mirt <- function(response_matrix, external_engine = NULL, ...) {
 #' @param response_matrix Person-by-item response matrix.
 #' @param external_engine Validated external fitting function.
 #' @param ... Additional arguments passed to the selected model, engine, or method.
-#' @return An object of class "eye_variational_irt", stored as a named list, with components "model", "status", "engine". It contains variational IRT external-engine gate and associated metadata or diagnostics needed to interpret the result.
 #' @export
 fit_variational_irt <- function(response_matrix, external_engine = NULL, ...) {
   if (!is.function(external_engine)) {
@@ -800,7 +775,6 @@ fit_variational_irt <- function(response_matrix, external_engine = NULL, ...) {
 #' @param weights Weights used to combine information components.
 #' @param expected_time Expected response time or burden.
 #' @param burden_weight Penalty applied to expected burden.
-#' @return An object of class "eye_process_item_information", stored as a named list, with components "theta", "response_information", "utility". It contains 2PL response item information and associated metadata or diagnostics needed to interpret the result.
 #' @export
 process_item_information <- function(theta, a, b,
                                      process_information = 0,
@@ -825,7 +799,6 @@ process_item_information <- function(theta, a, b,
 #' Expected process-aware item utility under a theta distribution
 #' @param info Value supplied to `info`; see Details for its model-specific role.
 #' @param theta_weights Weights over the theta distribution.
-#' @return An R object containing expected process-aware item utility under a theta distribution. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 expected_process_information <- function(info, theta_weights = NULL) {
   if (!inherits(info, "eye_process_item_information")) stop("`info` must come from process_item_information().", call. = FALSE)
@@ -840,7 +813,6 @@ expected_process_information <- function(info, theta_weights = NULL) {
 #' @param used Items already used or unavailable for selection.
 #' @param weights Weights used to combine information components.
 #' @param burden_weight Penalty applied to expected burden.
-#' @return A named list with components "item_id", "utility", "row", "all_utilities", containing the next item using response/process utility and associated metadata or diagnostics.
 #' @export
 select_next_item_process <- function(theta, item_bank,
                                      used = character(),
@@ -871,7 +843,6 @@ select_next_item_process <- function(theta, item_bank,
 #' @param weights Weights used to combine information components.
 #' @param burden_weight Penalty applied to expected burden.
 #' @param seed Random-number seed.
-#' @return An object of class "eye_process_cat_simulation", "data.frame", stored as a data frame, containing a simple process-aware CAT policy and associated metadata needed to interpret the result.
 #' @export
 simulate_process_cat <- function(item_bank, true_theta = 0, n_items = 10L,
                                  weights = c(response = 1, rt = 0, process = 0),

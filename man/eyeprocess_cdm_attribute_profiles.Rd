@@ -14,9 +14,6 @@ eyeprocess_cdm_attribute_profiles(
 
 \item{attribute_names}{Optional names for the cognitive-diagnosis attributes.}
 }
-\value{
-An R object containing enumerate latent attribute profiles. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
-}
 \description{
 Enumerate latent attribute profiles
 }

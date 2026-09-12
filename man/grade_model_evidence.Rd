@@ -26,9 +26,6 @@ grade_model_evidence(
 
 \item{semantic_roundtrip}{Value supplied to `semantic_roundtrip`; see Details for its model-specific role.}
 }
-\value{
-An object of class "eye_irt_evidence_grade", stored as a named list, with components "model_id", "grade", "checks", "recovery", "contract", "warning". It contains grade model evidence against an explicit validation contract and associated metadata or diagnostics needed to interpret the result.
-}
 \description{
 This is intentionally conservative: failure of any required criterion caps
 the evidence grade. It does not convert exploratory evidence into a claim of

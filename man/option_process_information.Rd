@@ -9,9 +9,6 @@ option_process_information(object)
 \arguments{
 \item{object}{A fitted eyeprocess model or audit object.}
 }
-\value{
-An object of class "eye_option_process_information", "data.frame", stored as a data frame, containing quantify option-process information from a nominal gaze model and associated metadata needed to interpret the result.
-}
 \description{
 Quantify option-process information from a nominal gaze model
 }

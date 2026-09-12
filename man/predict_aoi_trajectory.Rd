@@ -11,9 +11,6 @@ predict_aoi_trajectory(object, time = NULL)
 
 \item{time}{Time values or name of the time variable.}
 }
-\value{
-A data frame containing from an AOI growth curve. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
-}
 \description{
 Predict from an AOI growth curve
 }

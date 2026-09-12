@@ -21,9 +21,6 @@ fit_censored_normal_process_irt(
 
 \item{control}{`optim()` control list.}
 }
-\value{
-An object of class "eye_censored_normal_process_irt", stored as a named list, with components "coefficients", "fits", "theta", "lower", "upper", "engine", "status", "citation", "caveat". It contains conditional censored-normal calibration for bounded process measurements and associated metadata or diagnostics needed to interpret the result.
-}
 \description{
 Fits the 2026 censored-normal response form item-by-item conditional on a
 supplied latent score. This is a useful calibration/diagnostic engine for

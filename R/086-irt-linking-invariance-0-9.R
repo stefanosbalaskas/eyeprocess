@@ -14,7 +14,6 @@
 #' @param reference Reference-form or reference-group item parameters.
 #' @param focal Focal-form or focal-group item parameters.
 #' @param anchors Anchor-item identifiers.
-#' @return An object of class "eye_irt_link", stored as a named list, with components "A", "B", "method", "anchors", "objective". It contains mean-sigma IRT linking coefficients and associated metadata or diagnostics needed to interpret the result.
 #' @export
 eyeprocess_irt_mean_sigma_link <- function(reference, focal, anchors = NULL) {
   z <- .ep09m2_anchor_merge(reference, focal, anchors)
@@ -28,7 +27,6 @@ eyeprocess_irt_mean_sigma_link <- function(reference, focal, anchors = NULL) {
 #' @param reference Reference-form or reference-group item parameters.
 #' @param focal Focal-form or focal-group item parameters.
 #' @param anchors Anchor-item identifiers.
-#' @return An object of class "eye_irt_link", stored as a named list, with components "A", "B", "method", "anchors", "objective". It contains mean-mean IRT linking coefficients and associated metadata or diagnostics needed to interpret the result.
 #' @export
 eyeprocess_irt_mean_mean_link <- function(reference, focal, anchors = NULL) {
   z <- .ep09m2_anchor_merge(reference, focal, anchors)
@@ -49,7 +47,6 @@ eyeprocess_irt_mean_mean_link <- function(reference, focal, anchors = NULL) {
 #' Apply linear IRT scale-linking coefficients
 #' @param items Item-parameter data frame or item collection.
 #' @param link IRT scale-linking coefficients or linking object.
-#' @return An R object containing linear IRT scale-linking coefficients. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 eyeprocess_irt_apply_link <- function(items, link) {
   if (!inherits(link, "eye_irt_link")) stop("link must inherit from eye_irt_link.", call. = FALSE)
@@ -63,7 +60,6 @@ eyeprocess_irt_apply_link <- function(items, link) {
 #' @param theta Latent-trait value or vector of latent-trait values.
 #' @param weights Optional numerical weights.
 #' @param start Starting values for numerical optimization.
-#' @return An object of class "eye_irt_link", stored as a named list, with components "A", "B", "method", "anchors", "objective", "convergence". It contains stocking-Lord characteristic-curve linking and associated metadata or diagnostics needed to interpret the result.
 #' @export
 eyeprocess_irt_stocking_lord_link <- function(reference, focal, anchors = NULL, theta = seq(-4, 4, length.out = 81), weights = NULL, start = c(A = 1, B = 0)) {
   z <- .ep09m2_anchor_merge(reference, focal, anchors); theta <- .ep09m2_theta(theta)
@@ -91,7 +87,6 @@ eyeprocess_irt_stocking_lord_link <- function(reference, focal, anchors = NULL, 
 #' @param theta Latent-trait value or vector of latent-trait values.
 #' @param weights Optional numerical weights.
 #' @param start Starting values for numerical optimization.
-#' @return An object of class "eye_irt_link", stored as a named list, with components "A", "B", "method", "anchors", "objective", "convergence". It contains haebara item-characteristic-curve linking and associated metadata or diagnostics needed to interpret the result.
 #' @export
 eyeprocess_irt_haebara_link <- function(reference, focal, anchors = NULL, theta = seq(-4, 4, length.out = 81), weights = NULL, start = c(A = 1, B = 0)) {
   z <- .ep09m2_anchor_merge(reference, focal, anchors); theta <- .ep09m2_theta(theta)
@@ -116,7 +111,6 @@ eyeprocess_irt_haebara_link <- function(reference, focal, anchors = NULL, theta 
 #' @param focal Focal-form or focal-group item parameters.
 #' @param anchor_sets Value supplied for the anchor sets argument.
 #' @param method Scoring, linking, or analysis method.
-#' @return An object of class "eye_irt_link_stability", stored as a named list, with components "table", "sd_A", "sd_B", "method". It contains linking estimates across anchor subsets and associated metadata or diagnostics needed to interpret the result.
 #' @export
 eyeprocess_irt_link_stability <- function(reference, focal, anchor_sets, method = c("mean-sigma", "mean-mean", "Stocking-Lord", "Haebara")) {
   method <- match.arg(method)
@@ -136,7 +130,6 @@ eyeprocess_irt_link_stability <- function(reference, focal, anchor_sets, method 
 #' @param dif Differential-item-functioning evidence or summary.
 #' @param max_abs_effect Maximum permitted absolute effect for an anchor candidate.
 #' @param min_information Minimum required item information.
-#' @return A data frame containing candidate anchor items using supplied DIF evidence. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 eyeprocess_irt_anchor_audit <- function(items, dif = NULL, max_abs_effect = 0.10, min_information = NULL) {
   items <- .ep09m2_item_pars(items); max_abs_effect <- as.numeric(max_abs_effect)
@@ -163,7 +156,6 @@ eyeprocess_irt_anchor_audit <- function(items, dif = NULL, max_abs_effect = 0.10
 #' @param initial Initial value, state, or anchor set.
 #' @param threshold Decision or diagnostic threshold.
 #' @param max_iter Maximum number of iterations.
-#' @return An object of class "eye_irt_anchor_purification", stored as a named list, with components "anchors", "history", "threshold". It contains iteratively remove anchors exceeding a supplied effect threshold and associated metadata or diagnostics needed to interpret the result.
 #' @export
 eyeprocess_irt_anchor_purification <- function(items, effect_fun, initial = items$item_id, threshold = 0.10, max_iter = 10L) {
   items <- .ep09m2_item_pars(items)
@@ -185,7 +177,6 @@ eyeprocess_irt_anchor_purification <- function(items, effect_fun, initial = item
 #' @param reference_item Reference-group item parameters.
 #' @param focal_item Focal-group item parameters.
 #' @param theta Latent-trait value or vector of latent-trait values.
-#' @return An object of class "eye_irt_dif_curve", "data.frame", stored as a data frame, containing differential item functioning effect curve from two parameter sets and associated metadata needed to interpret the result.
 #' @export
 eyeprocess_irt_dif_effect_curve <- function(reference_item, focal_item, theta = seq(-4, 4, length.out = 81)) {
   reference_item <- .ep09m2_item_pars(reference_item); focal_item <- .ep09m2_item_pars(focal_item)
@@ -200,7 +191,6 @@ eyeprocess_irt_dif_effect_curve <- function(reference_item, focal_item, theta = 
 #' @param reference Reference-form or reference-group item parameters.
 #' @param focal Focal-form or focal-group item parameters.
 #' @param theta Latent-trait value or vector of latent-trait values.
-#' @return An object of class "eye_irt_dtf_curve", "data.frame", stored as a data frame, containing differential test functioning effect curve and associated metadata needed to interpret the result.
 #' @export
 eyeprocess_irt_dtf_curve <- function(reference, focal, theta = seq(-4, 4, length.out = 81)) {
   reference <- .ep09m2_item_pars(reference); focal <- .ep09m2_item_pars(focal)
@@ -213,7 +203,6 @@ eyeprocess_irt_dtf_curve <- function(reference, focal, theta = seq(-4, 4, length
 
 #' Summarise DIF/DTF curve magnitude
 #' @param curve Curve data to summarize or inspect.
-#' @return A named list with components "max_abs", "mean_abs", "signed_area", containing dIF/DTF curve magnitude and associated metadata or diagnostics.
 #' @export
 eyeprocess_irt_functioning_effect_summary <- function(curve) {
   curve <- .ep09m2_as_df(curve, "curve"); .ep09m2_req_cols(curve, c("absolute_difference", "signed_difference"), "curve")
@@ -235,7 +224,6 @@ eyeprocess_irt_functioning_effect_summary <- function(curve) {
 #' @param item_id Item identifier or vector of item identifiers.
 #' @param dif_effect DIF effect used for concordance.
 #' @param process_effect Process-side item effect used for concordance.
-#' @return An object of class "eye_irt_process_dif_concordance", stored as a named list, with components "n", "correlation", "table", "guardrail". It contains psychometric DIF effect sizes with process-channel contrasts and associated metadata or diagnostics needed to interpret the result.
 #' @export
 eyeprocess_irt_process_dif_concordance <- function(dif, process, item_id = "item_id", dif_effect = "effect", process_effect = "effect") {
   dif <- .ep09m2_as_df(dif, "dif"); process <- .ep09m2_as_df(process, "process")
@@ -254,7 +242,6 @@ eyeprocess_irt_process_dif_concordance <- function(dif, process, item_id = "item
 #' @param item_id Item identifier or vector of item identifiers.
 #' @param session Session identifier or grouping variable.
 #' @param parameter Name of the parameter to compare.
-#' @return A tabular R object containing item-parameter drift over sessions; rows represent analysis units and columns contain the returned quantities.
 #' @export
 eyeprocess_irt_session_drift <- function(parameters, item_id = "item_id", session = "session", parameter = "b") {
   parameters <- .ep09m2_as_df(parameters, "parameters"); .ep09m2_req_cols(parameters, c(item_id, session, parameter), "parameters")
@@ -282,7 +269,6 @@ eyeprocess_irt_session_drift <- function(parameters, item_id = "item_id", sessio
 #' @param item_id Item identifier or vector of item identifiers.
 #' @param device Device identifier or grouping variable.
 #' @param parameter Name of the parameter to compare.
-#' @return A tabular R object containing parameter drift across acquisition devices; rows represent analysis units and columns contain the returned quantities.
 #' @export
 eyeprocess_irt_device_drift <- function(parameters, item_id = "item_id", device = "device", parameter = "b") {
   parameters <- .ep09m2_as_df(parameters, "parameters"); .ep09m2_req_cols(parameters, c(item_id, device, parameter), "parameters")
@@ -299,7 +285,6 @@ eyeprocess_irt_device_drift <- function(parameters, item_id = "item_id", device 
 #' @param dtf Differential-test-functioning evidence or curve.
 #' @param linking Scale-linking evidence or result.
 #' @param process_concordance Process-DIF concordance evidence.
-#' @return An object of class "eye_irt_invariance_evidence", stored as a named list, with components "components", "present", "completeness", "interpretation". It contains combine invariance evidence without converting it to a binary validity claim and associated metadata or diagnostics needed to interpret the result.
 #' @export
 eyeprocess_irt_invariance_evidence <- function(anchor_audit = NULL, dif = NULL, dtf = NULL, linking = NULL, process_concordance = NULL) {
   components <- list(anchor_audit = anchor_audit, dif = dif, dtf = dtf, linking = linking, process_concordance = process_concordance)

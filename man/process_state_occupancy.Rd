@@ -9,9 +9,6 @@ process_state_occupancy(object)
 \arguments{
 \item{object}{A fitted eyeprocess model or audit object.}
 }
-\value{
-An R object containing hMM state occupancy. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
-}
 \description{
 Summarize HMM state occupancy
 }

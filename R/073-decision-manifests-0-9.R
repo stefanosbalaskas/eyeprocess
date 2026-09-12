@@ -30,7 +30,6 @@
 #' @param provenance Optional provenance fields.
 #' @param notes Notes.
 #' @param ... Additional named decision domains.
-#' @return An object of class "eye_decision_manifest", stored as a named list, with components "domains", "notes", "created_at", "schema_version", "status", "caveat". It contains a machine-readable research decision manifest and associated metadata or diagnostics needed to interpret the result.
 #' @export
 eye_decision_manifest <- function(
     sampling = list(), validity = list(), fixation = list(), pupil = list(),
@@ -60,7 +59,6 @@ eye_decision_manifest <- function(
 #' @param x Manifest.
 #' @param required_domains Domains that must exist.
 #' @param require_nonempty If TRUE, required domains must contain at least one decision.
-#' @return A logical value or vector indicating a research decision manifest.
 #' @export
 validate_decision_manifest <- function(
     x,
@@ -78,7 +76,6 @@ validate_decision_manifest <- function(
 
 #' Flatten a decision manifest to a table
 #' @param x Manifest.
-#' @return A logical value or vector indicating flatten a decision manifest to a table.
 #' @export
 decision_manifest_table <- function(x) {
   validate_decision_manifest(x, required_domains = character())
@@ -89,7 +86,6 @@ decision_manifest_table <- function(x) {
 
 #' Stable hash of decision content
 #' @param x Manifest or decision object.
-#' @return An R object containing stable hash of decision content. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 decision_manifest_hash <- function(x) {
   if (inherits(x, "eye_decision_manifest")) {
@@ -101,7 +97,6 @@ decision_manifest_hash <- function(x) {
 #' Lock a decision manifest by content hash
 #' @param x Manifest.
 #' @param label Optional lock label.
-#' @return An object of class "eye_decision_manifest_lock", stored as a named list, with components "manifest", "manifest_hash", "label", "locked_at", "status". It contains lock a decision manifest by content hash and associated metadata or diagnostics needed to interpret the result.
 #' @export
 lock_decision_manifest <- function(x, label = "analysis_decisions") {
   validate_decision_manifest(x, required_domains = character())
@@ -116,7 +111,6 @@ lock_decision_manifest <- function(x, label = "analysis_decisions") {
 
 #' Verify that a locked manifest has not changed
 #' @param x Manifest lock.
-#' @return A logical value or vector indicating verify that a locked manifest has not changed.
 #' @export
 verify_decision_manifest_lock <- function(x) {
   if (!inherits(x, "eye_decision_manifest_lock")) stop("x must be an eye_decision_manifest_lock.", call. = FALSE)
@@ -126,7 +120,6 @@ verify_decision_manifest_lock <- function(x) {
 #' Compare two research decision manifests
 #' @param old Earlier manifest.
 #' @param new Later manifest.
-#' @return An object of class "eye_decision_manifest_diff", "data.frame", stored as a data frame, containing two research decision manifests and associated metadata needed to interpret the result.
 #' @export
 compare_decision_manifests <- function(old, new) {
   a <- decision_manifest_table(old); b <- decision_manifest_table(new)
@@ -142,7 +135,6 @@ compare_decision_manifests <- function(old, new) {
 
 #' Alias for manifest comparison emphasizing changed decision paths
 #' @inheritParams compare_decision_manifests
-#' @return An R object containing alias for manifest comparison emphasizing changed decision paths. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 decision_manifest_diff <- function(old, new) compare_decision_manifests(old, new)
 
@@ -150,7 +142,6 @@ decision_manifest_diff <- function(old, new) compare_decision_manifests(old, new
 #' @param x Manifest.
 #' @param path Output path.
 #' @param format `rds`, `dput`, or `json`.
-#' @return An R object containing a decision manifest. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 write_decision_manifest <- function(x, path, format = c("rds", "dput", "json")) {
   validate_decision_manifest(x, required_domains = character())
@@ -167,7 +158,6 @@ write_decision_manifest <- function(x, path, format = c("rds", "dput", "json")) 
 #' Read a decision manifest written by eyeprocess
 #' @param path Input path.
 #' @param format Optional format; inferred from extension when omitted.
-#' @return A logical value or vector indicating a decision manifest written by eyeprocess.
 #' @export
 read_decision_manifest <- function(path, format = NULL) {
   if (is.null(format)) {
@@ -190,7 +180,6 @@ read_decision_manifest <- function(path, format = NULL) {
 #' @param x Manifest.
 #' @param required_domains Required decision domains.
 #' @param required_provenance Provenance keys expected under `provenance`.
-#' @return An object of class "eye_decision_provenance_audit", stored as a named list, with components "missing_domains", "empty_domains", "missing_provenance", "complete", "manifest_hash". It contains decision provenance and completeness and associated metadata or diagnostics needed to interpret the result.
 #' @export
 audit_decision_provenance <- function(
     x,
@@ -219,7 +208,6 @@ audit_decision_provenance <- function(
 #' @param data Data frame.
 #' @param outcome Outcome column(s) to remove from the analysis snapshot.
 #' @param id Optional identifier columns retained in the snapshot.
-#' @return An object of class "eye_outcome_blind_snapshot", stored as a named list, with components "data", "removed_outcomes", "id", "source_columns", "blinded_columns", "blinded_hash", "created_at", "caveat". It contains an outcome-blind data snapshot and associated metadata or diagnostics needed to interpret the result.
 #' @export
 outcome_blind_snapshot <- function(data, outcome, id = NULL) {
   d <- .ep09_as_df(data)
@@ -240,7 +228,6 @@ outcome_blind_snapshot <- function(data, outcome, id = NULL) {
 
 #' Verify an outcome-blind snapshot has not changed
 #' @param x Snapshot.
-#' @return A logical value or vector indicating verify an outcome-blind snapshot has not changed.
 #' @export
 verify_outcome_blind_snapshot <- function(x) {
   if (!inherits(x, "eye_outcome_blind_snapshot")) stop("x must be an eye_outcome_blind_snapshot.", call. = FALSE)
@@ -270,7 +257,6 @@ analysis_decision_entropy <- function(..., base = 2) {
 #' Coverage of a declared decision space by evaluated specifications
 #' @param grid Sensitivity grid.
 #' @param evaluated Sensitivity result or vector of evaluated specification IDs.
-#' @return A data frame containing coverage of a declared decision space by evaluated specifications. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 decision_space_coverage <- function(grid, evaluated) {
   grid <- .ep09_as_df(grid); .ep09_req_cols(grid, "specification_id", "grid")

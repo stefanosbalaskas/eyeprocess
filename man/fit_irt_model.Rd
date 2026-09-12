@@ -15,9 +15,6 @@ fit_irt_model(spec, data, ..., allow_experimental = FALSE)
 
 \item{allow_experimental}{Whether experimental models are permitted.}
 }
-\value{
-An R object containing a registered multimodal IRT model. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
-}
 \description{
 Fit a registered multimodal IRT model
 }

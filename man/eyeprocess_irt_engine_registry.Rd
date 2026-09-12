@@ -6,9 +6,6 @@
 \usage{
 eyeprocess_irt_engine_registry()
 }
-\value{
-An object of class "eye_irt_engine_registry", "data.frame", stored as a data frame, containing registry of specialized external IRT engines and associated metadata needed to interpret the result.
-}
 \description{
 Registry of specialized external IRT engines
 }

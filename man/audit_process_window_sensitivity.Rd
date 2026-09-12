@@ -26,9 +26,6 @@ audit_process_window_sensitivity(
 
 \item{...}{Passed to `extract_process_windows()`.}
 }
-\value{
-An object of class "eye_process_window_sensitivity", stored as a named list, with components "table", "metric", "settings", "caveat". It contains sensitivity of process summaries to temporal window choices and associated metadata or diagnostics needed to interpret the result.
-}
 \description{
 Audit sensitivity of process summaries to temporal window choices
 }

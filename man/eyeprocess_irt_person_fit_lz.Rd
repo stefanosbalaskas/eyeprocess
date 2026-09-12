@@ -13,9 +13,6 @@ eyeprocess_irt_person_fit_lz(observed, expected, min_probability = 1e-08)
 
 \item{min_probability}{Lower probability bound used for numerical stabilization.}
 }
-\value{
-A data frame containing standardized log-likelihood person-fit diagnostic. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
-}
 \description{
 Computes a Bernoulli response-pattern log-likelihood standardized against
 its model-implied mean and variance. Extreme values are model diagnostics,

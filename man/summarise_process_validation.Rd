@@ -11,9 +11,6 @@ summarise_process_validation(x, by = NULL)
 
 \item{by}{Optional grouping variables in addition to parameter.}
 }
-\value{
-A tabular R object containing a process-validation result; rows represent analysis units and columns contain the returned quantities.
-}
 \description{
 Summarise a process-validation result
 }

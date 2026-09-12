@@ -11,9 +11,6 @@ eye_api_status(name, registry = eye_api_lifecycle())
 
 \item{registry}{Lifecycle registry.}
 }
-\value{
-A data frame containing lookup lifecycle status for one or more APIs. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
-}
 \description{
 Lookup lifecycle status for one or more APIs
 }

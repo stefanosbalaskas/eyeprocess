@@ -11,9 +11,6 @@ plot_pupil_band_power(x, ...)
 
 \item{...}{Additional arguments passed to the underlying method or helper.}
 }
-\value{
-An R object containing plot pupil low/high-band power summaries. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
-}
 \description{
 Plot pupil low/high-band power summaries
 }

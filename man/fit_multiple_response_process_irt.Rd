@@ -34,9 +34,6 @@ fit_multiple_response_process_irt(
 
 \item{...}{Arguments passed to the external engine.}
 }
-\value{
-An object of class "eye_multiple_response_process_irt", stored as a named list, with components "model", "data", "gaze", "engine", "exact_multiple_response", "status", "note". It contains a multiple-response process-IRT reference model and associated metadata or diagnostics needed to interpret the result.
-}
 \description{
 The bundled reference treats option selections as repeated binary outcomes
 with option-specific random difficulty/discrimination and optional gaze.

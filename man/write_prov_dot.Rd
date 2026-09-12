@@ -9,9 +9,6 @@ write_prov_dot(x)
 \arguments{
 \item{x}{Provenance graph.}
 }
-\value{
-A character value or vector containing return Graphviz DOT for a provenance graph.
-}
 \description{
 Return Graphviz DOT for a provenance graph
 }

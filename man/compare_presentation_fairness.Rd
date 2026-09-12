@@ -15,9 +15,6 @@ compare_presentation_fairness(data, variant, outcome, person = NULL)
 
 \item{person}{Optional participant column for descriptive aggregation.}
 }
-\value{
-An object of class "eye_presentation_fairness_comparison", stored as a named list, with components "model", "summary", "status", "caveat". It contains outcomes across presentation variants and associated metadata or diagnostics needed to interpret the result.
-}
 \description{
 Compare outcomes across presentation variants
 }

@@ -24,9 +24,6 @@ fit_item_parameter_seed_model(
 
 \item{seed}{Seed.}
 }
-\value{
-An object of class "eye_item_parameter_seed", stored as a named list, with components "difficulty_model", "discrimination_model", "difficulty", "discrimination", "predictors", "engine", "training_data", "status", "caveat". It contains an experimental pre-pilot item-parameter seeding model and associated metadata or diagnostics needed to interpret the result.
-}
 \description{
 Estimates screening predictions for item difficulty/discrimination from item
 design/process features. Predictions are not calibrated operational parameters.

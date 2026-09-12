@@ -30,7 +30,6 @@ process_window_spec <- function(width_ms = 1000, step_ms = 500,
 }
 
 #' Print a process window spec object
-#' @return Invisibly returns the input object after printing its summary; the object's class and contents are unchanged.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 #' @param ... Additional arguments passed to the underlying method or helper.
@@ -226,7 +225,6 @@ extract_process_windows <- function(
 #' Summarize extracted process windows
 #' @param x `eye_process_windows` object.
 #' @param by Optional grouping columns present in the extracted table.
-#' @return An R object containing extracted process windows. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 summarize_process_windows <- function(x, by = NULL) {
   if (!inherits(x, "eye_process_windows")) stop("x must be eye_process_windows.", call. = FALSE)
@@ -245,7 +243,6 @@ summarize_process_windows <- function(x, by = NULL) {
 }
 
 #' Bind compatible process-window objects
-#' @return An object of class "eye_process_windows", stored as a named list, with components "data", "spec", "source_n", "status". It contains bind compatible process-window objects and associated metadata or diagnostics needed to interpret the result.
 #' @export
 #' @param ... Additional arguments passed to the underlying method or helper.
 bind_process_windows <- function(...) {
@@ -259,7 +256,6 @@ bind_process_windows <- function(...) {
 }
 
 #' Validate a process-window representation
-#' @return A data frame containing a process-window representation. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 validate_process_windows <- function(x) {
@@ -284,7 +280,6 @@ validate_process_windows <- function(x) {
 #' @param metric Extracted process metric to compare.
 #' @param grid If TRUE, evaluate all width-step combinations.
 #' @param ... Passed to `extract_process_windows()`.
-#' @return An object of class "eye_process_window_sensitivity", stored as a named list, with components "table", "metric", "settings", "caveat". It contains sensitivity of process summaries to temporal window choices and associated metadata or diagnostics needed to interpret the result.
 #' @export
 audit_process_window_sensitivity <- function(
     data, widths_ms = c(250, 500, 1000, 1500), steps_ms = c(100, 250, 500),
@@ -341,7 +336,6 @@ audit_process_window_sensitivity <- function(
 #' @param bin_ms Temporal bin width.
 #' @param degree Polynomial degree.
 #' @param aois Optional AOIs to encode; defaults to observed AOIs.
-#' @return An object of class "eye_aoi_trajectory", stored as a named list, with components "features", "aois", "degree", "bin_ms", "person", "trial", "caveat". It contains aOI growth-curve/trajectory features and associated metadata or diagnostics needed to interpret the result.
 #' @export
 aoi_trajectory_features <- function(data, person = "person_id", trial = "trial_id",
                                     time = "time_ms", aoi = "aoi", bin_ms = 100,
@@ -386,7 +380,6 @@ aoi_trajectory_features <- function(data, person = "person_id", trial = "trial_i
 #' @param time Time column.
 #' @param outcome Numeric AOI proportion/indicator column.
 #' @param degree Polynomial degree.
-#' @return An object of class "eye_aoi_growth_curve", stored as a named list, with components "model", "time", "outcome", "degree", "poly", "range", "status". It contains a single AOI growth curve and associated metadata or diagnostics needed to interpret the result.
 #' @export
 fit_aoi_growth_curve <- function(data, time, outcome, degree = 3L) {
   data <- .ep08_as_df(data)
@@ -407,7 +400,6 @@ fit_aoi_growth_curve <- function(data, time, outcome, degree = 3L) {
 }
 
 #' Predict from an AOI growth curve
-#' @return A data frame containing from an AOI growth curve. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 #' @param object Object supplied to the S3 method.
 #' @param time Time values or name of the time variable.
@@ -421,7 +413,6 @@ predict_aoi_trajectory <- function(object, time = NULL) {
 }
 
 #' Compare AOI trajectory feature objects
-#' @return A data frame containing aOI trajectory feature objects. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 #' @param ... Additional arguments passed to the underlying method or helper.
 compare_aoi_trajectories <- function(...) {

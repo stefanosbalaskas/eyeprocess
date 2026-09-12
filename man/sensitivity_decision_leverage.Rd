@@ -11,9 +11,6 @@ sensitivity_decision_leverage(x, effect = "effect")
 
 \item{effect}{Effect column.}
 }
-\value{
-A numeric value or vector containing decision leverage of each analytical choice.
-}
 \description{
 Leverage is descriptive variation in mean effect across option levels; it is
 not causal attribution of researcher decisions.

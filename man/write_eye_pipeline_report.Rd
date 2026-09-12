@@ -11,9 +11,6 @@ write_eye_pipeline_report(x, path)
 
 \item{path}{Output text/markdown path.}
 }
-\value{
-A character string or vector giving the path or identifier for a conservative pipeline report.
-}
 \description{
 Write a conservative pipeline report
 }

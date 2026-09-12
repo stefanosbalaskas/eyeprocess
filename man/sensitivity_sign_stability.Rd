@@ -11,9 +11,6 @@ sensitivity_sign_stability(x, effect = "effect")
 
 \item{effect}{Effect column.}
 }
-\value{
-A numeric value or vector containing effect-sign stability across specifications.
-}
 \description{
 Effect-sign stability across specifications
 }

@@ -18,7 +18,6 @@
 #' @param response Response variable or response-column name.
 #' @param latent Latent variable or latent-variable labels.
 #' @param options Additional channel/model options.
-#' @return An object of class "eye_irt_", "_channel", stored as a named list, with components "type", "family", "role", "link", "variables", "latent", "options". It contains binary/ordinal response channel for multimodal IRT and associated metadata or diagnostics needed to interpret the result.
 #' @export
 irt_response_channel <- function(family = c("2pl", "rasch", "graded", "partial_credit"),
                                  response = "response", latent = "ability", options = list()) {
@@ -31,7 +30,6 @@ irt_response_channel <- function(family = c("2pl", "rasch", "graded", "partial_c
 #' @param rt Response-time variable or column name.
 #' @param latent Latent variable or latent-variable labels.
 #' @param options Additional channel/model options.
-#' @return An object of class "eye_irt_", "_channel", stored as a named list, with components "type", "family", "role", "link", "variables", "latent", "options". It contains response-time channel for multimodal IRT and associated metadata or diagnostics needed to interpret the result.
 #' @export
 irt_rt_channel <- function(family = c("lognormal", "gaussian_log", "shifted_lognormal"),
                            rt = "rt", latent = "speed", options = list()) {
@@ -44,7 +42,6 @@ irt_rt_channel <- function(family = c("lognormal", "gaussian_log", "shifted_logn
 #' @param value Process-value column or values.
 #' @param latent Latent variable or latent-variable labels.
 #' @param options Additional channel/model options.
-#' @return An object of class "eye_irt_", "_channel", stored as a named list, with components "type", "family", "role", "link", "variables", "latent", "options". It contains count-valued process channel for multimodal IRT and associated metadata or diagnostics needed to interpret the result.
 #' @export
 irt_count_channel <- function(family = c("negative_binomial", "poisson"),
                               value = "fixation_count", latent = "engagement", options = list()) {
@@ -58,7 +55,6 @@ irt_count_channel <- function(family = c("negative_binomial", "poisson"),
 #' @param event Event indicator or event column.
 #' @param latent Latent variable or latent-variable labels.
 #' @param options Additional channel/model options.
-#' @return An object of class "eye_irt_", "_channel", stored as a named list, with components "type", "family", "role", "link", "variables", "latent", "options". It contains survival/event-time channel for multimodal IRT and associated metadata or diagnostics needed to interpret the result.
 #' @export
 irt_survival_channel <- function(family = c("cox", "weibull", "exponential"),
                                  time = "time", event = "event", latent = NULL, options = list()) {
@@ -71,7 +67,6 @@ irt_survival_channel <- function(family = c("cox", "weibull", "exponential"),
 #' @param categories Nominal response categories.
 #' @param latent Latent variable or latent-variable labels.
 #' @param options Additional channel/model options.
-#' @return An object of class "eye_irt_", "_channel", stored as a named list, with components "type", "family", "role", "link", "variables", "latent", "options". It contains nominal response/process channel and associated metadata or diagnostics needed to interpret the result.
 #' @export
 irt_nominal_channel <- function(choice = "response_option", categories = NULL,
                                 latent = "ability", options = list()) {
@@ -84,7 +79,6 @@ irt_nominal_channel <- function(choice = "response_option", categories = NULL,
 #' @param family Statistical family used by the channel or model.
 #' @param latent Latent variable or latent-variable labels.
 #' @param options Additional channel/model options.
-#' @return An object of class "eye_irt_", "_channel", stored as a named list, with components "type", "family", "role", "link", "variables", "latent", "options". It contains compositional AOI channel and associated metadata or diagnostics needed to interpret the result.
 #' @export
 irt_compositional_channel <- function(parts, family = c("logratio_gaussian", "dirichlet"),
                                       latent = "process", options = list()) {
@@ -98,7 +92,6 @@ irt_compositional_channel <- function(parts, family = c("logratio_gaussian", "di
 #' @param family Statistical family used by the channel or model.
 #' @param latent Latent variable or latent-variable labels.
 #' @param options Additional channel/model options.
-#' @return An object of class "eye_irt_", "_channel", stored as a named list, with components "type", "family", "role", "link", "variables", "latent", "options". It contains sequence/process-state channel and associated metadata or diagnostics needed to interpret the result.
 #' @export
 irt_sequence_channel <- function(sequence = "sequence", family = c("ngram", "hmm", "embedding"),
                                  latent = "strategy", options = list()) {
@@ -112,7 +105,6 @@ irt_sequence_channel <- function(sequence = "sequence", family = c("ngram", "hmm
 #' @param family Statistical family used by the channel or model.
 #' @param latent Latent variable or latent-variable labels.
 #' @param options Additional channel/model options.
-#' @return An object of class "eye_irt_", "_channel", stored as a named list, with components "type", "family", "role", "link", "variables", "latent", "options". It contains functional trajectory channel and associated metadata or diagnostics needed to interpret the result.
 #' @export
 irt_functional_channel <- function(value = "pupil", time = "time",
                                    family = c("basis_gaussian", "functional_factor"),
@@ -163,7 +155,6 @@ irt_model_spec <- function(id, latent, channels,
 #' Register a multimodal IRT model
 #' @param spec An `irt_model_spec()`.
 #' @param overwrite Whether to replace an existing model with the same id.
-#' @return An R object containing a multimodal IRT model. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 register_irt_model <- function(spec, overwrite = FALSE) {
   if (!inherits(spec, "eye_irt_model_spec")) stop("`spec` must come from irt_model_spec().", call. = FALSE)
@@ -283,7 +274,6 @@ register_irt_model <- function(spec, overwrite = FALSE) {
 }
 
 #' List registered multimodal IRT models
-#' @return A tabular R object containing list registered multimodal IRT models; rows represent analysis units and columns contain the returned quantities.
 #' @export
 list_irt_models <- function() {
   .ep07_register_builtin_irt()
@@ -305,7 +295,6 @@ list_irt_models <- function() {
 
 #' Retrieve a registered multimodal IRT model
 #' @param id Stable identifier.
-#' @return An R object containing retrieve a registered multimodal IRT model. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 get_irt_model <- function(id) {
   .ep07_register_builtin_irt()
@@ -321,7 +310,6 @@ get_irt_model <- function(id) {
 #' @param data Input data frame or compatible tabular object.
 #' @param ... Additional arguments passed to the selected model, engine, or method.
 #' @param allow_experimental Whether experimental models are permitted.
-#' @return An R object containing a registered multimodal IRT model. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 fit_irt_model <- function(spec, data, ..., allow_experimental = FALSE) {
   if (is.character(spec)) spec <- get_irt_model(spec)
@@ -340,7 +328,6 @@ fit_irt_model <- function(spec, data, ..., allow_experimental = FALSE) {
 #' @param spec IRT model or validation specification.
 #' @param ... Additional arguments passed to the selected model, engine, or method.
 #' @param allow_experimental Whether experimental models are permitted.
-#' @return An R object containing from a registered multimodal IRT model. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 simulate_irt_model <- function(spec, ..., allow_experimental = TRUE) {
   if (is.character(spec)) spec <- get_irt_model(spec)
@@ -356,7 +343,6 @@ simulate_irt_model <- function(spec, ..., allow_experimental = TRUE) {
 #' @param spec IRT model or validation specification.
 #' @param validation Validation results or validation specification.
 #' @param ... Additional arguments passed to the selected model, engine, or method.
-#' @return An object of class "eye_irt_evidence_grade", stored as a named list, with components "model_id", "grade", "checks", "recovery", "contract", "warning". It contains a registered multimodal IRT model and associated metadata or diagnostics needed to interpret the result.
 #' @export
 validate_irt_model <- function(spec, validation = NULL, ...) {
   if (is.character(spec)) spec <- get_irt_model(spec)
@@ -373,7 +359,6 @@ validate_irt_model <- function(spec, validation = NULL, ...) {
 #' as sufficient evidence for model promotion.
 #' @param ... Additional arguments passed to the selected model, engine, or method.
 #' @param names Value supplied to `names`; see Details for its model-specific role.
-#' @return An object of class "eye_irt_model_comparison", stored as an R object, containing multimodal IRT model objects and associated metadata needed to interpret the result.
 #' @export
 compare_irt_models <- function(..., names = NULL) {
   fits <- list(...)
@@ -404,7 +389,6 @@ compare_irt_models <- function(..., names = NULL) {
 #' @param evidence Validation evidence used for promotion.
 #' @param target Target evidence/status level.
 #' @param update_registry Whether the in-memory registry is updated.
-#' @return An object of class "eye_irt_promotion", stored as a named list, with components "model", "from", "to", "evidence_grade", "evidence_pass", "timestamp". It contains promote an IRT model after evidence gates are met and associated metadata or diagnostics needed to interpret the result.
 #' @export
 promote_irt_model <- function(spec, evidence,
                               target = c("experimental", "reference"),
@@ -429,7 +413,6 @@ promote_irt_model <- function(spec, evidence,
 #' Print a multimodal IRT model specification
 #' @param x Object to print, plot, summarize, or audit.
 #' @param ... Additional arguments passed to the selected model, engine, or method.
-#' @return Invisibly returns the input object after printing its summary; the object's class and contents are unchanged.
 #' @export
 print.eye_irt_model_spec <- function(x, ...) {
   cat("<eye_irt_model_spec>", x$id, "\n")

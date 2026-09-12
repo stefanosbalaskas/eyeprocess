@@ -7,7 +7,6 @@
 }
 
 #' Plot biometric preflight diagnostics
-#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot biometric preflight diagnostics.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 #' @param type Type of summary or visual representation to produce.
@@ -33,7 +32,6 @@ plot.eye_biometric_preflight <- function(x, type = c("heatmap", "decision_counts
 }
 
 #' Plot process anomaly audit diagnostics
-#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot process anomaly audit diagnostics.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 #' @param ... Additional arguments passed to the underlying method or helper.
@@ -49,7 +47,6 @@ plot.eye_process_anomaly_audit <- function(x, ...) {
 }
 
 #' Plot presentation accessibility diagnostics
-#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot presentation accessibility diagnostics.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 #' @param ... Additional arguments passed to the underlying method or helper.
@@ -64,7 +61,6 @@ plot.eye_presentation_accessibility <- function(x, ...) {
 }
 
 #' Plot process drift audit diagnostics
-#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot process drift audit diagnostics.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 #' @param type Type of summary or visual representation to produce.
@@ -129,7 +125,6 @@ plot.eye_process_drift_audit <- function(x,
 }
 
 #' Plot process window sensitivity diagnostics
-#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot process window sensitivity diagnostics.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 #' @param ... Additional arguments passed to the underlying method or helper.
@@ -153,7 +148,6 @@ plot.eye_process_window_sensitivity <- function(x, ...) {
 }
 
 #' Plot pupil frequency features diagnostics
-#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot pupil frequency features diagnostics.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 #' @param type Type of summary or visual representation to produce.
@@ -177,7 +171,6 @@ plot.eye_pupil_frequency_features <- function(x,
 }
 
 #' Plot pupil frequency stability diagnostics
-#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot pupil frequency stability diagnostics.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 #' @param feature Process feature to evaluate or display.
@@ -193,7 +186,6 @@ plot.eye_pupil_frequency_stability <- function(x, feature = "pupil_frequency_con
 }
 
 #' Plot pupil deconvolution diagnostics
-#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot pupil deconvolution diagnostics.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 #' @param type Type of summary or visual representation to produce.
@@ -240,7 +232,6 @@ plot.eye_pupil_deconvolution <- function(x,
 }
 
 #' Plot pupil confound model diagnostics
-#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot pupil confound model diagnostics.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 #' @param type Type of summary or visual representation to produce.
@@ -275,7 +266,6 @@ plot.eye_pupil_confound_model <- function(x,
 }
 
 #' Plot aoi trajectory diagnostics
-#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot aoi trajectory diagnostics.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 #' @param type Type of summary or visual representation to produce.
@@ -301,7 +291,6 @@ plot.eye_aoi_trajectory <- function(x, type = c("coefficients", "profiles"), ...
 }
 
 #' Plot aoi growth curve diagnostics
-#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot aoi growth curve diagnostics.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 #' @param ... Additional arguments passed to the underlying method or helper.
@@ -314,7 +303,6 @@ plot.eye_aoi_growth_curve <- function(x, ...) {
 }
 
 #' Plot multiblock process map diagnostics
-#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot multiblock process map diagnostics.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 #' @param type Type of summary or visual representation to produce.
@@ -350,7 +338,6 @@ plot.eye_multiblock_process_map <- function(x,
 }
 
 #' Plot process profile mixture diagnostics
-#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot process profile mixture diagnostics.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 #' @param type Type of summary or visual representation to produce.
@@ -389,7 +376,6 @@ plot.eye_process_profile_mixture <- function(x,
 }
 
 #' Plot streaming score diagnostics
-#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot streaming score diagnostics.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 #' @param ... Additional arguments passed to the underlying method or helper.
@@ -409,7 +395,6 @@ plot.eye_streaming_score <- function(x, ...) {
 }
 
 #' Plot process external validity diagnostics
-#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot process external validity diagnostics.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 #' @param type Type of summary or visual representation to produce.
@@ -448,7 +433,6 @@ plot.eye_process_external_validity <- function(x,
 }
 
 #' Plot signal filter audit diagnostics
-#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot signal filter audit diagnostics.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 #' @param ... Additional arguments passed to the underlying method or helper.
@@ -462,7 +446,6 @@ plot.eye_signal_filter_audit <- function(x, ...) {
 }
 
 #' Plot item parameter seed diagnostics
-#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot item parameter seed diagnostics.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 #' @param candidate_data Optional candidate-item data used for the requested display.
@@ -484,7 +467,6 @@ plot.eye_item_parameter_seed <- function(x, candidate_data = NULL, ...) {
 }
 
 #' Plot candidate item bank audit diagnostics
-#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot candidate item bank audit diagnostics.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 #' @param ... Additional arguments passed to the underlying method or helper.
@@ -498,7 +480,6 @@ plot.eye_candidate_item_bank_audit <- function(x, ...) {
 }
 
 #' Plot visual context irt diagnostics
-#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot visual context irt diagnostics.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 #' @param type Type of summary or visual representation to produce.
@@ -536,7 +517,6 @@ plot.eye_visual_context_irt <- function(x,
 }
 
 #' Plot validation bundle diagnostics
-#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot validation bundle diagnostics.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 #' @param ... Additional arguments passed to the underlying method or helper.
@@ -555,7 +535,6 @@ plot.eye_validation_bundle <- function(x, ...) {
 #' @param data Sample-level data.
 #' @param time Time column.
 #' @param signals Signal columns to overlay.
-#' @return An R object containing plot raw-to-processed pupil preprocessing stages. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 #' @param ... Additional arguments passed to the underlying method or helper.
 plot_pupil_preprocessing_audit <- function(
@@ -574,7 +553,6 @@ plot_pupil_preprocessing_audit <- function(
 }
 
 #' Plot tonic/phasic pupil components
-#' @return An R object containing plot tonic/phasic pupil components. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 #' @param data Data frame containing the required process variables.
 #' @param time Time values or name of the time variable.
@@ -607,7 +585,6 @@ plot_pupil_components <- function(data, time = "time_ms", smoothed = "pupil_smoo
 #' @param data Transition-pair data.
 #' @param from,to Column names.
 #' @param normalize Normalize within from-AOI, globally, or not at all.
-#' @return An R object containing plot an AOI transition matrix. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 #' @param ... Additional arguments passed to the underlying method or helper.
 plot_aoi_transition_matrix <- function(data, from = "from", to = "to",
@@ -623,7 +600,6 @@ plot_aoi_transition_matrix <- function(data, from = "from", to = "to",
 }
 
 #' Plot top AOI transitions by probability/count
-#' @return An R object containing plot top AOI transitions by probability/count. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 #' @param data Data frame containing the required process variables.
 #' @param from Name of the column identifying the transition origin.
@@ -652,7 +628,6 @@ plot_aoi_transition_rank <- function(data, from = "from", to = "to",
 #' @param feature Feature column.
 #' @param stability Stability/selection-rate column.
 #' @param top_n Maximum features shown.
-#' @return An R object containing plot process-feature stability across resamples/splits. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 #' @param ... Additional arguments passed to the underlying method or helper.
 plot_process_feature_stability <- function(data, feature = "feature",
@@ -672,7 +647,6 @@ plot_process_feature_stability <- function(data, feature = "feature",
 #' @param table Optional explicit table.
 #' @param channel_col,metric_col,value_col Column names.
 #' @param full_label Full/reference channel label.
-#' @return A data frame containing plot channel-ablation delta from a full/reference model. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 #' @param metric Metric to evaluate or display.
 #' @param ... Additional arguments passed to the underlying method or helper.
@@ -706,7 +680,6 @@ plot_process_channel_ablation_delta <- function(
 # Additional representation plot methods ------------------------------------
 
 #' Plot process windows diagnostics
-#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot process windows diagnostics.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 #' @param feature Process feature to evaluate or display.
@@ -741,7 +714,6 @@ plot.eye_process_windows <- function(x, feature = "pupil_mean", group = NULL, ..
 }
 
 #' Plot pupil fatigue drift diagnostics
-#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot pupil fatigue drift diagnostics.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 #' @param ... Additional arguments passed to the underlying method or helper.
@@ -757,7 +729,6 @@ plot.eye_pupil_fatigue_drift <- function(x, ...) {
 }
 
 #' Plot process feature blocks diagnostics
-#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot process feature blocks diagnostics.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 #' @param ... Additional arguments passed to the underlying method or helper.
@@ -768,7 +739,6 @@ plot.eye_process_feature_blocks <- function(x, ...) {
 }
 
 #' Plot presentation fairness comparison diagnostics
-#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot presentation fairness comparison diagnostics.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 #' @param ... Additional arguments passed to the underlying method or helper.
@@ -789,7 +759,6 @@ plot.eye_presentation_fairness_comparison <- function(x, ...) {
 #' @param signal Numeric pupil signal.
 #' @param sampling_rate_hz Sampling rate.
 #' @param max_hz Maximum frequency shown; defaults to Nyquist.
-#' @return A data frame containing plot a pupil-signal power spectrum. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 #' @param ... Additional arguments passed to the underlying method or helper.
 plot_pupil_spectrum <- function(signal, sampling_rate_hz, max_hz = sampling_rate_hz / 2, ...) {
@@ -809,7 +778,6 @@ plot_pupil_spectrum <- function(signal, sampling_rate_hz, max_hz = sampling_rate
 
 #' Plot pupil low/high-band power summaries
 #' @param x `eye_pupil_frequency_features` object.
-#' @return An R object containing plot pupil low/high-band power summaries. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 #' @param ... Additional arguments passed to the underlying method or helper.
 plot_pupil_band_power <- function(x, ...) {
@@ -824,7 +792,6 @@ plot_pupil_band_power <- function(x, ...) {
 #' Plot pupil activity features across windows/groups
 #' @param x `eye_pupil_frequency_features` or `eye_pupil_frequency_stability` object.
 #' @param feature Activity feature.
-#' @return An R object containing plot pupil activity features across windows/groups. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 #' @param ... Additional arguments passed to the underlying method or helper.
 plot_pupil_activity_windows <- function(x, feature = "pupil_frequency_contrast", ...) {
@@ -841,7 +808,6 @@ plot_pupil_activity_windows <- function(x, feature = "pupil_frequency_contrast",
 #' Plot pupil activity sensitivity to window length
 #' @param x `eye_pupil_frequency_stability` object.
 #' @param feature Feature name.
-#' @return An R object containing plot pupil activity sensitivity to window length. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 #' @param ... Additional arguments passed to the underlying method or helper.
 plot_pupil_activity_sensitivity <- function(x, feature = "pupil_frequency_contrast", ...) {
@@ -849,7 +815,6 @@ plot_pupil_activity_sensitivity <- function(x, feature = "pupil_frequency_contra
 }
 
 #' Explicit wrapper for process-window sensitivity plotting
-#' @return An R object containing explicit wrapper for process-window sensitivity plotting. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 #' @param ... Additional arguments passed to the underlying method or helper.

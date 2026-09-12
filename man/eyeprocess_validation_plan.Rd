@@ -35,9 +35,6 @@ eyeprocess_validation_plan(
 
 \item{label}{Human-readable label.}
 }
-\value{
-An object of class "eye_validation_evidence_plan", stored as a named list, with components "families", "sample_size", "n_items", "missing_rate", "noise_level", "specification", "replications", "seed", "label". It contains declare an eyeprocess validation-evidence plan and associated metadata or diagnostics needed to interpret the result.
-}
 \description{
 Creates a deterministic validation plan. The plan describes software-validation
 scenarios and does not constitute evidence for the construct validity of any

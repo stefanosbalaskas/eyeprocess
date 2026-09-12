@@ -154,7 +154,6 @@ process_preflight_spec <- function(
 }
 
 #' Print a process preflight spec object
-#' @return Invisibly returns the input object after printing its summary; the object's class and contents are unchanged.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 #' @param ... Additional arguments passed to the underlying method or helper.
@@ -282,7 +281,6 @@ audit_biometric_preflight <- function(
 
 #' Extract pre-flight decisions
 #' @param x An `eye_biometric_preflight` object.
-#' @return An R object containing pre-flight decisions. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 preflight_decisions <- function(x) {
   if (!inherits(x, "eye_biometric_preflight")) stop("x must be an eye_biometric_preflight object.", call. = FALSE)
@@ -290,7 +288,6 @@ preflight_decisions <- function(x) {
 }
 
 #' Extract pre-flight failures/review cases
-#' @return A logical value or vector indicating pre-flight failures/review cases.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 preflight_failures <- function(x) {
@@ -299,7 +296,6 @@ preflight_failures <- function(x) {
 }
 
 #' Extract pre-flight passes
-#' @return A logical value or vector indicating pre-flight passes.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 preflight_passed <- function(x) {
@@ -310,7 +306,6 @@ preflight_passed <- function(x) {
 #' Create an explicit pre-flight exclusion/review manifest
 #'
 #' The manifest records recommendations only. It does not remove observations.
-#' @return An R object containing an explicit pre-flight exclusion/review manifest. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 preflight_exclusion_manifest <- function(x) {
@@ -371,7 +366,6 @@ apply_preflight_decision <- function(
 #' @param alpha Chi-square review quantile.
 #' @param aggregate If TRUE, aggregate metrics to person level before auditing.
 #' @param ridge Diagonal covariance regularization.
-#' @return An object of class "eye_process_anomaly_audit", stored as a named list, with components "table", "metrics", "alpha", "threshold", "center", "covariance", "caveat". It contains multivariate process/data-quality anomalies and associated metadata or diagnostics needed to interpret the result.
 #' @export
 audit_process_anomalies <- function(data, person = "person_id", metrics = NULL,
                                     alpha = 0.975, aggregate = TRUE, ridge = 1e-6) {
@@ -423,13 +417,11 @@ audit_process_anomalies <- function(data, person = "person_id", metrics = NULL,
 }
 
 #' Alias emphasizing data-quality interpretation of process anomaly auditing
-#' @return An R object containing alias emphasizing data-quality interpretation of process anomaly auditing. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 #' @param ... Additional arguments passed to the underlying method or helper.
 audit_multivariate_process_quality <- function(...) audit_process_anomalies(...)
 
 #' Extract multivariate process anomaly distances
-#' @return An R object containing multivariate process anomaly distances. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 process_anomaly_distance <- function(x) {
@@ -447,7 +439,6 @@ process_anomaly_distance <- function(x) {
 #' @param person Person identifier.
 #' @param rt,dwell,revisits,entropy,pupil,gaze_validity Optional column names.
 #' @param review_quantile Quantile for a presentation-review flag.
-#' @return An object of class "eye_presentation_accessibility", stored as a named list, with components "table", "threshold", "review_quantile", "status", "caveat". It contains presentation/accessibility sensitivity without clinical inference and associated metadata or diagnostics needed to interpret the result.
 #' @export
 audit_presentation_accessibility <- function(
     data, person = "person_id", rt = "rt_ms", dwell = "dwell_ms",
@@ -496,7 +487,6 @@ audit_presentation_accessibility <- function(
 #' @param audit An accessibility audit.
 #' @param line_spacing_multiplier Example line-spacing multiplier for flagged rows.
 #' @param key_term_highlighting Whether the simulated review variant highlights key terms.
-#' @return An R object containing pre-registered presentation variants for review. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 simulate_presentation_variants <- function(
     audit, line_spacing_multiplier = 1.25, key_term_highlighting = TRUE) {
@@ -519,7 +509,6 @@ simulate_presentation_variants <- function(
 #' @param variant Presentation-version column.
 #' @param outcome Numeric outcome.
 #' @param person Optional participant column for descriptive aggregation.
-#' @return An object of class "eye_presentation_fairness_comparison", stored as a named list, with components "model", "summary", "status", "caveat". It contains outcomes across presentation variants and associated metadata or diagnostics needed to interpret the result.
 #' @export
 compare_presentation_fairness <- function(data, variant, outcome, person = NULL) {
   data <- .ep08_as_df(data)

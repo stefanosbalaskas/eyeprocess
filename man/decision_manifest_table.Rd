@@ -9,9 +9,6 @@ decision_manifest_table(x)
 \arguments{
 \item{x}{Manifest.}
 }
-\value{
-A logical value or vector indicating flatten a decision manifest to a table.
-}
 \description{
 Flatten a decision manifest to a table
 }

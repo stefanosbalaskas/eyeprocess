@@ -29,9 +29,6 @@ audit_channel_incremental_information(
 
 \item{higher_is_better}{Direction of the score.}
 }
-\value{
-A tabular R object containing out-of-sample incremental information from a process channel; rows represent analysis units and columns contain the returned quantities.
-}
 \description{
 Audit out-of-sample incremental information from a process channel
 }

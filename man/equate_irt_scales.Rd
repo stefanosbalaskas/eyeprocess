@@ -20,9 +20,6 @@ equate_irt_scales(
 
 \item{theta_grid}{Grid of latent-trait values used for evaluation.}
 }
-\value{
-An object of class "eye_irt_equating", stored as a named list, with components "A", "B", "method", "transformed", "reference", "new", "equation". It contains equate IRT scales using anchor item parameters and associated metadata or diagnostics needed to interpret the result.
-}
 \description{
 Implements mean-sigma, mean-mean, Stocking-Lord, and Haebara linking for
 dichotomous 2PL-style item parameters. New-form parameters are transformed

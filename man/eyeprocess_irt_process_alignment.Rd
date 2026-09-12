@@ -17,9 +17,6 @@ eyeprocess_irt_process_alignment(
 
 \item{process_columns}{Names of process-measure columns to use.}
 }
-\value{
-An object of class "eye_irt_process_alignment", stored as a named list, with components "table", "correlations", "guardrail". It contains align item parameters with process-channel summaries and associated metadata or diagnostics needed to interpret the result.
-}
 \description{
 Align item parameters with process-channel summaries
 }

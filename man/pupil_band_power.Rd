@@ -15,9 +15,6 @@ pupil_band_power(y, sampling_rate_hz, lower_hz, upper_hz, detrend = TRUE)
 
 \item{detrend}{Remove the mean before FFT.}
 }
-\value{
-A numeric value or vector containing pupil signal power in a frequency band.
-}
 \description{
 Compute pupil signal power in a frequency band
 }

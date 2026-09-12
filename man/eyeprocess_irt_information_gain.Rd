@@ -11,9 +11,6 @@ eyeprocess_irt_information_gain(se_before, se_after)
 
 \item{se_after}{Conditional standard error after item administration.}
 }
-\value{
-A numeric value or vector containing information gain between two conditional standard errors.
-}
 \description{
 Information gain between two conditional standard errors
 }
