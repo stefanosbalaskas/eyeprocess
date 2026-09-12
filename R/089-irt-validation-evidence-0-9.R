@@ -14,9 +14,7 @@ simulate_eyeprocess_irt_binary <- function(n_persons = 500L, items, theta = NULL
   missing_rate <- as.numeric(missing_rate); testlet_sd <- as.numeric(testlet_sd)
   if (length(n_persons) != 1L || is.na(n_persons) || n_persons < 20L || length(seed) != 1L || is.na(seed) || seed < 1L) stop("n_persons >= 20 and positive scalar seed required.", call. = FALSE)
   if (length(missing_rate) != 1L || !is.finite(missing_rate) || missing_rate < 0 || missing_rate >= 1 || length(testlet_sd) != 1L || !is.finite(testlet_sd) || testlet_sd < 0) stop("invalid scalar missing_rate/testlet_sd.", call. = FALSE)
-  old <- if (exists(".Random.seed", envir = .GlobalEnv, inherits = FALSE)) get(".Random.seed", envir = .GlobalEnv) else NULL
-  on.exit({ if (is.null(old)) { if (exists(".Random.seed", envir = .GlobalEnv, inherits = FALSE)) rm(".Random.seed", envir = .GlobalEnv) } else assign(".Random.seed", old, envir = .GlobalEnv) }, add = TRUE)
-  set.seed(seed)
+  .eye_local_seed(seed)
   if (is.null(theta)) theta <- stats::rnorm(n_persons)
   theta <- as.numeric(theta); if (length(theta) != n_persons || any(!is.finite(theta))) stop("theta must be finite and length n_persons.", call. = FALSE)
   testlet <- if (testlet_sd > 0) stats::rnorm(n_persons, 0, testlet_sd) else rep(0, n_persons)
@@ -47,9 +45,7 @@ eyeprocess_irt_recovery_design <- function(sample_size = c(250L, 750L), n_items 
 .ep09m2_default_item_truth <- function(n_items, seed) {
   n_items <- as.integer(n_items); seed <- as.integer(seed)
   if (length(n_items) != 1L || is.na(n_items) || n_items < 1L || length(seed) != 1L || is.na(seed) || seed < 1L) stop("n_items and seed must be positive integers.", call. = FALSE)
-  old <- if (exists(".Random.seed", envir = .GlobalEnv, inherits = FALSE)) get(".Random.seed", envir = .GlobalEnv) else NULL
-  on.exit({ if (is.null(old)) { if (exists(".Random.seed", envir = .GlobalEnv, inherits = FALSE)) rm(".Random.seed", envir = .GlobalEnv) } else assign(".Random.seed", old, envir = .GlobalEnv) }, add = TRUE)
-  set.seed(seed)
+  .eye_local_seed(seed)
   data.frame(item_id = paste0("I", seq_len(n_items)), a = exp(stats::rnorm(n_items, log(1.2), .18)), b = stats::rnorm(n_items, 0, 1), c = 0, d = 1, stringsAsFactors = FALSE)
 }
 
@@ -151,9 +147,7 @@ eyeprocess_irt_sbc_ranks <- function(truth, draws, randomize_ties = TRUE, seed =
   if (nrow(draws) != length(truth) || any(!is.finite(truth)) || any(!is.finite(draws))) stop("draws rows must match finite truths and contain finite draws.", call. = FALSE)
   seed <- as.integer(seed); if (length(seed) != 1L || seed < 1L || is.na(seed)) stop("seed must be positive.", call. = FALSE)
   if (ncol(draws) < 1L) stop("draws must contain at least one posterior draw per truth.", call. = FALSE)
-  old <- if (exists(".Random.seed", envir = .GlobalEnv, inherits = FALSE)) get(".Random.seed", envir = .GlobalEnv) else NULL
-  on.exit({ if (is.null(old)) { if (exists(".Random.seed", envir = .GlobalEnv, inherits = FALSE)) rm(".Random.seed", envir = .GlobalEnv) } else assign(".Random.seed", old, envir = .GlobalEnv) }, add = TRUE)
-  set.seed(seed)
+  .eye_local_seed(seed)
   vapply(seq_along(truth), function(i) {
     less <- sum(draws[i, ] < truth[i]); equal <- sum(draws[i, ] == truth[i])
     if (isTRUE(randomize_ties) && equal > 0L) less + sample.int(equal + 1L, 1L) - 1L else less
@@ -190,9 +184,7 @@ run_eyeprocess_irt_ability_sbc <- function(items, replications = 200L, posterior
   if (length(theta_grid) < 101L || is.unsorted(theta_grid, strictly = TRUE)) stop("theta_grid must be strictly increasing with at least 101 points.", call. = FALSE)
   if (length(prior_mean) != 1L || !is.finite(prior_mean) || length(prior_sd) != 1L || !is.finite(prior_sd) || prior_sd <= 0) stop("invalid normal prior.", call. = FALSE)
   if (length(interval) != 1L || !is.finite(interval) || interval <= 0 || interval >= 1) stop("interval must lie in (0,1).", call. = FALSE)
-  old <- if (exists(".Random.seed", envir = .GlobalEnv, inherits = FALSE)) get(".Random.seed", envir = .GlobalEnv) else NULL
-  on.exit({ if (is.null(old)) { if (exists(".Random.seed", envir = .GlobalEnv, inherits = FALSE)) rm(".Random.seed", envir = .GlobalEnv) } else assign(".Random.seed", old, envir = .GlobalEnv) }, add = TRUE)
-  set.seed(seed)
+  .eye_local_seed(seed)
   alpha <- (1 - interval) / 2
   rows <- vector("list", replications)
   rank <- integer(replications)

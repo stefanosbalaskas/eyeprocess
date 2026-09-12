@@ -89,9 +89,7 @@ eyeprocess_irt_plausible_values <- function(score, n = 5L, seed = 1L) {
   if (!inherits(score, "eye_irt_score") || is.null(score$posterior) || is.null(score$theta)) stop("score must be an EAP eye_irt_score with posterior grid weights.", call. = FALSE)
   n <- as.integer(n); seed <- as.integer(seed)
   if (length(n) != 1L || is.na(n) || n < 1L || length(seed) != 1L || is.na(seed) || seed < 1L) stop("n and seed must be positive scalar integers.", call. = FALSE)
-  old <- if (exists(".Random.seed", envir = .GlobalEnv, inherits = FALSE)) get(".Random.seed", envir = .GlobalEnv) else NULL
-  on.exit({ if (is.null(old)) { if (exists(".Random.seed", envir = .GlobalEnv, inherits = FALSE)) rm(".Random.seed", envir = .GlobalEnv) } else assign(".Random.seed", old, envir = .GlobalEnv) }, add = TRUE)
-  set.seed(seed)
+  .eye_local_seed(seed)
   sample(score$theta, size = n, replace = TRUE, prob = score$posterior)
 }
 
