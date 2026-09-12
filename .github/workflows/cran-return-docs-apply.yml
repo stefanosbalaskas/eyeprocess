@@ -43,14 +43,22 @@ jobs:
           python - <<'PY'
           from pathlib import Path
           missing = []
+          checked = 0
           for rd in sorted(Path("man").glob("*.Rd")):
               text = rd.read_text(encoding="utf-8", errors="replace")
+              # CRAN's return-value requirement applies to callable manuals with
+              # a \usage{} section. Package/topic pages such as
+              # eyeprocess-package.Rd legitimately have no return value.
+              if "\\usage{" not in text:
+                  continue
+              checked += 1
               if "\\value{" not in text:
                   missing.append(rd.name)
-          print(f"MISSING_VALUE_TAGS={len(missing)}")
+          print(f"USAGE_RD_CHECKED={checked}")
+          print(f"USAGE_RD_MISSING_VALUE_TAGS={len(missing)}")
           if missing:
               print("\n".join(missing[:50]))
-              raise SystemExit("Generated Rd files still missing \\value tags")
+              raise SystemExit("Usage-bearing generated Rd files still missing \\value tags")
           PY
 
       - name: Verify CRAN-named examples and write report
@@ -84,11 +92,17 @@ jobs:
                   raise SystemExit(f"Empty value documentation for {name}")
               lines.append(f"- `{name}`: {value}")
           lines += ["", "## Inventory", ""]
-          missing = [
-              p.name for p in sorted(Path("man").glob("*.Rd"))
-              if "\\value{" not in p.read_text(encoding="utf-8", errors="replace")
-          ]
-          lines.append(f"- Generated `.Rd` files missing `\\value`: **{len(missing)}**")
+          usage_docs = []
+          missing = []
+          for p in sorted(Path("man").glob("*.Rd")):
+              text = p.read_text(encoding="utf-8", errors="replace")
+              if "\\usage{" not in text:
+                  continue
+              usage_docs.append(p.name)
+              if "\\value{" not in text:
+                  missing.append(p.name)
+          lines.append(f"- Generated `.Rd` files with `\\usage`: **{len(usage_docs)}**")
+          lines.append(f"- Usage-bearing generated `.Rd` files missing `\\value`: **{len(missing)}**")
           for record in inventory + polymorphic + counts:
               lines.append(f"- `{record}`")
           Path("CRAN_REMEDIATION_REPORT.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
