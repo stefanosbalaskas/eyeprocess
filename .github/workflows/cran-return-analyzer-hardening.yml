@@ -1,0 +1,210 @@
+name: Harden CRAN return inference semantics
+
+on:
+  push:
+    branches:
+      - cran-remediation-0.11.1
+    paths:
+      - .github/workflows/cran-return-analyzer-hardening.yml
+
+permissions:
+  contents: write
+
+jobs:
+  harden:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Patch return inference conservatively
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path("tools/cran_return_docs_v2.py")
+          text = path.read_text(encoding="utf-8")
+
+          old_classes = '''def classes_in(expr: str) -> list[str]:
+              m = re.search(r"\\bclass\\s*=\\s*(c\\s*\\((.*?)\\)|(['\\\"])(.*?)\\3)", expr, re.S)
+              if not m:
+                  return []
+              if m.group(2) is not None:
+                  return re.findall(r"['\\\"]([^'\\\"]+)['\\\"]", m.group(2))
+              return [m.group(4)] if m.group(4) else []
+          '''.replace("          ", "")
+          new_classes = '''def classes_in(expr: str) -> list[str]:
+              # Only accept literal class declarations. Dynamic expressions such as
+              # class = c(paste0("eye_irt_", type, "_channel"), "eye_irt_channel")
+              # must not be misreported as the literal fragments inside paste0().
+              m = re.search(r"\\bclass\\s*=\\s*(['\\\"])([^'\\\"]+)\\1", expr, re.S)
+              if m:
+                  return [m.group(2)]
+              m = re.search(r"\\bclass\\s*=\\s*c\\s*\\(([^()]*)\\)", expr, re.S)
+              if not m:
+                  return []
+              body = m.group(1).strip()
+              parts = [p.strip() for p in body.split(",") if p.strip()]
+              if not parts or not all(re.fullmatch(r"(['\\\"])([^'\\\"]+)\\1", p) for p in parts):
+                  return []
+              return [re.fullmatch(r"(['\\\"])([^'\\\"]+)\\1", p).group(2) for p in parts]
+          '''.replace("          ", "")
+          if old_classes not in text:
+              raise SystemExit("classes_in patch anchor not found")
+          text = text.replace(old_classes, new_classes, 1)
+
+          old_calls = '''    numeric_calls = {
+              "as.numeric", "numeric", "double", "mean", "median", "sum", "prod", "min", "max", "var", "sd",
+              "quantile", "cor", "cov", "plogis", "qlogis", "pnorm", "qnorm", "dnorm", "runif", "rnorm", "rbinom",
+              "rnbinom", "sqrt", "exp", "log", "log1p", "expm1", "abs", "round", "floor", "ceiling", "signif",
+              "seq", "seq_len", "seq_along", "sample", "sample.int", "rowMeans", "colMeans", "rowSums", "colSums",
+              "length", "nrow", "ncol", "which", "match", "findInterval", "uniroot", "optimize",
+          }
+          '''.replace("          ", "")
+          new_calls = '''    numeric_calls = {
+              "as.numeric", "as.integer", "numeric", "integer", "double", "mean", "median", "sum", "prod", "min", "max", "var", "sd",
+              "quantile", "plogis", "qlogis", "pnorm", "qnorm", "dnorm", "runif", "rnorm", "rbinom",
+              "rnbinom", "sqrt", "exp", "log", "log1p", "expm1", "abs", "round", "floor", "ceiling", "signif",
+              "seq", "seq_len", "seq_along", "sample.int", "rowMeans", "colMeans", "rowSums", "colSums",
+              "length", "nrow", "ncol", "which", "match", "findInterval",
+          }
+          '''.replace("          ", "")
+          if old_calls not in text:
+              raise SystemExit("numeric_calls patch anchor not found")
+          text = text.replace(old_calls, new_calls, 1)
+
+          old_logic = '''    if name in list_calls:
+              return ReturnInfo("list", ["list"], [], compact, "terminal-call")
+              if name in {"vapply", "sapply"}:
+                  return ReturnInfo("vector-or-matrix", [], [], compact, "terminal-call")
+          '''.replace("          ", "")
+          # The exact source has the vapply branch at the same indentation as the
+          # list branch; use a direct stable anchor instead of the explanatory text.
+          anchor = '''    if name in list_calls:
+              return ReturnInfo("list", ["list"], [], compact, "terminal-call")
+              if name in {"vapply", "sapply"}:
+          '''.replace("          ", "")
+          if anchor in text:
+              raise SystemExit("unexpected indentation variant in analyzer")
+
+          call_anchor = '''    if name in list_calls:
+              return ReturnInfo("list", ["list"], [], compact, "terminal-call")
+              if name in {"vapply", "sapply"}:
+          '''.replace("          ", "")
+
+          insert_after = '''    if name in list_calls:
+              return ReturnInfo("list", ["list"], [], compact, "terminal-call")
+          '''.replace("          ", "")
+          if insert_after not in text:
+              raise SystemExit("list-call insertion anchor not found")
+          replacement = insert_after + '''    if name in {"uniroot", "optimize"}:
+              return ReturnInfo("list", ["list"], [], compact, "terminal-call")
+              if name in {"sample", "cor", "cov"}:
+                  return ReturnInfo("object", [], [], compact, "terminal-call-polymorphic")
+          '''.replace("          ", "")
+          text = text.replace(insert_after, replacement, 1)
+
+          old_tail = '''    # Arithmetic/comparison expressions are common terminal expressions.
+              if re.search(r"(?:==|!=|<=|>=|<|>|%in%|\\&\\&|\\|\\|)", expr):
+                  return ReturnInfo("logical", [], [], compact, "terminal-expression")
+              if re.search(r"(?:\\+|-|\\*|/|\\^|%%|%/%)", expr) and not re.search(r"['\\\"]", expr):
+                  return ReturnInfo("numeric", [], [], compact, "terminal-expression")
+          
+              # Follow wrappers to another package function when its terminal expression is known.
+              if name and name in funcs and name not in seen:
+                  target = infer_function(name, funcs, seen | {name})
+                  return ReturnInfo(target.kind, target.classes, target.components, compact, "wrapper->" + target.confidence)
+          
+              # A terminal if-expression may have different branches; infer both when easy.
+              if expr.startswith("if ") or expr.startswith("if("):
+                  returns = re.findall(r"return\\s*\\(([^()]*(?:\\([^()]*\\)[^()]*)*)\\)", expr)
+                  infos = [infer_expr(x, assigns, funcs, seen) for x in returns]
+                  kinds = {x.kind for x in infos if x.kind != "null"}
+                  if len(kinds) == 1:
+                      x = next(x for x in infos if x.kind != "null")
+                      return ReturnInfo(x.kind, x.classes, x.components, compact, "conditional")
+          
+              return ReturnInfo("object", [], [], compact, "unresolved")
+          '''.replace("          ", "")
+          new_tail = '''    # Preserve table/matrix structure for terminal subsetting. In particular,
+              # a minus sign inside order(-x$score) is not arithmetic on the return object.
+              subset = re.match(r"^([A-Za-z.][A-Za-z0-9._]*)\\s*\\[", expr)
+              if subset:
+                  base = subset.group(1)
+                  if base in assigns:
+                      base_info = infer_expr(assigns[base], assigns, funcs, seen)
+                      if base_info.kind in {"data.frame", "matrix", "array", "tabular"}:
+                          return ReturnInfo(base_info.kind, base_info.classes, base_info.components, compact, "terminal-subset")
+                  if re.search(r"\\bdrop\\s*=\\s*FALSE\\b", expr):
+                      return ReturnInfo("tabular", [], [], compact, "terminal-subset")
+                  return ReturnInfo("object", [], [], compact, "terminal-subset")
+          
+              # A simple terminal if/else can be typed from its two value branches.
+              if expr.startswith("if ") or expr.startswith("if("):
+                  simple_if = re.match(r"^if\\s*\\((.*?)\\)\\s*(.*?)\\s+else\\s+(.*)$", expr, re.S)
+                  if simple_if:
+                      branches = [simple_if.group(2).strip(), simple_if.group(3).strip()]
+                      infos = [infer_expr(x, assigns, funcs, seen) for x in branches]
+                      kinds = {x.kind for x in infos if x.kind != "null"}
+                      if len(kinds) == 1:
+                          x = next(x for x in infos if x.kind != "null")
+                          return ReturnInfo(x.kind, x.classes, x.components, compact, "conditional")
+                  returns = re.findall(r"return\\s*\\(([^()]*(?:\\([^()]*\\)[^()]*)*)\\)", expr)
+                  infos = [infer_expr(x, assigns, funcs, seen) for x in returns]
+                  kinds = {x.kind for x in infos if x.kind != "null"}
+                  if len(kinds) == 1:
+                      x = next(x for x in infos if x.kind != "null")
+                      return ReturnInfo(x.kind, x.classes, x.components, compact, "conditional")
+          
+              # Follow wrappers to another package function when its terminal expression is known.
+              if name and name in funcs and name not in seen:
+                  target = infer_function(name, funcs, seen | {name})
+                  return ReturnInfo(target.kind, target.classes, target.components, compact, "wrapper->" + target.confidence)
+          
+              # Arithmetic/comparison expressions are common terminal expressions, but only
+              # after structured subsetting and conditionals have been ruled out.
+              if re.search(r"(?:==|!=|<=|>=|<|>|%in%|\\&\\&|\\|\\|)", expr):
+                  return ReturnInfo("logical", [], [], compact, "terminal-expression")
+              if re.search(r"(?:\\+|-|\\*|/|\\^|%%|%/%)", expr) and not re.search(r"['\\\"]", expr):
+                  return ReturnInfo("numeric", [], [], compact, "terminal-expression")
+          
+              return ReturnInfo("object", [], [], compact, "unresolved")
+          '''.replace("          ", "")
+          if old_tail not in text:
+              raise SystemExit("tail patch anchor not found")
+          text = text.replace(old_tail, new_tail, 1)
+
+          path.write_text(text, encoding="utf-8")
+          PY
+
+      - name: Validate analyzer syntax and regression semantics
+        run: |
+          python -m py_compile tools/cran_return_docs_v2.py
+          python - <<'PY'
+          import importlib.util
+          from pathlib import Path
+
+          spec = importlib.util.spec_from_file_location("ret", Path("tools/cran_return_docs_v2.py"))
+          mod = importlib.util.module_from_spec(spec)
+          spec.loader.exec_module(mod)
+          funcs = {}
+          assert mod.classes_in('structure(x, class = c(paste0("eye_irt_", type, "_channel"), "eye_irt_channel"))') == []
+          assert mod.classes_in('structure(x, class = c("a", "b"))') == ["a", "b"]
+          assert mod.infer_expr('as.integer(4)', {}, funcs, set()).kind == "numeric"
+          assert mod.infer_expr('uniroot(f, c(0, 1))', {}, funcs, set()).kind == "list"
+          assert mod.infer_expr('sample(x)', {}, funcs, set()).kind == "object"
+          assert mod.infer_expr('s[order(-s$score), , drop = FALSE]', {"s": 'data.frame(a = 1)'}, funcs, set()).kind == "data.frame"
+          assert mod.infer_expr('if (length(z)) mean(z) else NA_real_', {}, funcs, set()).kind == "numeric"
+          print("SEMANTIC_REGRESSION_TESTS=PASS")
+          PY
+
+      - name: Commit hardening and remove one-shot workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/cran-return-analyzer-hardening.yml
+          git add tools/cran_return_docs_v2.py
+          git diff --cached --check
+          git commit -m "fix: harden CRAN return inference semantics"
+          git push origin HEAD:cran-remediation-0.11.1
