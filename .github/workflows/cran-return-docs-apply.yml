@@ -23,8 +23,10 @@ jobs:
         with:
           r-version: release
 
-      - name: Install documentation tooling
-        run: Rscript -e 'install.packages("roxygen2", repos = "https://cloud.r-project.org")'
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          dependencies: '"hard"'
+          extra-packages: any::roxygen2
 
       - name: Apply return documentation to roxygen sources
         run: |
@@ -50,7 +52,7 @@ jobs:
               raise SystemExit("Generated Rd files still missing \\value tags")
           PY
 
-      - name: Verify CRAN-named examples
+      - name: Verify CRAN-named examples and write report
         run: |
           python - <<'PY'
           import re
@@ -63,6 +65,10 @@ jobs:
               "analysis_resolution_guard",
               "aoi_membership_probability",
           ]
+          inference = Path("/tmp/return-inference.txt").read_text(encoding="utf-8", errors="replace")
+          inventory = [line for line in inference.splitlines() if line.startswith("RETURN_V2_INVENTORY=")]
+          polymorphic = [line for line in inference.splitlines() if line.startswith("RETURN_V2_POLYMORPHIC=")]
+          counts = [line for line in inference.splitlines() if line.startswith("RETURN_V2_COUNTS=")]
           lines = ["# CRAN remediation report", "", "Generated automatically from the remediation branch.", ""]
           for name in names:
               rd = Path("man") / f"{name}.Rd"
@@ -82,6 +88,8 @@ jobs:
               if "\\value{" not in p.read_text(encoding="utf-8", errors="replace")
           ]
           lines.append(f"- Generated `.Rd` files missing `\\value`: **{len(missing)}**")
+          for record in inventory + polymorphic + counts:
+              lines.append(f"- `{record}`")
           Path("CRAN_REMEDIATION_REPORT.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
           PY
 
