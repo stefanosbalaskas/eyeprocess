@@ -20,6 +20,9 @@ eyeprocess_irt_session_drift(
 
 \item{parameter}{Name of the parameter to compare.}
 }
+\value{
+A tabular R object containing item-parameter drift over sessions; rows represent analysis units and columns contain the returned quantities.
+}
 \description{
 Summarise item-parameter drift over sessions
 }

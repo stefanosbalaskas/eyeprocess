@@ -17,6 +17,9 @@
 
 \item{...}{Additional arguments passed to the underlying method or helper.}
 }
+\value{
+Invisibly returns the plotting result when available; the primary effect is drawing plot pupil confound model diagnostics.
+}
 \description{
 Plot pupil confound model diagnostics
 }

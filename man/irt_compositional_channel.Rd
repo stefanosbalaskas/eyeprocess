@@ -20,6 +20,9 @@ irt_compositional_channel(
 
 \item{options}{Additional channel/model options.}
 }
+\value{
+A named list with components "type", "family", "role", "link", "variables", "latent", "options", containing compositional AOI channel and associated metadata or diagnostics.
+}
 \description{
 Compositional AOI channel
 }

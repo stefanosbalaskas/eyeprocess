@@ -23,6 +23,9 @@ classify_item_missingness(
 
 \item{started}{Indicator that responding was initiated.}
 }
+\value{
+An object of class "factor", stored as an R object, containing classify item missingness using exposure and response evidence and associated metadata needed to interpret the result.
+}
 \description{
 Classify item missingness using exposure and response evidence
 }

@@ -20,6 +20,9 @@ validation_replication_budget(
 
 \item{maximum}{Maximum permitted replication count.}
 }
+\value{
+A numeric value or vector containing a replication budget from a target MCSE.
+}
 \description{
 Compute a replication budget from a target MCSE
 }

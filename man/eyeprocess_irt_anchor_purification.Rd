@@ -23,6 +23,9 @@ eyeprocess_irt_anchor_purification(
 
 \item{max_iter}{Maximum number of iterations.}
 }
+\value{
+An object of class "eye_irt_anchor_purification", stored as a named list, with components "anchors", "history", "threshold". It contains iteratively remove anchors exceeding a supplied effect threshold and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 Iteratively remove anchors exceeding a supplied effect threshold
 }

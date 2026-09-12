@@ -11,6 +11,9 @@ compare_irt_models(..., names = NULL)
 
 \item{names}{Value supplied to `names`; see Details for its model-specific role.}
 }
+\value{
+An R object containing multimodal IRT model objects. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
+}
 \description{
 Uses supplied scoring functions when models expose different engines. The
 default extracts AIC/BIC/logLik when available and never treats in-sample fit

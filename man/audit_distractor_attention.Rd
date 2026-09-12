@@ -20,6 +20,9 @@ audit_distractor_attention(
 
 \item{chosen_suffix}{Suffix identifying the selected option indicator.}
 }
+\value{
+A data frame containing distractor attention patterns. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
+}
 \description{
 Audit distractor attention patterns
 }

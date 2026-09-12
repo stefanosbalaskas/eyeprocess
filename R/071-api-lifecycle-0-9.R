@@ -87,6 +87,7 @@ eye_api_lifecycle <- function(registry = NULL) {
 #' @param replacement Replacement for deprecated/superseded API.
 #' @param since Version in which status applies.
 #' @param notes Notes.
+#' @return An R object containing add or update API lifecycle metadata without global mutation. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 register_eye_api_status <- function(registry = eye_api_lifecycle(), name, status,
                                     canonical = NA_character_, replacement = NA_character_,
@@ -104,6 +105,7 @@ register_eye_api_status <- function(registry = eye_api_lifecycle(), name, status
 #' Lookup lifecycle status for one or more APIs
 #' @param name API names.
 #' @param registry Lifecycle registry.
+#' @return A data frame containing lookup lifecycle status for one or more APIs. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 eye_api_status <- function(name, registry = eye_api_lifecycle()) {
   reg <- eye_api_lifecycle(registry)
@@ -120,6 +122,7 @@ eye_api_status <- function(name, registry = eye_api_lifecycle()) {
 
 #' Return superseded/deprecated compatibility interfaces
 #' @param registry Lifecycle registry.
+#' @return A tabular R object containing return superseded/deprecated compatibility interfaces; rows represent analysis units and columns contain the returned quantities.
 #' @export
 eye_api_superseded <- function(registry = eye_api_lifecycle()) {
   reg <- eye_api_lifecycle(registry)
@@ -128,6 +131,7 @@ eye_api_superseded <- function(registry = eye_api_lifecycle()) {
 
 #' Canonical API mapping
 #' @param registry Lifecycle registry.
+#' @return A tabular R object containing canonical API mapping; rows represent analysis units and columns contain the returned quantities.
 #' @export
 canonical_eye_api <- function(registry = eye_api_lifecycle()) {
   reg <- eye_api_lifecycle(registry)
@@ -137,6 +141,7 @@ canonical_eye_api <- function(registry = eye_api_lifecycle()) {
 
 #' Summarise API surface by family and lifecycle status
 #' @param inventory Output of `eye_api_inventory()` or compatible table.
+#' @return A data frame containing aPI surface by family and lifecycle status. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 api_surface_summary <- function(inventory) {
   inventory <- .ep09_as_df(inventory)
@@ -146,6 +151,7 @@ api_surface_summary <- function(inventory) {
 
 #' Map exported APIs to conceptual families
 #' @param inventory API inventory or character names.
+#' @return A data frame containing exported APIs to conceptual families. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 api_family_map <- function(inventory) {
   if (is.character(inventory)) {
@@ -161,6 +167,7 @@ api_family_map <- function(inventory) {
 #' Audit API lifecycle completeness and replacement contracts
 #' @param inventory API inventory.
 #' @param registry Lifecycle registry.
+#' @return An object of class "eye_api_audit", stored as a named list, with components "table", "unreviewed", "invalid_replacements", "invalid_canonical", "reviewed_fraction", "valid". It contains aPI lifecycle completeness and replacement contracts and associated metadata or diagnostics needed to interpret the result.
 #' @export
 audit_eye_api <- function(inventory = eye_api_inventory(), registry = eye_api_lifecycle()) {
   inv <- .ep09_as_df(inventory); reg <- eye_api_lifecycle(registry)
@@ -188,6 +195,7 @@ audit_eye_api <- function(inventory = eye_api_inventory(), registry = eye_api_li
 
 #' Lifecycle recommendation for API review
 #' @param audit `eye_api_audit` object.
+#' @return A data frame containing lifecycle recommendation for API review. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 eye_api_recommendation <- function(audit) {
   if (!inherits(audit, "eye_api_audit")) stop("audit must be an eye_api_audit.", call. = FALSE)
@@ -206,6 +214,7 @@ eye_api_recommendation <- function(audit) {
 #' Write API lifecycle registry to CSV
 #' @param registry Lifecycle registry.
 #' @param path Output path.
+#' @return An R object containing aPI lifecycle registry to CSV. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 write_api_lifecycle_registry <- function(registry, path) {
   reg <- eye_api_lifecycle(registry)
@@ -215,6 +224,7 @@ write_api_lifecycle_registry <- function(registry, path) {
 
 #' Read API lifecycle registry from CSV
 #' @param path CSV path.
+#' @return An R object containing aPI lifecycle registry from CSV. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 read_api_lifecycle_registry <- function(path) {
   eye_api_lifecycle(utils::read.csv(path, stringsAsFactors = FALSE, na.strings = c("", "NA")))
@@ -223,6 +233,7 @@ read_api_lifecycle_registry <- function(path) {
 #' Compare two API lifecycle registries
 #' @param old Old registry.
 #' @param new New registry.
+#' @return A tabular R object containing two API lifecycle registries; rows represent analysis units and columns contain the returned quantities.
 #' @export
 api_lifecycle_diff <- function(old, new) {
   old <- eye_api_lifecycle(old); new <- eye_api_lifecycle(new)

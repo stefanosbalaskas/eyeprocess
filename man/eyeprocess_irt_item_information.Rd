@@ -20,6 +20,9 @@ eyeprocess_irt_item_information(
 
 \item{D}{Logistic scaling constant.}
 }
+\value{
+A numeric value or vector containing item information for transparent IRT families.
+}
 \description{
 Compute item information for transparent IRT families
 }

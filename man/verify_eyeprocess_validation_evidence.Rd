@@ -9,6 +9,9 @@ verify_eyeprocess_validation_evidence(x)
 \arguments{
 \item{x}{Object to validate, summarize, verify, or otherwise process.}
 }
+\value{
+A logical value or vector indicating verify the integrity hash of a frozen evidence bundle.
+}
 \description{
 Verify the integrity hash of a frozen evidence bundle
 }

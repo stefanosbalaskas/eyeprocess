@@ -20,6 +20,9 @@ eyeprocess_mirt_information_matrix(
 
 \item{D}{Logistic scaling constant.}
 }
+\value{
+A numeric value or vector containing multidimensional 2PL item information matrix.
+}
 \description{
 Multidimensional 2PL item information matrix
 }

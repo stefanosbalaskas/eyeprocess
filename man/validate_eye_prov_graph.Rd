@@ -9,6 +9,9 @@ validate_eye_prov_graph(x)
 \arguments{
 \item{x}{Provenance graph.}
 }
+\value{
+A logical value or vector indicating a provenance graph.
+}
 \description{
 Validate a provenance graph
 }

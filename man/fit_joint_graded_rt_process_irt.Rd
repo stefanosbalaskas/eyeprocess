@@ -47,6 +47,9 @@ fit_joint_graded_rt_process_irt(
 
 \item{...}{Additional arguments passed to the selected model, engine, or method.}
 }
+\value{
+An object of class "eye_joint_graded_rt_process_irt", stored as a named list, with components "engine", "response_model", "rt_model", "process_model", "data_n", "status", "note". It contains joint graded-response, RT, and process reference model and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 Extends the 2026 graded-response/RT direction with an optional gaze/process
 channel. The bundled reference engine uses proportional-odds plus crossed RT

@@ -9,6 +9,9 @@ verify_reproducibility_fingerprint(x)
 \arguments{
 \item{x}{Fingerprint.}
 }
+\value{
+A logical value or vector indicating verify an internally stored fingerprint hash.
+}
 \description{
 Verify an internally stored fingerprint hash
 }

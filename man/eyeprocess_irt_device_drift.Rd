@@ -20,6 +20,9 @@ eyeprocess_irt_device_drift(
 
 \item{parameter}{Name of the parameter to compare.}
 }
+\value{
+A tabular R object containing parameter drift across acquisition devices; rows represent analysis units and columns contain the returned quantities.
+}
 \description{
 Summarise parameter drift across acquisition devices
 }

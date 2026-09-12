@@ -28,6 +28,9 @@ pupil_activity_index(
 
 \item{fast_window_ms, slow_window_ms}{Smoothing windows for the RIPA-style proxy.}
 }
+\value{
+A numeric value or vector containing a transparent pupil activity index.
+}
 \description{
 Compute a transparent pupil activity index
 }

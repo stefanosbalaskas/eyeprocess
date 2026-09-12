@@ -17,6 +17,9 @@ fit_eyeprocess_gdina(dat, Q, model = "GDINA", ..., engine = "GDINA")
 
 \item{engine}{Requested estimation or analysis engine.}
 }
+\value{
+An object of class "eye_external_irt_fit", stored as a named list, with components "status", "engine", "fit", "call". It contains a G-DINA cognitive-diagnosis model without fallback substitution and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 Fit a G-DINA cognitive-diagnosis model without fallback substitution
 }

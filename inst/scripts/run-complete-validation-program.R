@@ -7,7 +7,7 @@ programme_args <- list(corpus = args[[1L]], output_dir = args[[2L]], overwrite =
 if (length(args) >= 3L) {
   job_path <- normalizePath(args[[3L]], winslash = "/", mustWork = TRUE)
   jobs <- if (grepl("\\.[Rr]$", job_path)) {
-    environment <- new.env(parent = globalenv())
+    environment <- new.env(parent = asNamespace("eyeprocess"))
     sys.source(job_path, envir = environment)
     if (!exists("validation_jobs", envir = environment, inherits = FALSE)) {
       stop("An R job file must create a named list called `validation_jobs`.")

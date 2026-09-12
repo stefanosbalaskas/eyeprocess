@@ -11,6 +11,9 @@ read_reproducibility_fingerprint(path, format = NULL)
 
 \item{format}{Optional format.}
 }
+\value{
+An R object containing a reproducibility fingerprint. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
+}
 \description{
 Read a reproducibility fingerprint
 }

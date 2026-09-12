@@ -1248,7 +1248,7 @@ write_gazepoint_workflow_report <- function(
         output_file = paste0(tools::file_path_sans_ext(basename(path)), ".html"),
         output_dir = dirname(path),
         quiet = TRUE,
-        envir = new.env(parent = globalenv())
+        envir = new.env(parent = baseenv())
       ),
       silent = TRUE
     )

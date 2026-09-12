@@ -20,6 +20,9 @@ fit_changepoint_multimodal_irt(
 
 \item{refit}{Whether the model is refitted after segmentation.}
 }
+\value{
+An object of class "eye_changepoint_multimodal_irt", stored as a named list, with components "changepoints", "refit_requested", "status". It contains a multimodal change-point IRT workflow and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 Fit a multimodal change-point IRT workflow
 }

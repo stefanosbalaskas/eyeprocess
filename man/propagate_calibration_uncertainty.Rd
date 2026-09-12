@@ -24,6 +24,9 @@ propagate_calibration_uncertainty(
 
 \item{seed}{Seed.}
 }
+\value{
+An R object containing propagate empirical calibration uncertainty around gaze samples. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
+}
 \description{
 Propagate empirical calibration uncertainty around gaze samples
 }

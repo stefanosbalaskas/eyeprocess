@@ -23,6 +23,9 @@ map_latent_classes_to_process_profiles(
 
 \item{process_features}{Numeric process features.}
 }
+\value{
+An object of class "eye_latent_process_alignment", stored as a named list, with components "data", "summary", "process_features", "class_col", "caveat". It contains supplied latent-class memberships to process summaries and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 Map supplied latent-class memberships to process summaries
 }

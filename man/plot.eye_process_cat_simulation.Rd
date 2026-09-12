@@ -11,6 +11,9 @@
 
 \item{...}{Additional arguments passed to the selected model, engine, or method.}
 }
+\value{
+Invisibly returns the plotting result when available; the primary effect is drawing plot CAT simulation information accumulation.
+}
 \description{
 Plot CAT simulation information accumulation
 }

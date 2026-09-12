@@ -26,6 +26,9 @@ process_person_fit(
 
 \item{process_weight}{Weight assigned to process discrepancy.}
 }
+\value{
+An object of class "eye_process_person_fit", "data.frame", stored as a data frame, containing joint response-process person-fit diagnostic and associated metadata needed to interpret the result.
+}
 \description{
 Produces model-discrepancy evidence; it never labels a participant as
 dishonest, impaired, disengaged, or otherwise psychologically categorized.

@@ -32,6 +32,9 @@ fit_cognitive_diagnosis_process(
 
 \item{...}{Additional arguments passed to the selected model, engine, or method.}
 }
+\value{
+An object of class "eye_cognitive_diagnosis_process", stored as a named list, with components "response_model", "process_summary", "process_mastery_correlation", "q_matrix", "status". It contains cognitive-diagnosis model with process indicators and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 Uses GDINA for the response layer when available and retains process features
 as a parallel diagnostic channel. Process/mastery associations are reported

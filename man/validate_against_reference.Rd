@@ -13,6 +13,9 @@ validate_against_reference(x, reference, tolerance = 1e-06)
 
 \item{tolerance}{Numeric tolerance for matched summary values.}
 }
+\value{
+An object of class "eye_validation_reference_comparison", stored as a named list, with components "table", "tolerance", "pass", "reference_hash", "current_hash". It contains a validation result with a frozen reference and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 Compare a validation result with a frozen reference
 }

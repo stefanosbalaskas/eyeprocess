@@ -17,6 +17,9 @@ eyeprocess_cdm_qmatrix_audit(
 
 \item{attribute_names}{Optional names for the cognitive-diagnosis attributes.}
 }
+\value{
+An object of class "eye_cdm_qmatrix_audit", stored as a named list, with components "item", "attribute", "duplicate_rows", "complete_identity_block". It contains a cognitive-diagnosis Q-matrix and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 Audit a cognitive-diagnosis Q-matrix
 }

@@ -9,6 +9,9 @@ verify_decision_manifest_lock(x)
 \arguments{
 \item{x}{Manifest lock.}
 }
+\value{
+A logical value or vector indicating verify that a locked manifest has not changed.
+}
 \description{
 Verify that a locked manifest has not changed
 }

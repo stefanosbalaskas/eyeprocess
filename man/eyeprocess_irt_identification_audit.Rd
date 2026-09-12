@@ -20,6 +20,9 @@ eyeprocess_irt_identification_audit(
 
 \item{n_persons}{Number of persons.}
 }
+\value{
+An object of class "eye_irt_identification_audit", stored as a named list, with components "spec", "location_identified", "scale_identified", "anchors", "warnings", "valid", "n_items", "n_persons". It contains iRT scale/location identification and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 Audit IRT scale/location identification
 }

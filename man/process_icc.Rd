@@ -15,6 +15,9 @@ process_icc(data, person, session, measure)
 
 \item{measure}{Measure column.}
 }
+\value{
+A data frame containing absolute-agreement ICC(A,1) for repeated process measures. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
+}
 \description{
 Absolute-agreement ICC(A,1) for repeated process measures
 }

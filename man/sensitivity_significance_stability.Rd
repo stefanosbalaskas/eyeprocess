@@ -13,6 +13,9 @@ sensitivity_significance_stability(x, p_value = "p_value", alpha = 0.05)
 
 \item{alpha}{Decision threshold.}
 }
+\value{
+A numeric value or vector containing significance-decision stability across specifications.
+}
 \description{
 Significance-decision stability across specifications
 }

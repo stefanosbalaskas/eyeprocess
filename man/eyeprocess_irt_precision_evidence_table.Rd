@@ -17,6 +17,9 @@ eyeprocess_irt_precision_evidence_table(
 
 \item{digits}{Number of decimal digits used for presentation.}
 }
+\value{
+An R object containing a paper-ready IRT information/precision table. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
+}
 \description{
 Build a paper-ready IRT information/precision table
 }

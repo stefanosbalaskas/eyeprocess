@@ -9,6 +9,9 @@ validate_process_validation_design(x)
 \arguments{
 \item{x}{Validation design.}
 }
+\value{
+A logical value or vector indicating a process-validation design.
+}
 \description{
 Validate a process-validation design
 }

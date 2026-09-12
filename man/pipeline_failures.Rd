@@ -9,6 +9,9 @@ pipeline_failures(x)
 \arguments{
 \item{x}{Pipeline run.}
 }
+\value{
+A data frame containing return failed pipeline steps. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
+}
 \description{
 Return failed pipeline steps
 }

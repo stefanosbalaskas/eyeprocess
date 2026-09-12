@@ -13,6 +13,9 @@ fixation_boundary_uncertainty(data, aois, x = "gaze_x", y = "gaze_y")
 
 \item{x, y}{Coordinates.}
 }
+\value{
+A tabular R object containing distance to nearest rectangular AOI boundary; rows represent analysis units and columns contain the returned quantities.
+}
 \description{
 Distance to nearest rectangular AOI boundary
 }

@@ -11,6 +11,9 @@ export_prov_json(x, path)
 
 \item{path}{Output JSON path.}
 }
+\value{
+An R object containing lightweight PROV-oriented JSON. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
+}
 \description{
 This is a compact interoperability representation inspired by W3C PROV. It is
 not asserted to be a complete PROV-O serialization; consumers requiring full

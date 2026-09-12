@@ -210,7 +210,7 @@
   if (!requireNamespace(pkg, quietly = TRUE)) {
     msg <- paste0("Package `", pkg, "` is required")
     if (!is.null(reason)) msg <- paste0(msg, " ", reason)
-    .eye_stop(msg, ". Install it with install.packages(\"", pkg, "\").")
+    .eye_stop(msg, ". Please install it before using this feature.")
   }
   invisible(TRUE)
 }
@@ -251,4 +251,11 @@
   at[exclude] <- NULL
   for (nm in names(at)) attr(to, nm) <- at[[nm]]
   to
+}
+
+# Scope a reproducible random-number seed to the current function call while
+# restoring the caller's RNG state automatically on exit.
+.eye_local_seed <- function(seed, env = parent.frame()) {
+  if (!is.null(seed)) withr::local_seed(seed, .local_envir = env)
+  invisible(seed)
 }

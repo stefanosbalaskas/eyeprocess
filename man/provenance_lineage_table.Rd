@@ -20,6 +20,9 @@ provenance_lineage_table(
 
 \item{value}{Optional values/locations.}
 }
+\value{
+A data frame containing a provenance lineage node table. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
+}
 \description{
 Build a provenance lineage node table
 }

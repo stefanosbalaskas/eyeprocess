@@ -11,6 +11,9 @@ sensitivity_decision_leverage(x, effect = "effect")
 
 \item{effect}{Effect column.}
 }
+\value{
+A tabular R object containing decision leverage of each analytical choice; rows represent analysis units and columns contain the returned quantities.
+}
 \description{
 Leverage is descriptive variation in mean effect across option levels; it is
 not causal attribution of researcher decisions.

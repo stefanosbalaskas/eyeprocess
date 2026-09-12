@@ -11,6 +11,9 @@ compare_decision_manifests(old, new)
 
 \item{new}{Later manifest.}
 }
+\value{
+An object of class "eye_decision_manifest_diff", "data.frame", stored as a data frame, containing two research decision manifests and associated metadata needed to interpret the result.
+}
 \description{
 Compare two research decision manifests
 }

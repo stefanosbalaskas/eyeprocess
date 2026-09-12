@@ -23,6 +23,9 @@ process_feature_stability(
 
 \item{top_n}{Number of top features counted per split.}
 }
+\value{
+A data frame containing process-feature stability across repeated analyses. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
+}
 \description{
 Summarize process-feature stability across repeated analyses
 }

@@ -20,6 +20,9 @@ irt_nominal_channel(
 
 \item{options}{Additional channel/model options.}
 }
+\value{
+A named list with components "type", "family", "role", "link", "variables", "latent", "options", containing nominal response/process channel and associated metadata or diagnostics.
+}
 \description{
 Nominal response/process channel
 }

@@ -28,6 +28,9 @@ fit_pupil_event_deconvolution(
 
 \item{min_samples}{Minimum usable samples per group.}
 }
+\value{
+An object of class "eye_pupil_deconvolution", stored as a named list, with components "fits", "effects", "fitted", "events", "tmax_ms", "shape", "by", "status", "caveat". It contains transparent event-related pupil deconvolution models and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 Fits a linear superposition model of overlapping event kernels. This is a
 transparent reference deconvolution layer, not a universal physiological model.

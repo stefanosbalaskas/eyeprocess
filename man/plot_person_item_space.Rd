@@ -15,6 +15,9 @@ plot_person_item_space(object, dimensions = c(1L, 2L), labels = FALSE, ...)
 
 \item{...}{Graphical arguments.}
 }
+\value{
+A named list with components "person", "item", "dimensions", containing plot person/item latent-space coordinates and associated metadata or diagnostics.
+}
 \description{
 Plot person/item latent-space coordinates
 }

@@ -12,6 +12,9 @@ object exposing a `simulate_fun` function.}
 
 \item{...}{Arguments passed to the simulator.}
 }
+\value{
+An R object containing data from a model or registered model specification. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
+}
 \description{
 Simulate data from a model or registered model specification
 }

@@ -17,6 +17,9 @@ eyeprocess_multichannel_measurement_map(
 
 \item{role}{Declared role of each measurement channel.}
 }
+\value{
+A data frame containing a multichannel measurement map. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
+}
 \description{
 Construct a multichannel measurement map
 }

@@ -14,6 +14,9 @@ validation_condition_ranking(
 
 \item{weights}{Named weights for rmse, absolute bias, coverage error, and failure rate.}
 }
+\value{
+A tabular R object containing rank validation conditions by a transparent robustness score; rows represent analysis units and columns contain the returned quantities.
+}
 \description{
 Rank validation conditions by a transparent robustness score
 }

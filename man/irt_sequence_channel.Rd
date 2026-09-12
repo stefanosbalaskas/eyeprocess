@@ -20,6 +20,9 @@ irt_sequence_channel(
 
 \item{options}{Additional channel/model options.}
 }
+\value{
+A named list with components "type", "family", "role", "link", "variables", "latent", "options", containing sequence/process-state channel and associated metadata or diagnostics.
+}
 \description{
 Sequence/process-state channel
 }

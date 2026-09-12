@@ -23,6 +23,9 @@ eyeprocess_irt_parameter_plausibility_audit(
 
 \item{upper_asymptote}{Upper-asymptote parameter values.}
 }
+\value{
+A data frame containing basic plausibility of dichotomous item parameters. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
+}
 \description{
 Audit basic plausibility of dichotomous item parameters
 }

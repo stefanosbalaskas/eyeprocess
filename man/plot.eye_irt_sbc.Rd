@@ -15,6 +15,9 @@
 
 \item{...}{Additional arguments passed to the selected model, engine, or method.}
 }
+\value{
+Invisibly returns the plotting result when available; the primary effect is drawing plot SBC rank histograms by parameter.
+}
 \description{
 Plot SBC rank histograms by parameter
 }
