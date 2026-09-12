@@ -290,7 +290,10 @@ def infer_expr(expr: str, assigns: dict[str, str], funcs: dict[str, FunctionInfo
         return ReturnInfo("logical", [], [], compact, "terminal")
     if re.fullmatch(r"[A-Za-z.][A-Za-z0-9._]*", expr):
         if expr in assigns:
-            return infer_expr(assigns[expr], assigns, funcs, seen)
+            marker = f"assign:{expr}"
+            if marker in seen:
+                return ReturnInfo("object", [], [], compact, "assignment-cycle")
+            return infer_expr(assigns[expr], assigns, funcs, seen | {marker})
         if expr in {"TRUE", "FALSE"}:
             return ReturnInfo("logical", [], [], compact, "terminal")
         if expr == "NULL":
@@ -367,9 +370,11 @@ def infer_expr(expr: str, assigns: dict[str, str], funcs: dict[str, FunctionInfo
     if subset:
         base = subset.group(1)
         if base in assigns:
-            base_info = infer_expr(assigns[base], assigns, funcs, seen)
-            if base_info.kind in {"data.frame", "matrix", "array", "tabular"}:
-                return ReturnInfo(base_info.kind, base_info.classes, base_info.components, compact, "terminal-subset")
+            marker = f"assign:{base}"
+            if marker not in seen:
+                base_info = infer_expr(assigns[base], assigns, funcs, seen | {marker})
+                if base_info.kind in {"data.frame", "matrix", "array", "tabular"}:
+                    return ReturnInfo(base_info.kind, base_info.classes, base_info.components, compact, "terminal-subset")
         if re.search(r"\bdrop\s*=\s*FALSE\b", expr):
             return ReturnInfo("tabular", [], [], compact, "terminal-subset")
         return ReturnInfo("object", [], [], compact, "terminal-subset")
