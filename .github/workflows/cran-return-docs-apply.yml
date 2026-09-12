@@ -38,6 +38,7 @@ jobs:
 
       - name: Verify CRAN remediation findings
         run: |
+          # Re-run the exact fail-closed policy audit on the generated tree.
           python tools/cran_policy_audit.py
           python - <<'PY'
           from pathlib import Path
