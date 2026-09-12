@@ -1,0 +1,101 @@
+name: Apply CRAN return documentation remediation
+
+on:
+  push:
+    branches:
+      - cran-remediation-0.11.1
+    paths:
+      - .github/workflows/cran-return-docs-apply.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  apply-return-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: release
+
+      - name: Install documentation tooling
+        run: Rscript -e 'install.packages("roxygen2", repos = "https://cloud.r-project.org")'
+
+      - name: Apply return documentation to roxygen sources
+        run: |
+          python tools/cran_return_docs_v2.py --apply > /tmp/return-inference.txt
+          tail -n 5 /tmp/return-inference.txt
+
+      - name: Regenerate Rd and namespace files
+        run: Rscript -e 'roxygen2::roxygenise(".", roclets = c("rd", "namespace"))'
+
+      - name: Verify CRAN remediation findings
+        run: |
+          python tools/cran_policy_audit.py
+          python - <<'PY'
+          from pathlib import Path
+          missing = []
+          for rd in sorted(Path("man").glob("*.Rd")):
+              text = rd.read_text(encoding="utf-8", errors="replace")
+              if "\\value{" not in text:
+                  missing.append(rd.name)
+          print(f"MISSING_VALUE_TAGS={len(missing)}")
+          if missing:
+              print("\n".join(missing[:50]))
+              raise SystemExit("Generated Rd files still missing \\value tags")
+          PY
+
+      - name: Verify CRAN-named examples
+        run: |
+          python - <<'PY'
+          import re
+          from pathlib import Path
+          names = [
+              "addm_glam_proxy_features",
+              "adjust_pupil_confounds",
+              "algorithm_facet_effects",
+              "analysis_environment_snapshot",
+              "analysis_resolution_guard",
+              "aoi_membership_probability",
+          ]
+          lines = ["# CRAN remediation report", "", "Generated automatically from the remediation branch.", ""]
+          for name in names:
+              rd = Path("man") / f"{name}.Rd"
+              if not rd.exists():
+                  raise SystemExit(f"Missing CRAN-named manual: {rd}")
+              text = rd.read_text(encoding="utf-8", errors="replace")
+              m = re.search(r"\\value\{(.*?)\}\s*(?:\\|$)", text, re.S)
+              if not m:
+                  raise SystemExit(f"Missing value documentation for {name}")
+              value = re.sub(r"\s+", " ", m.group(1)).strip()
+              if not value:
+                  raise SystemExit(f"Empty value documentation for {name}")
+              lines.append(f"- `{name}`: {value}")
+          lines += ["", "## Inventory", ""]
+          missing = [
+              p.name for p in sorted(Path("man").glob("*.Rd"))
+              if "\\value{" not in p.read_text(encoding="utf-8", errors="replace")
+          ]
+          lines.append(f"- Generated `.Rd` files missing `\\value`: **{len(missing)}**")
+          Path("CRAN_REMEDIATION_REPORT.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+          PY
+
+      - name: Patch hygiene
+        run: git diff --check
+
+      - name: Commit generated documentation remediation
+        run: |
+          if git diff --quiet; then
+            echo "No documentation changes required."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add R man NAMESPACE CRAN_REMEDIATION_REPORT.md
+          git commit -m "docs: document exported return values for CRAN"
+          git push origin HEAD:cran-remediation-0.11.1
