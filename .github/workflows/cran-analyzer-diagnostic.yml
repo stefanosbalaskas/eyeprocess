@@ -1,0 +1,40 @@
+name: Diagnose CRAN return analyzer
+
+on:
+  push:
+    branches:
+      - cran-remediation-0.11.1
+    paths:
+      - .github/workflows/cran-analyzer-diagnostic.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Capture analyzer traceback
+        shell: bash
+        run: |
+          set +e
+          python tools/cran_return_docs_v2.py --apply > analyzer-diagnostic.txt 2>&1
+          status=$?
+          set -e
+          {
+            echo
+            echo "ANALYZER_EXIT_STATUS=$status"
+          } >> analyzer-diagnostic.txt
+          cat analyzer-diagnostic.txt
+          git restore --worktree --staged R man NAMESPACE 2>/dev/null || true
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add analyzer-diagnostic.txt
+          git commit -m "chore: capture CRAN analyzer traceback"
+          git push origin HEAD:cran-remediation-0.11.1
+          exit "$status"
