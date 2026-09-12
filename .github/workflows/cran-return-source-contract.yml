@@ -1,0 +1,52 @@
+name: Prepare explicit CRAN return contract
+
+on:
+  push:
+    branches:
+      - cran-remediation-0.11.1
+    paths:
+      - .github/workflows/cran-return-source-contract.yml
+
+permissions:
+  contents: write
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Add explicit robustness-score return contract
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path("R/069-validation-program-0-9.R")
+          text = p.read_text(encoding="utf-8")
+          old = """#' Overall validation robustness score
+          #' @param x Validation result.
+          #' @export
+          validation_robustness_score <- function(x) {
+          """.replace("          ", "")
+          new = """#' Overall validation robustness score
+          #' @param x Validation result.
+          #' @return A single numeric robustness score: the mean finite condition-level robustness score, or `NA_real_` when no finite score is available.
+          #' @export
+          validation_robustness_score <- function(x) {
+          """.replace("          ", "")
+          if text.count(old) != 1:
+              raise SystemExit("validation_robustness_score roxygen anchor not unique")
+          p.write_text(text.replace(old, new, 1), encoding="utf-8")
+          PY
+          git diff --check
+
+      - name: Commit contract and remove one-shot workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/cran-return-source-contract.yml
+          git add R/069-validation-program-0-9.R
+          git diff --cached --check
+          git commit -m "docs: define validation robustness return contract"
+          git push origin HEAD:cran-remediation-0.11.1
