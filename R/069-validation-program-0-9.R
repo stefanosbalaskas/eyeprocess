@@ -528,6 +528,7 @@ validation_condition_ranking <- function(
 
 #' Overall validation robustness score
 #' @param x Validation result.
+#' @return A single numeric robustness score: the mean finite condition-level robustness score, or `NA_real_` when no finite score is available.
 #' @export
 validation_robustness_score <- function(x) {
   r <- validation_condition_ranking(x)
