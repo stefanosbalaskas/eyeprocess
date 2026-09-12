@@ -28,6 +28,31 @@ jobs:
           dependencies: '"hard"'
           extra-packages: any::roxygen2
 
+      - name: Verify analyzer assignment-cycle guard
+        run: |
+          python -m py_compile tools/cran_return_docs_v2.py
+          python - <<'PY'
+          import importlib.util
+          import sys
+          from pathlib import Path
+
+          path = Path("tools/cran_return_docs_v2.py")
+          spec = importlib.util.spec_from_file_location("cran_return_docs_v2", path)
+          mod = importlib.util.module_from_spec(spec)
+          sys.modules[spec.name] = mod
+          spec.loader.exec_module(mod)
+
+          info = mod.infer_expr(
+              "out",
+              {"out": "out[order(-score), , drop = FALSE]"},
+              {},
+              set(),
+          )
+          if info.kind != "tabular":
+              raise SystemExit(f"Assignment-cycle guard regression: {info}")
+          print("ASSIGNMENT_CYCLE_GUARD=PASS")
+          PY
+
       - name: Apply return documentation to roxygen sources
         run: |
           python tools/cran_return_docs_v2.py --apply > /tmp/return-inference.txt
