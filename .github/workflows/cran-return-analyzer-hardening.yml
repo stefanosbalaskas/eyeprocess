@@ -59,8 +59,8 @@ jobs:
               raise SystemExit(f"classes_in replacement count={n}")
 
           replace_once(
-              '    if (len(expr) >= 2 and expr[0] == expr[-1] and expr[0] in "\'\\\""):\n        return ReturnInfo("character", [], [], compact, "terminal")\n',
-              '    if expr in {"NA_real_", "NA_integer_"}:\n        return ReturnInfo("numeric", [], [], compact, "terminal")\n    if expr == "NA_character_":\n        return ReturnInfo("character", [], [], compact, "terminal")\n    if expr in {"NA", "NA_logical_"}:\n        return ReturnInfo("logical", [], [], compact, "terminal")\n    if (len(expr) >= 2 and expr[0] == expr[-1] and expr[0] in "\'\\\""):\n        return ReturnInfo("character", [], [], compact, "terminal")\n',
+              '    compact = re.sub(r"\\s+", " ", expr)\n    if re.fullmatch(r"[A-Za-z.][A-Za-z0-9._]*", expr):\n',
+              '    compact = re.sub(r"\\s+", " ", expr)\n    if expr in {"NA_real_", "NA_integer_"}:\n        return ReturnInfo("numeric", [], [], compact, "terminal")\n    if expr == "NA_character_":\n        return ReturnInfo("character", [], [], compact, "terminal")\n    if expr in {"NA", "NA_logical_"}:\n        return ReturnInfo("logical", [], [], compact, "terminal")\n    if re.fullmatch(r"[A-Za-z.][A-Za-z0-9._]*", expr):\n',
               "NA scalar typing")
 
           replace_once(
@@ -135,13 +135,23 @@ jobs:
           sys.modules[spec.name] = mod
           spec.loader.exec_module(mod)
           funcs = {}
-          assert mod.classes_in('structure(x, class = c(paste0("eye_irt_", type, "_channel"), "eye_irt_channel"))') == []
-          assert mod.classes_in('structure(x, class = c("a", "b"))') == ["a", "b"]
-          assert mod.infer_expr('as.integer(4)', {}, funcs, set()).kind == "numeric"
-          assert mod.infer_expr('uniroot(f, c(0, 1))', {}, funcs, set()).kind == "list"
-          assert mod.infer_expr('sample(x)', {}, funcs, set()).kind == "object"
-          assert mod.infer_expr('s[order(-s$score), , drop = FALSE]', {"s": 'data.frame(a = 1)'}, funcs, set()).kind == "data.frame"
-          assert mod.infer_expr('if (length(z)) mean(z) else NA_real_', {}, funcs, set()).kind == "numeric"
+          checks = {
+              "dynamic_classes": mod.classes_in('structure(x, class = c(paste0("eye_irt_", type, "_channel"), "eye_irt_channel"))'),
+              "literal_classes": mod.classes_in('structure(x, class = c("a", "b"))'),
+              "as_integer": mod.infer_expr('as.integer(4)', {}, funcs, set()).kind,
+              "uniroot": mod.infer_expr('uniroot(f, c(0, 1))', {}, funcs, set()).kind,
+              "sample": mod.infer_expr('sample(x)', {}, funcs, set()).kind,
+              "table_subset": mod.infer_expr('s[order(-s$score), , drop = FALSE]', {"s": 'data.frame(a = 1)'}, funcs, set()).kind,
+              "inline_if": mod.infer_expr('if (length(z)) mean(z) else NA_real_', {}, funcs, set()).kind,
+          }
+          print("SEMANTIC_REGRESSION_VALUES=", checks)
+          assert checks["dynamic_classes"] == []
+          assert checks["literal_classes"] == ["a", "b"]
+          assert checks["as_integer"] == "numeric"
+          assert checks["uniroot"] == "list"
+          assert checks["sample"] == "object"
+          assert checks["table_subset"] == "data.frame"
+          assert checks["inline_if"] == "numeric"
           print("SEMANTIC_REGRESSION_TESTS=PASS")
           PY
 
