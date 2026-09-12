@@ -16,3 +16,5 @@ jobs:
       - uses: actions/checkout@v4
       - name: Audit CRAN manual-review findings
         run: python tools/cran_policy_audit.py
+      - name: Audit missing return documentation
+        run: python tools/cran_return_docs.py
