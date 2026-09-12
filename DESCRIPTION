@@ -11,17 +11,17 @@ Description: Provides an extensible, vendor-neutral framework for importing, val
     Downstream tools support trial and area of interest reconstruction, signal-quality auditing, feature derivation,
     scanpath analysis, response-time and item-response workflows, and optional psychometric modelling engines. An
     integrated Gazepoint workflow produces quality-control evidence, media-trial reconstruction, plots, analysis-ready
-    process tables, IRT-ready response structures, and reproducible reports. Eye-Tracking-BIDS interoperability and
-    validation-release infrastructure support disk-backed storage, independent multi-vendor evidence, grouped validation,
-    simulation calibration, model-equivalence audits, and explicitly experimental advanced psychometric process models.
-    Research-scale infrastructure adds deterministic resumable Monte Carlo execution, atomic validation checkpoints,
-    explicit advanced-model promotion gates, independent multi-vendor evidence registries, stable object contracts,
-    partitioned disk-backed storage, optional probabilistic engines, and a fully synthetic multimodal benchmark for
-    reproducibility testing. The measurement-intelligence programme adds probabilistic and compositional AOI analysis,
-    measurement-uncertainty propagation, calibration and device-transportability audits, process reliability,
-    phase-amplitude pupil registration, informative-missingness sensitivity, temporal and spatial process models,
-    item-bank decision optimization, fairness monitoring, conditional process reference distributions, and
-    evidence-provenance graphs.
+    process tables, item response theory (IRT)-ready response structures, and reproducible reports. Brain Imaging Data
+    Structure (BIDS) interoperability for eye-tracking and validation-release infrastructure support disk-backed storage,
+    independent multi-vendor evidence, grouped validation, simulation calibration, model-equivalence audits, and
+    explicitly experimental advanced psychometric process models. Research-scale infrastructure adds deterministic
+    resumable Monte Carlo execution, atomic validation checkpoints, explicit advanced-model promotion gates, independent
+    multi-vendor evidence registries, stable object contracts, partitioned disk-backed storage, optional probabilistic
+    engines, and a fully synthetic multimodal benchmark for reproducibility testing. The measurement-intelligence
+    programme adds probabilistic and compositional area of interest (AOI) analysis, measurement-uncertainty propagation,
+    calibration and device-transportability audits, process reliability, phase-amplitude pupil registration,
+    informative-missingness sensitivity, temporal and spatial process models, item-bank decision optimization, fairness
+    monitoring, conditional process reference distributions, and evidence-provenance graphs.
 License: MIT + file LICENSE
 URL: https://stefanosbalaskas.github.io/eyeprocess/, https://github.com/stefanosbalaskas/eyeprocess
 BugReports: https://github.com/stefanosbalaskas/eyeprocess/issues
