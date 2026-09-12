@@ -61,7 +61,47 @@ jobs:
               raise SystemExit("Usage-bearing generated Rd files still missing \\value tags")
           PY
 
-      - name: Verify CRAN-named examples and write report
+      - name: Verify semantic return contracts
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          def manual(name):
+              p = Path("man") / f"{name}.Rd"
+              if not p.exists():
+                  raise SystemExit(f"Missing semantic-check manual: {p}")
+              return p.read_text(encoding="utf-8", errors="replace")
+
+          ranking = manual("validation_condition_ranking")
+          if not ("A data frame containing" in ranking or "A tabular R object containing" in ranking):
+              raise SystemExit("validation_condition_ranking is not documented as tabular")
+          if "A numeric value or vector" in ranking:
+              raise SystemExit("validation_condition_ranking was falsely documented as numeric")
+
+          budget = manual("validation_replication_budget")
+          if "A numeric value or vector" not in budget:
+              raise SystemExit("validation_replication_budget is not documented as numeric")
+
+          robust = manual("validation_robustness_score")
+          if "A single numeric robustness score" not in robust:
+              raise SystemExit("validation_robustness_score lost its explicit numeric return contract")
+
+          all_manuals = "\n".join(
+              p.read_text(encoding="utf-8", errors="replace")
+              for p in sorted(Path("man").glob("*.Rd"))
+          )
+          bad_dynamic_class_fragments = [
+              '"eye_irt_", "_channel"',
+              'class "eye_irt_", "_channel"',
+          ]
+          bad = [x for x in bad_dynamic_class_fragments if x in all_manuals]
+          if bad:
+              raise SystemExit(f"Dynamic IRT class fragments leaked into documentation: {bad}")
+
+          print("SEMANTIC_RETURN_CONTRACTS=PASS")
+          PY
+
+      - name: Verify representative examples and write report
         run: |
           python - <<'PY'
           import re
@@ -73,6 +113,9 @@ jobs:
               "analysis_environment_snapshot",
               "analysis_resolution_guard",
               "aoi_membership_probability",
+              "validation_condition_ranking",
+              "validation_replication_budget",
+              "validation_robustness_score",
           ]
           inference = Path("/tmp/return-inference.txt").read_text(encoding="utf-8", errors="replace")
           inventory = [line for line in inference.splitlines() if line.startswith("RETURN_V2_INVENTORY=")]
@@ -82,7 +125,7 @@ jobs:
           for name in names:
               rd = Path("man") / f"{name}.Rd"
               if not rd.exists():
-                  raise SystemExit(f"Missing CRAN-named manual: {rd}")
+                  raise SystemExit(f"Missing representative manual: {rd}")
               text = rd.read_text(encoding="utf-8", errors="replace")
               m = re.search(r"\\value\{(.*?)\}\s*(?:\\|$)", text, re.S)
               if not m:
