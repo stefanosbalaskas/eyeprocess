@@ -88,31 +88,31 @@ jobs:
               '    if name == "structure" and cls:\n        comps = list_components(expr)\n        kind = "data.frame" if "data.frame" in cls else ("list" if "list(" in expr else "classed")\n        return ReturnInfo(kind, cls, comps, compact, "terminal-class")\n    if name == "structure" and not cls:\n        comps = list_components(expr)\n        return ReturnInfo("list" if "list(" in expr else "classed", [], comps, compact, "terminal-dynamic-class")\n',
               "dynamic class fallback")
 
-          structured = textwrap.dedent(r'''
-              # Preserve structured terminal subsetting before arithmetic-token
-              # heuristics; e.g. order(-score) does not make the return numeric.
-              subset = re.match(r"^([A-Za-z.][A-Za-z0-9._]*)\s*\[", expr)
-              if subset:
-                  base = subset.group(1)
-                  if base in assigns:
-                      base_info = infer_expr(assigns[base], assigns, funcs, seen)
-                      if base_info.kind in {"data.frame", "matrix", "array", "tabular"}:
-                          return ReturnInfo(base_info.kind, base_info.classes, base_info.components, compact, "terminal-subset")
-                  if re.search(r"\bdrop\s*=\s*FALSE\b", expr):
-                      return ReturnInfo("tabular", [], [], compact, "terminal-subset")
-                  return ReturnInfo("object", [], [], compact, "terminal-subset")
+          structured = textwrap.indent(textwrap.dedent(r'''
+          # Preserve structured terminal subsetting before arithmetic-token
+          # heuristics; e.g. order(-score) does not make the return numeric.
+          subset = re.match(r"^([A-Za-z.][A-Za-z0-9._]*)\s*\[", expr)
+          if subset:
+              base = subset.group(1)
+              if base in assigns:
+                  base_info = infer_expr(assigns[base], assigns, funcs, seen)
+                  if base_info.kind in {"data.frame", "matrix", "array", "tabular"}:
+                      return ReturnInfo(base_info.kind, base_info.classes, base_info.components, compact, "terminal-subset")
+              if re.search(r"\bdrop\s*=\s*FALSE\b", expr):
+                  return ReturnInfo("tabular", [], [], compact, "terminal-subset")
+              return ReturnInfo("object", [], [], compact, "terminal-subset")
 
-              # Infer simple terminal if/else expressions from both value branches.
-              if expr.startswith("if ") or expr.startswith("if("):
-                  simple_if = re.match(r"^if\s*\((.*?)\)\s*(.*?)\s+else\s+(.*)$", expr, re.S)
-                  if simple_if:
-                      infos = [infer_expr(simple_if.group(i).strip(), assigns, funcs, seen) for i in (2, 3)]
-                      non_null = [x for x in infos if x.kind != "null"]
-                      kinds = {x.kind for x in non_null}
-                      if len(kinds) == 1 and non_null:
-                          x = non_null[0]
-                          return ReturnInfo(x.kind, x.classes, x.components, compact, "conditional")
-          ''').rstrip() + "\n\n"
+          # Infer simple terminal if/else expressions from both value branches.
+          if expr.startswith("if ") or expr.startswith("if("):
+              simple_if = re.match(r"^if\s*\((.*?)\)\s*(.*?)\s+else\s+(.*)$", expr, re.S)
+              if simple_if:
+                  infos = [infer_expr(simple_if.group(i).strip(), assigns, funcs, seen) for i in (2, 3)]
+                  non_null = [x for x in infos if x.kind != "null"]
+                  kinds = {x.kind for x in non_null}
+                  if len(kinds) == 1 and non_null:
+                      x = non_null[0]
+                      return ReturnInfo(x.kind, x.classes, x.components, compact, "conditional")
+          ''').strip("\n"), "    ") + "\n\n"
           replace_once(
               '    # Arithmetic/comparison expressions are common terminal expressions.\n',
               structured + '    # Arithmetic/comparison expressions are common terminal expressions.\n',
