@@ -1,4 +1,5 @@
 name: CRAN remediation R CMD check
+# Final cleaned-state certification trigger.
 
 on:
   push:
