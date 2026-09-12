@@ -21,159 +21,176 @@ jobs:
       - name: Patch return inference conservatively
         run: |
           python - <<'PY'
+          import re
           from pathlib import Path
 
           path = Path("tools/cran_return_docs_v2.py")
           text = path.read_text(encoding="utf-8")
 
-          old_classes = '''def classes_in(expr: str) -> list[str]:
-              m = re.search(r"\\bclass\\s*=\\s*(c\\s*\\((.*?)\\)|(['\\\"])(.*?)\\3)", expr, re.S)
-              if not m:
-                  return []
-              if m.group(2) is not None:
-                  return re.findall(r"['\\\"]([^'\\\"]+)['\\\"]", m.group(2))
-              return [m.group(4)] if m.group(4) else []
-          '''.replace("          ", "")
-          new_classes = '''def classes_in(expr: str) -> list[str]:
+          new_classes = r'''def classes_in(expr: str) -> list[str]:
               # Only accept literal class declarations. Dynamic expressions such as
               # class = c(paste0("eye_irt_", type, "_channel"), "eye_irt_channel")
               # must not be misreported as the literal fragments inside paste0().
-              m = re.search(r"\\bclass\\s*=\\s*(['\\\"])([^'\\\"]+)\\1", expr, re.S)
+              m = re.search(r"\bclass\s*=\s*(['\"])([^'\"]+)\1", expr, re.S)
               if m:
                   return [m.group(2)]
-              m = re.search(r"\\bclass\\s*=\\s*c\\s*\\(([^()]*)\\)", expr, re.S)
+              m = re.search(r"\bclass\s*=\s*c\s*\(([^()]*)\)", expr, re.S)
               if not m:
                   return []
               body = m.group(1).strip()
               parts = [p.strip() for p in body.split(",") if p.strip()]
-              if not parts or not all(re.fullmatch(r"(['\\\"])([^'\\\"]+)\\1", p) for p in parts):
+              parsed = [re.fullmatch(r"(['\"])([^'\"]+)\1", p) for p in parts]
+              if not parsed or not all(parsed):
                   return []
-              return [re.fullmatch(r"(['\\\"])([^'\\\"]+)\\1", p).group(2) for p in parts]
-          '''.replace("          ", "")
-          if old_classes not in text:
-              raise SystemExit("classes_in patch anchor not found")
-          text = text.replace(old_classes, new_classes, 1)
+              return [m.group(2) for m in parsed]
+          '''
+          new_classes = re.sub(r"^ {14}", "", new_classes, flags=re.M)
+          text, n = re.subn(
+              r"def classes_in\(expr: str\) -> list\[str\]:\n.*?(?=\n\ndef list_components)",
+              lambda _: new_classes.rstrip(),
+              text,
+              count=1,
+              flags=re.S,
+          )
+          if n != 1:
+              raise SystemExit(f"classes_in replacement count={n}")
 
-          old_calls = '''    numeric_calls = {
-              "as.numeric", "numeric", "double", "mean", "median", "sum", "prod", "min", "max", "var", "sd",
-              "quantile", "cor", "cov", "plogis", "qlogis", "pnorm", "qnorm", "dnorm", "runif", "rnorm", "rbinom",
-              "rnbinom", "sqrt", "exp", "log", "log1p", "expm1", "abs", "round", "floor", "ceiling", "signif",
-              "seq", "seq_len", "seq_along", "sample", "sample.int", "rowMeans", "colMeans", "rowSums", "colSums",
-              "length", "nrow", "ncol", "which", "match", "findInterval", "uniroot", "optimize",
-          }
-          '''.replace("          ", "")
-          new_calls = '''    numeric_calls = {
-              "as.numeric", "as.integer", "numeric", "integer", "double", "mean", "median", "sum", "prod", "min", "max", "var", "sd",
-              "quantile", "plogis", "qlogis", "pnorm", "qnorm", "dnorm", "runif", "rnorm", "rbinom",
-              "rnbinom", "sqrt", "exp", "log", "log1p", "expm1", "abs", "round", "floor", "ceiling", "signif",
-              "seq", "seq_len", "seq_along", "sample.int", "rowMeans", "colMeans", "rowSums", "colSums",
-              "length", "nrow", "ncol", "which", "match", "findInterval",
-          }
-          '''.replace("          ", "")
-          if old_calls not in text:
-              raise SystemExit("numeric_calls patch anchor not found")
-          text = text.replace(old_calls, new_calls, 1)
+          new_infer = r'''def infer_expr(expr: str, assigns: dict[str, str], funcs: dict[str, FunctionInfo], seen: set[str]) -> ReturnInfo:
+              expr = expr.strip().rstrip(";")
+              compact = re.sub(r"\s+", " ", expr)
+              if re.fullmatch(r"[A-Za-z.][A-Za-z0-9._]*", expr):
+                  if expr in assigns:
+                      return infer_expr(assigns[expr], assigns, funcs, seen)
+                  if expr in {"TRUE", "FALSE"}:
+                      return ReturnInfo("logical", [], [], compact, "terminal")
+                  if expr == "NULL":
+                      return ReturnInfo("null", [], [], compact, "terminal")
+                  return ReturnInfo("object", [], [], compact, "terminal-symbol")
+              if re.fullmatch(r"[-+]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][-+]?\d+)?L?", expr):
+                  return ReturnInfo("numeric", [], [], compact, "terminal")
+              if expr in {"NA_real_", "NA_integer_"}:
+                  return ReturnInfo("numeric", [], [], compact, "terminal")
+              if expr == "NA_character_":
+                  return ReturnInfo("character", [], [], compact, "terminal")
+              if expr == "NA" or expr == "NA_logical_":
+                  return ReturnInfo("logical", [], [], compact, "terminal")
+              if (len(expr) >= 2 and expr[0] == expr[-1] and expr[0] in "'\""):
+                  return ReturnInfo("character", [], [], compact, "terminal")
 
-          old_logic = '''    if name in list_calls:
-              return ReturnInfo("list", ["list"], [], compact, "terminal-call")
-              if name in {"vapply", "sapply"}:
-                  return ReturnInfo("vector-or-matrix", [], [], compact, "terminal-call")
-          '''.replace("          ", "")
-          # The exact source has the vapply branch at the same indentation as the
-          # list branch; use a direct stable anchor instead of the explanatory text.
-          anchor = '''    if name in list_calls:
-              return ReturnInfo("list", ["list"], [], compact, "terminal-call")
-              if name in {"vapply", "sapply"}:
-          '''.replace("          ", "")
-          if anchor in text:
-              raise SystemExit("unexpected indentation variant in analyzer")
+              name = call_name(expr)
+              if name in {"invisible", "return"}:
+                  args = split_call_args(expr)
+                  if not args or args[0].strip() == "NULL":
+                      return ReturnInfo("null", [], [], compact, "terminal")
+                  return infer_expr(args[0], assigns, funcs, seen)
 
-          call_anchor = '''    if name in list_calls:
-              return ReturnInfo("list", ["list"], [], compact, "terminal-call")
-              if name in {"vapply", "sapply"}:
-          '''.replace("          ", "")
+              cls = classes_in(expr)
+              if name == "structure" and cls:
+                  comps = list_components(expr)
+                  kind = "data.frame" if "data.frame" in cls else ("list" if "list(" in expr else "classed")
+                  return ReturnInfo(kind, cls, comps, compact, "terminal-class")
+              if name == "structure" and not cls:
+                  # Dynamic classes cannot be named reliably from source literals.
+                  comps = list_components(expr)
+                  return ReturnInfo("list" if "list(" in expr else "classed", [], comps, compact, "terminal-dynamic-class")
 
-          insert_after = '''    if name in list_calls:
-              return ReturnInfo("list", ["list"], [], compact, "terminal-call")
-          '''.replace("          ", "")
-          if insert_after not in text:
-              raise SystemExit("list-call insertion anchor not found")
-          replacement = insert_after + '''    if name in {"uniroot", "optimize"}:
-              return ReturnInfo("list", ["list"], [], compact, "terminal-call")
+              if name in {"data.frame", "as.data.frame"}:
+                  return ReturnInfo("data.frame", ["data.frame"], [], compact, "terminal")
+              if name in {"list", "as.list"}:
+                  return ReturnInfo("list", ["list"], list_components(expr), compact, "terminal")
+              if name in {"matrix", "as.matrix"}:
+                  return ReturnInfo("matrix", ["matrix"], [], compact, "terminal")
+              if name in {"array", "as.array"}:
+                  return ReturnInfo("array", ["array"], [], compact, "terminal")
+              if name in {"factor", "as.factor"}:
+                  return ReturnInfo("factor", ["factor"], [], compact, "terminal")
+
+              numeric_calls = {
+                  "as.numeric", "as.integer", "numeric", "integer", "double", "mean", "median", "sum", "prod", "min", "max", "var", "sd",
+                  "quantile", "plogis", "qlogis", "pnorm", "qnorm", "dnorm", "runif", "rnorm", "rbinom", "rnbinom",
+                  "sqrt", "exp", "log", "log1p", "expm1", "abs", "round", "floor", "ceiling", "signif",
+                  "seq", "seq_len", "seq_along", "sample.int", "rowMeans", "colMeans", "rowSums", "colSums",
+                  "length", "nrow", "ncol", "which", "match", "findInterval",
+              }
+              logical_calls = {"isTRUE", "identical", "all", "any", "is.na", "is.null", "is.finite", "is.infinite", "grepl", "nzchar"}
+              character_calls = {"as.character", "character", "paste", "paste0", "sprintf", "format", "formatC", "normalizePath", "file.path", "basename", "dirname"}
+              list_calls = {"lapply", "split", "uniroot", "optimize"}
+              if name in numeric_calls:
+                  return ReturnInfo("numeric", [], [], compact, "terminal-call")
+              if name in logical_calls:
+                  return ReturnInfo("logical", [], [], compact, "terminal-call")
+              if name in character_calls:
+                  return ReturnInfo("character", [], [], compact, "terminal-call")
+              if name in list_calls:
+                  return ReturnInfo("list", ["list"], [], compact, "terminal-call")
               if name in {"sample", "cor", "cov"}:
                   return ReturnInfo("object", [], [], compact, "terminal-call-polymorphic")
-          '''.replace("          ", "")
-          text = text.replace(insert_after, replacement, 1)
+              if name in {"vapply", "sapply"}:
+                  return ReturnInfo("vector-or-matrix", [], [], compact, "terminal-call")
+              if name == "do.call" and re.search(r"\b(?:rbind|cbind)\b", expr):
+                  return ReturnInfo("tabular", [], [], compact, "terminal-call")
+              if name in {"rbind", "cbind"}:
+                  return ReturnInfo("tabular", [], [], compact, "terminal-call")
+              if name in {"ggplot", "qplot"} or "ggplot2::ggplot" in expr:
+                  return ReturnInfo("ggplot", ["ggplot"], [], compact, "terminal-call")
+              if name in {"writeLines", "write.table", "write.csv", "saveRDS", "save", "cat"}:
+                  return ReturnInfo("null", [], [], compact, "terminal-side-effect")
 
-          old_tail = '''    # Arithmetic/comparison expressions are common terminal expressions.
-              if re.search(r"(?:==|!=|<=|>=|<|>|%in%|\\&\\&|\\|\\|)", expr):
-                  return ReturnInfo("logical", [], [], compact, "terminal-expression")
-              if re.search(r"(?:\\+|-|\\*|/|\\^|%%|%/%)", expr) and not re.search(r"['\\\"]", expr):
-                  return ReturnInfo("numeric", [], [], compact, "terminal-expression")
-          
-              # Follow wrappers to another package function when its terminal expression is known.
-              if name and name in funcs and name not in seen:
-                  target = infer_function(name, funcs, seen | {name})
-                  return ReturnInfo(target.kind, target.classes, target.components, compact, "wrapper->" + target.confidence)
-          
-              # A terminal if-expression may have different branches; infer both when easy.
-              if expr.startswith("if ") or expr.startswith("if("):
-                  returns = re.findall(r"return\\s*\\(([^()]*(?:\\([^()]*\\)[^()]*)*)\\)", expr)
-                  infos = [infer_expr(x, assigns, funcs, seen) for x in returns]
-                  kinds = {x.kind for x in infos if x.kind != "null"}
-                  if len(kinds) == 1:
-                      x = next(x for x in infos if x.kind != "null")
-                      return ReturnInfo(x.kind, x.classes, x.components, compact, "conditional")
-          
-              return ReturnInfo("object", [], [], compact, "unresolved")
-          '''.replace("          ", "")
-          new_tail = '''    # Preserve table/matrix structure for terminal subsetting. In particular,
-              # a minus sign inside order(-x$score) is not arithmetic on the return object.
-              subset = re.match(r"^([A-Za-z.][A-Za-z0-9._]*)\\s*\\[", expr)
+              # Preserve the structure of terminal subsetting before looking for
+              # arithmetic tokens inside the index expression.
+              subset = re.match(r"^([A-Za-z.][A-Za-z0-9._]*)\s*\[", expr)
               if subset:
                   base = subset.group(1)
                   if base in assigns:
                       base_info = infer_expr(assigns[base], assigns, funcs, seen)
                       if base_info.kind in {"data.frame", "matrix", "array", "tabular"}:
                           return ReturnInfo(base_info.kind, base_info.classes, base_info.components, compact, "terminal-subset")
-                  if re.search(r"\\bdrop\\s*=\\s*FALSE\\b", expr):
+                  if re.search(r"\bdrop\s*=\s*FALSE\b", expr):
                       return ReturnInfo("tabular", [], [], compact, "terminal-subset")
                   return ReturnInfo("object", [], [], compact, "terminal-subset")
-          
-              # A simple terminal if/else can be typed from its two value branches.
+
+              # Infer simple terminal if/else expressions from both value branches.
               if expr.startswith("if ") or expr.startswith("if("):
-                  simple_if = re.match(r"^if\\s*\\((.*?)\\)\\s*(.*?)\\s+else\\s+(.*)$", expr, re.S)
+                  simple_if = re.match(r"^if\s*\((.*?)\)\s*(.*?)\s+else\s+(.*)$", expr, re.S)
                   if simple_if:
-                      branches = [simple_if.group(2).strip(), simple_if.group(3).strip()]
-                      infos = [infer_expr(x, assigns, funcs, seen) for x in branches]
-                      kinds = {x.kind for x in infos if x.kind != "null"}
-                      if len(kinds) == 1:
-                          x = next(x for x in infos if x.kind != "null")
+                      infos = [infer_expr(simple_if.group(i).strip(), assigns, funcs, seen) for i in (2, 3)]
+                      non_null = [x for x in infos if x.kind != "null"]
+                      kinds = {x.kind for x in non_null}
+                      if len(kinds) == 1 and non_null:
+                          x = non_null[0]
                           return ReturnInfo(x.kind, x.classes, x.components, compact, "conditional")
-                  returns = re.findall(r"return\\s*\\(([^()]*(?:\\([^()]*\\)[^()]*)*)\\)", expr)
+                  returns = re.findall(r"return\s*\(([^()]*(?:\([^()]*\)[^()]*)*)\)", expr)
                   infos = [infer_expr(x, assigns, funcs, seen) for x in returns]
-                  kinds = {x.kind for x in infos if x.kind != "null"}
-                  if len(kinds) == 1:
-                      x = next(x for x in infos if x.kind != "null")
+                  non_null = [x for x in infos if x.kind != "null"]
+                  kinds = {x.kind for x in non_null}
+                  if len(kinds) == 1 and non_null:
+                      x = non_null[0]
                       return ReturnInfo(x.kind, x.classes, x.components, compact, "conditional")
-          
+
               # Follow wrappers to another package function when its terminal expression is known.
               if name and name in funcs and name not in seen:
                   target = infer_function(name, funcs, seen | {name})
                   return ReturnInfo(target.kind, target.classes, target.components, compact, "wrapper->" + target.confidence)
-          
-              # Arithmetic/comparison expressions are common terminal expressions, but only
-              # after structured subsetting and conditionals have been ruled out.
-              if re.search(r"(?:==|!=|<=|>=|<|>|%in%|\\&\\&|\\|\\|)", expr):
+
+              # Arithmetic/comparison expressions are common terminal expressions, but
+              # only after structured subsetting and conditionals have been ruled out.
+              if re.search(r"(?:==|!=|<=|>=|<|>|%in%|\&\&|\|\|)", expr):
                   return ReturnInfo("logical", [], [], compact, "terminal-expression")
-              if re.search(r"(?:\\+|-|\\*|/|\\^|%%|%/%)", expr) and not re.search(r"['\\\"]", expr):
+              if re.search(r"(?:\+|-|\*|/|\^|%%|%/%)", expr) and not re.search(r"['\"]", expr):
                   return ReturnInfo("numeric", [], [], compact, "terminal-expression")
-          
+
               return ReturnInfo("object", [], [], compact, "unresolved")
-          '''.replace("          ", "")
-          if old_tail not in text:
-              raise SystemExit("tail patch anchor not found")
-          text = text.replace(old_tail, new_tail, 1)
+          '''
+          new_infer = re.sub(r"^ {14}", "", new_infer, flags=re.M)
+          text, n = re.subn(
+              r"def infer_expr\(expr: str, assigns: dict\[str, str\], funcs: dict\[str, FunctionInfo\], seen: set\[str\]\) -> ReturnInfo:\n.*?(?=\n\ndef infer_function)",
+              lambda _: new_infer.rstrip(),
+              text,
+              count=1,
+              flags=re.S,
+          )
+          if n != 1:
+              raise SystemExit(f"infer_expr replacement count={n}")
 
           path.write_text(text, encoding="utf-8")
           PY
@@ -183,10 +200,13 @@ jobs:
           python -m py_compile tools/cran_return_docs_v2.py
           python - <<'PY'
           import importlib.util
+          import sys
           from pathlib import Path
 
-          spec = importlib.util.spec_from_file_location("ret", Path("tools/cran_return_docs_v2.py"))
+          p = Path("tools/cran_return_docs_v2.py")
+          spec = importlib.util.spec_from_file_location("cran_return_docs_v2_test", p)
           mod = importlib.util.module_from_spec(spec)
+          sys.modules[spec.name] = mod
           spec.loader.exec_module(mod)
           funcs = {}
           assert mod.classes_in('structure(x, class = c(paste0("eye_irt_", type, "_channel"), "eye_irt_channel"))') == []
