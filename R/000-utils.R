@@ -1,183 +1,66 @@
-.eye_env <- new.env(parent = emptyenv())
-.eye_env$adapters <- list()
-.eye_env$schema_version <- "0.1.0"
-.eye_env$id_counters <- new.env(parent = emptyenv())
+.null_coalesce <- function(x, y) if (is.null(x)) y else x
 
-`%||%` <- function(x, y) {
-  if (is.null(x) || length(x) == 0L) y else x
-}
+.eye_stop <- function(...) stop(..., call. = FALSE)
+.eye_warn <- function(...) warning(..., call. = FALSE)
 
-.eye_stop <- function(..., call. = FALSE) stop(..., call. = call.)
-.eye_warn <- function(..., call. = FALSE) warning(..., call. = call.)
-.eye_message <- function(..., quiet = FALSE) if (!isTRUE(quiet)) message(...)
-
-.assert_scalar_character <- function(x, name, allow_na = FALSE) {
-  ok <- is.character(x) && length(x) == 1L && (allow_na || !is.na(x))
-  if (!ok) .eye_stop("`", name, "` must be a single character value.")
-  invisible(x)
-}
-
-.assert_flag <- function(x, name) {
-  if (!is.logical(x) || length(x) != 1L || is.na(x)) {
-    .eye_stop("`", name, "` must be TRUE or FALSE.")
-  }
-  invisible(x)
-}
-
-.assert_data_frame <- function(x, name) {
-  if (!is.data.frame(x)) .eye_stop("`", name, "` must be a data frame.")
-  invisible(x)
-}
-
-.assert_eye_dataset <- function(x) {
-  if (!inherits(x, "eye_dataset")) {
-    .eye_stop("Expected an `eye_dataset` object.")
-  }
-  invisible(x)
-}
-
-.assert_columns <- function(data, columns, table_name = "data") {
-  missing <- setdiff(columns, names(data))
-  if (length(missing)) {
-    .eye_stop(
-      "Missing required columns in `", table_name, "`: ",
-      paste(missing, collapse = ", "), "."
-    )
-  }
-  invisible(data)
-}
-
-.empty_df <- function(columns = character()) {
-  out <- as.data.frame(
-    setNames(replicate(length(columns), logical(0), simplify = FALSE), columns),
-    stringsAsFactors = FALSE
-  )
-  out
-}
-
-.as_character_id <- function(x) {
-  if (is.factor(x)) x <- as.character(x)
+.as_character_scalar <- function(x, name) {
+  if (length(x) != 1L || is.na(x)) .eye_stop("`", name, "` must be a single non-missing value.")
   as.character(x)
 }
 
-.safe_numeric <- function(x) {
-  if (is.numeric(x)) return(as.numeric(x))
-  suppressWarnings(as.numeric(gsub(",", ".", as.character(x), fixed = TRUE)))
+.assert_data_frame <- function(x, name = deparse(substitute(x))) {
+  if (!is.data.frame(x)) .eye_stop("`", name, "` must be a data.frame.")
+  invisible(TRUE)
 }
 
-.safe_logical <- function(x) {
-  if (is.logical(x)) return(x)
-  z <- tolower(trimws(as.character(x)))
-  out <- rep(NA, length(z))
-  out[z %in% c("1", "true", "t", "yes", "y", "valid")] <- TRUE
-  out[z %in% c("0", "false", "f", "no", "n", "invalid")] <- FALSE
-  out
-}
-
-.unique_id <- function(prefix, n, start = 1L) {
-  paste0(prefix, sprintf("%08d", seq.int(start, length.out = n)))
-}
-
-.next_id <- function(prefix, n = 1L) {
-  n <- as.integer(n)
-  if (length(n) != 1L || is.na(n) || n < 0L) .eye_stop("`n` must be a non-negative integer.")
-  if (n == 0L) return(character())
-  key <- gsub("[^A-Za-z0-9_]", "_", as.character(prefix))
-  current <- .eye_env$id_counters[[key]] %||% 0L
-  sequence_ids <- seq.int(current + 1L, length.out = n)
-  .eye_env$id_counters[[key]] <- max(sequence_ids)
-  stamp <- format(Sys.time(), "%Y%m%d%H%M%OS6", tz = "UTC")
-  paste0(prefix, "_", stamp, "_", sprintf("%09d", sequence_ids))
-}
-
-.now_utc <- function() {
-  format(Sys.time(), tz = "UTC", usetz = TRUE)
-}
-
-.file_md5 <- function(path) {
-  path <- normalizePath(path, winslash = "/", mustWork = FALSE)
-  out <- rep(NA_character_, length(path))
-  ok <- file.exists(path) & !dir.exists(path)
-  if (any(ok)) out[ok] <- unname(tools::md5sum(path[ok]))
-  out
-}
-
-.deep_copy <- function(x) unserialize(serialize(x, NULL))
-
-.bind_rows_base <- function(...) {
-  xs <- list(...)
-  xs <- xs[!vapply(xs, is.null, logical(1))]
-  xs <- xs[vapply(xs, is.data.frame, logical(1))]
-  if (!length(xs)) return(data.frame())
-
-  all_names <- unique(unlist(lapply(xs, names), use.names = FALSE))
-  prototypes <- setNames(lapply(all_names, function(nm) {
-    idx <- which(vapply(xs, function(d) nm %in% names(d), logical(1)))[1L]
-    xs[[idx]][[nm]][0]
-  }), all_names)
-
-  xs <- lapply(xs, function(d) {
-    d <- as.data.frame(d, stringsAsFactors = FALSE)
-    missing <- setdiff(all_names, names(d))
-    for (nm in missing) {
-      # Preserve the column type and support zero-row canonical tables.
-      d[[nm]] <- rep(prototypes[[nm]][NA_integer_], nrow(d))
-    }
-    d[all_names]
-  })
-
-  out <- do.call(rbind, xs)
-  rownames(out) <- NULL
-  out
-}
-
-.safe_max <- function(x) {
-  x <- x[is.finite(x)]
-  if (!length(x)) return(NA_real_)
-  max(x)
-}
-
-.safe_min <- function(x) {
-  x <- x[is.finite(x)]
-  if (!length(x)) return(NA_real_)
-  min(x)
-}
-
-.safe_span <- function(x) {
-  x <- x[is.finite(x)]
-  if (!length(x)) return(NA_real_)
-  max(x) - min(x)
-}
-
-.read_delimited <- function(path, delimiter = NULL, encoding = "UTF-8", ...) {
-  if (!file.exists(path)) .eye_stop("File does not exist: ", path)
-  if (is.null(delimiter)) {
-    line <- readLines(path, n = 1L, warn = FALSE, encoding = encoding)
-    candidates <- c("\t", ",", ";", "|")
-    counts <- vapply(candidates, function(s) lengths(regmatches(line, gregexpr(s, line, fixed = TRUE))), numeric(1))
-    delimiter <- candidates[which.max(counts)]
+.assert_columns <- function(data, columns, name = deparse(substitute(data))) {
+  missing <- setdiff(columns, names(data))
+  if (length(missing)) {
+    .eye_stop("Missing required columns in `", name, "`: ", paste(missing, collapse = ", "), ".")
   }
-  utils::read.table(
-    path,
-    header = TRUE,
-    sep = delimiter,
-    quote = '"',
-    comment.char = "",
-    stringsAsFactors = FALSE,
-    check.names = FALSE,
-    fileEncoding = encoding,
-    fill = TRUE,
-    ...
-  )
+  invisible(TRUE)
 }
 
-.first_existing <- function(names_vec, candidates, ignore_case = TRUE) {
-  if (!length(names_vec)) return(NULL)
-  if (ignore_case) {
-    idx <- match(tolower(candidates), tolower(names_vec), nomatch = 0L)
-  } else {
-    idx <- match(candidates, names_vec, nomatch = 0L)
+.numeric_or_na <- function(x) {
+  suppressWarnings(as.numeric(as.character(x)))
+}
+
+.clean_names <- function(x) {
+  x <- trimws(as.character(x))
+  x <- gsub("[^A-Za-z0-9]+", "_", x)
+  x <- gsub("^_+|_+$", "", x)
+  tolower(x)
+}
+
+.unique_names <- function(x) make.unique(x, sep = "_")
+
+.normalize_names <- function(data) {
+  names(data) <- .unique_names(.clean_names(names(data)))
+  data
+}
+
+.read_delimited <- function(path, sep = NULL, ...) {
+  if (is.null(sep)) {
+    ext <- tolower(tools::file_ext(path))
+    sep <- if (ext %in% c("tsv", "txt")) "\t" else ","
   }
+  utils::read.table(path, header = TRUE, sep = sep, quote = "\"", comment.char = "", check.names = FALSE,
+                    stringsAsFactors = FALSE, fill = TRUE, ...)
+}
+
+.write_delimited <- function(data, path, sep = ",", ...) {
+  utils::write.table(data, path, sep = sep, row.names = FALSE, col.names = TRUE, quote = TRUE, ...)
+  invisible(path)
+}
+
+.as_numeric_matrix <- function(x, columns) {
+  out <- vapply(columns, function(col) .numeric_or_na(x[[col]]), numeric(nrow(x)))
+  if (!is.matrix(out)) out <- matrix(out, nrow = nrow(x), dimnames = list(NULL, columns))
+  out
+}
+
+.first_existing <- function(names_vec, candidates) {
+  idx <- match(candidates, names_vec, nomatch = 0L)
   idx <- idx[idx > 0L]
   if (!length(idx)) return(NULL)
   names_vec[idx[1L]]
@@ -210,7 +93,7 @@
   if (!requireNamespace(pkg, quietly = TRUE)) {
     msg <- paste0("Package `", pkg, "` is required")
     if (!is.null(reason)) msg <- paste0(msg, " ", reason)
-    .eye_stop(msg, ". Install it with install.packages(\"", pkg, "\").")
+    .eye_stop(msg, ". Please install it before using this feature.")
   }
   invisible(TRUE)
 }
@@ -239,16 +122,35 @@
   sum(diff(x) * (head(y, -1L) + tail(y, -1L)) / 2)
 }
 
-.mode_value <- function(x) {
-  x <- x[!is.na(x)]
-  if (!length(x)) return(NA)
-  ux <- unique(x)
-  ux[which.max(tabulate(match(x, ux)))]
+.safe_cor <- function(x, y, method = "pearson") {
+  ok <- is.finite(x) & is.finite(y)
+  if (sum(ok) < 3L) return(NA_real_)
+  suppressWarnings(stats::cor(x[ok], y[ok], method = method))
 }
 
-.copy_attrs <- function(from, to, exclude = c("names", "row.names", "class")) {
-  at <- attributes(from)
-  at[exclude] <- NULL
-  for (nm in names(at)) attr(to, nm) <- at[[nm]]
-  to
+.hash_text <- function(x) {
+  raw <- charToRaw(paste(x, collapse = "\n"))
+  if (requireNamespace("openssl", quietly = TRUE)) return(as.character(openssl::sha256(raw)))
+  ints <- as.integer(raw)
+  if (!length(ints)) return("00000000")
+  h <- 0
+  for (value in ints) h <- (h * 131 + value) %% 2147483647
+  sprintf("%08x", as.integer(h))
+}
+
+.hash_object <- function(x) {
+  raw <- serialize(x, NULL, version = 2)
+  if (requireNamespace("openssl", quietly = TRUE)) return(as.character(openssl::sha256(raw)))
+  ints <- as.integer(raw)
+  h <- 0
+  for (value in ints) h <- (h * 131 + value) %% 2147483647
+  sprintf("%08x", as.integer(h))
+}
+
+# Scope a reproducible random-number seed to the current function call without
+# package code reading from, assigning to, or removing objects in .GlobalEnv.
+# `withr::local_seed()` restores the caller's RNG state automatically on exit.
+.eye_local_seed <- function(seed, env = parent.frame()) {
+  if (!is.null(seed)) withr::local_seed(seed, .local_envir = env)
+  invisible(seed)
 }
