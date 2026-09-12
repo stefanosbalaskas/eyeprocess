@@ -3,7 +3,7 @@
 Generated automatically from the remediation branch.
 
 - `addm_glam_proxy_features`: An object of class "eye_decision_process_proxy", stored as a named list, with components "features", "by", "status", "caveat". It contains aDDM/GLAM-inspired gaze-evidence proxy features and associated metadata or diagnostics needed to interpret the result.
-- `adjust_pupil_confounds`: An R object containing confound-adjusted pupil values. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
+- `adjust_pupil_confounds`: A data frame containing the fitted model data, including `pupil_confound_residual` and `pupil_confound_adjusted` columns.
 - `algorithm_facet_effects`: An object of class "eye_process_facet_effects", stored as a named list, with components "facet", "column", "channel", "random_effects", "variance_component". It contains algorithm facet effects and associated metadata or diagnostics needed to interpret the result.
 - `analysis_environment_snapshot`: A named list with components "r_version", "platform", "os", "locale", "timezone", "packages", containing snapshot an eyeprocess analysis environment and associated metadata or diagnostics.
 - `analysis_resolution_guard`: A named list with components "expected_samples", "temporal_ok", "spatial_error_fraction", "spatial_ok", "min_samples", "max_error_fraction", "overall", "caveat", containing compatibility between measurement resolution and an analysis target and associated metadata or diagnostics.

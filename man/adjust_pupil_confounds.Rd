@@ -10,7 +10,7 @@ adjust_pupil_confounds(x)
 \item{x}{Object to process, inspect, compare, or plot.}
 }
 \value{
-An R object containing confound-adjusted pupil values. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
+A data frame containing the fitted model data, including `pupil_confound_residual` and `pupil_confound_adjusted` columns.
 }
 \description{
 Extract confound-adjusted pupil values

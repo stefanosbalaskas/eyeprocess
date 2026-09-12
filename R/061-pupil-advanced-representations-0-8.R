@@ -408,7 +408,7 @@ fit_pupil_confound_model <- function(
 }
 
 #' Extract confound-adjusted pupil values
-#' @return An R object containing confound-adjusted pupil values. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
+#' @return A data frame containing the fitted model data, including `pupil_confound_residual` and `pupil_confound_adjusted` columns.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 adjust_pupil_confounds <- function(x) {
@@ -417,7 +417,7 @@ adjust_pupil_confounds <- function(x) {
 }
 
 #' Extract pupil confound-model effects
-#' @return An R object containing pupil confound-model effects. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
+#' @return A numeric coefficient table: the smooth-term table for `mgcv::gam()` fits or the coefficient matrix for `stats::lm()` fits.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 pupil_confound_effects <- function(x) {

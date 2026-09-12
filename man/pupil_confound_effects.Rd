@@ -10,7 +10,7 @@ pupil_confound_effects(x)
 \item{x}{Object to process, inspect, compare, or plot.}
 }
 \value{
-An R object containing pupil confound-model effects. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
+A numeric coefficient table: the smooth-term table for `mgcv::gam()` fits or the coefficient matrix for `stats::lm()` fits.
 }
 \description{
 Extract pupil confound-model effects
