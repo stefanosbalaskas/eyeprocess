@@ -253,9 +253,8 @@
   to
 }
 
-# Scope a reproducible random-number seed to the current function call without
-# package code reading from, assigning to, or removing objects in .GlobalEnv.
-# `withr::local_seed()` restores the caller's RNG state automatically on exit.
+# Scope a reproducible random-number seed to the current function call while
+# restoring the caller's RNG state automatically on exit.
 .eye_local_seed <- function(seed, env = parent.frame()) {
   if (!is.null(seed)) withr::local_seed(seed, .local_envir = env)
   invisible(seed)
