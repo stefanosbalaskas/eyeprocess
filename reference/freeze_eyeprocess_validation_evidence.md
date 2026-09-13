@@ -60,3 +60,11 @@ freeze_eyeprocess_validation_evidence(
 - source_commit:
 
   Source-control commit associated with the evidence.
+
+## Value
+
+An object of class "eye_validation_evidence_freeze", stored as a named
+list, with components "components", "presence", "source_commit",
+"frozen_at", "scientific_scope". It contains freeze a complete Milestone
+\#2 evidence bundle and associated metadata or diagnostics needed to
+interpret the result.

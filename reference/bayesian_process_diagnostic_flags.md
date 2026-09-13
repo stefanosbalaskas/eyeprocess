@@ -25,3 +25,9 @@ bayesian_process_diagnostic_flags(
 - ess_threshold:
 
   Review threshold for bulk/tail effective sample size.
+
+## Value
+
+An R object containing compact Bayesian process-model diagnostic flags.
+The concrete class and structure follow the selected method, engine, or
+input object and are preserved as documented by that workflow.

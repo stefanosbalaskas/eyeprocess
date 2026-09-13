@@ -30,3 +30,11 @@ eyeprocess_mirt_loading_spec(
 - simple_structure:
 
   Whether a simple-structure loading pattern is required.
+
+## Value
+
+An object of class "eye_mirt_loading_spec", stored as a named list, with
+components "items", "loadings", "dimensions", "simple_structure",
+"violations". It contains declare a multidimensional IRT loading
+structure and associated metadata or diagnostics needed to interpret the
+result.

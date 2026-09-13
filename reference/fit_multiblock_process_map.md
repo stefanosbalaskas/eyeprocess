@@ -37,3 +37,11 @@ fit_multiblock_process_map(
 - ncp:
 
   Number of components retained where supported.
+
+## Value
+
+An object of class "eye_multiblock_process_map", stored as a named list,
+with components "model", "person_coordinates", "variable_coordinates",
+"block_coordinates", "blocks", "engine", "status", "caveat". It contains
+a multiblock psychometric/gaze/pupil/quality structure map and
+associated metadata or diagnostics needed to interpret the result.

@@ -26,3 +26,7 @@ validate_decision_manifest(
 - require_nonempty:
 
   If TRUE, required domains must contain at least one decision.
+
+## Value
+
+A logical value or vector indicating a research decision manifest.

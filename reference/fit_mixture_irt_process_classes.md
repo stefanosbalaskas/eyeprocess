@@ -40,3 +40,10 @@ fit_mixture_irt_process_classes(
 - SE:
 
   Request standard errors.
+
+## Value
+
+An object of class "eye_mixture_irt_process", stored as a named list,
+with components "model", "coefficients", "n_classes", "itemtype",
+"status", "caveat". It contains a true mirt mixture-IRT response model
+and associated metadata or diagnostics needed to interpret the result.

@@ -25,3 +25,10 @@ fit_aoi_growth_curve(data, time, outcome, degree = 3L)
 - degree:
 
   Polynomial degree.
+
+## Value
+
+An object of class "eye_aoi_growth_curve", stored as a named list, with
+components "model", "time", "outcome", "degree", "poly", "range",
+"status". It contains a single AOI growth curve and associated metadata
+or diagnostics needed to interpret the result.

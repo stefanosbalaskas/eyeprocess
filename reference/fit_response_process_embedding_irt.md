@@ -45,3 +45,10 @@ fit_response_process_embedding_irt(
 - n:
 
   Requested count or n-gram order, depending on context.
+
+## Value
+
+An object of class "eye_response_process_embedding_irt", stored as a
+named list, with components "model", "embedding", "data", "status". It
+contains an IRT response model augmented by sequence embeddings and
+associated metadata or diagnostics needed to interpret the result.

@@ -30,3 +30,8 @@ effective_sampling_frequency(
 - by:
 
   Optional grouping columns.
+
+## Value
+
+A logical value or vector indicating effective sampling frequency from
+timestamps.

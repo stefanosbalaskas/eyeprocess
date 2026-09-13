@@ -13,3 +13,8 @@ eyeprocess_irt_recovery_failures(x)
 - x:
 
   Object to validate, summarize, verify, or otherwise process.
+
+## Value
+
+A tabular R object containing recovery failure rates; rows represent
+analysis units and columns contain the returned quantities.

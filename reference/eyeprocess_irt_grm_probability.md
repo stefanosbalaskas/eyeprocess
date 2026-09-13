@@ -25,3 +25,8 @@ eyeprocess_irt_grm_probability(theta, a = 1, thresholds, D = 1)
 - D:
 
   Logistic scaling constant.
+
+## Value
+
+A logical value or vector indicating graded-response category
+probabilities.

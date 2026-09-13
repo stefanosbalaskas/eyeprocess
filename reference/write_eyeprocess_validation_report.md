@@ -25,3 +25,8 @@ write_eyeprocess_validation_report(
 - title:
 
   Report title.
+
+## Value
+
+A character string or vector giving the path or identifier for a compact
+Markdown validation report.

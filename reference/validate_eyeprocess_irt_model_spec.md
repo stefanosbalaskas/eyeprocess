@@ -13,3 +13,8 @@ validate_eyeprocess_irt_model_spec(x)
 - x:
 
   Object to validate, summarize, verify, or otherwise process.
+
+## Value
+
+A logical value or vector indicating an eyeprocess IRT model
+specification.

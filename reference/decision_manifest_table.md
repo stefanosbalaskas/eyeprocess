@@ -13,3 +13,8 @@ decision_manifest_table(x)
 - x:
 
   Manifest.
+
+## Value
+
+A logical value or vector indicating flatten a decision manifest to a
+table.

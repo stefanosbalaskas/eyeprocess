@@ -21,3 +21,9 @@ inject_trial_imbalance(data, proportion, seed = 1L)
 - seed:
 
   Seed.
+
+## Value
+
+A tabular R object containing inject trial/row imbalance by dropping
+observations; rows represent analysis units and columns contain the
+returned quantities.

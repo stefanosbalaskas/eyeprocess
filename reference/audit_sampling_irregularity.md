@@ -35,3 +35,10 @@ audit_sampling_irregularity(
 - cv_threshold:
 
   Review threshold for interval coefficient of variation.
+
+## Value
+
+An object of class "eye_sampling_irregularity_audit", stored as a named
+list, with components "table", "cv_threshold", "caveat". It contains
+sampling irregularity and associated metadata or diagnostics needed to
+interpret the result.

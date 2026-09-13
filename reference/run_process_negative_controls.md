@@ -55,3 +55,9 @@ run_process_negative_controls(
 - within:
 
   Optional permutation groups.
+
+## Value
+
+A named list with components "results", "outcome", "controls",
+"replications", "seed", "interpretation", containing repeated process
+negative controls and associated metadata or diagnostics.

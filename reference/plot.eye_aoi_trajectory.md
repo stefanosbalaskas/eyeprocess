@@ -22,3 +22,8 @@ plot(x, type = c("coefficients", "profiles"), ...)
 - ...:
 
   Additional arguments passed to the underlying method or helper.
+
+## Value
+
+Invisibly returns the plotting result when available; the primary effect
+is drawing plot aoi trajectory diagnostics.

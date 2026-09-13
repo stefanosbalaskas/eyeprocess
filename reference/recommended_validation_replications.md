@@ -36,3 +36,8 @@ recommended_validation_replications(
 - minimum:
 
   Minimum acceptable value or threshold.
+
+## Value
+
+A numeric value or vector containing approximate simulation replications
+needed for a target Monte Carlo error.

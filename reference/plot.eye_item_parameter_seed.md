@@ -22,3 +22,8 @@ plot(x, candidate_data = NULL, ...)
 - ...:
 
   Additional arguments passed to the underlying method or helper.
+
+## Value
+
+Invisibly returns the plotting result when available; the primary effect
+is drawing plot item parameter seed diagnostics.

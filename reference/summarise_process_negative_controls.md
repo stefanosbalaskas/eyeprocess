@@ -21,3 +21,7 @@ summarise_process_negative_controls(x, effect = "effect", threshold = 0)
 - threshold:
 
   Optional absolute effect threshold.
+
+## Value
+
+A logical value or vector indicating process negative controls.

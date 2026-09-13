@@ -19,3 +19,9 @@ compare_irt_models(..., names = NULL)
 - names:
 
   Value supplied to \`names\`; see Details for its model-specific role.
+
+## Value
+
+An R object containing multimodal IRT model objects. The concrete class
+and structure follow the selected method, engine, or input object and
+are preserved as documented by that workflow.

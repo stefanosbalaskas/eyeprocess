@@ -17,3 +17,9 @@ aoi_membership_probability(draws, aois)
 - aois:
 
   Rectangular AOI table with aoi/x_min/x_max/y_min/y_max.
+
+## Value
+
+A tabular R object containing aOI membership probabilities from
+uncertainty draws; rows represent analysis units and columns contain the
+returned quantities.

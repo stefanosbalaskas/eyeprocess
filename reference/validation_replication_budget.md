@@ -30,3 +30,8 @@ validation_replication_budget(
 - maximum:
 
   Maximum permitted replication count.
+
+## Value
+
+A numeric value or vector containing a replication budget from a target
+MCSE.

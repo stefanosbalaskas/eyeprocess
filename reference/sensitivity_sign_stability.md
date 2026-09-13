@@ -17,3 +17,8 @@ sensitivity_sign_stability(x, effect = "effect")
 - effect:
 
   Effect column.
+
+## Value
+
+A numeric value or vector containing effect-sign stability across
+specifications.

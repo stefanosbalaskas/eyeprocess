@@ -26,3 +26,9 @@ eyeprocess_irt_person_fit_residuals(
 - person_ids:
 
   Optional person identifiers.
+
+## Value
+
+An object of class "eye_irt_person_fit", "data.frame", stored as a data
+frame, containing person residual fit summaries and associated metadata
+needed to interpret the result.

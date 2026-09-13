@@ -30,3 +30,11 @@ eyeprocess_irt_bank_coverage(
 - target:
 
   Target level, distribution, or criterion.
+
+## Value
+
+An object of class "eye_irt_bank_coverage", stored as a named list, with
+components "curve", "target", "target_information",
+"fraction_target_met", "minimum_information", "maximum_sem", "gaps". It
+contains item-bank information coverage across a theta region and
+associated metadata or diagnostics needed to interpret the result.

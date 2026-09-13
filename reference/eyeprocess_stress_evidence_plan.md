@@ -50,3 +50,10 @@ eyeprocess_stress_evidence_plan(
 - seed:
 
   Random-number seed for reproducible execution.
+
+## Value
+
+An object of class "eye_stress_evidence_plan", stored as a named list,
+with components "seed". It contains declare the Milestone \#2
+measurement-quality stress evidence plan and associated metadata or
+diagnostics needed to interpret the result.

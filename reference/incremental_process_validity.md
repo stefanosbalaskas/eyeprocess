@@ -13,3 +13,9 @@ incremental_process_validity(x)
 - x:
 
   Object to process, inspect, compare, or plot.
+
+## Value
+
+A data frame containing incremental process validity. Rows represent the
+analysis units and columns contain the identifiers, estimates, or
+diagnostics defined by the function.

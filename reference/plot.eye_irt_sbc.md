@@ -27,3 +27,8 @@ plot(x, parameter = NULL, breaks = 10L, ...)
 - ...:
 
   Additional arguments passed to the selected model, engine, or method.
+
+## Value
+
+Invisibly returns the plotting result when available; the primary effect
+is drawing plot SBC rank histograms by parameter.

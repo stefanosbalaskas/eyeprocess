@@ -19,3 +19,10 @@ posterior_sbc_contract(replication)
   callback is responsible for the conditional posterior-SBC construction
   appropriate to the model, including fitting to the observed data and
   the required self-consistency experiment.
+
+## Value
+
+An object of class "eye_posterior_sbc_contract", stored as a named list,
+with components "replication", "requirement". It contains define a
+posterior-SBC replication contract and associated metadata or
+diagnostics needed to interpret the result.

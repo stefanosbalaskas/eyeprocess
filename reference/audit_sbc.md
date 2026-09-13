@@ -23,3 +23,9 @@ audit_sbc(x, bins = 10L, alpha = 0.01)
 - alpha:
 
   Significance or tail-probability level.
+
+## Value
+
+An object of class "eye_sbc_audit", "data.frame", stored as a data
+frame, containing sBC rank uniformity and associated metadata needed to
+interpret the result.

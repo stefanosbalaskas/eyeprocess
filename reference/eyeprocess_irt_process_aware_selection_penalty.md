@@ -35,3 +35,8 @@ eyeprocess_irt_process_aware_selection_penalty(
 - quality_weight:
 
   Weight applied to the quality-risk penalty.
+
+## Value
+
+A numeric value or vector containing process-aware selection penalty
+without mental-state inference.

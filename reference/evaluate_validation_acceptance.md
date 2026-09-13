@@ -17,3 +17,7 @@ evaluate_validation_acceptance(value, rule)
 - rule:
 
   Validation acceptance rule to apply.
+
+## Value
+
+A logical value or vector indicating a validation acceptance rule.

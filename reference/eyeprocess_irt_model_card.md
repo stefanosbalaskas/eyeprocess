@@ -51,3 +51,12 @@ eyeprocess_irt_model_card(
 - excluded_interpretations:
 
   Interpretations explicitly excluded by the model card.
+
+## Value
+
+An object of class "eye_irt_model_card", stored as a named list, with
+components "specification", "engine_status", "identification",
+"fit_evidence", "invariance", "validation", "intended_use",
+"excluded_interpretations", "created", "hash". It contains a governed
+IRT model card and associated metadata or diagnostics needed to
+interpret the result.

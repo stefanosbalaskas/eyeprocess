@@ -33,3 +33,7 @@ eyeprocess_irt_4pl_probability(theta, a = 1, b = 0, c = 0, d = 1, D = 1)
 - D:
 
   Logistic scaling constant.
+
+## Value
+
+A numeric value or vector containing 4PL item-response probability.

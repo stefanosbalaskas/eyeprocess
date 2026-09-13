@@ -13,3 +13,10 @@ latent_distribution_stress_test(...)
 - ...:
 
   Additional arguments passed to the selected model, engine, or method.
+
+## Value
+
+An R object containing stress-test IRT estimators across latent
+distributions. The concrete class and structure follow the selected
+method, engine, or input object and are preserved as documented by that
+workflow.

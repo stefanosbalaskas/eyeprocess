@@ -46,3 +46,11 @@ process_dependent_discrimination_audit(
 
   If TRUE and mgcv is installed, additionally estimate a smooth
   theta-by-process diagnostic surface.
+
+## Value
+
+An object of class "eye_process_dependent_discrimination", stored as a
+named list, with components "process_model", "response_model",
+"interaction", "smooth_model", "residual_process", "status", "caveat".
+It contains process-dependent item discrimination and associated
+metadata or diagnostics needed to interpret the result.

@@ -41,3 +41,9 @@ simulate_process_cat(
 - seed:
 
   Random-number seed.
+
+## Value
+
+An object of class "eye_process_cat_simulation", "data.frame", stored as
+a data frame, containing a simple process-aware CAT policy and
+associated metadata needed to interpret the result.

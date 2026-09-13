@@ -25,3 +25,9 @@ eyeprocess_irt_dif_effect_curve(
 - theta:
 
   Latent-trait value or vector of latent-trait values.
+
+## Value
+
+An object of class "eye_irt_dif_curve", "data.frame", stored as a data
+frame, containing differential item functioning effect curve from two
+parameter sets and associated metadata needed to interpret the result.

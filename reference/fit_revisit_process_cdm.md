@@ -53,3 +53,11 @@ fit_revisit_process_cdm(
 - ...:
 
   Passed to \`fit_cognitive_diagnosis_process()\`.
+
+## Value
+
+An object of class "eye_cognitive_diagnosis_process", stored as a named
+list, with components "response_model", "process_summary",
+"process_mastery_correlation", "q_matrix", "status". It contains a
+revisiting-aware cognitive-diagnosis process workflow and associated
+metadata or diagnostics needed to interpret the result.

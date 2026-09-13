@@ -21,3 +21,10 @@ eyeprocess_irt_sbc_summary(ranks, n_draws, bins = NULL)
 - bins:
 
   Number of bins used for rank-distribution summaries.
+
+## Value
+
+An object of class "eye_irt_sbc_evidence", stored as a named list, with
+components "diagnostics", "ecdf_deviation", "n", "n_draws". It contains
+iRT SBC ranks with the package SBC diagnostics and associated metadata
+or diagnostics needed to interpret the result.

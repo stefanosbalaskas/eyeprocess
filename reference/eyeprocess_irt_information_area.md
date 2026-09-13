@@ -17,3 +17,7 @@ eyeprocess_irt_information_area(theta, information)
 - information:
 
   Item or test information value or vector.
+
+## Value
+
+A numeric value or vector containing area under an information curve.

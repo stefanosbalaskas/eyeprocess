@@ -45,3 +45,11 @@ grade_model_evidence(
 
   Value supplied to \`semantic_roundtrip\`; see Details for its
   model-specific role.
+
+## Value
+
+An object of class "eye_irt_evidence_grade", stored as a named list,
+with components "model_id", "grade", "checks", "recovery", "contract",
+"warning". It contains grade model evidence against an explicit
+validation contract and associated metadata or diagnostics needed to
+interpret the result.

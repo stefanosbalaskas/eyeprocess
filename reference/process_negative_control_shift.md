@@ -25,3 +25,9 @@ process_negative_control_shift(data, column, lag = 1L, by = NULL)
 - by:
 
   Optional grouping columns.
+
+## Value
+
+An R object containing temporal-shift negative control. The concrete
+class and structure follow the selected method, engine, or input object
+and are preserved as documented by that workflow.

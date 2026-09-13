@@ -35,3 +35,9 @@ eyeprocess_irt_parameter_plausibility_audit(
 - upper_asymptote:
 
   Upper-asymptote parameter values.
+
+## Value
+
+A data frame containing basic plausibility of dichotomous item
+parameters. Rows represent the analysis units and columns contain the
+identifiers, estimates, or diagnostics defined by the function.

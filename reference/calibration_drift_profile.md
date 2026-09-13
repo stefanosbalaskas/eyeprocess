@@ -32,3 +32,10 @@ calibration_drift_profile(
 - target_x, target_y:
 
   Known target-coordinate columns.
+
+## Value
+
+An object of class "eye_calibration_drift_profile", stored as a named
+list, with components "table", "by", "caveat". It contains calibration
+drift profile across sessions/batches and associated metadata or
+diagnostics needed to interpret the result.

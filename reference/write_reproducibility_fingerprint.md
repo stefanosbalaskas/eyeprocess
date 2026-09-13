@@ -21,3 +21,8 @@ write_reproducibility_fingerprint(x, path, format = c("rds", "dput", "json"))
 - format:
 
   \`rds\`, \`dput\`, or \`json\`.
+
+## Value
+
+A character string or vector giving the path or identifier for a
+reproducibility fingerprint.

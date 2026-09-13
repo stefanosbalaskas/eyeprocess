@@ -30,3 +30,11 @@ run_posterior_sbc(
 - seed:
 
   Random-number seed.
+
+## Value
+
+An object of class "eye_posterior_sbc", "eye_irt_sbc", stored as a named
+list, with components "ranks", "failures", "replications", "seed",
+"method", "requirement". It contains posterior simulation-based
+calibration from an explicit contract and associated metadata or
+diagnostics needed to interpret the result.

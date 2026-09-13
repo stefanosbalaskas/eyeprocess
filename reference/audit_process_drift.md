@@ -47,3 +47,11 @@ audit_process_drift(
 
   Aggregation function used when multiple rows occur within item x
   batch.
+
+## Value
+
+An object of class "eye_process_drift_audit", stored as a named list,
+with components "table", "trajectories", "item", "batch", "metrics",
+"spec", "reference_batch", "flag_columns", "caveat". It contains
+post-deployment psychometric and biometric drift and associated metadata
+or diagnostics needed to interpret the result.

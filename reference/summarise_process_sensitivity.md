@@ -35,3 +35,9 @@ summarise_process_sensitivity(
 - alpha:
 
   Significance threshold used only when \`p_value\` is supplied.
+
+## Value
+
+A data frame containing process sensitivity results. Rows represent the
+analysis units and columns contain the identifiers, estimates, or
+diagnostics defined by the function.

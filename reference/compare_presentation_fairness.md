@@ -25,3 +25,10 @@ compare_presentation_fairness(data, variant, outcome, person = NULL)
 - person:
 
   Optional participant column for descriptive aggregation.
+
+## Value
+
+An object of class "eye_presentation_fairness_comparison", stored as a
+named list, with components "model", "summary", "status", "caveat". It
+contains outcomes across presentation variants and associated metadata
+or diagnostics needed to interpret the result.

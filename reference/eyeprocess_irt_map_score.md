@@ -40,3 +40,10 @@ eyeprocess_irt_map_score(
 - D:
 
   Logistic scaling constant.
+
+## Value
+
+An object of class "eye_irt_score", stored as a named list, with
+components "estimate", "objective", "method", "bounds". It contains mAP
+score for dichotomous IRT item parameters and associated metadata or
+diagnostics needed to interpret the result.

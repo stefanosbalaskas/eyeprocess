@@ -17,3 +17,8 @@ validate_eyeprocess_external_irt_fit(x, engine = NULL)
 - engine:
 
   Requested estimation or analysis engine.
+
+## Value
+
+A logical value or vector indicating that an external IRT fit used the
+requested engine.

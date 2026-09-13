@@ -13,3 +13,7 @@ validate_eyeprocess_joint_process_irt_spec(x)
 - x:
 
   Object to validate, summarize, verify, or otherwise process.
+
+## Value
+
+A logical value or vector indicating a joint process IRT specification.

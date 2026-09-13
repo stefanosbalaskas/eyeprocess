@@ -13,3 +13,8 @@ eye_pipeline_dot(x)
 - x:
 
   Pipeline.
+
+## Value
+
+A character value or vector containing render pipeline dependencies as
+Graphviz DOT.

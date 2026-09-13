@@ -36,3 +36,11 @@ event_semantics_audit(
 - tolerance:
 
   Timestamp tolerance.
+
+## Value
+
+An object of class "eye_event_semantics", stored as a named list, with
+components "status", "source_n", "roundtrip_n", "matched_n",
+"exact_label_fraction", "max_time_error". It contains event semantic
+preservation and associated metadata or diagnostics needed to interpret
+the result.

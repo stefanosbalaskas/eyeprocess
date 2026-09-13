@@ -37,3 +37,9 @@ audit_identifiability(
 - max_abs_correlation:
 
   Maximum acceptable absolute parameter correlation.
+
+## Value
+
+An object of class "eye_irt_identifiability_audit", "data.frame", stored
+as a data frame, containing empirical identifiability from replicate
+estimates and associated metadata needed to interpret the result.

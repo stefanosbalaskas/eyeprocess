@@ -13,3 +13,7 @@ validate_eye_pipeline(x)
 - x:
 
   Pipeline.
+
+## Value
+
+A logical value or vector indicating a governed eyeprocess pipeline.

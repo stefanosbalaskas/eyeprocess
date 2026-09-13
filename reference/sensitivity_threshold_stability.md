@@ -30,3 +30,8 @@ sensitivity_threshold_stability(
 - direction:
 
   \`above\`, \`below\`, or \`absolute\`.
+
+## Value
+
+A numeric value or vector containing substantive-threshold stability
+across specifications.

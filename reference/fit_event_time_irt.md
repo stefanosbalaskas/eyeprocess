@@ -54,3 +54,10 @@ fit_event_time_irt(
 - ...:
 
   Additional arguments passed to the external engine.
+
+## Value
+
+An object of class "eye_event_time_irt", stored as a named list, with
+components "model", "engine", "theta_conditioned", "status", "note". It
+contains an event-time IRT reference workflow and associated metadata or
+diagnostics needed to interpret the result.

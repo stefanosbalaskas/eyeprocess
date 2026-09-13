@@ -21,3 +21,8 @@ sensitivity_fragility_index(x, effect = "effect", threshold = 0)
 - threshold:
 
   Decision threshold.
+
+## Value
+
+A numeric value or vector containing fragility index across analysis
+specifications.

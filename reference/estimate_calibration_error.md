@@ -32,3 +32,9 @@ estimate_calibration_error(
 - by:
 
   Optional grouping columns such as participant/session.
+
+## Value
+
+A tabular R object containing empirical calibration/validation error;
+rows represent analysis units and columns contain the returned
+quantities.

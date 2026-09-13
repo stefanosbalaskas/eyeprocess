@@ -22,3 +22,8 @@ plot(x, metric = c("rmse", "absolute_bias", "coverage"), ...)
 - ...:
 
   Additional arguments passed to the selected model, engine, or method.
+
+## Value
+
+Invisibly returns the plotting result when available; the primary effect
+is drawing plot parameter-recovery bias or RMSE.

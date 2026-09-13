@@ -42,3 +42,7 @@ pupil_activity_index(
 - fast_window_ms, slow_window_ms:
 
   Smoothing windows for the RIPA-style proxy.
+
+## Value
+
+A numeric value or vector containing a transparent pupil activity index.

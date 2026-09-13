@@ -25,3 +25,9 @@ inject_sampling_jitter(data, time = "timestamp_ms", sd, seed = 1L)
 - seed:
 
   Seed.
+
+## Value
+
+An R object containing inject timestamp jitter. The concrete class and
+structure follow the selected method, engine, or input object and are
+preserved as documented by that workflow.

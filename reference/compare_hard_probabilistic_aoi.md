@@ -31,3 +31,9 @@ compare_hard_probabilistic_aoi(
 - x, y:
 
   Gaze-coordinate columns.
+
+## Value
+
+An R object containing hard and probabilistic AOI assignments. The
+concrete class and structure follow the selected method, engine, or
+input object and are preserved as documented by that workflow.

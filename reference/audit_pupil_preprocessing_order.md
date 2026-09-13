@@ -25,3 +25,10 @@ audit_pupil_preprocessing_order(
 - baseline_pattern:
 
   Pattern identifying baseline correction.
+
+## Value
+
+A named list with components "steps", "baseline_positions",
+"cleaning_positions", "cleaning_after_baseline", "status", "caveat",
+containing declared order of pupil preprocessing steps and associated
+metadata or diagnostics.

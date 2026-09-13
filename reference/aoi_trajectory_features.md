@@ -40,3 +40,10 @@ aoi_trajectory_features(
 - aois:
 
   Optional AOIs to encode; defaults to observed AOIs.
+
+## Value
+
+An object of class "eye_aoi_trajectory", stored as a named list, with
+components "features", "aois", "degree", "bin_ms", "person", "trial",
+"caveat". It contains aOI growth-curve/trajectory features and
+associated metadata or diagnostics needed to interpret the result.

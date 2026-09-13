@@ -21,3 +21,8 @@ eyeprocess_process_item_profile(data, item, channels)
 - channels:
 
   Names or definitions of measurement channels.
+
+## Value
+
+A tabular R object containing aggregate process channels by item; rows
+represent analysis units and columns contain the returned quantities.

@@ -40,3 +40,9 @@ update_person_score(
 - ...:
 
   Additional arguments passed to the underlying method or helper.
+
+## Value
+
+A named list with components "pattern", "score", containing update a
+partial person score with one new response and associated metadata or
+diagnostics.

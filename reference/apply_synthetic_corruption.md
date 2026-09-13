@@ -45,3 +45,9 @@ apply_synthetic_corruption(
 - device_column:
 
   Optional numeric column receiving device shift.
+
+## Value
+
+An R object containing a synthetic corruption plan. The concrete class
+and structure follow the selected method, engine, or input object and
+are preserved as documented by that workflow.

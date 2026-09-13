@@ -13,3 +13,7 @@ process_drift_alerts(x)
 - x:
 
   Object to process, inspect, compare, or plot.
+
+## Value
+
+A logical value or vector indicating drift alerts.

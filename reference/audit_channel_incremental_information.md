@@ -45,3 +45,9 @@ audit_channel_incremental_information(
 - higher_is_better:
 
   Direction of the score.
+
+## Value
+
+A tabular R object containing out-of-sample incremental information from
+a process channel; rows represent analysis units and columns contain the
+returned quantities.

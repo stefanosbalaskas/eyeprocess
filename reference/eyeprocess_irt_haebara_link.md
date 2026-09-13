@@ -40,3 +40,10 @@ eyeprocess_irt_haebara_link(
 - start:
 
   Starting values for numerical optimization.
+
+## Value
+
+An object of class "eye_irt_link", stored as a named list, with
+components "A", "B", "method", "anchors", "objective", "convergence". It
+contains haebara item-characteristic-curve linking and associated
+metadata or diagnostics needed to interpret the result.

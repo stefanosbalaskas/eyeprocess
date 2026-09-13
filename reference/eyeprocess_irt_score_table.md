@@ -35,3 +35,9 @@ eyeprocess_irt_score_table(
 - ...:
 
   Additional arguments passed to the selected method or external engine.
+
+## Value
+
+A tabular R object containing a response matrix with EAP, MAP, or ML;
+rows represent analysis units and columns contain the returned
+quantities.

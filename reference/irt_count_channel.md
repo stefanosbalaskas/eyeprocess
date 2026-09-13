@@ -30,3 +30,9 @@ irt_count_channel(
 - options:
 
   Additional channel/model options.
+
+## Value
+
+A named list with components "type", "family", "role", "link",
+"variables", "latent", "options", containing count-valued process
+channel for multimodal IRT and associated metadata or diagnostics.

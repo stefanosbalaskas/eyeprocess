@@ -13,3 +13,7 @@ validate_eyeprocess_validation_plan(x)
 - x:
 
   Object to validate, summarize, verify, or otherwise process.
+
+## Value
+
+A logical value or vector indicating a validation-evidence plan.

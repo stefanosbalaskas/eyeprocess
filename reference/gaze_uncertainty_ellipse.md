@@ -21,3 +21,10 @@ gaze_uncertainty_ellipse(model, level = 0.95, center = NULL)
 - center:
 
   Optional center; defaults to model mean error.
+
+## Value
+
+A data frame containing uncertainty ellipse implied by an empirical
+calibration-error model. Rows represent the analysis units and columns
+contain the identifiers, estimates, or diagnostics defined by the
+function.

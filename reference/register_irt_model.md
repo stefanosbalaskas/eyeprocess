@@ -17,3 +17,9 @@ register_irt_model(spec, overwrite = FALSE)
 - overwrite:
 
   Whether to replace an existing model with the same id.
+
+## Value
+
+An R object containing a multimodal IRT model. The concrete class and
+structure follow the selected method, engine, or input object and are
+preserved as documented by that workflow.

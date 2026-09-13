@@ -21,3 +21,9 @@ drift_by_site(data, site = "site_id", ...)
 - ...:
 
   Additional arguments passed to the underlying method or helper.
+
+## Value
+
+An R object containing drift audit stratified by study site. The
+concrete class and structure follow the selected method, engine, or
+input object and are preserved as documented by that workflow.

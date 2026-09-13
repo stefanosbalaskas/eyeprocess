@@ -13,3 +13,7 @@ validate_eyeprocess_irt_item_bank(x)
 - x:
 
   Object to validate, summarize, verify, or otherwise process.
+
+## Value
+
+A logical value or vector indicating an adaptive IRT item bank.

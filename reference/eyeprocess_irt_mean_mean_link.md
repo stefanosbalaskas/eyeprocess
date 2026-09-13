@@ -21,3 +21,10 @@ eyeprocess_irt_mean_mean_link(reference, focal, anchors = NULL)
 - anchors:
 
   Anchor-item identifiers.
+
+## Value
+
+An object of class "eye_irt_link", stored as a named list, with
+components "A", "B", "method", "anchors", "objective". It contains
+mean-mean IRT linking coefficients and associated metadata or
+diagnostics needed to interpret the result.

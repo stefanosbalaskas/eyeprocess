@@ -40,3 +40,8 @@ plot_pupil_components(
 - ...:
 
   Additional arguments passed to the underlying method or helper.
+
+## Value
+
+A tabular R object containing plot tonic/phasic pupil components; rows
+represent analysis units and columns contain the returned quantities.

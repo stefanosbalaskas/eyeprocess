@@ -50,3 +50,10 @@ process_item_information(
 - burden_weight:
 
   Penalty applied to expected burden.
+
+## Value
+
+An object of class "eye_process_item_information", stored as a named
+list, with components "theta", "response_information", "utility". It
+contains 2PL response item information and associated metadata or
+diagnostics needed to interpret the result.

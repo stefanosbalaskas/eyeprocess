@@ -35,3 +35,11 @@ eye_stream_fidelity_audit(
 - key:
 
   Column or columns used to align records.
+
+## Value
+
+An object of class "eye_stream_fidelity", stored as a named list, with
+components "status", "matched_n", "source_streams", "roundtrip_streams",
+"confusion". It contains preservation of monocular/binocular stream
+semantics and associated metadata or diagnostics needed to interpret the
+result.

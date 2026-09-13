@@ -25,3 +25,10 @@ eyeprocess_reliability_evidence_plan(
 - seed:
 
   Random-number seed for reproducible execution.
+
+## Value
+
+An object of class "eye_reliability_evidence_plan", stored as a named
+list, with components "metrics", "bootstrap", "seed", "guardrail". It
+contains declare reliability evidence targets and associated metadata or
+diagnostics needed to interpret the result.

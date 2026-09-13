@@ -36,3 +36,11 @@ eyeprocess_irt_invariance_evidence(
 - process_concordance:
 
   Process-DIF concordance evidence.
+
+## Value
+
+An object of class "eye_irt_invariance_evidence", stored as a named
+list, with components "components", "present", "completeness",
+"interpretation". It contains combine invariance evidence without
+converting it to a binary validity claim and associated metadata or
+diagnostics needed to interpret the result.

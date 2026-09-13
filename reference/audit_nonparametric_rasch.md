@@ -35,3 +35,10 @@ audit_nonparametric_rasch(
 - seed:
 
   Seed.
+
+## Value
+
+An object of class "eye_nonparametric_rasch_audit", stored as a named
+list, with components "tests", "status", "n", "splitcr", "caveat". It
+contains nonparametric Rasch diagnostics with eRm and associated
+metadata or diagnostics needed to interpret the result.

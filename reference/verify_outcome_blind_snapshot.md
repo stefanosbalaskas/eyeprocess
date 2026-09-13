@@ -13,3 +13,8 @@ verify_outcome_blind_snapshot(x)
 - x:
 
   Snapshot.
+
+## Value
+
+A logical value or vector indicating verify an outcome-blind snapshot
+has not changed.

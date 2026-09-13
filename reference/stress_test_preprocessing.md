@@ -30,3 +30,9 @@ stress_test_preprocessing(
 - seed:
 
   Random-number seed.
+
+## Value
+
+An object of class "eye_irt_stress_test", "data.frame", stored as a data
+frame, containing stress test preprocessing and associated metadata
+needed to interpret the result.

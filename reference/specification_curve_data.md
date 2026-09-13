@@ -25,3 +25,8 @@ specification_curve_data(x, effect = "effect", lower = NULL, upper = NULL)
 - upper:
 
   Optional upper interval column.
+
+## Value
+
+A tabular R object containing ordered specification-curve data; rows
+represent analysis units and columns contain the returned quantities.

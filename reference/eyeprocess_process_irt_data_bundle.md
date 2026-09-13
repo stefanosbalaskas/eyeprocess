@@ -45,3 +45,11 @@ eyeprocess_process_irt_data_bundle(
 - covariates:
 
   Optional covariate columns or covariate data.
+
+## Value
+
+An object of class "eye_process_irt_data_bundle", stored as a named
+list, with components "data", "person", "item", "response",
+"response_time", "process", "covariates", "n_persons", "n_items". It
+contains a sparse response/process bundle for external joint engines and
+associated metadata or diagnostics needed to interpret the result.

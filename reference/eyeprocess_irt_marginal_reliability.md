@@ -18,3 +18,8 @@ eyeprocess_irt_marginal_reliability(theta_estimate, se)
 - se:
 
   Standard-error values.
+
+## Value
+
+A numeric value or vector containing marginal reliability from
+latent-score variance and conditional error variance.

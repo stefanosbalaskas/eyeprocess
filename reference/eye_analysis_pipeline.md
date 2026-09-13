@@ -30,3 +30,10 @@ eye_analysis_pipeline(
 - strict:
 
   If \`TRUE\`, undeclared dependencies are errors.
+
+## Value
+
+An object of class "eye_analysis_pipeline", stored as a named list, with
+components "name", "steps", "spec", "strict", "created_at", "status". It
+contains a governed analysis pipeline and associated metadata or
+diagnostics needed to interpret the result.

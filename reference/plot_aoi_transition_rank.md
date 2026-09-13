@@ -40,3 +40,9 @@ plot_aoi_transition_rank(
 - ...:
 
   Additional arguments passed to the underlying method or helper.
+
+## Value
+
+An R object containing plot top AOI transitions by probability/count.
+The concrete class and structure follow the selected method, engine, or
+input object and are preserved as documented by that workflow.

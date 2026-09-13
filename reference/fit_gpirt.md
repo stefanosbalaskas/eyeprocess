@@ -38,3 +38,10 @@ fit_gpirt(
 - ...:
 
   Additional arguments passed to the selected model, engine, or method.
+
+## Value
+
+An object of class "eye_gpirt", stored as a named list, with components
+"response_matrix", "models", "theta_proxy", "engine", "exact_gpirt",
+"status", "note". It contains gPIRT model-criticism interface and
+associated metadata or diagnostics needed to interpret the result.

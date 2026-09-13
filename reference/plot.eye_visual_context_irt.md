@@ -22,3 +22,8 @@ plot(x, type = c("loadings", "difficulty_change", "context_registry"), ...)
 - ...:
 
   Additional arguments passed to the underlying method or helper.
+
+## Value
+
+Invisibly returns the plotting result when available; the primary effect
+is drawing plot visual context irt diagnostics.

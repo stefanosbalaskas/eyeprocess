@@ -22,3 +22,8 @@ plot(x, method = names(x$tests)[1L], ...)
 - ...:
 
   Additional arguments passed to the underlying method or helper.
+
+## Value
+
+Invisibly returns the plotting result when available; the primary effect
+is drawing plot nonparametric rasch audit diagnostics.

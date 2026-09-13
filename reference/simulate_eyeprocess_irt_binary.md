@@ -46,3 +46,11 @@ simulate_eyeprocess_irt_binary(
 - D:
 
   Logistic scaling constant.
+
+## Value
+
+An object of class "eye_irt_simulation", stored as a named list, with
+components "responses", "probabilities", "theta", "items",
+"missing_rate", "testlet_sd", "seed". It contains dichotomous IRT
+responses with optional local dependence and missingness and associated
+metadata or diagnostics needed to interpret the result.

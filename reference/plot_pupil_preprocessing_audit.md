@@ -30,3 +30,9 @@ plot_pupil_preprocessing_audit(
 - ...:
 
   Additional arguments passed to the underlying method or helper.
+
+## Value
+
+A tabular R object containing plot raw-to-processed pupil preprocessing
+stages; rows represent analysis units and columns contain the returned
+quantities.

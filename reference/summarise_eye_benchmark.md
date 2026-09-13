@@ -13,3 +13,8 @@ summarise_eye_benchmark(x)
 - x:
 
   Benchmark result.
+
+## Value
+
+A logical value or vector indicating benchmark timing and memory by
+problem size.

@@ -35,3 +35,8 @@ eyeprocess_mirt_directional_information(
 - D:
 
   Logistic scaling constant.
+
+## Value
+
+A numeric value or vector containing directional multidimensional 2PL
+information.

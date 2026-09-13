@@ -15,3 +15,9 @@ eye_targets_manifest(x)
 - x:
 
   Pipeline.
+
+## Value
+
+A data frame containing a targets-compatible dependency manifest. Rows
+represent the analysis units and columns contain the identifiers,
+estimates, or diagnostics defined by the function.

@@ -30,3 +30,9 @@ paper_reproducibility_manifest(
 - tables:
 
   Optional table paths.
+
+## Value
+
+A named list with components "evidence_hash", "manuscript", "files",
+"reproducibility", "generated_utc", containing a compact paper
+reproducibility manifest and associated metadata or diagnostics.

@@ -27,3 +27,10 @@ explain_latent_interaction(object, person = NULL, item = NULL, top = 10L)
 - top:
 
   Number of closest pairs to return.
+
+## Value
+
+An R object containing explain local person-item latent-space
+interactions. The concrete class and structure follow the selected
+method, engine, or input object and are preserved as documented by that
+workflow.

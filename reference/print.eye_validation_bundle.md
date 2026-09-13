@@ -18,3 +18,8 @@ print(x, ...)
 - ...:
 
   Additional arguments passed to the underlying method or helper.
+
+## Value
+
+Invisibly returns the input object after printing its summary; the
+object's class and contents are unchanged.

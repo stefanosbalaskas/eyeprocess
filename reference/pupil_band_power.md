@@ -25,3 +25,8 @@ pupil_band_power(y, sampling_rate_hz, lower_hz, upper_hz, detrend = TRUE)
 - detrend:
 
   Remove the mean before FFT.
+
+## Value
+
+A numeric value or vector containing pupil signal power in a frequency
+band.

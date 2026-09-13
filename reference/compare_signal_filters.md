@@ -25,3 +25,8 @@ compare_signal_filters(
 - methods:
 
   Methods to compare.
+
+## Value
+
+A tabular R object containing multiple signal filters; rows represent
+analysis units and columns contain the returned quantities.

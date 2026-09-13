@@ -43,3 +43,11 @@ audit_process_anomalies(
 - ridge:
 
   Diagonal covariance regularization.
+
+## Value
+
+An object of class "eye_process_anomaly_audit", stored as a named list,
+with components "table", "metrics", "alpha", "threshold", "center",
+"covariance", "caveat". It contains multivariate process/data-quality
+anomalies and associated metadata or diagnostics needed to interpret the
+result.

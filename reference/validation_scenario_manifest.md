@@ -25,3 +25,11 @@ validation_scenario_manifest(
 - generated_at:
 
   Generation timestamp stored in the manifest.
+
+## Value
+
+An object of class "eye_validation_scenario_manifest", stored as a named
+list, with components "label", "plan_hash", "scenarios",
+"source_commit", "generated_at", "scientific_scope". It contains a
+scenario manifest for frozen validation work and associated metadata or
+diagnostics needed to interpret the result.

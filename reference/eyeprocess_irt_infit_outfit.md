@@ -31,3 +31,9 @@ eyeprocess_irt_infit_outfit(
 - min_variance:
 
   Minimum variance used to stabilize residual calculations.
+
+## Value
+
+A data frame containing residual-based Infit and Outfit summaries. Rows
+represent the analysis units and columns contain the identifiers,
+estimates, or diagnostics defined by the function.

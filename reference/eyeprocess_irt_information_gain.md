@@ -17,3 +17,8 @@ eyeprocess_irt_information_gain(se_before, se_after)
 - se_after:
 
   Conditional standard error after item administration.
+
+## Value
+
+A numeric value or vector containing information gain between two
+conditional standard errors.

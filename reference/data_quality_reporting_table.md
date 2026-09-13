@@ -13,3 +13,10 @@ data_quality_reporting_table(x)
 - x:
 
   Data-quality profile.
+
+## Value
+
+An R object containing compact reporting table for eye-tracking data
+quality. The concrete class and structure follow the selected method,
+engine, or input object and are preserved as documented by that
+workflow.

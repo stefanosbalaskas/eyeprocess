@@ -31,3 +31,10 @@ estimate_visual_exposure_probability(
 - family:
 
   Statistical family used by the channel or model.
+
+## Value
+
+An object of class "eye_visual_exposure_model", stored as a named list,
+with components "model", "fitted_probability", "exposed", "predictors".
+It contains visual exposure probability and associated metadata or
+diagnostics needed to interpret the result.

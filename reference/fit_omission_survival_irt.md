@@ -62,3 +62,11 @@ fit_omission_survival_irt(
 - ...:
 
   Additional arguments passed to the selected model, engine, or method.
+
+## Value
+
+An object of class "eye_omission_survival_irt", stored as a named list,
+with components "response_model", "omission_model", "not_reached_model",
+"classified_data", "state_counts", "status", "note". It contains
+response/RT/omission survival IRT reference model and associated
+metadata or diagnostics needed to interpret the result.

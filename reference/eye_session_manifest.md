@@ -45,3 +45,10 @@ eye_session_manifest(
 - notes:
 
   Optional notes.
+
+## Value
+
+A named list with components "created_utc", "eyeprocess_version",
+"data_hash", "files", "adapter", "decisions_hash", "pipeline_hash",
+"seeds", "environment", "notes", containing a session-level provenance
+manifest and associated metadata or diagnostics.

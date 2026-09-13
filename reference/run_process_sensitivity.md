@@ -35,3 +35,11 @@ run_process_sensitivity(
 - progress:
 
   Print progress.
+
+## Value
+
+An object of class "eye_process_sensitivity", stored as a named list,
+with components "grid", "results", "failures", "warnings", "grid_hash",
+"created_at", "status", "caveat". It contains an explicit
+process-analysis multiverse and associated metadata or diagnostics
+needed to interpret the result.

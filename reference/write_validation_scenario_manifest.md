@@ -17,3 +17,8 @@ write_validation_scenario_manifest(x, path)
 - path:
 
   File path for reading or writing.
+
+## Value
+
+A character string or vector giving the path or identifier for a
+validation scenario manifest.

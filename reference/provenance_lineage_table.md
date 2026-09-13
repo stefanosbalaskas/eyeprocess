@@ -30,3 +30,9 @@ provenance_lineage_table(
 - value:
 
   Optional values/locations.
+
+## Value
+
+A data frame containing a provenance lineage node table. Rows represent
+the analysis units and columns contain the identifiers, estimates, or
+diagnostics defined by the function.

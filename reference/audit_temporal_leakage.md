@@ -23,3 +23,10 @@ audit_temporal_leakage(provenance, allow_equal = TRUE, tolerance = 0)
 - tolerance:
 
   Numeric tolerance in the provenance time unit.
+
+## Value
+
+A named list with components "status", "n_features", "n_flagged",
+"flagged_fraction", "detail", "interpretation", containing temporal
+leakage in a feature provenance table and associated metadata or
+diagnostics.

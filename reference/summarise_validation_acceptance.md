@@ -17,3 +17,8 @@ summarise_validation_acceptance(x, by = character())
 - by:
 
   Grouping variables or aggregation level.
+
+## Value
+
+A tabular R object containing an acceptance matrix; rows represent
+analysis units and columns contain the returned quantities.

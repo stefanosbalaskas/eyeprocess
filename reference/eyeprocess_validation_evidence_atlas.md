@@ -58,3 +58,11 @@ eyeprocess_validation_evidence_atlas(
 - artifacts:
 
   Artifact table or file-index information.
+
+## Value
+
+An object of class "eye_validation_evidence_atlas", stored as a named
+list, with components "claims", "components", "component_status",
+"coverage", "hash", "guardrail". It contains assemble a validation
+evidence atlas and associated metadata or diagnostics needed to
+interpret the result.

@@ -63,3 +63,13 @@ irt_validation_spec(
 - notes:
 
   Free-text scientific notes.
+
+## Value
+
+An object of class "eye_irt_validation_spec", stored as a named list,
+with components "model_id", "replications", "parameters", "metrics",
+"grouped_validation", "preprocessing_variants",
+"misspecification_scenarios", "thresholds", "seed", "notes",
+"contract_version", "created_with". It contains specify a validation
+programme for a process-IRT model and associated metadata or diagnostics
+needed to interpret the result.

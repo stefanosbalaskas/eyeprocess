@@ -13,3 +13,9 @@ eye_pipeline_graph(x)
 - x:
 
   Pipeline.
+
+## Value
+
+A named list with components "vertices", "edges", containing return
+pipeline vertices and dependency edges and associated metadata or
+diagnostics.

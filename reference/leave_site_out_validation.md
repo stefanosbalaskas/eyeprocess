@@ -29,3 +29,9 @@ leave_site_out_validation(data, site, fitter, predictor, scorer)
 - scorer:
 
   Function that scores predictions.
+
+## Value
+
+An object of class "eye_leave_site_out_validation", "data.frame", stored
+as a data frame, containing leave site out validation and associated
+metadata needed to interpret the result.

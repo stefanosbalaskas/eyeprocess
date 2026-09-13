@@ -46,3 +46,10 @@ roundtrip_eye_bids(
 - audit_args:
 
   Arguments forwarded to \`semantic_roundtrip_audit()\`.
+
+## Value
+
+An object of class "eye_bids_roundtrip", stored as a named list, with
+components "exported", "reconstructed", "audit", "status". It contains
+execute and audit an Eye-Tracking-BIDS round trip and associated
+metadata or diagnostics needed to interpret the result.

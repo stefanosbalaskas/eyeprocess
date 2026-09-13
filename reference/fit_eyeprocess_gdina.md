@@ -29,3 +29,10 @@ fit_eyeprocess_gdina(dat, Q, model = "GDINA", ..., engine = "GDINA")
 - engine:
 
   Requested estimation or analysis engine.
+
+## Value
+
+An object of class "eye_external_irt_fit", stored as a named list, with
+components "status", "engine", "fit", "call". It contains a G-DINA
+cognitive-diagnosis model without fallback substitution and associated
+metadata or diagnostics needed to interpret the result.

@@ -60,3 +60,12 @@ fit_multimodal_trait_irt(
 - ...:
 
   Additional arguments passed to the selected model, engine, or method.
+
+## Value
+
+An object of class "eye_joint_gaze_rt_irt", stored as a named list, with
+components "engine", "response_model", "rt_model", "gaze_model",
+"person_scores", "item_scores", "person_covariance", "item_covariance",
+"data_n", "gaze_family", "columns", "status", and additional components.
+It contains multimodal trait-model convenience wrapper and associated
+metadata or diagnostics needed to interpret the result.

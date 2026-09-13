@@ -18,3 +18,8 @@ plot(x, ...)
 - ...:
 
   Additional arguments passed to the selected model, engine, or method.
+
+## Value
+
+Invisibly returns the plotting result when available; the primary effect
+is drawing plot process-measure variance components.

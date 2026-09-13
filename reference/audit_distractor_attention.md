@@ -30,3 +30,9 @@ audit_distractor_attention(
 - chosen_suffix:
 
   Suffix identifying the selected option indicator.
+
+## Value
+
+A data frame containing distractor attention patterns. Rows represent
+the analysis units and columns contain the identifiers, estimates, or
+diagnostics defined by the function.

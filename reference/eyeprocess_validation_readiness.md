@@ -21,3 +21,10 @@ eyeprocess_validation_readiness(
 - required:
 
   Required evidence components or requirements.
+
+## Value
+
+An object of class "eye_validation_readiness", stored as a named list,
+with components "ready", "table", "hash_valid", "source_commit". It
+contains readiness of a Milestone \#2 validation evidence bundle and
+associated metadata or diagnostics needed to interpret the result.

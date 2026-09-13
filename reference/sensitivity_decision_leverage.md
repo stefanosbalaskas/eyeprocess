@@ -18,3 +18,9 @@ sensitivity_decision_leverage(x, effect = "effect")
 - effect:
 
   Effect column.
+
+## Value
+
+A tabular R object containing decision leverage of each analytical
+choice; rows represent analysis units and columns contain the returned
+quantities.

@@ -25,3 +25,10 @@ eyeprocess_response_time_profile(data, person, item, response_time)
 - response_time:
 
   Response-time variable or values.
+
+## Value
+
+An object of class "eye_response_time_profile", stored as a named list,
+with components "item", "person", "n". It contains response-time
+structure for joint IRT work and associated metadata or diagnostics
+needed to interpret the result.

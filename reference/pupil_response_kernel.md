@@ -30,3 +30,8 @@ pupil_response_kernel(
 - normalize:
 
   Normalize peak to one.
+
+## Value
+
+A numeric value or vector containing canonical gamma-shaped pupil
+response kernel.

@@ -25,3 +25,9 @@ coverage_calibration_curve(truth, lower, upper, nominal = NULL)
 - nominal:
 
   Nominal coverage labels, one per interval column.
+
+## Value
+
+A data frame containing interval coverage calibration curve. Rows
+represent the analysis units and columns contain the identifiers,
+estimates, or diagnostics defined by the function.

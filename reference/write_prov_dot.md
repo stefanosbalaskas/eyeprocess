@@ -13,3 +13,8 @@ write_prov_dot(x)
 - x:
 
   Provenance graph.
+
+## Value
+
+A character value or vector containing return Graphviz DOT for a
+provenance graph.

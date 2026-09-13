@@ -40,3 +40,10 @@ audit_measurement_transportability(
 - maximum:
 
   Maximum acceptable value or threshold.
+
+## Value
+
+An object of class "eye_measurement_transportability_audit",
+"data.frame", stored as a data frame, containing measurement
+transportability across held-out groups and associated metadata needed
+to interpret the result.

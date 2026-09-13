@@ -13,3 +13,9 @@ validation_evidence_matrix(...)
 - ...:
 
   Named validation results, bundles, or arbitrary evidence objects.
+
+## Value
+
+A tabular R object containing a model-by-evidence validation matrix;
+rows represent analysis units and columns contain the returned
+quantities.

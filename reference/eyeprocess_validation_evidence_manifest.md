@@ -30,3 +30,11 @@ eyeprocess_validation_evidence_manifest(
 - label:
 
   Human-readable label.
+
+## Value
+
+An object of class "eye_validation_evidence_manifest", stored as a named
+list, with components "label", "source_commit", "files", "objects",
+"generated_at". It contains an evidence manifest from files and
+in-memory objects and associated metadata or diagnostics needed to
+interpret the result.

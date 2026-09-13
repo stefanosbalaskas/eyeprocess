@@ -46,3 +46,11 @@ fit_visual_context_irt(
 - SE:
 
   Request standard errors from mirt.
+
+## Value
+
+An object of class "eye_visual_context_irt", stored as a named list,
+with components "base_model", "context_model", "comparison", "registry",
+"context", "positions", "itemtype", "model_string", "status", "caveat".
+It contains an explicit visual-context/testlet IRT model and associated
+metadata or diagnostics needed to interpret the result.

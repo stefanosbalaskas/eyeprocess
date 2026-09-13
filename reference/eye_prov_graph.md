@@ -25,3 +25,8 @@ eye_prov_graph(
 - metadata:
 
   Optional metadata.
+
+## Value
+
+A named list with components "nodes", "edges", "metadata", containing a
+lightweight provenance graph and associated metadata or diagnostics.

@@ -25,3 +25,10 @@ export_validation_bundle(x, directory, overwrite = FALSE, include_rds = TRUE)
 - include_rds:
 
   Save full R objects as RDS.
+
+## Value
+
+An object of class "eye_validation_export", stored as a named list, with
+components "directory", "files", "manifest". It contains a validation
+evidence bundle and associated metadata or diagnostics needed to
+interpret the result.

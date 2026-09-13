@@ -30,3 +30,8 @@ eyeprocess_mirt_information_matrix(
 - D:
 
   Logistic scaling constant.
+
+## Value
+
+A numeric value or vector containing multidimensional 2PL item
+information matrix.

@@ -25,3 +25,7 @@ eyeprocess_irt_2pl_probability(theta, a = 1, b = 0, D = 1)
 - D:
 
   Logistic scaling constant.
+
+## Value
+
+A numeric value or vector containing 2PL item-response probability.

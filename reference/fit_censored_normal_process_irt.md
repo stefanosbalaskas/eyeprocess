@@ -35,3 +35,11 @@ fit_censored_normal_process_irt(
 - control:
 
   \`optim()\` control list.
+
+## Value
+
+An object of class "eye_censored_normal_process_irt", stored as a named
+list, with components "coefficients", "fits", "theta", "lower", "upper",
+"engine", "status", "citation", "caveat". It contains conditional
+censored-normal calibration for bounded process measurements and
+associated metadata or diagnostics needed to interpret the result.

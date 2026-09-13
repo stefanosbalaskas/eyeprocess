@@ -44,3 +44,11 @@ fit_pupil_event_deconvolution(
 - min_samples:
 
   Minimum usable samples per group.
+
+## Value
+
+An object of class "eye_pupil_deconvolution", stored as a named list,
+with components "fits", "effects", "fitted", "events", "tmax_ms",
+"shape", "by", "status", "caveat". It contains transparent event-related
+pupil deconvolution models and associated metadata or diagnostics needed
+to interpret the result.

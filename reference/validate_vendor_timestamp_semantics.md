@@ -39,3 +39,10 @@ validate_vendor_timestamp_semantics(
 - media_time:
 
   Media/stimulus timestamp column.
+
+## Value
+
+An object of class "eye_vendor_timestamp_semantics", stored as a named
+list, with components "vendor", "pass", "clocks". It contains
+vendor-specific timestamp semantics and associated metadata or
+diagnostics needed to interpret the result.

@@ -30,3 +30,9 @@ score_partial_response_pattern(
 - ...:
 
   Passed to \`mirt::fscores()\`.
+
+## Value
+
+A data frame containing a partial response pattern from a calibrated
+mirt model. Rows represent the analysis units and columns contain the
+identifiers, estimates, or diagnostics defined by the function.

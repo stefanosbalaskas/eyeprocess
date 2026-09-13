@@ -48,3 +48,11 @@ eyeprocess_irt_model_spec(
 - notes:
 
   Value supplied for the notes argument.
+
+## Value
+
+An object of class "eyeprocess_irt_model_spec", stored as a named list,
+with components "family", "dimensions", "identification", "engine",
+"process_channels", "status", "notes". It contains declare an eyeprocess
+IRT model specification and associated metadata or diagnostics needed to
+interpret the result.

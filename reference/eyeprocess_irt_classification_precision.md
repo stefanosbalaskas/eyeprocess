@@ -30,3 +30,9 @@ eyeprocess_irt_classification_precision(
 - confidence:
 
   Requested confidence level.
+
+## Value
+
+A tabular R object containing decision precision at one or more theta
+cut scores; rows represent analysis units and columns contain the
+returned quantities.

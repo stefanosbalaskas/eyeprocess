@@ -13,3 +13,9 @@ eyeprocess_irt_functioning_effect_summary(curve)
 - curve:
 
   Curve data to summarize or inspect.
+
+## Value
+
+A named list with components "max_abs", "mean_abs", "signed_area",
+containing dIF/DTF curve magnitude and associated metadata or
+diagnostics.

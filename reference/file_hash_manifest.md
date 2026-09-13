@@ -18,3 +18,9 @@ file_hash_manifest(paths, algorithm = c("md5", "sha256"))
 
   Hash algorithm; currently \`md5\` uses base R, \`sha256\` uses openssl
   when available.
+
+## Value
+
+A data frame containing a file hash manifest. Rows represent the
+analysis units and columns contain the identifiers, estimates, or
+diagnostics defined by the function.

@@ -13,3 +13,8 @@ summarise_eyeprocess_stress_evidence(x)
 - x:
 
   Object to validate, summarize, verify, or otherwise process.
+
+## Value
+
+A tabular R object containing executed measurement-stress evidence; rows
+represent analysis units and columns contain the returned quantities.

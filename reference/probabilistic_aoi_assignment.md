@@ -46,3 +46,11 @@ probabilistic_aoi_assignment(
 - min_probability:
 
   Minimum probability for assignment; lower maxima become \`NA\`.
+
+## Value
+
+An object of class "eye_probabilistic_aoi_assignment", stored as a named
+list, with components "assignments", "probabilities", "aois", "model",
+"min_probability", "caveat". It contains probabilistic AOI assignment
+under empirical calibration uncertainty and associated metadata or
+diagnostics needed to interpret the result.

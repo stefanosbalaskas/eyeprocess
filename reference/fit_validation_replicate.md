@@ -43,3 +43,7 @@ fit_validation_replicate(
 - engine:
 
   Engine label.
+
+## Value
+
+A logical value or vector indicating one model-validation replicate.

@@ -21,3 +21,8 @@ simulation_rank_statistic(truth, draws, seed = NULL)
 - seed:
 
   Seed used only to randomize ties.
+
+## Value
+
+A numeric value or vector containing a simulation-based calibration rank
+statistic.

@@ -17,3 +17,9 @@ validation_summary_mcse(x, by = NULL)
 - by:
 
   Optional grouping variables.
+
+## Value
+
+A tabular R object containing monte Carlo standard-error diagnostics for
+validation summaries; rows represent analysis units and columns contain
+the returned quantities.

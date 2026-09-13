@@ -50,3 +50,11 @@ eye_reproducibility_fingerprint(
 - label:
 
   Fingerprint label.
+
+## Value
+
+A named list with components "schema_version", "label",
+"eyeprocess_version", "data_hash", "analysis_spec_hash",
+"model_spec_hash", "decisions_hash", "result_hash", "file_manifest",
+"seeds", "environment", containing a reproducibility fingerprint and
+associated metadata or diagnostics.

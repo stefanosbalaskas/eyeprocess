@@ -13,3 +13,8 @@ preflight_passed(x)
 - x:
 
   Object to process, inspect, compare, or plot.
+
+## Value
+
+A tabular R object containing pre-flight passes; rows represent analysis
+units and columns contain the returned quantities.

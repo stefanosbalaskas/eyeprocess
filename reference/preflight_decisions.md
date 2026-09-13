@@ -13,3 +13,9 @@ preflight_decisions(x)
 - x:
 
   An \`eye_biometric_preflight\` object.
+
+## Value
+
+An R object containing pre-flight decisions. The concrete class and
+structure follow the selected method, engine, or input object and are
+preserved as documented by that workflow.

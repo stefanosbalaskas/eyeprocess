@@ -26,3 +26,11 @@ generalizability_process_study(data, outcome, facets, REML = TRUE)
 - REML:
 
   Whether restricted maximum likelihood is used.
+
+## Value
+
+An object of class "eye_process_g_study", stored as a named list, with
+components "model", "variance_components", "facets", "outcome". It
+contains generalizability-style variance decomposition for a process
+measure and associated metadata or diagnostics needed to interpret the
+result.

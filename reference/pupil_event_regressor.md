@@ -21,3 +21,7 @@ pupil_event_regressor(time_ms, event_time_ms, tmax_ms = 930, shape = 10.1)
 - tmax_ms, shape:
 
   Kernel parameters.
+
+## Value
+
+A numeric value or vector containing an event-locked pupil regressor.

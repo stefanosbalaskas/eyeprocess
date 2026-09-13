@@ -17,3 +17,9 @@ expand_process_validation_design(x, max_conditions = 250000L)
 - max_conditions:
 
   Optional hard cap for accidental combinatorial explosion.
+
+## Value
+
+A tabular R object containing expand a process-validation design into
+explicit conditions; rows represent analysis units and columns contain
+the returned quantities.

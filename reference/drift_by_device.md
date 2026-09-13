@@ -21,3 +21,9 @@ drift_by_device(data, device = "device_id", ...)
 - ...:
 
   Additional arguments passed to the underlying method or helper.
+
+## Value
+
+An R object containing drift audit stratified by device. The concrete
+class and structure follow the selected method, engine, or input object
+and are preserved as documented by that workflow.

@@ -27,3 +27,8 @@ process_temporal_stability(
 - method:
 
   Correlation method.
+
+## Value
+
+A logical value or vector indicating pairwise temporal stability across
+sessions.

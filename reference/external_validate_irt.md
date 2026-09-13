@@ -42,3 +42,8 @@ external_validate_irt(
 - label:
 
   Value supplied to \`label\`; see Details for its model-specific role.
+
+## Value
+
+A logical value or vector indicating external validation on a completely
+held-out dataset.

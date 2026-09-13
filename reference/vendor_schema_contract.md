@@ -60,3 +60,12 @@ vendor_schema_contract(
 - event_fields:
 
   Event/annotation fields expected to survive.
+
+## Value
+
+An object of class "eye_vendor_schema_contract", stored as a named list,
+with components "vendor", "version", "required_fields",
+"optional_fields", "aliases", "timestamp", "coordinate", "units",
+"eye_streams", "event_fields", "contract_version". It contains declare a
+vendor semantic schema contract and associated metadata or diagnostics
+needed to interpret the result.

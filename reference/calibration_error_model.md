@@ -27,3 +27,11 @@ calibration_error_model(
 - target_x, target_y:
 
   Known target-coordinate columns.
+
+## Value
+
+An object of class "eye_calibration_error_model", stored as a named
+list, with components "mean_error", "covariance", "errors", "n",
+"metrics", "coordinate_units", "status", "caveat". It contains an
+empirical bivariate calibration-error model and associated metadata or
+diagnostics needed to interpret the result.

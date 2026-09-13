@@ -69,3 +69,12 @@ fit_process_hmm_irt(
 - seed:
 
   Random-number seed.
+
+## Value
+
+An object of class "eye_process_hmm_irt", stored as a named list, with
+components "pi", "transition", "means", "sds", "posterior_state",
+"state", "row_data", "occupancy", "summary_data", "response_model",
+"logLik", "logLik_history", and additional components. It contains
+process-state HMM with an IRT response layer and associated metadata or
+diagnostics needed to interpret the result.

@@ -38,3 +38,9 @@ plot_irf_uncertainty(
 - ...:
 
   Graphical arguments.
+
+## Value
+
+A data frame containing plot uncertainty for flexible item response
+functions. Rows represent the analysis units and columns contain the
+identifiers, estimates, or diagnostics defined by the function.

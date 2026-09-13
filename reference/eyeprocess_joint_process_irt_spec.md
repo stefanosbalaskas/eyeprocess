@@ -45,3 +45,11 @@ eyeprocess_joint_process_irt_spec(
 - status:
 
   Evidence, model, or governance status.
+
+## Value
+
+An object of class "eye_joint_process_irt_spec", stored as a named list,
+with components "response_family", "time_model", "process_channels",
+"person_covariates", "item_covariates", "missingness", "status". It
+contains declare a response/process joint IRT specification and
+associated metadata or diagnostics needed to interpret the result.

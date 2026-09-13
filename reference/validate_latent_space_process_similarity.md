@@ -26,3 +26,11 @@ validate_latent_space_process_similarity(
 - entity:
 
   Entity type to map or validate.
+
+## Value
+
+An object of class "eye_latent_space_process_validation", stored as a
+named list, with components "entity", "spearman_distance_correlation",
+"latent_distance", "process_distance", "interpretation". It contains
+latent-space proximity against process similarity and associated
+metadata or diagnostics needed to interpret the result.

@@ -13,3 +13,7 @@ validate_process_measure_registry(registry)
 - registry:
 
   Registry data frame.
+
+## Value
+
+A logical value or vector indicating a process-measure registry.

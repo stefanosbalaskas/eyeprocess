@@ -21,3 +21,9 @@ write_decision_manifest(x, path, format = c("rds", "dput", "json"))
 - format:
 
   \`rds\`, \`dput\`, or \`json\`.
+
+## Value
+
+An R object containing a decision manifest. The concrete class and
+structure follow the selected method, engine, or input object and are
+preserved as documented by that workflow.

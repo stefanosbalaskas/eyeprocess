@@ -25,3 +25,7 @@ eyeprocess_irt_expected_score(
 - ...:
 
   Additional arguments passed to the selected method or external engine.
+
+## Value
+
+A numeric value or vector containing expected item score.

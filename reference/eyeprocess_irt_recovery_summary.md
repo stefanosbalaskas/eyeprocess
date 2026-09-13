@@ -13,3 +13,8 @@ eyeprocess_irt_recovery_summary(x)
 - x:
 
   Object to validate, summarize, verify, or otherwise process.
+
+## Value
+
+A tabular R object containing iRT parameter recovery; rows represent
+analysis units and columns contain the returned quantities.

@@ -30,3 +30,9 @@ eyeprocess_irt_device_drift(
 - parameter:
 
   Name of the parameter to compare.
+
+## Value
+
+A tabular R object containing parameter drift across acquisition
+devices; rows represent analysis units and columns contain the returned
+quantities.

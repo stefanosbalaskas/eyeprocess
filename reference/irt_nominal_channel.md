@@ -30,3 +30,9 @@ irt_nominal_channel(
 - options:
 
   Additional channel/model options.
+
+## Value
+
+A named list with components "type", "family", "role", "link",
+"variables", "latent", "options", containing nominal response/process
+channel and associated metadata or diagnostics.

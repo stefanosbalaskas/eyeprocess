@@ -19,3 +19,9 @@ export_prov_json(x, path)
 - path:
 
   Output JSON path.
+
+## Value
+
+An R object containing lightweight PROV-oriented JSON. The concrete
+class and structure follow the selected method, engine, or input object
+and are preserved as documented by that workflow.

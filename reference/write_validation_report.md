@@ -21,3 +21,8 @@ write_validation_report(x, path, ...)
 - ...:
 
   Passed to \`validation_report()\`.
+
+## Value
+
+A character string or vector giving the path or identifier for a
+validation report to disk.

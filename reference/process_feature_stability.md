@@ -35,3 +35,9 @@ process_feature_stability(
 - top_n:
 
   Number of top features counted per split.
+
+## Value
+
+A data frame containing process-feature stability across repeated
+analyses. Rows represent the analysis units and columns contain the
+identifiers, estimates, or diagnostics defined by the function.

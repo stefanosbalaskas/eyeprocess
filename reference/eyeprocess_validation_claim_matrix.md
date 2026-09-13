@@ -40,3 +40,9 @@ eyeprocess_validation_claim_matrix(
 - boundary:
 
   Explicit interpretation or scope boundary for the claim.
+
+## Value
+
+A data frame containing a machine-readable validation claim/evidence
+matrix. Rows represent the analysis units and columns contain the
+identifiers, estimates, or diagnostics defined by the function.

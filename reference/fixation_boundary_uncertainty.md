@@ -21,3 +21,9 @@ fixation_boundary_uncertainty(data, aois, x = "gaze_x", y = "gaze_y")
 - x, y:
 
   Coordinates.
+
+## Value
+
+A tabular R object containing distance to nearest rectangular AOI
+boundary; rows represent analysis units and columns contain the returned
+quantities.

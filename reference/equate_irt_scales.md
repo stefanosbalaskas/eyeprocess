@@ -33,3 +33,10 @@ equate_irt_scales(
 - theta_grid:
 
   Grid of latent-trait values used for evaluation.
+
+## Value
+
+An object of class "eye_irt_equating", stored as a named list, with
+components "A", "B", "method", "transformed", "reference", "new",
+"equation". It contains equate IRT scales using anchor item parameters
+and associated metadata or diagnostics needed to interpret the result.

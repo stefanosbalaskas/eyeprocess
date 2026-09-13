@@ -17,3 +17,8 @@ eyeprocess_cdm_dina_ideal_response(Q, profiles)
 - profiles:
 
   Attribute mastery profiles, with rows representing profiles.
+
+## Value
+
+A vector or matrix containing deterministic DINA ideal responses from a
+Q-matrix, with shape determined by the supplied analysis units.

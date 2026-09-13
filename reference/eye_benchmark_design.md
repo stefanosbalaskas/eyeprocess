@@ -25,3 +25,9 @@ eye_benchmark_design(
 - label:
 
   Benchmark label.
+
+## Value
+
+A tabular R object containing define a computational benchmark design;
+rows represent analysis units and columns contain the returned
+quantities.

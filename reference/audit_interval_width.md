@@ -25,3 +25,9 @@ audit_interval_width(
 - by:
 
   Grouping variables used when summarizing results.
+
+## Value
+
+An R object containing interval width. The concrete class and structure
+follow the selected method, engine, or input object and are preserved as
+documented by that workflow.

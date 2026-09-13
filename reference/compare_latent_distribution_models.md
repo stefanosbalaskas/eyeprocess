@@ -16,3 +16,11 @@ compare_latent_distribution_models(theta)
 - theta:
 
   Numeric latent-trait draws/estimates.
+
+## Value
+
+An object of class "eye_latent_distribution_comparison", stored as a
+named list, with components "comparison", "audit", "student_t",
+"mixture", "status". It contains simple latent-distribution reference
+models and associated metadata or diagnostics needed to interpret the
+result.

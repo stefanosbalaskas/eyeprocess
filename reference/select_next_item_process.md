@@ -36,3 +36,9 @@ select_next_item_process(
 - burden_weight:
 
   Penalty applied to expected burden.
+
+## Value
+
+A named list with components "item_id", "utility", "row",
+"all_utilities", containing the next item using response/process utility
+and associated metadata or diagnostics.

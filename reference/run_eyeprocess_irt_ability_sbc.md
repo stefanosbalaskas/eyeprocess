@@ -60,3 +60,10 @@ run_eyeprocess_irt_ability_sbc(
 - D:
 
   Logistic scaling constant.
+
+## Value
+
+An object of class "eye_irt_sbc_evidence", stored as a named list, with
+components "diagnostics", "ecdf_deviation", "n", "n_draws". It contains
+simulation-based calibration for known-item IRT ability scoring and
+associated metadata or diagnostics needed to interpret the result.

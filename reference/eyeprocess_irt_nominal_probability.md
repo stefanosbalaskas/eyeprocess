@@ -21,3 +21,8 @@ eyeprocess_irt_nominal_probability(theta, slopes, intercepts)
 - intercepts:
 
   Nominal-category intercept parameters.
+
+## Value
+
+A numeric value or vector containing nominal-response category
+probabilities.

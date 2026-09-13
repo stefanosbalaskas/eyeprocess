@@ -17,3 +17,8 @@ validation_recovery_table(x, by = NULL)
 - by:
 
   Optional grouping variables.
+
+## Value
+
+A tabular R object containing parameter-recovery table; rows represent
+analysis units and columns contain the returned quantities.

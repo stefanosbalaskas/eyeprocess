@@ -31,3 +31,8 @@ gaze_precision_rms_s2s(
 - by:
 
   Optional grouping columns.
+
+## Value
+
+A logical value or vector indicating rMS successive-sample gaze
+imprecision.

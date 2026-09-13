@@ -41,3 +41,9 @@ software_paper_readiness(
 - require_articles:
 
   Require articles.
+
+## Value
+
+A named list with components "ready", "checks", "interpretation",
+containing descriptive software-paper readiness audit and associated
+metadata or diagnostics.

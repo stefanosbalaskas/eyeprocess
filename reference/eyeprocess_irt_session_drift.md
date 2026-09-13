@@ -30,3 +30,8 @@ eyeprocess_irt_session_drift(
 - parameter:
 
   Name of the parameter to compare.
+
+## Value
+
+A tabular R object containing item-parameter drift over sessions; rows
+represent analysis units and columns contain the returned quantities.

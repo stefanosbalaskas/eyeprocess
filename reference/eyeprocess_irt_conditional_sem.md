@@ -13,3 +13,8 @@ eyeprocess_irt_conditional_sem(information)
 - information:
 
   Item or test information value or vector.
+
+## Value
+
+A logical value or vector indicating conditional standard error from
+information.

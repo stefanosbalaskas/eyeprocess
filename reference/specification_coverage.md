@@ -13,3 +13,8 @@ specification_coverage(x)
 - x:
 
   Sensitivity result.
+
+## Value
+
+A numeric value or vector containing fraction of planned specifications
+successfully evaluated.

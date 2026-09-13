@@ -30,3 +30,10 @@ fit_process_rasch_tree(
 - maxit:
 
   Maximum model iterations.
+
+## Value
+
+An object of class "eye_process_rasch_tree", stored as a named list,
+with components "model", "covariates", "formula", "status", "caveat". It
+contains a process-informed Rasch tree and associated metadata or
+diagnostics needed to interpret the result.

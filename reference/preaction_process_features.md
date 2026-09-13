@@ -38,3 +38,10 @@ preaction_process_features(
 - aoi, pupil, blink:
 
   Optional feature columns.
+
+## Value
+
+An object of class "eye_preaction_process_features", stored as a named
+list, with components "data", "windows_ms", "by", "status", "caveat". It
+contains pre-action process features and associated metadata or
+diagnostics needed to interpret the result.

@@ -9,3 +9,9 @@ source licence/terms and obtain data from the authoritative repository.
 ``` r
 public_validation_corpus()
 ```
+
+## Value
+
+A data frame containing public validation-corpus registry. Rows
+represent the analysis units and columns contain the identifiers,
+estimates, or diagnostics defined by the function.

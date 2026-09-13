@@ -36,3 +36,11 @@ visual_context_registry(
 - min_items_per_context:
 
   Minimum items required for a shared context.
+
+## Value
+
+An object of class "eye_visual_context_registry", stored as a named
+list, with components "mapping", "source_item_column",
+"source_context_column", "min_items_per_context", "caveat". It contains
+an item-to-visual-context registry and associated metadata or
+diagnostics needed to interpret the result.

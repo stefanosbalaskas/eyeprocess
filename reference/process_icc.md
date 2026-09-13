@@ -25,3 +25,9 @@ process_icc(data, person, session, measure)
 - measure:
 
   Measure column.
+
+## Value
+
+A data frame containing absolute-agreement ICC(A,1) for repeated process
+measures. Rows represent the analysis units and columns contain the
+identifiers, estimates, or diagnostics defined by the function.

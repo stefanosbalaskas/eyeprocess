@@ -21,3 +21,8 @@ sensitivity_significance_stability(x, p_value = "p_value", alpha = 0.05)
 - alpha:
 
   Decision threshold.
+
+## Value
+
+A numeric value or vector containing significance-decision stability
+across specifications.

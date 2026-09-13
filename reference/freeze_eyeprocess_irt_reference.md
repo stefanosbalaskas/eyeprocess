@@ -30,3 +30,9 @@ freeze_eyeprocess_irt_reference(
 - metadata:
 
   Named metadata to store with the frozen object.
+
+## Value
+
+A named list with components "recovery_summary", "sbc", "failures",
+"metadata", "scientific_scope", containing freeze IRT validation
+reference summaries and associated metadata or diagnostics.

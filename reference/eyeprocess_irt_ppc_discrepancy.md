@@ -25,3 +25,11 @@ eyeprocess_irt_ppc_discrepancy(
 - statistic:
 
   Discrepancy statistic or statistic function.
+
+## Value
+
+An object of class "eye_irt_ppc_discrepancy", stored as a named list,
+with components "statistic", "observed", "replicated",
+"posterior_predictive_p", "interval". It contains observed and
+replicated IRT discrepancy statistics and associated metadata or
+diagnostics needed to interpret the result.

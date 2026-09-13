@@ -43,3 +43,10 @@ prepare_structured_unstructured_process_features(
 - ...:
 
   Passed to \`builder\`.
+
+## Value
+
+An object of class "eye_structured_unstructured_process_features",
+stored as a named list, with components "contract", "folds", "status".
+It contains leakage-safe structured/unstructured process representations
+and associated metadata or diagnostics needed to interpret the result.

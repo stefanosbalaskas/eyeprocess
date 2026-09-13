@@ -20,3 +20,9 @@ validate_hed_event_semantics(events, hed_column = "HED")
 - hed_column:
 
   Column containing HED annotations.
+
+## Value
+
+A data frame containing minimal HED annotation audit for event tables.
+Rows represent the analysis units and columns contain the identifiers,
+estimates, or diagnostics defined by the function.

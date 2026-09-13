@@ -25,3 +25,10 @@ eyeprocess_irt_prior_sensitivity_grid(
 - guessing_mean:
 
   Prior mean for the lower-asymptote or guessing parameter.
+
+## Value
+
+An R object containing a prior-sensitivity grid for Bayesian IRT
+analyses. The concrete class and structure follow the selected method,
+engine, or input object and are preserved as documented by that
+workflow.

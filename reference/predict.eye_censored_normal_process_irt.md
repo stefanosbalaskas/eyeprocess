@@ -26,3 +26,9 @@ predict(object, theta = object$theta, items = NULL, ...)
 - ...:
 
   Additional arguments passed to the selected model, engine, or method.
+
+## Value
+
+A vector or matrix containing expected bounded response from a
+censored-normal process IRT fit, with shape determined by the supplied
+analysis units.

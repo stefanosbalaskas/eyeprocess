@@ -30,3 +30,9 @@ eyeprocess_irt_anchor_audit(
 - min_information:
 
   Minimum required item information.
+
+## Value
+
+A data frame containing candidate anchor items using supplied DIF
+evidence. Rows represent the analysis units and columns contain the
+identifiers, estimates, or diagnostics defined by the function.

@@ -13,3 +13,8 @@ validation_condition_id(x)
 - x:
 
   Validation design or expanded condition table.
+
+## Value
+
+A character value or vector containing return stable validation
+condition identifiers.

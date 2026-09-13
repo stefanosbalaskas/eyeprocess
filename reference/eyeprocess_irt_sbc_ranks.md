@@ -25,3 +25,8 @@ eyeprocess_irt_sbc_ranks(truth, draws, randomize_ties = TRUE, seed = 1L)
 - seed:
 
   Random-number seed for reproducible execution.
+
+## Value
+
+A vector or matrix containing sBC ranks from scalar truths and posterior
+draws, with shape determined by the supplied analysis units.

@@ -30,3 +30,11 @@ compare_pupil_preprocessing(
 - extract_fun:
 
   Result extractor.
+
+## Value
+
+An object of class "eye_process_sensitivity", stored as a named list,
+with components "grid", "results", "failures", "warnings", "grid_hash",
+"created_at", "status", "caveat". It contains explicit
+pupil-preprocessing methods and associated metadata or diagnostics
+needed to interpret the result.

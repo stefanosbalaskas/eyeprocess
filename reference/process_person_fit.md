@@ -42,3 +42,9 @@ process_person_fit(
 - process_weight:
 
   Weight assigned to process discrepancy.
+
+## Value
+
+An object of class "eye_process_person_fit", "data.frame", stored as a
+data frame, containing joint response-process person-fit diagnostic and
+associated metadata needed to interpret the result.

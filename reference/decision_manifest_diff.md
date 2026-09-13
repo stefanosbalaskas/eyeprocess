@@ -17,3 +17,10 @@ decision_manifest_diff(old, new)
 - new:
 
   Later manifest.
+
+## Value
+
+An R object containing alias for manifest comparison emphasizing changed
+decision paths. The concrete class and structure follow the selected
+method, engine, or input object and are preserved as documented by that
+workflow.

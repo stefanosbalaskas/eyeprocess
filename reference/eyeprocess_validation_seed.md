@@ -21,3 +21,8 @@ eyeprocess_validation_seed(master_seed, index, stream = 0L)
 - stream:
 
   Named random-number stream.
+
+## Value
+
+A numeric value or vector containing a deterministic bounded validation
+seed.

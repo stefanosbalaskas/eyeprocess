@@ -13,3 +13,9 @@ get_irt_model(id)
 - id:
 
   Stable identifier.
+
+## Value
+
+An R object containing retrieve a registered multimodal IRT model. The
+concrete class and structure follow the selected method, engine, or
+input object and are preserved as documented by that workflow.

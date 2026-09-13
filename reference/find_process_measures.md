@@ -35,3 +35,9 @@ find_process_measures(
 - query:
 
   Optional text query.
+
+## Value
+
+A tabular R object containing find process measures by channel, level,
+status, or text; rows represent analysis units and columns contain the
+returned quantities.

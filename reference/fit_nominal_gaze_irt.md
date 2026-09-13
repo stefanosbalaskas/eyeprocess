@@ -61,3 +61,12 @@ fit_nominal_gaze_irt(
 - ...:
 
   Additional arguments passed to the selected model, engine, or method.
+
+## Value
+
+An object of class "eye_nominal_gaze_irt", stored as a named list, with
+components "model", "baseline_model", "data", "option_gaze",
+"gaze_proportion_columns", "ability", "person", "item", "logLik_gain",
+"status", "note". It contains nominal/distractor IRT with option-level
+gaze and associated metadata or diagnostics needed to interpret the
+result.

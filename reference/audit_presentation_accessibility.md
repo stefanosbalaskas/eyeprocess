@@ -37,3 +37,11 @@ audit_presentation_accessibility(
 - review_quantile:
 
   Quantile for a presentation-review flag.
+
+## Value
+
+An object of class "eye_presentation_accessibility", stored as a named
+list, with components "table", "threshold", "review_quantile", "status",
+"caveat". It contains presentation/accessibility sensitivity without
+clinical inference and associated metadata or diagnostics needed to
+interpret the result.

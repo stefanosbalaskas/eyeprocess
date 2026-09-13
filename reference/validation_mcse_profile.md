@@ -21,3 +21,9 @@ validation_mcse_profile(x, metric, by = character())
 - by:
 
   Grouping variables or aggregation level.
+
+## Value
+
+A tabular R object containing monte Carlo uncertainty for validation
+summaries; rows represent analysis units and columns contain the
+returned quantities.

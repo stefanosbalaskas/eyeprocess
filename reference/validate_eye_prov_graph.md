@@ -13,3 +13,7 @@ validate_eye_prov_graph(x)
 - x:
 
   Provenance graph.
+
+## Value
+
+A logical value or vector indicating a provenance graph.

@@ -26,3 +26,9 @@ audit_irf_shape(
 - max_absolute_threshold:
 
   Threshold for maximum absolute IRF departure.
+
+## Value
+
+A tabular R object containing item response-function shape departures;
+rows represent analysis units and columns contain the returned
+quantities.

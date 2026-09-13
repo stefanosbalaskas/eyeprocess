@@ -17,3 +17,9 @@ process_residual_map(object, entity = c("both", "person", "item"))
 - entity:
 
   Entity type to map or validate.
+
+## Value
+
+A tabular R object containing return person/item latent-space
+coordinates; rows represent analysis units and columns contain the
+returned quantities.

@@ -14,3 +14,9 @@ preflight_exclusion_manifest(x)
 - x:
 
   Object to process, inspect, compare, or plot.
+
+## Value
+
+A tabular R object containing an explicit pre-flight exclusion/review
+manifest; rows represent analysis units and columns contain the returned
+quantities.

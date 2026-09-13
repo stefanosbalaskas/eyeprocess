@@ -40,3 +40,11 @@ recalibrate_after_changepoint(
 - ...:
 
   Additional arguments passed to the selected model, engine, or method.
+
+## Value
+
+An object of class "eye_changepoint_recalibration", stored as a named
+list, with components "changepoints", "data", "fit", "policy". It
+contains iteratively detect, clean, and recalibrate after process change
+points and associated metadata or diagnostics needed to interpret the
+result.

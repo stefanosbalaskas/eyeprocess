@@ -40,3 +40,9 @@ software_paper_claim_matrix(
 - source:
 
   Optional source/location.
+
+## Value
+
+A data frame containing or normalize a software-paper claim matrix. Rows
+represent the analysis units and columns contain the identifiers,
+estimates, or diagnostics defined by the function.

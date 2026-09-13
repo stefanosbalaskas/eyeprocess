@@ -13,3 +13,9 @@ distractor_process_map(object)
 - object:
 
   A fitted eyeprocess model or audit object.
+
+## Value
+
+A data frame containing a distractor process map. Rows represent the
+analysis units and columns contain the identifiers, estimates, or
+diagnostics defined by the function.

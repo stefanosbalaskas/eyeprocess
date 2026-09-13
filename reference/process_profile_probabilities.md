@@ -13,3 +13,9 @@ process_profile_probabilities(x)
 - x:
 
   Object to process, inspect, compare, or plot.
+
+## Value
+
+An R object containing process-profile probabilities. The concrete class
+and structure follow the selected method, engine, or input object and
+are preserved as documented by that workflow.

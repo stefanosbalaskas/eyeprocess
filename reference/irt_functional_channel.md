@@ -35,3 +35,9 @@ irt_functional_channel(
 - options:
 
   Additional channel/model options.
+
+## Value
+
+A named list with components "type", "family", "role", "link",
+"variables", "latent", "options", containing functional trajectory
+channel and associated metadata or diagnostics.

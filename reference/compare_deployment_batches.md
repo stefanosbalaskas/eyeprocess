@@ -36,3 +36,9 @@ compare_deployment_batches(
 - item:
 
   Optional item identifier for item-matched differences.
+
+## Value
+
+A data frame containing two deployment batches descriptively. Rows
+represent the analysis units and columns contain the identifiers,
+estimates, or diagnostics defined by the function.

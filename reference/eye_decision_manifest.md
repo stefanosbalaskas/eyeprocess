@@ -65,3 +65,10 @@ eye_decision_manifest(
 - ...:
 
   Additional named decision domains.
+
+## Value
+
+An object of class "eye_decision_manifest", stored as a named list, with
+components "domains", "notes", "created_at", "schema_version", "status",
+"caveat". It contains a machine-readable research decision manifest and
+associated metadata or diagnostics needed to interpret the result.

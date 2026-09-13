@@ -30,3 +30,9 @@ stress_test_speededness(
 - seed:
 
   Random-number seed.
+
+## Value
+
+An object of class "eye_irt_stress_test", "data.frame", stored as a data
+frame, containing stress test speededness and associated metadata needed
+to interpret the result.

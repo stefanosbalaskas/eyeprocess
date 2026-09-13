@@ -21,3 +21,9 @@ negative_control_concordance(x, effect = "effect", tolerance = 0.05)
 - tolerance:
 
   Absolute mean-effect tolerance.
+
+## Value
+
+A named list with components "summary", "all_within_tolerance",
+"tolerance", containing concordance of multiple negative-control
+families and associated metadata or diagnostics.

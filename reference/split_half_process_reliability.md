@@ -50,3 +50,9 @@ split_half_process_reliability(
 - aggregate_fun:
 
   Within-half aggregation function.
+
+## Value
+
+A tabular R object containing split-half reliability for a trial-level
+process measure; rows represent analysis units and columns contain the
+returned quantities.

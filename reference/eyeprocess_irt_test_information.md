@@ -21,3 +21,9 @@ eyeprocess_irt_test_information(theta, items, D = 1)
 - D:
 
   Logistic scaling constant.
+
+## Value
+
+An object of class "eye_irt_information_profile", "data.frame", stored
+as a data frame, containing a test information curve from item
+parameters and associated metadata needed to interpret the result.

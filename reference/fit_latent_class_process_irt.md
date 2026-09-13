@@ -45,3 +45,11 @@ fit_latent_class_process_irt(
 - seed:
 
   Random-number seed.
+
+## Value
+
+An object of class "eye_latent_class_process_irt", stored as a named
+list, with components "response_model", "class", "centers", "data",
+"process_features", "status". It contains latent process-class IRT
+reference model and associated metadata or diagnostics needed to
+interpret the result.

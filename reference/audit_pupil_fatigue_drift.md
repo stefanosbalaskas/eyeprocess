@@ -33,3 +33,10 @@ audit_pupil_fatigue_drift(
 - engine:
 
   \`auto\`, \`plm\`, or \`lm_fixed_effects\`.
+
+## Value
+
+An object of class "eye_pupil_fatigue_drift", stored as a named list,
+with components "model", "coefficients", "data", "engine", "status",
+"caveat". It contains within-person pupil fatigue/trial-order drift and
+associated metadata or diagnostics needed to interpret the result.

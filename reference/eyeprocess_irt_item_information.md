@@ -30,3 +30,8 @@ eyeprocess_irt_item_information(
 - D:
 
   Logistic scaling constant.
+
+## Value
+
+A numeric value or vector containing item information for transparent
+IRT families.

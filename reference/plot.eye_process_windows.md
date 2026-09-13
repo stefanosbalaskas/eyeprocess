@@ -26,3 +26,8 @@ plot(x, feature = "pupil_mean", group = NULL, ...)
 - ...:
 
   Additional arguments passed to the underlying method or helper.
+
+## Value
+
+Invisibly returns the plotting result when available; the primary effect
+is drawing plot process windows diagnostics.

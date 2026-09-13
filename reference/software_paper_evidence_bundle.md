@@ -45,3 +45,10 @@ software_paper_evidence_bundle(
 - metadata:
 
   Optional metadata.
+
+## Value
+
+A named list with components "schema_version", "claims", "validation",
+"examples", "articles", "benchmarks", "reproducibility", "metadata",
+"created_utc", containing a software-paper evidence bundle and
+associated metadata or diagnostics.

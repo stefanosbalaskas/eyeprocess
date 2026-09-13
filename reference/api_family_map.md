@@ -13,3 +13,9 @@ api_family_map(inventory)
 - inventory:
 
   API inventory or character names.
+
+## Value
+
+A data frame containing exported APIs to conceptual families. Rows
+represent the analysis units and columns contain the identifiers,
+estimates, or diagnostics defined by the function.

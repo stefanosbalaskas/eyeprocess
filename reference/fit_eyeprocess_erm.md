@@ -25,3 +25,10 @@ fit_eyeprocess_erm(data, model = c("RM", "PCM"), ..., engine = "eRm")
 - engine:
 
   Requested estimation or analysis engine.
+
+## Value
+
+An object of class "eye_external_irt_fit", stored as a named list, with
+components "status", "engine", "fit", "call". It contains an eRm
+Rasch-family model without fallback substitution and associated metadata
+or diagnostics needed to interpret the result.

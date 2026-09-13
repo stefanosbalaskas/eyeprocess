@@ -47,3 +47,11 @@ negative_control_process_test(
 - seed:
 
   Random-number seed.
+
+## Value
+
+An object of class "eye_process_negative_control", stored as a named
+list, with components "observed", "null", "p_value", "permutations",
+"process_columns", "within", "higher_is_better", "seed". It contains
+negative-control test for an allegedly informative process channel and
+associated metadata or diagnostics needed to interpret the result.

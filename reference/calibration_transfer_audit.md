@@ -25,3 +25,10 @@ calibration_transfer_audit(data, group, observed, predicted)
 - predicted:
 
   Predicted probability/numeric score column.
+
+## Value
+
+An object of class "eye_calibration_transfer_audit", "data.frame",
+stored as a data frame, containing transfer of calibration across
+devices/sessions/sites and associated metadata needed to interpret the
+result.

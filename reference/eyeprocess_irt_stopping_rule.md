@@ -35,3 +35,9 @@ eyeprocess_irt_stopping_rule(
 - target_se:
 
   Target conditional standard error for stopping.
+
+## Value
+
+A named list with components "stop", "reason", "n_administered", "se",
+containing a simple adaptive stopping rule and associated metadata or
+diagnostics.

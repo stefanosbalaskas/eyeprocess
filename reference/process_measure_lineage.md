@@ -30,3 +30,11 @@ process_measure_lineage(
 - output_level:
 
   Output aggregation level.
+
+## Value
+
+An object of class "eye_process_measure_lineage", stored as a named
+list, with components "measure", "inputs", "transformations",
+"output_level", "lineage_hash". It contains process-measure lineage
+table and associated metadata or diagnostics needed to interpret the
+result.

@@ -13,3 +13,7 @@ validate_process_validation_design(x)
 - x:
 
   Validation design.
+
+## Value
+
+A logical value or vector indicating a process-validation design.

@@ -13,3 +13,8 @@ verify_reproducibility_fingerprint(x)
 - x:
 
   Fingerprint.
+
+## Value
+
+A logical value or vector indicating verify an internally stored
+fingerprint hash.

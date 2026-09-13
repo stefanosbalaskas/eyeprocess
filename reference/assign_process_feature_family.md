@@ -20,3 +20,9 @@ assign_process_feature_family(
 - registry:
 
   Feature-family registry.
+
+## Value
+
+A vector or matrix containing assign features to conservative
+process-feature families, with shape determined by the supplied analysis
+units.

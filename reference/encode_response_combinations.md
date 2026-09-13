@@ -33,3 +33,9 @@ encode_response_combinations(
 - empty_code:
 
   Code for no selected options.
+
+## Value
+
+A tabular R object containing encode multiple-response item response
+combinations; rows represent analysis units and columns contain the
+returned quantities.

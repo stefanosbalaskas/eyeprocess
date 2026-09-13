@@ -69,3 +69,11 @@ fit_manyfacet_process_irt(
 - process_family:
 
   Distributional family for the process channel.
+
+## Value
+
+An object of class "eye_manyfacet_process_irt", stored as a named list,
+with components "response_model", "process_model", "facets",
+"process_family", "status". It contains many-facet process IRT reference
+model and associated metadata or diagnostics needed to interpret the
+result.

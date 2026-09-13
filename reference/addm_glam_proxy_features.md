@@ -33,3 +33,10 @@ addm_glam_proxy_features(
 - target_aoi, distractor_aoi, action_aoi:
 
   AOI labels.
+
+## Value
+
+An object of class "eye_decision_process_proxy", stored as a named list,
+with components "features", "by", "status", "caveat". It contains
+aDDM/GLAM-inspired gaze-evidence proxy features and associated metadata
+or diagnostics needed to interpret the result.

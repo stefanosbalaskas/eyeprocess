@@ -17,3 +17,8 @@ pupil_velocity_activity(y, time_ms)
 - time_ms:
 
   Time in milliseconds.
+
+## Value
+
+A numeric value or vector containing derivative-based pupil activity
+magnitude.

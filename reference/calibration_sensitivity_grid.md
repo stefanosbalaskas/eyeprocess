@@ -16,3 +16,9 @@ calibration_sensitivity_grid(
 - offset_x, offset_y:
 
   Candidate offsets in coordinate units.
+
+## Value
+
+A tabular R object containing sensitivity grid for deterministic
+calibration offsets; rows represent analysis units and columns contain
+the returned quantities.

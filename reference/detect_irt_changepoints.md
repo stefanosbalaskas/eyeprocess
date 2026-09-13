@@ -58,3 +58,11 @@ detect_irt_changepoints(
 - max_changes:
 
   Maximum number of change points.
+
+## Value
+
+An object of class "eye_irt_changepoints", stored as a named list, with
+components "results", "channels", "method", "min_segment",
+"min_delta_sic", "max_changes". It contains iRT/process change points
+using an SIC-inspired multichannel score and associated metadata or
+diagnostics needed to interpret the result.

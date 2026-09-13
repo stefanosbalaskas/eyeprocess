@@ -28,3 +28,11 @@ audit_process_local_dependence(
 - threshold:
 
   Absolute correlation threshold used only for flagging.
+
+## Value
+
+An object of class "eye_process_local_dependence_audit", stored as a
+named list, with components "pairs", "threshold",
+"max_absolute_response", "note". It contains inter-option/process local
+dependence and associated metadata or diagnostics needed to interpret
+the result.

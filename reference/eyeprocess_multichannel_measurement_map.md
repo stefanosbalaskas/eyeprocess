@@ -25,3 +25,9 @@ eyeprocess_multichannel_measurement_map(
 - role:
 
   Declared role of each measurement channel.
+
+## Value
+
+A data frame containing a multichannel measurement map. Rows represent
+the analysis units and columns contain the identifiers, estimates, or
+diagnostics defined by the function.

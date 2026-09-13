@@ -17,3 +17,9 @@ provenance_edge_table(from, to, relation = "wasDerivedFrom")
 - relation:
 
   PROV-like relation labels.
+
+## Value
+
+A data frame containing a provenance edge table. Rows represent the
+analysis units and columns contain the identifiers, estimates, or
+diagnostics defined by the function.

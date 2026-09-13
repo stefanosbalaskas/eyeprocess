@@ -24,3 +24,10 @@ process_sequence_embedding(sequence, n = c(1L, 2L, 3L), dimensions = 5L)
 - dimensions:
 
   Number of embedding dimensions.
+
+## Value
+
+An R object containing low-dimensional embedding of response-process
+sequences. The concrete class and structure follow the selected method,
+engine, or input object and are preserved as documented by that
+workflow.

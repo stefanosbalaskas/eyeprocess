@@ -48,3 +48,10 @@ fit_crossclassified_process_irt(
 - fixed:
 
   Fixed-effects specification.
+
+## Value
+
+An object of class "eye_crossclassified_process_irt", stored as a named
+list, with components "model", "family", "person", "item", "context",
+"status". It contains cross-classified process IRT reference model and
+associated metadata or diagnostics needed to interpret the result.

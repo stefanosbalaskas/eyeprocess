@@ -25,3 +25,8 @@ compare_process_profile_solutions(data, variables, k_values = 2:6, seed = 777)
 - seed:
 
   Seed.
+
+## Value
+
+A tabular R object containing candidate process-profile solutions; rows
+represent analysis units and columns contain the returned quantities.

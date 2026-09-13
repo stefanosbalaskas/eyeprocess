@@ -18,3 +18,10 @@ simulate_from_model(model, ...)
 - ...:
 
   Arguments passed to the simulator.
+
+## Value
+
+An R object containing data from a model or registered model
+specification. The concrete class and structure follow the selected
+method, engine, or input object and are preserved as documented by that
+workflow.

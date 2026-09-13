@@ -21,3 +21,9 @@ eyeprocess_irt_test_characteristic_curve(theta, items, D = 1)
 - D:
 
   Logistic scaling constant.
+
+## Value
+
+An object of class "eye_irt_test_characteristic_curve", "data.frame",
+stored as a data frame, containing characteristic curve for dichotomous
+item parameters and associated metadata needed to interpret the result.

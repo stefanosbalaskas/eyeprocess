@@ -21,3 +21,9 @@ validation_condition_ranking(
 
   Named weights for rmse, absolute bias, coverage error, and failure
   rate.
+
+## Value
+
+A tabular R object containing rank validation conditions by a
+transparent robustness score; rows represent analysis units and columns
+contain the returned quantities.

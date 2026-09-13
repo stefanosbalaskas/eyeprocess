@@ -22,3 +22,8 @@ plot(x, facet = NULL, ...)
 - ...:
 
   Additional arguments passed to the selected model, engine, or method.
+
+## Value
+
+Invisibly returns the plotting result when available; the primary effect
+is drawing plot many-facet process IRT effects.

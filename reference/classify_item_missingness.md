@@ -35,3 +35,9 @@ classify_item_missingness(
 - started:
 
   Indicator that responding was initiated.
+
+## Value
+
+An object of class "factor", stored as an R object, containing classify
+item missingness using exposure and response evidence and associated
+metadata needed to interpret the result.

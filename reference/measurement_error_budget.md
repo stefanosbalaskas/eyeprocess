@@ -40,3 +40,9 @@ measurement_error_budget(
 - units:
 
   Optional named units.
+
+## Value
+
+A data frame containing a non-collapsed measurement-error budget. Rows
+represent the analysis units and columns contain the identifiers,
+estimates, or diagnostics defined by the function.

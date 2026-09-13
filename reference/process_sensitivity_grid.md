@@ -25,3 +25,9 @@ process_sensitivity_grid(
 - max_specifications:
 
   Safety cap.
+
+## Value
+
+A tabular R object containing an explicit process-analysis sensitivity
+grid; rows represent analysis units and columns contain the returned
+quantities.

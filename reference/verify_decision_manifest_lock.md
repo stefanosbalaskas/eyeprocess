@@ -13,3 +13,8 @@ verify_decision_manifest_lock(x)
 - x:
 
   Manifest lock.
+
+## Value
+
+A logical value or vector indicating verify that a locked manifest has
+not changed.

@@ -17,3 +17,8 @@ api_lifecycle_diff(old, new)
 - new:
 
   New registry.
+
+## Value
+
+A tabular R object containing two API lifecycle registries; rows
+represent analysis units and columns contain the returned quantities.

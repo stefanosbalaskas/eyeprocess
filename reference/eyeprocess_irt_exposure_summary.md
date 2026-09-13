@@ -20,3 +20,9 @@ eyeprocess_irt_exposure_summary(
 - item_bank_ids:
 
   Complete set of item identifiers in the bank.
+
+## Value
+
+A data frame containing item exposure rates. Rows represent the analysis
+units and columns contain the identifiers, estimates, or diagnostics
+defined by the function.

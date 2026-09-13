@@ -17,3 +17,9 @@ predict_aoi_trajectory(object, time = NULL)
 - time:
 
   Time values or name of the time variable.
+
+## Value
+
+A data frame containing from an AOI growth curve. Rows represent the
+analysis units and columns contain the identifiers, estimates, or
+diagnostics defined by the function.

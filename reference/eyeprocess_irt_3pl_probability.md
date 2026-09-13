@@ -29,3 +29,7 @@ eyeprocess_irt_3pl_probability(theta, a = 1, b = 0, c = 0.2, D = 1)
 - D:
 
   Logistic scaling constant.
+
+## Value
+
+A numeric value or vector containing 3PL item-response probability.

@@ -18,3 +18,8 @@ print(x, ...)
 - ...:
 
   Additional arguments passed to the selected model, engine, or method.
+
+## Value
+
+Invisibly returns the input object after printing its summary; the
+object's class and contents are unchanged.

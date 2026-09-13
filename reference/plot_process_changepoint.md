@@ -18,3 +18,9 @@ plot_process_changepoint(object, ...)
 - ...:
 
   Graphical arguments.
+
+## Value
+
+An R object containing plot detected process change points. The concrete
+class and structure follow the selected method, engine, or input object
+and are preserved as documented by that workflow.

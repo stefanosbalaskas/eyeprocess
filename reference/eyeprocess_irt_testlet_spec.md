@@ -21,3 +21,9 @@ eyeprocess_irt_testlet_spec(item_id, testlet, general_dimension = "general")
 - general_dimension:
 
   General dimension name or index.
+
+## Value
+
+An object of class "eye_irt_testlet_spec", "data.frame", stored as a
+data frame, containing declare a testlet structure for bifactor/two-tier
+IRT engines and associated metadata needed to interpret the result.

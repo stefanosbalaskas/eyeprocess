@@ -36,3 +36,10 @@ process_channel_ablation(
 - higher_is_better:
 
   Direction of the score.
+
+## Value
+
+An object of class "eye_process_channel_ablation", "data.frame", stored
+as a data frame, containing ablate process channels under a common
+out-of-sample evaluator and associated metadata needed to interpret the
+result.

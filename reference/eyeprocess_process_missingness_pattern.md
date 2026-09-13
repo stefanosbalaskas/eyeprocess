@@ -21,3 +21,9 @@ eyeprocess_process_missingness_pattern(data, response, channels)
 - channels:
 
   Names or definitions of measurement channels.
+
+## Value
+
+A data frame containing missingness patterns across response and process
+channels. Rows represent the analysis units and columns contain the
+identifiers, estimates, or diagnostics defined by the function.

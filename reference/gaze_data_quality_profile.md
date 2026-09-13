@@ -47,3 +47,10 @@ gaze_data_quality_profile(
 - time_unit:
 
   Timestamp unit.
+
+## Value
+
+An object of class "eye_data_quality_profile", stored as a named list,
+with components "table", "coordinate_units", "caveat". It contains
+empirical gaze data-quality profile and associated metadata or
+diagnostics needed to interpret the result.

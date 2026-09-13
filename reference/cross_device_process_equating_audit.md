@@ -38,3 +38,9 @@ cross_device_process_equating_audit(
 - anchor:
 
   Anchor or reference group used for linking.
+
+## Value
+
+An object of class "eye_cross_device_equating_audit", "data.frame",
+stored as a data frame, containing cross-device process-scale equating
+audit and associated metadata needed to interpret the result.

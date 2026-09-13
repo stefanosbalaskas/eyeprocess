@@ -17,3 +17,9 @@ software_paper_coverage(x, supported = c("supported", "qualified"))
 - supported:
 
   Status labels counted as covered.
+
+## Value
+
+A data frame containing descriptive evidence coverage. Rows represent
+the analysis units and columns contain the identifiers, estimates, or
+diagnostics defined by the function.
