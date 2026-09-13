@@ -53,3 +53,15 @@
 ^MILESTONE_0\.7\.0\.9000\.md$
 ^MILESTONE_0\.8\.0\.9000\.md$
 ^RELEASE_0\.8\.0\.md$
+^core_demo_audit\.rds$
+^eyeprocess_clean_render_check\.txt$
+^eyeprocess_final_qa_report\.txt$
+^eyeprocess_function_demo_matrix\.csv$
+^eyeprocess_literature_evidence\.csv$
+^eyeprocess_references\.bib$
+^eyeprocess_search_record\.csv$
+^eyeprocess_software_manuscript\.Rmd$
+^eyeprocess_software_manuscript\.docx$
+^eyeprocess_software_manuscript\.html$
+^eyeprocess_v0\.11\.1_feature_inventory\.csv$
+^render_eyeprocess_manuscript\.R$
