@@ -13,6 +13,9 @@ audit_sbc(x, bins = 10L, alpha = 0.01)
 
 \item{alpha}{Significance or tail-probability level.}
 }
+\value{
+An object of class "eye_sbc_audit", "data.frame", stored as a data frame, containing sBC rank uniformity and associated metadata needed to interpret the result.
+}
 \description{
 Uses binned chi-square diagnostics as a coarse screening diagnostic and also
 reports the mean/variance of normalized ranks. It is not a replacement for

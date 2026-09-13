@@ -11,6 +11,9 @@ predict_item_parameter_priors(object, newdata)
 
 \item{newdata}{Candidate item feature data.}
 }
+\value{
+An R object containing pre-pilot item-parameter priors. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
+}
 \description{
 Predict pre-pilot item-parameter priors
 }

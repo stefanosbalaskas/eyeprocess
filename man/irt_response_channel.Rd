@@ -20,6 +20,9 @@ irt_response_channel(
 
 \item{options}{Additional channel/model options.}
 }
+\value{
+A named list with components "type", "family", "role", "link", "variables", "latent", "options", containing binary/ordinal response channel for multimodal IRT and associated metadata or diagnostics.
+}
 \description{
 Binary/ordinal response channel for multimodal IRT
 }

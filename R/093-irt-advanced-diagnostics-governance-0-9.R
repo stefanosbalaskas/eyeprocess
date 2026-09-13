@@ -8,6 +8,7 @@
 #' @param expected Model-expected probabilities or expected values.
 #' @param by Grouping variables or aggregation level.
 #' @param min_variance Minimum variance used to stabilize residual calculations.
+#' @return A data frame containing residual-based Infit and Outfit summaries. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 eyeprocess_irt_infit_outfit <- function(observed, expected, by = c("item", "person"), min_variance = 1e-8) {
   by <- match.arg(by)
@@ -45,6 +46,7 @@ eyeprocess_irt_infit_outfit <- function(observed, expected, by = c("item", "pers
 #' @param observed Observed responses or observed values.
 #' @param expected Model-expected probabilities or expected values.
 #' @param min_probability Lower probability bound used for numerical stabilization.
+#' @return A data frame containing standardized log-likelihood person-fit diagnostic. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 eyeprocess_irt_person_fit_lz <- function(observed, expected, min_probability = 1e-8) {
   y <- .ep09m2_binary_matrix(observed, "observed")
@@ -80,6 +82,7 @@ eyeprocess_irt_person_fit_lz <- function(observed, expected, min_probability = 1
 #' @param theta Latent-trait value or vector of latent-trait values.
 #' @param target_information Target test-information level.
 #' @param target Target level, distribution, or criterion.
+#' @return An object of class "eye_irt_bank_coverage", stored as a named list, with components "curve", "target", "target_information", "fraction_target_met", "minimum_information", "maximum_sem", "gaps". It contains item-bank information coverage across a theta region and associated metadata or diagnostics needed to interpret the result.
 #' @export
 eyeprocess_irt_bank_coverage <- function(items, theta = seq(-4, 4, length.out = 161), target_information = 5, target = c(-2, 2)) {
   theta <- .ep09m2_theta(theta)
@@ -108,6 +111,7 @@ eyeprocess_irt_bank_coverage <- function(items, theta = seq(-4, 4, length.out = 
 #' @param theta Latent-trait value or vector of latent-trait values.
 #' @param items Item-parameter data frame or item collection.
 #' @param breaks Break points used to summarize latent-scale targeting.
+#' @return An object of class "eye_irt_targeting_gap", stored as a named list, with components "table", "absolute_gap", "interpretation". It contains an examinee distribution with item-bank targeting and associated metadata or diagnostics needed to interpret the result.
 #' @export
 eyeprocess_irt_targeting_gap <- function(theta, items, breaks = seq(-4, 4, by = 0.5)) {
   theta <- as.numeric(theta); theta <- theta[is.finite(theta)]
@@ -133,6 +137,7 @@ eyeprocess_irt_targeting_gap <- function(theta, items, breaks = seq(-4, 4, by = 
 #' @param standard_error Standard errors corresponding to the estimates.
 #' @param cut_score Latent-scale classification cut score.
 #' @param confidence Requested confidence level.
+#' @return A tabular R object containing decision precision at one or more theta cut scores; rows represent analysis units and columns contain the returned quantities.
 #' @export
 eyeprocess_irt_classification_precision <- function(theta_estimate, standard_error, cut_score = 0, confidence = 0.95) {
   th <- as.numeric(theta_estimate); se <- as.numeric(standard_error)
@@ -161,6 +166,7 @@ eyeprocess_irt_classification_precision <- function(theta_estimate, standard_err
 #' @param responses Response matrix or response data.
 #' @param design Validation or simulation design object.
 #' @param min_administered Minimum number of administered items required for a record.
+#' @return An object of class "eye_irt_missing_design_audit", stored as a named list, with components "n_persons", "n_items", "observed_fraction", "administered_per_person", "administered_per_item", "sparse_persons", "structural_missing", "unexpected_missing", "has_declared_design". It contains missing-by-design structure in an IRT response matrix and associated metadata or diagnostics needed to interpret the result.
 #' @export
 eyeprocess_irt_missing_by_design_audit <- function(responses, design = NULL, min_administered = 1L) {
   y <- as.matrix(responses)
@@ -201,6 +207,7 @@ eyeprocess_irt_missing_by_design_audit <- function(responses, design = NULL, min
 #' @param scale Prior scale hyperparameter.
 #' @param guessing_shape Shape parameters for the guessing prior.
 #' @param label Human-readable label.
+#' @return An object of class "eye_irt_prior_spec", stored as a named list, with components "discrimination", "difficulty", "guessing", "location", "scale", "guessing_shape", "label". It contains declare prior families for Bayesian IRT engine adapters and associated metadata or diagnostics needed to interpret the result.
 #' @export
 eyeprocess_irt_prior_spec <- function(discrimination = c("lognormal", "normal"), difficulty = "normal",
                                       guessing = c("beta", "logit-normal"), location = 0, scale = 1,
@@ -222,6 +229,7 @@ eyeprocess_irt_prior_spec <- function(discrimination = c("lognormal", "normal"),
 #' @param discrimination_scale Prior scale for item discrimination.
 #' @param difficulty_scale Prior scale for item difficulty or location.
 #' @param guessing_mean Prior mean for the lower-asymptote or guessing parameter.
+#' @return An R object containing a prior-sensitivity grid for Bayesian IRT analyses. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 eyeprocess_irt_prior_sensitivity_grid <- function(discrimination_scale = c(0.5, 1, 1.5),
                                                   difficulty_scale = c(1, 2),
@@ -245,6 +253,7 @@ eyeprocess_irt_prior_sensitivity_grid <- function(discrimination_scale = c(0.5, 
 #' @param results Results table or analysis results.
 #' @param prior_id Identifier for the prior specification.
 #' @param estimate Estimate column or numerical estimates to summarize.
+#' @return An object of class "eye_irt_prior_sensitivity", stored as a named list, with components "n_specifications", "n_finite", "median", "range", "sd", "table", "guardrail". It contains sensitivity of an estimand across declared prior specifications and associated metadata or diagnostics needed to interpret the result.
 #' @export
 eyeprocess_irt_prior_sensitivity_summary <- function(results, prior_id = "prior_id", estimate = "estimate") {
   results <- .ep09m2_as_df(results, "results")
@@ -270,6 +279,7 @@ eyeprocess_irt_prior_sensitivity_summary <- function(results, prior_id = "prior_
 #' @param validation Value supplied for the validation argument.
 #' @param intended_use Statement of the intended analytical use.
 #' @param excluded_interpretations Interpretations explicitly excluded by the model card.
+#' @return An object of class "eye_irt_model_card", stored as a named list, with components "specification", "engine_status", "identification", "fit_evidence", "invariance", "validation", "intended_use", "excluded_interpretations", "created", "hash". It contains a governed IRT model card and associated metadata or diagnostics needed to interpret the result.
 #' @export
 eyeprocess_irt_model_card <- function(spec, engine_status = NULL, identification = NULL,
                                       fit_evidence = NULL, invariance = NULL, validation = NULL,
@@ -292,6 +302,7 @@ eyeprocess_irt_model_card <- function(spec, engine_status = NULL, identification
 
 #' Audit completeness of an IRT model card
 #' @param card Value supplied for the card argument.
+#' @return A data frame containing completeness of an IRT model card. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 eyeprocess_irt_model_card_audit <- function(card) {
   if (!inherits(card, "eye_irt_model_card")) stop("card must be created by eyeprocess_irt_model_card().", call. = FALSE)

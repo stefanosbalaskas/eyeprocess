@@ -17,6 +17,9 @@ compare_signal_filters(
 
 \item{methods}{Methods to compare.}
 }
+\value{
+A tabular R object containing multiple signal filters; rows represent analysis units and columns contain the returned quantities.
+}
 \description{
 Compare multiple signal filters
 }

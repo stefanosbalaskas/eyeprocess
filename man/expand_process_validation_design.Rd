@@ -11,6 +11,9 @@ expand_process_validation_design(x, max_conditions = 250000L)
 
 \item{max_conditions}{Optional hard cap for accidental combinatorial explosion.}
 }
+\value{
+A tabular R object containing expand a process-validation design into explicit conditions; rows represent analysis units and columns contain the returned quantities.
+}
 \description{
 Expand a process-validation design into explicit conditions
 }

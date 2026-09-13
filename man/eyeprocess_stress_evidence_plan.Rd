@@ -32,6 +32,9 @@ eyeprocess_stress_evidence_plan(
 
 \item{seed}{Random-number seed for reproducible execution.}
 }
+\value{
+An object of class "eye_stress_evidence_plan", stored as a named list, with components "seed". It contains declare the Milestone #2 measurement-quality stress evidence plan and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 Declare the Milestone #2 measurement-quality stress evidence plan
 }

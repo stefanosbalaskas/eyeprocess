@@ -25,6 +25,9 @@ audit_presentation_accessibility(
 
 \item{review_quantile}{Quantile for a presentation-review flag.}
 }
+\value{
+An object of class "eye_presentation_accessibility", stored as a named list, with components "table", "threshold", "review_quantile", "status", "caveat". It contains presentation/accessibility sensitivity without clinical inference and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 Creates a transparent presentation-review score from response time/dwell,
 revisit/entropy, pupil-effort proxies, and gaze quality. It is an experimental

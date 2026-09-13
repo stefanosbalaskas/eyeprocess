@@ -29,6 +29,9 @@ fit_latent_class_process_irt(
 
 \item{seed}{Random-number seed.}
 }
+\value{
+An object of class "eye_latent_class_process_irt", stored as a named list, with components "response_model", "class", "centers", "data", "process_features", "status". It contains latent process-class IRT reference model and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 Latent process-class IRT reference model
 }

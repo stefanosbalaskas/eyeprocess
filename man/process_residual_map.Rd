@@ -11,6 +11,9 @@ process_residual_map(object, entity = c("both", "person", "item"))
 
 \item{entity}{Entity type to map or validate.}
 }
+\value{
+A tabular R object containing return person/item latent-space coordinates; rows represent analysis units and columns contain the returned quantities.
+}
 \description{
 Return person/item latent-space coordinates
 }

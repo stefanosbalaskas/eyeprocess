@@ -11,6 +11,9 @@
 
 \item{...}{Additional arguments passed to the underlying method or helper.}
 }
+\value{
+Invisibly returns the plotting result when available; the primary effect is drawing plot aoi growth curve diagnostics.
+}
 \description{
 Plot aoi growth curve diagnostics
 }

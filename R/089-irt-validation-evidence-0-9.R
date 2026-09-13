@@ -8,15 +8,14 @@
 #' @param testlet_sd Standard deviation of simulated testlet effects.
 #' @param seed Random-number seed for reproducible execution.
 #' @param D Logistic scaling constant.
+#' @return An object of class "eye_irt_simulation", stored as a named list, with components "responses", "probabilities", "theta", "items", "missing_rate", "testlet_sd", "seed". It contains dichotomous IRT responses with optional local dependence and missingness and associated metadata or diagnostics needed to interpret the result.
 #' @export
 simulate_eyeprocess_irt_binary <- function(n_persons = 500L, items, theta = NULL, missing_rate = 0, testlet_sd = 0, seed = 1L, D = 1) {
   n_persons <- as.integer(n_persons); seed <- as.integer(seed); items <- .ep09m2_item_pars(items)
   missing_rate <- as.numeric(missing_rate); testlet_sd <- as.numeric(testlet_sd)
   if (length(n_persons) != 1L || is.na(n_persons) || n_persons < 20L || length(seed) != 1L || is.na(seed) || seed < 1L) stop("n_persons >= 20 and positive scalar seed required.", call. = FALSE)
   if (length(missing_rate) != 1L || !is.finite(missing_rate) || missing_rate < 0 || missing_rate >= 1 || length(testlet_sd) != 1L || !is.finite(testlet_sd) || testlet_sd < 0) stop("invalid scalar missing_rate/testlet_sd.", call. = FALSE)
-  old <- if (exists(".Random.seed", envir = .GlobalEnv, inherits = FALSE)) get(".Random.seed", envir = .GlobalEnv) else NULL
-  on.exit({ if (is.null(old)) { if (exists(".Random.seed", envir = .GlobalEnv, inherits = FALSE)) rm(".Random.seed", envir = .GlobalEnv) } else assign(".Random.seed", old, envir = .GlobalEnv) }, add = TRUE)
-  set.seed(seed)
+  .eye_local_seed(seed)
   if (is.null(theta)) theta <- stats::rnorm(n_persons)
   theta <- as.numeric(theta); if (length(theta) != n_persons || any(!is.finite(theta))) stop("theta must be finite and length n_persons.", call. = FALSE)
   testlet <- if (testlet_sd > 0) stats::rnorm(n_persons, 0, testlet_sd) else rep(0, n_persons)
@@ -34,6 +33,7 @@ simulate_eyeprocess_irt_binary <- function(n_persons = 500L, items, theta = NULL
 #' @param testlet_sd Standard deviation of simulated testlet effects.
 #' @param replications Number of simulation or validation replications.
 #' @param seed Random-number seed for reproducible execution.
+#' @return An object of class "eye_irt_recovery_design", "data.frame", stored as a data frame, containing an IRT recovery design and associated metadata needed to interpret the result.
 #' @export
 eyeprocess_irt_recovery_design <- function(sample_size = c(250L, 750L), n_items = c(12L, 24L), missing_rate = c(0, .15), testlet_sd = c(0, .35), replications = 10L, seed = 20260811L) {
   sample_size <- as.integer(sample_size); n_items <- as.integer(n_items); missing_rate <- as.numeric(missing_rate); testlet_sd <- as.numeric(testlet_sd)
@@ -47,9 +47,7 @@ eyeprocess_irt_recovery_design <- function(sample_size = c(250L, 750L), n_items 
 .ep09m2_default_item_truth <- function(n_items, seed) {
   n_items <- as.integer(n_items); seed <- as.integer(seed)
   if (length(n_items) != 1L || is.na(n_items) || n_items < 1L || length(seed) != 1L || is.na(seed) || seed < 1L) stop("n_items and seed must be positive integers.", call. = FALSE)
-  old <- if (exists(".Random.seed", envir = .GlobalEnv, inherits = FALSE)) get(".Random.seed", envir = .GlobalEnv) else NULL
-  on.exit({ if (is.null(old)) { if (exists(".Random.seed", envir = .GlobalEnv, inherits = FALSE)) rm(".Random.seed", envir = .GlobalEnv) } else assign(".Random.seed", old, envir = .GlobalEnv) }, add = TRUE)
-  set.seed(seed)
+  .eye_local_seed(seed)
   data.frame(item_id = paste0("I", seq_len(n_items)), a = exp(stats::rnorm(n_items, log(1.2), .18)), b = stats::rnorm(n_items, 0, 1), c = 0, d = 1, stringsAsFactors = FALSE)
 }
 
@@ -79,6 +77,7 @@ eyeprocess_irt_recovery_design <- function(sample_size = c(250L, 750L), n_items 
 #' @param design Validation or simulation design object.
 #' @param engine Requested estimation or analysis engine.
 #' @param verbose Value supplied for the verbose argument.
+#' @return An object of class "eye_irt_recovery_result", stored as a named list, with components "design", "estimates", "failures", "engine". It contains iRT parameter recovery with the exact mirt engine and associated metadata or diagnostics needed to interpret the result.
 #' @export
 run_eyeprocess_irt_recovery <- function(design, engine = "mirt", verbose = TRUE) {
   if (!inherits(design, "eye_irt_recovery_design")) stop("design must come from eyeprocess_irt_recovery_design().", call. = FALSE)
@@ -114,6 +113,7 @@ run_eyeprocess_irt_recovery <- function(design, engine = "mirt", verbose = TRUE)
 
 #' Summarise IRT parameter recovery
 #' @param x Object to validate, summarize, verify, or otherwise process.
+#' @return A tabular R object containing iRT parameter recovery; rows represent analysis units and columns contain the returned quantities.
 #' @export
 eyeprocess_irt_recovery_summary <- function(x) {
   if (!inherits(x, "eye_irt_recovery_result")) stop("x must be an eye_irt_recovery_result.", call. = FALSE)
@@ -130,6 +130,7 @@ eyeprocess_irt_recovery_summary <- function(x) {
 
 #' Summarise recovery failure rates
 #' @param x Object to validate, summarize, verify, or otherwise process.
+#' @return A tabular R object containing recovery failure rates; rows represent analysis units and columns contain the returned quantities.
 #' @export
 eyeprocess_irt_recovery_failures <- function(x) {
   if (!inherits(x, "eye_irt_recovery_result")) stop("x must be an eye_irt_recovery_result.", call. = FALSE)
@@ -145,15 +146,14 @@ eyeprocess_irt_recovery_failures <- function(x) {
 #' @param draws Posterior draws, with draws arranged by simulation case as required.
 #' @param randomize_ties Whether ties in SBC ranks are randomized.
 #' @param seed Random-number seed for reproducible execution.
+#' @return A vector or matrix containing sBC ranks from scalar truths and posterior draws, with shape determined by the supplied analysis units.
 #' @export
 eyeprocess_irt_sbc_ranks <- function(truth, draws, randomize_ties = TRUE, seed = 1L) {
   truth <- as.numeric(truth); draws <- as.matrix(draws); storage.mode(draws) <- "numeric"
   if (nrow(draws) != length(truth) || any(!is.finite(truth)) || any(!is.finite(draws))) stop("draws rows must match finite truths and contain finite draws.", call. = FALSE)
   seed <- as.integer(seed); if (length(seed) != 1L || seed < 1L || is.na(seed)) stop("seed must be positive.", call. = FALSE)
   if (ncol(draws) < 1L) stop("draws must contain at least one posterior draw per truth.", call. = FALSE)
-  old <- if (exists(".Random.seed", envir = .GlobalEnv, inherits = FALSE)) get(".Random.seed", envir = .GlobalEnv) else NULL
-  on.exit({ if (is.null(old)) { if (exists(".Random.seed", envir = .GlobalEnv, inherits = FALSE)) rm(".Random.seed", envir = .GlobalEnv) } else assign(".Random.seed", old, envir = .GlobalEnv) }, add = TRUE)
-  set.seed(seed)
+  .eye_local_seed(seed)
   vapply(seq_along(truth), function(i) {
     less <- sum(draws[i, ] < truth[i]); equal <- sum(draws[i, ] == truth[i])
     if (isTRUE(randomize_ties) && equal > 0L) less + sample.int(equal + 1L, 1L) - 1L else less
@@ -176,6 +176,7 @@ eyeprocess_irt_sbc_ranks <- function(truth, draws, randomize_ties = TRUE, seed =
 #' @param interval Central posterior interval probability used for coverage assessment.
 #' @param seed Random-number seed for reproducible execution.
 #' @param D Logistic scaling constant.
+#' @return An object of class "eye_irt_sbc_evidence", stored as a named list, with components "diagnostics", "ecdf_deviation", "n", "n_draws". It contains simulation-based calibration for known-item IRT ability scoring and associated metadata or diagnostics needed to interpret the result.
 #' @export
 run_eyeprocess_irt_ability_sbc <- function(items, replications = 200L, posterior_draws = 99L,
                                            theta_grid = seq(-5, 5, length.out = 401),
@@ -190,9 +191,7 @@ run_eyeprocess_irt_ability_sbc <- function(items, replications = 200L, posterior
   if (length(theta_grid) < 101L || is.unsorted(theta_grid, strictly = TRUE)) stop("theta_grid must be strictly increasing with at least 101 points.", call. = FALSE)
   if (length(prior_mean) != 1L || !is.finite(prior_mean) || length(prior_sd) != 1L || !is.finite(prior_sd) || prior_sd <= 0) stop("invalid normal prior.", call. = FALSE)
   if (length(interval) != 1L || !is.finite(interval) || interval <= 0 || interval >= 1) stop("interval must lie in (0,1).", call. = FALSE)
-  old <- if (exists(".Random.seed", envir = .GlobalEnv, inherits = FALSE)) get(".Random.seed", envir = .GlobalEnv) else NULL
-  on.exit({ if (is.null(old)) { if (exists(".Random.seed", envir = .GlobalEnv, inherits = FALSE)) rm(".Random.seed", envir = .GlobalEnv) } else assign(".Random.seed", old, envir = .GlobalEnv) }, add = TRUE)
-  set.seed(seed)
+  .eye_local_seed(seed)
   alpha <- (1 - interval) / 2
   rows <- vector("list", replications)
   rank <- integer(replications)
@@ -226,6 +225,7 @@ run_eyeprocess_irt_ability_sbc <- function(items, replications = 200L, posterior
 #' @param ranks Simulation-based-calibration rank values.
 #' @param n_draws Number of posterior draws underlying each rank.
 #' @param bins Number of bins used for rank-distribution summaries.
+#' @return An object of class "eye_irt_sbc_evidence", stored as a named list, with components "diagnostics", "ecdf_deviation", "n", "n_draws". It contains iRT SBC ranks with the package SBC diagnostics and associated metadata or diagnostics needed to interpret the result.
 #' @export
 eyeprocess_irt_sbc_summary <- function(ranks, n_draws, bins = NULL) {
   if (is.null(bins)) bins <- min(as.integer(n_draws) + 1L, 20L)
@@ -234,6 +234,7 @@ eyeprocess_irt_sbc_summary <- function(ranks, n_draws, bins = NULL) {
 }
 
 #' Create a model-misspecification suite
+#' @return A data frame containing a model-misspecification suite. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 eyeprocess_irt_misspecification_suite <- function() {
   data.frame(
@@ -247,6 +248,7 @@ eyeprocess_irt_misspecification_suite <- function() {
 #' Compare recovery under reference and misspecified scenarios
 #' @param reference_summary Reference-model validation summary.
 #' @param misspecified_summary Misspecified-model validation summary.
+#' @return An R object containing recovery under reference and misspecified scenarios. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 eyeprocess_irt_misspecification_metrics <- function(reference_summary, misspecified_summary) {
   reference_summary <- .ep09m2_as_df(reference_summary, "reference_summary"); misspecified_summary <- .ep09m2_as_df(misspecified_summary, "misspecified_summary")
@@ -261,6 +263,7 @@ eyeprocess_irt_misspecification_metrics <- function(reference_summary, misspecif
 #' @param sbc Simulation-based-calibration evidence object or table.
 #' @param failures Failure records or failure summary.
 #' @param metadata Named metadata to store with the frozen object.
+#' @return A named list with components "recovery_summary", "sbc", "failures", "metadata", "scientific_scope", containing freeze IRT validation reference summaries and associated metadata or diagnostics.
 #' @export
 freeze_eyeprocess_irt_reference <- function(recovery_summary = NULL, sbc = NULL, failures = NULL, metadata = list()) {
   obj <- list(recovery_summary = recovery_summary, sbc = sbc, failures = failures, metadata = metadata,

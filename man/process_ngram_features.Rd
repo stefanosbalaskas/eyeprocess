@@ -13,6 +13,9 @@ process_ngram_features(sequence, n = c(1L, 2L, 3L), separator = ">")
 
 \item{separator}{Sequence-token separator.}
 }
+\value{
+An object of class "matrix", stored as an R object, containing n-gram features from process sequences and associated metadata needed to interpret the result.
+}
 \description{
 N-gram features from process sequences
 }

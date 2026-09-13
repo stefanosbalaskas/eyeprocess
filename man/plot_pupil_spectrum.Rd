@@ -15,6 +15,9 @@ plot_pupil_spectrum(signal, sampling_rate_hz, max_hz = sampling_rate_hz/2, ...)
 
 \item{...}{Additional arguments passed to the underlying method or helper.}
 }
+\value{
+A data frame containing plot a pupil-signal power spectrum. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
+}
 \description{
 Plot a pupil-signal power spectrum
 }

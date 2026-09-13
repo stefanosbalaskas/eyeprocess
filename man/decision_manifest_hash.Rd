@@ -9,6 +9,9 @@ decision_manifest_hash(x)
 \arguments{
 \item{x}{Manifest or decision object.}
 }
+\value{
+An R object containing stable hash of decision content. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
+}
 \description{
 Stable hash of decision content
 }

@@ -11,6 +11,9 @@ summarize_process_windows(x, by = NULL)
 
 \item{by}{Optional grouping columns present in the extracted table.}
 }
+\value{
+An R object containing extracted process windows. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
+}
 \description{
 Summarize extracted process windows
 }

@@ -9,6 +9,9 @@ eyeprocess_irt_recovery_failures(x)
 \arguments{
 \item{x}{Object to validate, summarize, verify, or otherwise process.}
 }
+\value{
+A tabular R object containing recovery failure rates; rows represent analysis units and columns contain the returned quantities.
+}
 \description{
 Summarise recovery failure rates
 }

@@ -13,6 +13,9 @@ outcome_blind_snapshot(data, outcome, id = NULL)
 
 \item{id}{Optional identifier columns retained in the snapshot.}
 }
+\value{
+An object of class "eye_outcome_blind_snapshot", stored as a named list, with components "data", "removed_outcomes", "id", "source_columns", "blinded_columns", "blinded_hash", "created_at", "caveat". It contains an outcome-blind data snapshot and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 Create an outcome-blind data snapshot
 }

@@ -17,6 +17,9 @@ audit_interval_width(
 
 \item{by}{Grouping variables used when summarizing results.}
 }
+\value{
+An R object containing interval width. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
+}
 \description{
 Audit interval width
 }

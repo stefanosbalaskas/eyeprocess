@@ -133,6 +133,7 @@ fit_joint_gaze_rt_irt <- function(data,
 #' @param data Input data frame or compatible tabular object.
 #' @param ... Additional arguments passed to the selected model, engine, or method.
 #' @param engine Estimation engine.
+#' @return An object of class "eye_joint_gaze_rt_irt", stored as a named list, with components "engine", "response_model", "rt_model", "gaze_model", "person_scores", "item_scores", "person_covariance", "item_covariance", "data_n", "gaze_family", "columns", "status", and additional components. It contains speed-accuracy-engagement IRT convenience wrapper and associated metadata or diagnostics needed to interpret the result.
 #' @export
 fit_speed_accuracy_engagement_irt <- function(data, ..., engine = c("reference", "brms")) {
   engine <- match.arg(engine)
@@ -160,6 +161,7 @@ fit_speed_accuracy_engagement_irt <- function(data, ..., engine = c("reference",
 #' @param cores Number of processor cores.
 #' @param seed Random-number seed.
 #' @param ... Additional arguments passed to the selected model, engine, or method.
+#' @return An object of class "eye_joint_graded_rt_process_irt", stored as a named list, with components "engine", "response_model", "rt_model", "process_model", "data_n", "status", "note". It contains joint graded-response, RT, and process reference model and associated metadata or diagnostics needed to interpret the result.
 #' @export
 fit_joint_graded_rt_process_irt <- function(data,
                                             response = "response", rt = "rt",
@@ -240,6 +242,7 @@ fit_joint_graded_rt_process_irt <- function(data,
 #' @param item Item identifier, name, or item column.
 #' @param add_item_effects Whether item effects are included.
 #' @param ... Additional arguments passed to the selected model, engine, or method.
+#' @return An object of class "eye_nominal_gaze_irt", stored as a named list, with components "model", "baseline_model", "data", "option_gaze", "gaze_proportion_columns", "ability", "person", "item", "logLik_gain", "status", "note". It contains nominal/distractor IRT with option-level gaze and associated metadata or diagnostics needed to interpret the result.
 #' @export
 fit_nominal_gaze_irt <- function(data,
                                  response_option = "response_option",
@@ -302,6 +305,7 @@ fit_nominal_gaze_irt <- function(data,
 
 #' Quantify option-process information from a nominal gaze model
 #' @param object A fitted eyeprocess model or audit object.
+#' @return An object of class "eye_option_process_information", "data.frame", stored as a data frame, containing quantify option-process information from a nominal gaze model and associated metadata needed to interpret the result.
 #' @export
 option_process_information <- function(object) {
   if (!inherits(object, "eye_nominal_gaze_irt")) stop("`object` must be an eye_nominal_gaze_irt.", call. = FALSE)
@@ -321,6 +325,7 @@ option_process_information <- function(object) {
 
 #' Build a distractor process map
 #' @param object A fitted eyeprocess model or audit object.
+#' @return A data frame containing a distractor process map. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 distractor_process_map <- function(object) {
   if (!inherits(object, "eye_nominal_gaze_irt")) stop("`object` must be an eye_nominal_gaze_irt.", call. = FALSE)
@@ -338,6 +343,7 @@ distractor_process_map <- function(object) {
 #' @param response_option Column identifying the selected response option.
 #' @param option_gaze Option-level gaze variables.
 #' @param chosen_suffix Suffix identifying the selected option indicator.
+#' @return A data frame containing distractor attention patterns. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 audit_distractor_attention <- function(data, response_option = "response_option",
                                        option_gaze, chosen_suffix = NULL) {
@@ -368,6 +374,7 @@ audit_distractor_attention <- function(data, response_option = "response_option"
 #' @param reached Indicator that the item was reached.
 #' @param inspected Indicator that the item or response area was inspected.
 #' @param started Indicator that responding was initiated.
+#' @return An object of class "factor", stored as an R object, containing classify item missingness using exposure and response evidence and associated metadata needed to interpret the result.
 #' @export
 classify_item_missingness <- function(data, response = "response", reached = "reached",
                                       inspected = NULL, started = NULL) {
@@ -393,6 +400,7 @@ classify_item_missingness <- function(data, response = "response", reached = "re
 #' @param exposed Value supplied to `exposed`; see Details for its model-specific role.
 #' @param predictors Predictor variables used by the model.
 #' @param family Statistical family used by the channel or model.
+#' @return An object of class "eye_visual_exposure_model", stored as a named list, with components "model", "fitted_probability", "exposed", "predictors". It contains visual exposure probability and associated metadata or diagnostics needed to interpret the result.
 #' @export
 estimate_visual_exposure_probability <- function(data, exposed = "reached",
                                                  predictors, family = stats::binomial()) {
@@ -421,6 +429,7 @@ estimate_visual_exposure_probability <- function(data, exposed = "reached",
 #' @param gaze_exposure Gaze-based exposure measure.
 #' @param first_fixation_latency Latency to first fixation.
 #' @param ... Additional arguments passed to the selected model, engine, or method.
+#' @return An object of class "eye_omission_survival_irt", stored as a named list, with components "response_model", "omission_model", "not_reached_model", "classified_data", "state_counts", "status", "note". It contains response/RT/omission survival IRT reference model and associated metadata or diagnostics needed to interpret the result.
 #' @export
 fit_omission_survival_irt <- function(data,
                                       response = "response",
@@ -497,6 +506,7 @@ fit_omission_survival_irt <- function(data,
 #' @param algorithm Algorithm identifier or algorithm facet.
 #' @param aoi_definition Value supplied to `aoi_definition`; see Details for its model-specific role.
 #' @param process_family Distributional family for the process channel.
+#' @return An object of class "eye_manyfacet_process_irt", stored as a named list, with components "response_model", "process_model", "facets", "process_family", "status". It contains many-facet process IRT reference model and associated metadata or diagnostics needed to interpret the result.
 #' @export
 fit_manyfacet_process_irt <- function(data,
                                       response = "response",
@@ -537,6 +547,7 @@ fit_manyfacet_process_irt <- function(data,
 #' Extract facet effects from a many-facet process model
 #' @param object A fitted eyeprocess model or audit object.
 #' @param channel Measurement channel to inspect.
+#' @return A named list with components "random_effects", "variance_components", containing facet effects from a many-facet process model and associated metadata or diagnostics.
 #' @export
 facet_effects <- function(object, channel = c("response", "process")) {
   if (!inherits(object, "eye_manyfacet_process_irt")) stop("`object` must be an eye_manyfacet_process_irt.", call. = FALSE)
@@ -552,6 +563,7 @@ facet_effects <- function(object, channel = c("response", "process")) {
 #' @param object A fitted eyeprocess model or audit object.
 #' @param channel Measurement channel to inspect.
 #' @param relative_sd_threshold Value supplied to `relative_sd_threshold`; see Details for its model-specific role.
+#' @return An object of class "eye_process_measurement_invariance", stored as a named list, with components "pass", "threshold", "components", "channel", "note". It contains process measurement invariance across facets and associated metadata or diagnostics needed to interpret the result.
 #' @export
 audit_process_measurement_invariance <- function(object, channel = c("process", "response"),
                                                  relative_sd_threshold = 0.25) {
@@ -625,6 +637,7 @@ audit_process_measurement_invariance <- function(object, channel = c("process", 
 #' @param min_segment Minimum segment length.
 #' @param min_delta_sic Minimum information-criterion improvement.
 #' @param max_changes Maximum number of change points.
+#' @return An object of class "eye_irt_changepoints", stored as a named list, with components "results", "channels", "method", "min_segment", "min_delta_sic", "max_changes". It contains iRT/process change points using an SIC-inspired multichannel score and associated metadata or diagnostics needed to interpret the result.
 #' @export
 detect_irt_changepoints <- function(data,
                                     person = "participant_id", order = "item_order",
@@ -665,6 +678,7 @@ detect_irt_changepoints <- function(data,
 #' @param data Input data frame or compatible tabular object.
 #' @param ... Additional arguments passed to the selected model, engine, or method.
 #' @param refit Whether the model is refitted after segmentation.
+#' @return An object of class "eye_changepoint_rt_irt", stored as a named list, with components "changepoints", "refit_requested", "status". It contains a change-point RT IRT workflow and associated metadata or diagnostics needed to interpret the result.
 #' @export
 fit_changepoint_rt_irt <- function(data, ..., refit = TRUE) {
   cp <- detect_irt_changepoints(data, ..., gaze = NULL)
@@ -677,6 +691,7 @@ fit_changepoint_rt_irt <- function(data, ..., refit = TRUE) {
 #' @param ... Additional arguments passed to the selected model, engine, or method.
 #' @param gaze Gaze/process variable or column name.
 #' @param refit Whether the model is refitted after segmentation.
+#' @return An object of class "eye_changepoint_multimodal_irt", stored as a named list, with components "changepoints", "refit_requested", "status". It contains a multimodal change-point IRT workflow and associated metadata or diagnostics needed to interpret the result.
 #' @export
 fit_changepoint_multimodal_irt <- function(data, ..., gaze = "fixation_count", refit = TRUE) {
   cp <- detect_irt_changepoints(data, ..., gaze = gaze)
@@ -692,6 +707,7 @@ fit_changepoint_multimodal_irt <- function(data, ..., gaze = "fixation_count", r
 #' @param person Person or participant identifier column.
 #' @param order Within-sequence ordering variable.
 #' @param ... Additional arguments passed to the selected model, engine, or method.
+#' @return An object of class "eye_changepoint_recalibration", stored as a named list, with components "changepoints", "data", "fit", "policy". It contains iteratively detect, clean, and recalibrate after process change points and associated metadata or diagnostics needed to interpret the result.
 #' @export
 recalibrate_after_changepoint <- function(data, fitter,
                                           person = "participant_id", order = "item_order",

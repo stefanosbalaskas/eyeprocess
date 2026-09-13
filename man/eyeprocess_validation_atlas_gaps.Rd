@@ -9,6 +9,9 @@ eyeprocess_validation_atlas_gaps(atlas)
 \arguments{
 \item{atlas}{Validation-evidence atlas object.}
 }
+\value{
+A named list with components "missing_components", "unresolved_claims", "complete", containing gaps in a validation evidence atlas and associated metadata or diagnostics.
+}
 \description{
 Summarise gaps in a validation evidence atlas
 }

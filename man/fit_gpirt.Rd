@@ -23,6 +23,9 @@ fit_gpirt(
 
 \item{...}{Additional arguments passed to the selected model, engine, or method.}
 }
+\value{
+An object of class "eye_gpirt", stored as a named list, with components "response_matrix", "models", "theta_proxy", "engine", "exact_gpirt", "status", "note". It contains gPIRT model-criticism interface and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 `external` is the only exact GPIRT path. `spline_reference` fits flexible
 logistic spline IRFs solely as a nonparametric stress test for conventional

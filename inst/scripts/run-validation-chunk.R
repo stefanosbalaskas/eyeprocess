@@ -5,7 +5,7 @@ manifest_dir <- normalizePath(args[1L], winslash = "/", mustWork = TRUE)
 chunk_id <- args[2L]
 workflow_file <- normalizePath(args[3L], winslash = "/", mustWork = TRUE)
 library(eyeprocess)
-workflow <- new.env(parent = globalenv())
+workflow <- new.env(parent = asNamespace("eyeprocess"))
 sys.source(workflow_file, workflow)
 required <- c("simulator", "fitter", "extractor", "truth_extractor")
 missing <- required[!vapply(required, exists, logical(1), envir = workflow, inherits = FALSE)]

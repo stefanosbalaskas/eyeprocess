@@ -11,6 +11,9 @@ decision_manifest_diff(old, new)
 
 \item{new}{Later manifest.}
 }
+\value{
+An R object containing alias for manifest comparison emphasizing changed decision paths. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
+}
 \description{
 Alias for manifest comparison emphasizing changed decision paths
 }

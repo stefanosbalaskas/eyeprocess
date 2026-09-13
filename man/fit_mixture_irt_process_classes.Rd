@@ -24,6 +24,9 @@ route supports two classes (`mixture-2`).}
 
 \item{SE}{Request standard errors.}
 }
+\value{
+An object of class "eye_mixture_irt_process", stored as a named list, with components "model", "coefficients", "n_classes", "itemtype", "status", "caveat". It contains a true mirt mixture-IRT response model and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 This is distinct from the existing two-stage process-class reference model:
 the response distribution itself is calibrated using mirt's mixture density.

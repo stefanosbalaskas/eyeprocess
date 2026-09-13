@@ -9,6 +9,9 @@ api_family_map(inventory)
 \arguments{
 \item{inventory}{API inventory or character names.}
 }
+\value{
+A data frame containing exported APIs to conceptual families. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
+}
 \description{
 Map exported APIs to conceptual families
 }

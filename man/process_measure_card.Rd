@@ -11,6 +11,9 @@ process_measure_card(name, registry = process_measure_registry())
 
 \item{registry}{Registry.}
 }
+\value{
+An object of class "eye_process_measure_card", stored as a named list, containing return a one-measure process card and associated metadata needed to interpret the result.
+}
 \description{
 Return a one-measure process card
 }

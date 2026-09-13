@@ -20,6 +20,9 @@ eyeprocess_irt_measurement_precision_profile(
 
 \item{D}{Logistic scaling constant.}
 }
+\value{
+An object of class "eye_irt_precision_profile", stored as a named list, with components "curve", "target", "area", "min_information", "max_sem". It contains measurement precision across a theta region and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 Summarise measurement precision across a theta region
 }

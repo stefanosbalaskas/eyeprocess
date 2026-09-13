@@ -17,6 +17,9 @@ write_eyeprocess_validation_report(
 
 \item{title}{Report title.}
 }
+\value{
+A character string or vector giving the path or identifier for a compact Markdown validation report.
+}
 \description{
 Write a compact Markdown validation report
 }

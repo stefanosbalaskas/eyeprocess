@@ -15,6 +15,9 @@ run_eyeprocess_stress_evidence(data, plan, corruptors, metric_fun)
 
 \item{metric_fun}{Function used to compute the stress-programme evaluation metric.}
 }
+\value{
+An object of class "eye_stress_evidence_result", stored as a named list, with components "plan", "scenarios", "baseline", "results", "failures", "guardrail". It contains execute a declared measurement-stress evidence plan and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 `corruptors` is a named list of functions accepting `(data, severity, seed)`.
 `metric_fun` must return a named finite/numeric vector (NA is allowed for

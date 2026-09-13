@@ -9,6 +9,9 @@ eye_pipeline_dot(x)
 \arguments{
 \item{x}{Pipeline.}
 }
+\value{
+A character value or vector containing render pipeline dependencies as Graphviz DOT.
+}
 \description{
 Render pipeline dependencies as Graphviz DOT
 }

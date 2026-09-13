@@ -11,6 +11,9 @@ sbc_ecdf_deviation(x, n_draws = NULL)
 
 \item{n_draws}{Required if x is ranks.}
 }
+\value{
+An R object containing eCDF deviation summary for SBC ranks. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
+}
 \description{
 ECDF deviation summary for SBC ranks
 }

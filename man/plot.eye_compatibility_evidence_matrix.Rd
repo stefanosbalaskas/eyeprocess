@@ -11,6 +11,9 @@
 
 \item{...}{Additional arguments passed to the selected model, engine, or method.}
 }
+\value{
+Invisibly returns the plotting result when available; the primary effect is drawing plot detailed compatibility evidence.
+}
 \description{
 Plot detailed compatibility evidence
 }

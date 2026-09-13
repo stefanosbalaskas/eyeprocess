@@ -21,6 +21,9 @@ gaze_precision_rms_s2s(
 
 \item{by}{Optional grouping columns.}
 }
+\value{
+A logical value or vector indicating rMS successive-sample gaze imprecision.
+}
 \description{
 Estimate RMS successive-sample gaze imprecision
 }

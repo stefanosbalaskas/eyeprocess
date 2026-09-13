@@ -9,6 +9,7 @@
 #' @param device_shift Magnitude of synthetic device shift.
 #' @param trial_imbalance Severity of synthetic trial imbalance.
 #' @param seed Random-number seed for reproducible execution.
+#' @return An object of class "eye_stress_evidence_plan", stored as a named list, with components "seed". It contains declare the Milestone #2 measurement-quality stress evidence plan and associated metadata or diagnostics needed to interpret the result.
 #' @export
 eyeprocess_stress_evidence_plan <- function(
     missing_gaze = c(0, .05, .15, .30),
@@ -34,6 +35,7 @@ eyeprocess_stress_evidence_plan <- function(
 
 #' Expand a stress evidence plan into one-factor-at-a-time scenarios
 #' @param plan Validation or stress-evidence plan object.
+#' @return A tabular R object containing expand a stress evidence plan into one-factor-at-a-time scenarios; rows represent analysis units and columns contain the returned quantities.
 #' @export
 expand_eyeprocess_stress_evidence_plan <- function(plan) {
   if (!inherits(plan, "eye_stress_evidence_plan")) stop("plan must be an eye_stress_evidence_plan.", call. = FALSE)
@@ -48,6 +50,7 @@ expand_eyeprocess_stress_evidence_plan <- function(plan) {
 #' @param metrics Reliability metrics requested by the evidence plan.
 #' @param bootstrap Number of bootstrap replicates or bootstrap configuration.
 #' @param seed Random-number seed for reproducible execution.
+#' @return An object of class "eye_reliability_evidence_plan", stored as a named list, with components "metrics", "bootstrap", "seed", "guardrail". It contains declare reliability evidence targets and associated metadata or diagnostics needed to interpret the result.
 #' @export
 eyeprocess_reliability_evidence_plan <- function(metrics = c("split_half", "icc", "temporal_stability", "bland_altman"), bootstrap = 200L, seed = 20260811L) {
   metrics <- unique(as.character(metrics)); allowed <- c("split_half", "icc", "temporal_stability", "bland_altman")
@@ -62,6 +65,7 @@ eyeprocess_reliability_evidence_plan <- function(metrics = c("split_half", "icc"
 #' @param controls Negative-control methods requested by the evidence plan.
 #' @param replications Number of simulation or validation replications.
 #' @param seed Random-number seed for reproducible execution.
+#' @return An object of class "eye_negative_control_evidence_plan", stored as a named list, with components "controls", "replications", "seed", "guardrail". It contains declare negative-control evidence targets and associated metadata or diagnostics needed to interpret the result.
 #' @export
 eyeprocess_negative_control_evidence_plan <- function(controls = c("permutation", "temporal_shift", "placebo_window", "known_leakage"), replications = 100L, seed = 20260811L) {
   controls <- unique(as.character(controls)); allowed <- c("permutation", "temporal_shift", "placebo_window", "known_leakage")
@@ -79,6 +83,7 @@ eyeprocess_negative_control_evidence_plan <- function(controls = c("permutation"
 #' @param evidence_type Type or class of evidence.
 #' @param status Evidence, model, or governance status.
 #' @param boundary Explicit interpretation or scope boundary for the claim.
+#' @return A data frame containing a machine-readable validation claim/evidence matrix. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 eyeprocess_validation_claim_matrix <- function(claim_id, claim, evidence_id, evidence_type, status = "qualified", boundary = NA_character_) {
   fields <- list(claim_id = claim_id, claim = claim, evidence_id = evidence_id, evidence_type = evidence_type, status = status, boundary = boundary)
@@ -102,6 +107,7 @@ eyeprocess_validation_claim_matrix <- function(claim_id, claim, evidence_id, evi
 #' @param objects Objects to include in the evidence manifest.
 #' @param source_commit Source-control commit associated with the evidence.
 #' @param label Human-readable label.
+#' @return An object of class "eye_validation_evidence_manifest", stored as a named list, with components "label", "source_commit", "files", "objects", "generated_at". It contains an evidence manifest from files and in-memory objects and associated metadata or diagnostics needed to interpret the result.
 #' @export
 eyeprocess_validation_evidence_manifest <- function(files = character(), objects = list(), source_commit = NA_character_, label = "eyeprocess-0.9-m2") {
   files <- as.character(files); missing <- files[!file.exists(files)]
@@ -122,6 +128,7 @@ eyeprocess_validation_evidence_manifest <- function(files = character(), objects
 #' @param claims Claim-evidence mapping table.
 #' @param provenance Provenance metadata or provenance object.
 #' @param source_commit Source-control commit associated with the evidence.
+#' @return An object of class "eye_validation_evidence_freeze", stored as a named list, with components "components", "presence", "source_commit", "frozen_at", "scientific_scope". It contains freeze a complete Milestone #2 evidence bundle and associated metadata or diagnostics needed to interpret the result.
 #' @export
 freeze_eyeprocess_validation_evidence <- function(design, recovery = NULL, sbc = NULL, stress = NULL, reliability = NULL, negative_controls = NULL, irt = NULL, claims = NULL, provenance = NULL, source_commit = NA_character_) {
   components <- list(design = design, recovery = recovery, sbc = sbc, stress = stress, reliability = reliability,
@@ -145,6 +152,7 @@ freeze_eyeprocess_validation_evidence <- function(design, recovery = NULL, sbc =
 
 #' Verify the integrity hash of a frozen evidence bundle
 #' @param x Object to validate, summarize, verify, or otherwise process.
+#' @return A logical value or vector indicating verify the integrity hash of a frozen evidence bundle.
 #' @export
 verify_eyeprocess_validation_evidence <- function(x) {
   if (!inherits(x, "eye_validation_evidence_freeze")) stop("x must be a frozen validation evidence bundle.", call. = FALSE)
@@ -155,6 +163,7 @@ verify_eyeprocess_validation_evidence <- function(x) {
 #' Write a frozen evidence bundle
 #' @param x Object to validate, summarize, verify, or otherwise process.
 #' @param path File path for reading or writing.
+#' @return A character string or vector giving the path or identifier for a frozen evidence bundle.
 #' @export
 write_eyeprocess_validation_evidence <- function(x, path) {
   if (!inherits(x, "eye_validation_evidence_freeze")) stop("x must be a frozen validation evidence bundle.", call. = FALSE)
@@ -166,6 +175,7 @@ write_eyeprocess_validation_evidence <- function(x, path) {
 #' Read and verify a frozen evidence bundle
 #' @param path File path for reading or writing.
 #' @param verify Whether integrity verification is performed when reading.
+#' @return An R object containing and verify a frozen evidence bundle. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 read_eyeprocess_validation_evidence <- function(path, verify = TRUE) {
   x <- readRDS(path)
@@ -177,6 +187,7 @@ read_eyeprocess_validation_evidence <- function(path, verify = TRUE) {
 #' Evaluate readiness of a Milestone #2 validation evidence bundle
 #' @param x Object to validate, summarize, verify, or otherwise process.
 #' @param required Required evidence components or requirements.
+#' @return An object of class "eye_validation_readiness", stored as a named list, with components "ready", "table", "hash_valid", "source_commit". It contains readiness of a Milestone #2 validation evidence bundle and associated metadata or diagnostics needed to interpret the result.
 #' @export
 eyeprocess_validation_readiness <- function(x, required = c("design", "recovery", "stress", "reliability", "negative_controls", "claims", "provenance")) {
   if (!inherits(x, "eye_validation_evidence_freeze")) stop("x must be a frozen validation evidence bundle.", call. = FALSE)
@@ -189,6 +200,7 @@ eyeprocess_validation_readiness <- function(x, required = c("design", "recovery"
 #' @param readiness Validation-readiness result.
 #' @param acceptance Acceptance-rule results.
 #' @param require_hash Whether a verified integrity hash is required.
+#' @return An object of class "eye_validation_release_gate", stored as a named list, with components "pass", "readiness", "acceptance", "hash", "interpretation". It contains a conservative software-release evidence gate and associated metadata or diagnostics needed to interpret the result.
 #' @export
 eyeprocess_validation_release_gate <- function(readiness, acceptance = NULL, require_hash = TRUE) {
   if (!inherits(readiness, "eye_validation_readiness")) stop("readiness must come from eyeprocess_validation_readiness().", call. = FALSE)
@@ -230,6 +242,7 @@ print.eye_validation_readiness <- function(x, ...) {
 #' @param plan Validation or stress-evidence plan object.
 #' @param corruptors Named list of corruption functions used by the stress programme.
 #' @param metric_fun Function used to compute the stress-programme evaluation metric.
+#' @return An object of class "eye_stress_evidence_result", stored as a named list, with components "plan", "scenarios", "baseline", "results", "failures", "guardrail". It contains execute a declared measurement-stress evidence plan and associated metadata or diagnostics needed to interpret the result.
 #' @export
 run_eyeprocess_stress_evidence <- function(data, plan, corruptors, metric_fun) {
   if (!inherits(plan, "eye_stress_evidence_plan")) stop("plan must be an eye_stress_evidence_plan.", call. = FALSE)
@@ -285,6 +298,7 @@ run_eyeprocess_stress_evidence <- function(data, plan, corruptors, metric_fun) {
 
 #' Summarise executed measurement-stress evidence
 #' @param x Object to validate, summarize, verify, or otherwise process.
+#' @return A tabular R object containing executed measurement-stress evidence; rows represent analysis units and columns contain the returned quantities.
 #' @export
 summarise_eyeprocess_stress_evidence <- function(x) {
   if (!inherits(x, "eye_stress_evidence_result")) stop("x must be an eye_stress_evidence_result.", call. = FALSE)

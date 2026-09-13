@@ -9,6 +9,9 @@ eyeprocess_irt_recovery_summary(x)
 \arguments{
 \item{x}{Object to validate, summarize, verify, or otherwise process.}
 }
+\value{
+A tabular R object containing iRT parameter recovery; rows represent analysis units and columns contain the returned quantities.
+}
 \description{
 Summarise IRT parameter recovery
 }

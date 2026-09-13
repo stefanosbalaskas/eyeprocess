@@ -15,6 +15,9 @@ export_validation_bundle(x, directory, overwrite = FALSE, include_rds = TRUE)
 
 \item{include_rds}{Save full R objects as RDS.}
 }
+\value{
+An object of class "eye_validation_export", stored as a named list, with components "directory", "files", "manifest". It contains a validation evidence bundle and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 Export a validation evidence bundle
 }

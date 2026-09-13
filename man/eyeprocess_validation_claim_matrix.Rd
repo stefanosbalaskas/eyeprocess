@@ -26,6 +26,9 @@ eyeprocess_validation_claim_matrix(
 
 \item{boundary}{Explicit interpretation or scope boundary for the claim.}
 }
+\value{
+A data frame containing a machine-readable validation claim/evidence matrix. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
+}
 \description{
 Build a machine-readable validation claim/evidence matrix
 }

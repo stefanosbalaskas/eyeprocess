@@ -9,6 +9,9 @@ canonical_eye_api(registry = eye_api_lifecycle())
 \arguments{
 \item{registry}{Lifecycle registry.}
 }
+\value{
+A tabular R object containing canonical API mapping; rows represent analysis units and columns contain the returned quantities.
+}
 \description{
 Canonical API mapping
 }

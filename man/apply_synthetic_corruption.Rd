@@ -29,6 +29,9 @@ apply_synthetic_corruption(
 
 \item{device_column}{Optional numeric column receiving device shift.}
 }
+\value{
+An R object containing a synthetic corruption plan. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
+}
 \description{
 Apply a synthetic corruption plan
 }

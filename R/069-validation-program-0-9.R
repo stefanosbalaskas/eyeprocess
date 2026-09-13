@@ -127,6 +127,7 @@ process_validation_design <- function(
 
 #' Validate a process-validation design
 #' @param x Validation design.
+#' @return A logical value or vector indicating a process-validation design.
 #' @export
 validate_process_validation_design <- function(x) {
   if (!inherits(x, "eye_process_validation_design")) stop("x must be an eye_process_validation_design.", call. = FALSE)
@@ -155,6 +156,7 @@ validate_process_validation_design <- function(x) {
 #' Expand a process-validation design into explicit conditions
 #' @param x Validation design.
 #' @param max_conditions Optional hard cap for accidental combinatorial explosion.
+#' @return A tabular R object containing expand a process-validation design into explicit conditions; rows represent analysis units and columns contain the returned quantities.
 #' @export
 expand_process_validation_design <- function(x, max_conditions = 250000L) {
   validate_process_validation_design(x)
@@ -186,6 +188,7 @@ expand_process_validation_design <- function(x, max_conditions = 250000L) {
 
 #' Return stable validation condition identifiers
 #' @param x Validation design or expanded condition table.
+#' @return A character value or vector containing return stable validation condition identifiers.
 #' @export
 validation_condition_id <- function(x) {
   if (inherits(x, "eye_process_validation_design")) x <- expand_process_validation_design(x)
@@ -389,6 +392,7 @@ run_process_validation <- function(
 #' Summarise a process-validation result
 #' @param x Validation result.
 #' @param by Optional grouping variables in addition to parameter.
+#' @return A tabular R object containing a process-validation result; rows represent analysis units and columns contain the returned quantities.
 #' @export
 summarise_process_validation <- function(x, by = NULL) {
   if (!inherits(x, "eye_process_validation_result")) stop("x must be an eye_process_validation_result.", call. = FALSE)
@@ -427,6 +431,7 @@ summarise_process_validation <- function(x, by = NULL) {
 #' Parameter-recovery table
 #' @param x Validation result.
 #' @param by Optional grouping variables.
+#' @return A tabular R object containing parameter-recovery table; rows represent analysis units and columns contain the returned quantities.
 #' @export
 validation_recovery_table <- function(x, by = NULL) {
   s <- summarise_process_validation(x, by = by)
@@ -438,6 +443,7 @@ validation_recovery_table <- function(x, by = NULL) {
 #' @param x Validation result.
 #' @param nominal Nominal coverage used for deviation reporting.
 #' @param by Optional grouping variables.
+#' @return A tabular R object containing interval-coverage table; rows represent analysis units and columns contain the returned quantities.
 #' @export
 validation_coverage_table <- function(x, nominal = .95, by = NULL) {
   s <- summarise_process_validation(x, by = by)
@@ -450,6 +456,7 @@ validation_coverage_table <- function(x, nominal = .95, by = NULL) {
 
 #' Failure profile for a validation programme
 #' @param x Validation result.
+#' @return A data frame containing failure profile for a validation programme. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 validation_failure_profile <- function(x) {
   if (!inherits(x, "eye_process_validation_result")) stop("x must be an eye_process_validation_result.", call. = FALSE)
@@ -467,6 +474,7 @@ validation_failure_profile <- function(x) {
 #' Monte Carlo standard-error diagnostics for validation summaries
 #' @param x Validation result.
 #' @param by Optional grouping variables.
+#' @return A tabular R object containing monte Carlo standard-error diagnostics for validation summaries; rows represent analysis units and columns contain the returned quantities.
 #' @export
 validation_summary_mcse <- function(x, by = NULL) {
   d <- x$estimates
@@ -491,6 +499,7 @@ validation_summary_mcse <- function(x, by = NULL) {
 #' Rank validation conditions by a transparent robustness score
 #' @param x Validation result.
 #' @param weights Named weights for rmse, absolute bias, coverage error, and failure rate.
+#' @return A tabular R object containing rank validation conditions by a transparent robustness score; rows represent analysis units and columns contain the returned quantities.
 #' @export
 validation_condition_ranking <- function(
     x,
@@ -528,6 +537,7 @@ validation_condition_ranking <- function(
 
 #' Overall validation robustness score
 #' @param x Validation result.
+#' @return A single numeric robustness score: the mean finite condition-level robustness score, or `NA_real_` when no finite score is available.
 #' @export
 validation_robustness_score <- function(x) {
   r <- validation_condition_ranking(x)
@@ -540,6 +550,7 @@ validation_robustness_score <- function(x) {
 #' @param x Validation result.
 #' @param path Optional RDS path.
 #' @param digits Numeric rounding applied before hashing.
+#' @return An object of class "eye_validation_reference", stored as a named list, with components "summary", "failure_profile", "design_hash", "summary_hash", "created_at", "status". It contains freeze a compact validation reference for regression testing and associated metadata or diagnostics needed to interpret the result.
 #' @export
 freeze_validation_reference <- function(x, path = NULL, digits = 8L) {
   if (!inherits(x, "eye_process_validation_result")) stop("x must be an eye_process_validation_result.", call. = FALSE)
@@ -564,6 +575,7 @@ freeze_validation_reference <- function(x, path = NULL, digits = 8L) {
 #' @param x Validation result.
 #' @param reference Frozen reference object or RDS path.
 #' @param tolerance Numeric tolerance for matched summary values.
+#' @return An object of class "eye_validation_reference_comparison", stored as a named list, with components "table", "tolerance", "pass", "reference_hash", "current_hash". It contains a validation result with a frozen reference and associated metadata or diagnostics needed to interpret the result.
 #' @export
 validate_against_reference <- function(x, reference, tolerance = 1e-6) {
   if (length(tolerance) != 1L || !is.finite(tolerance) || tolerance < 0) stop("tolerance must be a finite non-negative scalar.", call. = FALSE)
@@ -593,6 +605,7 @@ validate_against_reference <- function(x, reference, tolerance = 1e-6) {
 
 #' Create a model-by-evidence validation matrix
 #' @param ... Named validation results, bundles, or arbitrary evidence objects.
+#' @return A tabular R object containing a model-by-evidence validation matrix; rows represent analysis units and columns contain the returned quantities.
 #' @export
 validation_evidence_matrix <- function(...) {
   xs <- list(...)

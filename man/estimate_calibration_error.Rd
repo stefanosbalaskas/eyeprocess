@@ -22,6 +22,9 @@ estimate_calibration_error(
 
 \item{by}{Optional grouping columns such as participant/session.}
 }
+\value{
+A tabular R object containing empirical calibration/validation error; rows represent analysis units and columns contain the returned quantities.
+}
 \description{
 Estimate empirical calibration/validation error
 }

@@ -20,6 +20,9 @@ effective_sampling_frequency(
 
 \item{by}{Optional grouping columns.}
 }
+\value{
+A logical value or vector indicating effective sampling frequency from timestamps.
+}
 \description{
 Estimate effective sampling frequency from timestamps
 }

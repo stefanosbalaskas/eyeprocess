@@ -11,6 +11,9 @@ write_software_paper_evidence(x, path)
 
 \item{path}{Markdown output path.}
 }
+\value{
+An R object containing a human-readable software-paper evidence report. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
+}
 \description{
 Write a human-readable software-paper evidence report
 }

@@ -23,6 +23,9 @@ eyeprocess_mirt_directional_information(
 
 \item{D}{Logistic scaling constant.}
 }
+\value{
+A numeric value or vector containing directional multidimensional 2PL information.
+}
 \description{
 Directional multidimensional 2PL information
 }

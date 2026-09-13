@@ -9,6 +9,9 @@ eye_pipeline_graph(x)
 \arguments{
 \item{x}{Pipeline.}
 }
+\value{
+A named list with components "vertices", "edges", containing return pipeline vertices and dependency edges and associated metadata or diagnostics.
+}
 \description{
 Return pipeline vertices and dependency edges
 }

@@ -35,6 +35,9 @@ run_process_negative_controls(
 
 \item{within}{Optional permutation groups.}
 }
+\value{
+A named list with components "results", "outcome", "controls", "replications", "seed", "interpretation", containing repeated process negative controls and associated metadata or diagnostics.
+}
 \description{
 Run repeated process negative controls
 }

@@ -13,6 +13,9 @@
 
 \item{...}{Additional arguments passed to the underlying method or helper.}
 }
+\value{
+Invisibly returns the plotting result when available; the primary effect is drawing plot pupil frequency features diagnostics.
+}
 \description{
 Plot pupil frequency features diagnostics
 }

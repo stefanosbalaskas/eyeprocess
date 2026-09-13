@@ -10,6 +10,7 @@
 #' @param time,response_time Time and response-event columns.
 #' @param windows_ms Positive look-back windows before action.
 #' @param aoi,pupil,blink Optional feature columns.
+#' @return An object of class "eye_preaction_process_features", stored as a named list, with components "data", "windows_ms", "by", "status", "caveat". It contains pre-action process features and associated metadata or diagnostics needed to interpret the result.
 #' @export
 preaction_process_features <- function(
     data, by = c("person_id", "trial_id"), time = "time_ms", response_time = "response_time_ms",
@@ -66,6 +67,7 @@ preaction_process_features <- function(
 #' @param by Grouping columns.
 #' @param time,aoi Columns.
 #' @param target_aoi,distractor_aoi,action_aoi AOI labels.
+#' @return An object of class "eye_decision_process_proxy", stored as a named list, with components "features", "by", "status", "caveat". It contains aDDM/GLAM-inspired gaze-evidence proxy features and associated metadata or diagnostics needed to interpret the result.
 #' @export
 addm_glam_proxy_features <- function(
     data, by = c("person_id", "trial_id"), time = "time_ms", aoi = "aoi",
@@ -106,6 +108,7 @@ addm_glam_proxy_features <- function(
 }
 
 #' Registry of process-feature families and interpretation guardrails
+#' @return A data frame containing registry of process-feature families and interpretation guardrails. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 process_feature_family_registry <- function() {
   data.frame(
@@ -134,6 +137,7 @@ process_feature_family_registry <- function() {
 #' Assign features to conservative process-feature families
 #' @param feature_names Feature names.
 #' @param registry Feature-family registry.
+#' @return A vector or matrix containing assign features to conservative process-feature families, with shape determined by the supplied analysis units.
 #' @export
 assign_process_feature_family <- function(feature_names, registry = process_feature_family_registry()) {
   vapply(as.character(feature_names), function(f) {
@@ -149,6 +153,7 @@ assign_process_feature_family <- function(feature_names, registry = process_feat
 #' @param split Split/resample column.
 #' @param importance Importance column, where larger is better.
 #' @param top_n Number of top features counted per split.
+#' @return A data frame containing process-feature stability across repeated analyses. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 process_feature_stability <- function(data, feature = "feature", split = "split",
                                       importance = "importance", top_n = 20L) {
@@ -176,6 +181,7 @@ process_feature_stability <- function(data, feature = "feature", split = "split"
 }
 
 #' Plot preaction process features diagnostics
+#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot preaction process features diagnostics.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 #' @param feature Process feature to evaluate or display.
@@ -191,6 +197,7 @@ plot.eye_preaction_process_features <- function(x, feature = "pupil_mean", ...) 
 }
 
 #' Plot decision process proxy diagnostics
+#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot decision process proxy diagnostics.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 #' @param ... Additional arguments passed to the underlying method or helper.

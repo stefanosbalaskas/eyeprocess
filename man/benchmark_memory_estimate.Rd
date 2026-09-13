@@ -11,6 +11,9 @@ benchmark_memory_estimate(x, generator = NULL)
 
 \item{generator}{Optional function taking n.}
 }
+\value{
+A data frame containing memory estimate for an R object or generated problem size. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
+}
 \description{
 Memory estimate for an R object or generated problem size
 }

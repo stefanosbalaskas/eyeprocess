@@ -9,6 +9,9 @@ detect_process_changepoint(...)
 \arguments{
 \item{...}{Additional arguments passed to the selected model, engine, or method.}
 }
+\value{
+An R object containing a response-process change point. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
+}
 \description{
 Public roadmap alias for `detect_irt_changepoints()`.
 }

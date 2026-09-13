@@ -22,6 +22,9 @@ bootstrap_process_reliability(
 
 \item{seed}{Seed.}
 }
+\value{
+A data frame containing bootstrap ICC reliability by resampling participants. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
+}
 \description{
 Bootstrap ICC reliability by resampling participants
 }

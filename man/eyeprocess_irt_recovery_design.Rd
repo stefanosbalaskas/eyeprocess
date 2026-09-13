@@ -26,6 +26,9 @@ eyeprocess_irt_recovery_design(
 
 \item{seed}{Random-number seed for reproducible execution.}
 }
+\value{
+An object of class "eye_irt_recovery_design", "data.frame", stored as a data frame, containing an IRT recovery design and associated metadata needed to interpret the result.
+}
 \description{
 Create an IRT recovery design
 }

@@ -17,6 +17,9 @@ eyeprocess_irt_extreme_score_audit(
 
 \item{upper_fraction}{Upper extreme-score fraction.}
 }
+\value{
+A data frame containing extreme response scores without assigning behavioral labels. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
+}
 \description{
 Audit extreme response scores without assigning behavioral labels
 }

@@ -11,6 +11,9 @@ process_measure_coverage(data, registry = process_measure_registry())
 
 \item{registry}{Registry.}
 }
+\value{
+A data frame containing process-measure coverage for an observed dataset. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
+}
 \description{
 Process-measure coverage for an observed dataset
 }

@@ -9,6 +9,9 @@ eye_api_superseded(registry = eye_api_lifecycle())
 \arguments{
 \item{registry}{Lifecycle registry.}
 }
+\value{
+A tabular R object containing return superseded/deprecated compatibility interfaces; rows represent analysis units and columns contain the returned quantities.
+}
 \description{
 Return superseded/deprecated compatibility interfaces
 }

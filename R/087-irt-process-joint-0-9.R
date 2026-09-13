@@ -8,6 +8,7 @@
 #' @param item_covariates Item-level covariates.
 #' @param missingness Missing-data handling or missingness specification.
 #' @param status Evidence, model, or governance status.
+#' @return An object of class "eye_joint_process_irt_spec", stored as a named list, with components "response_family", "time_model", "process_channels", "person_covariates", "item_covariates", "missingness", "status". It contains declare a response/process joint IRT specification and associated metadata or diagnostics needed to interpret the result.
 #' @export
 eyeprocess_joint_process_irt_spec <- function(
     response_family = c("2pl", "rasch", "grm", "gpcm"),
@@ -27,6 +28,7 @@ eyeprocess_joint_process_irt_spec <- function(
 
 #' Validate a joint process IRT specification
 #' @param x Object to validate, summarize, verify, or otherwise process.
+#' @return A logical value or vector indicating a joint process IRT specification.
 #' @export
 validate_eyeprocess_joint_process_irt_spec <- function(x) {
   if (!inherits(x, "eye_joint_process_irt_spec")) stop("x must inherit from eye_joint_process_irt_spec.", call. = FALSE)
@@ -41,6 +43,7 @@ validate_eyeprocess_joint_process_irt_spec <- function(x) {
 #' @param response_time Response-time variable or values.
 #' @param process Process-measure columns or process object.
 #' @param covariates Optional covariate columns or covariate data.
+#' @return An object of class "eye_process_irt_data_bundle", stored as a named list, with components "data", "person", "item", "response", "response_time", "process", "covariates", "n_persons", "n_items". It contains a sparse response/process bundle for external joint engines and associated metadata or diagnostics needed to interpret the result.
 #' @export
 eyeprocess_process_irt_data_bundle <- function(data, person, item, response, response_time = NULL, process = character(), covariates = character()) {
   data <- .ep09m2_as_df(data, "data")
@@ -62,6 +65,7 @@ eyeprocess_process_irt_data_bundle <- function(data, person, item, response, res
 #' @param person Name of the person identifier column.
 #' @param item Name of the item identifier column.
 #' @param response_time Response-time variable or values.
+#' @return An object of class "eye_response_time_profile", stored as a named list, with components "item", "person", "n". It contains response-time structure for joint IRT work and associated metadata or diagnostics needed to interpret the result.
 #' @export
 eyeprocess_response_time_profile <- function(data, person, item, response_time) {
   data <- .ep09m2_as_df(data, "data"); .ep09m2_req_cols(data, c(person, item, response_time), "data")
@@ -80,6 +84,7 @@ eyeprocess_response_time_profile <- function(data, person, item, response_time) 
 #' @param person Name of the person identifier column.
 #' @param response Observed item response or response variable.
 #' @param response_time Response-time variable or values.
+#' @return An object of class "eye_speed_accuracy_profile", stored as a named list, with components "person", "pooled_correlation", "guardrail". It contains describe speed-accuracy association without causal interpretation and associated metadata or diagnostics needed to interpret the result.
 #' @export
 eyeprocess_speed_accuracy_profile <- function(data, person, response, response_time) {
   data <- .ep09m2_as_df(data, "data"); .ep09m2_req_cols(data, c(person, response, response_time), "data")
@@ -99,6 +104,7 @@ eyeprocess_speed_accuracy_profile <- function(data, person, response, response_t
 #' @param data Input data frame, matrix, or compatible analysis object.
 #' @param item Name of the item identifier column.
 #' @param channels Names or definitions of measurement channels.
+#' @return A tabular R object containing aggregate process channels by item; rows represent analysis units and columns contain the returned quantities.
 #' @export
 eyeprocess_process_item_profile <- function(data, item, channels) {
   data <- .ep09m2_as_df(data, "data"); channels <- as.character(channels); .ep09m2_req_cols(data, c(item, channels), "data")
@@ -113,6 +119,7 @@ eyeprocess_process_item_profile <- function(data, item, channels) {
 #' @param data Input data frame, matrix, or compatible analysis object.
 #' @param person Name of the person identifier column.
 #' @param channels Names or definitions of measurement channels.
+#' @return A tabular R object containing aggregate process channels by person; rows represent analysis units and columns contain the returned quantities.
 #' @export
 eyeprocess_process_person_profile <- function(data, person, channels) {
   data <- .ep09m2_as_df(data, "data"); channels <- as.character(channels); .ep09m2_req_cols(data, c(person, channels), "data")
@@ -127,6 +134,7 @@ eyeprocess_process_person_profile <- function(data, person, channels) {
 #' @param item_parameters Item-parameter data frame.
 #' @param process_profile Process-measure profile or summary.
 #' @param process_columns Names of process-measure columns to use.
+#' @return An object of class "eye_irt_process_alignment", stored as a named list, with components "table", "correlations", "guardrail". It contains align item parameters with process-channel summaries and associated metadata or diagnostics needed to interpret the result.
 #' @export
 eyeprocess_irt_process_alignment <- function(item_parameters, process_profile, process_columns = NULL) {
   item_parameters <- .ep09m2_item_pars(item_parameters); process_profile <- .ep09m2_as_df(process_profile, "process_profile")
@@ -148,6 +156,7 @@ eyeprocess_irt_process_alignment <- function(item_parameters, process_profile, p
 #' @param data Input data frame, matrix, or compatible analysis object.
 #' @param response Observed item response or response variable.
 #' @param channels Names or definitions of measurement channels.
+#' @return A data frame containing missingness patterns across response and process channels. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 eyeprocess_process_missingness_pattern <- function(data, response, channels) {
   data <- .ep09m2_as_df(data, "data"); channels <- as.character(channels); .ep09m2_req_cols(data, c(response, channels), "data")
@@ -161,6 +170,7 @@ eyeprocess_process_missingness_pattern <- function(data, response, channels) {
 #' @param response Observed item response or response variable.
 #' @param channels Names or definitions of measurement channels.
 #' @param role Declared role of each measurement channel.
+#' @return A data frame containing a multichannel measurement map. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 eyeprocess_multichannel_measurement_map <- function(response = "accuracy", channels = c("response_time", "dwell", "pupil", "transitions"), role = NULL) {
   channels <- unique(as.character(channels)); if (is.null(role)) role <- rep("response_process_measurement", length(channels))

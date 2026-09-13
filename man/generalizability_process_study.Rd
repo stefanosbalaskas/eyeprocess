@@ -15,6 +15,9 @@ generalizability_process_study(data, outcome, facets, REML = TRUE)
 
 \item{REML}{Whether restricted maximum likelihood is used.}
 }
+\value{
+An object of class "eye_process_g_study", stored as a named list, with components "model", "variance_components", "facets", "outcome". It contains generalizability-style variance decomposition for a process measure and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 Useful before many-facet IRT: quantifies how much variance comes from person,
 item, device, session, algorithm, and residual sources.

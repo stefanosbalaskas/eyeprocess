@@ -11,6 +11,9 @@
 
 \item{...}{Additional arguments passed to the underlying method or helper.}
 }
+\value{
+Invisibly returns the plotting result when available; the primary effect is drawing plot streaming score diagnostics.
+}
 \description{
 Plot streaming score diagnostics
 }

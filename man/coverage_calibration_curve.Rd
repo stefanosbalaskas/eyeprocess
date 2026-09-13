@@ -15,6 +15,9 @@ coverage_calibration_curve(truth, lower, upper, nominal = NULL)
 
 \item{nominal}{Nominal coverage labels, one per interval column.}
 }
+\value{
+A data frame containing interval coverage calibration curve. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
+}
 \description{
 Interval coverage calibration curve
 }

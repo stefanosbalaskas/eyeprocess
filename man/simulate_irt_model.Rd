@@ -13,6 +13,9 @@ simulate_irt_model(spec, ..., allow_experimental = TRUE)
 
 \item{allow_experimental}{Whether experimental models are permitted.}
 }
+\value{
+An R object containing from a registered multimodal IRT model. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
+}
 \description{
 Simulate from a registered multimodal IRT model
 }

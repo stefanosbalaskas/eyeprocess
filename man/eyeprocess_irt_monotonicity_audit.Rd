@@ -13,6 +13,9 @@ eyeprocess_irt_monotonicity_audit(theta, probability, tolerance = 1e-08)
 
 \item{tolerance}{Numerical or decision tolerance.}
 }
+\value{
+An object of class "eye_irt_monotonicity_audit", stored as a named list, with components "monotone_non_decreasing", "n_decreases", "largest_decrease", "theta", "probability". It contains monotonicity of an item response curve and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 Audit monotonicity of an item response curve
 }

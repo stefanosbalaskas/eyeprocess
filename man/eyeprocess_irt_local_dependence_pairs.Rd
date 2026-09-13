@@ -13,6 +13,9 @@ eyeprocess_irt_local_dependence_pairs(q3, threshold = 0.2, absolute = TRUE)
 
 \item{absolute}{Whether diagnostic thresholds apply to absolute values.}
 }
+\value{
+A data frame containing high residual-dependence item pairs. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
+}
 \description{
 Extract high residual-dependence item pairs
 }

@@ -9,6 +9,7 @@
 #' @param lower,upper Bounds where applicable.
 #' @param latent Latent dimension.
 #' @param options Additional channel metadata.
+#' @return A named list with components "type", "family", "role", "link", "variables", "latent", "options", containing continuous/bounded process channel for multimodal IRT and associated metadata or diagnostics.
 #' @export
 irt_continuous_channel <- function(
     family = c("censored_normal", "beta", "gaussian"),
@@ -50,6 +51,7 @@ irt_continuous_channel <- function(
 #' @param theta Supplied person latent scores on the calibration scale.
 #' @param lower,upper Observable bounds.
 #' @param control `optim()` control list.
+#' @return An object of class "eye_censored_normal_process_irt", stored as a named list, with components "coefficients", "fits", "theta", "lower", "upper", "engine", "status", "citation", "caveat". It contains conditional censored-normal calibration for bounded process measurements and associated metadata or diagnostics needed to interpret the result.
 #' @export
 fit_censored_normal_process_irt <- function(
     response_matrix, theta, lower = 0, upper = 1,
@@ -108,6 +110,7 @@ fit_censored_normal_process_irt <- function(
 #' @param theta Latent-trait values.
 #' @param items Items to include.
 #' @param ... Additional arguments passed to the selected model, engine, or method.
+#' @return A vector or matrix containing expected bounded response from a censored-normal process IRT fit, with shape determined by the supplied analysis units.
 #' @export
 predict.eye_censored_normal_process_irt <- function(object, theta = object$theta,
                                                     items = NULL, ...) {
@@ -145,6 +148,7 @@ predict.eye_censored_normal_process_irt <- function(object, theta = object$theta
 #' @param person,item Identifier columns.
 #' @param nonlinear If TRUE and mgcv is installed, additionally estimate a
 #'   smooth theta-by-process diagnostic surface.
+#' @return An object of class "eye_process_dependent_discrimination", stored as a named list, with components "process_model", "response_model", "interaction", "smooth_model", "residual_process", "status", "caveat". It contains process-dependent item discrimination and associated metadata or diagnostics needed to interpret the result.
 #' @export
 process_dependent_discrimination_audit <- function(
     data, response, theta, process, person, item, nonlinear = TRUE) {
@@ -193,6 +197,7 @@ process_dependent_discrimination_audit <- function(
 #' Plot process-dependent discrimination
 #' @param x Object to print, plot, summarize, or audit.
 #' @param ... Additional arguments passed to the selected model, engine, or method.
+#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot process-dependent discrimination.
 #' @export
 plot.eye_process_dependent_discrimination <- function(x, ...) {
   d <- x$residual_process
@@ -224,6 +229,7 @@ plot.eye_process_dependent_discrimination <- function(x, ...) {
 #'   scalar out-of-sample score. The evaluator owns all fitting/splitting logic.
 #' @param baseline Character vector of always-active columns.
 #' @param higher_is_better Direction of the score.
+#' @return An object of class "eye_process_channel_ablation", "data.frame", stored as a data frame, containing ablate process channels under a common out-of-sample evaluator and associated metadata needed to interpret the result.
 #' @export
 process_channel_ablation <- function(data, channels, evaluator, baseline = character(),
                                      higher_is_better = TRUE) {
@@ -247,6 +253,7 @@ process_channel_ablation <- function(data, channels, evaluator, baseline = chara
 #' Plot process-channel ablation
 #' @param x Object to print, plot, summarize, or audit.
 #' @param ... Additional arguments passed to the selected model, engine, or method.
+#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot process-channel ablation.
 #' @export
 plot.eye_process_channel_ablation <- function(x, ...) {
   d <- as.data.frame(x)
@@ -271,6 +278,7 @@ plot.eye_process_channel_ablation <- function(x, ...) {
 #' @param trait_label Value supplied to `trait_label`; see Details for its model-specific role.
 #' @param process_label Value supplied to `process_label`; see Details for its model-specific role.
 #' @param ... Additional arguments passed to the selected model, engine, or method.
+#' @return An object of class "eye_joint_gaze_rt_irt", stored as a named list, with components "engine", "response_model", "rt_model", "gaze_model", "person_scores", "item_scores", "person_covariance", "item_covariance", "data_n", "gaze_family", "columns", "status", and additional components. It contains multimodal trait-model convenience wrapper and associated metadata or diagnostics needed to interpret the result.
 #' @export
 fit_multimodal_trait_irt <- function(data, response, rt, gaze, person, item,
                                      trait_label = "trait",
@@ -299,6 +307,7 @@ fit_multimodal_trait_irt <- function(data, response, rt, gaze, person, item,
 #' @param outcome Outcome variable.
 #' @param facets Facet variables included in the analysis.
 #' @param REML Whether restricted maximum likelihood is used.
+#' @return An object of class "eye_process_g_study", stored as a named list, with components "model", "variance_components", "facets", "outcome". It contains generalizability-style variance decomposition for a process measure and associated metadata or diagnostics needed to interpret the result.
 #' @export
 generalizability_process_study <- function(data, outcome, facets,
                                            REML = TRUE) {
@@ -322,6 +331,7 @@ generalizability_process_study <- function(data, outcome, facets,
 #' Plot process-measure variance components
 #' @param x Object to print, plot, summarize, or audit.
 #' @param ... Additional arguments passed to the selected model, engine, or method.
+#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot process-measure variance components.
 #' @export
 plot.eye_process_g_study <- function(x, ...) {
   d <- x$variance_components
@@ -340,6 +350,7 @@ plot.eye_process_g_study <- function(x, ...) {
 #' @param reference_value Value supplied to `reference_value`; see Details for its model-specific role.
 #' @param device Device identifier or device facet.
 #' @param anchor Anchor or reference group used for linking.
+#' @return An object of class "eye_cross_device_equating_audit", "data.frame", stored as a data frame, containing cross-device process-scale equating audit and associated metadata needed to interpret the result.
 #' @export
 cross_device_process_equating_audit <- function(data, value, reference_value,
                                                 device, anchor = NULL) {

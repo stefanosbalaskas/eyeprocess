@@ -9,6 +9,9 @@ validation_failure_profile(x)
 \arguments{
 \item{x}{Validation result.}
 }
+\value{
+A data frame containing failure profile for a validation programme. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
+}
 \description{
 Failure profile for a validation programme
 }

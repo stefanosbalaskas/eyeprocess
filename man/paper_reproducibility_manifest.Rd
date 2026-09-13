@@ -20,6 +20,9 @@ paper_reproducibility_manifest(
 
 \item{tables}{Optional table paths.}
 }
+\value{
+A named list with components "evidence_hash", "manuscript", "files", "reproducibility", "generated_utc", containing a compact paper reproducibility manifest and associated metadata or diagnostics.
+}
 \description{
 Create a compact paper reproducibility manifest
 }

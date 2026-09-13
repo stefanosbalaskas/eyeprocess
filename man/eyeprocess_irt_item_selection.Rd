@@ -26,6 +26,9 @@ eyeprocess_irt_item_selection(
 
 \item{D}{Logistic scaling constant.}
 }
+\value{
+An object of class "eye_irt_item_selection", stored as a named list, with components "selected", "information", "theta", "reason", "candidate_count". It contains the most informative eligible item at a theta estimate and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 Select the most informative eligible item at a theta estimate
 }

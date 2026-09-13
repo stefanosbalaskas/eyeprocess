@@ -78,6 +78,7 @@ eye_pipeline_step <- function(name, fun, requires = character(), optional = FALS
 #' @param spec Optional `eye_analysis_spec`.
 #' @param name Pipeline label.
 #' @param strict If `TRUE`, undeclared dependencies are errors.
+#' @return An object of class "eye_analysis_pipeline", stored as a named list, with components "name", "steps", "spec", "strict", "created_at", "status". It contains a governed analysis pipeline and associated metadata or diagnostics needed to interpret the result.
 #' @export
 eye_analysis_pipeline <- function(..., spec = eye_analysis_spec(), name = "eye_analysis", strict = TRUE) {
   steps <- list(...)
@@ -122,6 +123,7 @@ eye_analysis_pipeline <- function(..., spec = eye_analysis_spec(), name = "eye_a
 
 #' Validate a governed eyeprocess pipeline
 #' @param x Pipeline.
+#' @return A logical value or vector indicating a governed eyeprocess pipeline.
 #' @export
 validate_eye_pipeline <- function(x) {
   if (!inherits(x, "eye_analysis_pipeline")) stop("x must be an eye_analysis_pipeline.", call. = FALSE)
@@ -147,6 +149,7 @@ validate_eye_pipeline <- function(x) {
 
 #' Return pipeline vertices and dependency edges
 #' @param x Pipeline.
+#' @return A named list with components "vertices", "edges", containing return pipeline vertices and dependency edges and associated metadata or diagnostics.
 #' @export
 eye_pipeline_graph <- function(x) {
   validate_eye_pipeline(x)
@@ -166,6 +169,7 @@ eye_pipeline_graph <- function(x) {
 
 #' Machine-readable pipeline manifest
 #' @param x Pipeline.
+#' @return A data frame containing machine-readable pipeline manifest. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 eye_pipeline_manifest <- function(x) {
   validate_eye_pipeline(x)
@@ -205,6 +209,7 @@ eye_pipeline_manifest <- function(x) {
 #' @param context Initial named context available as `.context`.
 #' @param stop_on_error Stop on a non-optional step error.
 #' @param previous Optional prior `eye_pipeline_run` used for resumption.
+#' @return An object of class "eye_pipeline_run", stored as a named list, with components "pipeline", "pipeline_hash", "outputs", "records", "errors", "warnings", "context_hash", "completed", "created_at", "status". It contains a governed eyeprocess pipeline and associated metadata or diagnostics needed to interpret the result.
 #' @export
 run_eye_pipeline <- function(x, context = list(), stop_on_error = TRUE, previous = NULL) {
   validate_eye_pipeline(x)
@@ -277,6 +282,7 @@ run_eye_pipeline <- function(x, context = list(), stop_on_error = TRUE, previous
 #' @param previous Prior pipeline run.
 #' @param context Context used for new steps.
 #' @param stop_on_error Stop on non-optional error.
+#' @return An object of class "eye_pipeline_run", stored as a named list, with components "pipeline", "pipeline_hash", "outputs", "records", "errors", "warnings", "context_hash", "completed", "created_at", "status". It contains resume a governed pipeline from a prior run and associated metadata or diagnostics needed to interpret the result.
 #' @export
 resume_eye_pipeline <- function(x, previous, context = list(), stop_on_error = TRUE) {
   run_eye_pipeline(x, context = context, stop_on_error = stop_on_error, previous = previous)
@@ -284,6 +290,7 @@ resume_eye_pipeline <- function(x, previous, context = list(), stop_on_error = T
 
 #' Audit a pipeline definition or completed run
 #' @param x Pipeline or pipeline run.
+#' @return An object of class "eye_pipeline_audit", stored as a named list, with components "table", "undeclared_decisions", "valid", "pipeline_hash". It contains a pipeline definition or completed run and associated metadata or diagnostics needed to interpret the result.
 #' @export
 audit_eye_pipeline <- function(x) {
   pipeline <- if (inherits(x, "eye_pipeline_run")) x$pipeline else x
@@ -306,6 +313,7 @@ audit_eye_pipeline <- function(x) {
 
 #' Pipeline step status table
 #' @param x Pipeline run.
+#' @return A data frame containing pipeline step status table. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 pipeline_step_status <- function(x) {
   if (!inherits(x, "eye_pipeline_run")) stop("x must be an eye_pipeline_run.", call. = FALSE)
@@ -320,6 +328,7 @@ pipeline_step_status <- function(x) {
 #' Extract a pipeline result by step name
 #' @param x Pipeline run.
 #' @param step Step name.
+#' @return An R object containing a pipeline result by step name. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 pipeline_result <- function(x, step) {
   if (!inherits(x, "eye_pipeline_run")) stop("x must be an eye_pipeline_run.", call. = FALSE)
@@ -330,6 +339,7 @@ pipeline_result <- function(x, step) {
 
 #' Return failed pipeline steps
 #' @param x Pipeline run.
+#' @return A data frame containing return failed pipeline steps. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 pipeline_failures <- function(x) {
   s <- pipeline_step_status(x)
@@ -339,6 +349,7 @@ pipeline_failures <- function(x) {
 #' Write a conservative pipeline report
 #' @param x Pipeline or run.
 #' @param path Output text/markdown path.
+#' @return A character string or vector giving the path or identifier for a conservative pipeline report.
 #' @export
 write_eye_pipeline_report <- function(x, path) {
   pipeline <- if (inherits(x, "eye_pipeline_run")) x$pipeline else x
@@ -366,6 +377,7 @@ write_eye_pipeline_report <- function(x, path) {
 #' Export a pipeline manifest and optional run status
 #' @param x Pipeline or run.
 #' @param path CSV path.
+#' @return An R object containing a pipeline manifest and optional run status. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 export_eye_pipeline <- function(x, path) {
   pipeline <- if (inherits(x, "eye_pipeline_run")) x$pipeline else x
@@ -377,6 +389,7 @@ export_eye_pipeline <- function(x, path) {
 
 #' Render pipeline dependencies as Graphviz DOT
 #' @param x Pipeline.
+#' @return A character value or vector containing render pipeline dependencies as Graphviz DOT.
 #' @export
 eye_pipeline_dot <- function(x) {
   g <- eye_pipeline_graph(x)
@@ -387,6 +400,7 @@ eye_pipeline_dot <- function(x) {
 
 #' Render pipeline dependencies as Mermaid flowchart text
 #' @param x Pipeline.
+#' @return A character value or vector containing render pipeline dependencies as Mermaid flowchart text.
 #' @export
 eye_pipeline_mermaid <- function(x) {
   g <- eye_pipeline_graph(x)
@@ -400,6 +414,7 @@ eye_pipeline_mermaid <- function(x) {
 #' a targets pipeline. It provides the dependency contract required to build an
 #' explicit `_targets.R` file.
 #' @param x Pipeline.
+#' @return A data frame containing a targets-compatible dependency manifest. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 eye_targets_manifest <- function(x) {
   man <- eye_pipeline_manifest(x)
@@ -410,6 +425,7 @@ eye_targets_manifest <- function(x) {
 #' Write an explicit `_targets.R` template from a governed pipeline
 #' @param x Pipeline.
 #' @param path Output path.
+#' @return An R object containing an explicit `_targets.R` template from a governed pipeline. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 write_eye_targets_template <- function(x, path = "_targets.R") {
   man <- eye_targets_manifest(x)

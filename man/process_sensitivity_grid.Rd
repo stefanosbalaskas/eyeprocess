@@ -17,6 +17,9 @@ process_sensitivity_grid(
 
 \item{max_specifications}{Safety cap.}
 }
+\value{
+A tabular R object containing an explicit process-analysis sensitivity grid; rows represent analysis units and columns contain the returned quantities.
+}
 \description{
 Construct an explicit process-analysis sensitivity grid
 }

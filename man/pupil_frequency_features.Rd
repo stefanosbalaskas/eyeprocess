@@ -25,6 +25,9 @@ pupil_frequency_features(
 
 \item{low_band, high_band}{Frequency bands.}
 }
+\value{
+An object of class "eye_pupil_frequency_features", stored as a named list, with components "features", "low_band", "high_band", "by", "pupil", "time", "caveat". It contains pupil frequency-domain and activity features by group and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 Extract pupil frequency-domain and activity features by group
 }

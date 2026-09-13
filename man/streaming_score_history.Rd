@@ -9,6 +9,9 @@ streaming_score_history(x)
 \arguments{
 \item{x}{Object to process, inspect, compare, or plot.}
 }
+\value{
+An R object containing streaming score history. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
+}
 \description{
 Extract streaming score history
 }

@@ -20,6 +20,9 @@ freeze_eyeprocess_irt_reference(
 
 \item{metadata}{Named metadata to store with the frozen object.}
 }
+\value{
+A named list with components "recovery_summary", "sbc", "failures", "metadata", "scientific_scope", containing freeze IRT validation reference summaries and associated metadata or diagnostics.
+}
 \description{
 Freeze IRT validation reference summaries
 }

@@ -15,6 +15,9 @@ process_negative_control_permute(data, outcome, seed = 1L, within = NULL)
 
 \item{within}{Optional grouping columns within which to permute.}
 }
+\value{
+An R object containing permutation negative control. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
+}
 \description{
 Permutation negative control
 }

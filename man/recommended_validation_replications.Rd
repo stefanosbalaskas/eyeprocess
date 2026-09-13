@@ -23,6 +23,9 @@ recommended_validation_replications(
 
 \item{minimum}{Minimum acceptable value or threshold.}
 }
+\value{
+A numeric value or vector containing approximate simulation replications needed for a target Monte Carlo error.
+}
 \description{
 Approximate simulation replications needed for a target Monte Carlo error
 }

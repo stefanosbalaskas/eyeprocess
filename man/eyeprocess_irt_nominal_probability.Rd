@@ -13,6 +13,9 @@ eyeprocess_irt_nominal_probability(theta, slopes, intercepts)
 
 \item{intercepts}{Nominal-category intercept parameters.}
 }
+\value{
+A numeric value or vector containing nominal-response category probabilities.
+}
 \description{
 Nominal-response category probabilities
 }

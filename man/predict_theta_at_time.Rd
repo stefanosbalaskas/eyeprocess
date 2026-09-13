@@ -11,6 +11,9 @@ predict_theta_at_time(object, time)
 
 \item{time}{Time values.}
 }
+\value{
+An R object containing a latent trait at arbitrary times. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
+}
 \description{
 Predict a latent trait at arbitrary times
 }

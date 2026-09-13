@@ -24,6 +24,7 @@
 #' @param responses Response matrix or response data.
 #' @param probabilities Probability matrix or vector, with dimensions appropriate to the model.
 #' @param item_ids Optional item identifiers.
+#' @return An object of class "eye_irt_item_fit", "data.frame", stored as a data frame, containing item residual fit summaries from observed and predicted probabilities and associated metadata needed to interpret the result.
 #' @export
 eyeprocess_irt_item_fit_residuals <- function(responses, probabilities, item_ids = colnames(responses)) {
   y <- .ep09m2_binary_matrix(responses)
@@ -46,6 +47,7 @@ eyeprocess_irt_item_fit_residuals <- function(responses, probabilities, item_ids
 #' @param responses Response matrix or response data.
 #' @param probabilities Probability matrix or vector, with dimensions appropriate to the model.
 #' @param person_ids Optional person identifiers.
+#' @return An object of class "eye_irt_person_fit", "data.frame", stored as a data frame, containing person residual fit summaries and associated metadata needed to interpret the result.
 #' @export
 eyeprocess_irt_person_fit_residuals <- function(responses, probabilities, person_ids = rownames(responses)) {
   y <- .ep09m2_binary_matrix(responses)
@@ -66,6 +68,7 @@ eyeprocess_irt_person_fit_residuals <- function(responses, probabilities, person
 #' @param responses Response matrix or response data.
 #' @param probabilities Probability matrix or vector, with dimensions appropriate to the model.
 #' @param use Missing-data handling mode passed to the residual correlation calculation.
+#' @return An R object containing yen-style Q3 residual correlations. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 eyeprocess_irt_q3 <- function(responses, probabilities, use = "pairwise.complete.obs") {
   y <- .ep09m2_binary_matrix(responses); p <- .ep09m2_prob_matrix(probabilities, dim(y))
@@ -80,6 +83,7 @@ eyeprocess_irt_q3 <- function(responses, probabilities, use = "pairwise.complete
 #' @param q3 Q3 residual-correlation matrix or summary.
 #' @param threshold Decision or diagnostic threshold.
 #' @param absolute Whether diagnostic thresholds apply to absolute values.
+#' @return A data frame containing high residual-dependence item pairs. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 eyeprocess_irt_local_dependence_pairs <- function(q3, threshold = 0.20, absolute = TRUE) {
   q3 <- as.matrix(q3); threshold <- as.numeric(threshold)
@@ -95,6 +99,7 @@ eyeprocess_irt_local_dependence_pairs <- function(q3, threshold = 0.20, absolute
 #' @param responses Response matrix or response data.
 #' @param lower_fraction Lower extreme-score fraction.
 #' @param upper_fraction Upper extreme-score fraction.
+#' @return A data frame containing extreme response scores without assigning behavioral labels. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 eyeprocess_irt_extreme_score_audit <- function(responses, lower_fraction = 0.02, upper_fraction = 0.98) {
   y <- .ep09m2_binary_matrix(responses)
@@ -110,6 +115,7 @@ eyeprocess_irt_extreme_score_audit <- function(responses, lower_fraction = 0.02,
 #' Audit ordered category thresholds
 #' @param item_id Item identifier or vector of item identifiers.
 #' @param thresholds Ordered response-category thresholds.
+#' @return An object of class "eye_irt_threshold_audit", stored as a named list, with components "item_id", "thresholds", "ordered", "minimum_gap", "reversals". It contains ordered category thresholds and associated metadata or diagnostics needed to interpret the result.
 #' @export
 eyeprocess_irt_threshold_order_audit <- function(item_id, thresholds) {
   item_id <- as.character(item_id); thresholds <- as.numeric(thresholds)
@@ -123,6 +129,7 @@ eyeprocess_irt_threshold_order_audit <- function(item_id, thresholds) {
 #' @param theta Latent-trait value or vector of latent-trait values.
 #' @param probability Model-implied probability vector.
 #' @param tolerance Numerical or decision tolerance.
+#' @return An object of class "eye_irt_monotonicity_audit", stored as a named list, with components "monotone_non_decreasing", "n_decreases", "largest_decrease", "theta", "probability". It contains monotonicity of an item response curve and associated metadata or diagnostics needed to interpret the result.
 #' @export
 eyeprocess_irt_monotonicity_audit <- function(theta, probability, tolerance = 1e-8) {
   theta <- as.numeric(theta); probability <- as.numeric(probability); tolerance <- as.numeric(tolerance)
@@ -137,6 +144,7 @@ eyeprocess_irt_monotonicity_audit <- function(theta, probability, tolerance = 1e
 #' Audit category probability functions
 #' @param probabilities Probability matrix or vector, with dimensions appropriate to the model.
 #' @param tolerance Numerical or decision tolerance.
+#' @return An object of class "eye_irt_category_audit", stored as a named list, with components "valid_bounds", "rows_sum_to_one", "max_sum_error", "min_probability", "max_probability". It contains category probability functions and associated metadata or diagnostics needed to interpret the result.
 #' @export
 eyeprocess_irt_category_function_audit <- function(probabilities, tolerance = 1e-8) {
   p <- as.matrix(probabilities); storage.mode(p) <- "numeric"; tolerance <- as.numeric(tolerance)
@@ -153,6 +161,7 @@ eyeprocess_irt_category_function_audit <- function(probabilities, tolerance = 1e
 #' @param difficulty Item difficulty or location parameter.
 #' @param lower_asymptote Lower-asymptote parameter values.
 #' @param upper_asymptote Upper-asymptote parameter values.
+#' @return A data frame containing basic plausibility of dichotomous item parameters. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 eyeprocess_irt_parameter_plausibility_audit <- function(items, discrimination = c(0.2, 4), difficulty = c(-6, 6), lower_asymptote = c(0, 0.5), upper_asymptote = c(0.5, 1)) {
   items <- .ep09m2_item_pars(items)
@@ -172,6 +181,7 @@ eyeprocess_irt_parameter_plausibility_audit <- function(items, discrimination = 
 #' @param observed Observed responses or observed values.
 #' @param replicated Replicated data or replicated statistic values.
 #' @param statistic Discrepancy statistic or statistic function.
+#' @return An object of class "eye_irt_ppc_discrepancy", stored as a named list, with components "statistic", "observed", "replicated", "posterior_predictive_p", "interval". It contains observed and replicated IRT discrepancy statistics and associated metadata or diagnostics needed to interpret the result.
 #' @export
 eyeprocess_irt_ppc_discrepancy <- function(observed, replicated, statistic = c("mean_score", "score_sd", "item_means", "max_item_residual")) {
   statistic <- match.arg(statistic); obs <- .ep09m2_binary_matrix(observed)
@@ -195,6 +205,7 @@ eyeprocess_irt_ppc_discrepancy <- function(observed, replicated, statistic = c("
 #' @param q3 Q3 residual-correlation matrix or summary.
 #' @param parameter_audit Item-parameter plausibility audit.
 #' @param identification Identification specification or identification audit.
+#' @return An object of class "eye_irt_fit_dashboard", stored as a named list, with components "components", "present", "n_components", "interpretation". It contains an integrated IRT diagnostic dashboard object and associated metadata or diagnostics needed to interpret the result.
 #' @export
 eyeprocess_irt_fit_dashboard <- function(item_fit = NULL, person_fit = NULL, q3 = NULL, parameter_audit = NULL, identification = NULL) {
   components <- list(item_fit = item_fit, person_fit = person_fit, q3 = q3, parameter_audit = parameter_audit, identification = identification)

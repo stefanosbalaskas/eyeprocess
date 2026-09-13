@@ -29,6 +29,9 @@ export_ro_crate_metadata(
 
 \item{doi}{Optional DOI for the software/data product.}
 }
+\value{
+An R object containing minimal RO-Crate 1.3 metadata. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
+}
 \description{
 Export minimal RO-Crate 1.3 metadata
 }

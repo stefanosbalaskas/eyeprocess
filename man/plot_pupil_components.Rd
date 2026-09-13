@@ -26,6 +26,9 @@ plot_pupil_components(
 
 \item{...}{Additional arguments passed to the underlying method or helper.}
 }
+\value{
+A tabular R object containing plot tonic/phasic pupil components; rows represent analysis units and columns contain the returned quantities.
+}
 \description{
 Plot tonic/phasic pupil components
 }

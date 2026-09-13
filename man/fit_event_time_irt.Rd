@@ -33,6 +33,9 @@ fit_event_time_irt(
 
 \item{...}{Additional arguments passed to the external engine.}
 }
+\value{
+An object of class "eye_event_time_irt", stored as a named list, with components "model", "engine", "theta_conditioned", "status", "note". It contains an event-time IRT reference workflow and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 The built-in Cox reference conditions on an already supplied theta and is
 therefore an event-time *measurement diagnostic*, not a full continuous-time

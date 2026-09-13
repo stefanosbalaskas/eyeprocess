@@ -13,6 +13,9 @@ eyeprocess_cdm_dina_probability(ideal_response, slip = 0.1, guess = 0.2)
 
 \item{guess}{DINA guessing parameter or vector of guessing parameters.}
 }
+\value{
+An object of class "matrix", stored as an R object, containing dINA response probabilities from slip and guess parameters and associated metadata needed to interpret the result.
+}
 \description{
 DINA response probabilities from slip and guess parameters
 }

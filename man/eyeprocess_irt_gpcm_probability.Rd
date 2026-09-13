@@ -15,6 +15,9 @@ eyeprocess_irt_gpcm_probability(theta, a = 1, steps, D = 1)
 
 \item{D}{Logistic scaling constant.}
 }
+\value{
+A logical value or vector indicating generalized partial-credit category probabilities.
+}
 \description{
 Generalized partial-credit category probabilities
 }

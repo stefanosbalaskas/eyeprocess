@@ -41,6 +41,7 @@ process_drift_spec <- function(
 }
 
 #' Print a process drift spec object
+#' @return Invisibly returns the input object after printing its summary; the object's class and contents are unchanged.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 #' @param ... Additional arguments passed to the underlying method or helper.
@@ -84,6 +85,7 @@ print.eye_process_drift_spec <- function(x, ...) {
 #' @param reference_batch Optional reference batch value(s).
 #' @param aggregate_fun Aggregation function used when multiple rows occur within
 #'   item x batch.
+#' @return An object of class "eye_process_drift_audit", stored as a named list, with components "table", "trajectories", "item", "batch", "metrics", "spec", "reference_batch", "flag_columns", "caveat". It contains post-deployment psychometric and biometric drift and associated metadata or diagnostics needed to interpret the result.
 #' @export
 audit_process_drift <- function(
     data, item = "item_id", batch = "deployment_batch",
@@ -189,6 +191,7 @@ audit_process_drift <- function(
 }
 
 #' Extract drift alerts
+#' @return A logical value or vector indicating drift alerts.
 #' @export
 #' @param x Object to process, inspect, compare, or plot.
 process_drift_alerts <- function(x) {
@@ -203,6 +206,7 @@ process_drift_alerts <- function(x) {
 #' @param batch_a,batch_b Values to compare.
 #' @param metrics Metrics to compare.
 #' @param item Optional item identifier for item-matched differences.
+#' @return A data frame containing two deployment batches descriptively. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 compare_deployment_batches <- function(data, batch = "deployment_batch", batch_a, batch_b,
                                        metrics = NULL, item = "item_id") {
@@ -248,6 +252,7 @@ compare_deployment_batches <- function(data, batch = "deployment_batch", batch_a
 }
 
 #' Drift audit stratified by device
+#' @return An R object containing drift audit stratified by device. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 #' @param data Data frame containing the required process variables.
 #' @param device Name of the column identifying device.
@@ -255,6 +260,7 @@ compare_deployment_batches <- function(data, batch = "deployment_batch", batch_a
 drift_by_device <- function(data, device = "device_id", ...) .ep08_grouped_drift(data, device, ...)
 
 #' Drift audit stratified by study site
+#' @return An R object containing drift audit stratified by study site. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 #' @param data Data frame containing the required process variables.
 #' @param site Name of the column identifying site.
@@ -262,6 +268,7 @@ drift_by_device <- function(data, device = "device_id", ...) .ep08_grouped_drift
 drift_by_site <- function(data, site = "site_id", ...) .ep08_grouped_drift(data, site, ...)
 
 #' Drift audit stratified by vendor
+#' @return An R object containing drift audit stratified by vendor. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 #' @param data Data frame containing the required process variables.
 #' @param vendor Name of the column identifying vendor.
@@ -269,6 +276,7 @@ drift_by_site <- function(data, site = "site_id", ...) .ep08_grouped_drift(data,
 drift_by_vendor <- function(data, vendor = "vendor", ...) .ep08_grouped_drift(data, vendor, ...)
 
 #' Drift audit stratified by stimulus version
+#' @return An R object containing drift audit stratified by stimulus version. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 #' @param data Data frame containing the required process variables.
 #' @param stimulus_version Name of the column identifying stimulus version.

@@ -23,6 +23,9 @@ eyeprocess_irt_score_table(
 
 \item{...}{Additional arguments passed to the selected method or external engine.}
 }
+\value{
+A tabular R object containing a response matrix with EAP, MAP, or ML; rows represent analysis units and columns contain the returned quantities.
+}
 \description{
 Score a response matrix with EAP, MAP, or ML
 }

@@ -11,6 +11,9 @@ pupil_velocity_activity(y, time_ms)
 
 \item{time_ms}{Time in milliseconds.}
 }
+\value{
+A numeric value or vector containing derivative-based pupil activity magnitude.
+}
 \description{
 Derivative-based pupil activity magnitude
 }

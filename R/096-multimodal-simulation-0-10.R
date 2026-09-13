@@ -37,14 +37,7 @@ simulate_multimodal_irt <- function(
     ev <- eigen(latent_cor, symmetric = TRUE, only.values = TRUE)$values
     if (min(ev) <= 0) stop("latent_cor must be positive definite.", call. = FALSE)
 
-    old <- .Random.seed_exists <- exists(".Random.seed", envir=.GlobalEnv, inherits=FALSE)
-    if (.Random.seed_exists) old_seed <- get(".Random.seed", envir=.GlobalEnv)
-    on.exit({
-        if (.Random.seed_exists) assign(".Random.seed", old_seed, envir=.GlobalEnv)
-        else if (exists(".Random.seed", envir=.GlobalEnv, inherits=FALSE))
-            rm(".Random.seed", envir=.GlobalEnv)
-    }, add=TRUE)
-    set.seed(seed)
+    .eye_local_seed(seed)
 
     L <- chol(latent_cor)
     latent <- matrix(rnorm(n_person * 4L), ncol=4L) %*% L

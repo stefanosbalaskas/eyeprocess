@@ -6,6 +6,9 @@
 \usage{
 process_feature_family_registry()
 }
+\value{
+A data frame containing registry of process-feature families and interpretation guardrails. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
+}
 \description{
 Registry of process-feature families and interpretation guardrails
 }

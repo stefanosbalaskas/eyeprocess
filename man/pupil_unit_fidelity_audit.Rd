@@ -29,6 +29,9 @@ pupil_unit_fidelity_audit(
 
 \item{correlation_floor}{Minimum correlation treated as compatible.}
 }
+\value{
+An object of class "eye_pupil_fidelity", stored as a named list, with components "status", "matched_n", "correlation", "estimated_scale_ratio", "scaled_max_error", "tolerance". It contains pupil-unit semantic-fidelity audit and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 Pupil-unit semantic-fidelity audit
 }

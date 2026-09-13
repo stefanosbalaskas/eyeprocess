@@ -35,6 +35,9 @@ coordinate_fidelity_audit(
 
 \item{correlation_floor}{Minimum correlation treated as compatible.}
 }
+\value{
+An object of class "eye_coordinate_fidelity", stored as a named list, with components "status", "x", "y", "matched_n", "tolerance", "correlation_floor". It contains coordinate semantic-fidelity audit and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 Detects lossless preservation and stable affine coordinate transformations.
 }

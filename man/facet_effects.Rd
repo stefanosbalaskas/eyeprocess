@@ -11,6 +11,9 @@ facet_effects(object, channel = c("response", "process"))
 
 \item{channel}{Measurement channel to inspect.}
 }
+\value{
+A named list with components "random_effects", "variance_components", containing facet effects from a many-facet process model and associated metadata or diagnostics.
+}
 \description{
 Extract facet effects from a many-facet process model
 }

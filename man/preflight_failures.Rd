@@ -9,6 +9,9 @@ preflight_failures(x)
 \arguments{
 \item{x}{Object to process, inspect, compare, or plot.}
 }
+\value{
+A tabular R object containing pre-flight failures/review cases; rows represent analysis units and columns contain the returned quantities.
+}
 \description{
 Extract pre-flight failures/review cases
 }

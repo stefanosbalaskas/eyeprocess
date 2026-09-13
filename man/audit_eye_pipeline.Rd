@@ -9,6 +9,9 @@ audit_eye_pipeline(x)
 \arguments{
 \item{x}{Pipeline or pipeline run.}
 }
+\value{
+An object of class "eye_pipeline_audit", stored as a named list, with components "table", "undeclared_decisions", "valid", "pipeline_hash". It contains a pipeline definition or completed run and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 Audit a pipeline definition or completed run
 }

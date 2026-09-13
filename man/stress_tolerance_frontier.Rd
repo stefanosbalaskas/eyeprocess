@@ -15,6 +15,9 @@ stress_tolerance_frontier(x, severity, metric, acceptable)
 
 \item{acceptable}{Function returning TRUE/FALSE for metric values.}
 }
+\value{
+A data frame containing the empirical stress frontier for a metric. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
+}
 \description{
 Identify the empirical stress frontier for a metric
 }

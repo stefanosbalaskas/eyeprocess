@@ -18,6 +18,7 @@
 #' @param gaze_x,gaze_y Recorded gaze-coordinate columns.
 #' @param target_x,target_y Known target-coordinate columns.
 #' @param by Optional grouping columns such as participant/session.
+#' @return A tabular R object containing empirical calibration/validation error; rows represent analysis units and columns contain the returned quantities.
 #' @export
 estimate_calibration_error <- function(data, gaze_x = "gaze_x", gaze_y = "gaze_y",
                                        target_x = "target_x", target_y = "target_y", by = NULL) {
@@ -44,6 +45,7 @@ estimate_calibration_error <- function(data, gaze_x = "gaze_x", gaze_y = "gaze_y
 #' @param x,y Gaze-coordinate columns.
 #' @param time Optional timestamp column used to order samples.
 #' @param by Optional grouping columns.
+#' @return A logical value or vector indicating rMS successive-sample gaze imprecision.
 #' @export
 gaze_precision_rms_s2s <- function(data, x = "gaze_x", y = "gaze_y", time = NULL, by = NULL) {
   d <- .ep09_as_df(data); .ep09_req_cols(d, c(x, y, time, by), "data")
@@ -65,6 +67,7 @@ gaze_precision_rms_s2s <- function(data, x = "gaze_x", y = "gaze_y", time = NULL
 #' @param time Timestamp column.
 #' @param unit Timestamp unit.
 #' @param by Optional grouping columns.
+#' @return A logical value or vector indicating effective sampling frequency from timestamps.
 #' @export
 effective_sampling_frequency <- function(data, time = "timestamp_ms",
                                          unit = c("ms", "s", "us"), by = NULL) {
@@ -88,6 +91,7 @@ effective_sampling_frequency <- function(data, time = "timestamp_ms",
 #' @param unit Timestamp unit.
 #' @param by Optional grouping columns.
 #' @param cv_threshold Review threshold for interval coefficient of variation.
+#' @return An object of class "eye_sampling_irregularity_audit", stored as a named list, with components "table", "cv_threshold", "caveat". It contains sampling irregularity and associated metadata or diagnostics needed to interpret the result.
 #' @export
 audit_sampling_irregularity <- function(data, time = "timestamp_ms", unit = c("ms", "s", "us"),
                                         by = NULL, cv_threshold = .05) {
@@ -102,6 +106,7 @@ audit_sampling_irregularity <- function(data, time = "timestamp_ms", unit = c("m
 #' Build an empirical bivariate calibration-error model
 #' @param data Validation-target data.
 #' @inheritParams estimate_calibration_error
+#' @return An object of class "eye_calibration_error_model", stored as a named list, with components "mean_error", "covariance", "errors", "n", "metrics", "coordinate_units", "status", "caveat". It contains an empirical bivariate calibration-error model and associated metadata or diagnostics needed to interpret the result.
 #' @export
 calibration_error_model <- function(data, gaze_x = "gaze_x", gaze_y = "gaze_y",
                                     target_x = "target_x", target_y = "target_y") {
@@ -123,6 +128,7 @@ calibration_error_model <- function(data, gaze_x = "gaze_x", gaze_y = "gaze_y",
 #' @param model Calibration error model.
 #' @param level Probability level.
 #' @param center Optional center; defaults to model mean error.
+#' @return A data frame containing uncertainty ellipse implied by an empirical calibration-error model. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 gaze_uncertainty_ellipse <- function(model, level = .95, center = NULL) {
   if (!inherits(model, "eye_calibration_error_model")) stop("model must be an eye_calibration_error_model.", call. = FALSE)
@@ -144,6 +150,7 @@ gaze_uncertainty_ellipse <- function(model, level = .95, center = NULL) {
 #' @param x,y Gaze-coordinate columns.
 #' @param draws Monte Carlo draws per sample.
 #' @param seed Seed.
+#' @return An R object containing propagate empirical calibration uncertainty around gaze samples. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 propagate_calibration_uncertainty <- function(data, model, x = "gaze_x", y = "gaze_y",
                                               draws = 500L, seed = 1L) {
@@ -183,6 +190,7 @@ propagate_calibration_uncertainty <- function(data, model, x = "gaze_x", y = "ga
 #' AOI membership probabilities from uncertainty draws
 #' @param draws Output of `propagate_calibration_uncertainty()` or compatible table.
 #' @param aois Rectangular AOI table with aoi/x_min/x_max/y_min/y_max.
+#' @return A tabular R object containing aOI membership probabilities from uncertainty draws; rows represent analysis units and columns contain the returned quantities.
 #' @export
 aoi_membership_probability <- function(draws, aois) {
   d <- .ep09_as_df(draws); .ep09_req_cols(d, c("sample_id", "gaze_x", "gaze_y"), "draws")
@@ -203,6 +211,7 @@ aoi_membership_probability <- function(draws, aois) {
 #' @param draws Monte Carlo draws.
 #' @param seed Seed.
 #' @param min_probability Minimum probability for assignment; lower maxima become `NA`.
+#' @return An object of class "eye_probabilistic_aoi_assignment", stored as a named list, with components "assignments", "probabilities", "aois", "model", "min_probability", "caveat". It contains probabilistic AOI assignment under empirical calibration uncertainty and associated metadata or diagnostics needed to interpret the result.
 #' @export
 probabilistic_aoi_assignment <- function(data, aois, model, x = "gaze_x", y = "gaze_y",
                                          draws = 500L, seed = 1L, min_probability = .5) {
@@ -232,6 +241,7 @@ probabilistic_aoi_assignment <- function(data, aois, model, x = "gaze_x", y = "g
 #' @param aois Rectangular AOIs.
 #' @param probabilistic Probabilistic assignment object.
 #' @param x,y Gaze-coordinate columns.
+#' @return An R object containing hard and probabilistic AOI assignments. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 compare_hard_probabilistic_aoi <- function(data, aois, probabilistic, x = "gaze_x", y = "gaze_y") {
   d <- .ep09_as_df(data); a <- .ep09_validate_rect_aois(aois); .ep09_req_cols(d, c(x, y), "data")
@@ -252,6 +262,7 @@ compare_hard_probabilistic_aoi <- function(data, aois, probabilistic, x = "gaze_
 
 #' Sensitivity grid for deterministic calibration offsets
 #' @param offset_x,offset_y Candidate offsets in coordinate units.
+#' @return A tabular R object containing sensitivity grid for deterministic calibration offsets; rows represent analysis units and columns contain the returned quantities.
 #' @export
 calibration_sensitivity_grid <- function(offset_x = c(-.02, 0, .02), offset_y = c(-.02, 0, .02)) {
   offset_x <- .ep09_num(offset_x); offset_y <- .ep09_num(offset_y)
@@ -266,6 +277,7 @@ calibration_sensitivity_grid <- function(offset_x = c(-.02, 0, .02), offset_y = 
 #' @param data Gaze samples.
 #' @param aois Rectangular AOIs.
 #' @param x,y Coordinates.
+#' @return A tabular R object containing distance to nearest rectangular AOI boundary; rows represent analysis units and columns contain the returned quantities.
 #' @export
 fixation_boundary_uncertainty <- function(data, aois, x = "gaze_x", y = "gaze_y") {
   d <- .ep09_as_df(data); a <- .ep09_validate_rect_aois(aois); .ep09_req_cols(d, c(x, y), "data")
@@ -288,6 +300,7 @@ fixation_boundary_uncertainty <- function(data, aois, x = "gaze_x", y = "gaze_y"
 #' @param data Validation-target data.
 #' @param by Ordered batch/session column.
 #' @inheritParams estimate_calibration_error
+#' @return An object of class "eye_calibration_drift_profile", stored as a named list, with components "table", "by", "caveat". It contains calibration drift profile across sessions/batches and associated metadata or diagnostics needed to interpret the result.
 #' @export
 calibration_drift_profile <- function(data, by, gaze_x = "gaze_x", gaze_y = "gaze_y",
                                       target_x = "target_x", target_y = "target_y") {
@@ -309,6 +322,7 @@ calibration_drift_profile <- function(data, by, gaze_x = "gaze_x", gaze_y = "gaz
 #' @param valid Optional validity indicator column.
 #' @param by Optional grouping columns.
 #' @param time_unit Timestamp unit.
+#' @return An object of class "eye_data_quality_profile", stored as a named list, with components "table", "coordinate_units", "caveat". It contains empirical gaze data-quality profile and associated metadata or diagnostics needed to interpret the result.
 #' @export
 gaze_data_quality_profile <- function(data, x = "gaze_x", y = "gaze_y", time = "timestamp_ms",
                                       target_x = NULL, target_y = NULL, valid = NULL, by = NULL,
@@ -348,6 +362,7 @@ gaze_data_quality_profile <- function(data, x = "gaze_x", y = "gaze_y", time = "
 
 #' Compact reporting table for eye-tracking data quality
 #' @param x Data-quality profile.
+#' @return An R object containing compact reporting table for eye-tracking data quality. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 data_quality_reporting_table <- function(x) {
   if (!inherits(x, "eye_data_quality_profile")) stop("x must be an eye_data_quality_profile.", call. = FALSE)

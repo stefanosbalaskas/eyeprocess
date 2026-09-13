@@ -9,6 +9,9 @@ eyeprocess_irt_engine_status(engine)
 \arguments{
 \item{engine}{Requested estimation or analysis engine.}
 }
+\value{
+An object of class "eye_irt_engine_registry", "data.frame", stored as a data frame, containing query an external IRT engine and associated metadata needed to interpret the result.
+}
 \description{
 Query an external IRT engine
 }

@@ -28,6 +28,9 @@ least `parameter` and `estimate`; optional `lower`/`upper` are retained.}
 
 \item{engine}{Engine label.}
 }
+\value{
+A logical value or vector indicating one model-validation replicate.
+}
 \description{
 Fit one model-validation replicate
 }

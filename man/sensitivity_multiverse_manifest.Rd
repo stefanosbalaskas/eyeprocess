@@ -9,6 +9,9 @@ sensitivity_multiverse_manifest(x)
 \arguments{
 \item{x}{Sensitivity result.}
 }
+\value{
+A data frame containing machine-readable multiverse manifest. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
+}
 \description{
 Machine-readable multiverse manifest
 }

@@ -26,6 +26,9 @@ audit_process_anomalies(
 
 \item{ridge}{Diagonal covariance regularization.}
 }
+\value{
+An object of class "eye_process_anomaly_audit", stored as a named list, with components "table", "metrics", "alpha", "threshold", "center", "covariance", "caveat". It contains multivariate process/data-quality anomalies and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 Computes a regularized Mahalanobis distance over selected person-level process
 metrics. Flags indicate review needs only; they are not cheating, identity,

@@ -24,6 +24,9 @@ irt_continuous_channel(
 
 \item{options}{Additional channel metadata.}
 }
+\value{
+A named list with components "type", "family", "role", "link", "variables", "latent", "options", containing continuous/bounded process channel for multimodal IRT and associated metadata or diagnostics.
+}
 \description{
 Continuous/bounded process channel for multimodal IRT
 }

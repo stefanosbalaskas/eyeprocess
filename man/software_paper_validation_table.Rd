@@ -9,6 +9,9 @@ software_paper_validation_table(x)
 \arguments{
 \item{x}{Validation result/evidence matrix/table.}
 }
+\value{
+An R object containing validation evidence for a software paper. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
+}
 \description{
 Summarise validation evidence for a software paper
 }

@@ -20,6 +20,9 @@ process_dif_nuisance_surrogate(
 
 \item{aggregate}{Aggregation rule for process features.}
 }
+\value{
+A data frame containing a process-data nuisance surrogate for DIF analysis. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
+}
 \description{
 Construct a process-data nuisance surrogate for DIF analysis
 }

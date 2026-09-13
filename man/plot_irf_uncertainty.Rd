@@ -23,6 +23,9 @@ plot_irf_uncertainty(
 
 \item{...}{Graphical arguments.}
 }
+\value{
+A data frame containing plot uncertainty for flexible item response functions. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
+}
 \description{
 For the bundled spline-reference engine, standard errors are derived on the
 logit scale from the fitted GLM and transformed to response probabilities.

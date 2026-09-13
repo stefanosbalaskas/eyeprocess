@@ -45,6 +45,7 @@ process_feature_time_provenance <- function(feature, available_at, outcome_at,
 #' @param provenance Output of [process_feature_time_provenance()] or compatible table.
 #' @param allow_equal Whether features available exactly at outcome time are allowed.
 #' @param tolerance Numeric tolerance in the provenance time unit.
+#' @return A named list with components "status", "n_features", "n_flagged", "flagged_fraction", "detail", "interpretation", containing temporal leakage in a feature provenance table and associated metadata or diagnostics.
 #' @export
 audit_temporal_leakage <- function(provenance, allow_equal = TRUE, tolerance = 0) {
   d <- .ep09_as_df(provenance)
@@ -76,6 +77,7 @@ audit_temporal_leakage <- function(provenance, allow_equal = TRUE, tolerance = 0
 #' Validate feature availability against an analysis cutoff
 #' @param provenance Feature provenance table.
 #' @param cutoff Scalar cutoff or named vector by feature.
+#' @return A data frame containing feature availability against an analysis cutoff. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 validate_feature_availability <- function(provenance, cutoff) {
   d <- .ep09_as_df(provenance)
@@ -98,6 +100,7 @@ validate_feature_availability <- function(provenance, cutoff) {
 #' @param data Data frame.
 #' @param outcome Outcome column name.
 #' @param feature_fun Function receiving outcome-hidden data and returning features.
+#' @return A named list with components "status", "outcome", "feature_result", "error", "warnings", "input_columns", "interpretation", containing whether candidate predictors can be constructed without an outcome column and associated metadata or diagnostics.
 #' @export
 outcome_blind_feature_audit <- function(data, outcome, feature_fun) {
   d <- .ep09_as_df(data)
@@ -124,6 +127,7 @@ outcome_blind_feature_audit <- function(data, outcome, feature_fun) {
 #' @param outcome Outcome column.
 #' @param seed Random seed.
 #' @param within Optional grouping columns within which to permute.
+#' @return An R object containing permutation negative control. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 process_negative_control_permute <- function(data, outcome, seed = 1L, within = NULL) {
   d <- .ep09_as_df(data)
@@ -150,6 +154,7 @@ process_negative_control_permute <- function(data, outcome, seed = 1L, within = 
 #' @param column Column to shift.
 #' @param lag Number of rows to shift within each group.
 #' @param by Optional grouping columns.
+#' @return An R object containing temporal-shift negative control. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 process_negative_control_shift <- function(data, column, lag = 1L, by = NULL) {
   d <- .ep09_as_df(data); .ep09_req_cols(d, c(column, by))
@@ -177,6 +182,7 @@ process_negative_control_shift <- function(data, column, lag = 1L, by = NULL) {
 #' @param window Two-element placebo window.
 #' @param expected Optional expected mean, typically zero.
 #' @param by Optional grouping columns.
+#' @return An R object containing a placebo/pre-event window. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
 #' @export
 placebo_window_audit <- function(data, time, value, window, expected = 0, by = NULL) {
   d <- .ep09_as_df(data); .ep09_req_cols(d, c(time, value, by))
@@ -218,6 +224,7 @@ placebo_window_audit <- function(data, time, value, window, expected = 0, by = N
 #' @param extract_fun Function converting analysis result to a data.frame.
 #' @param shift_lags Lags sampled for shift controls.
 #' @param within Optional permutation groups.
+#' @return A named list with components "results", "outcome", "controls", "replications", "seed", "interpretation", containing repeated process negative controls and associated metadata or diagnostics.
 #' @export
 run_process_negative_controls <- function(data, outcome, analysis_fun,
                                           controls = c("permutation", "shift"),
@@ -260,6 +267,7 @@ run_process_negative_controls <- function(data, outcome, analysis_fun,
 #' @param x Negative-control result.
 #' @param effect Effect column.
 #' @param threshold Optional absolute effect threshold.
+#' @return A logical value or vector indicating process negative controls.
 #' @export
 summarise_process_negative_controls <- function(x, effect = "effect", threshold = 0) {
   if (!inherits(x, "eye_process_negative_controls")) stop("x must be an eye_process_negative_controls object.", call. = FALSE)
@@ -281,6 +289,7 @@ summarise_process_negative_controls <- function(x, effect = "effect", threshold 
 #' @param observed Observed scalar effect.
 #' @param controls Negative-control result or numeric vector.
 #' @param effect Effect column when controls is an object.
+#' @return A named list with components "observed", "n_null", "null_mean", "null_sd", "percentile", "two_sided_tail", "standardized_distance", containing an observed effect against a negative-control null distribution and associated metadata or diagnostics.
 #' @export
 process_null_benchmark <- function(observed, controls, effect = "effect") {
   null <- if (inherits(controls, "eye_process_negative_controls")) {
@@ -297,6 +306,7 @@ process_null_benchmark <- function(observed, controls, effect = "effect") {
 #' @param x Negative-control result.
 #' @param effect Effect column.
 #' @param tolerance Absolute mean-effect tolerance.
+#' @return A named list with components "summary", "all_within_tolerance", "tolerance", containing concordance of multiple negative-control families and associated metadata or diagnostics.
 #' @export
 negative_control_concordance <- function(x, effect = "effect", tolerance = 0.05) {
   tolerance <- .ep09_num(tolerance)[1L]

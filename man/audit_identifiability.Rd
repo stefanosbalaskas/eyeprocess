@@ -23,6 +23,9 @@ audit_identifiability(
 
 \item{max_abs_correlation}{Maximum acceptable absolute parameter correlation.}
 }
+\value{
+An object of class "eye_irt_identifiability_audit", "data.frame", stored as a data frame, containing empirical identifiability from replicate estimates and associated metadata needed to interpret the result.
+}
 \description{
 Flags parameters with near-zero estimate variance, explosive dispersion,
 excessive missingness, or strongly correlated estimates when a covariance

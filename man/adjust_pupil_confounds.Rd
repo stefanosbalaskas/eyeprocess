@@ -9,6 +9,9 @@ adjust_pupil_confounds(x)
 \arguments{
 \item{x}{Object to process, inspect, compare, or plot.}
 }
+\value{
+A data frame containing the fitted model data, including `pupil_confound_residual` and `pupil_confound_adjusted` columns.
+}
 \description{
 Extract confound-adjusted pupil values
 }

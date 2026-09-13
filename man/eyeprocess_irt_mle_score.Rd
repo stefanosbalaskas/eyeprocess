@@ -15,6 +15,9 @@ eyeprocess_irt_mle_score(response, items, bounds = c(-6, 6), D = 1)
 
 \item{D}{Logistic scaling constant.}
 }
+\value{
+An object of class "eye_irt_score", stored as a named list, with components "estimate", "objective", "method", "bounds", "boundary". It contains bounded ML score for dichotomous IRT item parameters and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 Bounded ML score for dichotomous IRT item parameters
 }

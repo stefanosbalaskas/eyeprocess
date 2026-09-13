@@ -11,6 +11,9 @@ provenance_edge_table(from, to, relation = "wasDerivedFrom")
 
 \item{relation}{PROV-like relation labels.}
 }
+\value{
+A data frame containing a provenance edge table. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
+}
 \description{
 Build a provenance edge table
 }

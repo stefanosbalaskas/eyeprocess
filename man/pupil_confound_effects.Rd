@@ -9,6 +9,9 @@ pupil_confound_effects(x)
 \arguments{
 \item{x}{Object to process, inspect, compare, or plot.}
 }
+\value{
+A numeric coefficient table: the smooth-term table for `mgcv::gam()` fits or the coefficient matrix for `stats::lm()` fits.
+}
 \description{
 Extract pupil confound-model effects
 }

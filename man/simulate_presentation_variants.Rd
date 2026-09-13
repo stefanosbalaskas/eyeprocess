@@ -17,6 +17,9 @@ simulate_presentation_variants(
 
 \item{key_term_highlighting}{Whether the simulated review variant highlights key terms.}
 }
+\value{
+An R object containing pre-registered presentation variants for review. The concrete class and structure follow the selected method, engine, or input object and are preserved as documented by that workflow.
+}
 \description{
 Simulate pre-registered presentation variants for review
 }

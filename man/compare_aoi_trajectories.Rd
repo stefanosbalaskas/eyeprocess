@@ -9,6 +9,9 @@ compare_aoi_trajectories(...)
 \arguments{
 \item{...}{Additional arguments passed to the underlying method or helper.}
 }
+\value{
+A data frame containing aOI trajectory feature objects. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
+}
 \description{
 Compare AOI trajectory feature objects
 }

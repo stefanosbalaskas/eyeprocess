@@ -354,6 +354,7 @@ timestamp_fidelity_audit <- function(source, roundtrip,
 #' @param key Column or columns used to align records.
 #' @param tolerance Numerical tolerance used by the comparison.
 #' @param correlation_floor Minimum correlation treated as compatible.
+#' @return An object of class "eye_coordinate_fidelity", stored as a named list, with components "status", "x", "y", "matched_n", "tolerance", "correlation_floor". It contains coordinate semantic-fidelity audit and associated metadata or diagnostics needed to interpret the result.
 #' @export
 coordinate_fidelity_audit <- function(source, roundtrip,
                                       source_x = "x", source_y = "y",
@@ -403,6 +404,7 @@ coordinate_fidelity_audit <- function(source, roundtrip,
 #' @param key Column or columns used to align records.
 #' @param tolerance Numerical tolerance used by the comparison.
 #' @param correlation_floor Minimum correlation treated as compatible.
+#' @return An object of class "eye_pupil_fidelity", stored as a named list, with components "status", "matched_n", "correlation", "estimated_scale_ratio", "scaled_max_error", "tolerance". It contains pupil-unit semantic-fidelity audit and associated metadata or diagnostics needed to interpret the result.
 #' @export
 pupil_unit_fidelity_audit <- function(source, roundtrip,
                                       source_pupil = "pupil_size",
@@ -443,6 +445,7 @@ pupil_unit_fidelity_audit <- function(source, roundtrip,
 #' @param source_eye Source recorded-eye column.
 #' @param roundtrip_eye Round-tripped recorded-eye column.
 #' @param key Column or columns used to align records.
+#' @return An object of class "eye_stream_fidelity", stored as a named list, with components "status", "matched_n", "source_streams", "roundtrip_streams", "confusion". It contains preservation of monocular/binocular stream semantics and associated metadata or diagnostics needed to interpret the result.
 #' @export
 eye_stream_fidelity_audit <- function(source, roundtrip,
                                       source_eye = "eye",
@@ -477,6 +480,7 @@ eye_stream_fidelity_audit <- function(source, roundtrip,
 #' @param time Event-time field; set `NULL` to compare labels only.
 #' @param key Optional event identity key.
 #' @param tolerance Timestamp tolerance.
+#' @return An object of class "eye_event_semantics", stored as a named list, with components "status", "source_n", "roundtrip_n", "matched_n", "exact_label_fraction", "max_time_error". It contains event semantic preservation and associated metadata or diagnostics needed to interpret the result.
 #' @export
 event_semantics_audit <- function(source_events, roundtrip_events,
                                   label = "event",
@@ -519,6 +523,7 @@ event_semantics_audit <- function(source_events, roundtrip_events,
 #'
 #' @param events Value supplied to `events`; see Details for its model-specific role.
 #' @param hed_column Column containing HED annotations.
+#' @return A data frame containing minimal HED annotation audit for event tables. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 validate_hed_event_semantics <- function(events, hed_column = "HED") {
   events <- .ep07_as_data_frame(events, "events")
@@ -656,6 +661,7 @@ semantic_roundtrip_audit <- function(source, roundtrip, key = NULL, fields = NUL
 #' Convert a semantic round-trip audit into a loss map
 #'
 #' @param x Object to print, plot, summarize, or audit.
+#' @return A tabular R object containing a semantic round-trip audit into a loss map; rows represent analysis units and columns contain the returned quantities.
 #' @export
 semantic_loss_map <- function(x) {
   if (!inherits(x, "eye_semantic_roundtrip")) stop("`x` must be an eye_semantic_roundtrip object.", call. = FALSE)
@@ -683,6 +689,7 @@ semantic_loss_map <- function(x) {
 #' auto-download third-party human-participant data; users must review the
 #' source licence/terms and obtain data from the authoritative repository.
 #'
+#' @return A data frame containing public validation-corpus registry. Rows represent the analysis units and columns contain the identifiers, estimates, or diagnostics defined by the function.
 #' @export
 public_validation_corpus <- function() {
   data.frame(
@@ -797,6 +804,7 @@ compatibility_evidence_matrix <- function(compatibility, evidence = NULL) {
 #' @param device_time Device timestamp column.
 #' @param system_time System timestamp column.
 #' @param media_time Media/stimulus timestamp column.
+#' @return An object of class "eye_vendor_timestamp_semantics", stored as a named list, with components "vendor", "pass", "clocks". It contains vendor-specific timestamp semantics and associated metadata or diagnostics needed to interpret the result.
 #' @export
 validate_vendor_timestamp_semantics <- function(data, vendor,
                                                 device_time = NULL,
@@ -838,6 +846,7 @@ validate_vendor_timestamp_semantics <- function(data, vendor,
 #' Plot semantic round-trip fidelity
 #' @param x Object to print, plot, summarize, or audit.
 #' @param ... Additional arguments passed to the selected model, engine, or method.
+#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot semantic round-trip fidelity.
 #' @export
 plot.eye_semantic_roundtrip <- function(x, ...) {
   loss <- semantic_loss_map(x)
@@ -854,6 +863,7 @@ plot.eye_semantic_roundtrip <- function(x, ...) {
 #' Plot detailed compatibility evidence
 #' @param x Object to print, plot, summarize, or audit.
 #' @param ... Additional arguments passed to the selected model, engine, or method.
+#' @return Invisibly returns the plotting result when available; the primary effect is drawing plot detailed compatibility evidence.
 #' @export
 plot.eye_compatibility_evidence_matrix <- function(x, ...) {
   lv <- validation_evidence_levels()

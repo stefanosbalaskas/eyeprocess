@@ -13,6 +13,9 @@ event_roundtrip_audit(source_events, roundtrip_events, hed_column = NULL, ...)
 
 \item{...}{Arguments forwarded to `event_semantics_audit()`.}
 }
+\value{
+An object of class "eye_event_roundtrip_audit", stored as a named list, with components "status", "event_semantics", "hed". It contains event survival across an interchange round trip and associated metadata or diagnostics needed to interpret the result.
+}
 \description{
 Audit event survival across an interchange round trip
 }

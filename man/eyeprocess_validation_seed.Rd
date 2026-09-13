@@ -13,6 +13,9 @@ eyeprocess_validation_seed(master_seed, index, stream = 0L)
 
 \item{stream}{Named random-number stream.}
 }
+\value{
+A numeric value or vector containing a deterministic bounded validation seed.
+}
 \description{
 Derive a deterministic bounded validation seed
 }
