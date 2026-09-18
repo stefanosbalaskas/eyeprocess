@@ -1,14 +1,20 @@
-# eyeprocess 0.11.1.9000
+# eyeprocess 0.11.1
 
 ## Standardized spatial data quality
 
-- Added vendor-neutral target-referenced accuracy, RMS-S2S precision, population-SD precision, BCEA with explicit probability, empirical sampling intervals/jitter/effective frequency, valid-data fractions, and reason-aware data-loss metrics.
-- Added a canonical `gaze_quality_report` carrying units, study-defined review flags, source/preprocessing/event/AOI/quality/model/software provenance fields, and an explicit no-automatic-exclusion contract.
-- Added a deterministic six-profile nine-point validation data set and shared R/Python numerical fixture illustrating why accuracy and precision are not interchangeable.
-- Added manuscript reporting guidance, plotting helpers, comparison helpers, pkgdown navigation, and focused edge-case/synthetic-truth tests.
-- RMS-S2S never bridges missing samples; mixed units fail explicitly; timestamp defects are surfaced rather than silently repaired; thresholds remain study-specific review rules.
+- Adds vendor-neutral target-referenced accuracy, RMS sample-to-sample and population-SD precision, BCEA with explicit probability, realized sampling behavior, and reason-aware data loss.
+- Adds a canonical `gaze_quality_report` with metric-specific units, provenance, study-defined review thresholds, insufficiency/timestamp flags, and an explicit no-automatic-exclusion contract.
+- Adds deterministic six-profile 9-point validation data, frozen R/Python numerical fixtures, sensitivity-analysis guidance, manuscript-reporting guidance, and dedicated pkgdown navigation.
+- RMS-S2S never bridges missing samples; mixed units fail; malformed thresholds fail; missing grouping identifiers are retained and audited.
+- Long observed intervals are distinguished from the estimated number of nominal samples represented by those gaps.
 
-# eyeprocess 0.11.1
+## AOI perturbation and uncertainty analysis
+
+- Adds vendor-neutral AOI geometry validation, reproducible dilation/erosion/translation/jitter and anisotropic perturbation specifications, and explicit pixel/degree-of-visual-angle conversion.
+- Adds sample/fixation reassignment matrices, participant/trial/AOI stability summaries, feature recomputation, empirical assignment frequencies, and optional fixed model-callback propagation with retained failure and convergence evidence.
+- Adds rectangle and convex-polygon support, explicit overlap ambiguity, screen-boundary policies, synthetic cross-language parity fixtures, base-R robustness plots, and a runnable advertising/interface vignette.
+- Robustness frequencies remain descriptive sensitivity summaries for the declared perturbation set and are not probabilities that a scientific conclusion is true.
+
 
 ## CRAN portability hotfix
 
