@@ -136,7 +136,7 @@ tidy_gaze_survival_model(cox_clustered)
 tidy_gaze_survival_model(weibull)
 ```
 
-A Cox coefficient is reported as a **hazard ratio**: a relative instantaneous event rate among trials still at risk, not a ratio of mean TTFF. An AFT coefficient is reported as a **time ratio** and describes multiplicative event time under the specified distribution.
+A Cox coefficient is reported as a **hazard ratio**: a relative instantaneous event rate among trials still at risk, not a ratio of mean TTFF. An AFT coefficient is reported as a **time ratio** and describes multiplicative event time under the specified distribution. Information criteria are not treated as rank-comparable across ordinary Cox partial likelihood, `coxme` penalized frailty likelihood, and AFT full likelihood.
 
 ### Cross-language backend contract
 
