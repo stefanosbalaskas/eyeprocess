@@ -158,6 +158,13 @@ external algorithm.
 Specification functions return detector specification or multiverse objects.
 Execution/propagation functions return governed multiverse result objects.
 Comparison and stability functions return data frames or named summary lists.
+For \code{assess_detector_inference_stability()}, \code{specifications} is the
+number of planned detector specifications, \code{term_available_specifications}
+is the number that returned the requested coefficient, and
+\code{model_failure_specifications} is the number with recorded model-stage
+failures. The convergence-rate denominator is the full declared multiverse, so
+failed, missing-term, and non-converged branches cannot disappear from robustness
+accounting.
 Plotting functions draw base-R diagnostics and invisibly return plotted data.
 \code{report_detector_multiverse()} returns Markdown text.
 \code{simulate_detector_multiverse_data()} returns a synthetic \code{eye_dataset}.
