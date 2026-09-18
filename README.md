@@ -19,6 +19,18 @@
 | Process and psychometric modelling | IRT, response-time models, multimodal process measurement, validation and sensitivity infrastructure |
 | Interoperability and storage | Eye-Tracking-BIDS, Arrow/Parquet workflows, conversion bridges, auditable storage contracts |
 
+## Event-detector multiverse and inference robustness
+
+The current development branch also adds a vendor-neutral detector-sensitivity workflow that carries event-detection uncertainty all the way to the scientific model:
+
+**raw gaze → detector → events → AOIs → derived features → identical model → robustness report**
+
+Key interfaces include `define_event_detector_spec()`, `run_detector_multiverse()`, `match_detected_events()`, `propagate_detector_to_features()`, `run_detector_inference_multiverse()`, and `report_detector_multiverse()`.
+
+The workflow supports I-VT, I-DT, a transparently labelled adaptive-velocity reference detector, a REMoDNaV command-line bridge, external detector callbacks, and vendor-supplied events. It retains zero-event trials, never converts all-missing gaze to zero dwell, errors on ambiguous AOI membership unless a rule is chosen explicitly, requires an explicit model engine, and keeps non-converged/failed branches visible.
+
+See the [Event-Detector Multiverse article](https://stefanosbalaskas.github.io/eyeprocess/articles/event-detector-multiverse.html) and the [detector-multiverse reference section](https://stefanosbalaskas.github.io/eyeprocess/reference/index.html#event-detector-multiverse-and-inference-robustness).
+
 ## September 2026 measurement-accountability additions
 
 The current development branch adds three conservative diagnostics that make timing uncertainty and validation scope explicit without changing the package's existing synchronization or modelling engines:
