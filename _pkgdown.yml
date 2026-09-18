@@ -83,6 +83,7 @@ articles:
   - benchmark-reproduction
   - probabilistic-aoi-compositions
   - aoi-perturbation-uncertainty
+  - aoi-sensitivity-analysis-plan
   - uncertainty-calibration
   - reliability-device-transportability
   - pupil-registration-missingness

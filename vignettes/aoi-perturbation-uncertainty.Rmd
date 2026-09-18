@@ -237,6 +237,9 @@ Choose perturbation magnitudes from acquisition precision, display geometry, sti
 
 ## Planning the sensitivity analysis before results
 
+For a fillable preregistration-style template and API mapping, see the companion **AOI Sensitivity Analysis Plan and Reporting Template** article.
+
+
 Record the AOI sensitivity plan before examining branch-specific model results. At minimum, state:
 
 1. the nominal AOI source and geometry representation;
