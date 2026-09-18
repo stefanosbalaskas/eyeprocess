@@ -81,3 +81,40 @@ test_that("R and Python share the frozen spatial-quality fixture", {
       expect_equal(as.numeric(actual[[nm]]), as.numeric(expected[[nm]]), tolerance = 1e-10)
   }
 })
+
+test_that("canonical quality report honors explicit unit metadata and short-group flags", {
+  d <- data.frame(
+    timestamp_ms = c(0, 10),
+    gaze_x = c(0, 0),
+    gaze_y = c(0, 0),
+    target_x = c(0, 0),
+    target_y = c(0, 0),
+    coordinate_unit = c("degrees", "degrees")
+  )
+  bad <- d
+  bad$coordinate_unit[2] <- "pixels"
+  expect_error(create_gaze_quality_report(bad), "mixed coordinate units")
+
+  one <- data.frame(timestamp_ms = 0, gaze_x = 1, gaze_y = 2)
+  q <- create_gaze_quality_report(one, target_x = NULL, target_y = NULL)
+  expect_match(q$quality_flags, "insufficient_bcea_samples")
+  expect_match(q$quality_flags, "insufficient_rms_pairs")
+})
+
+test_that("quality provenance fingerprint includes validity decisions", {
+  d <- data.frame(
+    timestamp_ms = c(0, 10, 20),
+    gaze_x = c(0, 0, 0),
+    gaze_y = c(0, 0, 0),
+    target_x = 0,
+    target_y = 0,
+    valid = c(1, 1, 1)
+  )
+  a <- create_gaze_quality_report(d, valid = "valid")
+  d$valid[1] <- 0
+  b <- create_gaze_quality_report(d, valid = "valid")
+  expect_false(identical(
+    attr(a, "gaze_quality_provenance")$source_fingerprint,
+    attr(b, "gaze_quality_provenance")$source_fingerprint
+  ))
+})
