@@ -49,9 +49,9 @@ estimate_gaze_survival(data, group = NULL, conf_level = 0.95)
 fit_gaze_cox_model(data, formula, ties = c("breslow", "efron", "exact"), cluster = NULL)
 fit_gaze_mixed_cox_model(
   data, formula, participant_col = "participant_id",
-  structure = c("frailty", "cluster_robust"), ties = c("breslow", "efron")
+  structure = NULL, ties = c("breslow", "efron", "exact")
 )
-fit_gaze_aft_model(data, formula, distribution = c("weibull", "lognormal"), ...)
+fit_gaze_aft_model(data, formula, distribution = NULL, ...)
 tidy_gaze_survival_model(model, conf_level = 0.95)
 check_gaze_proportional_hazards(model, transform = "km", alpha = 0.05)
 compare_gaze_survival_models(...)
@@ -89,8 +89,8 @@ simulate_gaze_survival_example(kind = c("disclosure", "verification"), seed = 20
   \item{formula}{Right-hand-side model formula or formula string.}
   \item{ties}{Cox tie-handling method.}
   \item{cluster}{Optional cluster column for robust Cox uncertainty.}
-  \item{structure}{Repeated-participant Cox structure: explicit Gaussian frailty or cluster-robust uncertainty.}
-  \item{distribution}{AFT distribution, Weibull or log-normal.}
+  \item{structure}{Required repeated-participant Cox structure: \code{"cluster_robust"} or \code{"frailty"}. No estimator is selected implicitly.}
+  \item{distribution}{Required AFT distribution: \code{"weibull"} or \code{"lognormal"}. No AFT family is selected implicitly.}
   \item{model,object}{A fitted gaze-survival model or descriptive survival estimate.}
   \item{transform,alpha}{Proportional-hazards diagnostic settings.}
   \item{newdata,times,probs}{Prediction and latency-quantile inputs.}
