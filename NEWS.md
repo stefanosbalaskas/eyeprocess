@@ -1,5 +1,11 @@
 # eyeprocess 0.11.1
 
+## Censored gaze-latency survival examples and site guidance
+
+- Adds a standalone evidence-verification example for time to first source/evidence AOI entry, including right-censoring construction, clustered Cox, Weibull/log-normal AFT sensitivity models, diagnostics, interpretation, and manuscript reporting guidance.
+- Restores the survival methodology articles and the complete survival API group to pkgdown navigation so later site additions do not hide the survival workflow.
+- Adds a troubleshooting clinic covering incomplete windows, time-zero events, sparse events, flagged proportional-hazards diagnostics, low-quality gaze, and competing-event boundaries without changing the public statistical API.
+
 ## Standardized spatial data quality
 
 - Adds vendor-neutral target-referenced accuracy, RMS sample-to-sample and population-SD precision, BCEA with explicit probability, realized sampling behavior, and reason-aware data loss.
