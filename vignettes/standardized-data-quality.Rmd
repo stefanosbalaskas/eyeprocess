@@ -108,6 +108,36 @@ flagged <- create_gaze_quality_report(
 attr(flagged, "gaze_quality_provenance")$automatic_exclusion
 ```
 
+# Quality decisions as sensitivity analysis
+
+A review flag is not an exclusion. Keep the complete `gaze_quality_report`, then
+make the downstream inclusion decision explicitly and report it separately.
+
+```{r sensitivity}
+reviewed <- create_gaze_quality_report(
+  x,
+  by = c("profile", "target_id"),
+  valid = "valid",
+  thresholds = list(
+    accuracy_mean = list(max = 1.0),
+    valid_sample_fraction = list(min = 0.80)
+  )
+)
+
+analysis_keep <- reviewed[!reviewed$review_required, ]
+analysis_flagged <- reviewed[reviewed$review_required, ]
+```
+
+For a substantive model, join the quality metadata back to the trial/participant
+analysis key and repeat the planned analysis under defensible alternatives:
+all otherwise eligible units, a pre-specified exclusion rule, stratification by
+quality flag, or another explicitly justified sensitivity specification. Do not
+choose a post-hoc cutoff because it improves the substantive result.
+
+When nominal frequency is supplied, also keep `long_interval_count` separate
+from `dropped_interval_count`: the first counts long observed intervals; the
+second estimates missing nominal samples represented by those gaps.
+
 # When not to use these metrics
 
 Do not estimate target-referenced accuracy without known targets. Do not compute fixation precision across target transitions or intentional eye movements. Do not interpret BCEA as accuracy. Do not infer tracker quality from nominal hardware frequency alone. Do not treat missing coordinates as zeros, and do not interpret a quality flag as participant-level impairment or disengagement.
