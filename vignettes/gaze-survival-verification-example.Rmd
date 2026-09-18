@@ -1,0 +1,117 @@
+---
+title: "Worked example: evidence verification latency"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Worked example: evidence verification latency}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Question
+
+This example models **time to first entry into a source/evidence AOI**. Repeated trials occur under `standard` and `evidence_prompt` conditions. Complete usable trials that never inspect the evidence AOI remain in the risk set until the observation window ends and are right censored.
+
+## Generate raw trial/event inputs
+
+```{r raw}
+raw <- simulate_gaze_survival_inputs(
+  "verification",
+  seed = 20260918,
+  n_participants = 36,
+  trials_per_participant = 3
+)
+```
+
+The synthetic input is deliberately not pre-censored. The survival state is constructed from the event definition and the explicit trial observation window.
+
+## Construct and validate the survival table
+
+```{r prepare}
+verification <- prepare_gaze_survival_data(
+  raw$trials,
+  raw$events,
+  target_aoi = "source_evidence",
+  event_type = "first_aoi_entry",
+  condition_col = "condition_id",
+  min_valid_fraction = .90,
+  time_origin = "trial_start",
+  event_detector = "synthetic_truth",
+  aoi_specification = "fixed synthetic source/evidence AOI"
+)
+
+validate_gaze_survival_data(verification, raise_on_error = FALSE)
+summarise_gaze_censoring(verification, by = "condition")
+```
+
+A missing target event becomes ordinary right censoring only when the observation window is complete and usable. Unresolved or poor-quality trials remain review cases.
+
+## Kaplan-Meier description
+
+```{r km, fig.cap="Kaplan-Meier curves for time to first source/evidence AOI entry."}
+plot_gaze_survival_curve(verification, group = "condition")
+```
+
+Lower survival at a given time means a larger proportion of trials has already inspected the evidence AOI.
+
+## Repeated-participant Cox model
+
+```{r cox}
+cox <- fit_gaze_mixed_cox_model(
+  verification,
+  "condition",
+  participant_col = "participant_id",
+  structure = "cluster_robust"
+)
+
+tidy_gaze_survival_model(cox)
+check_gaze_proportional_hazards(cox)
+```
+
+The hazard ratio is an instantaneous evidence-inspection-rate contrast among trials still at risk. It is not a ratio of mean latencies.
+
+## Explicit AFT sensitivity models
+
+```{r aft}
+weibull <- fit_gaze_aft_model(
+  verification,
+  "condition",
+  distribution = "weibull"
+)
+lognormal <- fit_gaze_aft_model(
+  verification,
+  "condition",
+  distribution = "lognormal"
+)
+
+compare_gaze_survival_models(cox, weibull, lognormal)
+```
+
+Interpret the AFT effects as time ratios under the named distribution. Do not select Weibull versus log-normal because one gives a more favorable p-value.
+
+## Troubleshooting clinic
+
+Stop and resolve the scientific/data contract rather than silently modifying rows when:
+
+- the observation window is missing or incomplete;
+- event time exceeds the censoring limit;
+- the target is already present at time zero and the time origin is ambiguous;
+- gaze quality is below the declared rule;
+- event counts are too sparse for stable inference;
+- proportional-hazards diagnostics are flagged;
+- competing events require a competing-risks estimand.
+
+For `coxme` frailty fits, report a corresponding marginal Cox PH diagnostic separately rather than pretending `cox.zph()` applies to the frailty object.
+
+## Reporting example
+
+> Evidence-inspection latency was analysed as a right-censored time-to-event outcome. The target event was first entry into the source/evidence AOI from trial onset. Complete usable trials without an evidence entry were retained as right-censored observations; unresolved gaze-quality trials were not recoded as censoring. We fitted a participant-clustered Cox model and reported hazard ratios with 95% confidence intervals. Proportional-hazards diagnostics and pre-specified Weibull/log-normal AFT sensitivity models were examined.
+
+Report participants, trials, events, censored trials and percentage, review-required rows, event/AOI/time-origin definitions, gaze-quality rule, repeated-participant structure, effect estimate with 95% CI, diagnostics, sensitivity analyses, and package/backend versions.
+
+## API links
+
+Preparation and validation: `prepare_gaze_survival_data()`, `validate_gaze_survival_data()`, `summarise_gaze_censoring()`.
+
+Models and diagnostics: `fit_gaze_mixed_cox_model()`, `fit_gaze_aft_model()`, `check_gaze_proportional_hazards()`, `compare_gaze_survival_models()`.
+
+Reporting and visualization: `tidy_gaze_survival_model()`, `report_gaze_survival_model()`, `plot_gaze_survival_curve()`.
