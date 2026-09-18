@@ -32,6 +32,14 @@ The development branch also adds [censored gaze-latency survival analysis](https
 
 See the [Measurement accountability article](https://stefanosbalaskas.github.io/eyeprocess/articles/measurement-accountability-0-11.html) and the [measurement-accountability reference section](https://stefanosbalaskas.github.io/eyeprocess/reference/index.html#measurement-accountability-diagnostics-0-11).
 
+## September 2026 trial-level mediation preparation
+
+The current development branch also adds a vendor-neutral preparation contract for repeated-measures mediation with gaze or other trial-level process variables. `prepare_multilevel_mediation_data()` preserves every trial, separates within- and between-participant exposure and mediator components, distinguishes genuine zero gaze from unobserved or poor-quality trials, audits trial support and missingness, and carries preprocessing/event/AOI/quality provenance forward.
+
+The preparation layer **does not fit a mediation model**. Bayesian inference belongs in `gp3bayes`; `eyeprocess` owns decomposition, observation semantics, quality flags, and model-ready trial structure. Serial mediators and moderators are prepared with `add_multilevel_mediation_component()` so statistical backends do not reimplement the scientific decomposition.
+
+See the [Trial-level multilevel mediation article](https://stefanosbalaskas.github.io/eyeprocess/articles/trial-level-multilevel-mediation.html) and the mediation-preparation functions in the [reference index](https://stefanosbalaskas.github.io/eyeprocess/reference/index.html).
+
 ## Design commitments
 
 - Harmonize semantics, not merely column names.
