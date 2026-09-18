@@ -8,6 +8,10 @@ on:
 
 name: R-CMD-check.yaml
 
+concurrency:
+  group: "rcmd-${{ github.head_ref || github.ref_name }}"
+  cancel-in-progress: true
+
 permissions: read-all
 
 jobs:
