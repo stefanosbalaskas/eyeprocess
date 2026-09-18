@@ -21,17 +21,22 @@
 
 .ep_sq_num <- function(x) suppressWarnings(as.numeric(x))
 
-.ep_sq_split <- function(d, by = NULL) {
+.ep_sq_group_key <- function(d, by) {
   by <- .ep_sq_by(by)
-  if (!length(by)) return(list(all = seq_len(nrow(d))))
-  .ep_sq_req(d, by)
+  if (!length(by)) return(rep("all", nrow(d)))
   parts <- lapply(d[by], function(x) {
     value <- as.character(x)
     value[is.na(value)] <- "<NA>"
     paste0(nchar(value), ":", value)
   })
-  key <- do.call(paste, c(parts, sep = "\r"))
-  split(seq_len(nrow(d)), key, drop = TRUE)
+  do.call(paste, c(parts, sep = "\r"))
+}
+
+.ep_sq_split <- function(d, by = NULL) {
+  by <- .ep_sq_by(by)
+  if (!length(by)) return(list(all = seq_len(nrow(d))))
+  .ep_sq_req(d, by)
+  split(seq_len(nrow(d)), .ep_sq_group_key(d, by), drop = TRUE)
 }
 
 .ep_sq_header <- function(z, by = NULL) {
@@ -436,8 +441,12 @@ create_gaze_quality_report <- function(data, x = "gaze_x", y = "gaze_y", time = 
     if ("n_steps" %in% names(report) && is.finite(report$n_steps[i]) && report$n_steps[i] < 1) flags <- c(flags, "insufficient_rms_pairs")
     if ("valid_sample_fraction" %in% names(report) && is.finite(report$valid_sample_fraction[i]) && report$valid_sample_fraction[i] <= 0) flags <- c(flags, "no_valid_gaze_samples")
     if (nrow(validation$group_issues)) {
-      if (!length(by)) flags <- c(flags, unlist(strsplit(validation$group_issues$issues, ";", fixed = TRUE))) else {
-        hit <- rep(TRUE, nrow(validation$group_issues)); for (nm in by) hit <- hit & as.character(validation$group_issues[[nm]]) == as.character(report[[nm]][i])
+      if (!length(by)) {
+        flags <- c(flags, unlist(strsplit(validation$group_issues$issues, ";", fixed = TRUE)))
+      } else {
+        issue_key <- .ep_sq_group_key(validation$group_issues, by)
+        report_key <- .ep_sq_group_key(report[i, , drop = FALSE], by)
+        hit <- issue_key == report_key
         if (any(hit)) flags <- c(flags, unlist(strsplit(validation$group_issues$issues[hit], ";", fixed = TRUE)))
       }
     }
