@@ -361,11 +361,15 @@ compute_gaze_data_loss <- function(data, x = "gaze_x", y = "gaze_y", time = "tim
 summarise_spatial_quality <- function(data, x = "gaze_x", y = "gaze_y", target_x = "target_x", target_y = "target_y",
                                       time = NULL, by = NULL, unit = "degrees", output_unit = NULL, geometry = NULL,
                                       dimension = "2d", time_unit = "ms", max_gap_ms = NULL, probability = .68) {
-  .ep_sq_provenance(.ep_sq_merge(list(
-    compute_gaze_accuracy(data, x, y, target_x, target_y, by, unit, output_unit, geometry),
-    compute_rms_s2s(data, x, y, time, by, unit, output_unit, geometry, dimension, time_unit, max_gap_ms),
-    compute_gaze_sd_precision(data, x, y, by, unit, output_unit, geometry),
-    compute_bcea(data, x, y, by, probability, unit, output_unit, geometry)), by), list(function_name = "summarise_spatial_quality"))
+  accuracy <- compute_gaze_accuracy(data, x, y, target_x, target_y, by, unit, output_unit, geometry)
+  rms <- compute_rms_s2s(data, x, y, time, by, unit, output_unit, geometry, dimension, time_unit, max_gap_ms)
+  sd <- compute_gaze_sd_precision(data, x, y, by, unit, output_unit, geometry)
+  bcea <- compute_bcea(data, x, y, by, probability, unit, output_unit, geometry)
+  names(accuracy)[names(accuracy) == "unit"] <- "accuracy_unit"
+  names(rms)[names(rms) == "unit"] <- "precision_rms_s2s_unit"
+  names(sd)[names(sd) == "unit"] <- "precision_sd_unit"
+  names(bcea)[names(bcea) == "unit"] <- "bcea_unit"
+  .ep_sq_provenance(.ep_sq_merge(list(accuracy, rms, sd, bcea), by), list(function_name = "summarise_spatial_quality"))
 }
 
 #' Summarise sampling quality
@@ -400,9 +404,17 @@ create_gaze_quality_report <- function(data, x = "gaze_x", y = "gaze_y", time = 
   d <- .ep_sq_df(data); by <- .ep_sq_by(by); .ep_sq_req(d, c(x, y, time, valid, missing_reason, by))
   has_targets <- !is.null(target_x) && !is.null(target_y) && target_x %in% names(d) && target_y %in% names(d)
   validation <- validate_gaze_quality_inputs(d, x, y, time, if (has_targets) target_x else NULL, if (has_targets) target_y else NULL, by, unit, time_unit)
-  spatial <- if (has_targets) summarise_spatial_quality(d, x, y, target_x, target_y, time, by, unit, output_unit, geometry, "2d", time_unit, max_gap_ms, bcea_probability) else
-    .ep_sq_merge(list(compute_rms_s2s(d, x, y, time, by, unit, output_unit, geometry, "2d", time_unit, max_gap_ms),
-                      compute_gaze_sd_precision(d, x, y, by, unit, output_unit, geometry), compute_bcea(d, x, y, by, bcea_probability, unit, output_unit, geometry)), by)
+  if (has_targets) {
+    spatial <- summarise_spatial_quality(d, x, y, target_x, target_y, time, by, unit, output_unit, geometry, "2d", time_unit, max_gap_ms, bcea_probability)
+  } else {
+    rms <- compute_rms_s2s(d, x, y, time, by, unit, output_unit, geometry, "2d", time_unit, max_gap_ms)
+    sd <- compute_gaze_sd_precision(d, x, y, by, unit, output_unit, geometry)
+    bcea <- compute_bcea(d, x, y, by, bcea_probability, unit, output_unit, geometry)
+    names(rms)[names(rms) == "unit"] <- "precision_rms_s2s_unit"
+    names(sd)[names(sd) == "unit"] <- "precision_sd_unit"
+    names(bcea)[names(bcea) == "unit"] <- "bcea_unit"
+    spatial <- .ep_sq_merge(list(rms, sd, bcea), by)
+  }
   report <- .ep_sq_merge(list(spatial, summarise_sampling_quality(d, time, by, time_unit, nominal_sampling_hz, 1.5, x, y, valid),
                               compute_gaze_data_loss(d, x, y, time, valid, missing_reason, by, time_unit)), by)
   report$quality_flags <- character(nrow(report)); report$review_required <- FALSE
