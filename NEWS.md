@@ -1,5 +1,13 @@
 # eyeprocess 0.11.1
 
+## AOI perturbation and uncertainty analysis
+
+- Adds vendor-neutral AOI geometry validation, reproducible dilation/erosion/translation/jitter and anisotropic perturbation specifications, and explicit pixel/degree-of-visual-angle conversion.
+- Adds sample/fixation reassignment matrices, participant/trial/AOI stability summaries, feature recomputation, empirical assignment frequencies, and optional fixed model-callback propagation with retained failure and convergence evidence.
+- Adds rectangle and convex-polygon support, explicit overlap ambiguity, screen-boundary policies, synthetic cross-language parity fixtures, base-R robustness plots, and a runnable advertising/interface vignette.
+- Robustness frequencies remain descriptive sensitivity summaries for the declared perturbation set and are not probabilities that a scientific conclusion is true.
+
+
 ## CRAN portability hotfix
 
 - Make default Arrow/Parquet compression portable across Arrow builds: prefer `zstd`, fall back to `snappy`, then `uncompressed` when the default codec is unavailable.
