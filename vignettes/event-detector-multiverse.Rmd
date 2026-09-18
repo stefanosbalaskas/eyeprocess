@@ -328,3 +328,25 @@ event functions, see `?event_detector_multiverse`.
 Methodological context includes Dar, Wagner, and Hanke (2021) on REMoDNaV and
 recent event-detection evaluation work emphasizing signal/task dependence and
 event-level matching rather than naive row pairing.
+
+
+## R/Python contract parity
+
+`eyeprocess` and `eyeprocesspy` use the same detector-spec vocabulary, failure
+semantics, temporal-matching fixture, propagated feature names, and tidy
+inference fields. The same JSON contract fixture is exercised by both test
+suites.
+
+The backend labels differ only where the host ecosystems differ:
+
+| Scientific role | R | Python |
+|-----------------|---|--------|
+| ordinary linear model | `stats_lm` | `statsmodels_ols` |
+| mixed model | `lme4_lmer` | `statsmodels_mixedlm` |
+| specialist estimator | `callback` | `callback` |
+| REMoDNaV integration | installed REMoDNaV CLI | installed Python REMoDNaV package |
+
+These are backend differences, not permission to alter the scientific model
+between languages. Numerical identity is not required where estimation engines
+differ; detector definitions, retained observations, model meaning, convergence
+status, provenance, and semantic output fields are expected to align.
