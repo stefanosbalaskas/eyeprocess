@@ -504,3 +504,90 @@ test_that("REMoDNaV bridge fails explicitly when command is unavailable", {
   expect_identical(out$status$status, "failed")
   expect_match(out$failures$error, "REMoDNaV executable was not found")
 })
+
+test_that("inference stability keeps failed branches in the planned denominator", {
+  d <- simulate_detector_multiverse_data(n_participants = 4, seed = 31)
+  out <- run_detector_multiverse(
+    d,
+    list(
+      edm_ivt("ivt25", 25),
+      edm_ivt("ivt35", 35),
+      edm_idt()
+    )
+  )
+  out <- propagate_detector_to_aoi(out)
+  out <- propagate_detector_to_features(out)
+
+  selective_failure <- function(data, model_spec) {
+    detector_id <- unique(as.character(data$detector_id))
+    if (identical(detector_id, "ivt35")) stop("planned branch failure")
+    data.frame(
+      term = "condition",
+      estimate = 1,
+      SE = .2,
+      CI_lower = .6,
+      CI_upper = 1.4,
+      p = .01,
+      converged = TRUE,
+      N = nrow(data),
+      stringsAsFactors = FALSE
+    )
+  }
+
+  fit <- run_detector_inference_multiverse(
+    out,
+    list(
+      engine = "callback",
+      outcome = "dwell_time_ms",
+      aoi_id = "disclosure",
+      formula = dwell_time_ms ~ condition_id
+    ),
+    model_callback = selective_failure
+  )
+  stability <- assess_detector_inference_stability(fit, term = "condition")
+  expect_equal(stability$specifications, 3)
+  expect_equal(stability$term_available_specifications, 2)
+  expect_equal(stability$model_failure_specifications, 1)
+  expect_equal(stability$converged_specifications, 2)
+  expect_equal(stability$convergence_rate, 2 / 3)
+})
+
+
+test_that("model callbacks reject duplicate coefficient terms", {
+  d <- simulate_detector_multiverse_data(n_participants = 4, seed = 32)
+  out <- run_detector_multiverse(d, list(edm_ivt()))
+  out <- propagate_detector_to_aoi(out)
+  out <- propagate_detector_to_features(out)
+
+  duplicate_terms <- function(data, model_spec) {
+    data.frame(
+      term = c("condition", "condition"),
+      estimate = c(1, 1.1),
+      SE = c(.2, .2),
+      CI_lower = c(.6, .7),
+      CI_upper = c(1.4, 1.5),
+      p = c(.01, .01),
+      converged = c(TRUE, TRUE),
+      N = c(nrow(data), nrow(data)),
+      stringsAsFactors = FALSE
+    )
+  }
+
+  fit <- run_detector_inference_multiverse(
+    out,
+    list(
+      engine = "callback",
+      outcome = "dwell_time_ms",
+      aoi_id = "disclosure",
+      formula = dwell_time_ms ~ condition_id
+    ),
+    model_callback = duplicate_terms
+  )
+  expect_equal(nrow(fit$coefficients), 0)
+  expect_equal(nrow(fit$failures), 1)
+  expect_match(
+    fit$failures$error,
+    "at most one row per coefficient term"
+  )
+})
+
