@@ -172,6 +172,18 @@ check_gaze_proportional_hazards(cox_clustered)
 
 AFT models require strictly positive analysis times. A target already fixated at time zero should trigger review of the time origin and sampling-resolution rule rather than an automatic numeric offset.
 
+## Model-choice quick guide
+
+| Scientific question | Recommended family | Interpretation |
+|:--|:--|:--|
+| What proportion remains uninspected over time? | Kaplan-Meier | Probability the target event has not yet occurred |
+| How does condition alter the instantaneous event rate? | Cox PH | Hazard ratio |
+| How does condition multiply event time? | Weibull/log-normal AFT | Time ratio |
+| How should repeated trials be handled marginally? | Clustered Cox | Population-average hazard ratio with participant-clustered uncertainty |
+| How should latent participant heterogeneity be modelled? | `coxme` frailty Cox | Conditional hazard ratio with participant random effect |
+
+Do not choose between Cox and AFT by whichever produces the smaller p-value. State the estimand first, inspect diagnostics, and treat alternative model families as pre-specified sensitivity analyses where appropriate.
+
 ## Sensitivity analysis
 
 Rebuild the survival table across defensible AOI geometries, event detectors, trial origins, fixation-duration thresholds, and quality rules. Then fit explicitly named model families across those branches.
@@ -225,6 +237,12 @@ A concise manuscript formulation is:
 > Gaze latency was analysed as a right-censored time-to-event outcome. Trials in which the target AOI was not inspected before the valid observation window ended were retained as censored observations; unresolved gaze-quality trials were not reclassified as censoring. We fitted a Cox proportional-hazards model with participant-clustered uncertainty and reported hazard ratios with 95% confidence intervals. Proportional-hazards diagnostics and pre-specified AOI/event-definition sensitivity analyses were examined, with a Weibull AFT model reported as an alternative time-ratio estimand.
 
 Adapt the wording to the actual detector, AOI, time origin, quality threshold, and repeated-effects structure.
+
+### Copyable manuscript template
+
+> Gaze latency was analysed as a right-censored time-to-event outcome. The target event was [EVENT] in [TARGET AOI], measured from [TIME ORIGIN]. Trials remained under observation until [OBSERVATION-WINDOW RULE]. Trials without the event at the end of a complete usable window were retained as right-censored observations; trials with unresolved event status or gaze quality below [QUALITY RULE] were not recoded as censoring. Events were defined using [DETECTOR/FIXATION RULE]. We fitted [MODEL FAMILY] with [REPEATED-PARTICIPANT STRUCTURE] and reported [HAZARD RATIOS/TIME RATIOS] with 95% confidence intervals. Diagnostics indicated [RESULT], and the substantive conclusion was [ROBUST/QUALIFIED/SENSITIVE] across the pre-specified AOI, event-definition, quality-threshold, and estimator sensitivity analyses.
+
+For the results paragraph, report participants, trials, events, censored trials and percentage, review-required rows, the effect estimate with confidence interval, diagnostic result, and whether sensitivity branches changed the conclusion.
 
 ## API map
 
