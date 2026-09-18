@@ -192,6 +192,16 @@ test_that("frailty Cox uses the specialist coxme backend", {
   expect_equal(frailty$backend, "coxme::coxme")
   expect_match(frailty$repeated_structure, "gaussian_frailty")
   expect_error(check_gaze_proportional_hazards(frailty), "marginal Cox")
+  marginal <- fit_gaze_cox_model(d, "condition")
+  expect_warning(
+    cmp <- compare_gaze_survival_models(marginal, frailty),
+    "not directly comparable"
+  )
+  expect_equal(
+    cmp$likelihood_basis,
+    c("cox_partial_likelihood", "coxme_penalized_likelihood")
+  )
+  expect_false(any(cmp$information_criteria_comparable))
 })
 
 test_that("Cox estimates match direct survival backend calls", {
