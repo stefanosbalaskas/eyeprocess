@@ -596,7 +596,11 @@ fit_gaze_mixed_cox_model <- function(data, formula, participant_col = "participa
       "survival::Surv(analysis_time, event_observed) ~ ", rhs,
       " + cluster(`", participant_col, "`)"
     ))
-    fit <- survival::coxph(f, data=d, ties=ties, x=TRUE, model=TRUE)
+    fit <- .gaze_surv_fit_with_warning_guard(
+      survival::coxph(f, data = d, ties = ties, x = TRUE, model = TRUE),
+      "Repeated Cox"
+    )
+    if (any(!is.finite(stats::coef(fit)))) stop("Repeated Cox fit contains non-finite coefficients and is not treated as valid.", call. = FALSE)
     backend <- "survival::coxph"
     repeated <- paste0("cluster_robust:", participant_col)
   } else {
@@ -606,7 +610,11 @@ fit_gaze_mixed_cox_model <- function(data, formula, participant_col = "participa
       "survival::Surv(analysis_time, event_observed) ~ ", rhs,
       " + (1 | `", participant_col, "`)"
     ))
-    fit <- coxme::coxme(f, data=d, ties=ties)
+    fit <- .gaze_surv_fit_with_warning_guard(
+      coxme::coxme(f, data = d, ties = ties),
+      "Frailty Cox"
+    )
+    if (any(!is.finite(coxme::fixef(fit)))) stop("Frailty Cox fit contains non-finite fixed effects and is not treated as valid.", call. = FALSE)
     backend <- "coxme::coxme"
     repeated <- paste0("gaussian_frailty:", participant_col)
   }
@@ -639,7 +647,9 @@ fit_gaze_aft_model <- function(data, formula, distribution = NULL, ...) {
     survival::survreg(f, data = d, dist = distribution, ...),
     "AFT"
   )
-  if (!isTRUE(fit$converged)) stop("AFT convergence failure; result is not treated as valid.", call. = FALSE)
+  if (any(!is.finite(stats::coef(fit))) || !is.finite(as.numeric(stats::logLik(fit)))) {
+    stop("AFT fit contains non-finite estimates or likelihood and is not treated as valid.", call. = FALSE)
+  }
   structure(
     list(
       model_family = paste0("aft_", distribution),
