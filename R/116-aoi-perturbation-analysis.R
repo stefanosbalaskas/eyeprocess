@@ -95,7 +95,8 @@ estimate_fixation_assignment_probability <- function(assignments, ids = NULL, in
 recompute_aoi_features <- function(
     data, assignments, participant_col = NULL, trial_col = NULL,
     duration_col = NULL, time_col = NULL, perturbation_id = NULL,
-    aoi_levels = NULL) {
+    aoi_levels = NULL, observation_level = c("fixation", "sample")) {
+  observation_level <- match.arg(observation_level)
   if (!is.data.frame(data) || length(assignments) != nrow(data)) {
     .aoi_stop("Assignments must contain one value per data row.")
   }
@@ -122,8 +123,12 @@ recompute_aoi_features <- function(
   empty_output <- function() {
     out <- d[0, group_cols, drop = FALSE]
     out$aoi <- character()
+    out$observation_level <- character()
+    out$observation_count <- integer()
     out$fixation_count <- integer()
+    out$sample_count <- integer()
     out$dwell <- numeric()
+    out$first_observation <- numeric()
     out$first_fixation <- numeric()
     out$inspected <- logical()
     out$n_valid_observations <- integer()
@@ -157,14 +162,19 @@ recompute_aoi_features <- function(
       count <- nrow(selected)
 
       if (n_valid == 0L) {
+        observation_count <- NA_integer_
         fixation_count <- NA_integer_
+        sample_count <- NA_integer_
         dwell <- NA_real_
+        first_observation <- NA_real_
         first_fixation <- NA_real_
         inspected <- NA
         duration_complete <- NA
         time_complete <- NA
       } else {
-        fixation_count <- count
+        observation_count <- count
+        fixation_count <- if (observation_level == "fixation") count else NA_integer_
+        sample_count <- if (observation_level == "sample") count else NA_integer_
         inspected <- count > 0L
 
         if (is.null(duration_col)) {
@@ -180,19 +190,22 @@ recompute_aoi_features <- function(
         }
 
         if (is.null(time_col)) {
+          first_observation <- NA_real_
           first_fixation <- NA_real_
           time_complete <- NA
         } else if (count == 0L) {
+          first_observation <- NA_real_
           first_fixation <- NA_real_
           time_complete <- TRUE
         } else {
           time_values <- suppressWarnings(as.numeric(selected[[time_col]]))
           time_complete <- all(is.finite(time_values))
-          first_fixation <- if (any(is.finite(time_values))) {
+          first_observation <- if (any(is.finite(time_values))) {
             min(time_values[is.finite(time_values)])
           } else {
             NA_real_
           }
+          first_fixation <- if (observation_level == "fixation") first_observation else NA_real_
         }
       }
 
@@ -200,8 +213,12 @@ recompute_aoi_features <- function(
         base,
         data.frame(
           aoi = aoi,
+          observation_level = observation_level,
+          observation_count = observation_count,
           fixation_count = fixation_count,
+          sample_count = sample_count,
           dwell = dwell,
+          first_observation = first_observation,
           first_fixation = first_fixation,
           inspected = inspected,
           n_valid_observations = n_valid,
@@ -279,9 +296,11 @@ recompute_aoi_features <- function(
 #' @export
 run_aoi_sensitivity_analysis <- function(
     data, aois, grid, x_col, y_col, observation_id_col = NULL, participant_col = NULL,
-    trial_col = NULL, duration_col = NULL, time_col = NULL, overlap_policy = "ambiguous",
+    trial_col = NULL, duration_col = NULL, time_col = NULL,
+    observation_level = c("fixation", "sample"), overlap_policy = "ambiguous",
     model_callback = NULL, preprocessing_specification = NULL, event_detector = NULL,
     quality_rules = NULL, model_specification = NULL) {
+  observation_level <- match.arg(observation_level)
   if (!is.data.frame(data)) .aoi_stop("`data` must be a data frame.")
   geometry <- validate_aoi_geometry(aois)$geometry
   if (!is.null(observation_id_col) && !observation_id_col %in% names(data)) {
@@ -299,7 +318,8 @@ run_aoi_sensitivity_analysis <- function(
     assigned <- .aoi_assign_points(data, grid_result$geometries[[pid]], x_col, y_col, overlap_policy); assignments[[pid]] <- assigned
     feat <- recompute_aoi_features(
       data, assigned, participant_col, trial_col, duration_col, time_col, pid,
-      aoi_levels = geometry$aoi_id
+      aoi_levels = geometry$aoi_id,
+      observation_level = observation_level
     )
     features[[pid]] <- feat
     if (!is.null(model_callback)) {
@@ -320,7 +340,8 @@ run_aoi_sensitivity_analysis <- function(
               provenance = list(source_data_hash = .aoi_hash(data), aoi_specification_hash = .aoi_hash(geometry),
                                 preprocessing_specification = preprocessing_specification, event_detector = event_detector,
                                 quality_rules = quality_rules, model_specification = model_specification,
-                                overlap_policy = overlap_policy, software = list(package = "eyeprocess")),
+                                overlap_policy = overlap_policy, observation_level = observation_level,
+                                software = list(package = "eyeprocess")),
               caveat = "Robustness proportions summarize the declared perturbation set; they are not probabilities that the substantive conclusion is true.")
 }
 
