@@ -90,7 +90,8 @@ create_gaze_quality_report(data, x = "gaze_x", y = "gaze_y",
   nominal_sampling_hz = NULL, bcea_probability = 0.68,
   max_gap_ms = NULL, thresholds = NULL, preprocessing_spec = NULL,
   event_detector = NULL, aoi_specification = NULL, quality_rules = NULL,
-  model_specification = NULL, software_version = NULL)
+  model_specification = NULL, software_version = NULL,
+  unit_column = NULL)
 
 compare_gaze_quality_sessions(data, session = "session_id", by = NULL, ...)
 
@@ -116,7 +117,7 @@ simulate_gaze_quality_calibration(seed = 20260918L,
   \item{output_unit}{Optional explicit output coordinate unit. No conversion occurs when omitted.}
   \item{geometry}{Named screen/viewing geometry used only for explicit coordinate conversion.}
   \item{time_unit}{Timestamp unit: seconds, milliseconds, microseconds, or nanoseconds.}
-  \item{unit_column}{Optional column used to reject mixed or conflicting coordinate units.}
+  \item{unit_column}{Optional column used to reject mixed or conflicting coordinate units. For the canonical report, an existing \code{coordinate_unit} column is detected automatically when this argument is omitted.}
   \item{dimension}{RMS-S2S dimension: two-dimensional, horizontal, or vertical.}
   \item{max_gap_ms}{Optional explicit maximum interval permitted for an adjacent-sample RMS pair.}
   \item{probability, bcea_probability}{Probability region used for BCEA.}
