@@ -620,7 +620,7 @@ run_detector_inference_multiverse <- function(x, model_spec, model_callback = NU
         fit <- lme4::lmer(formula, data = d, REML = isTRUE(model_spec$reml), na.action = stats::na.fail, control = lme4::lmerControl(optimizer = if (is.null(model_spec$optimizer)) "nloptwrap" else model_spec$optimizer))
         msg <- fit@optinfo$conv$lme4$messages; converged <- is.null(msg) && is.null(fit@optinfo$conv$opt) || identical(fit@optinfo$conv$opt, 0L)
         list(tidy = .edm_tidy_lmer(fit, converged), converged = converged)
-      } else { tab <- model_callback(d, model_spec); req <- c("term", "estimate", "SE", "CI_lower", "CI_upper", "p", "converged", "N"); if (!is.data.frame(tab) || length(setdiff(req, names(tab)))) .edm_stop("model_callback must return the documented tidy coefficient contract."); list(tidy = tab, converged = all(tab$converged %in% TRUE)) }
+      } else { tab <- model_callback(d, model_spec); req <- c("term", "estimate", "SE", "CI_lower", "CI_upper", "p", "converged", "N"); if (!is.data.frame(tab) || length(setdiff(req, names(tab)))) .edm_stop("model_callback must return the documented tidy coefficient contract."); if (anyDuplicated(as.character(tab$term))) .edm_stop("model_callback must return at most one row per coefficient term."); list(tidy = tab, converged = all(tab$converged %in% TRUE)) }
     }, error = identity), warning = function(w) { captured <<- c(captured, conditionMessage(w)); invokeRestart("muffleWarning") })
     if (inherits(fitres, "error")) { failures[[length(failures) + 1L]] <- data.frame(detector_id = spec$detector_id, stage = "model", error_type = class(fitres)[1L], error = conditionMessage(fitres), stringsAsFactors = FALSE); next }
     tab <- fitres$tidy; if (!isTRUE(fitres$converged)) captured <- c(captured, "Model did not converge; estimates are retained for diagnosis but excluded from stability summaries.")
@@ -634,15 +634,64 @@ run_detector_inference_multiverse <- function(x, model_spec, model_callback = NU
 #' Assess detector-level inference stability
 #' @export
 assess_detector_inference_stability <- function(x, term, substantive_threshold = NULL, direction = c("above", "below", "absolute")) {
-  if (!inherits(x, "eye_detector_inference_result")) .edm_stop("x must be an eye_detector_inference_result."); direction <- match.arg(direction)
-  d <- x$coefficients[as.character(x$coefficients$term) == as.character(term), , drop = FALSE]; all_n <- nrow(d)
-  if (!all_n) return(data.frame(term = term, specifications = 0L, converged_specifications = 0L, convergence_rate = NA_real_, median_estimate = NA_real_, estimate_min = NA_real_, estimate_max = NA_real_, estimate_range = NA_real_, same_sign_proportion = NA_real_, ci_overlap = NA, ci_overlap_lower = NA_real_, ci_overlap_upper = NA_real_, substantive_conclusion_stability = NA_real_))
+  if (!inherits(x, "eye_detector_inference_result")) .edm_stop("x must be an eye_detector_inference_result.")
+  direction <- match.arg(direction)
+
+  planned_n <- length(x$multiverse$specs)
+  d <- x$coefficients[as.character(x$coefficients$term) == as.character(term), , drop = FALSE]
+  term_ids <- if (nrow(d) && "detector_id" %in% names(d)) unique(as.character(d$detector_id[!is.na(d$detector_id)])) else character()
+  failure_ids <- if (nrow(x$failures) && "detector_id" %in% names(x$failures)) unique(as.character(x$failures$detector_id[!is.na(x$failures$detector_id)])) else character()
+
+  if (!nrow(d)) return(data.frame(
+    term = term,
+    specifications = planned_n,
+    term_available_specifications = length(term_ids),
+    model_failure_specifications = length(failure_ids),
+    converged_specifications = 0L,
+    convergence_rate = if (planned_n) 0 else NA_real_,
+    median_estimate = NA_real_, estimate_min = NA_real_, estimate_max = NA_real_, estimate_range = NA_real_,
+    same_sign_proportion = NA_real_, ci_overlap = NA, ci_overlap_lower = NA_real_, ci_overlap_upper = NA_real_,
+    substantive_conclusion_stability = NA_real_, stringsAsFactors = FALSE
+  ))
+
   d <- d[d$converged %in% TRUE & is.finite(as.numeric(d$estimate)), , drop = FALSE]
-  if (!nrow(d)) return(data.frame(term = term, specifications = all_n, converged_specifications = 0L, convergence_rate = 0, median_estimate = NA_real_, estimate_min = NA_real_, estimate_max = NA_real_, estimate_range = NA_real_, same_sign_proportion = NA_real_, ci_overlap = NA, ci_overlap_lower = NA_real_, ci_overlap_upper = NA_real_, substantive_conclusion_stability = NA_real_))
-  e <- as.numeric(d$estimate); nz <- e[e != 0]; same <- if (!length(nz)) NA_real_ else max(mean(nz > 0), mean(nz < 0)); ok <- is.finite(d$CI_lower) & is.finite(d$CI_upper)
-  lo <- if (any(ok)) max(d$CI_lower[ok]) else NA_real_; hi <- if (any(ok)) min(d$CI_upper[ok]) else NA_real_; cio <- if (any(ok)) lo <= hi else NA
-  subst <- NA_real_; if (!is.null(substantive_threshold)) { dec <- switch(direction, above = e >= substantive_threshold, below = e <= substantive_threshold, absolute = abs(e) >= abs(substantive_threshold)); subst <- max(mean(dec), mean(!dec)) }
-  data.frame(term = term, specifications = all_n, converged_specifications = nrow(d), convergence_rate = nrow(d) / all_n, median_estimate = stats::median(e), estimate_min = min(e), estimate_max = max(e), estimate_range = diff(range(e)), same_sign_proportion = same, ci_overlap = cio, ci_overlap_lower = lo, ci_overlap_upper = hi, substantive_conclusion_stability = subst, stringsAsFactors = FALSE)
+  converged_ids <- if (nrow(d) && "detector_id" %in% names(d)) unique(as.character(d$detector_id[!is.na(d$detector_id)])) else character()
+  converged_n <- length(converged_ids)
+  if (!nrow(d)) return(data.frame(
+    term = term,
+    specifications = planned_n,
+    term_available_specifications = length(term_ids),
+    model_failure_specifications = length(failure_ids),
+    converged_specifications = 0L,
+    convergence_rate = if (planned_n) 0 else NA_real_,
+    median_estimate = NA_real_, estimate_min = NA_real_, estimate_max = NA_real_, estimate_range = NA_real_,
+    same_sign_proportion = NA_real_, ci_overlap = NA, ci_overlap_lower = NA_real_, ci_overlap_upper = NA_real_,
+    substantive_conclusion_stability = NA_real_, stringsAsFactors = FALSE
+  ))
+
+  e <- as.numeric(d$estimate)
+  nz <- e[e != 0]
+  same <- if (!length(nz)) NA_real_ else max(mean(nz > 0), mean(nz < 0))
+  ok <- is.finite(d$CI_lower) & is.finite(d$CI_upper)
+  lo <- if (any(ok)) max(d$CI_lower[ok]) else NA_real_
+  hi <- if (any(ok)) min(d$CI_upper[ok]) else NA_real_
+  cio <- if (any(ok)) lo <= hi else NA
+  subst <- NA_real_
+  if (!is.null(substantive_threshold)) {
+    dec <- switch(direction, above = e >= substantive_threshold, below = e <= substantive_threshold, absolute = abs(e) >= abs(substantive_threshold))
+    subst <- max(mean(dec), mean(!dec))
+  }
+  data.frame(
+    term = term,
+    specifications = planned_n,
+    term_available_specifications = length(term_ids),
+    model_failure_specifications = length(failure_ids),
+    converged_specifications = converged_n,
+    convergence_rate = if (planned_n) converged_n / planned_n else NA_real_,
+    median_estimate = stats::median(e), estimate_min = min(e), estimate_max = max(e), estimate_range = diff(range(e)),
+    same_sign_proportion = same, ci_overlap = cio, ci_overlap_lower = lo, ci_overlap_upper = hi,
+    substantive_conclusion_stability = subst, stringsAsFactors = FALSE
+  )
 }
 
 .edm_feature_sensitivity <- function(features) {
@@ -712,7 +761,7 @@ plot_detector_multiverse <- function(x, inference = NULL, term = NULL, feature =
 report_detector_multiverse <- function(x, inference = NULL, term = NULL, substantive_threshold = NULL, path = NULL) {
   s <- summarise_detector_robustness(x, inference, term, substantive_threshold)
   lines <- c("# Event-detector multiverse report", "", "## Scope", "", "This report evaluates whether events, AOI features, and statistical conclusions change across the supplied defensible detector specifications. The specification set is not evidence that omitted detector choices are valid or irrelevant.", "", "## Detector specifications", "", .edm_md_table(x$multiverse$manifest), "", "## Event-level sensitivity", "", if (nrow(s$event_summary)) .edm_md_table(s$event_summary) else "No successful event catalogues were available.", "", "## AOI-feature sensitivity", "", if (nrow(s$feature_sensitivity)) .edm_md_table(s$feature_sensitivity) else "AOI features were not propagated or no cross-detector comparison was estimable.", "")
-  if (!is.null(inference) && !is.null(term)) lines <- c(lines, "## Inference stability", "", .edm_md_table(s$inference_stability), "", "Non-converged model branches are retained as diagnostic failures and are excluded from coefficient-stability calculations.", "")
+  if (!is.null(inference) && !is.null(term)) lines <- c(lines, "## Inference stability", "", .edm_md_table(s$inference_stability), "", "The convergence-rate denominator is every planned detector specification. Model failures, missing requested terms, and non-converged branches therefore remain visible rather than disappearing from robustness accounting.", "")
   if (nrow(x$failures)) lines <- c(lines, "## Branch failures", "", .edm_md_table(x$failures), "")
   lines <- c(lines, "## Reporting guidance", "", "Report detector family and parameters, sampling rate and coordinate units, AOI assignment rule, successful/failed specifications, event-level agreement, feature ranges, coefficient distributions with uncertainty, convergence failures, and any substantive threshold. Do not summarize robustness by counting p-values alone.", "", "## Limitations", "", "Detector sensitivity is conditional on the supplied preprocessing, AOIs, quality rules, model specification, and detector set. Agreement does not establish event validity, and disagreement does not identify which detector is correct without external evidence.")
   text <- paste(lines, collapse = "\n"); if (!is.null(path)) writeLines(text, path, useBytes = TRUE); text
