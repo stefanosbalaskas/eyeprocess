@@ -81,25 +81,135 @@ estimate_fixation_assignment_probability <- function(assignments, ids = NULL, in
 
 #' Recompute AOI features under one assignment
 #' @export
-recompute_aoi_features <- function(data, assignments, participant_col = NULL, trial_col = NULL,
-                                   duration_col = NULL, time_col = NULL, perturbation_id = NULL) {
-  if (!is.data.frame(data) || length(assignments) != nrow(data)) .aoi_stop("Assignments must contain one value per data row.")
-  d <- data; d$aoi_assignment <- assignments; group_cols <- unlist(Filter(Negate(is.null), list(participant_col, trial_col)), use.names = FALSE)
+recompute_aoi_features <- function(
+    data, assignments, participant_col = NULL, trial_col = NULL,
+    duration_col = NULL, time_col = NULL, perturbation_id = NULL,
+    aoi_levels = NULL) {
+  if (!is.data.frame(data) || length(assignments) != nrow(data)) {
+    .aoi_stop("Assignments must contain one value per data row.")
+  }
+  d <- data
+  d$aoi_assignment <- assignments
+  group_cols <- unlist(Filter(Negate(is.null), list(participant_col, trial_col)), use.names = FALSE)
   if (!all(group_cols %in% names(d))) .aoi_stop("One or more grouping columns are absent.")
-  if (!is.null(duration_col) && !duration_col %in% names(d)) .aoi_stop("`duration_col` is absent.")
-  if (!is.null(time_col) && !time_col %in% names(d)) .aoi_stop("`time_col` is absent.")
-  if (is.null(duration_col)) .aoi_warn("No `duration_col` supplied; dwell is returned as NA rather than inferred.")
-  d <- d[!is.na(d$aoi_assignment) & !d$aoi_assignment %in% c(.aoi_outside, .aoi_ambiguous), , drop = FALSE]
-  if (!nrow(d)) return(data.frame())
-  keys <- c(group_cols, "aoi_assignment"); parts <- split(d, .aoi_group_key(d, keys))
-  do.call(rbind, lapply(parts, function(z) {
+  if (!is.null(duration_col) && !duration_col %in% names(d)) .aoi_stop("duration_col is absent.")
+  if (!is.null(time_col) && !time_col %in% names(d)) .aoi_stop("time_col is absent.")
+  if (is.null(duration_col)) .aoi_warn("No duration_col supplied; dwell is returned as NA rather than inferred.")
+  if (is.null(time_col)) .aoi_warn("No time_col supplied; first_fixation is returned as NA rather than inferred from row order.")
+
+  if (is.null(aoi_levels)) {
+    valid_levels <- !is.na(d$aoi_assignment) &
+      !d$aoi_assignment %in% c(.aoi_outside, .aoi_ambiguous)
+    levels <- unique(as.character(d$aoi_assignment[valid_levels]))
+  } else {
+    levels <- as.character(aoi_levels)
+    if (any(is.na(levels) | !nzchar(levels)) || anyDuplicated(levels)) {
+      .aoi_stop("aoi_levels must contain unique non-empty AOI identifiers.")
+    }
+  }
+
+  empty_output <- function() {
+    out <- d[0, group_cols, drop = FALSE]
+    out$aoi <- character()
+    out$fixation_count <- integer()
+    out$dwell <- numeric()
+    out$first_fixation <- numeric()
+    out$inspected <- logical()
+    out$n_valid_observations <- integer()
+    out$n_missing_observations <- integer()
+    out$duration_complete <- logical()
+    out$time_complete <- logical()
+    out$perturbation_id <- character()
+    out
+  }
+  if (!length(levels)) return(empty_output())
+
+  groups <- if (length(group_cols)) {
+    split(d, .aoi_group_key(d, group_cols))
+  } else {
+    list(all = d)
+  }
+
+  rows <- list()
+  for (z in groups) {
     base <- if (length(group_cols)) z[1L, group_cols, drop = FALSE] else data.frame()
-    dwell <- if (is.null(duration_col)) NA_real_ else { v <- suppressWarnings(as.numeric(z[[duration_col]])); if (any(is.finite(v))) sum(v[is.finite(v)]) else NA_real_ }
-    first <- if (is.null(time_col)) min(as.numeric(rownames(z))) else { v <- suppressWarnings(as.numeric(z[[time_col]])); if (any(is.finite(v))) min(v[is.finite(v)]) else NA_real_ }
-    cbind(base, data.frame(aoi = z$aoi_assignment[1L], fixation_count = nrow(z), dwell = dwell, first_fixation = first,
-                           inspected = TRUE, perturbation_id = perturbation_id, stringsAsFactors = FALSE))
-  }))
+    valid_assignment <- !is.na(z$aoi_assignment)
+    n_valid <- sum(valid_assignment)
+    n_missing <- sum(!valid_assignment)
+
+    for (aoi in levels) {
+      selected <- z[
+        !is.na(z$aoi_assignment) & as.character(z$aoi_assignment) == aoi,
+        ,
+        drop = FALSE
+      ]
+      count <- nrow(selected)
+
+      if (n_valid == 0L) {
+        fixation_count <- NA_integer_
+        dwell <- NA_real_
+        first_fixation <- NA_real_
+        inspected <- NA
+        duration_complete <- NA
+        time_complete <- NA
+      } else {
+        fixation_count <- count
+        inspected <- count > 0L
+
+        if (is.null(duration_col)) {
+          dwell <- NA_real_
+          duration_complete <- NA
+        } else if (count == 0L) {
+          dwell <- 0
+          duration_complete <- TRUE
+        } else {
+          duration_values <- suppressWarnings(as.numeric(selected[[duration_col]]))
+          duration_complete <- all(is.finite(duration_values))
+          dwell <- if (duration_complete) sum(duration_values) else NA_real_
+        }
+
+        if (is.null(time_col)) {
+          first_fixation <- NA_real_
+          time_complete <- NA
+        } else if (count == 0L) {
+          first_fixation <- NA_real_
+          time_complete <- TRUE
+        } else {
+          time_values <- suppressWarnings(as.numeric(selected[[time_col]]))
+          time_complete <- all(is.finite(time_values))
+          first_fixation <- if (any(is.finite(time_values))) {
+            min(time_values[is.finite(time_values)])
+          } else {
+            NA_real_
+          }
+        }
+      }
+
+      rows[[length(rows) + 1L]] <- cbind(
+        base,
+        data.frame(
+          aoi = aoi,
+          fixation_count = fixation_count,
+          dwell = dwell,
+          first_fixation = first_fixation,
+          inspected = inspected,
+          n_valid_observations = n_valid,
+          n_missing_observations = n_missing,
+          duration_complete = duration_complete,
+          time_complete = time_complete,
+          perturbation_id = perturbation_id,
+          stringsAsFactors = FALSE
+        )
+      )
+    }
+  }
+
+  if (!length(rows)) return(empty_output())
+  out <- do.call(rbind, rows)
+  rownames(out) <- NULL
+  out
 }
+
 
 .aoi_validate_model_table <- function(x, pid) {
   if (!is.data.frame(x)) .aoi_stop("Model callback result must be a data frame.")
@@ -132,7 +242,11 @@ run_aoi_sensitivity_analysis <- function(
   specs <- setNames(grid$specifications, vapply(grid$specifications, function(x) x$perturbation_id, character(1)))
   for (pid in completed) {
     assigned <- .aoi_assign_points(data, grid_result$geometries[[pid]], x_col, y_col, overlap_policy); assignments[[pid]] <- assigned
-    feat <- recompute_aoi_features(data, assigned, participant_col, trial_col, duration_col, time_col, pid); features[[pid]] <- feat
+    feat <- recompute_aoi_features(
+      data, assigned, participant_col, trial_col, duration_col, time_col, pid,
+      aoi_levels = geometry$aoi_id
+    )
+    features[[pid]] <- feat
     if (!is.null(model_callback)) {
       assigned_data <- data; assigned_data$aoi_assignment <- assigned; assigned_data$perturbation_id <- pid
       fit <- tryCatch(.aoi_validate_model_table(model_callback(feat, assigned_data, specs[[pid]]), pid), error = identity)
