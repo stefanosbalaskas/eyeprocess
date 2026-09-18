@@ -171,6 +171,8 @@ test_that("long intervals and estimated dropped samples are distinct", {
 
 test_that("reporting and simulator arguments validate explicitly", {
   expect_error(report_gaze_quality(data.frame(accuracy_mean = 1), digits = -1), "digits")
+  expect_error(report_gaze_quality(data.frame(accuracy_mean = 1), digits = "bad"), "digits")
+  expect_error(simulate_gaze_quality_calibration(seed = 1.5), "seed")
   expect_error(simulate_gaze_quality_calibration(samples_per_target = 4.5), "integer")
   expect_error(simulate_gaze_quality_calibration(nominal_sampling_hz = 0), "finite positive")
 })
