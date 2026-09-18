@@ -1,0 +1,64 @@
+---
+title: "Trial-Level Multilevel Gaze Mediation Preparation"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Trial-Level Multilevel Gaze Mediation Preparation}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+```
+
+## Why keep trials?
+
+Participant aggregation mixes trial-to-trial deviations with stable between-person differences. The mediation preparation API preserves the trial as the observational unit and creates explicit `X_within`, `X_between`, `M_within`, and `M_between` columns.
+
+## Preparation
+
+```{r, eval=FALSE}
+prepared <- prepare_multilevel_mediation_data(
+  trials,
+  x_col = "ai_correct",
+  mediator_col = "source_dwell",
+  outcome_col = "correct_override",
+  quality_col = "valid_fraction",
+  minimum_quality = 0.80,
+  quality_action = "flag"
+)
+```
+
+Missing gaze remains missing. A genuine observed zero is retained and separately identified. Poor-quality trials are flagged rather than silently discarded.
+
+## Serial mediators or moderators
+
+```{r, eval=FALSE}
+prepared <- add_multilevel_mediation_component(
+  prepared,
+  value_col = "trust",
+  semantic = "mediator2",
+  within_col = "M2_within",
+  between_col = "M2_between"
+)
+```
+
+The statistical backend should consume these prepared components rather than reimplement the decomposition.
+
+
+## Cross-language provenance
+
+R records excluded/input row positions using R's one-based convention; `eyeprocesspy` records Python's zero-based convention. The convention is stored in provenance so cross-language comparisons do not silently shift row identities.
+
+
+## Analysis-readiness checklist
+
+Before fitting a mediation model, verify that participant/trial keys are unique, the requested within/between paths have observed variation, missing mediator values remain distinct from genuine zeros, poor-quality trials are flagged explicitly, and the gaze/process mediator precedes the outcome in the declared mechanism.
+
+A balanced within-subject manipulation can make `X_between` constant. That is a design property; it is not a reason to force a between-person path into the model.
+
+Useful audits include `validate_multilevel_mediation_data()`, `identify_mediation_levels()`, `summarise_within_between_variance()`, `audit_mediation_missingness()`, and `check_mediation_trial_counts()`.
+
+## Interpretation boundary
+
+Preparation preserves the repeated-measures structure but does not establish causal mediation. The downstream model must still justify temporal ordering, likelihoods, random effects, priors, missingness policy, diagnostics, and substantive interpretation. Gaze metrics remain operational process measurements rather than automatic evidence for attention, trust, comprehension, cognitive load, or another latent construct.
