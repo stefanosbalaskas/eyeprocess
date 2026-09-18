@@ -247,8 +247,9 @@ recompute_aoi_features <- function(
   numeric_cols <- c("estimate", "SE", "CI_low", "CI_high", "p_value", "N")
   for (nm in numeric_cols) {
     original <- x[[nm]]
-    converted <- suppressWarnings(as.numeric(original))
-    bad_conversion <- !is.na(original) & is.na(converted)
+    numeric_source <- if (is.factor(original)) as.character(original) else original
+    converted <- suppressWarnings(as.numeric(numeric_source))
+    bad_conversion <- !is.na(numeric_source) & is.na(converted)
     if (any(bad_conversion)) .aoi_stop("Model callback ", nm, " must be numeric or missing.")
     x[[nm]] <- converted
   }
