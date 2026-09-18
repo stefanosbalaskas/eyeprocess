@@ -154,8 +154,10 @@ and viewing distance, or explicit degrees-per-pixel values.
 
 A model callback must explicitly choose and fit the desired estimator and
 return at least term, estimate, SE, CI_low, CI_high, p_value,
-model_converged, and N. Callback errors and non-converged fits remain visible
-in the audit trail.
+model_converged, and N. Convergence must be explicit; converged rows require
+finite estimates, standard errors, confidence limits, and positive integer N.
+Callback errors and non-converged fits remain visible in the audit trail, and
+inference summaries retain the model-N range across converged perturbations.
 
 Same-sign proportions and assignment frequencies are descriptive sensitivity
 summaries conditional on the declared perturbation set. They must not be
