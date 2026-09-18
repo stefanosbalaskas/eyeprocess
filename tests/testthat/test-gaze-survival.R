@@ -159,13 +159,24 @@ test_that("KM, Cox, clustered Cox, and AFT models run on deterministic data", {
   expect_warning(cmp <- compare_gaze_survival_models(cox, weib, logn), "not directly comparable")
   expect_equal(nrow(cmp), 3L)
   expect_true(nrow(tidy_gaze_survival_model(cox)) > 0)
-  expect_true(nrow(check_gaze_proportional_hazards(cox)) > 0)
+  ph <- check_gaze_proportional_hazards(cox)
+  expect_true(nrow(ph) > 0)
+  expect_true(all(c("alpha", "ph_flag") %in% names(ph)))
+  expect_true(all(ph$alpha == .05))
   report <- report_gaze_survival_model(clustered)
   expect_equal(report$N_participants, 40L)
   expect_equal(report$N_review_required, 0L)
   expect_true(length(report$event_type) >= 1L)
   expect_true(length(report$target_aoi) >= 1L)
   expect_true(length(report$time_origin) >= 1L)
+})
+
+test_that("PH diagnostic alpha is validated", {
+  skip_if_not_installed("survival")
+  d <- simulate_gaze_survival_example(n_participants = 20, trials_per_participant = 3)
+  cox <- fit_gaze_cox_model(d, "condition")
+  expect_error(check_gaze_proportional_hazards(cox, alpha = 0), "strictly between")
+  expect_error(check_gaze_proportional_hazards(cox, alpha = 1), "strictly between")
 })
 
 test_that("estimators must be selected explicitly", {
