@@ -126,10 +126,21 @@
 }
 
 .aoi_shape <- function(row) {
-  shape <- if ("shape_type" %in% names(row) && length(row[["shape_type"]]) && !is.na(row[["shape_type"]])) {
+  has_shape <- "shape_type" %in% names(row) &&
+    length(row[["shape_type"]]) &&
+    !is.na(row[["shape_type"]]) &&
+    nzchar(as.character(row[["shape_type"]]))
+  polygon_value <- if ("polygon" %in% names(row)) row[["polygon"]] else NULL
+  has_polygon <- !is.null(polygon_value) &&
+    !(is.list(polygon_value) && length(polygon_value) == 1L && is.null(polygon_value[[1L]]))
+  shape <- if (has_shape) {
     tolower(as.character(row[["shape_type"]]))
-  } else if ("polygon" %in% names(row) && !is.null(row[["polygon"]])) "polygon" else "rectangle"
-  if (!shape %in% c("rectangle", "polygon")) .aoi_stop("AOI `shape_type` must be 'rectangle' or 'polygon'.")
+  } else if (has_polygon) {
+    "polygon"
+  } else {
+    "rectangle"
+  }
+  if (!shape %in% c("rectangle", "polygon")) .aoi_stop("AOI shape_type must be rectangle or polygon.")
   shape
 }
 
