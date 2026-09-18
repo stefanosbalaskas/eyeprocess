@@ -709,3 +709,25 @@ simulate_detector_multiverse_data <- function(n_participants = 12L, sampling_rat
   spaces <- new_coordinate_space("deg_display", space_type = "custom", origin = "center", x_unit = "degrees", y_unit = "degrees", width = 12, height = 8)
   x <- new_eye_dataset(recordings = do.call(.bind_rows_base, recordings), gaze_samples = do.call(.bind_rows_base, gaze), intervals = do.call(.bind_rows_base, intervals), coordinate_spaces = spaces, validate = FALSE)
   x <- register_aois(x,
+    new_aoi(
+      "disclosure", "Disclosure", "stim_01", "rectangle",
+      x = 4, y = 1, width = 4, height = 3,
+      coordinate_space_id = "deg_display"
+    ),
+    new_aoi(
+      "main_content", "Main content", "stim_01", "rectangle",
+      x = .5, y = 4.5, width = 3.5, height = 2.5,
+      coordinate_space_id = "deg_display"
+    )
+  )
+  add_provenance(
+    x,
+    "simulate_detector_multiverse_data",
+    "dataset",
+    paste0(
+      "n_participants=", n_participants,
+      ";sampling_rate=", sampling_rate,
+      ";seed=", seed
+    )
+  )
+}
