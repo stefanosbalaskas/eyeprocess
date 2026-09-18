@@ -194,6 +194,38 @@ test_that("Cox estimates match direct survival backend calls", {
   expect_equal(unname(stats::coef(ours$fit)), unname(stats::coef(direct)), tolerance = 1e-10)
 })
 
+test_that("AFT estimates match direct survival backend calls", {
+  skip_if_not_installed("survival")
+  d <- simulate_gaze_survival_example(
+    seed = 19,
+    n_participants = 50,
+    trials_per_participant = 3
+  )
+  for (distribution in c("weibull", "lognormal")) {
+    ours <- fit_gaze_aft_model(
+      d,
+      "condition",
+      distribution = distribution
+    )
+    direct <- survival::survreg(
+      survival::Surv(analysis_time, event_observed) ~ condition,
+      data = d,
+      dist = distribution
+    )
+    expect_equal(
+      unname(stats::coef(ours$fit)),
+      unname(stats::coef(direct)),
+      tolerance = 1e-10
+    )
+    expect_equal(ours$fit$scale, direct$scale, tolerance = 1e-10)
+    expect_equal(
+      as.numeric(stats::logLik(ours$fit)),
+      as.numeric(stats::logLik(direct)),
+      tolerance = 1e-10
+    )
+  }
+})
+
 test_that("AFT refuses zero-time events", {
   skip_if_not_installed("survival")
   d <- simulate_gaze_survival_example(n_participants = 8)
