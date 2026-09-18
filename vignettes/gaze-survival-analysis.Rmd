@@ -1,0 +1,237 @@
+---
+title: "Survival Analysis for Gaze Latency"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Survival Analysis for Gaze Latency}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>", fig.width = 7, fig.height = 4.5)
+library(eyeprocess)
+```
+
+## Why TTFF is a censored-data problem
+
+Time to first fixation, first AOI entry, evidence inspection, revisit, transition latency, and substantively defined disengagement are time-to-event outcomes. A valid trial that ends before the target event occurs still contributes information up to the end of its risk window. `eyeprocess` therefore retains that trial as a **right-censored observation** rather than dropping it or assigning a latency of zero.
+
+A second distinction is essential: **target not observed during a complete usable trial** is not the same as **target status unknown because gaze became unusable or the observation window is incomplete**. The latter remains a review row with an unknown event indicator; it is not silently counted as ordinary censoring.
+
+The canonical table is one row per participant-trial and contains participant, trial, stimulus, condition, target AOI, time origin, event/censor time, analysis time, event indicator, event definition, valid-sample count, valid-data fraction, and trial duration. Additional governance fields retain censoring reason, join identity, event detector, AOI specification, quality rule, preprocessing specification, source, and software version.
+
+## When to use this method
+
+Use survival analysis when the scientific outcome is a genuine event latency and some valid trials end before the event is observed. Typical targets include first disclosure fixation, first source/evidence inspection, first revisit, or first transition into a target AOI.
+
+Do **not** use this workflow when event status cannot be determined, risk windows are unknown, competing event types require a competing-risks estimand, or the scientific question concerns the complete continuous gaze trajectory rather than an event time. Informative trial termination requires additional sensitivity analysis; ordinary right censoring is not automatically justified by the fact that a recording ended.
+
+## Worked example: disclosure inspection
+
+The synthetic generator deliberately returns trial windows and event rows first. Censoring is therefore constructed visibly rather than hidden in a prebuilt survival table.
+
+```{r raw-inputs}
+raw <- simulate_gaze_survival_inputs(
+  "disclosure",
+  seed = 20260918,
+  n_participants = 36,
+  trials_per_participant = 3
+)
+head(raw$trials)
+head(raw$events)
+```
+
+Canonical event tables can be joined by `participant_id + trial_id` when participant identity is present, or by `recording_id + trial_id` when event rows carry recording identity instead. Trial-only matching is accepted only when trial IDs are globally unique. Ambiguous identity is an error.
+
+```{r prepare}
+surv_data <- prepare_gaze_survival_data(
+  raw$trials,
+  raw$events,
+  target_aoi = "disclosure",
+  event_type = "first_fixation",
+  condition_col = "condition_id",
+  observation_end_reason_col = "observation_end_reason",
+  min_valid_fraction = .90,
+  time_origin = "trial_start",
+  source_data = "synthetic_disclosure_trial_event_inputs",
+  preprocessing_specification = "synthetic_truth_no_filtering",
+  event_detector = "synthetic_truth",
+  aoi_specification = "fixed synthetic disclosure AOI",
+  quality_rules = list(minimum_fixation_ms = 80, valid_fraction_min = .90)
+)
+
+summarise_gaze_censoring(surv_data, by = "condition")
+```
+
+A non-default time origin must be explicit. For example, latency from stimulus onset should be constructed with `time_origin = "stimulus_onset"` and `time_origin_col = "stimulus_onset"`; the censoring window is then measured from that same origin.
+
+## Worked variant: evidence verification
+
+The second synthetic scenario models **time to first entry into a source/evidence AOI** under repeated `standard` and `evidence_prompt` trials. Some complete usable trials never inspect the evidence region, so those rows remain right-censored.
+
+```{r verification-example}
+verify_raw <- simulate_gaze_survival_inputs(
+  "verification",
+  seed = 20260918,
+  n_participants = 36,
+  trials_per_participant = 3
+)
+
+verification <- prepare_gaze_survival_data(
+  verify_raw$trials,
+  verify_raw$events,
+  target_aoi = "source_evidence",
+  event_type = "first_aoi_entry",
+  condition_col = "condition_id",
+  min_valid_fraction = .90,
+  time_origin = "trial_start",
+  event_detector = "synthetic_truth",
+  aoi_specification = "fixed synthetic source/evidence AOI"
+)
+
+summarise_gaze_censoring(verification, by = "condition")
+```
+
+This analysis retains the observed risk time of never-inspected trials rather than reducing the question to a complete-case latency comparison.
+
+## Event semantics
+
+`event_type` supports first fixation, first AOI entry, first evidence inspection, first revisit, first transition into the target, and disengagement. Revisit/transition/disengagement are **visit-level** concepts: consecutive identical AOI labels are collapsed before those event times are identified, so two consecutive fixations within one visit do not create a false revisit.
+
+### Censoring decision guide
+
+| Trial state | `event_observed` | `analysis_time` | Model eligible? | Interpretation |
+|:--|--:|--:|:--|:--|
+| Target event occurs inside a usable window | 1 | Event latency | Yes | Observed event |
+| Target never occurs before a complete usable window ends | 0 | Censoring time | Yes | Right censored |
+| Window incomplete or event status unknowable | NA | NA | No | Review required |
+| Gaze quality fails the declared rule | NA | NA | No | Review/exclusion branch |
+| Event occurs after the censoring limit | Invalid | Invalid | No | Data-contract error |
+
+The last three states are never silently recoded as ordinary censoring.
+
+## Kaplan–Meier description
+
+```{r km-plot, fig.cap="Kaplan–Meier curves for time to first disclosure fixation in the synthetic example."}
+plot_gaze_survival_curve(surv_data, group = "condition")
+```
+
+The survival curve is the probability that the target event has **not yet** occurred. `plot_gaze_cumulative_incidence()` displays `1 - KM` for this single-event setting. It should not be described as a competing-risks cumulative incidence function when multiple event types compete.
+
+## Cox versus AFT models
+
+Estimator choice is explicit. `fit_gaze_mixed_cox_model()` requires `structure = "cluster_robust"` or `"frailty"`; `fit_gaze_aft_model()` requires `distribution = "weibull"` or `"lognormal"`. Both arguments are required so the package never chooses an estimator silently.
+
+```{r models}
+cox_clustered <- fit_gaze_mixed_cox_model(
+  surv_data,
+  "condition",
+  participant_col = "participant_id",
+  structure = "cluster_robust"
+)
+weibull <- fit_gaze_aft_model(surv_data, "condition", distribution = "weibull")
+lognormal <- fit_gaze_aft_model(surv_data, "condition", distribution = "lognormal")
+
+tidy_gaze_survival_model(cox_clustered)
+tidy_gaze_survival_model(weibull)
+```
+
+A Cox coefficient is reported as a **hazard ratio**: a relative instantaneous event rate among trials still at risk, not a ratio of mean TTFF. An AFT coefficient is reported as a **time ratio** and describes multiplicative event time under the specified distribution. Information criteria are not treated as rank-comparable across ordinary Cox partial likelihood, `coxme` penalized frailty likelihood, and AFT full likelihood.
+
+### Cross-language backend contract
+
+R delegates marginal Cox to `survival::coxph`, Gaussian participant frailty to `coxme::coxme`, and Weibull/log-normal AFT to `survival::survreg`. Python delegates Cox to `statsmodels.PHReg` and parametric AFT to `lifelines`. The two packages align the censoring contract, estimator choice, estimand interpretation, provenance, and semantic output fields. Exact coefficients are not required to be numerically identical when backend parameterizations or optimizers differ; each language is regression-tested against its own specialist backend.
+
+`compare_gaze_survival_models()` never declares a preferred estimator. Cox partial-likelihood, mixed-Cox penalized partial-likelihood, and AFT full-likelihood information criteria are flagged as non-comparable across those likelihood bases.
+
+```{r compare, warning=FALSE}
+compare_gaze_survival_models(cox_clustered, weibull, lognormal)
+```
+
+## Repeated participants: clustered versus frailty Cox
+
+`structure = "cluster_robust"` fits a marginal Cox model with participant-clustered sandwich uncertainty through `survival::coxph`. `structure = "frailty"` is a **different estimator** and delegates to the specialist `coxme::coxme` mixed-effects Cox engine with a Gaussian participant random intercept. The package never silently substitutes one for the other.
+
+```{r frailty, eval=requireNamespace("coxme", quietly=TRUE)}
+frailty <- fit_gaze_mixed_cox_model(
+  surv_data,
+  "condition",
+  participant_col = "participant_id",
+  structure = "frailty"
+)
+tidy_gaze_survival_model(frailty)
+```
+
+## Diagnostics
+
+```{r diagnostics}
+check_gaze_proportional_hazards(cox_clustered)
+```
+
+`check_gaze_proportional_hazards()` uses `survival::cox.zph()` for `coxph` models. The helper does not pretend that this is a frailty-specific diagnostic for `coxme`; for a frailty analysis, report a corresponding marginal Cox PH diagnostic separately and make that distinction explicit.
+
+AFT models require strictly positive analysis times. A target already fixated at time zero should trigger review of the time origin and sampling-resolution rule rather than an automatic numeric offset.
+
+## Sensitivity analysis
+
+Rebuild the survival table across defensible AOI geometries, event detectors, trial origins, fixation-duration thresholds, and quality rules. Then fit explicitly named model families across those branches.
+
+```{r sensitivity}
+expanded <- surv_data
+expanded$aoi_specification <- "synthetic expanded disclosure AOI"
+
+sensitivity <- compare_gaze_survival_specifications(
+  list(primary = surv_data, expanded_aoi_demo = expanded),
+  "condition",
+  model_families = c("cox_cluster_robust", "aft_weibull")
+)
+head(sensitivity)
+```
+
+The relabelled branch above demonstrates the output contract only. A real AOI sensitivity analysis should reconstruct the event table from the alternative AOI geometry rather than merely change its metadata.
+
+## Failure case: unusable gaze is not censoring
+
+```{r failure-case}
+bad_trials <- raw$trials
+bad_trials$valid_data_fraction[1] <- .20
+reviewed <- suppressWarnings(prepare_gaze_survival_data(
+  bad_trials,
+  raw$events,
+  target_aoi = "disclosure",
+  min_valid_fraction = .90
+))
+reviewed[1, c("event_observed", "censor_reason", "review_required")]
+```
+
+That row must be resolved or handled in an explicit sensitivity/exclusion branch before model fitting. The model helpers refuse unresolved review rows rather than silently dropping them.
+
+## Reporting guidance
+
+At minimum report participants, trials, observed events, censored trials and percentage, review-required rows, target event, target AOI, time origin, observation-window definition, event detector, fixation-duration rule, quality rule, model family, hazard ratio or time ratio with 95% CI, repeated-participant structure, diagnostics, and sensitivity analyses.
+
+```{r report}
+report <- report_gaze_survival_model(cox_clustered)
+report[c(
+  "N_participants", "N_trials", "N_observed_events",
+  "N_censored_trials", "N_review_required", "censoring_percentage",
+  "event_type", "target_aoi", "time_origin", "model_family",
+  "random_or_frailty_structure", "diagnostic_result"
+)]
+```
+
+A concise manuscript formulation is:
+
+> Gaze latency was analysed as a right-censored time-to-event outcome. Trials in which the target AOI was not inspected before the valid observation window ended were retained as censored observations; unresolved gaze-quality trials were not reclassified as censoring. We fitted a Cox proportional-hazards model with participant-clustered uncertainty and reported hazard ratios with 95% confidence intervals. Proportional-hazards diagnostics and pre-specified AOI/event-definition sensitivity analyses were examined, with a Weibull AFT model reported as an alternative time-ratio estimand.
+
+Adapt the wording to the actual detector, AOI, time origin, quality threshold, and repeated-effects structure.
+
+## API map
+
+Preparation and validation: `prepare_gaze_survival_data()`, `validate_gaze_survival_data()`, `summarise_gaze_censoring()`.
+
+Estimation and models: `estimate_gaze_survival()`, `fit_gaze_cox_model()`, `fit_gaze_mixed_cox_model()`, `fit_gaze_aft_model()`, `predict_gaze_survival()`, `estimate_gaze_latency_quantiles()`.
+
+Diagnostics and sensitivity: `check_gaze_proportional_hazards()`, `compare_gaze_survival_models()`, `compare_gaze_survival_specifications()`.
+
+Plots and reporting: `plot_gaze_survival_curve()`, `plot_gaze_cumulative_incidence()`, `plot_gaze_hazard()`, `plot_gaze_cox_diagnostics()`, `tidy_gaze_survival_model()`, `report_gaze_survival_model()`.
