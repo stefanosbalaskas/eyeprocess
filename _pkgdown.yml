@@ -11,47 +11,6 @@ navbar:
     right:
     - search
     - github
-reference:
-- title: Trial-level multilevel mediation
-  desc: Prepare repeated-measures mediation data without collapsing gaze to participant means.
-  contents:
-  - prepare_multilevel_mediation_data
-  - validate_multilevel_mediation_data
-  - identify_mediation_levels
-  - decompose_within_between
-  - center_within_participant
-  - summarise_within_between_variance
-  - audit_mediation_missingness
-  - check_mediation_trial_counts
-  - add_multilevel_mediation_component
-
-- title: Standardized spatial data quality (0.11 development)
-  desc: Vendor-neutral quality metrics with explicit units, review-only thresholds, reproducible synthetic validation, and manuscript-ready reporting.
-  contents:
-  - validate_gaze_quality_inputs
-  - compute_gaze_accuracy
-  - compute_gaze_precision
-  - compute_rms_s2s
-  - compute_gaze_sd_precision
-  - compute_bcea
-  - estimate_sampling_interval
-  - estimate_sampling_jitter
-  - estimate_effective_sampling_rate
-  - compute_valid_sample_fraction
-  - compute_gaze_data_loss
-  - summarise_spatial_quality
-  - summarise_sampling_quality
-  - create_gaze_quality_report
-  - compare_gaze_quality_sessions
-  - compare_gaze_quality_conditions
-  - plot_gaze_accuracy
-  - plot_gaze_precision
-  - plot_bcea
-  - plot_sampling_intervals
-  - plot_gaze_quality_dashboard
-  - report_gaze_quality
-  - simulate_gaze_quality_calibration
-
 articles:
 - title: Trial-level multilevel mediation
   contents:
@@ -121,6 +80,7 @@ articles:
   - api-storage-adapters
   - benchmark-reproduction
   - probabilistic-aoi-compositions
+  - aoi-perturbation-uncertainty
   - uncertainty-calibration
   - reliability-device-transportability
   - pupil-registration-missingness
@@ -186,6 +146,44 @@ articles:
   - m4-negative-controls-state-count-0-11
   - m4-recovery-validation-0-11
 reference:
+- title: Trial-level multilevel mediation
+  desc: Prepare repeated-measures mediation data without collapsing gaze to participant means.
+  contents:
+  - prepare_multilevel_mediation_data
+  - validate_multilevel_mediation_data
+  - identify_mediation_levels
+  - decompose_within_between
+  - center_within_participant
+  - summarise_within_between_variance
+  - audit_mediation_missingness
+  - check_mediation_trial_counts
+  - add_multilevel_mediation_component
+- title: Standardized spatial data quality (0.11 development)
+  desc: Vendor-neutral quality metrics with explicit units, review-only thresholds, reproducible synthetic validation, and manuscript-ready reporting.
+  contents:
+  - validate_gaze_quality_inputs
+  - compute_gaze_accuracy
+  - compute_gaze_precision
+  - compute_rms_s2s
+  - compute_gaze_sd_precision
+  - compute_bcea
+  - estimate_sampling_interval
+  - estimate_sampling_jitter
+  - estimate_effective_sampling_rate
+  - compute_valid_sample_fraction
+  - compute_gaze_data_loss
+  - summarise_spatial_quality
+  - summarise_sampling_quality
+  - create_gaze_quality_report
+  - compare_gaze_quality_sessions
+  - compare_gaze_quality_conditions
+  - plot_gaze_accuracy
+  - plot_gaze_precision
+  - plot_bcea
+  - plot_sampling_intervals
+  - plot_gaze_quality_dashboard
+  - report_gaze_quality
+  - simulate_gaze_quality_calibration
 - title: Measurement accountability diagnostics (0.11)
   contents:
   - pupil_latency_sensitivity
@@ -355,6 +353,34 @@ reference:
   - freeze_eyeprocess_irt_reference
   - run_eyeprocess_irt_recovery
   - simulate_eyeprocess_irt_binary
+- title: AOI perturbation and uncertainty
+  desc: |
+    Geometry perturbation, pixel/degree conversion, assignment stability,
+    feature recomputation, model propagation, reporting, and robustness plots.
+  contents:
+  - validate_aoi_geometry
+  - convert_aoi_margin_to_degrees
+  - convert_aoi_margin_to_pixels
+  - aoi_perturbation_spec
+  - dilate_aoi
+  - erode_aoi
+  - translate_aoi
+  - jitter_aoi
+  - perturb_aoi_geometry
+  - create_aoi_perturbation_grid
+  - apply_aoi_perturbation_grid
+  - compare_aoi_assignments
+  - estimate_aoi_assignment_stability
+  - estimate_fixation_assignment_probability
+  - recompute_aoi_features
+  - run_aoi_sensitivity_analysis
+  - assess_aoi_inference_stability
+  - summarise_aoi_sensitivity
+  - report_aoi_sensitivity
+  - plot_aoi_perturbations
+  - plot_aoi_assignment_stability
+  - plot_aoi_coefficient_stability
+  - plot_aoi_robustness_surface
 - title: Validation, sensitivity, and negative controls (0.9)
   contents:
   - audit_temporal_leakage
