@@ -562,7 +562,7 @@ report_gaze_quality <- function(report, digits = 3L) {
   metrics <- intersect(c("accuracy_mean", "precision_rms_s2s", "precision_sd", "bcea", "effective_sampling_hz", "valid_sample_fraction", "data_loss_fraction"), names(d))
   parts <- vapply(metrics, function(metric) {
     v <- .ep_sq_num(d[[metric]]); v <- v[is.finite(v)]; if (!length(v)) return(NA_character_)
-    paste0(metric, ": mean ", format(round(mean(v), digits), nsmall = digits), ", range ", format(round(min(v), digits), nsmall = digits), "–", format(round(max(v), digits), nsmall = digits))
+    paste0(metric, ": mean ", format(round(mean(v), digits), nsmall = digits), ", range ", format(round(min(v), digits), nsmall = digits), "-", format(round(max(v), digits), nsmall = digits))
   }, character(1)); parts <- parts[!is.na(parts)]
   n_review <- if ("review_required" %in% names(d)) sum(as.logical(d$review_required), na.rm = TRUE) else 0L
   paste0(paste(parts, collapse = "; "), ". Review required for ", n_review, "/", nrow(d), " analysis units. Thresholds, when supplied, are study-specific review rules and never trigger automatic exclusion.")
