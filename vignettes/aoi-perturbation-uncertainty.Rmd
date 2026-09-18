@@ -235,6 +235,52 @@ Choose perturbation magnitudes from acquisition precision, display geometry, sti
 
 > We reran AOI assignment, feature extraction, and the prespecified model across the nominal geometry and defensible perturbations. We report reassignment patterns, coefficient ranges and intervals, convergence, and model-N variation. Failed branches remain in the audit trail. Stability frequencies describe robustness to the declared perturbation set and are not probabilities that the scientific conclusion is true.
 
+## Planning the sensitivity analysis before results
+
+Record the AOI sensitivity plan before examining branch-specific model results. At minimum, state:
+
+1. the nominal AOI source and geometry representation;
+2. whether rows are samples or fixations;
+3. the perturbation operations and exact values;
+4. pixel or degree units and the display/viewing geometry when degrees are used;
+5. overlap and screen-boundary policies;
+6. the fixed statistical model specification;
+7. how failed geometry, callback errors, and non-convergence will be retained and reported.
+
+Do not widen, shrink, or selectively edit the perturbation grid because a particular branch changes statistical significance.
+
+## Troubleshooting AOI perturbation branches
+
+Diagnose the earliest failing layer first: **geometry -> assignment -> feature recomputation -> model callback**.
+
+| Symptom | Inspect | Interpretation |
+|---|---|---|
+| Perturbation status is `failed` | `result$grid_result$audit` | Geometry could not be evaluated; keep the branch in the planned denominator |
+| Many `__ambiguous__` assignments | perturbed AOIs and reassignment matrix | AOIs overlap under that perturbation; do not silently choose one |
+| Many `__outside__` assignments | units, coordinate transform, AOI location | Layout/assignment mismatch, not automatically zero exposure |
+| Count is zero | valid-observation denominator | Valid observations existed but none entered that AOI |
+| Count is missing | missing-coordinate denominator | No valid assignment opportunity existed; do not coerce to zero |
+| Callback failure | `result$failures` | Model branch is non-evaluable, not a valid null result |
+| `model_converged = FALSE` | model table and estimator diagnostics | Retain the row but exclude it from converged-effect summaries |
+| Model `N` changes | inference stability table | Case loss varies across branches and must be reported |
+
+A compact audit pattern is:
+
+```r
+result$grid_result$audit[, c("perturbation_id", "status", "message")]
+result$failures
+result$models[, c("perturbation_id", "term", "model_converged", "N")]
+assess_aoi_inference_stability(result, term = "condition")
+```
+
+The package does not reinterpret a geometry failure as a model result, a callback exception as non-significance, or missing assignment opportunity as a structural zero.
+
+### Reporting problematic branches
+
+> Of the planned AOI perturbations, all non-evaluable geometry and model branches were retained in the audit trail. Overlap ambiguity remained explicit, missing assignment opportunities were not converted to zero, and non-converged model rows were excluded from converged-effect summaries. Model-N variation was reported alongside coefficient and assignment stability.
+
+This is a reporting template, not an empirical result.
+
 ## Reporting AOI Robustness
 
 ```{r report}
