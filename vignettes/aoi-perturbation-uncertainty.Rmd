@@ -71,7 +71,9 @@ for (participant in 1:8) {
 fixations <- do.call(rbind, rows)
 ```
 
-## AOI Perturbation Sensitivity Analysis\n\n### Pixels versus Degrees of Visual Angle
+## AOI Perturbation Sensitivity Analysis
+
+### Pixels versus Degrees of Visual Angle
 
 Degree-based perturbations require explicit display geometry and viewing
 distance. The workflow never silently converts units.
@@ -99,8 +101,7 @@ one horizontal translation, and one vertical translation.
 
 ## Propagating AOI Uncertainty Into Statistical Models
 
-The perturbation framework does not choose an estimator. Here the example
-uses the same base-R linear model for disclosure dwell in every branch.
+The perturbation framework does not choose an estimator. The model callback must explicitly report its estimator output, convergence flag, and model `N`; converged rows require finite estimates, standard errors, confidence limits, and a positive integer-valued `N`. Here the example uses the same base-R linear model for disclosure dwell in every branch.
 
 ```{r callback}
 model_callback <- function(features, assigned, spec) {
@@ -160,7 +161,13 @@ summary$assignment_stability
 summary$inference_stability
 ```
 
-## Interpreting AOI Assignment Stability\n\nThe assignment table distinguishes unchanged observations, newly assigned\nobservations, lost assignments, AOI-to-AOI reassignment, missing comparisons,\nand explicit overlap ambiguity. Missing coordinates are not converted to\noutside-AOI observations.\n
+## Interpreting AOI Assignment Stability
+
+The assignment table distinguishes unchanged observations, newly assigned
+observations, lost assignments, AOI-to-AOI reassignment, missing comparisons,
+and explicit overlap ambiguity. Missing coordinates are not converted to
+outside-AOI observations.
+
 
 
 ### Fixation and sample input
@@ -169,7 +176,7 @@ The same geometry and assignment engine supports fixation-centroid and sample-le
 
 ### Zero is not missing
 
-Feature recomputation preserves the complete declared AOI universe within each observed participant/trial group. A zero fixation count means valid observations were available but none were assigned to that AOI. If a group has no valid AOI assignment opportunity, fixation count and inspection remain missing rather than being coerced to zero. Missing assigned durations make dwell missing, and first-fixation timing is never inferred from row order.
+Feature recomputation preserves the complete declared AOI universe within each observed participant/trial group. A zero `observation_count` means valid observations were available but none were assigned to that AOI; `fixation_count` or `sample_count` is populated only at the matching observation level. If a group has no valid AOI assignment opportunity, counts and inspection remain missing rather than being coerced to zero. Missing assigned durations make dwell missing, and first-observation timing is never inferred from row order.
 
 ## Visual diagnostics
 
@@ -210,17 +217,31 @@ Model callbacks follow the same rule: an error is written to the failure table,
 and a row with `model_converged = FALSE` remains visible rather than being
 treated as a valid estimate.
 
+## AOI Robustness Decision Clinic
+
+Interpret assignment and model stability together rather than treating one metric as a verdict.
+
+| Pattern | Interpretation | Recommended response |
+|---|---|---|
+| High assignment stability + stable coefficient | Stable within the declared envelope | Report the envelope and stability summaries; do not call this proof that the nominal AOI is correct |
+| Low assignment stability + stable coefficient | Mapping changes but the model-level result is insensitive | Report reassignment matrices and model stability together |
+| High assignment stability + unstable coefficient | A small subset of groups or observations may be influential | Inspect participant/trial/AOI summaries, intervals, convergence, and model `N` |
+| Low assignment stability + unstable coefficient | The substantive result depends materially on AOI geometry | Describe the nominal result as geometry-sensitive |
+| Failed branches | Part of the planned sensitivity design is non-evaluable | Retain failures and explain them; never shrink the denominator silently |
+
+Choose perturbation magnitudes from acquisition precision, display geometry, stimulus layout, or a preregistered rationale. Do not search for the margin that restores statistical significance.
+
+### Reporting example
+
+> We reran AOI assignment, feature extraction, and the prespecified model across the nominal geometry and defensible perturbations. We report reassignment patterns, coefficient ranges and intervals, convergence, and model-N variation. Failed branches remain in the audit trail. Stability frequencies describe robustness to the declared perturbation set and are not probabilities that the scientific conclusion is true.
+
 ## Reporting AOI Robustness
 
 ```{r report}
 cat(report_aoi_sensitivity(result))
 ```
 
-A manuscript should report the nominal AOI source, coordinate system,
-perturbation operations and values, pixel-versus-degree units, screen geometry
-and viewing distance when degrees are used, overlap policy, screen-boundary
-policy, random seed for jitter, assignment level, recomputed features, model
-specification, and handling of failed or non-converged branches.
+A manuscript should report the nominal AOI source, coordinate system, observation level, perturbation operations and values, pixel-versus-degree units, screen geometry and viewing distance when degrees are used, overlap policy, screen-boundary policy, random seed for jitter, assignment denominators, recomputed features, model specification, coefficient/interval ranges, convergence, model-`N` variation, and handling of failed or non-converged branches.
 
 Robustness frequencies are descriptive summaries conditional on the declared
 perturbation set. They are **not probabilities that the scientific conclusion
@@ -255,3 +276,8 @@ backend are deliberately used.
   distance.
 - The perturbation envelope must be scientifically defensible; wider grids do
   not automatically provide stronger evidence.
+
+
+## API map
+
+Use `create_aoi_perturbation_grid()` to declare branches, `run_aoi_sensitivity_analysis()` for the complete workflow, `estimate_aoi_assignment_stability()` for assignment robustness, `assess_aoi_inference_stability()` for coefficient/convergence/model-`N` summaries, and `report_aoi_sensitivity()` for a compact reporting draft.
