@@ -49,3 +49,16 @@ The statistical backend should consume these prepared components rather than rei
 ## Cross-language provenance
 
 R records excluded/input row positions using R's one-based convention; `eyeprocesspy` records Python's zero-based convention. The convention is stored in provenance so cross-language comparisons do not silently shift row identities.
+
+
+## Analysis-readiness checklist
+
+Before fitting a mediation model, verify that participant/trial keys are unique, the requested within/between paths have observed variation, missing mediator values remain distinct from genuine zeros, poor-quality trials are flagged explicitly, and the gaze/process mediator precedes the outcome in the declared mechanism.
+
+A balanced within-subject manipulation can make `X_between` constant. That is a design property; it is not a reason to force a between-person path into the model.
+
+Useful audits include `validate_multilevel_mediation_data()`, `identify_mediation_levels()`, `summarise_within_between_variance()`, `audit_mediation_missingness()`, and `check_mediation_trial_counts()`.
+
+## Interpretation boundary
+
+Preparation preserves the repeated-measures structure but does not establish causal mediation. The downstream model must still justify temporal ordering, likelihoods, random effects, priors, missingness policy, diagnostics, and substantive interpretation. Gaze metrics remain operational process measurements rather than automatic evidence for attention, trust, comprehension, cognitive load, or another latent construct.
