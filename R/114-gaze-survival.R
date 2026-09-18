@@ -989,6 +989,86 @@ report_gaze_survival_model <- function(model, conf_level = .95) {
     provenance = model$provenance
   )
 }
+#' Synthetic raw inputs for gaze-survival examples
+#'
+#' Generates deterministic trial observation windows plus canonical fixation or
+#' AOI-visit event rows. The event table intentionally omits participant_id so
+#' the recording_id + trial_id join contract is exercised.
+#' @export
+simulate_gaze_survival_inputs <- function(
+    kind = c("disclosure", "verification"),
+    seed = 20260918,
+    n_participants = 36L,
+    trials_per_participant = 3L) {
+  kind <- match.arg(kind)
+  if (!is.numeric(seed) || length(seed) != 1L || !is.finite(seed)) stop("`seed` must be one finite number.", call. = FALSE)
+  n_participants <- as.integer(n_participants)
+  trials_per_participant <- as.integer(trials_per_participant)
+  if (n_participants < 1L || trials_per_participant < 1L) stop("`n_participants` and `trials_per_participant` must be positive integers.", call. = FALSE)
+
+  withr::with_seed(as.integer(seed), {
+    conditions <- if (kind == "disclosure") {
+      c("control", "minimal_disclosure", "detailed_disclosure")
+    } else {
+      c("standard", "evidence_prompt")
+    }
+    shifts <- c(
+      control = .35, minimal_disclosure = .05, detailed_disclosure = -.20,
+      standard = .20, evidence_prompt = -.25
+    )
+    target <- if (kind == "disclosure") "disclosure" else "source_evidence"
+    episode_type <- if (kind == "disclosure") "fixation" else "aoi_visit"
+    trial_rows <- vector("list", n_participants * trials_per_participant)
+    event_rows <- list()
+    ti <- 0L
+    ei <- 0L
+
+    for (participant_index in seq_len(n_participants)) {
+      participant <- sprintf("P%03d", participant_index)
+      recording <- sprintf("R%03d", participant_index)
+      participant_shift <- stats::rnorm(1L, 0, .25)
+      for (trial_index in seq_len(trials_per_participant)) {
+        ti <- ti + 1L
+        trial <- sprintf("%s_T%02d", participant, trial_index)
+        condition <- conditions[((participant_index - 1L + trial_index - 1L) %% length(conditions)) + 1L]
+        trial_duration <- 4
+        latent <- exp(.8 + unname(shifts[condition]) + participant_shift + stats::rnorm(1L, 0, .45))
+
+        trial_rows[[ti]] <- data.frame(
+          recording_id = recording, participant_id = participant, trial_id = trial,
+          stimulus_id = sprintf("S%02d", trial_index), condition_id = condition,
+          start_time = 0, end_time = trial_duration,
+          n_valid_samples = 230L + sample.int(21L, 1L) - 11L,
+          valid_data_fraction = stats::runif(1L, .91, .995),
+          observation_end_reason = "scheduled_trial_end",
+          stringsAsFactors = FALSE
+        )
+
+        body_time <- min(.35 + .04 * (trial_index - 1L), trial_duration - .05)
+        ei <- ei + 1L
+        event_rows[[ei]] <- data.frame(
+          recording_id = recording, trial_id = trial, start_time = body_time,
+          aoi_id = "body", episode_type = episode_type, stringsAsFactors = FALSE
+        )
+        if (latent <= trial_duration) {
+          ei <- ei + 1L
+          event_rows[[ei]] <- data.frame(
+            recording_id = recording, trial_id = trial, start_time = latent,
+            aoi_id = target, episode_type = episode_type, stringsAsFactors = FALSE
+          )
+        }
+      }
+    }
+
+    trials <- do.call(rbind, trial_rows)
+    events <- do.call(rbind, event_rows)
+    events <- events[order(events$recording_id, events$trial_id, events$start_time), , drop = FALSE]
+    rownames(trials) <- NULL
+    rownames(events) <- NULL
+    list(trials = trials, events = events)
+  })
+}
+
 #' Synthetic gaze-survival example data
 #' @export
 simulate_gaze_survival_example <- function(
