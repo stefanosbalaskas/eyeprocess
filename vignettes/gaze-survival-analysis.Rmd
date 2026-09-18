@@ -65,9 +65,50 @@ summarise_gaze_censoring(surv_data, by = "condition")
 
 A non-default time origin must be explicit. For example, latency from stimulus onset should be constructed with `time_origin = "stimulus_onset"` and `time_origin_col = "stimulus_onset"`; the censoring window is then measured from that same origin.
 
+## Worked variant: evidence verification
+
+The second synthetic scenario models **time to first entry into a source/evidence AOI** under repeated `standard` and `evidence_prompt` trials. Some complete usable trials never inspect the evidence region, so those rows remain right-censored.
+
+```{r verification-example}
+verify_raw <- simulate_gaze_survival_inputs(
+  "verification",
+  seed = 20260918,
+  n_participants = 36,
+  trials_per_participant = 3
+)
+
+verification <- prepare_gaze_survival_data(
+  verify_raw$trials,
+  verify_raw$events,
+  target_aoi = "source_evidence",
+  event_type = "first_aoi_entry",
+  condition_col = "condition_id",
+  min_valid_fraction = .90,
+  time_origin = "trial_start",
+  event_detector = "synthetic_truth",
+  aoi_specification = "fixed synthetic source/evidence AOI"
+)
+
+summarise_gaze_censoring(verification, by = "condition")
+```
+
+This analysis retains the observed risk time of never-inspected trials rather than reducing the question to a complete-case latency comparison.
+
 ## Event semantics
 
 `event_type` supports first fixation, first AOI entry, first evidence inspection, first revisit, first transition into the target, and disengagement. Revisit/transition/disengagement are **visit-level** concepts: consecutive identical AOI labels are collapsed before those event times are identified, so two consecutive fixations within one visit do not create a false revisit.
+
+### Censoring decision guide
+
+| Trial state | `event_observed` | `analysis_time` | Model eligible? | Interpretation |
+|:--|--:|--:|:--|:--|
+| Target event occurs inside a usable window | 1 | Event latency | Yes | Observed event |
+| Target never occurs before a complete usable window ends | 0 | Censoring time | Yes | Right censored |
+| Window incomplete or event status unknowable | NA | NA | No | Review required |
+| Gaze quality fails the declared rule | NA | NA | No | Review/exclusion branch |
+| Event occurs after the censoring limit | Invalid | Invalid | No | Data-contract error |
+
+The last three states are never silently recoded as ordinary censoring.
 
 ## Kaplan–Meier description
 
