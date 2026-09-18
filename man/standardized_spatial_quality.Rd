@@ -145,7 +145,10 @@ Effective sampling frequency is estimated from the effective sample count divide
 by an estimated recording duration (timestamp span plus one median positive
 inter-sample interval). When gaze coordinates and validity are supplied, the
 effective sample count contains valid gaze observations with finite timestamps;
-otherwise the metric describes the timestamp stream.
+otherwise the metric describes the timestamp stream. With a nominal rate,
+\code{long_interval_count} counts intervals exceeding the declared nominal-gap
+multiple, whereas \code{dropped_interval_count} estimates the number of missing
+nominal samples represented by those long intervals.
 
 The package deliberately does not impose universal acceptability cutoffs. A
 \code{gaze_quality_report} stores review flags and provenance while preserving all
