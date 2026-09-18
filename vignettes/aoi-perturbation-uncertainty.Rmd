@@ -12,7 +12,7 @@ knitr::opts_chunk$set(collapse = TRUE, comment = "#>", fig.width = 7, fig.height
 library(eyeprocess)
 ```
 
-## Why perturb AOIs?
+## AOI Geometry Is an Analytical Assumption
 
 AOI geometry is an analytical assumption. Small changes to a boundary can
 change whether a sample or fixation is counted as headline, image, claim,
@@ -71,7 +71,7 @@ for (participant in 1:8) {
 fixations <- do.call(rbind, rows)
 ```
 
-## Declare perturbations in degrees of visual angle
+## AOI Perturbation Sensitivity Analysis\n\n### Pixels versus Degrees of Visual Angle
 
 Degree-based perturbations require explicit display geometry and viewing
 distance. The workflow never silently converts units.
@@ -97,7 +97,7 @@ grid$table
 The seven branches are the nominal geometry, three dilations, one erosion,
 one horizontal translation, and one vertical translation.
 
-## Use one explicit model callback
+## Propagating AOI Uncertainty Into Statistical Models
 
 The perturbation framework does not choose an estimator. Here the example
 uses the same base-R linear model for disclosure dwell in every branch.
@@ -159,11 +159,7 @@ summary$assignment_stability
 summary$inference_stability
 ```
 
-The assignment table distinguishes unchanged observations, newly assigned
-observations, lost assignments, AOI-to-AOI reassignment, missing comparisons,
-and explicit overlap ambiguity. Missing coordinates are not converted to
-outside-AOI observations.
-
+## Interpreting AOI Assignment Stability\n\nThe assignment table distinguishes unchanged observations, newly assigned\nobservations, lost assignments, AOI-to-AOI reassignment, missing comparisons,\nand explicit overlap ambiguity. Missing coordinates are not converted to\noutside-AOI observations.\n
 ## Visual diagnostics
 
 ```{r geometry-plot}
@@ -203,7 +199,7 @@ Model callbacks follow the same rule: an error is written to the failure table,
 and a row with `model_converged = FALSE` remains visible rather than being
 treated as a valid estimate.
 
-## Reporting
+## Reporting AOI Robustness
 
 ```{r report}
 cat(report_aoi_sensitivity(result))
