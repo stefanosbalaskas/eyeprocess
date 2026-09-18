@@ -313,6 +313,36 @@ test_that("event and feature provenance retain the analytical branch", {
   expect_false(anyNA(out$features$source_data_hash))
 })
 
+
+test_that("fixation-locked pupil summaries propagate when eye samples exist", {
+  d <- simulate_detector_multiverse_data(n_participants = 4, seed = 191)
+  g <- d$gaze_samples
+  d$eye_samples <- standardize_eye_table(
+    data.frame(
+      recording_id = g$recording_id,
+      sample_id = paste0("P_", g$sample_id),
+      timestamp_seconds = g$timestamp_seconds,
+      eye = "combined",
+      pupil_diameter = 4,
+      pupil_unit = "mm",
+      pupil_valid = TRUE,
+      trial_id = g$trial_id,
+      stimulus_id = g$stimulus_id,
+      stringsAsFactors = FALSE
+    ),
+    "eye_samples"
+  )
+
+  out <- run_detector_multiverse(d, list(edm_ivt()))
+  out <- propagate_detector_to_aoi(out)
+  out <- propagate_detector_to_features(out)
+
+  values <- out$features$pupil_within_fixation_mean
+  values <- values[is.finite(values)]
+  expect_gt(length(values), 0)
+  expect_true(all(values == 4))
+})
+
 test_that("synthetic truth produces positive disclosure dwell across branches", {
   d <- simulate_detector_multiverse_data(n_participants = 8, seed = 20)
   out <- run_detector_multiverse(
