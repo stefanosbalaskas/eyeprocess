@@ -12,6 +12,10 @@ navbar:
     - search
     - github
 articles:
+- title: Ecosystem updates
+  desc: Cross-package updates that affect downstream workflows without changing the eyeprocess scientific core.
+  contents:
+  - ecosystem-update-2026-09
 - title: Standardized Data Quality
   navbar: Data Quality
   desc: |
