@@ -53,7 +53,7 @@ fit_gaze_mixed_cox_model(
 )
 fit_gaze_aft_model(data, formula, distribution = NULL, ...)
 tidy_gaze_survival_model(model, conf_level = 0.95)
-check_gaze_proportional_hazards(model, transform = "km")
+check_gaze_proportional_hazards(model, transform = "km", alpha = 0.05)
 compare_gaze_survival_models(...)
 predict_gaze_survival(model, newdata, times)
 estimate_gaze_latency_quantiles(object, probs = c(0.25, 0.5, 0.75), group = NULL, newdata = NULL)
@@ -92,7 +92,7 @@ simulate_gaze_survival_example(kind = c("disclosure", "verification"), seed = 20
   \item{structure}{Required repeated-participant Cox structure: \code{"cluster_robust"} or \code{"frailty"}. No estimator is selected implicitly.}
   \item{distribution}{Required AFT distribution: \code{"weibull"} or \code{"lognormal"}. No AFT family is selected implicitly.}
   \item{model,object}{A fitted gaze-survival model or descriptive survival estimate.}
-  \item{transform}{Transformation used by the proportional-hazards diagnostic.}
+  \item{transform,alpha}{Transformation and significance threshold used by the proportional-hazards diagnostic.}
   \item{newdata,times,probs}{Prediction and latency-quantile inputs.}
   \item{specifications}{Named collection of explicitly prepared alternative survival datasets.}
   \item{model_families}{Explicit model families to fit across sensitivity branches.}
