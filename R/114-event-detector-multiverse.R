@@ -511,6 +511,30 @@ propagate_detector_to_aoi <- function(x, overlap = "error", continue_on_error = 
   x$branches <- branches; x$events <- .edm_rbind_fill(events); x$failures <- .edm_rbind_fill(failures); x
 }
 
+.edm_pupil_within_fixations <- function(branch, fixations, recording_id, trial_id) {
+  eye <- branch$eye_samples
+  if (!is.data.frame(eye) || !nrow(eye) || !nrow(fixations)) return(NA_real_)
+  d <- eye[
+    eye$recording_id == recording_id &
+      eye$trial_id == trial_id,
+    ,
+    drop = FALSE
+  ]
+  if (!nrow(d) || !"pupil_diameter" %in% names(d)) return(NA_real_)
+  times <- as.numeric(d$timestamp_seconds)
+  pupil <- as.numeric(d$pupil_diameter)
+  valid <- if ("pupil_valid" %in% names(d)) as.logical(d$pupil_valid) else is.finite(pupil)
+  valid[is.na(valid)] <- FALSE
+  inside <- rep(FALSE, nrow(d))
+  for (i in seq_len(nrow(fixations))) {
+    inside <- inside |
+      (times >= as.numeric(fixations$start_time[i]) &
+        times <= as.numeric(fixations$end_time[i]))
+  }
+  values <- pupil[inside & valid & is.finite(pupil)]
+  if (length(values)) mean(values) else NA_real_
+}
+
 .edm_trial_features <- function(branch, spec) {
   trials <- branch$intervals[branch$intervals$interval_type == "trial", , drop = FALSE]
   if (!nrow(trials)) .edm_stop("Explicit trial intervals are required for detector-to-feature propagation.")
@@ -537,7 +561,12 @@ propagate_detector_to_aoi <- function(x, overlap = "error", continue_on_error = 
         fixation_count = count, dwell_time_ms = dwell, mean_fixation_duration_ms = mean_dur, first_fixation_latency_ms = latency, ttff_ms = latency,
         ttff_event_observed = if (observed) nrow(target) > 0L else NA, ttff_censor_time_ms = if (observed) (tr$end_time - tr$start_time) * 1000 else NA_real_,
         revisits = if (observed) max(entries - 1L, 0L) else NA_real_, transition_count_from_aoi = if (observed) from else NA_real_, transition_count_to_aoi = if (observed) to else NA_real_,
-        scanpath_sequence = paste(collapsed, collapse = " > "), pupil_within_fixation_mean = NA_real_, feature_review_required = is.finite(vf) && vf < .5, stringsAsFactors = FALSE)
+        scanpath_sequence = paste(collapsed, collapse = " > "),
+        pupil_within_fixation_mean = .edm_pupil_within_fixations(
+          branch, target, tr$recording_id, tr$trial_id
+        ),
+        feature_review_required = is.finite(vf) && vf < .5,
+        stringsAsFactors = FALSE)
       for (nm in names(lin)) row[[nm]] <- lin[[nm]]; rows[[k]] <- row
     }
   }
