@@ -215,6 +215,24 @@ Robustness frequencies are descriptive summaries conditional on the declared
 perturbation set. They are **not probabilities that the scientific conclusion
 is true**.
 
+## R/Python Scientific Parity
+
+The R and Python implementations share the same perturbation IDs, outside and
+ambiguous labels, missing-coordinate semantics, unit requirements, failure
+records, model-convergence handling, and interpretation caveat. Both ship the
+same frozen two-AOI parity fixture.
+
+Parity is semantic rather than byte-for-byte numerical identity. Base-R and
+NumPy random-number generators are allowed to produce different jitter
+coordinates from the same integer seed, provided each implementation is
+deterministic for its own seed and records that seed. Plot objects are also
+language-native: base R graphics in `eyeprocess` and Matplotlib axes in
+`eyeprocesspy`.
+
+User-supplied model callbacks may use different statistical backends, so exact
+coefficient equality is not required unless the same estimator and numerical
+backend are deliberately used.
+
 ## Limitations
 
 - Geometry perturbation does not replace calibration-error analysis.
