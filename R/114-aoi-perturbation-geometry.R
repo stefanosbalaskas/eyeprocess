@@ -145,13 +145,18 @@
 }
 
 .aoi_point_in_polygon <- function(x, y, polygon) {
-  n <- nrow(polygon); inside <- rep(FALSE, length(x)); j <- n
+  n <- nrow(polygon); inside <- rep(FALSE, length(x)); boundary <- rep(FALSE, length(x)); j <- n
   for (i in seq_len(n)) {
     xi <- polygon[i, 1L]; yi <- polygon[i, 2L]; xj <- polygon[j, 1L]; yj <- polygon[j, 2L]
+    cross <- (x - xi) * (yj - yi) - (y - yi) * (xj - xi)
+    on <- abs(cross) <= 1e-12 &
+      x >= min(xi, xj) - 1e-12 & x <= max(xi, xj) + 1e-12 &
+      y >= min(yi, yj) - 1e-12 & y <= max(yi, yj) + 1e-12
+    boundary <- boundary | on
     hit <- ((yi > y) != (yj > y)) & (x < (xj - xi) * (y - yi) / ((yj - yi) + .Machine$double.eps) + xi)
     inside <- xor(inside, hit); j <- i
   }
-  inside
+  inside | boundary
 }
 
 .aoi_contains <- function(row, x, y) {
@@ -167,21 +172,69 @@
   }
 }
 
+.aoi_row_polygon <- function(row) {
+  if (identical(row$shape_type, "rectangle")) {
+    return(matrix(
+      c(
+        row$xmin, row$ymin,
+        row$xmax, row$ymin,
+        row$xmax, row$ymax,
+        row$xmin, row$ymax
+      ),
+      ncol = 2L, byrow = TRUE
+    ))
+  }
+  .aoi_polygon(row$polygon[[1L]])
+}
+
+.aoi_point_strictly_inside_polygon <- function(point, poly) {
+  for (i in seq_len(nrow(poly))) {
+    j <- if (i == nrow(poly)) 1L else i + 1L
+    if (.aoi_on_segment(poly[i, ], poly[j, ], point)) return(FALSE)
+  }
+  isTRUE(.aoi_point_in_polygon(point[1L], point[2L], poly))
+}
+
+.aoi_proper_segments_cross <- function(a, b, c, d) {
+  o1 <- .aoi_orientation(a, b, c); o2 <- .aoi_orientation(a, b, d)
+  o3 <- .aoi_orientation(c, d, a); o4 <- .aoi_orientation(c, d, b)
+  tol <- 1e-12
+  ((o1 > tol && o2 < -tol) || (o1 < -tol && o2 > tol)) &&
+    ((o3 > tol && o4 < -tol) || (o3 < -tol && o4 > tol))
+}
+
+.aoi_polygon_signature <- function(poly) {
+  rounded <- round(poly, 12)
+  rows <- apply(rounded, 1L, function(z) paste(z, collapse = ","))
+  paste(sort(rows), collapse = ";")
+}
+
+.aoi_polygons_overlap_area <- function(a, b) {
+  for (i in seq_len(nrow(a))) {
+    i2 <- if (i == nrow(a)) 1L else i + 1L
+    for (j in seq_len(nrow(b))) {
+      j2 <- if (j == nrow(b)) 1L else j + 1L
+      if (.aoi_proper_segments_cross(a[i, ], a[i2, ], b[j, ], b[j2, ])) return(TRUE)
+    }
+  }
+  if (any(vapply(seq_len(nrow(a)), function(i) .aoi_point_strictly_inside_polygon(a[i, ], b), logical(1)))) return(TRUE)
+  if (any(vapply(seq_len(nrow(b)), function(i) .aoi_point_strictly_inside_polygon(b[i, ], a), logical(1)))) return(TRUE)
+  identical(.aoi_polygon_signature(a), .aoi_polygon_signature(b)) &&
+    abs(.aoi_signed_area(a)) > 1e-12
+}
+
 .aoi_pairwise_overlap <- function(geometry) {
   if (nrow(geometry) < 2L) return(data.frame(aoi_1 = character(), aoi_2 = character(), overlap = logical()))
   rows <- list()
   for (i in seq_len(nrow(geometry) - 1L)) for (j in seq.int(i + 1L, nrow(geometry))) {
     a <- geometry[i, , drop = FALSE]; b <- geometry[j, , drop = FALSE]
-    if (a$shape_type == "rectangle" && b$shape_type == "rectangle") {
-      flag <- min(a$xmax, b$xmax) - max(a$xmin, b$xmin) > 0 &&
-        min(a$ymax, b$ymax) - max(a$ymin, b$ymin) > 0
+    pa <- .aoi_row_polygon(a); pb <- .aoi_row_polygon(b)
+    ax <- range(pa[, 1L]); ay <- range(pa[, 2L]); bx <- range(pb[, 1L]); by <- range(pb[, 2L])
+    flag <- if (min(ax[2L], bx[2L]) <= max(ax[1L], bx[1L]) ||
+                min(ay[2L], by[2L]) <= max(ay[1L], by[1L])) {
+      FALSE
     } else {
-      ab <- .aoi_bounds(a); bb <- .aoi_bounds(b)
-      x0 <- max(ab[1L], bb[1L]); x1 <- min(ab[2L], bb[2L]); y0 <- max(ab[3L], bb[3L]); y1 <- min(ab[4L], bb[4L])
-      if (x1 <= x0 || y1 <= y0) flag <- FALSE else {
-        grd <- expand.grid(x = seq(x0, x1, length.out = 21L), y = seq(y0, y1, length.out = 21L))
-        flag <- any(.aoi_contains(a, grd$x, grd$y) & .aoi_contains(b, grd$x, grd$y))
-      }
+      .aoi_polygons_overlap_area(pa, pb)
     }
     rows[[length(rows) + 1L]] <- data.frame(aoi_1 = a$aoi_id, aoi_2 = b$aoi_id, overlap = flag)
   }
