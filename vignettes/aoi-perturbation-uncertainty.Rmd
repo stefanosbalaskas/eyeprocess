@@ -161,6 +161,11 @@ summary$inference_stability
 
 ## Interpreting AOI Assignment Stability\n\nThe assignment table distinguishes unchanged observations, newly assigned\nobservations, lost assignments, AOI-to-AOI reassignment, missing comparisons,\nand explicit overlap ambiguity. Missing coordinates are not converted to\noutside-AOI observations.\n
 
+
+### Fixation and sample input
+
+The same geometry and assignment engine supports fixation-centroid and sample-level input. Declare `observation_level = "fixation"` or `"sample"`. Output always contains universal observation counts/timing; fixation-specific fields are populated only for fixation input and sample counts only for sample input. This prevents sample rows from being reported as fixation counts.
+
 ### Zero is not missing
 
 Feature recomputation preserves the complete declared AOI universe within each observed participant/trial group. A zero fixation count means valid observations were available but none were assigned to that AOI. If a group has no valid AOI assignment opportunity, fixation count and inspection remain missing rather than being coerced to zero. Missing assigned durations make dwell missing, and first-fixation timing is never inferred from row order.
