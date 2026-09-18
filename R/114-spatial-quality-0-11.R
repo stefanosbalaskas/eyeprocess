@@ -391,11 +391,42 @@ summarise_sampling_quality <- function(data, time = "timestamp_ms", by = NULL, t
     estimate_effective_sampling_rate(data, time, by, time_unit, nominal_sampling_hz, dropped_interval_factor, x, y, valid)), by), list(function_name = "summarise_sampling_quality"))
 }
 
+.ep_sq_validate_thresholds <- function(thresholds, columns) {
+  if (is.null(thresholds) || !length(thresholds)) return(invisible(TRUE))
+  unknown <- setdiff(names(thresholds), columns)
+  if (length(unknown)) {
+    stop(
+      "threshold metrics are not present in the quality report: ",
+      paste(unknown, collapse = ", "),
+      call. = FALSE
+    )
+  }
+  for (metric in names(thresholds)) {
+    rule <- thresholds[[metric]]
+    values <- if (is.list(rule)) {
+      bad <- setdiff(names(rule), c("min", "max"))
+      if (length(bad) || !length(rule)) {
+        stop(
+          "threshold rule for ", metric,
+          " must contain only min and/or max.",
+          call. = FALSE
+        )
+      }
+      unlist(rule, use.names = FALSE)
+    } else rule
+    numeric <- suppressWarnings(as.numeric(values))
+    if (length(numeric) != length(values) || any(!is.finite(numeric))) {
+      stop("threshold value for ", metric, " must be finite numeric.", call. = FALSE)
+    }
+  }
+  invisible(TRUE)
+}
+
 .ep_sq_threshold_flags <- function(row, thresholds) {
   if (is.null(thresholds) || !length(thresholds)) return(character())
   flags <- character()
   for (metric in names(thresholds)) {
-    if (!metric %in% names(row) || !is.finite(suppressWarnings(as.numeric(row[[metric]])[1L]))) next
+    if (!is.finite(suppressWarnings(as.numeric(row[[metric]])[1L]))) next
     value <- as.numeric(row[[metric]])[1L]; rule <- thresholds[[metric]]
     if (is.list(rule)) {
       if (!is.null(rule$max) && value > rule$max) flags <- c(flags, paste0(metric, ">max"))
@@ -433,6 +464,7 @@ create_gaze_quality_report <- function(data, x = "gaze_x", y = "gaze_y", time = 
   }
   report <- .ep_sq_merge(list(spatial, summarise_sampling_quality(d, time, by, time_unit, nominal_sampling_hz, 1.5, x, y, valid),
                               compute_gaze_data_loss(d, x, y, time, valid, missing_reason, by, time_unit)), by)
+  .ep_sq_validate_thresholds(thresholds, names(report))
   report$quality_flags <- character(nrow(report)); report$review_required <- FALSE
   for (i in seq_len(nrow(report))) {
     flags <- character()
