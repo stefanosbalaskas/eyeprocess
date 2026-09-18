@@ -259,6 +259,19 @@ test_that("synthetic survival inputs and prepared tables are deterministic", {
   )
 })
 
+test_that("verification example uses source evidence entry contract", {
+  d <- simulate_gaze_survival_example(
+    "verification",
+    seed = 20260918,
+    n_participants = 12,
+    trials_per_participant = 3
+  )
+  expect_equal(unique(d$target_aoi), "source_evidence")
+  expect_equal(unique(d$event_type), "first_aoi_entry")
+  expect_equal(sort(unique(d$condition)), c("evidence_prompt", "standard"))
+  expect_true(any(d$event_observed == 0))
+})
+
 test_that("cross-language contract fixture has exact canonical fields", {
   f <- testthat::test_path("..", "..", "inst", "extdata", "gaze_survival_contract.csv")
   d <- utils::read.csv(f, stringsAsFactors = FALSE)
