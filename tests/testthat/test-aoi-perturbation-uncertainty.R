@@ -34,6 +34,36 @@ test_that("polygon degree dilation respects both axis scales", {
   expect_equal(range(p[,2]), c(95,205), tolerance = 1e-8)
 })
 
+test_that("polygon overlap and boundary membership are deterministic", {
+  polygons <- data.frame(
+    aoi_id = c("left", "right"),
+    shape_type = c("polygon", "polygon")
+  )
+  polygons$polygon <- I(list(
+    matrix(c(0,0, 10,0, 10,10, 0,10), ncol = 2, byrow = TRUE),
+    matrix(c(9.5,-2, 12,5, 9.5,12), ncol = 2, byrow = TRUE)
+  ))
+  validation <- validate_aoi_geometry(polygons)
+  expect_true(validation$overlap_present)
+  expect_error(validate_aoi_geometry(polygons, allow_overlap = FALSE), "overlap")
+
+  single <- polygons[1, , drop = FALSE]
+  data <- data.frame(
+    x = c(0, 10, 5),
+    y = c(5, 5, 0),
+    duration = c(1, 1, 1)
+  )
+  result <- run_aoi_sensitivity_analysis(
+    data,
+    single,
+    create_aoi_perturbation_grid(include_baseline = TRUE),
+    x_col = "x",
+    y_col = "y",
+    duration_col = "duration"
+  )
+  expect_equal(result$assignments$baseline, c("left", "left", "left"))
+})
+
 test_that("pathological geometry is never silently repaired", {
   aois <- data.frame(aoi_id = "a", xmin = 0, xmax = 10, ymin = 0, ymax = 10)
   expect_error(erode_aoi(aois, 20), "collapsed")
