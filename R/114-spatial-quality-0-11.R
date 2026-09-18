@@ -339,10 +339,21 @@ compute_gaze_data_loss <- function(data, x = "gaze_x", y = "gaze_y", time = "tim
 .ep_sq_merge <- function(parts, by) {
   by <- .ep_sq_by(by)
   if (!length(parts)) return(data.frame())
-  if (!length(by)) {
-    out <- do.call(cbind, lapply(parts, function(x) x[setdiff(names(x), ".group"), drop = FALSE])); return(out[!duplicated(names(out))])
+  out <- parts[[1L]]
+  if (length(parts) == 1L) return(out)
+  for (i in 2:length(parts)) {
+    right <- parts[[i]]
+    duplicate_nonkeys <- intersect(setdiff(names(right), by), names(out))
+    if (length(duplicate_nonkeys)) {
+      right <- right[setdiff(names(right), duplicate_nonkeys)]
+    }
+    if (length(by)) {
+      out <- merge(out, right, by = by, all = TRUE, sort = FALSE)
+    } else {
+      out <- cbind(out, right)
+    }
   }
-  Reduce(function(a, b) merge(a, b, by = by, all = TRUE, sort = FALSE, suffixes = c("", ".dup")), parts)
+  out
 }
 
 #' Summarise spatial gaze quality
