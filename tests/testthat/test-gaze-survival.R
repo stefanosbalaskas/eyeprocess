@@ -163,6 +163,11 @@ test_that("KM, Cox, clustered Cox, and AFT models run on deterministic data", {
   expect_equal(report_gaze_survival_model(clustered)$N_participants, 40L)
 })
 
+test_that("estimators must be selected explicitly", {
+  d <- simulate_gaze_survival_example(n_participants = 8, trials_per_participant = 2)
+  expect_error(fit_gaze_mixed_cox_model(d, "condition"), "structure.*specified explicitly")
+  expect_error(fit_gaze_aft_model(d, "condition"), "distribution.*specified explicitly")
+})
 test_that("frailty Cox uses the specialist coxme backend", {
   skip_if_not_installed("survival")
   skip_if_not_installed("coxme")
