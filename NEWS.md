@@ -1,3 +1,12 @@
+# eyeprocess 0.11.1.9000
+
+## Censored gaze-latency survival analysis
+
+- Adds a vendor-neutral survival-ready trial contract that retains valid never-inspected trials as right-censored observations and keeps incomplete/unusable gaze as explicit review states.
+- Adds Kaplan-Meier estimation, Cox PH, participant-clustered Cox, Gaussian participant-frailty Cox through the specialist `coxme` backend, Weibull/log-normal AFT, prediction, latency quantiles, diagnostics, sensitivity comparisons, plots, reporting, and deterministic synthetic examples.
+- Adds participant/trial and recording/trial event joining with explicit failure on ambiguous trial-only identity, explicit time origins, visit-level revisit/transition/disengagement semantics, and provenance for source, preprocessing, detector, AOI, quality rule, model, and software version.
+- Adds cross-language survival-contract fixtures, focused edge/synthetic/backend-comparison tests, a full worked example, and a pkgdown methodological article with reporting and limitation guidance.
+
 # eyeprocess 0.11.1
 
 ## CRAN portability hotfix
