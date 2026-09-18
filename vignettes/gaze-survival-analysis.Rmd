@@ -97,6 +97,10 @@ tidy_gaze_survival_model(weibull)
 
 A Cox coefficient is reported as a **hazard ratio**: a relative instantaneous event rate among trials still at risk, not a ratio of mean TTFF. An AFT coefficient is reported as a **time ratio** and describes multiplicative event time under the specified distribution.
 
+### Cross-language backend contract
+
+R delegates marginal Cox to `survival::coxph`, Gaussian participant frailty to `coxme::coxme`, and Weibull/log-normal AFT to `survival::survreg`. Python delegates Cox to `statsmodels.PHReg` and parametric AFT to `lifelines`. The two packages align the censoring contract, estimator choice, estimand interpretation, provenance, and semantic output fields. Exact coefficients are not required to be numerically identical when backend parameterizations or optimizers differ; each language is regression-tested against its own specialist backend.
+
 `compare_gaze_survival_models()` never declares a preferred estimator. Cox partial-likelihood, mixed-Cox penalized partial-likelihood, and AFT full-likelihood information criteria are flagged as non-comparable across those likelihood bases.
 
 ```{r compare, warning=FALSE}
