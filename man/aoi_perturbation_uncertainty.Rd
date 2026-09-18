@@ -196,7 +196,8 @@ result <- run_aoi_sensitivity_analysis(
   gaze, aois, grid,
   x_col = "x", y_col = "y",
   observation_id_col = "id",
-  duration_col = "duration"
+  duration_col = "duration",
+  observation_level = "fixation"
 )
 
 summarise_aoi_sensitivity(result)
