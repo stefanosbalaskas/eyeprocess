@@ -61,7 +61,8 @@ perturb_aoi_geometry(aois, spec)
 
 create_aoi_perturbation_grid(
   dilations = NULL, erosions = NULL, translations_x = NULL,
-  translations_y = NULL, jitters = NULL, anisotropic = NULL,
+  translations_y = NULL, translations_xy = NULL,
+  jitters = NULL, anisotropic = NULL,
   unit = "px", include_baseline = TRUE, seed = 20260918L, ...
 )
 
@@ -121,7 +122,7 @@ plot_aoi_robustness_surface(
 \item{seed}{Reproducible random seed used for jitter.}
 \item{boundary_policy}{One of warn, clip, error, or allow for geometry outside the declared screen.}
 \item{spec}{An AOI perturbation specification.}
-\item{dilations, erosions, translations_x, translations_y, jitters, anisotropic}{Vectors or pairs defining a deterministic perturbation grid.}
+\item{dilations, erosions, translations_x, translations_y, translations_xy, jitters, anisotropic}{Vectors or pairs defining a deterministic perturbation grid. `translations_xy` accepts a length-two vector, two-column matrix/data frame, or list of x/y pairs.}
 \item{include_baseline}{Whether to include the unchanged nominal branch.}
 \item{grid}{An AOI perturbation grid.}
 \item{baseline, perturbed}{Nominal and perturbed AOI assignment vectors.}
@@ -174,7 +175,8 @@ aois <- data.frame(
 grid <- create_aoi_perturbation_grid(
   dilations = c(5, 10),
   erosions = 5,
-  translations_x = 5
+  translations_x = 5,
+  translations_xy = c(5, -5)
 )
 
 gaze <- data.frame(
