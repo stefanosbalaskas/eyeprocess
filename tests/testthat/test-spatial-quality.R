@@ -50,6 +50,7 @@ test_that("unit conversion is explicit", {
 test_that("thresholds flag review and never exclude", {
   d <- data.frame(grp = "a", timestamp_ms = c(0,10,20,30), gaze_x = 1, gaze_y = 0, target_x = 0, target_y = 0)
   r <- create_gaze_quality_report(d, by = "grp", thresholds = list(accuracy_mean = list(max = .5)))
+  expect_false(anyDuplicated(names(r)) > 0L)
   expect_true(r$review_required)
   expect_match(r$quality_flags, "accuracy_mean>max", fixed = TRUE)
   expect_false(attr(r, "gaze_quality_provenance")$automatic_exclusion)
