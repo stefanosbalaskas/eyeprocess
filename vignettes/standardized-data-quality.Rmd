@@ -69,7 +69,7 @@ where `p` is the explicitly reported probability level (default `0.68`).
 
 # Effective versus nominal sampling
 
-`estimate_effective_sampling_rate()` reports observed timestamps, the effective sample count, timestamp span, an estimated recording duration (span plus one median positive interval), effective Hz, median interval, and—when nominal frequency is supplied—a diagnostic count of long intervals. In a canonical gaze-quality report the effective count is the number of valid gaze samples with finite timestamps, so loss directly reduces effective Hz. Duplicate and non-monotonic timestamps are never silently repaired.
+`estimate_effective_sampling_rate()` reports observed timestamps, the effective sample count, timestamp span, an estimated recording duration (span plus one median positive interval), effective Hz, and median interval. When nominal frequency is supplied it separates `long_interval_count` (number of intervals exceeding the declared nominal-gap multiple) from `dropped_interval_count` (estimated missing nominal samples represented by those long gaps). In a canonical gaze-quality report the effective count is the number of valid gaze samples with finite timestamps, so loss directly reduces effective Hz. Duplicate and non-monotonic timestamps are never silently repaired.
 
 ```{r sampling}
 summarise_sampling_quality(
