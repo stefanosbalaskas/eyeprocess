@@ -400,10 +400,15 @@ create_gaze_quality_report <- function(data, x = "gaze_x", y = "gaze_y", time = 
                                        valid = NULL, missing_reason = NULL, by = NULL, unit = "degrees", output_unit = NULL, geometry = NULL,
                                        time_unit = "ms", nominal_sampling_hz = NULL, bcea_probability = .68, max_gap_ms = NULL, thresholds = NULL,
                                        preprocessing_spec = NULL, event_detector = NULL, aoi_specification = NULL, quality_rules = NULL,
-                                       model_specification = NULL, software_version = NULL) {
-  d <- .ep_sq_df(data); by <- .ep_sq_by(by); .ep_sq_req(d, c(x, y, time, valid, missing_reason, by))
+                                       model_specification = NULL, software_version = NULL, unit_column = NULL) {
+  d <- .ep_sq_df(data); by <- .ep_sq_by(by)
+  resolved_unit_column <- unit_column
+  if (is.null(resolved_unit_column) && "coordinate_unit" %in% names(d)) {
+    resolved_unit_column <- "coordinate_unit"
+  }
+  .ep_sq_req(d, c(x, y, time, valid, missing_reason, resolved_unit_column, by))
   has_targets <- !is.null(target_x) && !is.null(target_y) && target_x %in% names(d) && target_y %in% names(d)
-  validation <- validate_gaze_quality_inputs(d, x, y, time, if (has_targets) target_x else NULL, if (has_targets) target_y else NULL, by, unit, time_unit)
+  validation <- validate_gaze_quality_inputs(d, x, y, time, if (has_targets) target_x else NULL, if (has_targets) target_y else NULL, by, unit, time_unit, resolved_unit_column)
   if (has_targets) {
     spatial <- summarise_spatial_quality(d, x, y, target_x, target_y, time, by, unit, output_unit, geometry, "2d", time_unit, max_gap_ms, bcea_probability)
   } else {
@@ -421,6 +426,9 @@ create_gaze_quality_report <- function(data, x = "gaze_x", y = "gaze_y", time = 
   for (i in seq_len(nrow(report))) {
     flags <- character()
     if (has_targets && "n_accuracy_targets" %in% names(report) && is.finite(report$n_accuracy_targets[i]) && report$n_accuracy_targets[i] > 1) flags <- c(flags, "mixed_accuracy_targets")
+    if ("n_bcea_samples" %in% names(report) && is.finite(report$n_bcea_samples[i]) && report$n_bcea_samples[i] < 2) flags <- c(flags, "insufficient_bcea_samples")
+    if ("n_steps" %in% names(report) && is.finite(report$n_steps[i]) && report$n_steps[i] < 1) flags <- c(flags, "insufficient_rms_pairs")
+    if ("valid_sample_fraction" %in% names(report) && is.finite(report$valid_sample_fraction[i]) && report$valid_sample_fraction[i] <= 0) flags <- c(flags, "no_valid_gaze_samples")
     if (nrow(validation$group_issues)) {
       if (!length(by)) flags <- c(flags, unlist(strsplit(validation$group_issues$issues, ";", fixed = TRUE))) else {
         hit <- rep(TRUE, nrow(validation$group_issues)); for (nm in by) hit <- hit & as.character(validation$group_issues[[nm]]) == as.character(report[[nm]][i])
@@ -430,7 +438,7 @@ create_gaze_quality_report <- function(data, x = "gaze_x", y = "gaze_y", time = 
     flags <- unique(c(flags, .ep_sq_threshold_flags(report[i, , drop = FALSE], thresholds)))
     report$quality_flags[i] <- paste(flags, collapse = ";"); report$review_required[i] <- length(flags) > 0
   }
-  prov <- list(source_fingerprint = .ep_sq_fingerprint(d, c(x, y, time, if (has_targets) c(target_x, target_y), by)), preprocessing_spec = preprocessing_spec,
+  prov <- list(source_fingerprint = .ep_sq_fingerprint(d, c(x, y, time, valid, missing_reason, resolved_unit_column, if (has_targets) c(target_x, target_y), by)), preprocessing_spec = preprocessing_spec,
                event_detector = event_detector, aoi_specification = aoi_specification, quality_rules = if (is.null(quality_rules)) thresholds else quality_rules,
                model_specification = model_specification, software_version = software_version, input_unit = unit, output_unit = if (is.null(output_unit)) unit else output_unit,
                time_unit = time_unit, nominal_sampling_hz = nominal_sampling_hz, bcea_probability = bcea_probability, max_gap_ms = max_gap_ms, automatic_exclusion = FALSE)
