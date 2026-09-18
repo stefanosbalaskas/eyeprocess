@@ -621,10 +621,11 @@ fit_gaze_mixed_cox_model <- function(data, formula, participant_col = "participa
 
 #' Fit Weibull or log-normal AFT gaze-latency model
 #' @export
-fit_gaze_aft_model <- function(data, formula, distribution = c("weibull", "lognormal"), ...) {
+fit_gaze_aft_model <- function(data, formula, distribution = NULL, ...) {
   .gaze_surv_require("survival", "for AFT regression")
   d <- .gaze_surv_analysis_rows(data)
-  distribution <- match.arg(distribution)
+  if (is.null(distribution)) stop("`distribution` must be specified explicitly as 'weibull' or 'lognormal'.", call. = FALSE)
+  distribution <- match.arg(distribution, c("weibull", "lognormal"))
   if (any(d$analysis_time <= 0)) {
     stop(
       "AFT models require strictly positive analysis_time; zero-time events must be resolved ",
@@ -950,7 +951,35 @@ compare_gaze_survival_specifications <- function(
 
 #' Concise gaze-survival reporting bundle
 #' @export
-report_gaze_survival_model <- function(model, conf_level=.95) {\n  if(!inherits(model,"eye_gaze_survival_model")) stop("Expected an eye_gaze_survival_model.",call.=FALSE)\n  d <- model$data\n  cs <- summarise_gaze_censoring(d)[1,,drop=FALSE]\n  diagnostic <- NULL\n  if (grepl("^cox", model$model_family)) {\n    if (identical(model$backend, "coxme::coxme")) {\n      diagnostic <- "PH diagnostics require the corresponding marginal Cox model; cox.zph is not applied to coxme frailty fits."\n    } else {\n      ph <- check_gaze_proportional_hazards(model)\n      diagnostic <- if(any(ph$p_value < .05,na.rm=TRUE)) "flagged PH diagnostic" else "no PH diagnostic flag at alpha=.05"\n    }\n  }\n  list(\n    N_participants=length(unique(d$participant_id)),\n    N_trials=nrow(d),\n    N_observed_events=as.integer(cs$n_observed_events),\n    N_censored_trials=as.integer(cs$n_censored),\n    censoring_percentage=100*as.numeric(cs$censoring_fraction),\n    model_family=model$model_family,\n    backend=model$backend,\n    effect_measure=if(grepl("^cox",model$model_family)) "hazard ratio" else "time ratio",\n    effects=tidy_gaze_survival_model(model,conf_level),\n    random_or_frailty_structure=model$repeated_structure,\n    diagnostic_result=diagnostic,\n    provenance=model$provenance\n  )\n}\n\n#' Synthetic gaze-survival example data
+report_gaze_survival_model <- function(model, conf_level = .95) {
+  if (!inherits(model, "eye_gaze_survival_model")) stop("Expected an eye_gaze_survival_model.", call. = FALSE)
+  d <- model$data
+  cs <- summarise_gaze_censoring(d)[1L, , drop = FALSE]
+  diagnostic <- NULL
+  if (grepl("^cox", model$model_family)) {
+    if (identical(model$backend, "coxme::coxme")) {
+      diagnostic <- "PH diagnostics require the corresponding marginal Cox model; cox.zph is not applied to coxme frailty fits."
+    } else {
+      ph <- check_gaze_proportional_hazards(model)
+      diagnostic <- if (any(ph$p_value < .05, na.rm = TRUE)) "flagged PH diagnostic" else "no PH diagnostic flag at alpha=.05"
+    }
+  }
+  list(
+    N_participants = length(unique(d$participant_id)),
+    N_trials = nrow(d),
+    N_observed_events = as.integer(cs$n_observed_events),
+    N_censored_trials = as.integer(cs$n_censored),
+    censoring_percentage = 100 * as.numeric(cs$censoring_fraction),
+    model_family = model$model_family,
+    backend = model$backend,
+    effect_measure = if (grepl("^cox", model$model_family)) "hazard ratio" else "time ratio",
+    effects = tidy_gaze_survival_model(model, conf_level),
+    random_or_frailty_structure = model$repeated_structure,
+    diagnostic_result = diagnostic,
+    provenance = model$provenance
+  )
+}
+#' Synthetic gaze-survival example data
 #' @export
 simulate_gaze_survival_example <- function(
     kind = c("disclosure", "verification"),
