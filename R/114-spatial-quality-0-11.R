@@ -25,7 +25,13 @@
   by <- .ep_sq_by(by)
   if (!length(by)) return(list(all = seq_len(nrow(d))))
   .ep_sq_req(d, by)
-  split(seq_len(nrow(d)), interaction(d[by], drop = TRUE, lex.order = TRUE))
+  parts <- lapply(d[by], function(x) {
+    value <- as.character(x)
+    value[is.na(value)] <- "<NA>"
+    paste0(nchar(value), ":", value)
+  })
+  key <- do.call(paste, c(parts, sep = "\r"))
+  split(seq_len(nrow(d)), key, drop = TRUE)
 }
 
 .ep_sq_header <- function(z, by = NULL) {
