@@ -11,7 +11,23 @@ navbar:
     right:
     - search
     - github
+- title: Trial-level multilevel mediation
+  desc: Prepare repeated-measures mediation data without collapsing gaze to participant means.
+  contents:
+  - prepare_multilevel_mediation_data
+  - validate_multilevel_mediation_data
+  - identify_mediation_levels
+  - decompose_within_between
+  - center_within_participant
+  - summarise_within_between_variance
+  - audit_mediation_missingness
+  - check_mediation_trial_counts
+  - add_multilevel_mediation_component
+
 articles:
+- title: Trial-level multilevel mediation
+  contents:
+  - trial-level-multilevel-mediation
 - title: Executed validation evidence and governed IRT (0.9 M2)
   desc: |
     Frozen software-validation programmes, IRT information/scoring/diagnostics, linking and invariance, process-aware IRT, cognitive diagnosis, adaptive testing, engine gating, and paper-ready evidence.
