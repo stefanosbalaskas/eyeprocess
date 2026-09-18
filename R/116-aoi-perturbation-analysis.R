@@ -32,10 +32,21 @@ estimate_aoi_assignment_stability <- function(comparisons, metadata = NULL, grou
     d <- comparisons[[pid]]$detail; d$perturbation_id <- pid; d
   })
   source <- do.call(rbind, rows); if (is.null(source) || !nrow(source)) .aoi_stop("No assignment comparisons are available.")
+  source_ids <- unique(source$observation_id)
+  if (any(is.na(source_ids))) .aoi_stop("Comparison observation IDs must be non-missing.")
   if (!is.null(metadata)) {
     if (!is.data.frame(metadata)) .aoi_stop("`metadata` must be a data frame.")
-    if (!"observation_id" %in% names(metadata)) metadata$observation_id <- seq_len(nrow(metadata))
-    if (nrow(metadata) != length(unique(source$observation_id))) .aoi_stop("`metadata` must contain one row per observation.")
+    if (nrow(metadata) != length(source_ids)) .aoi_stop("`metadata` must contain one row per observation.")
+    if (!"observation_id" %in% names(metadata)) {
+      metadata$observation_id <- source_ids
+    } else {
+      if (any(is.na(metadata$observation_id)) || anyDuplicated(metadata$observation_id)) {
+        .aoi_stop("Metadata observation IDs must be unique and non-missing.")
+      }
+      if (!setequal(metadata$observation_id, source_ids)) {
+        .aoi_stop("Metadata observation IDs must match the comparison observation IDs exactly.")
+      }
+    }
     source <- merge(source, metadata, by = "observation_id", all.x = TRUE, sort = FALSE)
   }
   summarise <- function(d, keys) {
@@ -214,9 +225,52 @@ recompute_aoi_features <- function(
 .aoi_validate_model_table <- function(x, pid) {
   if (!is.data.frame(x)) .aoi_stop("Model callback result must be a data frame.")
   required <- c("term", "estimate", "SE", "CI_low", "CI_high", "p_value", "model_converged", "N")
-  missing <- setdiff(required, names(x)); if (length(missing)) .aoi_stop("Model callback result is missing: ", paste(missing, collapse = ", "))
-  x$perturbation_id <- pid; est <- suppressWarnings(as.numeric(x$estimate))
-  x$direction <- ifelse(est > 0, "positive", ifelse(est < 0, "negative", "zero"))
+  missing <- setdiff(required, names(x))
+  if (length(missing)) .aoi_stop("Model callback result is missing: ", paste(missing, collapse = ", "))
+
+  terms <- as.character(x$term)
+  if (any(is.na(terms) | !nzchar(terms))) .aoi_stop("Model callback term values must be non-missing and non-empty.")
+  x$term <- terms
+
+  raw_convergence <- x$model_converged
+  convergence_valid <- is.na(raw_convergence)
+  if (is.logical(raw_convergence)) {
+    convergence_valid[] <- TRUE
+  } else if (is.numeric(raw_convergence)) {
+    convergence_valid <- is.na(raw_convergence) | raw_convergence %in% c(0, 1)
+  }
+  if (!all(convergence_valid)) {
+    .aoi_stop("model_converged must contain booleans, 0/1, or missing values; strings are not accepted.")
+  }
+  x$model_converged <- if (is.logical(raw_convergence)) raw_convergence else as.logical(raw_convergence)
+
+  numeric_cols <- c("estimate", "SE", "CI_low", "CI_high", "p_value", "N")
+  for (nm in numeric_cols) {
+    original <- x[[nm]]
+    converted <- suppressWarnings(as.numeric(original))
+    bad_conversion <- !is.na(original) & is.na(converted)
+    if (any(bad_conversion)) .aoi_stop("Model callback ", nm, " must be numeric or missing.")
+    x[[nm]] <- converted
+  }
+  if (any(x$N < 0, na.rm = TRUE)) .aoi_stop("Model callback N must be non-negative when supplied.")
+  if (any(!is.na(x$N) & abs(x$N - round(x$N)) > 1e-9)) .aoi_stop("Model callback N must be integer-valued when supplied.")
+
+  converged <- !is.na(x$model_converged) & x$model_converged
+  if (any(converged)) {
+    required_finite <- c("estimate", "SE", "CI_low", "CI_high", "N")
+    bad <- vapply(required_finite, function(nm) any(!is.finite(x[[nm]][converged])), logical(1))
+    if (any(bad)) {
+      .aoi_stop("Converged model rows must contain finite estimate, SE, CI_low, CI_high, and N values.")
+    }
+    if (any(x$N[converged] <= 0)) .aoi_stop("Converged model rows must report N > 0.")
+  }
+
+  x$perturbation_id <- pid
+  est <- x$estimate
+  x$direction <- ifelse(
+    !is.finite(est), "missing",
+    ifelse(est > 0, "positive", ifelse(est < 0, "negative", "zero"))
+  )
   x[, c("perturbation_id", required, "direction", setdiff(names(x), c("perturbation_id", required, "direction"))), drop = FALSE]
 }
 
@@ -277,14 +331,19 @@ assess_aoi_inference_stability <- function(x, term = NULL) {
   out <- do.call(rbind, lapply(split(d, d$term), function(z) {
     converged <- !is.na(z$model_converged) & as.logical(z$model_converged); usable <- z[converged, , drop = FALSE]
     base <- usable[usable$perturbation_id == "baseline", , drop = FALSE]; baseline_sign <- if (nrow(base)) sign(as.numeric(base$estimate[1L])) else NA_real_
-    est <- suppressWarnings(as.numeric(usable$estimate)); ciw <- suppressWarnings(as.numeric(usable$CI_high) - as.numeric(usable$CI_low))
+    est <- suppressWarnings(as.numeric(usable$estimate))
+    ciw <- suppressWarnings(as.numeric(usable$CI_high) - as.numeric(usable$CI_low))
+    n_used <- suppressWarnings(as.numeric(usable$N))
     data.frame(term = as.character(z$term[1L]), n_models = nrow(z), n_converged = sum(converged),
       convergence_proportion = mean(converged),
       same_sign_proportion = if (is.finite(baseline_sign) && length(est)) mean(sign(est) == baseline_sign) else NA_real_,
       median_estimate = if (length(est)) stats::median(est, na.rm = TRUE) else NA_real_,
       min_estimate = if (length(est)) min(est, na.rm = TRUE) else NA_real_,
       max_estimate = if (length(est)) max(est, na.rm = TRUE) else NA_real_,
-      median_CI_width = if (length(ciw)) stats::median(ciw, na.rm = TRUE) else NA_real_)
+      median_CI_width = if (length(ciw)) stats::median(ciw, na.rm = TRUE) else NA_real_,
+      median_N = if (length(n_used)) stats::median(n_used, na.rm = TRUE) else NA_real_,
+      min_N = if (length(n_used)) min(n_used, na.rm = TRUE) else NA_real_,
+      max_N = if (length(n_used)) max(n_used, na.rm = TRUE) else NA_real_)
   }))
   attr(out, "caveat") <- "Same-sign and convergence proportions are descriptive sensitivity summaries, not probabilities that an effect is true."; out
 }
@@ -326,9 +385,9 @@ report_aoi_sensitivity <- function(x) {
       lines <- c(
         lines,
         sprintf(
-          "- %s: %d/%d converged; same-sign frequency=%.3f; median estimate=%.4g; range=[%.4g, %.4g].",
+          "- %s: %d/%d converged; same-sign frequency=%.3f; median estimate=%.4g; range=[%.4g, %.4g]; N range=[%.0f, %.0f].",
           z$term, z$n_converged, z$n_models, z$same_sign_proportion,
-          z$median_estimate, z$min_estimate, z$max_estimate
+          z$median_estimate, z$min_estimate, z$max_estimate, z$min_N, z$max_N
         )
       )
     }
