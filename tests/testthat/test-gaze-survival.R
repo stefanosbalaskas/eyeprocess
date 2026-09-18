@@ -195,7 +195,7 @@ test_that("AFT refuses zero-time events", {
   d$event_observed[1] <- 1
   d$event_time[1] <- 0
   d$analysis_time[1] <- 0
-  expect_error(fit_gaze_aft_model(d, "condition"), "strictly positive")
+  expect_error(fit_gaze_aft_model(d, "condition", distribution = "weibull"), "strictly positive")
 })
 
 test_that("explicit sensitivity branches retain specification metadata", {
