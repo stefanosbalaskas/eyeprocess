@@ -19,6 +19,12 @@ compare_aoi_assignments <- function(baseline, perturbed, ids = seq_along(baselin
               reassignment_matrix = table(detail$baseline_aoi[comparable], detail$perturbed_aoi[comparable], useNA = "no"))
 }
 
+.aoi_group_key <- function(d, keys) {
+  if (!length(keys)) return(factor(rep("all", nrow(d))))
+  factors <- lapply(d[, keys, drop = FALSE], function(x) addNA(factor(x), ifany = TRUE))
+  do.call(interaction, c(factors, list(drop = TRUE, lex.order = TRUE)))
+}
+
 #' Estimate AOI assignment stability
 #' @export
 estimate_aoi_assignment_stability <- function(comparisons, metadata = NULL, group_cols = NULL) {
@@ -33,7 +39,7 @@ estimate_aoi_assignment_stability <- function(comparisons, metadata = NULL, grou
     source <- merge(source, metadata, by = "observation_id", all.x = TRUE, sort = FALSE)
   }
   summarise <- function(d, keys) {
-    sk <- if (!length(keys)) factor(rep("all", nrow(d))) else interaction(d[, keys, drop = FALSE], drop = TRUE, lex.order = TRUE)
+    sk <- .aoi_group_key(d, keys)
     do.call(rbind, lapply(split(d, sk), function(z) {
       comparable <- !z$missing_comparison; n <- sum(comparable)
       key_values <- if (length(keys)) z[1L, keys, drop = FALSE] else data.frame()
@@ -85,7 +91,7 @@ recompute_aoi_features <- function(data, assignments, participant_col = NULL, tr
   if (is.null(duration_col)) .aoi_warn("No `duration_col` supplied; dwell is returned as NA rather than inferred.")
   d <- d[!is.na(d$aoi_assignment) & !d$aoi_assignment %in% c(.aoi_outside, .aoi_ambiguous), , drop = FALSE]
   if (!nrow(d)) return(data.frame())
-  keys <- c(group_cols, "aoi_assignment"); parts <- split(d, interaction(d[, keys, drop = FALSE], drop = TRUE, lex.order = TRUE))
+  keys <- c(group_cols, "aoi_assignment"); parts <- split(d, .aoi_group_key(d, keys))
   do.call(rbind, lapply(parts, function(z) {
     base <- if (length(group_cols)) z[1L, group_cols, drop = FALSE] else data.frame()
     dwell <- if (is.null(duration_col)) NA_real_ else { v <- suppressWarnings(as.numeric(z[[duration_col]])); if (any(is.finite(v))) sum(v[is.finite(v)]) else NA_real_ }
@@ -112,8 +118,12 @@ run_aoi_sensitivity_analysis <- function(
     model_callback = NULL, preprocessing_specification = NULL, event_detector = NULL,
     quality_rules = NULL, model_specification = NULL) {
   if (!is.data.frame(data)) .aoi_stop("`data` must be a data frame.")
-  geometry <- validate_aoi_geometry(aois)$geometry; ids <- if (is.null(observation_id_col)) seq_len(nrow(data)) else data[[observation_id_col]]
-  if (anyDuplicated(ids)) .aoi_stop("Observation IDs must be unique.")
+  geometry <- validate_aoi_geometry(aois)$geometry
+  if (!is.null(observation_id_col) && !observation_id_col %in% names(data)) {
+    .aoi_stop("observation_id_col is absent from data.")
+  }
+  ids <- if (is.null(observation_id_col)) seq_len(nrow(data)) else data[[observation_id_col]]
+  if (any(is.na(ids)) || anyDuplicated(ids)) .aoi_stop("Observation IDs must be unique and non-missing.")
   grid_result <- apply_aoi_perturbation_grid(geometry, grid); completed <- grid_result$audit$perturbation_id[grid_result$audit$status == "completed"]
   if (!"baseline" %in% completed) .aoi_stop("Sensitivity analysis requires a successful `baseline` branch.")
   assignments <- list(); features <- list(); models <- list()
@@ -179,12 +189,44 @@ summarise_aoi_sensitivity <- function(x) {
 #' Report AOI sensitivity analysis
 #' @export
 report_aoi_sensitivity <- function(x) {
-  s <- summarise_aoi_sensitivity(x); m <- if (nrow(s$assignment_stability)) stats::median(s$assignment_stability$proportion_unchanged, na.rm = TRUE) else NA_real_
-  paste(c("## AOI perturbation sensitivity analysis", "",
-          sprintf("Planned perturbations: %d; completed geometry branches: %d; geometry failures: %d; model callback failures: %d.",
-                  s$n_planned, s$n_completed, s$n_geometry_failed, s$n_model_failures),
-          if (is.finite(m)) sprintf("Median unchanged AOI assignment across completed perturbations: %.3f.", m) else "Assignment stability could not be summarized.",
-          "", "Interpretation: these quantities describe robustness to the declared AOI perturbations. They are not probabilities that the scientific conclusion is true."),
-        collapse = "\n")
+  s <- summarise_aoi_sensitivity(x)
+  m <- if (nrow(s$assignment_stability)) stats::median(s$assignment_stability$proportion_unchanged, na.rm = TRUE) else NA_real_
+  lines <- c(
+    "## AOI perturbation sensitivity analysis", "",
+    sprintf(
+      "Planned perturbations: %d; completed geometry branches: %d; geometry failures: %d; model callback failures: %d.",
+      s$n_planned, s$n_completed, s$n_geometry_failed, s$n_model_failures
+    ),
+    if (is.finite(m)) sprintf(
+      "Median unchanged AOI assignment across completed perturbations: %.3f.", m
+    ) else "Assignment stability could not be summarized.",
+    ""
+  )
+  if (nrow(s$inference_stability)) {
+    lines <- c(
+      lines,
+      "Model-level sensitivity is summarized by coefficient direction, magnitude, interval width, and convergence rather than significance alone."
+    )
+    for (i in seq_len(nrow(s$inference_stability))) {
+      z <- s$inference_stability[i, , drop = FALSE]
+      lines <- c(
+        lines,
+        sprintf(
+          "- %s: %d/%d converged; same-sign frequency=%.3f; median estimate=%.4g; range=[%.4g, %.4g].",
+          z$term, z$n_converged, z$n_models, z$same_sign_proportion,
+          z$median_estimate, z$min_estimate, z$max_estimate
+        )
+      )
+    }
+    lines <- c(lines, "")
+  }
+  lines <- c(
+    lines,
+    "Interpretation: these quantities describe robustness to the declared AOI perturbations. They are not probabilities that the scientific conclusion is true."
+  )
+  if (nrow(s$failures)) {
+    lines <- c(lines, "Failed or non-evaluable branches remain in the audit trail and should be reported rather than silently excluded.")
+  }
+  paste(lines, collapse = "\n")
 }
 
