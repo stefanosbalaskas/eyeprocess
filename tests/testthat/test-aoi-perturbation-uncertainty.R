@@ -193,25 +193,56 @@ test_that("participant trial and AOI stability are available", {
   expect_match(attr(freq, "caveat"), "not a posterior")
 })
 
-test_that("feature recomputation does not invent dwell", {
+test_that("feature recomputation preserves zero cells and missing denominators", {
   d <- data.frame(
-    participant = c(1,1,1), trial = c(1,1,1),
-    time = c(.1,.2,.3), duration = c(.1, NA, .1)
+    participant = c(1,1,1,2,2),
+    trial = c(1,1,1,1,1),
+    time = c(.1,.2,.3,NA,NA),
+    duration = c(.1,NA,.1,NA,NA)
   )
-  f <- expect_warning(
+  assignments <- c("a","a","__outside__",NA,NA)
+
+  complete <- recompute_aoi_features(
+    d, assignments,
+    participant_col = "participant", trial_col = "trial",
+    duration_col = "duration", time_col = "time",
+    aoi_levels = c("a", "b")
+  )
+  p1a <- complete[complete$participant == 1 & complete$aoi == "a", , drop = FALSE]
+  p1b <- complete[complete$participant == 1 & complete$aoi == "b", , drop = FALSE]
+  p2a <- complete[complete$participant == 2 & complete$aoi == "a", , drop = FALSE]
+
+  expect_equal(p1a$fixation_count, 2)
+  expect_true(p1a$inspected)
+  expect_true(is.na(p1a$dwell))
+  expect_false(p1a$duration_complete)
+  expect_equal(p1b$fixation_count, 0)
+  expect_false(p1b$inspected)
+  expect_equal(p1b$dwell, 0)
+  expect_true(p1b$duration_complete)
+  expect_true(is.na(p1b$first_fixation))
+  expect_true(p1b$time_complete)
+  expect_true(is.na(p2a$fixation_count))
+  expect_true(is.na(p2a$inspected))
+  expect_equal(p2a$n_valid_observations, 0)
+  expect_equal(p2a$n_missing_observations, 2)
+
+  expect_warning(
     recompute_aoi_features(
-      d, c("a","a","__outside__"),
-      participant_col = "participant", trial_col = "trial", time_col = "time"
+      d, assignments,
+      participant_col = "participant", trial_col = "trial",
+      time_col = "time", aoi_levels = c("a", "b")
     ),
     "dwell is returned as NA"
   )
-  expect_true(is.na(f$dwell[1]))
-  f2 <- recompute_aoi_features(
-    d, c("a","a","__outside__"),
-    participant_col = "participant", trial_col = "trial",
-    duration_col = "duration", time_col = "time"
+  expect_warning(
+    recompute_aoi_features(
+      d, assignments,
+      participant_col = "participant", trial_col = "trial",
+      duration_col = "duration", aoi_levels = c("a", "b")
+    ),
+    "first_fixation is returned as NA"
   )
-  expect_equal(f2$dwell[1], .1)
 })
 
 .aoi_test_data <- function() {
@@ -261,6 +292,22 @@ test_that("feature recomputation does not invent dwell", {
     model_converged = TRUE, N = stats::nobs(fit)
   )
 }
+
+test_that("sensitivity features keep all trial by AOI cells", {
+  data <- .aoi_test_data()
+  aois <- .aoi_test_aois()
+  result <- run_aoi_sensitivity_analysis(
+    data, aois,
+    create_aoi_perturbation_grid(include_baseline = TRUE),
+    x_col = "x", y_col = "y", observation_id_col = "obs",
+    participant_col = "participant", trial_col = "trial",
+    duration_col = "duration", time_col = "time"
+  )
+  baseline <- result$features$baseline
+  expect_equal(nrow(baseline), 8 * 3 * 5)
+  expect_setequal(baseline$aoi, aois$aoi_id)
+  expect_true(all(baseline$n_valid_observations > 0))
+})
 
 test_that("full synthetic sensitivity pipeline propagates inference and provenance", {
   viewing <- list(
