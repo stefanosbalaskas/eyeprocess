@@ -160,7 +160,12 @@ test_that("KM, Cox, clustered Cox, and AFT models run on deterministic data", {
   expect_equal(nrow(cmp), 3L)
   expect_true(nrow(tidy_gaze_survival_model(cox)) > 0)
   expect_true(nrow(check_gaze_proportional_hazards(cox)) > 0)
-  expect_equal(report_gaze_survival_model(clustered)$N_participants, 40L)
+  report <- report_gaze_survival_model(clustered)
+  expect_equal(report$N_participants, 40L)
+  expect_equal(report$N_review_required, 0L)
+  expect_true(length(report$event_type) >= 1L)
+  expect_true(length(report$target_aoi) >= 1L)
+  expect_true(length(report$time_origin) >= 1L)
 })
 
 test_that("estimators must be selected explicitly", {
