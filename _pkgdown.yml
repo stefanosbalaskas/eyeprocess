@@ -55,6 +55,7 @@ articles:
   navbar: Analysis
   contents:
   - preprocessing-features
+  - event-detector-multiverse
   - psychometric-process-models
   - responsible-use
   - multi-vendor-validation
@@ -136,6 +137,34 @@ articles:
   - m4-negative-controls-state-count-0-11
   - m4-recovery-validation-0-11
 reference:
+- title: Event detector multiverse and inference robustness
+  desc: |
+    Explicit detector specifications, event matching, AOI/feature propagation,
+    identical-model inference, stability summaries, plots, and reproducible reporting.
+  contents:
+  - define_event_detector_spec
+  - validate_event_detector_spec
+  - create_detector_multiverse
+  - detect_events_with_spec
+  - import_external_detector_events
+  - run_detector_multiverse
+  - match_detected_events
+  - compare_event_catalogues
+  - estimate_detector_agreement
+  - summarise_detector_events
+  - summarise_detector_disagreement
+  - propagate_detector_to_aoi
+  - propagate_detector_to_features
+  - run_detector_inference_multiverse
+  - assess_detector_inference_stability
+  - summarise_detector_robustness
+  - plot_detector_event_timeline
+  - plot_detector_agreement
+  - plot_detector_feature_distributions
+  - plot_detector_coefficient_stability
+  - plot_detector_multiverse
+  - report_detector_multiverse
+  - simulate_detector_multiverse_data
 - title: Measurement accountability diagnostics (0.11)
   contents:
   - pupil_latency_sensitivity
