@@ -317,6 +317,36 @@ test_that("feature recomputation preserves zero cells and missing denominators",
   )
 }
 
+test_that("sample-level features are not mislabeled as fixations", {
+  data <- data.frame(
+    participant = c("p1", "p1", "p1"),
+    trial = c(1, 1, 1),
+    x = c(1, 2, 20),
+    y = c(1, 2, 20),
+    duration = c(.01, .01, .01),
+    time = c(0, .01, .02)
+  )
+  aois <- data.frame(
+    aoi_id = "a", xmin = 0, xmax = 10, ymin = 0, ymax = 10
+  )
+  result <- run_aoi_sensitivity_analysis(
+    data, aois,
+    create_aoi_perturbation_grid(include_baseline = TRUE),
+    x_col = "x", y_col = "y",
+    participant_col = "participant", trial_col = "trial",
+    duration_col = "duration", time_col = "time",
+    observation_level = "sample"
+  )
+  row <- result$features$baseline[1, , drop = FALSE]
+  expect_equal(row$observation_level, "sample")
+  expect_equal(row$observation_count, 2)
+  expect_equal(row$sample_count, 2)
+  expect_true(is.na(row$fixation_count))
+  expect_equal(row$first_observation, 0)
+  expect_true(is.na(row$first_fixation))
+  expect_equal(result$provenance$observation_level, "sample")
+})
+
 test_that("sensitivity features keep all trial by AOI cells", {
   data <- .aoi_test_data()
   aois <- .aoi_test_aois()
