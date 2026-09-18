@@ -79,6 +79,8 @@ The survival curve is the probability that the target event has **not yet** occu
 
 ## Cox versus AFT models
 
+Estimator choice is explicit. `fit_gaze_mixed_cox_model()` requires `structure = "cluster_robust"` or `"frailty"`; `fit_gaze_aft_model()` requires `distribution = "weibull"` or `"lognormal"`. Both arguments are required so the package never chooses an estimator silently.
+
 ```{r models}
 cox_clustered <- fit_gaze_mixed_cox_model(
   surv_data,
