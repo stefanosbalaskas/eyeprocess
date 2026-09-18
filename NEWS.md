@@ -1,3 +1,13 @@
+# eyeprocess 0.11.1.9000
+
+## Standardized spatial data quality
+
+- Added vendor-neutral target-referenced accuracy, RMS-S2S precision, population-SD precision, BCEA with explicit probability, empirical sampling intervals/jitter/effective frequency, valid-data fractions, and reason-aware data-loss metrics.
+- Added a canonical `gaze_quality_report` carrying units, study-defined review flags, source/preprocessing/event/AOI/quality/model/software provenance fields, and an explicit no-automatic-exclusion contract.
+- Added a deterministic six-profile nine-point validation data set and shared R/Python numerical fixture illustrating why accuracy and precision are not interchangeable.
+- Added manuscript reporting guidance, plotting helpers, comparison helpers, pkgdown navigation, and focused edge-case/synthetic-truth tests.
+- RMS-S2S never bridges missing samples; mixed units fail explicitly; timestamp defects are surfaced rather than silently repaired; thresholds remain study-specific review rules.
+
 # eyeprocess 0.11.1
 
 ## CRAN portability hotfix
