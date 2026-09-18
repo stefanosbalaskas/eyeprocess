@@ -11,20 +11,6 @@ navbar:
     right:
     - search
     - github
-reference:
-- title: Trial-level multilevel mediation
-  desc: Prepare repeated-measures mediation data without collapsing gaze to participant means.
-  contents:
-  - prepare_multilevel_mediation_data
-  - validate_multilevel_mediation_data
-  - identify_mediation_levels
-  - decompose_within_between
-  - center_within_participant
-  - summarise_within_between_variance
-  - audit_mediation_missingness
-  - check_mediation_trial_counts
-  - add_multilevel_mediation_component
-
 articles:
 - title: Trial-level multilevel mediation
   contents:
@@ -79,7 +65,6 @@ articles:
   - advanced-model-validation
   - research-validation-program
   - measurement-accountability-0-11
-  - gaze-survival-analysis
   - validation-execution-engine
   - dynamic-irtree-hardening
   - independent-vendor-corpus
@@ -89,6 +74,7 @@ articles:
   - api-storage-adapters
   - benchmark-reproduction
   - probabilistic-aoi-compositions
+  - aoi-perturbation-uncertainty
   - uncertainty-calibration
   - reliability-device-transportability
   - pupil-registration-missingness
@@ -154,35 +140,23 @@ articles:
   - m4-negative-controls-state-count-0-11
   - m4-recovery-validation-0-11
 reference:
+- title: Trial-level multilevel mediation
+  desc: Prepare repeated-measures mediation data without collapsing gaze to participant means.
+  contents:
+  - prepare_multilevel_mediation_data
+  - validate_multilevel_mediation_data
+  - identify_mediation_levels
+  - decompose_within_between
+  - center_within_participant
+  - summarise_within_between_variance
+  - audit_mediation_missingness
+  - check_mediation_trial_counts
+  - add_multilevel_mediation_component
 - title: Measurement accountability diagnostics (0.11)
   contents:
   - pupil_latency_sensitivity
   - event_marker_qc
   - validation_ladder
-- title: Censored gaze-latency survival analysis
-  desc: |
-    Right-censored time-to-event preparation, Kaplan-Meier description, Cox and AFT models, repeated-participant structures, diagnostics, sensitivity analysis, plotting, prediction, and reporting.
-  contents:
-  - prepare_gaze_survival_data
-  - validate_gaze_survival_data
-  - summarise_gaze_censoring
-  - estimate_gaze_survival
-  - fit_gaze_cox_model
-  - fit_gaze_mixed_cox_model
-  - fit_gaze_aft_model
-  - tidy_gaze_survival_model
-  - check_gaze_proportional_hazards
-  - compare_gaze_survival_models
-  - predict_gaze_survival
-  - estimate_gaze_latency_quantiles
-  - plot_gaze_survival_curve
-  - plot_gaze_cumulative_incidence
-  - plot_gaze_hazard
-  - plot_gaze_cox_diagnostics
-  - compare_gaze_survival_specifications
-  - report_gaze_survival_model
-  - simulate_gaze_survival_inputs
-  - simulate_gaze_survival_example
 - title: Validation evidence programmes and freezing (0.9 M2)
   contents:
   - evaluate_validation_acceptance
@@ -347,6 +321,34 @@ reference:
   - freeze_eyeprocess_irt_reference
   - run_eyeprocess_irt_recovery
   - simulate_eyeprocess_irt_binary
+- title: AOI perturbation and uncertainty
+  desc: |
+    Geometry perturbation, pixel/degree conversion, assignment stability,
+    feature recomputation, model propagation, reporting, and robustness plots.
+  contents:
+  - validate_aoi_geometry
+  - convert_aoi_margin_to_degrees
+  - convert_aoi_margin_to_pixels
+  - aoi_perturbation_spec
+  - dilate_aoi
+  - erode_aoi
+  - translate_aoi
+  - jitter_aoi
+  - perturb_aoi_geometry
+  - create_aoi_perturbation_grid
+  - apply_aoi_perturbation_grid
+  - compare_aoi_assignments
+  - estimate_aoi_assignment_stability
+  - estimate_fixation_assignment_probability
+  - recompute_aoi_features
+  - run_aoi_sensitivity_analysis
+  - assess_aoi_inference_stability
+  - summarise_aoi_sensitivity
+  - report_aoi_sensitivity
+  - plot_aoi_perturbations
+  - plot_aoi_assignment_stability
+  - plot_aoi_coefficient_stability
+  - plot_aoi_robustness_surface
 - title: Validation, sensitivity, and negative controls (0.9)
   contents:
   - audit_temporal_leakage

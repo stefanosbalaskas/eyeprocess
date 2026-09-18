@@ -1,13 +1,12 @@
-# eyeprocess 0.11.1.9000
-
-## Censored gaze-latency survival analysis
-
-- Adds a vendor-neutral survival-ready trial contract that retains valid never-inspected trials as right-censored observations and keeps incomplete/unusable gaze as explicit review states.
-- Adds Kaplan-Meier estimation, Cox PH, participant-clustered Cox, Gaussian participant-frailty Cox through the specialist `coxme` backend, Weibull/log-normal AFT, prediction, latency quantiles, diagnostics, sensitivity comparisons, plots, reporting, and deterministic synthetic examples.
-- Adds participant/trial and recording/trial event joining with explicit failure on ambiguous trial-only identity, explicit time origins, visit-level revisit/transition/disengagement semantics, and provenance for source, preprocessing, detector, AOI, quality rule, model, and software version.
-- Adds cross-language survival-contract fixtures, focused edge/synthetic/backend-comparison tests, worked disclosure and evidence-verification examples, and a pkgdown methodological article with reporting and limitation guidance.
-
 # eyeprocess 0.11.1
+
+## AOI perturbation and uncertainty analysis
+
+- Adds vendor-neutral AOI geometry validation, reproducible dilation/erosion/translation/jitter and anisotropic perturbation specifications, and explicit pixel/degree-of-visual-angle conversion.
+- Adds sample/fixation reassignment matrices, participant/trial/AOI stability summaries, feature recomputation, empirical assignment frequencies, and optional fixed model-callback propagation with retained failure and convergence evidence.
+- Adds rectangle and convex-polygon support, explicit overlap ambiguity, screen-boundary policies, synthetic cross-language parity fixtures, base-R robustness plots, and a runnable advertising/interface vignette.
+- Robustness frequencies remain descriptive sensitivity summaries for the declared perturbation set and are not probabilities that a scientific conclusion is true.
+
 
 ## CRAN portability hotfix
 
