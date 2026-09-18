@@ -106,8 +106,9 @@ when the observation window is known and the trial is otherwise analyzable. Rows
 with incomplete or unusable gaze remain explicit review states. Cox models estimate
 hazard ratios; AFT models estimate multiplicative time effects. Participant-clustered
 Cox uncertainty and Gaussian frailty Cox models are distinct estimators and are never
-silently substituted. Cox partial-likelihood information criteria are not treated as
-rank-comparable with AFT full-likelihood information criteria.
+silently substituted. Information criteria from ordinary Cox partial likelihood,
+code{coxme} penalized frailty likelihood, and AFT full likelihood are not treated as
+rank-comparable across likelihood bases.
 }
 \value{
 Preparation returns a canonical trial-level data frame. Validation and summaries
