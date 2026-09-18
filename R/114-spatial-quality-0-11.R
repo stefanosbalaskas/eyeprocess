@@ -99,9 +99,10 @@
 
 .ep_sq_fingerprint <- function(d, cols) {
   cols <- unique(cols[cols %in% names(d)])
-  txt <- paste(capture.output(utils::write.csv(d[cols], row.names = FALSE, na = "<NA>")), collapse = "\n")
-  if (requireNamespace("openssl", quietly = TRUE)) return(as.character(openssl::sha256(charToRaw(txt))))
-  paste0("fallback-", nchar(txt), "-", sum(utf8ToInt(txt)))
+  tf <- tempfile("eyeprocess-quality-", fileext = ".csv")
+  on.exit(unlink(tf), add = TRUE)
+  utils::write.csv(d[cols], tf, row.names = FALSE, na = "<NA>")
+  unname(tools::md5sum(tf)[[1L]])
 }
 
 .ep_sq_provenance <- function(x, meta) {
