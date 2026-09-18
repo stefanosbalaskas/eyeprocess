@@ -161,3 +161,16 @@ test_that("quality threshold rules fail explicitly when malformed", {
     "finite numeric"
   )
 })
+
+test_that("long intervals and estimated dropped samples are distinct", {
+  d <- data.frame(timestamp_ms = c(0, 10, 20, 50))
+  e <- estimate_effective_sampling_rate(d, nominal_sampling_hz = 100)
+  expect_equal(e$long_interval_count, 1L)
+  expect_equal(e$dropped_interval_count, 2L)
+})
+
+test_that("reporting and simulator arguments validate explicitly", {
+  expect_error(report_gaze_quality(data.frame(accuracy_mean = 1), digits = -1), "digits")
+  expect_error(simulate_gaze_quality_calibration(samples_per_target = 4.5), "integer")
+  expect_error(simulate_gaze_quality_calibration(nominal_sampling_hz = 0), "finite positive")
+})
