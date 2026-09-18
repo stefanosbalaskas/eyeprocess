@@ -17,6 +17,10 @@ on:
       - 'NAMESPACE'
       - '_pkgdown.yml'
 
+concurrency:
+  group: "measurement-intelligence-${{ github.head_ref || github.ref_name }}"
+  cancel-in-progress: true
+
 permissions:
   contents: read
 
