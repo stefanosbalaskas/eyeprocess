@@ -447,3 +447,84 @@ estimate_detector_agreement <- function(x, event_type = "fixation", onset_tolera
   .edm_rbind_fill(rows)
 }
 
+#' Summarise detector events
+#' @export
+summarise_detector_events <- function(x) {
+  events <- if (inherits(x, "eye_detector_multiverse_result")) x$events else x
+  if (!nrow(events)) return(data.frame()); if (!"detector_id" %in% names(events)) .edm_stop("events must include detector_id.")
+  groups <- split(events, events$detector_id); .edm_rbind_fill(lapply(names(groups), function(id) {
+    z <- groups[[id]]; f <- z[z$episode_type == "fixation", , drop = FALSE]; dur <- as.numeric(f$duration_ms)
+    data.frame(detector_id = id, number_of_events = nrow(z), number_of_fixations = nrow(f), number_of_saccades = sum(z$episode_type == "saccade"),
+      mean_fixation_duration_ms = if (nrow(f)) mean(dur, na.rm = TRUE) else NA_real_, median_fixation_duration_ms = if (nrow(f)) stats::median(dur, na.rm = TRUE) else NA_real_,
+      total_fixation_duration_ms = if (nrow(f)) sum(dur, na.rm = TRUE) else 0, stringsAsFactors = FALSE)
+  }))
+}
+
+#' Summarise detector disagreement
+#' @export
+summarise_detector_disagreement <- function(x, event_type = "fixation") {
+  a <- estimate_detector_agreement(x, event_type); if (!nrow(a)) return(a)
+  a$unmatched_reference <- a$reference_events - a$matched_events; a$unmatched_candidate <- a$candidate_events - a$matched_events; a$event_count_difference <- a$candidate_events - a$reference_events; a
+}
+
+.edm_assign_episode_aois <- function(branch, overlap = "error") {
+  if (!overlap %in% c("error", "first", "smallest", "all")) .edm_stop("overlap must be error, first, smallest, or all.")
+  if (!nrow(branch$aoi_definitions) || !nrow(branch$aoi_geometry)) .edm_stop("No AOIs are registered.")
+  out <- branch; d <- out$episodes; if (!nrow(d)) return(out); assigned <- rep(NA_character_, nrow(d))
+  for (r in seq_len(nrow(d))) {
+    if (!d$episode_type[r] %in% c("fixation", "pursuit") || !is.finite(as.numeric(d$centroid_x[r]))) { assigned[r] <- d$aoi_id[r]; next }
+    hits <- list()
+    for (i in seq_len(nrow(out$aoi_definitions))) {
+      def <- out$aoi_definitions[i, , drop = FALSE]
+      if (!is.na(def$stimulus_id) && nzchar(def$stimulus_id) && as.character(d$stimulus_id[r]) != as.character(def$stimulus_id)) next
+      geoms <- out$aoi_geometry[out$aoi_geometry$aoi_id == def$aoi_id, , drop = FALSE]
+      for (g in seq_len(nrow(geoms))) {
+        geom <- geoms[g, , drop = FALSE]; if (as.character(d$coordinate_space_id[r]) != as.character(geom$coordinate_space_id)) next
+        hit <- .aoi_contains(as.numeric(d$centroid_x[r]), as.numeric(d$centroid_y[r]), as.numeric(d$start_time[r]), def, geom)
+        if (isTRUE(hit)) hits[[length(hits) + 1L]] <- list(id = as.character(def$aoi_id), area = as.numeric(geom$width) * as.numeric(geom$height), order = i)
+      }
+    }
+    if (length(hits)) hits <- hits[!duplicated(vapply(hits, `[[`, character(1), "id"))]
+    if (length(hits) > 1L && overlap == "error") .edm_stop("Ambiguous AOI assignment for episode ", d$episode_id[r], ": ", paste(vapply(hits, `[[`, character(1), "id"), collapse = ", "), ". Choose an overlap rule explicitly.")
+    if (!length(hits)) assigned[r] <- NA_character_
+    else if (overlap == "all") assigned[r] <- paste(vapply(hits, `[[`, character(1), "id"), collapse = "|")
+    else if (overlap == "smallest") assigned[r] <- hits[[order(vapply(hits, `[[`, numeric(1), "area"), vapply(hits, `[[`, numeric(1), "order"))[1L]]]$id
+    else assigned[r] <- hits[[1L]]$id
+  }
+  d$aoi_id <- assigned; out$episodes <- d; add_provenance(out, "propagate_detector_to_aoi", "episodes", paste0("overlap=", overlap))
+}
+
+#' Propagate detector branches to AOI assignment
+#' @export
+propagate_detector_to_aoi <- function(x, overlap = "error", continue_on_error = TRUE) {
+  if (!inherits(x, "eye_detector_multiverse_result")) .edm_stop("x must be an eye_detector_multiverse_result.")
+  branches <- list(); events <- list(); failures <- if (nrow(x$failures)) split(x$failures, seq_len(nrow(x$failures))) else list()
+  for (spec in x$multiverse$specs) {
+    if (is.null(x$branches[[spec$detector_id]])) next
+    value <- tryCatch(.edm_assign_episode_aois(x$branches[[spec$detector_id]], overlap), error = identity)
+    if (inherits(value, "error")) {
+      failures[[length(failures) + 1L]] <- data.frame(detector_id = spec$detector_id, detector_spec_hash = spec$detector_spec_hash, stage = "aoi_assignment", error_type = class(value)[1L], error = conditionMessage(value), stringsAsFactors = FALSE)
+      if (!continue_on_error) stop(value); next
+    }
+    branches[[spec$detector_id]] <- value; ev <- value$episodes; if ("detector_id" %in% names(ev)) ev <- ev[ev$detector_id == spec$detector_id, , drop = FALSE]; events[[length(events) + 1L]] <- ev
+  }
+  x$branches <- branches; x$events <- .edm_rbind_fill(events); x$failures <- .edm_rbind_fill(failures); x
+}
+
+.edm_trial_features <- function(branch, spec) {
+  trials <- branch$intervals[branch$intervals$interval_type == "trial", , drop = FALSE]
+  if (!nrow(trials)) .edm_stop("Explicit trial intervals are required for detector-to-feature propagation.")
+  if (any(is.na(trials$trial_id)) || anyDuplicated(paste(trials$recording_id, trials$trial_id, sep = "\r"))) .edm_stop("Trial intervals must have non-missing unique recording_id/trial_id pairs.")
+  if (!nrow(branch$aoi_definitions)) .edm_stop("AOI definitions are required before feature propagation.")
+  fix <- branch$episodes[branch$episodes$episode_type == "fixation", , drop = FALSE]; if ("detector_id" %in% names(fix)) fix <- fix[fix$detector_id == spec$detector_id, , drop = FALSE]
+  lin <- .edm_lineage(branch, spec); rows <- list(); k <- 0L
+  for (i in seq_len(nrow(trials))) {
+    tr <- trials[i, , drop = FALSE]; g <- branch$gaze_samples[branch$gaze_samples$recording_id == tr$recording_id & branch$gaze_samples$trial_id == tr$trial_id, , drop = FALSE]
+    n_samples <- nrow(g); valid <- if (n_samples) as.logical(g$valid) & is.finite(as.numeric(g$gaze_x)) & is.finite(as.numeric(g$gaze_y)) else logical(); valid[is.na(valid)] <- FALSE
+    vf <- if (n_samples) mean(valid) else NA_real_; observed <- n_samples > 0L && is.finite(vf) && vf > 0
+    tf <- fix[fix$recording_id == tr$recording_id & fix$trial_id == tr$trial_id, , drop = FALSE]; tf <- tf[order(tf$start_time), , drop = FALSE]
+    seq <- as.character(tf$aoi_id[!is.na(tf$aoi_id)]); collapsed <- if (length(seq)) seq[c(TRUE, seq[-1L] != seq[-length(seq)])] else character()
+    for (a in seq_len(nrow(branch$aoi_definitions))) {
+      id <- as.character(branch$aoi_definitions$aoi_id[a]); target <- tf[as.character(tf$aoi_id) == id & !is.na(tf$aoi_id), , drop = FALSE]
+      count <- if (observed) nrow(target) else NA_real_; dwell <- if (!observed) NA_real_ else if (nrow(target)) sum(as.numeric(target$duration_ms), na.rm = TRUE) else 0
+      mean_dur <- if (nrow(target)) mean(as.numeric(target$duration_ms), na.rm = TRUE) else NA_real_; latency <- if (nrow(target)) (min(target$start_time) - tr$start_time) * 1000 else NA_real_
