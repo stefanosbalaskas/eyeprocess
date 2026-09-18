@@ -248,7 +248,18 @@ stability
 
 Formula models use `na.fail`. Missing predictors therefore cause an explicit
 branch failure rather than an unnoticed reduction in N. Non-converged branches
-are retained diagnostically and excluded from coefficient-stability summaries.
+are retained diagnostically and excluded from coefficient-distribution summaries.
+
+### Denominator discipline
+
+The stability table uses the **declared detector multiverse** as the denominator.
+`specifications` is the number of planned detector specifications,
+`term_available_specifications` counts branches that returned the requested
+coefficient, and `model_failure_specifications` counts recorded model-stage
+failures. Failed fits, missing requested terms, and non-converged branches
+therefore reduce the reported convergence rate instead of disappearing from the
+robustness calculation. Custom model callbacks must return at most one row per
+coefficient term within a detector branch.
 
 ```{r coefficient-stability, fig.cap="Synthetic condition coefficient and confidence interval across detector specifications."}
 plot_detector_coefficient_stability(
