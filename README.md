@@ -19,6 +19,16 @@
 | Process and psychometric modelling | IRT, response-time models, multimodal process measurement, validation and sensitivity infrastructure |
 | Interoperability and storage | Eye-Tracking-BIDS, Arrow/Parquet workflows, conversion bridges, auditable storage contracts |
 
+## September 2026 measurement-accountability additions
+
+The current development branch adds three conservative diagnostics that make timing uncertainty and validation scope explicit without changing the package's existing synchronization or modelling engines:
+
+- `pupil_latency_sensitivity()` compares sustained-threshold, maximum-slope-tangent, and piecewise-breakpoint pupil onsets and reports estimator spread, signal diagnostics, and latency resolvability instead of presenting one onset as hardware- or algorithm-independent.
+- `event_marker_qc()` audits whether independent channel offsets corroborate a nominal event and reports consensus offset and uncertainty. It is event-plausibility QC only: it does **not** synchronize clocks, correct drift, or modify timestamps.
+- `validation_ladder()` separates acquisition QC, analytical QC, construct checking, within-person evidence, and held-out-person generalization. A generalization claim cannot be marked supported without held-out-person validation.
+
+See the [Measurement accountability article](https://stefanosbalaskas.github.io/eyeprocess/articles/measurement-accountability-0-11.html) and the [measurement-accountability reference section](https://stefanosbalaskas.github.io/eyeprocess/reference/index.html#measurement-accountability-diagnostics-0-11).
+
 ## Standardized spatial data quality
 
 The development branch now includes a vendor-neutral data-quality subsystem for target-referenced **accuracy**, RMS sample-to-sample and spatial-SD **precision**, **BCEA**, realized sampling behavior, and **data loss**. The canonical report keeps these dimensions separate, records units and provenance, and treats user thresholds as review rules rather than automatic exclusions.
@@ -37,17 +47,15 @@ quality <- create_gaze_quality_report(
 report_gaze_quality(quality)
 ```
 
-The synthetic validation profiles deliberately include good-precision/poor-accuracy, poor-precision/good-average-accuracy, irregular-sampling, and missingness cases. See the [Standardized Data Quality guide](https://stefanosbalaskas.github.io/eyeprocess/articles/standardized-data-quality.html).
+The synthetic validation profiles deliberately include good-precision/poor-accuracy, poor-precision/good-average-accuracy, irregular-sampling, and missingness cases. Timing diagnostics distinguish long observed intervals from the estimated number of nominal samples represented by those gaps. See the [Standardized Data Quality guide](https://stefanosbalaskas.github.io/eyeprocess/articles/standardized-data-quality.html).
 
-## September 2026 measurement-accountability additions
+## September 2026 trial-level mediation preparation
 
-The current development branch adds three conservative diagnostics that make timing uncertainty and validation scope explicit without changing the package's existing synchronization or modelling engines:
+The current development branch also adds a vendor-neutral preparation contract for repeated-measures mediation with gaze or other trial-level process variables. `prepare_multilevel_mediation_data()` preserves every trial, separates within- and between-participant exposure and mediator components, distinguishes genuine zero gaze from unobserved or poor-quality trials, audits trial support and missingness, and carries preprocessing/event/AOI/quality provenance forward.
 
-- `pupil_latency_sensitivity()` compares sustained-threshold, maximum-slope-tangent, and piecewise-breakpoint pupil onsets and reports estimator spread, signal diagnostics, and latency resolvability instead of presenting one onset as hardware- or algorithm-independent.
-- `event_marker_qc()` audits whether independent channel offsets corroborate a nominal event and reports consensus offset and uncertainty. It is event-plausibility QC only: it does **not** synchronize clocks, correct drift, or modify timestamps.
-- `validation_ladder()` separates acquisition QC, analytical QC, construct checking, within-person evidence, and held-out-person generalization. A generalization claim cannot be marked supported without held-out-person validation.
+The preparation layer **does not fit a mediation model**. Bayesian inference belongs in `gp3bayes`; `eyeprocess` owns decomposition, observation semantics, quality flags, and model-ready trial structure. Serial mediators and moderators are prepared with `add_multilevel_mediation_component()` so statistical backends do not reimplement the scientific decomposition.
 
-See the [Measurement accountability article](https://stefanosbalaskas.github.io/eyeprocess/articles/measurement-accountability-0-11.html) and the [measurement-accountability reference section](https://stefanosbalaskas.github.io/eyeprocess/reference/index.html#measurement-accountability-diagnostics-0-11).
+See the [Trial-level multilevel mediation article](https://stefanosbalaskas.github.io/eyeprocess/articles/trial-level-multilevel-mediation.html) and the mediation-preparation functions in the [reference index](https://stefanosbalaskas.github.io/eyeprocess/reference/index.html).
 
 ## Design commitments
 
