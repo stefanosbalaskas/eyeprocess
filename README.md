@@ -32,6 +32,26 @@ The development branch also adds [censored gaze-latency survival analysis](https
 
 See the [Measurement accountability article](https://stefanosbalaskas.github.io/eyeprocess/articles/measurement-accountability-0-11.html) and the [measurement-accountability reference section](https://stefanosbalaskas.github.io/eyeprocess/reference/index.html#measurement-accountability-diagnostics-0-11).
 
+## Standardized spatial data quality
+
+The development branch adds a vendor-neutral data-quality subsystem for target-referenced **accuracy**, RMS sample-to-sample and spatial-SD **precision**, **BCEA**, realized sampling behavior, and **data loss**. The canonical report keeps these dimensions separate, records metric-specific units and provenance, and treats thresholds as review rules rather than automatic exclusions.
+
+```r
+validation <- simulate_gaze_quality_calibration(samples_per_target = 8)
+
+quality <- create_gaze_quality_report(
+  validation,
+  by = c("profile", "target_id"),
+  valid = "valid",
+  missing_reason = "missing_reason",
+  nominal_sampling_hz = 60
+)
+
+report_gaze_quality(quality)
+```
+
+The synthetic validation profiles deliberately separate accuracy, precision, irregular sampling, and missingness. Timing diagnostics distinguish long observed intervals from the estimated number of nominal samples represented by those gaps. See the [Standardized Data Quality guide](https://stefanosbalaskas.github.io/eyeprocess/articles/standardized-data-quality.html).
+
 ## September 2026 trial-level mediation preparation
 
 The current development branch also adds a vendor-neutral preparation contract for repeated-measures mediation with gaze or other trial-level process variables. `prepare_multilevel_mediation_data()` preserves every trial, separates within- and between-participant exposure and mediator components, distinguishes genuine zero gaze from unobserved or poor-quality trials, audits trial support and missingness, and carries preprocessing/event/AOI/quality provenance forward.
@@ -159,6 +179,7 @@ provenance_manifest(x)
 - [Validating real exports](https://stefanosbalaskas.github.io/eyeprocess/articles/validating-real-exports.html)
 - [Preprocessing and features](https://stefanosbalaskas.github.io/eyeprocess/articles/preprocessing-features.html)
 - [Psychometric process models](https://stefanosbalaskas.github.io/eyeprocess/articles/psychometric-process-models.html)
+- [Standardized Data Quality](https://stefanosbalaskas.github.io/eyeprocess/articles/standardized-data-quality.html)
 - [Measurement accountability](https://stefanosbalaskas.github.io/eyeprocess/articles/measurement-accountability-0-11.html)
 - [Responsible use](https://stefanosbalaskas.github.io/eyeprocess/articles/responsible-use.html)
 - [Complete function reference](https://stefanosbalaskas.github.io/eyeprocess/reference/index.html)

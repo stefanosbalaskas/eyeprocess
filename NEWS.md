@@ -1,5 +1,13 @@
 # eyeprocess 0.11.1
 
+## Standardized spatial data quality
+
+- Adds vendor-neutral target-referenced accuracy, RMS sample-to-sample and population-SD precision, BCEA with explicit probability, realized sampling behavior, and reason-aware data loss.
+- Adds a canonical `gaze_quality_report` with metric-specific units, provenance, study-defined review thresholds, insufficiency/timestamp flags, and an explicit no-automatic-exclusion contract.
+- Adds deterministic six-profile 9-point validation data, frozen R/Python numerical fixtures, sensitivity-analysis guidance, manuscript-reporting guidance, and dedicated pkgdown navigation.
+- RMS-S2S never bridges missing samples; mixed units fail; malformed thresholds fail; missing grouping identifiers are retained and audited.
+- Long observed intervals are distinguished from the estimated number of nominal samples represented by those gaps.
+
 ## AOI perturbation and uncertainty analysis
 
 - Adds vendor-neutral AOI geometry validation, reproducible dilation/erosion/translation/jitter and anisotropic perturbation specifications, and explicit pixel/degree-of-visual-angle conversion.

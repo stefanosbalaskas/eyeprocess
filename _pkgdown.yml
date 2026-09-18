@@ -15,6 +15,12 @@ articles:
 - title: Trial-level multilevel mediation
   contents:
   - trial-level-multilevel-mediation
+- title: Standardized Data Quality
+  navbar: Data Quality
+  desc: |
+    Accuracy, RMS-S2S and SD precision, BCEA, realized sampling behavior, data loss, review rules, sensitivity, and manuscript reporting.
+  contents:
+  - standardized-data-quality
 - title: Executed validation evidence and governed IRT (0.9 M2)
   desc: |
     Frozen software-validation programmes, IRT information/scoring/diagnostics, linking and invariance, process-aware IRT, cognitive diagnosis, adaptive testing, engine gating, and paper-ready evidence.
@@ -152,6 +158,32 @@ reference:
   - audit_mediation_missingness
   - check_mediation_trial_counts
   - add_multilevel_mediation_component
+- title: Standardized spatial data quality (0.11 development)
+  desc: Vendor-neutral quality metrics with explicit units, review-only thresholds, reproducible synthetic validation, and manuscript-ready reporting.
+  contents:
+  - validate_gaze_quality_inputs
+  - compute_gaze_accuracy
+  - compute_gaze_precision
+  - compute_rms_s2s
+  - compute_gaze_sd_precision
+  - compute_bcea
+  - estimate_sampling_interval
+  - estimate_sampling_jitter
+  - estimate_effective_sampling_rate
+  - compute_valid_sample_fraction
+  - compute_gaze_data_loss
+  - summarise_spatial_quality
+  - summarise_sampling_quality
+  - create_gaze_quality_report
+  - compare_gaze_quality_sessions
+  - compare_gaze_quality_conditions
+  - plot_gaze_accuracy
+  - plot_gaze_precision
+  - plot_bcea
+  - plot_sampling_intervals
+  - plot_gaze_quality_dashboard
+  - report_gaze_quality
+  - simulate_gaze_quality_calibration
 - title: Measurement accountability diagnostics (0.11)
   contents:
   - pupil_latency_sensitivity

@@ -1,0 +1,166 @@
+---
+title: "Standardized eye-tracking data quality"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Standardized eye-tracking data quality}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+```
+
+# Why a dedicated quality report?
+
+Eye-tracking quality is not one score. **Accuracy** describes target-referenced error, **precision** describes reproducibility while gaze is stable, **sampling diagnostics** describe the temporal measurement process, and **data loss** describes unavailable or invalid observations. These quantities constrain different analyses and should remain separately inspectable.
+
+The standardized quality API is vendor-neutral. It does not use vendor acceptance labels, does not silently convert coordinates, and does not automatically exclude observations.
+
+## Recommended workflow
+
+1. Validate columns, coordinate units, and timestamps.
+2. Segment validation data into periods in which the intended target is stable.
+3. Compute target-referenced accuracy.
+4. Compute RMS-S2S and SD precision separately; add BCEA when a spatial-area summary is useful.
+5. Compare nominal and effective sampling behavior and inspect interval jitter.
+6. Quantify valid, invalid, and missing samples and inspect missing runs/reasons.
+7. Apply only study-defined review rules.
+8. Repeat key analyses under defensible quality decisions as a sensitivity analysis.
+9. Report the observed quality metrics and the decision rule used.
+
+# Accuracy versus precision
+
+A constant offset can produce **poor accuracy but excellent precision**. Conversely, centered but noisy gaze can produce acceptable mean accuracy with poor precision. Therefore, one cannot substitute for the other.
+
+```{r synthetic}
+library(eyeprocess)
+x <- simulate_gaze_quality_calibration(samples_per_target = 8)
+q <- create_gaze_quality_report(
+  x,
+  by = c("profile", "target_id"),
+  valid = "valid",
+  missing_reason = "missing_reason",
+  nominal_sampling_hz = 60
+)
+q[c("profile", "target_id", "accuracy_mean", "precision_rms_s2s",
+    "precision_sd", "bcea", "effective_sampling_hz", "data_loss_fraction")]
+```
+
+# Precision metrics answer different questions
+
+For adjacent valid samples \(i\) and \(i+1\), two-dimensional RMS-S2S is
+
+\[
+\mathrm{RMS\text{-}S2S}=\sqrt{\frac{1}{K}\sum_{i=1}^{K}
+[(x_{i+1}-x_i)^2+(y_{i+1}-y_i)^2]}.
+\]
+
+The implementation never joins across a missing sample. When `max_gap_ms` is supplied, pairs separated by a larger timestamp gap are also excluded from the successive-sample calculation and that choice is preserved in provenance.
+
+SD precision summarizes spatial spread around a stable target using the population-SD convention (denominator `n`) used by the methodological guidance; it is not mathematically interchangeable with RMS-S2S. BCEA uses the same population SDs and provides an area summary:
+
+\[
+\mathrm{BCEA}=2\pi k\,\sigma_x\sigma_y\sqrt{1-\rho^2},\qquad
+k=-\log(1-p),
+\]
+
+where `p` is the explicitly reported probability level (default `0.68`).
+
+# Effective versus nominal sampling
+
+`estimate_effective_sampling_rate()` reports observed timestamps, the effective sample count, timestamp span, an estimated recording duration (span plus one median positive interval), effective Hz, and median interval. When nominal frequency is supplied it separates `long_interval_count` (number of intervals exceeding the declared nominal-gap multiple) from `dropped_interval_count` (estimated missing nominal samples represented by those long gaps). In a canonical gaze-quality report the effective count is the number of valid gaze samples with finite timestamps, so loss directly reduces effective Hz. Duplicate and non-monotonic timestamps are never silently repaired.
+
+```{r sampling}
+summarise_sampling_quality(
+  x[x$profile == "irregular_sampling", ],
+  time = "timestamp_ms",
+  nominal_sampling_hz = 60
+)
+```
+
+# Data loss and missingness
+
+`compute_gaze_data_loss()` keeps coordinate missingness and explicit validity information separate. If a reason column exists, lost observations can additionally be decomposed into reasons such as blink, tracker invalidity, off-screen, or unknown.
+
+```{r loss}
+compute_gaze_data_loss(
+  x[x$profile == "missingness", ],
+  valid = "valid",
+  missing_reason = "missing_reason"
+)
+```
+
+# Study-specific review rules, not universal exclusions
+
+Thresholds are optional and descriptive by default. They create `quality_flags` and `review_required`; they **never remove rows**.
+
+```{r review}
+flagged <- create_gaze_quality_report(
+  x,
+  by = c("profile", "target_id"),
+  valid = "valid",
+  thresholds = list(
+    accuracy_mean = list(max = 1.0),
+    valid_sample_fraction = list(min = 0.80)
+  )
+)
+attr(flagged, "gaze_quality_provenance")$automatic_exclusion
+```
+
+# Quality decisions as sensitivity analysis
+
+A review flag is not an exclusion. Keep the complete `gaze_quality_report`, then
+make the downstream inclusion decision explicitly and report it separately.
+
+```{r sensitivity}
+reviewed <- create_gaze_quality_report(
+  x,
+  by = c("profile", "target_id"),
+  valid = "valid",
+  thresholds = list(
+    accuracy_mean = list(max = 1.0),
+    valid_sample_fraction = list(min = 0.80)
+  )
+)
+
+analysis_keep <- reviewed[!reviewed$review_required, ]
+analysis_flagged <- reviewed[reviewed$review_required, ]
+```
+
+For a substantive model, join the quality metadata back to the trial/participant
+analysis key and repeat the planned analysis under defensible alternatives:
+all otherwise eligible units, a pre-specified exclusion rule, stratification by
+quality flag, or another explicitly justified sensitivity specification. Do not
+choose a post-hoc cutoff because it improves the substantive result.
+
+When nominal frequency is supplied, also keep `long_interval_count` separate
+from `dropped_interval_count`: the first counts long observed intervals; the
+second estimates missing nominal samples represented by those gaps.
+
+# When not to use these metrics
+
+Do not estimate target-referenced accuracy without known targets. Do not compute fixation precision across target transitions or intentional eye movements. Do not interpret BCEA as accuracy. Do not infer tracker quality from nominal hardware frequency alone. Do not treat missing coordinates as zeros, and do not interpret a quality flag as participant-level impairment or disengagement.
+
+# Manuscript reporting example
+
+A compact report should identify the coordinate unit, the validation procedure, the probability level used for BCEA, both nominal and observed sampling behavior where relevant, the operational definition of data loss, and any study-specific review/exclusion rule. `report_gaze_quality()` produces a descriptive starting point, but the final manuscript should additionally state the acquisition and preprocessing context.
+
+Example wording:
+
+> Gaze-position accuracy was quantified as target-referenced Euclidean error. Precision was summarized separately using RMS sample-to-sample displacement, spatial SD, and 68% BCEA. The nominal 60-Hz rate was supplemented by timestamp-derived effective frequency and inter-sample jitter. Data loss was defined from unavailable coordinates or explicit invalidity flags. Pre-specified quality thresholds triggered manual review rather than automatic exclusion; all exclusions and sensitivity analyses were reported separately.
+
+# API map
+
+- Accuracy: `compute_gaze_accuracy()`
+- Precision: `compute_rms_s2s()`, `compute_gaze_sd_precision()`, `compute_bcea()`, `compute_gaze_precision()`
+- Sampling: `estimate_sampling_interval()`, `estimate_sampling_jitter()`, `estimate_effective_sampling_rate()`
+- Availability: `compute_valid_sample_fraction()`, `compute_gaze_data_loss()`
+- Reports: `summarise_spatial_quality()`, `summarise_sampling_quality()`, `create_gaze_quality_report()`
+- Comparisons: `compare_gaze_quality_sessions()`, `compare_gaze_quality_conditions()`
+- Visuals: `plot_gaze_accuracy()`, `plot_gaze_precision()`, `plot_bcea()`, `plot_sampling_intervals()`, `plot_gaze_quality_dashboard()`
+- Teaching/CI: `simulate_gaze_quality_calibration()`
+
+# Reporting references
+
+The terminology and reporting boundaries follow the minimal eye-tracking reporting guideline (Dunn et al., 2024, *Behavior Research Methods*) and the 2026 data-quality tutorial by Niehorster and colleagues (*Behavior Research Methods*, doi:10.3758/s13428-026-03039-4).
