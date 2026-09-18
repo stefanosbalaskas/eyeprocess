@@ -528,3 +528,69 @@ propagate_detector_to_aoi <- function(x, overlap = "error", continue_on_error = 
       id <- as.character(branch$aoi_definitions$aoi_id[a]); target <- tf[as.character(tf$aoi_id) == id & !is.na(tf$aoi_id), , drop = FALSE]
       count <- if (observed) nrow(target) else NA_real_; dwell <- if (!observed) NA_real_ else if (nrow(target)) sum(as.numeric(target$duration_ms), na.rm = TRUE) else 0
       mean_dur <- if (nrow(target)) mean(as.numeric(target$duration_ms), na.rm = TRUE) else NA_real_; latency <- if (nrow(target)) (min(target$start_time) - tr$start_time) * 1000 else NA_real_
+      entries <- if (length(collapsed)) sum(collapsed == id & c(TRUE, collapsed[-length(collapsed)] != id)) else 0L
+      from <- if (length(collapsed) > 1L) sum(head(collapsed, -1L) == id & tail(collapsed, -1L) != id) else 0L
+      to <- if (length(collapsed) > 1L) sum(tail(collapsed, -1L) == id & head(collapsed, -1L) != id) else 0L
+      k <- k + 1L; row <- data.frame(detector_id = spec$detector_id, detector_algorithm = spec$algorithm, detector_spec_hash = spec$detector_spec_hash,
+        recording_id = tr$recording_id, participant_id = tr$participant_id, trial_id = tr$trial_id, item_id = tr$item_id, stimulus_id = tr$stimulus_id, condition_id = tr$condition_id, aoi_id = id,
+        trial_duration_ms = (tr$end_time - tr$start_time) * 1000, n_gaze_samples = n_samples, valid_data_fraction = vf,
+        fixation_count = count, dwell_time_ms = dwell, mean_fixation_duration_ms = mean_dur, first_fixation_latency_ms = latency, ttff_ms = latency,
+        ttff_event_observed = if (observed) nrow(target) > 0L else NA, ttff_censor_time_ms = if (observed) (tr$end_time - tr$start_time) * 1000 else NA_real_,
+        revisits = if (observed) max(entries - 1L, 0L) else NA_real_, transition_count_from_aoi = if (observed) from else NA_real_, transition_count_to_aoi = if (observed) to else NA_real_,
+        scanpath_sequence = paste(collapsed, collapse = " > "), pupil_within_fixation_mean = NA_real_, feature_review_required = is.finite(vf) && vf < .5, stringsAsFactors = FALSE)
+      for (nm in names(lin)) row[[nm]] <- lin[[nm]]; rows[[k]] <- row
+    }
+  }
+  .edm_rbind_fill(rows)
+}
+
+#' Propagate detector branches to derived AOI features
+#' @export
+propagate_detector_to_features <- function(x, continue_on_error = TRUE) {
+  if (!inherits(x, "eye_detector_multiverse_result")) .edm_stop("x must be an eye_detector_multiverse_result.")
+  frames <- list(); failures <- if (nrow(x$failures)) split(x$failures, seq_len(nrow(x$failures))) else list()
+  for (spec in x$multiverse$specs) {
+    branch <- x$branches[[spec$detector_id]]; if (is.null(branch)) next
+    value <- tryCatch(.edm_trial_features(branch, spec), error = identity)
+    if (inherits(value, "error")) { failures[[length(failures) + 1L]] <- data.frame(detector_id = spec$detector_id, detector_spec_hash = spec$detector_spec_hash, stage = "feature_propagation", error_type = class(value)[1L], error = conditionMessage(value), stringsAsFactors = FALSE); if (!continue_on_error) stop(value); next }
+    frames[[length(frames) + 1L]] <- value
+  }
+  x$features <- .edm_rbind_fill(frames); x$failures <- .edm_rbind_fill(failures); x
+}
+
+.edm_tidy_lm <- function(fit, converged = TRUE) {
+  sm <- summary(fit)$coefficients; ci <- stats::confint(fit)
+  data.frame(term = rownames(sm), estimate = sm[, 1L], SE = sm[, 2L], CI_lower = ci[rownames(sm), 1L], CI_upper = ci[rownames(sm), 2L], p = sm[, ncol(sm)], converged = converged, N = stats::nobs(fit), stringsAsFactors = FALSE)
+}
+.edm_tidy_lmer <- function(fit, converged) {
+  sm <- summary(fit)$coefficients; terms <- rownames(sm); ci <- suppressMessages(stats::confint(fit, parm = terms, method = "Wald"))
+  data.frame(term = terms, estimate = sm[, "Estimate"], SE = sm[, "Std. Error"], CI_lower = ci[terms, 1L], CI_upper = ci[terms, 2L], p = NA_real_, converged = converged, N = stats::nobs(fit), stringsAsFactors = FALSE)
+}
+
+#' Run identical statistical inference across detector branches
+#' @export
+run_detector_inference_multiverse <- function(x, model_spec, model_callback = NULL, minimum_valid_fraction = NULL) {
+  if (!inherits(x, "eye_detector_multiverse_result") || !nrow(x$features)) .edm_stop("Propagated detector features are required.")
+  if (!is.list(model_spec)) .edm_stop("model_spec must be a named list.")
+  engine <- as.character(model_spec$engine)[1L]; if (!engine %in% c("stats_lm", "lme4_lmer", "callback")) .edm_stop("Choose an explicit model engine: stats_lm, lme4_lmer, or callback.")
+  if (engine == "callback" && !is.function(model_callback)) .edm_stop("engine='callback' requires model_callback.")
+  formula <- model_spec$formula; if (is.null(formula)) .edm_stop("model_spec$formula is required."); if (is.character(formula)) formula <- stats::as.formula(formula)
+  outcome <- if (!is.null(model_spec$outcome)) as.character(model_spec$outcome)[1L] else all.vars(formula)[1L]
+  if (!outcome %in% names(x$features)) .edm_stop("The declared outcome is not present in propagated features.")
+  rows <- list(); failures <- list(); warns <- list()
+  for (spec in x$multiverse$specs) {
+    d <- x$features[x$features$detector_id == spec$detector_id, , drop = FALSE]
+    if (!is.null(model_spec$aoi_id)) d <- d[as.character(d$aoi_id) == as.character(model_spec$aoi_id), , drop = FALSE]
+    if (!is.null(minimum_valid_fraction)) { if (!is.finite(minimum_valid_fraction) || minimum_valid_fraction < 0 || minimum_valid_fraction > 1) .edm_stop("minimum_valid_fraction must lie in [0,1]."); d <- d[is.finite(d$valid_data_fraction) & d$valid_data_fraction >= minimum_valid_fraction, , drop = FALSE] }
+    d <- d[is.finite(as.numeric(d[[outcome]])), , drop = FALSE]; if (!nrow(d)) { failures[[length(failures) + 1L]] <- data.frame(detector_id = spec$detector_id, stage = "model", error_type = "NoModelData", error = "No finite model rows remained for this detector."); next }
+    captured <- character()
+    fitres <- withCallingHandlers(tryCatch({
+      if (engine == "stats_lm") { fit <- stats::lm(formula, data = d, na.action = stats::na.fail); list(tidy = .edm_tidy_lm(fit), converged = TRUE) }
+      else if (engine == "lme4_lmer") {
+        if (!requireNamespace("lme4", quietly = TRUE)) .edm_stop("lme4_lmer requires the optional lme4 package; no surrogate estimator is substituted.")
+        fit <- lme4::lmer(formula, data = d, REML = isTRUE(model_spec$reml), na.action = stats::na.fail, control = lme4::lmerControl(optimizer = if (is.null(model_spec$optimizer)) "nloptwrap" else model_spec$optimizer))
+        msg <- fit@optinfo$conv$lme4$messages; converged <- is.null(msg) && is.null(fit@optinfo$conv$opt) || identical(fit@optinfo$conv$opt, 0L)
+        list(tidy = .edm_tidy_lmer(fit, converged), converged = converged)
+      } else { tab <- model_callback(d, model_spec); req <- c("term", "estimate", "SE", "CI_lower", "CI_upper", "p", "converged", "N"); if (!is.data.frame(tab) || length(setdiff(req, names(tab)))) .edm_stop("model_callback must return the documented tidy coefficient contract."); list(tidy = tab, converged = all(tab$converged %in% TRUE)) }
+    }, error = identity), warning = function(w) { captured <<- c(captured, conditionMessage(w)); invokeRestart("muffleWarning") })
+    if (inherits(fitres, "error")) { failures[[length(failures) + 1L]] <- data.frame(detector_id = spec$detector_id, stage = "model", error_type = class(fitres)[1L], error = conditionMessage(fitres), stringsAsFactors = FALSE); next }
