@@ -1,0 +1,289 @@
+# Event-detector multiverse and inference robustness -------------------------
+# Vendor-neutral core. Vendor-specific convenience belongs in adapter packages.
+
+.edm_stop <- function(...) stop(..., call. = FALSE)
+.edm_warn <- function(...) warning(..., call. = FALSE)
+.edm_scalar_chr <- function(x, name) {
+  x <- as.character(x)[1L]
+  if (is.na(x) || !nzchar(trimws(x))) .edm_stop("`", name, "` must be a non-empty scalar string.")
+  trimws(x)
+}
+.edm_positive <- function(x, name, allow_null = TRUE) {
+  if (is.null(x) || (length(x) == 1L && is.na(x))) {
+    if (allow_null) return(NULL)
+    .edm_stop("`", name, "` is required.")
+  }
+  x <- as.numeric(x)[1L]
+  if (!is.finite(x) || x <= 0) .edm_stop("`", name, "` must be finite and > 0.")
+  x
+}
+.edm_hash <- function(x) {
+  if (exists("object_hash", mode = "function")) return(object_hash(x))
+  raw <- serialize(x, NULL, version = 2)
+  tf <- tempfile(); on.exit(unlink(tf), add = TRUE)
+  writeBin(raw, tf)
+  unname(tools::md5sum(tf))
+}
+.edm_rbind_fill <- function(xs) {
+  xs <- Filter(function(x) is.data.frame(x) && nrow(x), xs)
+  if (!length(xs)) return(data.frame())
+  nms <- unique(unlist(lapply(xs, names), use.names = FALSE))
+  xs <- lapply(xs, function(x) {
+    miss <- setdiff(nms, names(x)); for (nm in miss) x[[nm]] <- NA
+    x[, nms, drop = FALSE]
+  })
+  out <- do.call(rbind, xs); rownames(out) <- NULL; out
+}
+.edm_frame_hash <- function(x) if (is.null(x) || !is.data.frame(x) || !nrow(x)) NA_character_ else .edm_hash(x)
+.edm_dataset_hash <- function(x) {
+  pieces <- lapply(c("recordings", "gaze_samples", "intervals", "aoi_definitions", "aoi_geometry"), function(nm) x[[nm]])
+  .edm_hash(pieces)
+}
+.edm_lineage <- function(x, spec = NULL) {
+  aoi <- .edm_rbind_fill(list(x$aoi_definitions, x$aoi_geometry))
+  list(
+    source_data_hash = .edm_dataset_hash(x),
+    preprocessing_provenance_hash = .edm_frame_hash(x$provenance),
+    aoi_spec_hash = .edm_frame_hash(aoi),
+    quality_spec_hash = .edm_frame_hash(x$quality),
+    detector_spec_hash = if (is.null(spec)) NA_character_ else spec$detector_spec_hash,
+    detector_implementation = if (is.null(spec)) NA_character_ else spec$implementation,
+    detector_implementation_version = if (is.null(spec)) NA_character_ else spec$implementation_version,
+    software = "eyeprocess",
+    software_version = tryCatch(as.character(utils::packageVersion("eyeprocess")), error = function(e) NA_character_)
+  )
+}
+
+#' Define an event-detector specification
+#'
+#' Thresholds are intentionally not supplied as universal defaults.
+#' @export
+define_event_detector_spec <- function(
+    detector_id,
+    algorithm,
+    velocity_threshold = NULL,
+    dispersion_threshold = NULL,
+    minimum_duration_ms = NULL,
+    maximum_gap_ms = NULL,
+    merge_rule = "none",
+    sampling_rate = NULL,
+    smoothing = NULL,
+    filter = NULL,
+    coordinate_unit = "degrees",
+    implementation = NULL,
+    implementation_version = NULL,
+    parameters = list(),
+    callback = NULL) {
+  detector_id <- .edm_scalar_chr(detector_id, "detector_id")
+  algorithm <- tolower(gsub("-", "_", .edm_scalar_chr(algorithm, "algorithm")))
+  if (algorithm == "i_vt") algorithm <- "ivt"
+  if (algorithm == "i_dt") algorithm <- "idt"
+  if (is.null(implementation)) implementation <- if (algorithm == "remodnav") "REMoDNaV" else "eyeprocess"
+  if (!is.list(parameters)) .edm_stop("`parameters` must be a named list.")
+  if (length(parameters) && (is.null(names(parameters)) || any(!nzchar(names(parameters))))) .edm_stop("`parameters` must be named.")
+  core <- list(
+    detector_id = detector_id,
+    algorithm = algorithm,
+    velocity_threshold = if (is.null(velocity_threshold)) NULL else as.numeric(velocity_threshold)[1L],
+    dispersion_threshold = if (is.null(dispersion_threshold)) NULL else as.numeric(dispersion_threshold)[1L],
+    minimum_duration_ms = if (is.null(minimum_duration_ms)) NULL else as.numeric(minimum_duration_ms)[1L],
+    maximum_gap_ms = if (is.null(maximum_gap_ms)) NULL else as.numeric(maximum_gap_ms)[1L],
+    merge_rule = .edm_scalar_chr(merge_rule, "merge_rule"),
+    sampling_rate = if (is.null(sampling_rate)) NULL else as.numeric(sampling_rate)[1L],
+    smoothing = if (is.null(smoothing)) NULL else as.character(smoothing)[1L],
+    filter = if (is.null(filter)) NULL else as.character(filter)[1L],
+    coordinate_unit = tolower(.edm_scalar_chr(coordinate_unit, "coordinate_unit")),
+    implementation = .edm_scalar_chr(implementation, "implementation"),
+    implementation_version = if (is.null(implementation_version)) NA_character_ else as.character(implementation_version)[1L],
+    parameters = parameters,
+    callback = callback
+  )
+  fingerprint_input <- core; fingerprint_input$callback <- NULL
+  core$detector_spec_hash <- .edm_hash(fingerprint_input)
+  class(core) <- "eye_event_detector_spec"
+  validate_event_detector_spec(core)
+  core
+}
+
+#' Validate an event-detector specification
+#' @export
+validate_event_detector_spec <- function(spec) {
+  if (!inherits(spec, "eye_event_detector_spec")) .edm_stop("`spec` must be created by define_event_detector_spec().")
+  algorithms <- c("ivt", "idt", "adaptive_velocity", "remodnav", "external", "vendor")
+  if (!spec$algorithm %in% algorithms) .edm_stop("Unsupported detector algorithm.")
+  if (!spec$coordinate_unit %in% c("degrees", "pixels", "normalized")) .edm_stop("`coordinate_unit` must be degrees, pixels, or normalized.")
+  if (spec$algorithm %in% c("ivt", "idt", "adaptive_velocity", "remodnav")) {
+    .edm_positive(spec$sampling_rate, "sampling_rate", FALSE)
+    .edm_positive(spec$minimum_duration_ms, "minimum_duration_ms", FALSE)
+  }
+  if (spec$algorithm == "ivt") .edm_positive(spec$velocity_threshold, "velocity_threshold", FALSE)
+  if (spec$algorithm == "idt") .edm_positive(spec$dispersion_threshold, "dispersion_threshold", FALSE)
+  if (!is.null(spec$maximum_gap_ms)) .edm_positive(spec$maximum_gap_ms, "maximum_gap_ms", FALSE)
+  if (spec$algorithm == "adaptive_velocity") {
+    .edm_positive(spec$parameters$noise_factor, "parameters$noise_factor", FALSE)
+    .edm_positive(spec$parameters$minimum_velocity_threshold, "parameters$minimum_velocity_threshold", FALSE)
+  }
+  if (spec$algorithm == "remodnav" && spec$coordinate_unit == "pixels") .edm_positive(spec$parameters$px2deg, "parameters$px2deg", FALSE)
+  if (spec$algorithm == "external" && !is.function(spec$callback)) .edm_stop("External detector specs require a callable `callback`.")
+  if (spec$algorithm == "vendor" && is.function(spec$callback)) .edm_stop("Vendor-event specs do not use `callback`.")
+  invisible(TRUE)
+}
+
+#' Create a deterministic detector multiverse
+#' @export
+create_detector_multiverse <- function(specs = NULL, base_spec = NULL, parameter_grid = NULL,
+                                       id_template = "%s_%03d", label = "event_detector_multiverse") {
+  assembled <- if (is.null(specs)) list() else as.list(specs)
+  if (!is.null(parameter_grid)) {
+    if (!inherits(base_spec, "eye_event_detector_spec")) .edm_stop("`base_spec` is required with parameter_grid.")
+    if (!is.list(parameter_grid) || !length(parameter_grid) || is.null(names(parameter_grid))) .edm_stop("`parameter_grid` must be a named non-empty list.")
+    if (any(lengths(parameter_grid) == 0L)) .edm_stop("Every detector-grid dimension must contain at least one value.")
+    grid <- expand.grid(parameter_grid, KEEP.OUT.ATTRS = FALSE, stringsAsFactors = FALSE)
+    for (i in seq_len(nrow(grid))) {
+      args <- unclass(base_spec); args$detector_spec_hash <- NULL; args$callback <- base_spec$callback
+      for (nm in names(grid)) {
+        val <- grid[[nm]][[i]]
+        if (startsWith(nm, "parameters.")) args$parameters[[sub("^parameters\\.", "", nm)]] <- val
+        else if (nm %in% names(args)) args[[nm]] <- val
+        else args$parameters[[nm]] <- val
+      }
+      args$detector_id <- sprintf(id_template, base_spec$detector_id, i)
+      assembled[[length(assembled) + 1L]] <- do.call(define_event_detector_spec, args)
+    }
+  }
+  if (!length(assembled)) .edm_stop("Supply at least one detector specification.")
+  invisible(lapply(assembled, validate_event_detector_spec))
+  ids <- vapply(assembled, `[[`, character(1), "detector_id")
+  if (anyDuplicated(ids)) .edm_stop("Detector ids must be unique within a multiverse.")
+  ord <- order(ids, vapply(assembled, `[[`, character(1), "detector_spec_hash"))
+  assembled <- assembled[ord]
+  manifest <- .edm_rbind_fill(lapply(assembled, function(s) data.frame(
+    detector_id = s$detector_id, algorithm = s$algorithm,
+    velocity_threshold = if (is.null(s$velocity_threshold)) NA_real_ else s$velocity_threshold,
+    dispersion_threshold = if (is.null(s$dispersion_threshold)) NA_real_ else s$dispersion_threshold,
+    minimum_duration_ms = if (is.null(s$minimum_duration_ms)) NA_real_ else s$minimum_duration_ms,
+    maximum_gap_ms = if (is.null(s$maximum_gap_ms)) NA_real_ else s$maximum_gap_ms,
+    merge_rule = s$merge_rule, sampling_rate = if (is.null(s$sampling_rate)) NA_real_ else s$sampling_rate,
+    smoothing = if (is.null(s$smoothing)) NA_character_ else s$smoothing,
+    filter = if (is.null(s$filter)) NA_character_ else s$filter,
+    coordinate_unit = s$coordinate_unit, implementation = s$implementation,
+    implementation_version = s$implementation_version,
+    detector_spec_hash = s$detector_spec_hash,
+    stringsAsFactors = FALSE
+  )))
+  structure(list(specs = assembled, label = .edm_scalar_chr(label, "label"), manifest = manifest), class = "eye_detector_multiverse")
+}
+
+.edm_clean_branch <- function(x) {
+  out <- x
+  if (nrow(out$episodes)) out$episodes <- out$episodes[!out$episodes$episode_type %in% c("fixation", "saccade", "pursuit", "pso"), , drop = FALSE]
+  out$episodes <- standardize_eye_table(out$episodes, "episodes")
+  out
+}
+.edm_sampling_warnings <- function(x, spec, tolerance_fraction = .10) {
+  if (!nrow(x$gaze_samples)) return(character())
+  groups <- split(x$gaze_samples, interaction(x$gaze_samples$recording_id, x$gaze_samples$trial_id, drop = TRUE))
+  rates <- vapply(groups, function(z) {
+    t <- sort(as.numeric(z$timestamp_seconds)); dt <- diff(t); dt <- dt[is.finite(dt) & dt > 0]
+    if (!length(dt)) NA_real_ else 1 / stats::median(dt)
+  }, numeric(1))
+  rates <- rates[is.finite(rates)]
+  if (!length(rates)) return("Sampling rate could not be verified from timestamps.")
+  empirical <- stats::median(rates)
+  if (abs(empirical - spec$sampling_rate) / spec$sampling_rate > tolerance_fraction)
+    sprintf("Empirical sampling rate (%.3f Hz) differs from the detector specification (%.3f Hz).", empirical, spec$sampling_rate)
+  else character()
+}
+.edm_attach_detector <- function(events, spec, source) {
+  events <- standardize_eye_table(events, "episodes")
+  if (!nrow(events)) {
+    for (nm in c("detector_id", "detector_algorithm", "detector_spec_hash", "detector_implementation", "detector_implementation_version",
+                 "source_data_hash", "preprocessing_provenance_hash", "aoi_spec_hash", "quality_spec_hash", "software", "software_version")) events[[nm]] <- character()
+    return(events)
+  }
+  lin <- .edm_lineage(source, spec)
+  events$detector_id <- spec$detector_id
+  events$detector_algorithm <- spec$algorithm
+  for (nm in names(lin)) events[[nm]] <- lin[[nm]]
+  events
+}
+
+.edm_detect_adaptive <- function(x, spec) {
+  out <- .edm_clean_branch(x); rows <- list(); k <- 0L
+  groups <- split(out$gaze_samples, interaction(out$gaze_samples$recording_id, out$gaze_samples$trial_id, drop = TRUE))
+  for (z in groups) {
+    z <- z[order(z$timestamp_seconds), , drop = FALSE]
+    if (nrow(z) < 3L) next
+    t <- as.numeric(z$timestamp_seconds); gx <- as.numeric(z$gaze_x); gy <- as.numeric(z$gaze_y)
+    valid <- as.logical(z$valid); valid[is.na(valid)] <- FALSE
+    dt <- c(NA_real_, diff(t)); vel <- c(NA_real_, sqrt(diff(gx)^2 + diff(gy)^2) / diff(t))
+    usable <- vel[is.finite(vel) & valid]
+    if (length(usable) < 3L) next
+    center <- stats::median(usable); mad0 <- stats::median(abs(usable - center)); robust_sigma <- 1.4826 * mad0
+    threshold <- max(spec$parameters$minimum_velocity_threshold, center + spec$parameters$noise_factor * robust_sigma)
+    is_fix <- is.finite(vel) & valid & vel <= threshold
+    if (length(is_fix)) is_fix[1L] <- if (length(is_fix) > 1L) is_fix[2L] else FALSE
+    gap_limit <- if (is.null(spec$maximum_gap_ms)) 1000 / spec$sampling_rate * 2.5 else spec$maximum_gap_ms
+    run <- integer(nrow(z)); cur <- 0L
+    for (i in seq_len(nrow(z))) {
+      if (i == 1L || !is_fix[i] || !is_fix[i - 1L] || (is.finite(dt[i]) && dt[i] * 1000 > gap_limit)) cur <- cur + 1L
+      run[i] <- cur
+    }
+    for (r in unique(run[is_fix])) {
+      pos <- which(run == r & is_fix); if (!length(pos)) next
+      dur <- (max(t[pos]) - min(t[pos])) * 1000; if (dur < spec$minimum_duration_ms) next
+      k <- k + 1L
+      rows[[k]] <- data.frame(
+        episode_id = sprintf("%s_adaptive_fix_%07d", z$recording_id[1L], k), recording_id = z$recording_id[1L],
+        episode_type = "fixation", eye = "combined", start_time = min(t[pos]), end_time = max(t[pos]), duration_ms = dur,
+        start_x = gx[min(pos)], start_y = gy[min(pos)], end_x = gx[max(pos)], end_y = gy[max(pos)],
+        centroid_x = mean(gx[pos], na.rm = TRUE), centroid_y = mean(gy[pos], na.rm = TRUE), amplitude = NA_real_,
+        peak_velocity = if (any(is.finite(vel[pos]))) max(vel[pos], na.rm = TRUE) else NA_real_,
+        dispersion = diff(range(gx[pos], na.rm = TRUE)) + diff(range(gy[pos], na.rm = TRUE)),
+        coordinate_space_id = z$coordinate_space_id[1L], source_algorithm = "adaptive velocity (robust-MAD reference)",
+        source_parameters = sprintf("noise_factor=%g;minimum_velocity_threshold=%g;adaptive_threshold=%g", spec$parameters$noise_factor, spec$parameters$minimum_velocity_threshold, threshold),
+        derived_by = "eyeprocess", trial_id = z$trial_id[1L], stimulus_id = z$stimulus_id[1L], aoi_id = NA_character_, stringsAsFactors = FALSE
+      )
+    }
+  }
+  detected <- if (length(rows)) do.call(.bind_rows_base, rows) else empty_eye_table("episodes")
+  out$episodes <- standardize_eye_table(.bind_rows_base(out$episodes, detected), "episodes")
+  add_provenance(out, "detect_fixations_adaptive_velocity", "episodes", paste0("detector_id=", spec$detector_id, ";spec_hash=", spec$detector_spec_hash, ";n=", nrow(detected)))
+}
+
+.edm_remodnav_version <- function(command) {
+  tryCatch(paste(system2(command, "--version", stdout = TRUE, stderr = TRUE), collapse = " "), error = function(e) NA_character_)
+}
+.edm_run_remodnav <- function(x, spec) {
+  command <- if (is.null(spec$parameters$command)) "remodnav" else as.character(spec$parameters$command)[1L]
+  if (!nzchar(Sys.which(command))) .edm_stop("REMoDNaV executable was not found. Install REMoDNaV or supply parameters$command; no surrogate detector is substituted.")
+  if (spec$coordinate_unit == "normalized") .edm_stop("REMoDNaV requires degree coordinates or pixel coordinates with explicit px2deg; convert normalized coordinates first.")
+  px2deg <- if (spec$coordinate_unit == "degrees") 1 else spec$parameters$px2deg
+  .edm_positive(px2deg, "px2deg", FALSE)
+  out <- .edm_clean_branch(x); rows <- list(); k <- 0L
+  groups <- split(out$gaze_samples, interaction(out$gaze_samples$recording_id, out$gaze_samples$trial_id, drop = TRUE))
+  cli_map <- c(noise_factor = "--noise-factor", velthresh_startvelocity = "--velthresh-startvelocity", min_intersaccade_duration = "--min-intersaccade-duration",
+               min_saccade_duration = "--min-saccade-duration", min_pursuit_duration = "--min-pursuit-duration", pursuit_velthresh = "--pursuit-velthresh",
+               max_initial_saccade_freq = "--max-initial-saccade-freq", saccade_context_window_length = "--saccade-context-window-length", max_pso_duration = "--max-pso-duration",
+               lowpass_cutoff_freq = "--lowpass-cutoff-freq", min_blink_duration = "--min-blink-duration", dilate_nan = "--dilate-nan",
+               median_filter_length = "--median-filter-length", savgol_length = "--savgol-length", savgol_polyord = "--savgol-polyord", max_vel = "--max-vel")
+  for (z in groups) {
+    z <- z[order(z$timestamp_seconds), , drop = FALSE]; if (nrow(z) < 3L) next
+    inp <- tempfile(fileext = ".tsv"); outp <- tempfile(fileext = ".tsv"); on.exit(unlink(c(inp, outp)), add = TRUE)
+    gx <- as.numeric(z$gaze_x); gy <- as.numeric(z$gaze_y); valid <- as.logical(z$valid); valid[is.na(valid)] <- FALSE
+    gx[!valid] <- NA_real_; gy[!valid] <- NA_real_
+    utils::write.table(data.frame(x = gx, y = gy), inp, sep = "\t", quote = FALSE, row.names = FALSE, col.names = FALSE, na = "nan")
+    args <- c(shQuote(inp), shQuote(outp), format(px2deg, scientific = FALSE), format(spec$sampling_rate, scientific = FALSE),
+              "--min-fixation-duration", format(spec$minimum_duration_ms / 1000, scientific = FALSE))
+    for (nm in intersect(names(spec$parameters), names(cli_map))) args <- c(args, cli_map[[nm]], as.character(spec$parameters[[nm]]))
+    status <- system2(command, args = args, stdout = TRUE, stderr = TRUE)
+    if (!file.exists(outp)) .edm_stop("REMoDNaV failed for trial ", z$trial_id[1L], ": ", paste(status, collapse = " | "))
+    ev <- utils::read.delim(outp, stringsAsFactors = FALSE, check.names = FALSE)
+    if (!nrow(ev)) next
+    label_map <- c(FIXA = "fixation", SACC = "saccade", ISAC = "saccade", PURS = "pursuit", HPSO = "pso", IHPS = "pso", LPSO = "pso", ILPS = "pso")
+    ev <- ev[ev$label %in% names(label_map), , drop = FALSE]
+    t0 <- min(as.numeric(z$timestamp_seconds), na.rm = TRUE)
+    for (i in seq_len(nrow(ev))) {
+      k <- k + 1L; st <- t0 + as.numeric(ev$onset[i]); en <- st + as.numeric(ev$duration[i])
+      rows[[k]] <- data.frame(
+        episode_id = sprintf("%s_remodnav_%07d", z$recording_id[1L], k), recording_id = z$recording_id[1L], episode_type = unname(label_map[ev$label[i]]), eye = "combined",
