@@ -111,8 +111,21 @@ aoi_perturbation_spec <- function(
       geometry$xmin[i] <- xmin; geometry$xmax[i] <- xmax; geometry$ymin[i] <- ymin; geometry$ymax[i] <- ymax
     } else {
       p <- .aoi_polygon(geometry$polygon[[i]])
-      if (sp$operation == "dilation") p <- .aoi_offset_convex_polygon(p, mx)
-      if (sp$operation == "erosion") p <- .aoi_offset_convex_polygon(p, -mx)
+      if (sp$operation %in% c("dilation", "erosion")) {
+        if (identical(spec$unit, "deg")) {
+          if (is.null(spec$degrees_per_pixel)) .aoi_stop("Degree-based polygon perturbation lacks degrees-per-pixel provenance.")
+          p_angle <- p
+          p_angle[, 1L] <- p_angle[, 1L] * spec$degrees_per_pixel[1L]
+          p_angle[, 2L] <- p_angle[, 2L] * spec$degrees_per_pixel[2L]
+          margin_angle <- spec$margin_x * if (sp$operation == "erosion") -1 else 1
+          p_angle <- .aoi_offset_convex_polygon(p_angle, margin_angle)
+          p <- p_angle
+          p[, 1L] <- p[, 1L] / spec$degrees_per_pixel[1L]
+          p[, 2L] <- p[, 2L] / spec$degrees_per_pixel[2L]
+        } else {
+          p <- .aoi_offset_convex_polygon(p, if (sp$operation == "dilation") mx else -mx)
+        }
+      }
       if (sp$operation %in% c("translate", "jitter")) { p[, 1L] <- p[, 1L] + tx; p[, 2L] <- p[, 2L] + ty }
       if (sp$operation == "anisotropic_expansion") {
         cx <- mean(p[, 1L]); cy <- mean(p[, 2L]); w <- diff(range(p[, 1L])); h <- diff(range(p[, 2L]))
