@@ -174,7 +174,8 @@ perturb_aoi_geometry <- function(aois, spec) {
 #' @export
 create_aoi_perturbation_grid <- function(
     dilations = NULL, erosions = NULL, translations_x = NULL, translations_y = NULL,
-    jitters = NULL, anisotropic = NULL, unit = "px", include_baseline = TRUE,
+    translations_xy = NULL, jitters = NULL, anisotropic = NULL,
+    unit = "px", include_baseline = TRUE,
     seed = 20260918L, ...) {
   specs <- list(); add <- function(x) specs[[length(specs) + 1L]] <<- x
   if (isTRUE(include_baseline)) add(aoi_perturbation_spec("baseline", "baseline", unit = unit, ...))
@@ -182,12 +183,30 @@ create_aoi_perturbation_grid <- function(
   for (v in if (is.null(erosions)) numeric() else erosions) add(aoi_perturbation_spec(paste0("erode_", v, "_", unit), "erosion", margin_x = v, unit = unit, ...))
   for (v in if (is.null(translations_x)) numeric() else translations_x) add(aoi_perturbation_spec(paste0("shift_x_", v, "_", unit), "translate", translation_x = v, unit = unit, ...))
   for (v in if (is.null(translations_y)) numeric() else translations_y) add(aoi_perturbation_spec(paste0("shift_y_", v, "_", unit), "translate", translation_y = v, unit = unit, ...))
+  normalise_pairs <- function(x, arg) {
+    if (is.null(x)) return(list())
+    if (is.matrix(x) || is.data.frame(x)) {
+      if (ncol(x) != 2L) .aoi_stop(arg, " must have exactly two columns.")
+      return(lapply(seq_len(nrow(x)), function(i) as.numeric(x[i, , drop = TRUE])))
+    }
+    if (is.numeric(x) && length(x) == 2L) return(list(as.numeric(x)))
+    if (!is.list(x)) .aoi_stop(arg, " must be a length-two numeric vector, two-column matrix/data frame, or list of pairs.")
+    lapply(x, function(v) .aoi_pair(v, arg))
+  }
+
+  for (p in normalise_pairs(translations_xy, "translations_xy")) {
+    p <- .aoi_pair(p, "translations_xy")
+    add(aoi_perturbation_spec(
+      paste0("shift_xy_", p[1L], "_", p[2L], "_", unit),
+      "translate", translation_x = p[1L], translation_y = p[2L], unit = unit, ...
+    ))
+  }
   if (!is.null(jitters)) for (i in seq_along(jitters)) {
     v <- jitters[[i]]
     add(aoi_perturbation_spec(paste0("jitter_", v, "_", unit, "_", i), "jitter", translation_x = v, translation_y = v, unit = unit, seed = seed + i - 1L, ...))
   }
-  if (!is.null(anisotropic)) for (i in seq_along(anisotropic)) {
-    p <- .aoi_pair(anisotropic[[i]], "anisotropic")
+  for (p in normalise_pairs(anisotropic, "anisotropic")) {
+    p <- .aoi_pair(p, "anisotropic")
     add(aoi_perturbation_spec(paste0("anisotropic_", p[1L], "_", p[2L], "_", unit), "anisotropic_expansion", margin_x = p[1L], margin_y = p[2L], unit = unit, ...))
   }
   if (!length(specs)) .aoi_stop("The perturbation grid is empty.")
