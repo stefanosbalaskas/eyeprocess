@@ -165,10 +165,11 @@ test_that("identical scientific specs yield identical event catalogues", {
     "start_time", "end_time", "duration_ms",
     "centroid_x", "centroid_y"
   )
-  expect_equal(
-    unname(x[, cols, drop = FALSE]),
-    unname(y[, cols, drop = FALSE])
-  )
+  x_cmp <- unname(x[, cols, drop = FALSE])
+  y_cmp <- unname(y[, cols, drop = FALSE])
+  rownames(x_cmp) <- NULL
+  rownames(y_cmp) <- NULL
+  expect_equal(x_cmp, y_cmp)
 })
 
 test_that("short and zero-event trials are retained in features", {
