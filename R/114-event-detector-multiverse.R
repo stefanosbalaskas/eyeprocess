@@ -371,3 +371,79 @@ detect_events_with_spec <- function(x, spec) {
 #' Run all detector branches independently
 #' @export
 run_detector_multiverse <- function(x, multiverse, continue_on_error = TRUE) {
+  .assert_eye_dataset(x)
+  if (!inherits(multiverse, "eye_detector_multiverse")) multiverse <- create_detector_multiverse(multiverse)
+  branches <- list(); events <- list(); statuses <- list(); failures <- list(); warns <- list()
+  for (spec in multiverse$specs) {
+    captured <- character()
+    value <- withCallingHandlers(tryCatch(detect_events_with_spec(x, spec), error = identity), warning = function(w) { captured <<- c(captured, conditionMessage(w)); invokeRestart("muffleWarning") })
+    if (inherits(value, "error")) {
+      failures[[length(failures) + 1L]] <- data.frame(detector_id = spec$detector_id, detector_spec_hash = spec$detector_spec_hash, stage = "detection", error_type = class(value)[1L], error = conditionMessage(value), stringsAsFactors = FALSE)
+      statuses[[length(statuses) + 1L]] <- data.frame(detector_id = spec$detector_id, detector_spec_hash = spec$detector_spec_hash, status = "failed", n_events = NA_real_, n_fixations = NA_real_, stringsAsFactors = FALSE)
+      if (!continue_on_error) stop(value)
+      next
+    }
+    branches[[spec$detector_id]] <- value
+    ev <- value$episodes; if ("detector_id" %in% names(ev)) ev <- ev[ev$detector_id == spec$detector_id, , drop = FALSE] else ev <- ev[FALSE, , drop = FALSE]
+    events[[length(events) + 1L]] <- ev
+    statuses[[length(statuses) + 1L]] <- data.frame(detector_id = spec$detector_id, detector_spec_hash = spec$detector_spec_hash, status = "ok", n_events = nrow(ev), n_fixations = sum(ev$episode_type == "fixation"), stringsAsFactors = FALSE)
+    if (length(captured)) for (w in captured) warns[[length(warns) + 1L]] <- data.frame(detector_id = spec$detector_id, stage = "detection", warning = w, stringsAsFactors = FALSE)
+  }
+  structure(list(multiverse = multiverse, branches = branches, events = .edm_rbind_fill(events), status = .edm_rbind_fill(statuses), failures = .edm_rbind_fill(failures), warnings = .edm_rbind_fill(warns), features = data.frame(), source_fingerprint = .edm_dataset_hash(x)), class = "eye_detector_multiverse_result")
+}
+
+.edm_iou <- function(a1, a2, b1, b2) { inter <- max(0, min(a2, b2) - max(a1, b1)); union <- max(a2, b2) - min(a1, b1); if (union > 0) inter / union else as.numeric(a1 == b1 && a2 == b2) }
+
+#' Match detected events using one-to-one temporal overlap
+#' @export
+match_detected_events <- function(reference, candidate, event_type = "fixation", onset_tolerance_ms = 75, minimum_overlap = .10) {
+  if (!is.data.frame(reference) || !is.data.frame(candidate)) .edm_stop("reference and candidate must be data frames.")
+  req <- c("recording_id", "episode_type", "start_time", "end_time"); if (length(setdiff(req, names(reference))) || length(setdiff(req, names(candidate)))) .edm_stop("Event tables are missing required fields.")
+  if (!is.finite(onset_tolerance_ms) || onset_tolerance_ms < 0 || !is.finite(minimum_overlap) || minimum_overlap < 0 || minimum_overlap > 1) .edm_stop("Invalid event-matching tolerance.")
+  ref <- reference[reference$episode_type == event_type, , drop = FALSE]; cand <- candidate[candidate$episode_type == event_type, , drop = FALSE]
+  pairs <- list(); k <- 0L
+  for (i in seq_len(nrow(ref))) for (j in seq_len(nrow(cand))) {
+    if (as.character(ref$recording_id[i]) != as.character(cand$recording_id[j])) next
+    if ("trial_id" %in% names(ref) && "trial_id" %in% names(cand) && !is.na(ref$trial_id[i]) && !is.na(cand$trial_id[j]) && as.character(ref$trial_id[i]) != as.character(cand$trial_id[j])) next
+    iou <- .edm_iou(ref$start_time[i], ref$end_time[i], cand$start_time[j], cand$end_time[j]); onset <- abs(ref$start_time[i] - cand$start_time[j]) * 1000
+    if (iou < minimum_overlap && onset > onset_tolerance_ms) next
+    k <- k + 1L; pairs[[k]] <- data.frame(iou = iou, onset = onset, i = i, j = j)
+  }
+  if (!length(pairs)) return(data.frame(reference_index = integer(), candidate_index = integer(), recording_id = character(), trial_id = character(), event_type = character(), overlap_iou = numeric(), onset_difference_ms = numeric(), offset_difference_ms = numeric(), duration_difference_ms = numeric()))
+  p <- do.call(rbind, pairs); p <- p[order(-p$iou, p$onset), , drop = FALSE]; used_i <- integer(); used_j <- integer(); out <- list()
+  for (r in seq_len(nrow(p))) {
+    i <- p$i[r]; j <- p$j[r]; if (i %in% used_i || j %in% used_j) next; used_i <- c(used_i, i); used_j <- c(used_j, j)
+    out[[length(out) + 1L]] <- data.frame(reference_index = i, candidate_index = j, recording_id = ref$recording_id[i], trial_id = if ("trial_id" %in% names(ref)) ref$trial_id[i] else NA_character_, event_type = event_type,
+      overlap_iou = p$iou[r], onset_difference_ms = p$onset[r], offset_difference_ms = abs(ref$end_time[i] - cand$end_time[j]) * 1000,
+      duration_difference_ms = ((cand$end_time[j] - cand$start_time[j]) - (ref$end_time[i] - ref$start_time[i])) * 1000, stringsAsFactors = FALSE)
+  }
+  .edm_rbind_fill(out)
+}
+
+#' Compare two event catalogues
+#' @export
+compare_event_catalogues <- function(reference, candidate, event_type = "fixation", onset_tolerance_ms = 75, minimum_overlap = .10) {
+  m <- match_detected_events(reference, candidate, event_type, onset_tolerance_ms, minimum_overlap)
+  nr <- sum(reference$episode_type == event_type); nc <- sum(candidate$episode_type == event_type); nm <- nrow(m)
+  precision <- if (nc) nm / nc else NA_real_; recall <- if (nr) nm / nr else NA_real_; f1 <- if (is.finite(precision) && is.finite(recall) && precision + recall > 0) 2 * precision * recall / (precision + recall) else NA_real_
+  data.frame(event_type = event_type, reference_events = nr, candidate_events = nc, matched_events = nm, matched_event_precision = precision, matched_event_recall = recall, f1 = f1,
+    mean_event_overlap = if (nm) mean(m$overlap_iou) else NA_real_, median_event_overlap = if (nm) stats::median(m$overlap_iou) else NA_real_,
+    mean_onset_difference_ms = if (nm) mean(m$onset_difference_ms) else NA_real_, mean_offset_difference_ms = if (nm) mean(m$offset_difference_ms) else NA_real_,
+    mean_duration_difference_ms = if (nm) mean(m$duration_difference_ms) else NA_real_, stringsAsFactors = FALSE)
+}
+
+#' Estimate pairwise detector agreement
+#' @export
+estimate_detector_agreement <- function(x, event_type = "fixation", onset_tolerance_ms = 75, minimum_overlap = .10) {
+  events <- if (inherits(x, "eye_detector_multiverse_result")) x$events else x
+  if (!is.data.frame(events) || !"detector_id" %in% names(events)) .edm_stop("Detector-labelled event data are required.")
+  ids <- sort(unique(as.character(events$detector_id))); if (length(ids) < 2L) return(data.frame())
+  cmb <- utils::combn(ids, 2L); rows <- list()
+  for (i in seq_len(ncol(cmb))) {
+    a <- cmb[1L, i]; b <- cmb[2L, i]
+    q <- compare_event_catalogues(events[events$detector_id == a, , drop = FALSE], events[events$detector_id == b, , drop = FALSE], event_type, onset_tolerance_ms, minimum_overlap)
+    q$detector_a <- a; q$detector_b <- b; rows[[i]] <- q
+  }
+  .edm_rbind_fill(rows)
+}
+
