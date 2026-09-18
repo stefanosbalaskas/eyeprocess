@@ -554,10 +554,11 @@ plot_gaze_quality_dashboard <- function(report, ...) {
 #' Create manuscript-ready gaze-quality reporting text
 #' @export
 report_gaze_quality <- function(report, digits = 3L) {
-  if (length(digits) != 1L || is.na(digits) || !is.finite(as.numeric(digits)) || as.integer(digits) != as.numeric(digits) || as.integer(digits) < 0L) {
+  digits_numeric <- suppressWarnings(as.numeric(digits))
+  if (length(digits_numeric) != 1L || is.na(digits_numeric) || !is.finite(digits_numeric) || as.integer(digits_numeric) != digits_numeric || as.integer(digits_numeric) < 0L) {
     stop("digits must be a non-negative integer.", call. = FALSE)
   }
-  digits <- as.integer(digits)
+  digits <- as.integer(digits_numeric)
   d <- .ep_sq_df(report); if (!nrow(d)) return("No gaze-quality rows were available.")
   metrics <- intersect(c("accuracy_mean", "precision_rms_s2s", "precision_sd", "bcea", "effective_sampling_hz", "valid_sample_fraction", "data_loss_fraction"), names(d))
   parts <- vapply(metrics, function(metric) {
@@ -571,6 +572,10 @@ report_gaze_quality <- function(report, digits = 3L) {
 #' Simulate a nine-point gaze-quality validation dataset
 #' @export
 simulate_gaze_quality_calibration <- function(seed = 20260918L, samples_per_target = 18L, nominal_sampling_hz = 60) {
+  seed_numeric <- suppressWarnings(as.numeric(seed))
+  if (length(seed_numeric) != 1L || is.na(seed_numeric) || !is.finite(seed_numeric) || floor(seed_numeric) != seed_numeric || seed_numeric < 0 || seed_numeric > 2147483647) {
+    stop("seed must be an integer between 0 and 2147483647.", call. = FALSE)
+  }
   samples_numeric <- suppressWarnings(as.numeric(samples_per_target))
   if (length(samples_numeric) != 1L || is.na(samples_numeric) || !is.finite(samples_numeric) || samples_numeric < 4 || floor(samples_numeric) != samples_numeric) {
     stop("samples_per_target must be an integer of at least 4.", call. = FALSE)
@@ -580,7 +585,8 @@ simulate_gaze_quality_calibration <- function(seed = 20260918L, samples_per_targ
     stop("nominal_sampling_hz must be a finite positive value.", call. = FALSE)
   }
   samples_per_target <- as.integer(samples_numeric)
-  set.seed(as.integer(seed)); targets <- expand.grid(target_x = c(-5, 0, 5), target_y = c(-5, 0, 5))
+  seed <- as.integer(seed_numeric)
+  set.seed(seed); targets <- expand.grid(target_x = c(-5, 0, 5), target_y = c(-5, 0, 5))
   specs <- data.frame(profile = c("good_accuracy_good_precision", "poor_accuracy_good_precision", "good_accuracy_poor_precision", "poor_accuracy_poor_precision", "irregular_sampling", "missingness"),
                       bias_x = c(0, .9, 0, .9, .1, .1), bias_y = c(0, -.7, 0, -.7, -.1, -.1), sd = c(.12, .12, .75, .75, .20, .20), stringsAsFactors = FALSE)
   rows <- list(); k <- 0L
