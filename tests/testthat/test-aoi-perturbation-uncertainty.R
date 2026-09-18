@@ -193,6 +193,30 @@ test_that("participant trial and AOI stability are available", {
   expect_match(attr(freq, "caveat"), "not a posterior")
 })
 
+test_that("assignment stability requires exact metadata observation IDs", {
+  comparison <- compare_aoi_assignments(
+    c("a", "b"), c("a", "b"), ids = c("obs-1", "obs-2")
+  )
+  inherited <- estimate_aoi_assignment_stability(
+    list(baseline = comparison),
+    metadata = data.frame(participant = c("p1", "p2")),
+    group_cols = "participant"
+  )
+  expect_equal(inherited$detail$observation_id, c("obs-1", "obs-2"))
+
+  expect_error(
+    estimate_aoi_assignment_stability(
+      list(baseline = comparison),
+      metadata = data.frame(
+        observation_id = c("obs-1", "wrong"),
+        participant = c("p1", "p2")
+      ),
+      group_cols = "participant"
+    ),
+    "match .* exactly"
+  )
+})
+
 test_that("feature recomputation preserves zero cells and missing denominators", {
   d <- data.frame(
     participant = c(1,1,1,2,2),
@@ -379,6 +403,57 @@ test_that("cross-language parity fixture preserves semantic contract", {
   expect_equal(cmp$n_comparable, 4)
   expect_equal(cmp$proportion_unchanged, .5)
   expect_equal(cmp$proportion_newly_assigned, .5)
+})
+
+test_that("invalid model callback rows remain failures", {
+  data <- head(.aoi_test_data(), 40)
+  grid <- create_aoi_perturbation_grid(include_baseline = TRUE)
+
+  bad_flag <- function(features, assigned, spec) {
+    data.frame(
+      term = "x", estimate = 1, SE = .2, CI_low = .6, CI_high = 1.4,
+      p_value = .03, model_converged = "yes", N = 10
+    )
+  }
+  result <- run_aoi_sensitivity_analysis(
+    data, .aoi_test_aois(), grid, x_col = "x", y_col = "y",
+    duration_col = "duration", time_col = "time", model_callback = bad_flag
+  )
+  expect_equal(nrow(result$models), 0)
+  expect_true(any(grepl("strings are not accepted", result$failures$message)))
+
+  bad_converged <- function(features, assigned, spec) {
+    data.frame(
+      term = "x", estimate = NA_real_, SE = .2,
+      CI_low = .6, CI_high = 1.4, p_value = NA_real_,
+      model_converged = TRUE, N = 10
+    )
+  }
+  result <- run_aoi_sensitivity_analysis(
+    data, .aoi_test_aois(), grid, x_col = "x", y_col = "y",
+    duration_col = "duration", time_col = "time", model_callback = bad_converged
+  )
+  expect_equal(nrow(result$models), 0)
+  expect_true(any(grepl("finite estimate", result$failures$message)))
+
+  factor_values <- function(features, assigned, spec) {
+    data.frame(
+      term = "x",
+      estimate = factor("1.5"),
+      SE = factor("0.2"),
+      CI_low = factor("1.1"),
+      CI_high = factor("1.9"),
+      p_value = factor("0.01"),
+      model_converged = TRUE,
+      N = factor("10")
+    )
+  }
+  result <- run_aoi_sensitivity_analysis(
+    data, .aoi_test_aois(), grid, x_col = "x", y_col = "y",
+    duration_col = "duration", time_col = "time", model_callback = factor_values
+  )
+  expect_equal(result$models$estimate, 1.5)
+  expect_equal(result$models$N, 10)
 })
 
 test_that("AOI perturbation plots render", {
