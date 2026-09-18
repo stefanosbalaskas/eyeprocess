@@ -650,3 +650,62 @@ plot_detector_agreement <- function(x, metric = "mean_event_overlap", ...) {
   graphics::image(seq_along(ids), seq_along(ids), mat, axes = FALSE, xlab = "Detector", ylab = "Detector", main = paste("Detector agreement:", metric), ...); graphics::axis(1, seq_along(ids), ids, las = 2); graphics::axis(2, seq_along(ids), ids, las = 2); invisible(mat)
 }
 
+#' Plot propagated feature distributions by detector
+#' @export
+plot_detector_feature_distributions <- function(x, feature = "dwell_time_ms", aoi_id = NULL, ...) {
+  d <- x$features; if (!nrow(d) || !feature %in% names(d)) .edm_stop("Requested propagated feature is unavailable."); if (!is.null(aoi_id)) d <- d[as.character(d$aoi_id) == as.character(aoi_id), , drop = FALSE]
+  graphics::boxplot(d[[feature]] ~ d$detector_id, xlab = "Detector", ylab = feature, main = paste("Detector sensitivity of", feature), las = 2, ...); invisible(d)
+}
+
+#' Plot coefficient stability by detector
+#' @export
+plot_detector_coefficient_stability <- function(x, term, ...) {
+  d <- x$coefficients[as.character(x$coefficients$term) == as.character(term), , drop = FALSE]; if (!nrow(d)) .edm_stop("Requested model term is unavailable."); d <- d[order(d$estimate), , drop = FALSE]; y <- seq_len(nrow(d))
+  graphics::plot(d$estimate, y, xlim = range(c(d$CI_lower, d$CI_upper), finite = TRUE), yaxt = "n", xlab = "Estimate (95% CI)", ylab = "Detector", main = paste("Coefficient stability:", term), ...); graphics::segments(d$CI_lower, y, d$CI_upper, y); graphics::abline(v = 0, lty = 2); graphics::axis(2, y, d$detector_id, las = 1); invisible(d)
+}
+
+#' Plot detector multiverse diagnostics
+#' @export
+plot_detector_multiverse <- function(x, inference = NULL, term = NULL, feature = "dwell_time_ms", aoi_id = NULL) {
+  .edm_warn("plot_detector_multiverse() draws separate base-graphics figures sequentially; use the individual plot functions for publication composition.")
+  plot_detector_agreement(x); plot_detector_feature_distributions(x, feature, aoi_id); if (!is.null(inference) && !is.null(term)) plot_detector_coefficient_stability(inference, term); invisible(TRUE)
+}
+
+.edm_md_table <- function(d) {
+  if (!is.data.frame(d) || !nrow(d)) return("")
+  cell <- function(x) { x <- ifelse(is.na(x), "", as.character(x)); gsub("|", "\\\\|", x, fixed = TRUE) }
+  head <- paste0("| ", paste(names(d), collapse = " | "), " |\n| ", paste(rep("---", ncol(d)), collapse = " | "), " |")
+  rows <- apply(d, 1L, function(z) paste0("| ", paste(cell(z), collapse = " | "), " |")); paste(c(head, rows), collapse = "\n")
+}
+
+#' Write a detector multiverse Markdown report
+#' @export
+report_detector_multiverse <- function(x, inference = NULL, term = NULL, substantive_threshold = NULL, path = NULL) {
+  s <- summarise_detector_robustness(x, inference, term, substantive_threshold)
+  lines <- c("# Event-detector multiverse report", "", "## Scope", "", "This report evaluates whether events, AOI features, and statistical conclusions change across the supplied defensible detector specifications. The specification set is not evidence that omitted detector choices are valid or irrelevant.", "", "## Detector specifications", "", .edm_md_table(x$multiverse$manifest), "", "## Event-level sensitivity", "", if (nrow(s$event_summary)) .edm_md_table(s$event_summary) else "No successful event catalogues were available.", "", "## AOI-feature sensitivity", "", if (nrow(s$feature_sensitivity)) .edm_md_table(s$feature_sensitivity) else "AOI features were not propagated or no cross-detector comparison was estimable.", "")
+  if (!is.null(inference) && !is.null(term)) lines <- c(lines, "## Inference stability", "", .edm_md_table(s$inference_stability), "", "Non-converged model branches are retained as diagnostic failures and are excluded from coefficient-stability calculations.", "")
+  if (nrow(x$failures)) lines <- c(lines, "## Branch failures", "", .edm_md_table(x$failures), "")
+  lines <- c(lines, "## Reporting guidance", "", "Report detector family and parameters, sampling rate and coordinate units, AOI assignment rule, successful/failed specifications, event-level agreement, feature ranges, coefficient distributions with uncertainty, convergence failures, and any substantive threshold. Do not summarize robustness by counting p-values alone.", "", "## Limitations", "", "Detector sensitivity is conditional on the supplied preprocessing, AOIs, quality rules, model specification, and detector set. Agreement does not establish event validity, and disagreement does not identify which detector is correct without external evidence.")
+  text <- paste(lines, collapse = "\n"); if (!is.null(path)) writeLines(text, path, useBytes = TRUE); text
+}
+
+#' Simulate a small 60-Hz detector-multiverse dataset
+#' @export
+simulate_detector_multiverse_data <- function(n_participants = 12L, sampling_rate = 60, trial_duration_s = 2, seed = 20260918L) {
+  if (n_participants < 4L) .edm_stop("Use at least four participants for the worked multiverse example."); .edm_positive(sampling_rate, "sampling_rate", FALSE); .edm_positive(trial_duration_s, "trial_duration_s", FALSE)
+  set.seed(as.integer(seed)); recordings <- list(); gaze <- list(); intervals <- list(); sc <- 0L; n <- round(sampling_rate * trial_duration_s); kr <- kg <- ki <- 0L
+  for (p in seq_len(n_participants)) {
+    rec <- sprintf("R%03d", p); kr <- kr + 1L; recordings[[kr]] <- data.frame(recording_id = rec, participant_id = sprintf("P%03d", p), vendor = "synthetic", nominal_sampling_rate = sampling_rate, stringsAsFactors = FALSE)
+    for (ci in 0:1) {
+      condition <- c("control", "disclosure")[ci + 1L]; trial <- paste0(rec, "_T", ci + 1L); start <- ci * (trial_duration_s + .25); end <- start + trial_duration_s; ki <- ki + 1L
+      intervals[[ki]] <- data.frame(interval_id = paste0("I_", trial), recording_id = rec, interval_type = "trial", start_time = start, end_time = end, trial_id = trial, participant_id = sprintf("P%03d", p), item_id = "ad_01", stimulus_id = "stim_01", condition_id = condition, valid_interval = TRUE, stringsAsFactors = FALSE)
+      lt <- (0:(n - 1L)) / sampling_rate; ts <- .55 + stats::rnorm(1L, 0, .03); te <- (if (condition == "disclosure") 1.42 else 1.02) + stats::rnorm(1L, 0, .04)
+      xx <- ifelse(lt >= ts & lt <= te, 6, 2.1) + stats::rnorm(n, 0, .10); yy <- ifelse(lt >= ts & lt <= te, 2.4, 5.8) + stats::rnorm(n, 0, .10)
+      if (condition == "disclosure" && p %% 3L == 0L) { rv <- lt >= 1.62 & lt <= 1.82; xx[rv] <- 6.1 + stats::rnorm(sum(rv), 0, .10); yy[rv] <- 2.3 + stats::rnorm(sum(rv), 0, .10) }
+      valid <- stats::runif(n) > .015
+      for (j in seq_len(n)) { sc <- sc + 1L; kg <- kg + 1L; gaze[[kg]] <- data.frame(recording_id = rec, sample_id = sprintf("S%08d", sc), timestamp_seconds = start + lt[j], gaze_x = xx[j], gaze_y = yy[j], valid = valid[j], trial_id = trial, stimulus_id = "stim_01", coordinate_space_id = "deg_display", stringsAsFactors = FALSE) }
+    }
+  }
+  spaces <- new_coordinate_space("deg_display", space_type = "custom", origin = "center", x_unit = "degrees", y_unit = "degrees", width = 12, height = 8)
+  x <- new_eye_dataset(recordings = do.call(.bind_rows_base, recordings), gaze_samples = do.call(.bind_rows_base, gaze), intervals = do.call(.bind_rows_base, intervals), coordinate_spaces = spaces, validate = FALSE)
+  x <- register_aois(x,
