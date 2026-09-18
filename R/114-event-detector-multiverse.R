@@ -594,3 +594,59 @@ run_detector_inference_multiverse <- function(x, model_spec, model_callback = NU
       } else { tab <- model_callback(d, model_spec); req <- c("term", "estimate", "SE", "CI_lower", "CI_upper", "p", "converged", "N"); if (!is.data.frame(tab) || length(setdiff(req, names(tab)))) .edm_stop("model_callback must return the documented tidy coefficient contract."); list(tidy = tab, converged = all(tab$converged %in% TRUE)) }
     }, error = identity), warning = function(w) { captured <<- c(captured, conditionMessage(w)); invokeRestart("muffleWarning") })
     if (inherits(fitres, "error")) { failures[[length(failures) + 1L]] <- data.frame(detector_id = spec$detector_id, stage = "model", error_type = class(fitres)[1L], error = conditionMessage(fitres), stringsAsFactors = FALSE); next }
+    tab <- fitres$tidy; if (!isTRUE(fitres$converged)) captured <- c(captured, "Model did not converge; estimates are retained for diagnosis but excluded from stability summaries.")
+    tab$detector_id <- spec$detector_id; tab$detector_algorithm <- spec$algorithm; tab$detector_spec_hash <- spec$detector_spec_hash; tab$parameter_spec <- spec$detector_spec_hash
+    tab$model_engine <- engine; tab$model_formula <- paste(deparse(formula), collapse = " "); tab$model_spec_hash <- .edm_hash(model_spec); tab$feature_fingerprint <- .edm_hash(d); tab$software <- "eyeprocess"; tab$software_version <- tryCatch(as.character(utils::packageVersion("eyeprocess")), error = function(e) NA_character_); tab$warnings <- if (length(captured)) paste(captured, collapse = " | ") else NA_character_
+    rows[[length(rows) + 1L]] <- tab; if (length(captured)) for (w in captured) warns[[length(warns) + 1L]] <- data.frame(detector_id = spec$detector_id, stage = "model", warning = w, stringsAsFactors = FALSE)
+  }
+  structure(list(multiverse = x$multiverse, coefficients = .edm_rbind_fill(rows), failures = .edm_rbind_fill(failures), warnings = .edm_rbind_fill(warns), model_spec = model_spec, feature_fingerprint = .edm_hash(x$features)), class = "eye_detector_inference_result")
+}
+
+#' Assess detector-level inference stability
+#' @export
+assess_detector_inference_stability <- function(x, term, substantive_threshold = NULL, direction = c("above", "below", "absolute")) {
+  if (!inherits(x, "eye_detector_inference_result")) .edm_stop("x must be an eye_detector_inference_result."); direction <- match.arg(direction)
+  d <- x$coefficients[as.character(x$coefficients$term) == as.character(term), , drop = FALSE]; all_n <- nrow(d)
+  if (!all_n) return(data.frame(term = term, specifications = 0L, converged_specifications = 0L, convergence_rate = NA_real_, median_estimate = NA_real_, estimate_min = NA_real_, estimate_max = NA_real_, estimate_range = NA_real_, same_sign_proportion = NA_real_, ci_overlap = NA, ci_overlap_lower = NA_real_, ci_overlap_upper = NA_real_, substantive_conclusion_stability = NA_real_))
+  d <- d[d$converged %in% TRUE & is.finite(as.numeric(d$estimate)), , drop = FALSE]
+  if (!nrow(d)) return(data.frame(term = term, specifications = all_n, converged_specifications = 0L, convergence_rate = 0, median_estimate = NA_real_, estimate_min = NA_real_, estimate_max = NA_real_, estimate_range = NA_real_, same_sign_proportion = NA_real_, ci_overlap = NA, ci_overlap_lower = NA_real_, ci_overlap_upper = NA_real_, substantive_conclusion_stability = NA_real_))
+  e <- as.numeric(d$estimate); nz <- e[e != 0]; same <- if (!length(nz)) NA_real_ else max(mean(nz > 0), mean(nz < 0)); ok <- is.finite(d$CI_lower) & is.finite(d$CI_upper)
+  lo <- if (any(ok)) max(d$CI_lower[ok]) else NA_real_; hi <- if (any(ok)) min(d$CI_upper[ok]) else NA_real_; cio <- if (any(ok)) lo <= hi else NA
+  subst <- NA_real_; if (!is.null(substantive_threshold)) { dec <- switch(direction, above = e >= substantive_threshold, below = e <= substantive_threshold, absolute = abs(e) >= abs(substantive_threshold)); subst <- max(mean(dec), mean(!dec)) }
+  data.frame(term = term, specifications = all_n, converged_specifications = nrow(d), convergence_rate = nrow(d) / all_n, median_estimate = stats::median(e), estimate_min = min(e), estimate_max = max(e), estimate_range = diff(range(e)), same_sign_proportion = same, ci_overlap = cio, ci_overlap_lower = lo, ci_overlap_upper = hi, substantive_conclusion_stability = subst, stringsAsFactors = FALSE)
+}
+
+.edm_feature_sensitivity <- function(features) {
+  metrics <- intersect(c("dwell_time_ms", "fixation_count", "mean_fixation_duration_ms", "ttff_ms", "revisits", "transition_count_from_aoi", "transition_count_to_aoi", "pupil_within_fixation_mean"), names(features)); rows <- list()
+  for (m in metrics) {
+    groups <- split(features, interaction(features$recording_id, features$trial_id, features$aoi_id, drop = TRUE)); ranges <- vapply(groups, function(z) { v <- as.numeric(z[[m]]); v <- v[is.finite(v)]; if (length(v) >= 2L) diff(range(v)) else NA_real_ }, numeric(1)); ranges <- ranges[is.finite(ranges)]
+    rows[[length(rows) + 1L]] <- data.frame(feature = m, units_with_multiple_detectors = length(ranges), median_detector_range = if (length(ranges)) stats::median(ranges) else NA_real_, max_detector_range = if (length(ranges)) max(ranges) else NA_real_, stringsAsFactors = FALSE)
+  }
+  .edm_rbind_fill(rows)
+}
+
+#' Summarise detector robustness
+#' @export
+summarise_detector_robustness <- function(x, inference = NULL, term = NULL, substantive_threshold = NULL, direction = "above") {
+  out <- list(event_summary = summarise_detector_events(x), event_agreement = if (nrow(x$events)) estimate_detector_agreement(x) else data.frame(), feature_sensitivity = .edm_feature_sensitivity(x$features), failures = x$failures)
+  if (!is.null(inference)) { if (is.null(term)) .edm_stop("term is required when inference is supplied."); out$inference_stability <- assess_detector_inference_stability(inference, term, substantive_threshold, direction); out$model_failures <- inference$failures }
+  else { out$inference_stability <- data.frame(); out$model_failures <- data.frame() }
+  out
+}
+
+#' Plot event timelines by detector
+#' @export
+plot_detector_event_timeline <- function(x, trial_id = NULL, event_type = "fixation", ...) {
+  ev <- if (inherits(x, "eye_detector_multiverse_result")) x$events else x; ev <- ev[ev$episode_type == event_type, , drop = FALSE]; if (!is.null(trial_id)) ev <- ev[as.character(ev$trial_id) == as.character(trial_id), , drop = FALSE]
+  ids <- sort(unique(as.character(ev$detector_id))); graphics::plot(NA, xlim = if (nrow(ev)) range(c(ev$start_time, ev$end_time), finite = TRUE) else c(0, 1), ylim = c(.5, max(1, length(ids)) + .5), yaxt = "n", xlab = "Time (s)", ylab = "Detector", main = paste(tools::toTitleCase(event_type), "event timeline"), ...); graphics::axis(2, at = seq_along(ids), labels = ids, las = 1)
+  for (i in seq_along(ids)) { z <- ev[as.character(ev$detector_id) == ids[i], , drop = FALSE]; if (nrow(z)) graphics::segments(z$start_time, i, z$end_time, i, lwd = 4) }; invisible(ev)
+}
+
+#' Plot pairwise detector agreement
+#' @export
+plot_detector_agreement <- function(x, metric = "mean_event_overlap", ...) {
+  a <- estimate_detector_agreement(x); if (nrow(a) && !metric %in% names(a)) .edm_stop("Unknown agreement metric."); ids <- sort(unique(c(as.character(a$detector_a), as.character(a$detector_b)))); mat <- matrix(NA_real_, length(ids), length(ids), dimnames = list(ids, ids)); diag(mat) <- 1
+  if (nrow(a)) for (i in seq_len(nrow(a))) mat[a$detector_a[i], a$detector_b[i]] <- mat[a$detector_b[i], a$detector_a[i]] <- a[[metric]][i]
+  graphics::image(seq_along(ids), seq_along(ids), mat, axes = FALSE, xlab = "Detector", ylab = "Detector", main = paste("Detector agreement:", metric), ...); graphics::axis(1, seq_along(ids), ids, las = 2); graphics::axis(2, seq_along(ids), ids, las = 2); invisible(mat)
+}
+
