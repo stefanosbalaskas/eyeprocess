@@ -19,6 +19,26 @@
 | Process and psychometric modelling | IRT, response-time models, multimodal process measurement, validation and sensitivity infrastructure |
 | Interoperability and storage | Eye-Tracking-BIDS, Arrow/Parquet workflows, conversion bridges, auditable storage contracts |
 
+## Standardized spatial data quality
+
+The development branch now includes a vendor-neutral data-quality subsystem for target-referenced **accuracy**, RMS sample-to-sample and spatial-SD **precision**, **BCEA**, realized sampling behavior, and **data loss**. The canonical report keeps these dimensions separate, records units and provenance, and treats user thresholds as review rules rather than automatic exclusions.
+
+```r
+validation <- simulate_gaze_quality_calibration(samples_per_target = 8)
+
+quality <- create_gaze_quality_report(
+  validation,
+  by = c("profile", "target_id"),
+  valid = "valid",
+  missing_reason = "missing_reason",
+  nominal_sampling_hz = 60
+)
+
+report_gaze_quality(quality)
+```
+
+The synthetic validation profiles deliberately include good-precision/poor-accuracy, poor-precision/good-average-accuracy, irregular-sampling, and missingness cases. See the [Standardized Data Quality guide](https://stefanosbalaskas.github.io/eyeprocess/articles/standardized-data-quality.html).
+
 ## September 2026 measurement-accountability additions
 
 The current development branch adds three conservative diagnostics that make timing uncertainty and validation scope explicit without changing the package's existing synchronization or modelling engines:
@@ -148,6 +168,7 @@ provenance_manifest(x)
 - [Validating real exports](https://stefanosbalaskas.github.io/eyeprocess/articles/validating-real-exports.html)
 - [Preprocessing and features](https://stefanosbalaskas.github.io/eyeprocess/articles/preprocessing-features.html)
 - [Psychometric process models](https://stefanosbalaskas.github.io/eyeprocess/articles/psychometric-process-models.html)
+- [Standardized Data Quality](https://stefanosbalaskas.github.io/eyeprocess/articles/standardized-data-quality.html)
 - [Measurement accountability](https://stefanosbalaskas.github.io/eyeprocess/articles/measurement-accountability-0-11.html)
 - [Responsible use](https://stefanosbalaskas.github.io/eyeprocess/articles/responsible-use.html)
 - [Complete function reference](https://stefanosbalaskas.github.io/eyeprocess/reference/index.html)
