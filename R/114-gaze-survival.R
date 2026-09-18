@@ -656,76 +656,51 @@ fit_gaze_aft_model <- function(data, formula, distribution = c("weibull", "logno
 
 #' Tidy gaze-survival model effects
 #' @export
-tidy_gaze_survival_model <- function(model, conf_level = .95) {
-  if (!inherits(model, "eye_gaze_survival_model")) stop("Expected an eye_gaze_survival_model.", call. = FALSE)
-  if (!is.numeric(conf_level) || length(conf_level) != 1L || conf_level <= 0 || conf_level >= 1) stop("`conf_level` must be between 0 and 1.", call. = FALSE)
-  z <- stats::qnorm(1 - (1 - conf_level) / 2)
-
-  if (identical(model$backend, "coxme::coxme")) {
-    b <- coxme::fixef(model$fit)
-    vv <- stats::vcov(model$fit)
-    se <- sqrt(diag(vv))[seq_along(b)]
-    stat <- b / se
-    p <- 2 * stats::pnorm(abs(stat), lower.tail = FALSE)
-    return(data.frame(
-      term = names(b), estimate_log_scale = as.numeric(b), std_error = as.numeric(se),
-      hazard_ratio = exp(b), conf_low = exp(b - z * se), conf_high = exp(b + z * se),
-      statistic = stat, p_value = p, effect_measure = "hazard_ratio",
-      row.names = NULL, check.names = FALSE
-    ))
-  }
-
+tidy_gaze_survival_model <- function(model, conf_level=.95) {
+  if (!inherits(model, "eye_gaze_survival_model")) stop("Expected an eye_gaze_survival_model.", call.=FALSE)
   fit <- model$fit
+  z <- stats::qnorm(1 - (1-conf_level)/2)
   if (grepl("^cox", model$model_family)) {
-    b <- stats::coef(fit)
+    b <- if (identical(model$backend, "coxme::coxme")) coxme::fixef(fit) else stats::coef(fit)
     se <- sqrt(diag(stats::vcov(fit)))
-    stat <- b / se
-    p <- 2 * stats::pnorm(abs(stat), lower.tail = FALSE)
+    se <- se[seq_along(b)]
+    stat <- b/se
+    pv <- 2*stats::pnorm(abs(stat), lower.tail=FALSE)
     data.frame(
-      term = names(b), estimate_log_scale = as.numeric(b), std_error = as.numeric(se),
-      hazard_ratio = exp(b), conf_low = exp(b - z * se), conf_high = exp(b + z * se),
-      statistic = stat, p_value = p, effect_measure = "hazard_ratio",
-      row.names = NULL, check.names = FALSE
+      term=names(b), estimate_log_scale=as.numeric(b), std_error=as.numeric(se),
+      hazard_ratio=exp(b), conf_low=exp(b-z*se), conf_high=exp(b+z*se),
+      statistic=stat, p_value=pv, effect_measure="hazard_ratio",
+      row.names=NULL, check.names=FALSE
     )
   } else {
     b <- stats::coef(fit)
     se <- sqrt(diag(stats::vcov(fit)))[seq_along(b)]
-    stat <- b / se
-    p <- 2 * stats::pnorm(abs(stat), lower.tail = FALSE)
+    stat <- b/se
+    pv <- 2*stats::pnorm(abs(stat), lower.tail=FALSE)
     data.frame(
-      term = names(b), estimate_log_scale = as.numeric(b), std_error = as.numeric(se),
-      time_ratio = exp(b), conf_low = exp(b - z * se), conf_high = exp(b + z * se),
-      statistic = stat, p_value = p, effect_measure = "time_ratio",
-      row.names = NULL, check.names = FALSE
+      term=names(b), estimate_log_scale=as.numeric(b), std_error=as.numeric(se),
+      time_ratio=exp(b), conf_low=exp(b-z*se), conf_high=exp(b+z*se),
+      statistic=stat, p_value=pv, effect_measure="time_ratio",
+      row.names=NULL, check.names=FALSE
     )
   }
 }
 
 #' Proportional-hazards diagnostics
 #' @export
-check_gaze_proportional_hazards <- function(model, transform = "km", alpha = .05) {
+check_gaze_proportional_hazards <- function(model, transform="km") {
   .gaze_surv_require("survival", "for Cox diagnostics")
-  if (!inherits(model, "eye_gaze_survival_model") || !grepl("^cox", model$model_family)) {
-    stop("PH diagnostics require a Cox gaze-survival model.", call. = FALSE)
-  }
+  if (!inherits(model, "eye_gaze_survival_model") || !grepl("^cox", model$model_family)) stop("PH diagnostics require a Cox gaze-survival model.", call.=FALSE)
   if (identical(model$backend, "coxme::coxme")) {
-    stop(
-      "`survival::cox.zph()` does not provide the package's supported PH diagnostic for `coxme` frailty fits. ",
-      "Fit the corresponding marginal Cox specification with `structure = 'cluster_robust'` for PH diagnostics and report that diagnostic separately.",
-      call. = FALSE
-    )
+    stop("PH diagnostics for coxme frailty fits are not available through survival::cox.zph; inspect the corresponding marginal Cox model for proportional-hazards diagnostics.", call.=FALSE)
   }
-  if (!is.numeric(alpha) || length(alpha) != 1L || alpha <= 0 || alpha >= 1) stop("`alpha` must be between 0 and 1.", call. = FALSE)
-  z <- survival::cox.zph(model$fit, transform = transform)
+  z <- survival::cox.zph(model$fit, transform=transform)
   out <- data.frame(
-    term = rownames(z$table),
-    rho = if ("rho" %in% colnames(z$table)) z$table[, "rho"] else NA_real_,
-    chisq = z$table[, "chisq"],
-    p_value = z$table[, "p"],
-    alpha = alpha,
-    ph_flag = z$table[, "p"] < alpha,
-    row.names = NULL,
-    check.names = FALSE
+    term=rownames(z$table),
+    rho=if("rho" %in% colnames(z$table)) z$table[,"rho"] else NA_real_,
+    chisq=z$table[,"chisq"],
+    p_value=z$table[,"p"],
+    row.names=NULL, check.names=FALSE
   )
   attr(out, "method") <- "survival::cox.zph"
   out
@@ -735,36 +710,28 @@ check_gaze_proportional_hazards <- function(model, transform = "km", alpha = .05
 #' @export
 compare_gaze_survival_models <- function(...) {
   models <- list(...)
-  if (!length(models)) stop("Supply one or more models.", call. = FALSE)
+  if (!length(models)) stop("Supply one or more models.", call.=FALSE)
   rows <- lapply(seq_along(models), function(i) {
     m <- models[[i]]
-    if (!inherits(m, "eye_gaze_survival_model")) stop("All inputs must be gaze-survival models.", call. = FALSE)
+    if(!inherits(m,"eye_gaze_survival_model")) stop("All inputs must be gaze-survival models.", call.=FALSE)
     ll_obj <- stats::logLik(m$fit)
     ll <- as.numeric(ll_obj)
-    k <- attr(ll_obj, "df")
-    n <- nrow(m$data)
-    basis <- if (grepl("^aft", m$model_family)) {
-      "full_likelihood"
-    } else if (identical(m$backend, "coxme::coxme")) {
-      "mixed_cox_penalized_partial_likelihood"
-    } else {
-      "cox_partial_likelihood"
-    }
+    k <- attr(ll_obj,"df")
+    n <- tryCatch(stats::nobs(m$fit), error=function(e) nrow(m$data))
+    basis <- if (grepl("^cox", m$model_family)) "cox_partial_likelihood" else "full_likelihood"
     data.frame(
-      model = paste0("model_", i), family = m$model_family, backend = m$backend,
-      logLik = ll, AIC = -2 * ll + 2 * k, BIC = -2 * ll + log(n) * k,
-      n = n, likelihood_basis = basis, stringsAsFactors = FALSE
+      model=paste0("model_",i), family=m$model_family, backend=m$backend,
+      logLik=ll, AIC=-2*ll+2*k, BIC=-2*ll+log(n)*k, n=n,
+      likelihood_basis=basis, stringsAsFactors=FALSE
     )
   })
   out <- do.call(rbind, rows)
   comparable <- length(unique(out$likelihood_basis)) == 1L && length(unique(out$n)) == 1L
   out$information_criteria_comparable <- comparable
-  if (!comparable) {
-    warning(
-      "Information criteria are not directly comparable across Cox partial-likelihood, mixed-Cox penalized partial-likelihood, and AFT full-likelihood fits or across different analysis-row counts. Use diagnostics and estimand-specific interpretation rather than ranking them by AIC/BIC.",
-      call. = FALSE
-    )
-  }
+  if (!comparable) warning(
+    "Information criteria are not directly comparable across Cox partial-likelihood and AFT full-likelihood models or across different analysis-row counts. Use diagnostics and estimand-specific interpretation instead of ranking by AIC/BIC.",
+    call.=FALSE
+  )
   out
 }
 
