@@ -818,11 +818,18 @@ estimate_gaze_latency_quantiles <- function(object, probs = c(.25, .5, .75), gro
 plot_gaze_survival_curve <- function(data, group = NULL, ...) {
   km <- estimate_gaze_survival(data, group = group)
   spl <- split(km, km$group, drop = TRUE)
+  lty <- seq_along(spl)
   graphics::plot(
     NA, xlim = range(c(0, km$time)), ylim = c(0, 1),
     xlab = "Latency", ylab = "P(target event not yet observed)", ...
   )
-  for (z in spl) graphics::lines(c(0, z$time), c(1, z$survival), type = "s")
+  for (i in seq_along(spl)) {
+    z <- spl[[i]]
+    graphics::lines(c(0, z$time), c(1, z$survival), type = "s", lty = lty[i], lwd = 2)
+  }
+  if (length(spl) > 1L) {
+    graphics::legend("topright", legend = names(spl), lty = lty, lwd = 2, bty = "n")
+  }
   invisible(km)
 }
 
@@ -831,11 +838,18 @@ plot_gaze_survival_curve <- function(data, group = NULL, ...) {
 plot_gaze_cumulative_incidence <- function(data, group = NULL, ...) {
   km <- estimate_gaze_survival(data, group = group)
   spl <- split(km, km$group, drop = TRUE)
+  lty <- seq_along(spl)
   graphics::plot(
     NA, xlim = range(c(0, km$time)), ylim = c(0, 1),
     xlab = "Latency", ylab = "Cumulative target-event incidence (1-KM)", ...
   )
-  for (z in spl) graphics::lines(c(0, z$time), c(0, 1 - z$survival), type = "s")
+  for (i in seq_along(spl)) {
+    z <- spl[[i]]
+    graphics::lines(c(0, z$time), c(0, 1 - z$survival), type = "s", lty = lty[i], lwd = 2)
+  }
+  if (length(spl) > 1L) {
+    graphics::legend("bottomright", legend = names(spl), lty = lty, lwd = 2, bty = "n")
+  }
   invisible(km)
 }
 
@@ -854,7 +868,9 @@ plot_gaze_hazard <- function(data, group = NULL, ...) {
     NA, xlim = range(all_t), ylim = c(0, 1),
     xlab = "Latency", ylab = "Nelson-Aalen hazard increment", ...
   )
-  for (z in spl) {
+  lty <- seq_along(spl)
+  for (i in seq_along(spl)) {
+    z <- spl[[i]]
     tt <- sort(unique(z$analysis_time[z$event_observed == 1]))
     if (!length(tt)) next
     inc <- vapply(
@@ -862,7 +878,10 @@ plot_gaze_hazard <- function(data, group = NULL, ...) {
       function(t) sum(z$analysis_time == t & z$event_observed == 1) / sum(z$analysis_time >= t),
       numeric(1L)
     )
-    graphics::lines(tt, inc, type = "s")
+    graphics::lines(tt, inc, type = "s", lty = lty[i], lwd = 2)
+  }
+  if (length(spl) > 1L) {
+    graphics::legend("topright", legend = names(spl), lty = lty, lwd = 2, bty = "n")
   }
   invisible(NULL)
 }
