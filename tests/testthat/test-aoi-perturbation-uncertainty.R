@@ -18,6 +18,22 @@ test_that("rectangle and convex polygon perturbations are explicit", {
   expect_true(diff(range(pd$polygon[[1]][,2])) > diff(range(poly$polygon[[1]][,2])))
 })
 
+test_that("polygon degree dilation respects both axis scales", {
+  square <- data.frame(aoi_id = "square", shape_type = "polygon")
+  square$polygon <- I(list(matrix(
+    c(100,100, 200,100, 200,200, 100,200),
+    ncol = 2, byrow = TRUE
+  )))
+  out <- dilate_aoi(
+    square, .5,
+    unit = "deg",
+    degrees_per_pixel = c(.05, .10)
+  )
+  p <- out$polygon[[1]]
+  expect_equal(range(p[,1]), c(90,210), tolerance = 1e-8)
+  expect_equal(range(p[,2]), c(95,205), tolerance = 1e-8)
+})
+
 test_that("pathological geometry is never silently repaired", {
   aois <- data.frame(aoi_id = "a", xmin = 0, xmax = 10, ymin = 0, ymax = 10)
   expect_error(erode_aoi(aois, 20), "collapsed")
