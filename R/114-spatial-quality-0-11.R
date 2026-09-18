@@ -287,14 +287,26 @@ estimate_effective_sampling_rate <- function(data, time = "timestamp_ms", by = N
       m <- .ep_sq_valid_masks(z, x, y, valid); effective_count <- sum(m$good & finite_t); count_rule <- "valid gaze samples with finite timestamps"
     } else { effective_count <- length(tt); count_rule <- "finite timestamps" }
     hz <- if (is.finite(duration) && duration > 0) effective_count / duration else NA_real_
-    dropped <- if (!is.null(nominal_sampling_hz) && length(pos)) sum(pos > dropped_interval_factor / nominal_sampling_hz) else NA_integer_
+    long_count <- dropped <- NA_integer_
+    if (!is.null(nominal_sampling_hz) && length(pos)) {
+      expected <- 1 / nominal_sampling_hz
+      long_mask <- pos > dropped_interval_factor * expected
+      long_count <- sum(long_mask)
+      if (long_count) {
+        nominal_steps <- floor(pos[long_mask] / expected + 0.5)
+        dropped <- sum(pmax(nominal_steps - 1, 0))
+      } else dropped <- 0L
+    }
     cbind(.ep_sq_header(z, by), data.frame(observed_sample_count = length(tt), effective_sample_count = effective_count, timestamp_span_s = span,
       trial_duration_s = duration, effective_sampling_hz = hz, median_interval_ms = if (is.finite(med)) med * 1000 else NA_real_,
-      dropped_interval_count = dropped, nominal_sampling_hz = if (is.null(nominal_sampling_hz)) NA_real_ else nominal_sampling_hz,
+      long_interval_count = long_count, dropped_interval_count = dropped,
+      nominal_sampling_hz = if (is.null(nominal_sampling_hz)) NA_real_ else nominal_sampling_hz,
       effective_count_rule = count_rule, stringsAsFactors = FALSE))
   })
   .ep_sq_provenance(.ep_sq_rbind(rows), list(function_name = "estimate_effective_sampling_rate",
     definition = "effective sample count / estimated recording duration", duration_estimator = "timestamp span plus one median positive inter-sample interval",
+    long_interval_definition = "positive interval exceeding dropped_interval_factor times the nominal interval",
+    dropped_interval_definition = "sum of estimated missing nominal samples within long intervals",
     dropped_interval_factor = dropped_interval_factor))
 }
 
@@ -542,6 +554,10 @@ plot_gaze_quality_dashboard <- function(report, ...) {
 #' Create manuscript-ready gaze-quality reporting text
 #' @export
 report_gaze_quality <- function(report, digits = 3L) {
+  if (length(digits) != 1L || is.na(digits) || !is.finite(as.numeric(digits)) || as.integer(digits) != as.numeric(digits) || as.integer(digits) < 0L) {
+    stop("digits must be a non-negative integer.", call. = FALSE)
+  }
+  digits <- as.integer(digits)
   d <- .ep_sq_df(report); if (!nrow(d)) return("No gaze-quality rows were available.")
   metrics <- intersect(c("accuracy_mean", "precision_rms_s2s", "precision_sd", "bcea", "effective_sampling_hz", "valid_sample_fraction", "data_loss_fraction"), names(d))
   parts <- vapply(metrics, function(metric) {
@@ -555,7 +571,15 @@ report_gaze_quality <- function(report, digits = 3L) {
 #' Simulate a nine-point gaze-quality validation dataset
 #' @export
 simulate_gaze_quality_calibration <- function(seed = 20260918L, samples_per_target = 18L, nominal_sampling_hz = 60) {
-  samples_per_target <- as.integer(samples_per_target); if (samples_per_target < 4L) stop("samples_per_target must be at least 4.", call. = FALSE)
+  samples_numeric <- suppressWarnings(as.numeric(samples_per_target))
+  if (length(samples_numeric) != 1L || is.na(samples_numeric) || !is.finite(samples_numeric) || samples_numeric < 4 || floor(samples_numeric) != samples_numeric) {
+    stop("samples_per_target must be an integer of at least 4.", call. = FALSE)
+  }
+  nominal_sampling_hz <- suppressWarnings(as.numeric(nominal_sampling_hz))
+  if (length(nominal_sampling_hz) != 1L || is.na(nominal_sampling_hz) || !is.finite(nominal_sampling_hz) || nominal_sampling_hz <= 0) {
+    stop("nominal_sampling_hz must be a finite positive value.", call. = FALSE)
+  }
+  samples_per_target <- as.integer(samples_numeric)
   set.seed(as.integer(seed)); targets <- expand.grid(target_x = c(-5, 0, 5), target_y = c(-5, 0, 5))
   specs <- data.frame(profile = c("good_accuracy_good_precision", "poor_accuracy_good_precision", "good_accuracy_poor_precision", "poor_accuracy_poor_precision", "irregular_sampling", "missingness"),
                       bias_x = c(0, .9, 0, .9, .1, .1), bias_y = c(0, -.7, 0, -.7, -.1, -.1), sd = c(.12, .12, .75, .75, .20, .20), stringsAsFactors = FALSE)
