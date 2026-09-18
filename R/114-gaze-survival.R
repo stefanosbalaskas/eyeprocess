@@ -582,52 +582,41 @@ fit_gaze_cox_model <- function(data, formula, ties = c("breslow", "efron", "exac
 #' to fit a Gaussian participant random intercept. These are distinct estimators
 #' and are never silently substituted.
 #' @export
-fit_gaze_mixed_cox_model <- function(
-    data,
-    formula,
-    participant_col = "participant_id",
-    structure = c("frailty", "cluster_robust"),
-    ties = c("breslow", "efron")) {
+fit_gaze_mixed_cox_model <- function(data, formula, participant_col = "participant_id", structure = NULL, ties = c("breslow","efron","exact")) {
+  .gaze_surv_require("survival", "for repeated-participant Cox regression")
   d <- .gaze_surv_analysis_rows(data)
-  structure <- match.arg(structure)
+  if (is.null(structure)) stop("`structure` must be specified explicitly as 'cluster_robust' or 'frailty'.", call.=FALSE)
+  structure <- match.arg(structure, c("cluster_robust", "frailty"))
   ties <- match.arg(ties)
-  if (!participant_col %in% names(d)) stop("Unknown participant column.", call. = FALSE)
+  rhs <- .gaze_surv_rhs(formula)
+  if (!participant_col %in% names(d)) stop("Unknown participant column.", call.=FALSE)
 
-  if (identical(structure, "cluster_robust")) {
-    fit <- fit_gaze_cox_model(d, formula, ties = ties, cluster = participant_col)
-    fit$model_family <- "cox_repeated"
-    fit$participant_col <- participant_col
-    return(fit)
+  if (structure == "cluster_robust") {
+    f <- stats::as.formula(paste0(
+      "survival::Surv(analysis_time, event_observed) ~ ", rhs,
+      " + cluster(`", participant_col, "`)"
+    ))
+    fit <- survival::coxph(f, data=d, ties=ties, x=TRUE, model=TRUE)
+    backend <- "survival::coxph"
+    repeated <- paste0("cluster_robust:", participant_col)
+  } else {
+    .gaze_surv_require("coxme", "for Gaussian participant-frailty Cox regression")
+    if (ties == "exact") stop("`coxme` supports Breslow/Efron ties, not exact ties; choose ties='breslow' or ties='efron'.", call.=FALSE)
+    f <- stats::as.formula(paste0(
+      "survival::Surv(analysis_time, event_observed) ~ ", rhs,
+      " + (1 | `", participant_col, "`)"
+    ))
+    fit <- coxme::coxme(f, data=d, ties=ties)
+    backend <- "coxme::coxme"
+    repeated <- paste0("gaussian_frailty:", participant_col)
   }
 
-  .gaze_surv_require("coxme", "for latent participant-frailty Cox models")
-  rhs <- .gaze_surv_rhs(formula)
-  f <- stats::as.formula(
-    paste0(
-      "survival::Surv(analysis_time, event_observed) ~ ",
-      rhs,
-      " + (1 | `", participant_col, "`)"
-    )
-  )
-  fit <- .gaze_surv_fit_with_warning_guard(
-    coxme::coxme(f, data = d, ties = ties, x = TRUE, y = TRUE),
-    "Mixed Cox"
-  )
-  fixed <- coxme::fixef(fit)
-  if (!length(fixed) || any(!is.finite(fixed))) stop("Mixed Cox fit contains invalid fixed effects and is not treated as valid.", call. = FALSE)
-  structure(
-    list(
-      model_family = "cox_frailty",
-      backend = "coxme::coxme",
-      fit = fit,
-      data = d,
-      formula = formula,
-      participant_col = participant_col,
-      repeated_structure = paste0("gaussian_frailty:", participant_col),
-      provenance = .gaze_surv_provenance(d, as.character(formula), paste0("coxme Gaussian frailty (", ties, ")"))
-    ),
-    class = "eye_gaze_survival_model"
-  )
+  structure(list(
+    model_family=if (structure == "frailty") "cox_frailty" else "cox_repeated",
+    backend=backend, fit=fit, data=d, formula=formula, participant_col=participant_col,
+    repeated_structure=repeated,
+    provenance=.gaze_surv_provenance(d, as.character(formula), paste0("Cox ", structure))
+  ), class="eye_gaze_survival_model")
 }
 
 #' Fit Weibull or log-normal AFT gaze-latency model
