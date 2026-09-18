@@ -15,6 +15,7 @@
 | Import and harmonization | Vendor-aware readers, generic mappings, canonical schemas, explicit timebase and coordinate handling |
 | Validation and provenance | Source inspection, schema coverage, quality audits, source fingerprints, validation corpora, provenance manifests |
 | Gaze and AOI analysis | Trial construction, AOI registration and assignment, fixation summaries, scanpaths, transitions, visual diagnostics |
+| Censored gaze latency | Survival-ready event/censor tables, Kaplan-Meier curves, clustered/frailty Cox, Weibull/log-normal AFT, diagnostics and sensitivity |
 | Pupil and biometrics | Pupil preprocessing, binocular handling, physiological synchronization, quality-aware feature derivation |
 | Process and psychometric modelling | IRT, response-time models, multimodal process measurement, validation and sensitivity infrastructure |
 | Interoperability and storage | Eye-Tracking-BIDS, Arrow/Parquet workflows, conversion bridges, auditable storage contracts |
@@ -27,11 +28,13 @@ The current development branch adds three conservative diagnostics that make tim
 - `event_marker_qc()` audits whether independent channel offsets corroborate a nominal event and reports consensus offset and uncertainty. It is event-plausibility QC only: it does **not** synchronize clocks, correct drift, or modify timestamps.
 - `validation_ladder()` separates acquisition QC, analytical QC, construct checking, within-person evidence, and held-out-person generalization. A generalization claim cannot be marked supported without held-out-person validation.
 
+The development branch also adds [censored gaze-latency survival analysis](https://stefanosbalaskas.github.io/eyeprocess/articles/gaze-survival-analysis.html), retaining valid never-inspected trials as right-censored observations and distinguishing clustered Cox from latent participant frailty.
+
 See the [Measurement accountability article](https://stefanosbalaskas.github.io/eyeprocess/articles/measurement-accountability-0-11.html) and the [measurement-accountability reference section](https://stefanosbalaskas.github.io/eyeprocess/reference/index.html#measurement-accountability-diagnostics-0-11).
 
 ## Standardized spatial data quality
 
-The development branch now includes a vendor-neutral data-quality subsystem for target-referenced **accuracy**, RMS sample-to-sample and spatial-SD **precision**, **BCEA**, realized sampling behavior, and **data loss**. The canonical report keeps these dimensions separate, records units and provenance, and treats user thresholds as review rules rather than automatic exclusions.
+The development branch adds a vendor-neutral data-quality subsystem for target-referenced **accuracy**, RMS sample-to-sample and spatial-SD **precision**, **BCEA**, realized sampling behavior, and **data loss**. The canonical report keeps these dimensions separate, records metric-specific units and provenance, and treats thresholds as review rules rather than automatic exclusions.
 
 ```r
 validation <- simulate_gaze_quality_calibration(samples_per_target = 8)
@@ -47,7 +50,7 @@ quality <- create_gaze_quality_report(
 report_gaze_quality(quality)
 ```
 
-The synthetic validation profiles deliberately include good-precision/poor-accuracy, poor-precision/good-average-accuracy, irregular-sampling, and missingness cases. Timing diagnostics distinguish long observed intervals from the estimated number of nominal samples represented by those gaps. See the [Standardized Data Quality guide](https://stefanosbalaskas.github.io/eyeprocess/articles/standardized-data-quality.html).
+The synthetic validation profiles deliberately separate accuracy, precision, irregular sampling, and missingness. Timing diagnostics distinguish long observed intervals from the estimated number of nominal samples represented by those gaps. See the [Standardized Data Quality guide](https://stefanosbalaskas.github.io/eyeprocess/articles/standardized-data-quality.html).
 
 ## September 2026 trial-level mediation preparation
 
