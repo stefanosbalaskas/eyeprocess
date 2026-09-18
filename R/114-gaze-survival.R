@@ -733,7 +733,13 @@ compare_gaze_survival_models <- function(...) {
     ll <- as.numeric(ll_obj)
     k <- attr(ll_obj,"df")
     n <- tryCatch(stats::nobs(m$fit), error=function(e) nrow(m$data))
-    basis <- if (grepl("^cox", m$model_family)) "cox_partial_likelihood" else "full_likelihood"
+    basis <- if (identical(m$backend, "coxme::coxme")) {
+      "coxme_penalized_likelihood"
+    } else if (grepl("^cox", m$model_family)) {
+      "cox_partial_likelihood"
+    } else {
+      "full_likelihood"
+    }
     data.frame(
       model=paste0("model_",i), family=m$model_family, backend=m$backend,
       logLik=ll, AIC=-2*ll+2*k, BIC=-2*ll+log(n)*k, n=n,
@@ -744,7 +750,7 @@ compare_gaze_survival_models <- function(...) {
   comparable <- length(unique(out$likelihood_basis)) == 1L && length(unique(out$n)) == 1L
   out$information_criteria_comparable <- comparable
   if (!comparable) warning(
-    "Information criteria are not directly comparable across Cox partial-likelihood and AFT full-likelihood models or across different analysis-row counts. Use diagnostics and estimand-specific interpretation instead of ranking by AIC/BIC.",
+    "Information criteria are not directly comparable across Cox partial likelihood, coxme penalized frailty likelihood, and AFT full likelihood, or across different analysis-row counts. Use diagnostics and estimand-specific interpretation instead of ranking by AIC/BIC.",
     call.=FALSE
   )
   out
