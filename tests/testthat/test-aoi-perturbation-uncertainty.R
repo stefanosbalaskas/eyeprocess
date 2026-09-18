@@ -116,6 +116,31 @@ test_that("pixel degree conversion round trips and never guesses missing geometr
   expect_error(aoi_perturbation_spec("x", "dilation", margin_x = .25, unit = "deg"), "require")
 })
 
+test_that("grid accepts pair inputs and combined xy translation", {
+  grid <- create_aoi_perturbation_grid(
+    dilations = c(1, 2),
+    translations_xy = matrix(c(3, -4, -1, 2), ncol = 2, byrow = TRUE),
+    anisotropic = c(.5, -.25)
+  )
+  expect_equal(
+    grid$table$perturbation_id,
+    c(
+      "baseline",
+      "dilate_1_px",
+      "dilate_2_px",
+      "shift_xy_3_-4_px",
+      "shift_xy_-1_2_px",
+      "anisotropic_0.5_-0.25_px"
+    )
+  )
+
+  aois <- data.frame(aoi_id = "a", xmin = 100, xmax = 400, ymin = 80, ymax = 180)
+  applied <- apply_aoi_perturbation_grid(aois, grid)
+  shifted <- applied$geometries[["shift_xy_3_-4_px"]]
+  expect_equal(shifted$xmin, 103)
+  expect_equal(shifted$ymin, 76)
+})
+
 test_that("seeded jitter is reproducible and does not leak RNG state", {
   aois <- data.frame(aoi_id = "a", xmin = 0, xmax = 10, ymin = 0, ymax = 10)
   set.seed(99)
