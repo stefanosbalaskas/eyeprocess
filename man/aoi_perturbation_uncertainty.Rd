@@ -80,13 +80,14 @@ estimate_fixation_assignment_probability(
 recompute_aoi_features(
   data, assignments, participant_col = NULL, trial_col = NULL,
   duration_col = NULL, time_col = NULL, perturbation_id = NULL,
-  aoi_levels = NULL
+  aoi_levels = NULL, observation_level = c("fixation", "sample")
 )
 
 run_aoi_sensitivity_analysis(
   data, aois, grid, x_col, y_col, observation_id_col = NULL,
   participant_col = NULL, trial_col = NULL, duration_col = NULL,
-  time_col = NULL, overlap_policy = "ambiguous", model_callback = NULL,
+  time_col = NULL, observation_level = c("fixation", "sample"),
+  overlap_policy = "ambiguous", model_callback = NULL,
   preprocessing_specification = NULL, event_detector = NULL,
   quality_rules = NULL, model_specification = NULL
 )
@@ -136,6 +137,7 @@ plot_aoi_robustness_surface(
 \item{participant_col, trial_col}{Optional participant and trial grouping columns.}
 \item{duration_col, time_col}{Optional duration and time columns used for AOI feature recomputation.}
 \item{aoi_levels}{Optional complete AOI identifier universe. When supplied, observed participant/trial groups retain explicit zero-count AOI cells; groups with no valid assignment opportunity retain missing values rather than zeros.}
+\item{observation_level}{Explicit input level, either fixation or sample. Universal observation counts/timing are retained without labeling sample rows as fixations.}
 \item{x_col, y_col}{Coordinate columns in data or robustness-surface dimensions.}
 \item{observation_id_col}{Optional unique observation identifier column.}
 \item{overlap_policy}{How observed overlapping membership is represented; defaults to explicit ambiguity.}
