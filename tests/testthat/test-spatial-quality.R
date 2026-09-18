@@ -133,3 +133,31 @@ test_that("missing grouping identifiers are preserved", {
   expect_true(any(is.na(q$trial_id)))
   expect_match(q$quality_flags[is.na(q$trial_id)], "duplicate_timestamps")
 })
+
+test_that("quality threshold rules fail explicitly when malformed", {
+  d <- data.frame(
+    timestamp_ms = c(0, 10, 20),
+    gaze_x = c(0, 0, 0),
+    gaze_y = c(0, 0, 0),
+    target_x = 0,
+    target_y = 0
+  )
+  expect_error(
+    create_gaze_quality_report(d, thresholds = list(missing = 1)),
+    "threshold metrics"
+  )
+  expect_error(
+    create_gaze_quality_report(
+      d,
+      thresholds = list(accuracy_mean = list(upper = 1))
+    ),
+    "must contain only"
+  )
+  expect_error(
+    create_gaze_quality_report(
+      d,
+      thresholds = list(accuracy_mean = Inf)
+    ),
+    "finite numeric"
+  )
+})
