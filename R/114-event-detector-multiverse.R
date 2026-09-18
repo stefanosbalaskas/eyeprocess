@@ -287,3 +287,87 @@ create_detector_multiverse <- function(specs = NULL, base_spec = NULL, parameter
       k <- k + 1L; st <- t0 + as.numeric(ev$onset[i]); en <- st + as.numeric(ev$duration[i])
       rows[[k]] <- data.frame(
         episode_id = sprintf("%s_remodnav_%07d", z$recording_id[1L], k), recording_id = z$recording_id[1L], episode_type = unname(label_map[ev$label[i]]), eye = "combined",
+        start_time = st, end_time = en, duration_ms = (en - st) * 1000, start_x = ev$start_x[i], start_y = ev$start_y[i], end_x = ev$end_x[i], end_y = ev$end_y[i],
+        centroid_x = mean(c(ev$start_x[i], ev$end_x[i]), na.rm = TRUE), centroid_y = mean(c(ev$start_y[i], ev$end_y[i]), na.rm = TRUE),
+        amplitude = ev$amp[i], peak_velocity = ev$peak_vel[i], dispersion = NA_real_, coordinate_space_id = z$coordinate_space_id[1L],
+        source_algorithm = "REMoDNaV", source_parameters = paste(names(spec$parameters), unlist(spec$parameters), sep = "=", collapse = ";"), derived_by = "external",
+        trial_id = z$trial_id[1L], stimulus_id = z$stimulus_id[1L], aoi_id = NA_character_, stringsAsFactors = FALSE
+      )
+    }
+  }
+  detected <- if (length(rows)) do.call(.bind_rows_base, rows) else empty_eye_table("episodes")
+  out$episodes <- standardize_eye_table(.bind_rows_base(out$episodes, detected), "episodes")
+  add_provenance(out, "detect_events_remodnav", "episodes", paste0("detector_id=", spec$detector_id, ";spec_hash=", spec$detector_spec_hash, ";remodnav_version=", .edm_remodnav_version(command), ";n=", nrow(detected)))
+}
+
+#' Import external detector events into the canonical event schema
+#' @export
+import_external_detector_events <- function(events, spec, dataset = NULL) {
+  validate_event_detector_spec(spec)
+  if (!is.data.frame(events)) .edm_stop("External detector output must be a data frame.")
+  d <- events
+  if ("onset" %in% names(d) && !"start_time" %in% names(d)) names(d)[names(d) == "onset"] <- "start_time"
+  if ("label" %in% names(d) && !"episode_type" %in% names(d)) names(d)[names(d) == "label"] <- "episode_type"
+  if (!"end_time" %in% names(d) && all(c("start_time", "duration") %in% names(d))) d$end_time <- as.numeric(d$start_time) + as.numeric(d$duration)
+  req <- c("recording_id", "episode_type", "start_time", "end_time"); miss <- setdiff(req, names(d)); if (length(miss)) .edm_stop("External detector events are missing: ", paste(miss, collapse = ", "))
+  labels <- c(FIXA = "fixation", FIX = "fixation", SACC = "saccade", ISAC = "saccade", PURS = "pursuit", PUR = "pursuit", HPSO = "pso", IHPS = "pso", LPSO = "pso", ILPS = "pso")
+  raw <- as.character(d$episode_type); d$episode_type <- ifelse(raw %in% names(labels), unname(labels[raw]), tolower(raw))
+  st <- as.numeric(d$start_time); en <- as.numeric(d$end_time); if (any(!is.finite(st) | !is.finite(en) | en < st)) .edm_stop("External detector event times must be finite with end_time >= start_time.")
+  if (!"duration_ms" %in% names(d)) d$duration_ms <- (en - st) * 1000
+  if (!"episode_id" %in% names(d)) d$episode_id <- sprintf("%s_external_%07d", spec$detector_id, seq_len(nrow(d)))
+  if (!"eye" %in% names(d)) d$eye <- "combined"
+  if (!"source_algorithm" %in% names(d)) d$source_algorithm <- spec$implementation
+  if (!"source_parameters" %in% names(d)) d$source_parameters <- paste(names(spec$parameters), unlist(spec$parameters), sep = "=", collapse = ";")
+  if (!"derived_by" %in% names(d)) d$derived_by <- "external"
+  if (!"trial_id" %in% names(d)) d$trial_id <- NA_character_
+  d <- standardize_eye_table(d, "episodes")
+  if (!is.null(dataset)) {
+    lin <- .edm_lineage(dataset, spec); for (nm in names(lin)) d[[nm]] <- lin[[nm]]
+  }
+  d$detector_id <- spec$detector_id; d$detector_algorithm <- spec$algorithm; d$detector_spec_hash <- spec$detector_spec_hash
+  d$detector_implementation <- spec$implementation; d$detector_implementation_version <- spec$implementation_version
+  d
+}
+
+#' Detect events with one explicit specification
+#' @export
+detect_events_with_spec <- function(x, spec) {
+  .assert_eye_dataset(x); validate_event_detector_spec(spec)
+  branch <- .edm_clean_branch(x); sampling_warnings <- if (spec$algorithm %in% c("ivt", "idt", "adaptive_velocity", "remodnav")) .edm_sampling_warnings(branch, spec) else character()
+  if (length(sampling_warnings)) .edm_warn(paste(sampling_warnings, collapse = " | "))
+  if (spec$algorithm == "ivt") {
+    branch <- detect_fixations_ivt(branch, velocity_threshold = spec$velocity_threshold, minimum_duration_ms = spec$minimum_duration_ms,
+                                   maximum_gap_ms = if (is.null(spec$maximum_gap_ms)) 75 else spec$maximum_gap_ms, coordinate_units = spec$coordinate_unit, overwrite = FALSE)
+    if (isTRUE(spec$parameters$include_saccades)) branch <- detect_saccades(branch, velocity_threshold = spec$velocity_threshold,
+      minimum_duration_ms = if (is.null(spec$parameters$minimum_saccade_duration_ms)) 10 else spec$parameters$minimum_saccade_duration_ms, overwrite = FALSE)
+  } else if (spec$algorithm == "idt") {
+    branch <- detect_fixations_idt(branch, dispersion_threshold = spec$dispersion_threshold, minimum_duration_ms = spec$minimum_duration_ms,
+                                   coordinate_units = spec$coordinate_unit, overwrite = FALSE)
+  } else if (spec$algorithm == "adaptive_velocity") branch <- .edm_detect_adaptive(branch, spec)
+  else if (spec$algorithm == "remodnav") branch <- .edm_run_remodnav(branch, spec)
+  else if (spec$algorithm == "external") {
+    ext <- spec$callback(data = branch, spec = spec); if (inherits(ext, "eye_dataset")) ext <- ext$episodes
+    ext <- import_external_detector_events(ext, spec, dataset = branch)
+    branch$episodes <- standardize_eye_table(.bind_rows_base(branch$episodes, ext), "episodes")
+    branch <- add_provenance(branch, "detect_events_external", "episodes", paste0("detector_id=", spec$detector_id, ";spec_hash=", spec$detector_spec_hash, ";n=", nrow(ext)))
+  } else if (spec$algorithm == "vendor") {
+    vend <- x$episodes; by <- if (is.null(spec$parameters$derived_by)) "vendor" else spec$parameters$derived_by
+    vend <- vend[vend$derived_by == by, , drop = FALSE]; vend <- .edm_attach_detector(vend, spec, x)
+    branch$episodes <- standardize_eye_table(.bind_rows_base(branch$episodes, vend), "episodes")
+  }
+  rel <- branch$episodes
+  if (spec$algorithm != "vendor") rel <- rel[rel$episode_type %in% c("fixation", "saccade", "pursuit", "pso"), , drop = FALSE]
+  rel <- .edm_attach_detector(rel, spec, x)
+  if (nrow(rel)) {
+    idx <- match(branch$episodes$episode_id, rel$episode_id)
+    extras <- setdiff(names(rel), names(branch$episodes)); for (nm in extras) branch$episodes[[nm]] <- NA
+    prov_cols <- unique(c(grep("^detector_", names(rel), value = TRUE), c("source_data_hash", "preprocessing_provenance_hash", "aoi_spec_hash", "quality_spec_hash", "software", "software_version")))
+    for (nm in intersect(prov_cols, names(rel))) branch$episodes[[nm]] <- rel[[nm]][idx]
+  }
+  add_provenance(branch, "detect_events_with_spec", "episodes", paste0("detector_id=", spec$detector_id, ";algorithm=", spec$algorithm, ";spec_hash=", spec$detector_spec_hash),
+                 warnings = if (length(sampling_warnings)) paste(sampling_warnings, collapse = " | ") else NA_character_)
+}
+
+#' Run all detector branches independently
+#' @export
+run_detector_multiverse <- function(x, multiverse, continue_on_error = TRUE) {
