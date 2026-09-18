@@ -699,19 +699,23 @@ tidy_gaze_survival_model <- function(model, conf_level=.95) {
 
 #' Proportional-hazards diagnostics
 #' @export
-check_gaze_proportional_hazards <- function(model, transform="km") {
+check_gaze_proportional_hazards <- function(model, transform = "km", alpha = .05) {
   .gaze_surv_require("survival", "for Cox diagnostics")
-  if (!inherits(model, "eye_gaze_survival_model") || !grepl("^cox", model$model_family)) stop("PH diagnostics require a Cox gaze-survival model.", call.=FALSE)
+  if (!inherits(model, "eye_gaze_survival_model") || !grepl("^cox", model$model_family)) stop("PH diagnostics require a Cox gaze-survival model.", call. = FALSE)
+  if (!is.numeric(alpha) || length(alpha) != 1L || !is.finite(alpha) || alpha <= 0 || alpha >= 1) stop("`alpha` must lie strictly between 0 and 1.", call. = FALSE)
   if (identical(model$backend, "coxme::coxme")) {
-    stop("PH diagnostics for coxme frailty fits are not available through survival::cox.zph; inspect the corresponding marginal Cox model for proportional-hazards diagnostics.", call.=FALSE)
+    stop("PH diagnostics for coxme frailty fits are not available through survival::cox.zph; inspect the corresponding marginal Cox model for proportional-hazards diagnostics.", call. = FALSE)
   }
-  z <- survival::cox.zph(model$fit, transform=transform)
+  z <- survival::cox.zph(model$fit, transform = transform)
   out <- data.frame(
-    term=rownames(z$table),
-    rho=if("rho" %in% colnames(z$table)) z$table[,"rho"] else NA_real_,
-    chisq=z$table[,"chisq"],
-    p_value=z$table[,"p"],
-    row.names=NULL, check.names=FALSE
+    term = rownames(z$table),
+    rho = if ("rho" %in% colnames(z$table)) z$table[, "rho"] else NA_real_,
+    chisq = z$table[, "chisq"],
+    p_value = z$table[, "p"],
+    alpha = rep(alpha, nrow(z$table)),
+    ph_flag = is.finite(z$table[, "p"]) & z$table[, "p"] < alpha,
+    row.names = NULL,
+    check.names = FALSE
   )
   attr(out, "method") <- "survival::cox.zph"
   out
@@ -971,7 +975,7 @@ report_gaze_survival_model <- function(model, conf_level = .95) {
       diagnostic <- "PH diagnostics require the corresponding marginal Cox model; cox.zph is not applied to coxme frailty fits."
     } else {
       ph <- check_gaze_proportional_hazards(model)
-      diagnostic <- if (any(ph$p_value < .05, na.rm = TRUE)) "flagged PH diagnostic" else "no PH diagnostic flag at alpha=.05"
+      diagnostic <- if (any(ph$ph_flag, na.rm = TRUE)) "flagged PH diagnostic" else "no PH diagnostic flag at alpha=.05"
     }
   }
   list(
