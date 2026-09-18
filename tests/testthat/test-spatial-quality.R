@@ -118,3 +118,17 @@ test_that("quality provenance fingerprint includes validity decisions", {
     attr(b, "gaze_quality_provenance")$source_fingerprint
   ))
 })
+
+test_that("missing grouping identifiers are preserved", {
+  d <- data.frame(
+    trial_id = c("T1", "T1", NA, NA),
+    timestamp_ms = c(0, 10, 0, 10),
+    gaze_x = c(0, 0, 1, 1),
+    gaze_y = c(0, 0, 1, 1),
+    target_x = c(0, 0, 1, 1),
+    target_y = c(0, 0, 1, 1)
+  )
+  q <- create_gaze_quality_report(d, by = "trial_id")
+  expect_equal(nrow(q), 2L)
+  expect_true(any(is.na(q$trial_id)))
+})
