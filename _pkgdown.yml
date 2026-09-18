@@ -71,6 +71,8 @@ articles:
   - advanced-model-validation
   - research-validation-program
   - measurement-accountability-0-11
+  - gaze-survival-analysis
+  - gaze-survival-verification-example
   - validation-execution-engine
   - dynamic-irtree-hardening
   - independent-vendor-corpus
@@ -189,6 +191,30 @@ reference:
   - pupil_latency_sensitivity
   - event_marker_qc
   - validation_ladder
+- title: Censored gaze-latency survival analysis
+  desc: |
+    Right-censored gaze latency preparation, Kaplan-Meier description, Cox/AFT modelling, repeated-participant structures, diagnostics, sensitivity analysis, plotting, prediction, and reporting.
+  contents:
+  - prepare_gaze_survival_data
+  - validate_gaze_survival_data
+  - summarise_gaze_censoring
+  - estimate_gaze_survival
+  - fit_gaze_cox_model
+  - fit_gaze_mixed_cox_model
+  - fit_gaze_aft_model
+  - tidy_gaze_survival_model
+  - check_gaze_proportional_hazards
+  - compare_gaze_survival_models
+  - predict_gaze_survival
+  - estimate_gaze_latency_quantiles
+  - plot_gaze_survival_curve
+  - plot_gaze_cumulative_incidence
+  - plot_gaze_hazard
+  - plot_gaze_cox_diagnostics
+  - compare_gaze_survival_specifications
+  - report_gaze_survival_model
+  - simulate_gaze_survival_inputs
+  - simulate_gaze_survival_example
 - title: Validation evidence programmes and freezing (0.9 M2)
   contents:
   - evaluate_validation_acceptance
