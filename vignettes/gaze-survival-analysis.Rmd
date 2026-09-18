@@ -169,7 +169,8 @@ At minimum report participants, trials, observed events, censored trials and per
 report <- report_gaze_survival_model(cox_clustered)
 report[c(
   "N_participants", "N_trials", "N_observed_events",
-  "N_censored_trials", "censoring_percentage", "model_family",
+  "N_censored_trials", "N_review_required", "censoring_percentage",
+  "event_type", "target_aoi", "time_origin", "model_family",
   "random_or_frailty_structure", "diagnostic_result"
 )]
 ```
