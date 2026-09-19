@@ -7,6 +7,7 @@ test_that("gaze-survival site contract remains discoverable", {
 
   expect_match(text, "gaze-survival-analysis", fixed = TRUE)
   expect_match(text, "gaze-survival-verification-example", fixed = TRUE)
+  expect_match(text, "gaze-survival-reproducibility-checklist", fixed = TRUE)
   expect_match(text, "Censored gaze-latency survival analysis", fixed = TRUE)
   expect_match(text, "prepare_gaze_survival_data", fixed = TRUE)
   expect_match(text, "fit_gaze_mixed_cox_model", fixed = TRUE)
