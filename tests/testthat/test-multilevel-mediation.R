@@ -14,7 +14,13 @@ test_that("within-between decomposition preserves trial rows", {
   data <- make_mediation_data()
   out <- decompose_within_between(data, c("condition", "dwell_ms"))
   expect_equal(nrow(out), nrow(data))
-  expect_equal(drop(tapply(out$condition_within, out$participant_id, mean)), c(p1 = 0, p2 = 0, p3 = 0))
+  condition_means <- tapply(
+    out$condition_within,
+    out$participant_id,
+    mean
+  )
+  expect_equal(as.numeric(condition_means), c(0, 0, 0))
+  expect_equal(dimnames(condition_means)[[1L]], c("p1", "p2", "p3"))
   expect_equal(unique(out$condition_between), 0.5)
   expect_true(all(is.na(out$dwell_ms_within[is.na(data$dwell_ms)])))
 })
