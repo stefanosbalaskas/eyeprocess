@@ -1,4 +1,13 @@
-# eyeprocess 0.11.1
+# eyeprocess 0.12.0
+
+## Pre-release validation status
+
+- **Release status:** `v0.12.0` is published first as a GitHub pre-release. The package is locally validated, but the exact release commit is not yet claimed as cross-platform GitHub CI-certified.
+- **Local Windows validation — 2026-09-19:** installed-package targeted tests PASS; strict measurement-intelligence lane PASS; full local test suite PASS; clean survival-vignette rebuild PASS; pkgdown local build PASS; final package installation PASS.
+- **R CMD check:** Windows R 4.6.1, `--as-cran`, **0 errors / 0 warnings / 0 notes**.
+- **Pending certification:** GitHub-hosted Linux, macOS, Windows, R-devel, and oldrel lanes remain pending while GitHub Actions capacity is unavailable. This is a CI-certification limitation, not a package-runtime failure.
+- **Promotion rule:** promote this same `v0.12.0` release from pre-release to stable only after the exact release commit passes the required cross-platform GitHub Actions checks. If those checks require code changes, do not silently move the release tag.
+
 
 ## Event detector multiverse and inference robustness
 
@@ -7,10 +16,6 @@
 - Adds per-detector `input_audit` accounting for propagated rows, target-AOI rows, quality exclusions, non-finite outcomes, model rows used, and model status without recoding missing outcomes to zero.
 - Adds the main methodology vignette, failure-clinic vignette and executable example, reporting/interpretation guidance, API documentation, pkgdown discovery, and cross-language contract coverage.
 - Adds a runnable pkgdown visual-reporting vignette using built-in detector branches only, with event-count, temporal-agreement, AOI-feature, coefficient-stability, model-input-accountability, publication-sequence, interpretation-boundary, and API-handoff sections.
-
-**Validation record — 2026-09-19:** no R/Rscript runtime was available locally, so the merged feature is not claimed as locally executed. Static source/test structure checks passed before commits, and the merged governance audit is **1,263 NAMESPACE exports = 1,263 unique lifecycle registry rows**, with **117 module-policy rows** and no missing/extra export mappings. The merged feature commit is **not GitHub CI-certified** because exact-head Actions did not execute. Re-check the release/devel/oldrel R CMD check matrix, Windows/macOS runners, pkgdown build/deployment, measurement-intelligence workflow, and required status checks when Actions capacity is available.
-
-**Website-visualization validation — 2026-09-19:** exact feature-branch structural checks confirmed valid vignette front matter, **11 uniquely labelled executable R chunks**, no `eval=FALSE` suppression, pkgdown discovery, publication/reporting/interpretation sections, and export availability for every documented detector API. No R/Rscript runtime or local pkgdown toolchain is available in this environment, so the new vignette plots are **not claimed as locally rendered**. R CMD check, rendered pkgdown figures, cross-platform runners, and deployment remain pending exact-head GitHub Actions execution.
 
 ## Censored gaze-latency survival examples and site guidance
 
