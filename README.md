@@ -74,7 +74,7 @@ quality <- create_gaze_quality_report(
 report_gaze_quality(quality)
 ```
 
-The synthetic validation profiles deliberately separate accuracy, precision, irregular sampling, and missingness. Timing diagnostics distinguish long observed intervals from the estimated number of nominal samples represented by those gaps. See the [Standardized Data Quality guide](https://stefanosbalaskas.github.io/eyeprocess/articles/standardized-data-quality.html).
+The synthetic validation profiles deliberately separate accuracy, precision, irregular sampling, and missingness. Timing diagnostics distinguish long observed intervals from the estimated number of nominal samples represented by those gaps. See the [Standardized Data Quality guide](https://stefanosbalaskas.github.io/eyeprocess/articles/standardized-data-quality.html) and the [Data Quality plot gallery and reporting clinic](https://stefanosbalaskas.github.io/eyeprocess/articles/data-quality-plot-gallery.html).
 
 ## September 2026 trial-level mediation preparation
 
