@@ -98,4 +98,4 @@ A failed branch is not automatically evidence that the detector is poor, and a s
 
 ## Related material
 
-See `vignette("event-detector-multiverse")` for the full workflow and the installed failure-clinic script for an executable synthetic example.
+See `vignette("event-detector-multiverse")` for the full workflow, `vignette("event-detector-multiverse-visual-reporting")` for the plot-first diagnostic sequence, and the installed failure-clinic script for an executable synthetic example.
