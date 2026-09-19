@@ -18,6 +18,7 @@
 - Restores the survival methodology articles and the complete survival API group to pkgdown navigation so later site additions do not hide the survival workflow.
 - Adds a troubleshooting clinic covering incomplete windows, time-zero events, sparse events, flagged proportional-hazards diagnostics, low-quality gaze, and competing-event boundaries without changing the public statistical API.
 - Adds a survival reproducibility/preregistration checklist and a site-contract regression test that fails if survival articles, API references, or required worked-example files disappear from the source tree.
+- Expands the plot-rich survival website guidance with Kaplan-Meier, single-event 1-KM, and empirical hazard/risk-set visualizations plus interpretation boundaries.
 
 ## Standardized spatial data quality
 

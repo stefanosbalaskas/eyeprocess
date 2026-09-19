@@ -53,6 +53,22 @@ plot_gaze_survival_curve(verification, group = "condition")
 
 Lower survival at a given time means a larger proportion of trials has already inspected the evidence AOI.
 
+## Complementary event-incidence view
+
+```{r incidence, fig.cap="Single-event 1-KM display for time to first source/evidence AOI entry."}
+plot_gaze_cumulative_incidence(verification, group = "condition")
+```
+
+This is the complement of the Kaplan-Meier survival curve for one target event. Do not interpret it as a competing-risks cumulative-incidence function when multiple mutually exclusive events compete.
+
+## Empirical hazard/risk increments
+
+```{r hazard, fig.cap="Empirical event/risk increments for the evidence-verification example."}
+plot_gaze_hazard(verification, group = "condition")
+```
+
+This plot is most useful as a diagnostic view of when event increments occur relative to the risk set; it should not be oversold as a smooth underlying hazard function.
+
 ## Repeated-participant Cox model
 
 ```{r cox}
