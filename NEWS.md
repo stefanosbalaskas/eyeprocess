@@ -18,6 +18,9 @@
 
 ## Standardized spatial data quality
 
+- Adds a dedicated Data Quality plot gallery and reporting clinic covering accuracy, RMS-S2S, BCEA, sampling intervals, the four-panel dashboard, review-rule sensitivity, limitations, and manuscript-ready reporting.
+- Repairs public export/governance for `simulate_gaze_survival_inputs()` and restores missing multilevel-mediation Rd coverage so package/vignette and pkgdown builds can execute the documented workflows.
+
 - Adds vendor-neutral target-referenced accuracy, RMS sample-to-sample and population-SD precision, BCEA with explicit probability, realized sampling behavior, and reason-aware data loss.
 - Adds a canonical `gaze_quality_report` with metric-specific units, provenance, study-defined review thresholds, insufficiency/timestamp flags, and an explicit no-automatic-exclusion contract.
 - Adds deterministic six-profile 9-point validation data, frozen R/Python numerical fixtures, sensitivity-analysis guidance, manuscript-reporting guidance, and dedicated pkgdown navigation.
