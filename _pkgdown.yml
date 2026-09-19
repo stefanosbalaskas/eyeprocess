@@ -81,6 +81,7 @@ articles:
   - measurement-accountability-0-11
   - gaze-survival-analysis
   - gaze-survival-verification-example
+  - gaze-survival-reproducibility-checklist
   - validation-execution-engine
   - dynamic-irtree-hardening
   - independent-vendor-corpus
@@ -92,6 +93,7 @@ articles:
   - probabilistic-aoi-compositions
   - aoi-perturbation-uncertainty
   - aoi-sensitivity-analysis-plan
+  - aoi-reporting-bundle
   - uncertainty-calibration
   - reliability-device-transportability
   - pupil-registration-missingness
