@@ -118,7 +118,7 @@ plot_aoi_robustness_surface(
 \item{physical_screen_size}{Length-two physical screen width and height.}
 \item{perturbation_id}{Stable identifier for a perturbation branch.}
 \item{operation}{One of baseline, dilation, erosion, translate, jitter, or anisotropic expansion.}
-\item{translation_x, translation_y, x, y}{Horizontal and vertical translation values.}
+\item{translation_x, translation_y, y}{Horizontal and vertical translation values.}
 \item{unit}{Either pixels (px) or degrees of visual angle (deg).}
 \item{degrees_per_pixel}{Optional explicit horizontal and vertical degrees-per-pixel values.}
 \item{seed}{Reproducible random seed used for jitter.}
@@ -143,7 +143,9 @@ plot_aoi_robustness_surface(
 \item{overlap_policy}{How observed overlapping membership is represented; defaults to explicit ambiguity.}
 \item{model_callback}{Optional function receiving recomputed features, assigned row data, and the current perturbation specification.}
 \item{preprocessing_specification, event_detector, quality_rules, model_specification}{Provenance fields retained in the result object.}
-\item{x}{An AOI sensitivity, perturbation, or stability object, depending on the function.}
+\item{x}{Horizontal translation or jitter value for geometry helpers, or an AOI
+sensitivity, perturbation, or stability object for plotting and summary methods,
+depending on the function.}
 \item{term}{Model term to summarize or plot.}
 \item{value_col}{Robustness quantity used in the surface plot.}
 \item{...}{Additional perturbation-specification or plotting arguments.}

@@ -7,6 +7,10 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+```{r setup, include=FALSE}
+library(eyeprocess)
+```
+
 ## Question
 
 This example models **time to first entry into a source/evidence AOI**. Repeated trials occur under `standard` and `evidence_prompt` conditions. Complete usable trials that never inspect the evidence AOI remain in the risk set until the observation window ends and are right censored.

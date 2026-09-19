@@ -1,3 +1,31 @@
+.capture_expected_time_col_warnings <- function(expr, expected_n) {
+  messages <- character()
+
+  value <- withCallingHandlers(
+    force(expr),
+    warning = function(w) {
+      messages <<- c(messages, conditionMessage(w))
+      invokeRestart("muffleWarning")
+    }
+  )
+
+  expected_message <- paste0(
+    "No time_col supplied; first_fixation is returned as NA ",
+    "rather than inferred from row order."
+  )
+
+  testthat::expect_equal(
+    length(messages),
+    expected_n
+  )
+
+  testthat::expect_true(
+    all(messages == expected_message)
+  )
+
+  value
+}
+
 test_that("perturbation helpers do not override canonical AOI assignment", {
   simulated <- simulate_eye_dataset(
     n_person = 2,
@@ -68,13 +96,16 @@ test_that("polygon overlap and boundary membership are deterministic", {
     y = c(5, 5, 0),
     duration = c(1, 1, 1)
   )
-  result <- run_aoi_sensitivity_analysis(
-    data,
-    single,
-    create_aoi_perturbation_grid(include_baseline = TRUE),
-    x_col = "x",
-    y_col = "y",
-    duration_col = "duration"
+  result <- .capture_expected_time_col_warnings(
+    run_aoi_sensitivity_analysis(
+      data,
+      single,
+      create_aoi_perturbation_grid(include_baseline = TRUE),
+      x_col = "x",
+      y_col = "y",
+      duration_col = "duration"
+    ),
+    expected_n = 1L
   )
   expect_equal(result$assignments$baseline, c("left", "left", "left"))
 })
@@ -425,9 +456,12 @@ test_that("model callback failures and nonconvergence remain visible", {
       p_value = .03, model_converged = spec$perturbation_id != "shift_x_5_px", N = 10
     )
   }
-  result <- run_aoi_sensitivity_analysis(
-    data, .aoi_test_aois(), grid, x_col = "x", y_col = "y",
-    duration_col = "duration", model_callback = callback
+  result <- .capture_expected_time_col_warnings(
+    run_aoi_sensitivity_analysis(
+      data, .aoi_test_aois(), grid, x_col = "x", y_col = "y",
+      duration_col = "duration", model_callback = callback
+    ),
+    expected_n = 3L
   )
   expect_true(any(result$failures$stage == "model" & grepl("planned failure", result$failures$message)))
   bad <- result$models[result$models$perturbation_id == "shift_x_5_px", ]
@@ -444,8 +478,12 @@ test_that("cross-language parity fixture preserves semantic contract", {
   )
   grid <- create_aoi_perturbation_grid(dilations = 1)
   data <- fixture[, c("x","y")]; data$duration <- 1
-  result <- run_aoi_sensitivity_analysis(
-    data, aois, grid, x_col = "x", y_col = "y", duration_col = "duration"
+  result <- .capture_expected_time_col_warnings(
+    run_aoi_sensitivity_analysis(
+      data, aois, grid, x_col = "x", y_col = "y",
+      duration_col = "duration"
+    ),
+    expected_n = 2L
   )
   expect_equal(result$assignments$baseline, fixture$baseline)
   expect_equal(result$assignments$dilate_1_px, fixture$dilate_1_px)

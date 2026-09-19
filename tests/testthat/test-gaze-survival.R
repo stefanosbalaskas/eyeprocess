@@ -297,7 +297,8 @@ test_that("verification example uses source evidence entry contract", {
 })
 
 test_that("cross-language contract fixture has exact canonical fields", {
-  f <- testthat::test_path("..", "..", "inst", "extdata", "gaze_survival_contract.csv")
+  f <- system.file("extdata", "gaze_survival_contract.csv", package = "eyeprocess")
+  expect_true(nzchar(f) && file.exists(f))
   d <- utils::read.csv(f, stringsAsFactors = FALSE)
   expect_equal(
     names(d),

@@ -699,9 +699,9 @@ test_that("all non-finite outcomes fail with retained input audit", {
 })
 
 test_that("installed detector failure clinic executes", {
-  path <- testthat::test_path(
-    "..", "..", "inst", "examples",
-    "event-detector-multiverse-failure-clinic.R"
+  path <- eyeprocess_asset(
+    "inst/examples/event-detector-multiverse-failure-clinic.R",
+    c("examples", "event-detector-multiverse-failure-clinic.R")
   )
   expect_true(file.exists(path))
   expect_error(
@@ -765,8 +765,13 @@ test_that("detector report includes model input audit and model failures", {
 
 
 test_that("detector visual reporting documentation is retained", {
-  visual_path <- testthat::test_path(
-    "..", "..", "vignettes",
+  root <- eyeprocess_source_root()
+  if (is.null(root)) {
+    skip("Source-tree visual-reporting assets are unavailable in installed-package context.")
+  }
+
+  visual_path <- file.path(
+    root, "vignettes",
     "event-detector-multiverse-visual-reporting.Rmd"
   )
   expect_true(file.exists(visual_path))
@@ -779,8 +784,10 @@ test_that("detector visual reporting documentation is retained", {
   expect_match(visual, "input_audit", fixed = TRUE)
   expect_match(visual, "Planned-denominator robustness", fixed = TRUE)
 
-  pkgdown_path <- testthat::test_path("..", "..", "_pkgdown.yml")
-  pkgdown <- paste(readLines(pkgdown_path, warn = FALSE), collapse = "\n")
+  pkgdown <- paste(
+    readLines(file.path(root, "_pkgdown.yml"), warn = FALSE),
+    collapse = "\n"
+  )
   expect_match(
     pkgdown,
     "event-detector-multiverse-visual-reporting",

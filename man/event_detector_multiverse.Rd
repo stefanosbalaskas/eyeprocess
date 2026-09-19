@@ -113,6 +113,8 @@ simulate_detector_multiverse_data(
 \item{id_template}{\code{sprintf()} template for generated branch identifiers.}
 \item{label}{Multiverse label.}
 \item{x}{An \code{eye_dataset}, detector multiverse result, or detector inference result as required.}
+\item{multiverse}{An event-detector multiverse created by
+\code{create_detector_multiverse()}.}
 \item{events,reference,candidate}{Canonical or canonicalizable event data frames.}
 \item{dataset}{Optional source \code{eye_dataset} used to attach provenance to imported events.}
 \item{continue_on_error}{Whether to retain a failed branch and continue other specifications.}

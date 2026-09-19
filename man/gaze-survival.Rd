@@ -56,7 +56,10 @@ tidy_gaze_survival_model(model, conf_level = 0.95)
 check_gaze_proportional_hazards(model, transform = "km", alpha = 0.05)
 compare_gaze_survival_models(...)
 predict_gaze_survival(model, newdata, times)
-estimate_gaze_latency_quantiles(object, probs = c(0.25, 0.5, 0.75), group = NULL, newdata = NULL)
+estimate_gaze_latency_quantiles(
+  object, probs = c(0.25, 0.5, 0.75), group = NULL,
+  newdata = NULL
+)
 plot_gaze_survival_curve(data, group = NULL, ...)
 plot_gaze_cumulative_incidence(data, group = NULL, ...)
 plot_gaze_hazard(data, group = NULL, ...)
@@ -66,8 +69,14 @@ compare_gaze_survival_specifications(
   participant_col = "participant_id", ties = "breslow"
 )
 report_gaze_survival_model(model, conf_level = 0.95)
-simulate_gaze_survival_inputs(kind = c("disclosure", "verification"), seed = 20260918, n_participants = 36L, trials_per_participant = 3L)
-simulate_gaze_survival_example(kind = c("disclosure", "verification"), seed = 20260918, n_participants = 36L, trials_per_participant = 3L)
+simulate_gaze_survival_inputs(
+  kind = c("disclosure", "verification"), seed = 20260918,
+  n_participants = 36L, trials_per_participant = 3L
+)
+simulate_gaze_survival_example(
+  kind = c("disclosure", "verification"), seed = 20260918,
+  n_participants = 36L, trials_per_participant = 3L
+)
 }
 \arguments{
   \item{trials}{Trial-level observation-window table. Each participant/trial key must be unique.}
@@ -107,7 +116,7 @@ with incomplete or unusable gaze remain explicit review states. Cox models estim
 hazard ratios; AFT models estimate multiplicative time effects. Participant-clustered
 Cox uncertainty and Gaussian frailty Cox models are distinct estimators and are never
 silently substituted. Information criteria from ordinary Cox partial likelihood,
-code{coxme} penalized frailty likelihood, and AFT full likelihood are not treated as
+\code{coxme} penalized frailty likelihood, and AFT full likelihood are not treated as
 rank-comparable across likelihood bases.
 }
 \value{

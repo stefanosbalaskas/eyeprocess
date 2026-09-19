@@ -1,10 +1,11 @@
-test_that("Data Quality site pages and API references remain discoverable", {
-  root <- normalizePath(file.path(testthat::test_path(), "..", ".."), mustWork = TRUE)
+test_that("Data Quality site pages remain discoverable in the source tree", {
+  root <- eyeprocess_source_root()
+  if (is.null(root)) {
+    skip("Source-tree pkgdown assets are unavailable in installed-package context.")
+  }
   pkgdown <- paste(readLines(file.path(root, "_pkgdown.yml"), warn = FALSE), collapse = "\n")
-
   expect_match(pkgdown, "standardized-data-quality", fixed = TRUE)
   expect_match(pkgdown, "data-quality-plot-gallery", fixed = TRUE)
-
   required <- c(
     "vignettes/standardized-data-quality.Rmd",
     "vignettes/data-quality-plot-gallery.Rmd",
@@ -12,7 +13,9 @@ test_that("Data Quality site pages and API references remain discoverable", {
     "man/multilevel-mediation.Rd"
   )
   expect_true(all(file.exists(file.path(root, required))))
+})
 
+test_that("Data Quality public API remains discoverable", {
   exports <- getNamespaceExports("eyeprocess")
   expect_true(all(c(
     "create_gaze_quality_report",
