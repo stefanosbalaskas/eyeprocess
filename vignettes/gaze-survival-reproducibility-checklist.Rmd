@@ -1,0 +1,52 @@
+---
+title: "Reproducibility checklist for censored gaze latency"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Reproducibility checklist for censored gaze latency}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Purpose
+
+Use this checklist before preregistration, manuscript submission, or freezing a gaze-latency analysis. The aim is to make censoring, event construction, repeated-participant structure, diagnostics, sensitivity analysis, and software provenance auditable.
+
+## Design and event definition
+
+Record the target event, target AOI, time origin, observation-window rule, event detector, minimum fixation-duration rule where relevant, and event-to-trial join key. Verify that event times are non-negative and never exceed the censoring limit. Review time-zero events explicitly rather than shifting them without a pre-specified measurement-resolution rule.
+
+## Censoring and gaze quality
+
+Report observed events, right-censored trials, review-required rows, and censoring percentage overall and by condition. A valid censored trial requires a complete usable observation window. Incomplete or unresolved trials and gaze-quality failures are not ordinary censoring.
+
+## Repeated observations and estimand
+
+State whether the reported effect is a marginal Cox hazard ratio, a conditional frailty-Cox hazard ratio, or an AFT time ratio. Name the participant identifier, repeated-observation structure, and AFT family explicitly. Do not use AIC/BIC to rank ordinary Cox partial likelihood, `coxme` penalized frailty likelihood, and AFT full likelihood as if they shared a likelihood basis.
+
+## Diagnostics
+
+Inspect event sparsity, extreme censoring, convergence, non-finite estimates, and proportional-hazards diagnostics for Cox models. For Gaussian participant frailty, report a corresponding marginal Cox PH diagnostic instead of applying `cox.zph()` to the `coxme` object.
+
+## Sensitivity analysis
+
+Pre-specify defensible alternatives for AOI geometry, detector, minimum fixation duration, time origin, quality threshold, clustered versus frailty Cox when scientifically relevant, Weibull versus log-normal AFT, and explicit review/exclusion rules. Rebuild the survival table whenever the event/AOI specification changes.
+
+## Reporting bundle
+
+Archive participant/trial counts; event/censor/review counts; event/AOI/time-origin definitions; observation-window and quality rules; detector settings; model formula; repeated-observation structure; effect estimates and confidence intervals; diagnostics; sensitivity results; source/preprocessing provenance; and `eyeprocess`, `survival`, and `coxme` versions where relevant.
+
+## Final freeze questions
+
+1. Is every non-event trial demonstrably censored rather than missing?
+2. Is the event timestamp construction reproducible?
+3. Is the estimand clearly identified as marginal, conditional/frailty, or parametric-time based?
+4. Are AOI/detector/quality sensitivity branches documented?
+5. Are review rows and failed diagnostics still visible in the audit trail?
+
+## API map
+
+Preparation and validation: `prepare_gaze_survival_data()`, `validate_gaze_survival_data()`, `summarise_gaze_censoring()`.
+
+Models and diagnostics: `fit_gaze_cox_model()`, `fit_gaze_mixed_cox_model()`, `fit_gaze_aft_model()`, `check_gaze_proportional_hazards()`, `compare_gaze_survival_models()`.
+
+Sensitivity and reporting: `compare_gaze_survival_specifications()`, `tidy_gaze_survival_model()`, `report_gaze_survival_model()`.
