@@ -286,6 +286,9 @@ This is a reporting template, not an empirical result.
 
 ## Reporting AOI Robustness
 
+For manuscript supplements, reviewer responses, or replication handoff, see the companion **AOI Robustness Reporting Bundle** article for a recommended file set, export pattern, privacy guidance, and API map.
+
+
 ```{r report}
 cat(report_aoi_sensitivity(result))
 ```
