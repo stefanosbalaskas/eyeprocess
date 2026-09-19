@@ -240,7 +240,7 @@ apply_aoi_perturbation_grid <- function(aois, grid) {
   overlap_policy <- match.arg(overlap_policy, c("ambiguous", "all", "error"))
   geom <- validate_aoi_geometry(geometry)$geometry; x <- suppressWarnings(as.numeric(data[[x_col]])); y <- suppressWarnings(as.numeric(data[[y_col]]))
   missing <- !is.finite(x) | !is.finite(y); hit <- matrix(FALSE, nrow(data), nrow(geom))
-  for (j in seq_len(nrow(geom))) hit[, j] <- .aoi_contains(geom[j, , drop = FALSE], x, y) & !missing
+  for (j in seq_len(nrow(geom))) hit[, j] <- .aoi_perturbation_contains(geom[j, , drop = FALSE], x, y) & !missing
   counts <- rowSums(hit); labels <- rep(.aoi_outside, nrow(data)); labels[missing] <- NA_character_
   for (i in which(counts == 1L)) labels[i] <- geom$aoi_id[which(hit[i, ])[1L]]
   amb <- which(counts > 1L)

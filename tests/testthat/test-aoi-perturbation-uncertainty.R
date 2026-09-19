@@ -1,3 +1,18 @@
+test_that("perturbation helpers do not override canonical AOI assignment", {
+  simulated <- simulate_eye_dataset(
+    n_person = 2,
+    n_item = 2,
+    samples_per_trial = 5,
+    include_pupil = FALSE,
+    include_biometrics = FALSE,
+    missing_gaze = 0,
+    seed = 11
+  )
+  expect_s3_class(simulated, "eye_dataset")
+  expect_true("aoi_id" %in% names(simulated$gaze_samples))
+  expect_true(any(!is.na(simulated$gaze_samples$aoi_id)))
+})
+
 test_that("rectangle and convex polygon perturbations are explicit", {
   aois <- data.frame(
     aoi_id = c("headline", "cta"),
@@ -90,8 +105,12 @@ test_that("screen edge policy and overlap ambiguity are explicit", {
     translate_aoi(edge, x = -10, screen_width_px = 100, screen_height_px = 100, boundary_policy = "error"),
     "extend beyond"
   )
-  clipped <- expect_warning(
-    translate_aoi(edge, x = -10, screen_width_px = 100, screen_height_px = 100, boundary_policy = "clip"),
+  expect_warning(
+    clipped <- translate_aoi(
+      edge, x = -10,
+      screen_width_px = 100, screen_height_px = 100,
+      boundary_policy = "clip"
+    ),
     "clipping"
   )
   expect_equal(clipped$xmin, 0)

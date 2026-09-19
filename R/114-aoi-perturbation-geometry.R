@@ -159,7 +159,7 @@
   inside | boundary
 }
 
-.aoi_contains <- function(row, x, y) {
+.aoi_perturbation_contains <- function(row, x, y) {
   if (identical(row$shape_type, "rectangle")) {
     x >= row$xmin & x <= row$xmax & y >= row$ymin & y <= row$ymax
   } else .aoi_point_in_polygon(x, y, .aoi_polygon(row$polygon[[1L]]))
@@ -230,9 +230,14 @@
     a <- geometry[i, , drop = FALSE]; b <- geometry[j, , drop = FALSE]
     pa <- .aoi_row_polygon(a); pb <- .aoi_row_polygon(b)
     ax <- range(pa[, 1L]); ay <- range(pa[, 2L]); bx <- range(pb[, 1L]); by <- range(pb[, 2L])
-    flag <- if (min(ax[2L], bx[2L]) <= max(ax[1L], bx[1L]) ||
-                min(ay[2L], by[2L]) <= max(ay[1L], by[1L])) {
+    positive_bbox_overlap <-
+      min(ax[2L], bx[2L]) > max(ax[1L], bx[1L]) &&
+      min(ay[2L], by[2L]) > max(ay[1L], by[1L])
+    flag <- if (!positive_bbox_overlap) {
       FALSE
+    } else if (identical(a$shape_type, "rectangle") &&
+               identical(b$shape_type, "rectangle")) {
+      TRUE
     } else {
       .aoi_polygons_overlap_area(pa, pb)
     }
