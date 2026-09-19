@@ -3,7 +3,7 @@
 ``` r
 
 library(eyeprocess)
-#> eyeprocess 0.11.1.9000: vendor-neutral eye/process data harmonization with first-class Gazepoint support.
+#> eyeprocess 0.12.0: vendor-neutral eye/process data harmonization with first-class Gazepoint support.
 ```
 
 ## Purpose

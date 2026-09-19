@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">eyeprocess</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.11.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.12.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -81,19 +81,30 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.11.1" id="eyeprocess-0111">eyeprocess 0.11.1<a class="anchor" aria-label="anchor" href="#eyeprocess-0111"></a></h2>
+<h2 class="pkg-version" data-toc-text="0.12.0" id="eyeprocess-0120">eyeprocess 0.12.0<a class="anchor" aria-label="anchor" href="#eyeprocess-0120"></a></h2>
 <div class="section level3">
-<h3 id="event-detector-multiverse-and-inference-robustness-0-11-1">Event detector multiverse and inference robustness<a class="anchor" aria-label="anchor" href="#event-detector-multiverse-and-inference-robustness-0-11-1"></a></h3>
+<h3 id="pre-release-validation-status-0-12-0">Pre-release validation status<a class="anchor" aria-label="anchor" href="#pre-release-validation-status-0-12-0"></a></h3>
+<ul><li>
+<strong>Release status:</strong> <code>v0.12.0</code> is published first as a GitHub pre-release. The package is locally validated, but the exact release commit is not yet claimed as cross-platform GitHub CI-certified.</li>
+<li>
+<strong>Local Windows validation — 2026-09-19:</strong> installed-package targeted tests PASS; strict measurement-intelligence lane PASS; full local test suite PASS; clean survival-vignette rebuild PASS; pkgdown local build PASS; final package installation PASS.</li>
+<li>
+<strong>R CMD check:</strong> Windows R 4.6.1, <code>--as-cran</code>, <strong>0 errors / 0 warnings / 0 notes</strong>.</li>
+<li>
+<strong>Pending certification:</strong> GitHub-hosted Linux, macOS, Windows, R-devel, and oldrel lanes remain pending while GitHub Actions capacity is unavailable. This is a CI-certification limitation, not a package-runtime failure.</li>
+<li>
+<strong>Promotion rule:</strong> promote this same <code>v0.12.0</code> release from pre-release to stable only after the exact release commit passes the required cross-platform GitHub Actions checks. If those checks require code changes, do not silently move the release tag.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="event-detector-multiverse-and-inference-robustness-0-12-0">Event detector multiverse and inference robustness<a class="anchor" aria-label="anchor" href="#event-detector-multiverse-and-inference-robustness-0-12-0"></a></h3>
 <ul><li>Adds explicit detector specifications, deterministic detector branches, temporal event matching/agreement, detector-to-AOI/feature propagation, identical-model inference, stability summaries, diagnostic plots, and reproducible reporting.</li>
 <li>Uses the full declared detector multiverse as the convergence denominator; failed, missing-term, unavailable-backend, and non-converged branches remain in the scientific record. Duplicate coefficient terms from custom callbacks are rejected.</li>
 <li>Adds per-detector <code>input_audit</code> accounting for propagated rows, target-AOI rows, quality exclusions, non-finite outcomes, model rows used, and model status without recoding missing outcomes to zero.</li>
 <li>Adds the main methodology vignette, failure-clinic vignette and executable example, reporting/interpretation guidance, API documentation, pkgdown discovery, and cross-language contract coverage.</li>
 <li>Adds a runnable pkgdown visual-reporting vignette using built-in detector branches only, with event-count, temporal-agreement, AOI-feature, coefficient-stability, model-input-accountability, publication-sequence, interpretation-boundary, and API-handoff sections.</li>
-</ul><p><strong>Validation record — 2026-09-19:</strong> no R/Rscript runtime was available locally, so the merged feature is not claimed as locally executed. Static source/test structure checks passed before commits, and the merged governance audit is <strong>1,263 NAMESPACE exports = 1,263 unique lifecycle registry rows</strong>, with <strong>117 module-policy rows</strong> and no missing/extra export mappings. The merged feature commit is <strong>not GitHub CI-certified</strong> because exact-head Actions did not execute. Re-check the release/devel/oldrel R CMD check matrix, Windows/macOS runners, pkgdown build/deployment, measurement-intelligence workflow, and required status checks when Actions capacity is available.</p>
-<p><strong>Website-visualization validation — 2026-09-19:</strong> exact feature-branch structural checks confirmed valid vignette front matter, <strong>11 uniquely labelled executable R chunks</strong>, no <code>eval=FALSE</code> suppression, pkgdown discovery, publication/reporting/interpretation sections, and export availability for every documented detector API. No R/Rscript runtime or local pkgdown toolchain is available in this environment, so the new vignette plots are <strong>not claimed as locally rendered</strong>. R CMD check, rendered pkgdown figures, cross-platform runners, and deployment remain pending exact-head GitHub Actions execution.</p>
-</div>
+</ul></div>
 <div class="section level3">
-<h3 id="censored-gaze-latency-survival-examples-and-site-guidance-0-11-1">Censored gaze-latency survival examples and site guidance<a class="anchor" aria-label="anchor" href="#censored-gaze-latency-survival-examples-and-site-guidance-0-11-1"></a></h3>
+<h3 id="censored-gaze-latency-survival-examples-and-site-guidance-0-12-0">Censored gaze-latency survival examples and site guidance<a class="anchor" aria-label="anchor" href="#censored-gaze-latency-survival-examples-and-site-guidance-0-12-0"></a></h3>
 <ul><li>Adds a standalone evidence-verification example for time to first source/evidence AOI entry, including right-censoring construction, clustered Cox, Weibull/log-normal AFT sensitivity models, diagnostics, interpretation, and manuscript reporting guidance.</li>
 <li>Restores the survival methodology articles and the complete survival API group to pkgdown navigation so later site additions do not hide the survival workflow.</li>
 <li>Adds a troubleshooting clinic covering incomplete windows, time-zero events, sparse events, flagged proportional-hazards diagnostics, low-quality gaze, and competing-event boundaries without changing the public statistical API.</li>
@@ -101,7 +112,7 @@
 <li>Expands the plot-rich survival website guidance with Kaplan-Meier, single-event 1-KM, and empirical hazard/risk-set visualizations plus interpretation boundaries.</li>
 </ul></div>
 <div class="section level3">
-<h3 id="standardized-spatial-data-quality-0-11-1">Standardized spatial data quality<a class="anchor" aria-label="anchor" href="#standardized-spatial-data-quality-0-11-1"></a></h3>
+<h3 id="standardized-spatial-data-quality-0-12-0">Standardized spatial data quality<a class="anchor" aria-label="anchor" href="#standardized-spatial-data-quality-0-12-0"></a></h3>
 <ul><li><p>Adds a dedicated Data Quality plot gallery and reporting clinic covering accuracy, RMS-S2S, BCEA, sampling intervals, the four-panel dashboard, review-rule sensitivity, limitations, and manuscript-ready reporting.</p></li>
 <li><p>Repairs public export/governance for <code><a href="../reference/gaze-survival.html">simulate_gaze_survival_inputs()</a></code> and restores missing multilevel-mediation Rd coverage so package/vignette and pkgdown builds can execute the documented workflows.</p></li>
 <li><p>Adds vendor-neutral target-referenced accuracy, RMS sample-to-sample and population-SD precision, BCEA with explicit probability, realized sampling behavior, and reason-aware data loss.</p></li>
@@ -111,14 +122,14 @@
 <li><p>Long observed intervals are distinguished from the estimated number of nominal samples represented by those gaps.</p></li>
 </ul></div>
 <div class="section level3">
-<h3 id="aoi-perturbation-and-uncertainty-analysis-0-11-1">AOI perturbation and uncertainty analysis<a class="anchor" aria-label="anchor" href="#aoi-perturbation-and-uncertainty-analysis-0-11-1"></a></h3>
+<h3 id="aoi-perturbation-and-uncertainty-analysis-0-12-0">AOI perturbation and uncertainty analysis<a class="anchor" aria-label="anchor" href="#aoi-perturbation-and-uncertainty-analysis-0-12-0"></a></h3>
 <ul><li>Adds vendor-neutral AOI geometry validation, reproducible dilation/erosion/translation/jitter and anisotropic perturbation specifications, and explicit pixel/degree-of-visual-angle conversion.</li>
 <li>Adds sample/fixation reassignment matrices, participant/trial/AOI stability summaries, feature recomputation, empirical assignment frequencies, and optional fixed model-callback propagation with retained failure and convergence evidence.</li>
 <li>Adds rectangle and convex-polygon support, explicit overlap ambiguity, screen-boundary policies, synthetic cross-language parity fixtures, base-R robustness plots, and a runnable advertising/interface vignette.</li>
 <li>Robustness frequencies remain descriptive sensitivity summaries for the declared perturbation set and are not probabilities that a scientific conclusion is true.</li>
 </ul></div>
 <div class="section level3">
-<h3 id="cran-portability-hotfix-0-11-1">CRAN portability hotfix<a class="anchor" aria-label="anchor" href="#cran-portability-hotfix-0-11-1"></a></h3>
+<h3 id="cran-portability-hotfix-0-12-0">CRAN portability hotfix<a class="anchor" aria-label="anchor" href="#cran-portability-hotfix-0-12-0"></a></h3>
 <ul><li>Make default Arrow/Parquet compression portable across Arrow builds: prefer <code>zstd</code>, fall back to <code>snappy</code>, then <code>uncompressed</code> when the default codec is unavailable.</li>
 <li>Preserve explicit compression requests: an explicitly requested unavailable Arrow codec fails with a clear error instead of being silently substituted.</li>
 <li>Replace repository-relative README links with absolute GitHub URLs.</li>

@@ -39,7 +39,7 @@ with poor precision. Therefore, one cannot substitute for the other.
 ``` r
 
 library(eyeprocess)
-#> eyeprocess 0.11.1.9000: vendor-neutral eye/process data harmonization with first-class Gazepoint support.
+#> eyeprocess 0.12.0: vendor-neutral eye/process data harmonization with first-class Gazepoint support.
 x <- simulate_gaze_quality_calibration(samples_per_target = 8)
 q <- create_gaze_quality_report(
   x,
