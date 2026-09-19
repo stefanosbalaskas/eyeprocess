@@ -22,6 +22,7 @@ articles:
     robustness without significance counting.
   contents:
   - event-detector-multiverse
+  - event-detector-multiverse-failure-clinic
 - title: Standardized Data Quality
   navbar: Data Quality
   desc: |
