@@ -698,3 +698,15 @@ test_that("all non-finite outcomes fail with retained input audit", {
   )
 })
 
+test_that("installed detector failure clinic executes", {
+  path <- testthat::test_path(
+    "..", "..", "inst", "examples",
+    "event-detector-multiverse-failure-clinic.R"
+  )
+  expect_true(file.exists(path))
+  expect_error(
+    source(path, local = environment()),
+    NA
+  )
+})
+
