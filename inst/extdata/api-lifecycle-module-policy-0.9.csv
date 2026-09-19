@@ -115,3 +115,4 @@
 "R/115-aoi-perturbation-operations.R","core","Deterministic AOI dilation, erosion, translation, jitter, and perturbation-grid operations."
 "R/116-aoi-perturbation-analysis.R","core","AOI assignment-stability, feature-recomputation, model-callback, and inference-robustness analysis."
 "R/117-aoi-perturbation-plots.R","core","AOI perturbation, assignment-stability, coefficient-stability, and robustness-surface plotting."
+"R/114-event-detector-multiverse.R","workflow","Vendor-neutral event-detector sensitivity orchestration spanning explicit detector specifications, event matching, AOI/feature propagation, identical-model inference, robustness diagnostics, reporting, and external-detector bridges."
