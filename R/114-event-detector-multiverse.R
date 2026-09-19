@@ -606,29 +606,108 @@ run_detector_inference_multiverse <- function(x, model_spec, model_callback = NU
   formula <- model_spec$formula; if (is.null(formula)) .edm_stop("model_spec$formula is required."); if (is.character(formula)) formula <- stats::as.formula(formula)
   outcome <- if (!is.null(model_spec$outcome)) as.character(model_spec$outcome)[1L] else all.vars(formula)[1L]
   if (!outcome %in% names(x$features)) .edm_stop("The declared outcome is not present in propagated features.")
-  rows <- list(); failures <- list(); warns <- list()
+  if (!is.null(minimum_valid_fraction) && (!is.finite(minimum_valid_fraction) || minimum_valid_fraction < 0 || minimum_valid_fraction > 1)) .edm_stop("minimum_valid_fraction must lie in [0,1].")
+
+  rows <- list(); failures <- list(); warns <- list(); audit_rows <- list()
   for (spec in x$multiverse$specs) {
     d <- x$features[x$features$detector_id == spec$detector_id, , drop = FALSE]
+    input_rows <- nrow(d)
     if (!is.null(model_spec$aoi_id)) d <- d[as.character(d$aoi_id) == as.character(model_spec$aoi_id), , drop = FALSE]
-    if (!is.null(minimum_valid_fraction)) { if (!is.finite(minimum_valid_fraction) || minimum_valid_fraction < 0 || minimum_valid_fraction > 1) .edm_stop("minimum_valid_fraction must lie in [0,1]."); d <- d[is.finite(d$valid_data_fraction) & d$valid_data_fraction >= minimum_valid_fraction, , drop = FALSE] }
-    d <- d[is.finite(as.numeric(d[[outcome]])), , drop = FALSE]; if (!nrow(d)) { failures[[length(failures) + 1L]] <- data.frame(detector_id = spec$detector_id, stage = "model", error_type = "NoModelData", error = "No finite model rows remained for this detector."); next }
+    aoi_selected_rows <- nrow(d)
+
+    quality_excluded_rows <- 0L
+    if (!is.null(minimum_valid_fraction)) {
+      quality_keep <- is.finite(as.numeric(d$valid_data_fraction)) & as.numeric(d$valid_data_fraction) >= minimum_valid_fraction
+      quality_excluded_rows <- sum(!quality_keep)
+      d <- d[quality_keep, , drop = FALSE]
+      if (quality_excluded_rows > 0L) warns[[length(warns) + 1L]] <- data.frame(
+        detector_id = spec$detector_id, stage = "model_input",
+        warning = sprintf("Excluded %d row(s) below minimum_valid_fraction=%g; exclusion count is retained in input_audit.", quality_excluded_rows, minimum_valid_fraction),
+        stringsAsFactors = FALSE
+      )
+    }
+
+    finite_outcome <- is.finite(as.numeric(d[[outcome]]))
+    outcome_missing_rows <- sum(!finite_outcome)
+    if (outcome_missing_rows > 0L) warns[[length(warns) + 1L]] <- data.frame(
+      detector_id = spec$detector_id, stage = "model_input",
+      warning = sprintf("Excluded %d row(s) with non-finite outcome '%s'; exclusion count is retained in input_audit.", outcome_missing_rows, outcome),
+      stringsAsFactors = FALSE
+    )
+    d <- d[finite_outcome, , drop = FALSE]
+    model_rows_used <- nrow(d)
+
+    audit <- data.frame(
+      detector_id = spec$detector_id, detector_spec_hash = spec$detector_spec_hash,
+      input_rows = input_rows, aoi_selected_rows = aoi_selected_rows,
+      quality_excluded_rows = quality_excluded_rows, outcome_missing_rows = outcome_missing_rows,
+      model_rows_used = model_rows_used,
+      aoi_id = if (is.null(model_spec$aoi_id)) NA_character_ else as.character(model_spec$aoi_id)[1L],
+      minimum_valid_fraction = if (is.null(minimum_valid_fraction)) NA_real_ else as.numeric(minimum_valid_fraction),
+      status = "pending", stringsAsFactors = FALSE
+    )
+
+    if (!nrow(d)) {
+      audit$status <- "no_model_data"; audit_rows[[length(audit_rows) + 1L]] <- audit
+      failures[[length(failures) + 1L]] <- data.frame(
+        detector_id = spec$detector_id, stage = "model", error_type = "NoModelData",
+        error = "No finite model rows remained for this detector. See input_audit for row attrition.",
+        input_rows = input_rows, aoi_selected_rows = aoi_selected_rows,
+        quality_excluded_rows = quality_excluded_rows, outcome_missing_rows = outcome_missing_rows,
+        model_rows_used = 0L, stringsAsFactors = FALSE
+      )
+      next
+    }
+
     captured <- character()
     fitres <- withCallingHandlers(tryCatch({
-      if (engine == "stats_lm") { fit <- stats::lm(formula, data = d, na.action = stats::na.fail); list(tidy = .edm_tidy_lm(fit), converged = TRUE) }
-      else if (engine == "lme4_lmer") {
+      if (engine == "stats_lm") {
+        fit <- stats::lm(formula, data = d, na.action = stats::na.fail)
+        list(tidy = .edm_tidy_lm(fit), converged = TRUE)
+      } else if (engine == "lme4_lmer") {
         if (!requireNamespace("lme4", quietly = TRUE)) .edm_stop("lme4_lmer requires the optional lme4 package; no surrogate estimator is substituted.")
         fit <- lme4::lmer(formula, data = d, REML = isTRUE(model_spec$reml), na.action = stats::na.fail, control = lme4::lmerControl(optimizer = if (is.null(model_spec$optimizer)) "nloptwrap" else model_spec$optimizer))
-        msg <- fit@optinfo$conv$lme4$messages; converged <- is.null(msg) && is.null(fit@optinfo$conv$opt) || identical(fit@optinfo$conv$opt, 0L)
+        msg <- fit@optinfo$conv$lme4$messages
+        converged <- is.null(msg) && is.null(fit@optinfo$conv$opt) || identical(fit@optinfo$conv$opt, 0L)
         list(tidy = .edm_tidy_lmer(fit, converged), converged = converged)
-      } else { tab <- model_callback(d, model_spec); req <- c("term", "estimate", "SE", "CI_lower", "CI_upper", "p", "converged", "N"); if (!is.data.frame(tab) || length(setdiff(req, names(tab)))) .edm_stop("model_callback must return the documented tidy coefficient contract."); if (anyDuplicated(as.character(tab$term))) .edm_stop("model_callback must return at most one row per coefficient term."); list(tidy = tab, converged = all(tab$converged %in% TRUE)) }
+      } else {
+        tab <- model_callback(d, model_spec)
+        req <- c("term", "estimate", "SE", "CI_lower", "CI_upper", "p", "converged", "N")
+        if (!is.data.frame(tab) || length(setdiff(req, names(tab)))) .edm_stop("model_callback must return the documented tidy coefficient contract.")
+        if (anyDuplicated(as.character(tab$term))) .edm_stop("model_callback must return at most one row per coefficient term.")
+        list(tidy = tab, converged = all(tab$converged %in% TRUE))
+      }
     }, error = identity), warning = function(w) { captured <<- c(captured, conditionMessage(w)); invokeRestart("muffleWarning") })
-    if (inherits(fitres, "error")) { failures[[length(failures) + 1L]] <- data.frame(detector_id = spec$detector_id, stage = "model", error_type = class(fitres)[1L], error = conditionMessage(fitres), stringsAsFactors = FALSE); next }
-    tab <- fitres$tidy; if (!isTRUE(fitres$converged)) captured <- c(captured, "Model did not converge; estimates are retained for diagnosis but excluded from stability summaries.")
+
+    if (inherits(fitres, "error")) {
+      audit$status <- "failed"; audit_rows[[length(audit_rows) + 1L]] <- audit
+      failures[[length(failures) + 1L]] <- data.frame(
+        detector_id = spec$detector_id, stage = "model", error_type = class(fitres)[1L], error = conditionMessage(fitres),
+        input_rows = input_rows, aoi_selected_rows = aoi_selected_rows,
+        quality_excluded_rows = quality_excluded_rows, outcome_missing_rows = outcome_missing_rows,
+        model_rows_used = model_rows_used, stringsAsFactors = FALSE
+      )
+      next
+    }
+
+    tab <- fitres$tidy
+    if (!isTRUE(fitres$converged)) captured <- c(captured, "Model did not converge; estimates are retained for diagnosis but excluded from stability summaries.")
     tab$detector_id <- spec$detector_id; tab$detector_algorithm <- spec$algorithm; tab$detector_spec_hash <- spec$detector_spec_hash; tab$parameter_spec <- spec$detector_spec_hash
-    tab$model_engine <- engine; tab$model_formula <- paste(deparse(formula), collapse = " "); tab$model_spec_hash <- .edm_hash(model_spec); tab$feature_fingerprint <- .edm_hash(d); tab$software <- "eyeprocess"; tab$software_version <- tryCatch(as.character(utils::packageVersion("eyeprocess")), error = function(e) NA_character_); tab$warnings <- if (length(captured)) paste(captured, collapse = " | ") else NA_character_
-    rows[[length(rows) + 1L]] <- tab; if (length(captured)) for (w in captured) warns[[length(warns) + 1L]] <- data.frame(detector_id = spec$detector_id, stage = "model", warning = w, stringsAsFactors = FALSE)
+    tab$model_engine <- engine; tab$model_formula <- paste(deparse(formula), collapse = " "); tab$model_spec_hash <- .edm_hash(model_spec); tab$feature_fingerprint <- .edm_hash(d)
+    tab$software <- "eyeprocess"; tab$software_version <- tryCatch(as.character(utils::packageVersion("eyeprocess")), error = function(e) NA_character_)
+    tab$input_rows <- input_rows; tab$aoi_selected_rows <- aoi_selected_rows; tab$quality_excluded_rows <- quality_excluded_rows; tab$outcome_missing_rows <- outcome_missing_rows; tab$model_rows_used <- model_rows_used
+    tab$warnings <- if (length(captured)) paste(captured, collapse = " | ") else NA_character_
+    rows[[length(rows) + 1L]] <- tab
+    audit$status <- "modelled"; audit_rows[[length(audit_rows) + 1L]] <- audit
+    if (length(captured)) for (w in captured) warns[[length(warns) + 1L]] <- data.frame(detector_id = spec$detector_id, stage = "model", warning = w, stringsAsFactors = FALSE)
   }
-  structure(list(multiverse = x$multiverse, coefficients = .edm_rbind_fill(rows), failures = .edm_rbind_fill(failures), warnings = .edm_rbind_fill(warns), model_spec = model_spec, feature_fingerprint = .edm_hash(x$features)), class = "eye_detector_inference_result")
+
+  structure(list(
+    multiverse = x$multiverse, coefficients = .edm_rbind_fill(rows),
+    failures = .edm_rbind_fill(failures), warnings = .edm_rbind_fill(warns),
+    model_spec = model_spec, feature_fingerprint = .edm_hash(x$features),
+    input_audit = .edm_rbind_fill(audit_rows)
+  ), class = "eye_detector_inference_result")
 }
 
 #' Assess detector-level inference stability
