@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">eyeprocess</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.11.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.11.1.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,6 +34,10 @@
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><hr class="dropdown-divider"></li>
+    <li><h6 class="dropdown-header" data-toc-skip>Data Quality</h6></li>
+    <li><a class="dropdown-item" href="../articles/standardized-data-quality.html">Standardized eye-tracking data quality</a></li>
+    <li><a class="dropdown-item" href="../articles/data-quality-plot-gallery.html">Data Quality plot gallery and reporting clinic</a></li>
+    <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Foundations</h6></li>
     <li><a class="dropdown-item" href="../articles/getting-started.html">Getting Started with eyeprocess</a></li>
     <li><a class="dropdown-item" href="../articles/importing-and-harmonizing.html">Importing and Harmonizing Eye-Tracking Exports</a></li>
@@ -50,6 +54,10 @@
     <li><a class="dropdown-item" href="../articles/advanced-model-validation.html">Advanced model programme and validation</a></li>
     <li><a class="dropdown-item" href="../articles/research-validation-program.html">Research validation and software-paper programme</a></li>
     <li><a class="dropdown-item" href="../articles/measurement-accountability-0-11.html">Measurement accountability: pupil latency, event plausibility, and validation</a></li>
+    <li><a class="dropdown-item" href="../articles/ecosystem-update-2026-09.html">Ecosystem update — September 2026</a></li>
+    <li><a class="dropdown-item" href="../articles/gaze-survival-analysis.html">Survival Analysis for Gaze Latency</a></li>
+    <li><a class="dropdown-item" href="../articles/gaze-survival-verification-example.html">Worked example: evidence verification latency</a></li>
+    <li><a class="dropdown-item" href="../articles/gaze-survival-reproducibility-checklist.html">Reproducibility checklist for censored gaze latency</a></li>
     <li><a class="dropdown-item" href="../articles/validation-execution-engine.html">Research-scale validation execution</a></li>
     <li><a class="dropdown-item" href="../articles/dynamic-irtree-hardening.html">Dynamic IRTree and transition-model hardening</a></li>
     <li><a class="dropdown-item" href="../articles/independent-vendor-corpus.html">Independent multi-vendor validation corpus</a></li>
@@ -59,6 +67,9 @@
     <li><a class="dropdown-item" href="../articles/api-storage-adapters.html">Stable APIs, scalable storage, and external adapters</a></li>
     <li><a class="dropdown-item" href="../articles/benchmark-reproduction.html">Public benchmark and software-paper reproduction</a></li>
     <li><a class="dropdown-item" href="../articles/probabilistic-aoi-compositions.html">Probabilistic AOIs and Compositional Attention</a></li>
+    <li><a class="dropdown-item" href="../articles/aoi-perturbation-uncertainty.html">AOI Perturbation and Uncertainty Analysis</a></li>
+    <li><a class="dropdown-item" href="../articles/aoi-sensitivity-analysis-plan.html">AOI Sensitivity Analysis Plan and Reporting Template</a></li>
+    <li><a class="dropdown-item" href="../articles/aoi-reporting-bundle.html">AOI Robustness Reporting Bundle</a></li>
     <li><a class="dropdown-item" href="../articles/uncertainty-calibration.html">Measurement Uncertainty and Recalibration</a></li>
     <li><a class="dropdown-item" href="../articles/reliability-device-transportability.html">Process Reliability and Device Transportability</a></li>
     <li><a class="dropdown-item" href="../articles/pupil-registration-missingness.html">Pupil Phase-Amplitude Registration and Missingness</a></li>
@@ -137,20 +148,20 @@ pupil, response-time, sequence, or psychometric measures.</p>
 <span><span class="fu">eyeprocess</span><span class="fu">::</span><span class="fu"><a href="../reference/api_surface_summary.html">api_surface_summary</a></span><span class="op">(</span><span class="va">inventory</span><span class="op">)</span></span>
 <span><span class="co">#&gt;        family       status Freq</span></span>
 <span><span class="co">#&gt; 1          io     advanced    0</span></span>
-<span><span class="co">#&gt; 2       model     advanced   46</span></span>
-<span><span class="co">#&gt; 3        plot     advanced   91</span></span>
-<span><span class="co">#&gt; 4  simulation     advanced   30</span></span>
-<span><span class="co">#&gt; 5     summary     advanced   34</span></span>
-<span><span class="co">#&gt; 6     utility     advanced  315</span></span>
-<span><span class="co">#&gt; 7  validation     advanced   57</span></span>
+<span><span class="co">#&gt; 2       model     advanced   50</span></span>
+<span><span class="co">#&gt; 3        plot     advanced  100</span></span>
+<span><span class="co">#&gt; 4  simulation     advanced   33</span></span>
+<span><span class="co">#&gt; 5     summary     advanced   40</span></span>
+<span><span class="co">#&gt; 6     utility     advanced  324</span></span>
+<span><span class="co">#&gt; 7  validation     advanced   58</span></span>
 <span><span class="co">#&gt; 8    workflow     advanced    7</span></span>
 <span><span class="co">#&gt; 9          io         core   26</span></span>
 <span><span class="co">#&gt; 10      model         core    0</span></span>
-<span><span class="co">#&gt; 11       plot         core   19</span></span>
-<span><span class="co">#&gt; 12 simulation         core    0</span></span>
-<span><span class="co">#&gt; 13    summary         core    4</span></span>
-<span><span class="co">#&gt; 14    utility         core  114</span></span>
-<span><span class="co">#&gt; 15 validation         core   22</span></span>
+<span><span class="co">#&gt; 11       plot         core   28</span></span>
+<span><span class="co">#&gt; 12 simulation         core    1</span></span>
+<span><span class="co">#&gt; 13    summary         core   11</span></span>
+<span><span class="co">#&gt; 14    utility         core  148</span></span>
+<span><span class="co">#&gt; 15 validation         core   27</span></span>
 <span><span class="co">#&gt; 16   workflow         core    0</span></span>
 <span><span class="co">#&gt; 17         io experimental    0</span></span>
 <span><span class="co">#&gt; 18      model experimental   32</span></span>
@@ -168,17 +179,17 @@ pupil, response-time, sequence, or psychometric measures.</p>
 <span><span class="co">#&gt; 30    utility        gated    5</span></span>
 <span><span class="co">#&gt; 31 validation        gated    2</span></span>
 <span><span class="co">#&gt; 32   workflow        gated    0</span></span>
-<span><span class="co">#&gt; 33         io     workflow   45</span></span>
+<span><span class="co">#&gt; 33         io     workflow   46</span></span>
 <span><span class="co">#&gt; 34      model     workflow   15</span></span>
 <span><span class="co">#&gt; 35       plot     workflow   10</span></span>
 <span><span class="co">#&gt; 36 simulation     workflow    5</span></span>
-<span><span class="co">#&gt; 37    summary     workflow   10</span></span>
-<span><span class="co">#&gt; 38    utility     workflow  151</span></span>
+<span><span class="co">#&gt; 37    summary     workflow   11</span></span>
+<span><span class="co">#&gt; 38    utility     workflow  159</span></span>
 <span><span class="co">#&gt; 39 validation     workflow   49</span></span>
 <span><span class="co">#&gt; 40   workflow     workflow   13</span></span>
 <span><span class="va">audit</span></span>
 <span><span class="co">#&gt; eyeprocess API lifecycle audit</span></span>
-<span><span class="co">#&gt;   APIs             : 1185 </span></span>
+<span><span class="co">#&gt;   APIs             : 1283 </span></span>
 <span><span class="co">#&gt;   reviewed fraction: 100.0% </span></span>
 <span><span class="co">#&gt;   invalid mappings : 0</span></span></code></pre></div>
 <p>The current registry is intentionally frozen to the current exported

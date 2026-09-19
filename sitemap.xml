@@ -36,6 +36,9 @@
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/articles/advanced-model-validation.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/articles/advanced-pupillometry-representations.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/articles/advanced-rasch-mixture-and-imputation-sensitivity.html</loc></url>
+<url><loc>https://stefanosbalaskas.github.io/eyeprocess/articles/aoi-perturbation-uncertainty.html</loc></url>
+<url><loc>https://stefanosbalaskas.github.io/eyeprocess/articles/aoi-reporting-bundle.html</loc></url>
+<url><loc>https://stefanosbalaskas.github.io/eyeprocess/articles/aoi-sensitivity-analysis-plan.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/articles/api-lifecycle-and-canonical-interfaces.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/articles/api-storage-adapters.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/articles/bayesian-and-3pl-process-diagnostics.html</loc></url>
@@ -43,14 +46,22 @@
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/articles/benchmarking-and-stress-testing.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/articles/calibration-uncertainty-and-data-quality.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/articles/cognitive-diagnosis-qmatrix-governance.html</loc></url>
+<url><loc>https://stefanosbalaskas.github.io/eyeprocess/articles/data-quality-plot-gallery.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/articles/deployment-drift-monitoring.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/articles/dynamic-irtree-hardening.html</loc></url>
+<url><loc>https://stefanosbalaskas.github.io/eyeprocess/articles/ecosystem-update-2026-09.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/articles/empirical-validation-programme.html</loc></url>
+<url><loc>https://stefanosbalaskas.github.io/eyeprocess/articles/event-detector-multiverse-failure-clinic.html</loc></url>
+<url><loc>https://stefanosbalaskas.github.io/eyeprocess/articles/event-detector-multiverse-visual-reporting.html</loc></url>
+<url><loc>https://stefanosbalaskas.github.io/eyeprocess/articles/event-detector-multiverse.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/articles/evidence-decision-provenance.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/articles/experimental-process-irt-0-7.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/articles/frozen-validation-evidence-programme.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/articles/functional-pupil-irt-engine.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/articles/gaze-diffusion-irt.html</loc></url>
+<url><loc>https://stefanosbalaskas.github.io/eyeprocess/articles/gaze-survival-analysis.html</loc></url>
+<url><loc>https://stefanosbalaskas.github.io/eyeprocess/articles/gaze-survival-reproducibility-checklist.html</loc></url>
+<url><loc>https://stefanosbalaskas.github.io/eyeprocess/articles/gaze-survival-verification-example.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/articles/gazepoint-downstream-workflow.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/articles/gazepoint-workflows.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/articles/getting-started.html</loc></url>
@@ -109,11 +120,13 @@
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/articles/scanpaths-and-cognitive-episodes.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/articles/simulation-calibration-and-resolution-guards.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/articles/software-paper-evidence-bundle.html</loc></url>
+<url><loc>https://stefanosbalaskas.github.io/eyeprocess/articles/standardized-data-quality.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/articles/streaming-scoring-and-validation-bundles.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/articles/targets-interoperability.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/articles/temporal-process-representations.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/articles/temporal-spatial-process-science.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/articles/theory-strategy-mixtures.html</loc></url>
+<url><loc>https://stefanosbalaskas.github.io/eyeprocess/articles/trial-level-multilevel-mediation.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/articles/uncertainty-calibration.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/articles/unified-multimodal-process-irt-0-10.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/articles/validating-real-exports.html</loc></url>
@@ -152,6 +165,7 @@
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/analysis_environment_snapshot.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/analysis_resolution_guard.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/aoi_membership_probability.html</loc></url>
+<url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/aoi_perturbation_uncertainty.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/aoi_trajectory_features.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/api_family_map.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/api_lifecycle_diff.html</loc></url>
@@ -299,6 +313,7 @@
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/estimate_calibration_error.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/estimate_visual_exposure_probability.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/evaluate_validation_acceptance.html</loc></url>
+<url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/event_detector_multiverse.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/event_marker_qc.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/event_roundtrip_audit.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/event_semantics_audit.html</loc></url>
@@ -568,6 +583,7 @@
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/functional_pupil_basis.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/functional_pupil_diagnostics.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/functional_pupil_irt_spec.html</loc></url>
+<url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/gaze-survival.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/gaze_anchored_3pl_alignment.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/gaze_data_quality_profile.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/gaze_diffusion_spec.html</loc></url>
@@ -621,6 +637,7 @@
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/multiblock_contributions.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/multiblock_person_coordinates.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/multiblock_variable_coordinates.html</loc></url>
+<url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/multilevel-mediation.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_backend_status.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_irt_spec.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/multimodal_m2_ablation.html</loc></url>
@@ -974,6 +991,7 @@
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/specification_curve_data.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/split_half_process_reliability.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/split_validation_plan.html</loc></url>
+<url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/standardized_spatial_quality.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/storage_transaction_manifest.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/strategy_aoi_sensitivity.html</loc></url>
 <url><loc>https://stefanosbalaskas.github.io/eyeprocess/reference/strategy_classification_uncertainty.html</loc></url>

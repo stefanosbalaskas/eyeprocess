@@ -2,6 +2,120 @@
 
 ## eyeprocess 0.11.1
 
+### Event detector multiverse and inference robustness
+
+- Adds explicit detector specifications, deterministic detector
+  branches, temporal event matching/agreement, detector-to-AOI/feature
+  propagation, identical-model inference, stability summaries,
+  diagnostic plots, and reproducible reporting.
+- Uses the full declared detector multiverse as the convergence
+  denominator; failed, missing-term, unavailable-backend, and
+  non-converged branches remain in the scientific record. Duplicate
+  coefficient terms from custom callbacks are rejected.
+- Adds per-detector `input_audit` accounting for propagated rows,
+  target-AOI rows, quality exclusions, non-finite outcomes, model rows
+  used, and model status without recoding missing outcomes to zero.
+- Adds the main methodology vignette, failure-clinic vignette and
+  executable example, reporting/interpretation guidance, API
+  documentation, pkgdown discovery, and cross-language contract
+  coverage.
+- Adds a runnable pkgdown visual-reporting vignette using built-in
+  detector branches only, with event-count, temporal-agreement,
+  AOI-feature, coefficient-stability, model-input-accountability,
+  publication-sequence, interpretation-boundary, and API-handoff
+  sections.
+
+**Validation record — 2026-09-19:** no R/Rscript runtime was available
+locally, so the merged feature is not claimed as locally executed.
+Static source/test structure checks passed before commits, and the
+merged governance audit is **1,263 NAMESPACE exports = 1,263 unique
+lifecycle registry rows**, with **117 module-policy rows** and no
+missing/extra export mappings. The merged feature commit is **not GitHub
+CI-certified** because exact-head Actions did not execute. Re-check the
+release/devel/oldrel R CMD check matrix, Windows/macOS runners, pkgdown
+build/deployment, measurement-intelligence workflow, and required status
+checks when Actions capacity is available.
+
+**Website-visualization validation — 2026-09-19:** exact feature-branch
+structural checks confirmed valid vignette front matter, **11 uniquely
+labelled executable R chunks**, no `eval=FALSE` suppression, pkgdown
+discovery, publication/reporting/interpretation sections, and export
+availability for every documented detector API. No R/Rscript runtime or
+local pkgdown toolchain is available in this environment, so the new
+vignette plots are **not claimed as locally rendered**. R CMD check,
+rendered pkgdown figures, cross-platform runners, and deployment remain
+pending exact-head GitHub Actions execution.
+
+### Censored gaze-latency survival examples and site guidance
+
+- Adds a standalone evidence-verification example for time to first
+  source/evidence AOI entry, including right-censoring construction,
+  clustered Cox, Weibull/log-normal AFT sensitivity models, diagnostics,
+  interpretation, and manuscript reporting guidance.
+- Restores the survival methodology articles and the complete survival
+  API group to pkgdown navigation so later site additions do not hide
+  the survival workflow.
+- Adds a troubleshooting clinic covering incomplete windows, time-zero
+  events, sparse events, flagged proportional-hazards diagnostics,
+  low-quality gaze, and competing-event boundaries without changing the
+  public statistical API.
+- Adds a survival reproducibility/preregistration checklist and a
+  site-contract regression test that fails if survival articles, API
+  references, or required worked-example files disappear from the source
+  tree.
+- Expands the plot-rich survival website guidance with Kaplan-Meier,
+  single-event 1-KM, and empirical hazard/risk-set visualizations plus
+  interpretation boundaries.
+
+### Standardized spatial data quality
+
+- Adds a dedicated Data Quality plot gallery and reporting clinic
+  covering accuracy, RMS-S2S, BCEA, sampling intervals, the four-panel
+  dashboard, review-rule sensitivity, limitations, and manuscript-ready
+  reporting.
+
+- Repairs public export/governance for
+  [`simulate_gaze_survival_inputs()`](https://stefanosbalaskas.github.io/eyeprocess/reference/gaze-survival.md)
+  and restores missing multilevel-mediation Rd coverage so
+  package/vignette and pkgdown builds can execute the documented
+  workflows.
+
+- Adds vendor-neutral target-referenced accuracy, RMS sample-to-sample
+  and population-SD precision, BCEA with explicit probability, realized
+  sampling behavior, and reason-aware data loss.
+
+- Adds a canonical `gaze_quality_report` with metric-specific units,
+  provenance, study-defined review thresholds, insufficiency/timestamp
+  flags, and an explicit no-automatic-exclusion contract.
+
+- Adds deterministic six-profile 9-point validation data, frozen
+  R/Python numerical fixtures, sensitivity-analysis guidance,
+  manuscript-reporting guidance, and dedicated pkgdown navigation.
+
+- RMS-S2S never bridges missing samples; mixed units fail; malformed
+  thresholds fail; missing grouping identifiers are retained and
+  audited.
+
+- Long observed intervals are distinguished from the estimated number of
+  nominal samples represented by those gaps.
+
+### AOI perturbation and uncertainty analysis
+
+- Adds vendor-neutral AOI geometry validation, reproducible
+  dilation/erosion/translation/jitter and anisotropic perturbation
+  specifications, and explicit pixel/degree-of-visual-angle conversion.
+- Adds sample/fixation reassignment matrices, participant/trial/AOI
+  stability summaries, feature recomputation, empirical assignment
+  frequencies, and optional fixed model-callback propagation with
+  retained failure and convergence evidence.
+- Adds rectangle and convex-polygon support, explicit overlap ambiguity,
+  screen-boundary policies, synthetic cross-language parity fixtures,
+  base-R robustness plots, and a runnable advertising/interface
+  vignette.
+- Robustness frequencies remain descriptive sensitivity summaries for
+  the declared perturbation set and are not probabilities that a
+  scientific conclusion is true.
+
 ### CRAN portability hotfix
 
 - Make default Arrow/Parquet compression portable across Arrow builds:

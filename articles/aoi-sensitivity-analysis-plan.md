@@ -1,0 +1,111 @@
+# AOI Sensitivity Analysis Plan and Reporting Template
+
+\`\`\`{r setup, include=FALSE} knitr::opts_chunk\$set(collapse = TRUE,
+comment = “#\>”, eval = FALSE) library(eyeprocess) \`\`\`
+
+## Why plan before results?
+
+AOI sensitivity analysis is most interpretable when the nominal
+geometry, perturbation envelope, denominator rules, and model
+specification are fixed before branch-specific results are inspected.
+This limits result-driven changes to AOI boundaries or statistical
+choices.
+
+The plan defines the scope of the robustness claim. Stability across a
+declared perturbation set does not estimate the probability that an AOI
+or scientific conclusion is true.
+
+## Minimum analysis plan
+
+Record:
+
+- nominal AOI source/version and rectangle/polygon representation;
+- coordinate space and whether rows are samples or fixations;
+- perturbation operations and exact values;
+- pixel or degree units;
+- screen resolution, physical screen size, and viewing distance when
+  degrees are used;
+- overlap policy and screen-boundary policy;
+- jitter seed when randomness is used;
+- dwell/count/first-observation feature definitions;
+- zero-versus-missing rules;
+- fixed estimator/model specification;
+- convergence/failure rules;
+- planned assignment, coefficient, interval, convergence, model-N, and
+  failure summaries.
+
+## Fillable template
+
+\`\`\`yaml analysis_id: aoi-sensitivity-primary nominal_geometry:
+source: replace-with-source-or-version representation:
+rectangle-or-polygon coordinate_space: pixels observation_level:
+fixation perturbations: unit: deg dilation: \[0.25, 0.50, 1.00\]
+erosion: \[0.25\] translation_x: \[0.50\] translation_y: \[0.50\]
+overlap_policy: ambiguous boundary_policy: allow model: estimator:
+prespecified-callback convergence_required: true failure_handling:
+retain_geometry_failures: true retain_callback_failures: true
+retain_nonconverged_rows: true report: assignment_stability: true
+confidence_intervals: true convergence: true model_N_range: true
+failed_branches: true \`\`\`
+
+This YAML is a reproducibility template, not an input parser. The
+executable R code should declare the same choices explicitly.
+
+## Translate the plan into R
+
+\`\`\`{r planned-grid} grid \<- create_aoi_perturbation_grid( dilations
+= c(.25, .50, 1.00), erosions = .25, translations_x = .50,
+translations_y = .50, unit = “deg”, screen_width_px = 1920,
+screen_height_px = 1080, viewing_distance = 60, physical_screen_size =
+c(53.1, 29.9), boundary_policy = “allow” ) \`\`\`
+
+\`\`\`{r planned-run} result \<- run_aoi_sensitivity_analysis(
+fixations, aois, grid, x_col = “x”, y_col = “y”, observation_id_col =
+“obs”, participant_col = “participant”, trial_col = “trial”,
+duration_col = “duration”, time_col = “time”, observation_level =
+“fixation”, overlap_policy = “ambiguous”, model_callback =
+prespecified_model ) \`\`\`
+
+## Planned interpretation matrix
+
+| Pattern | Interpretation |
+|----|----|
+| High assignment stability + stable coefficient/interval/N | Stable within the declared perturbation envelope |
+| Low assignment stability + stable coefficient/interval/N | Mapping-sensitive, but model-level conclusion stable |
+| High assignment stability + unstable coefficient or model N | Inspect influential groups/case loss before claiming robustness |
+| Low assignment stability + unstable coefficient | Material geometry sensitivity |
+| Failed/non-converged branches | Partially non-evaluable; retain failures and explain them |
+
+## Reporting example
+
+> The AOI perturbation plan was fixed before branch-specific results
+> were inspected. We reran assignment, feature extraction, and the
+> prespecified model across the nominal geometry and declared
+> perturbations. We report assignment stability, coefficient ranges and
+> confidence intervals, convergence, model-N variation, and all failed
+> branches. Robustness frequencies are interpreted descriptively and not
+> as probabilities that the scientific conclusion is true.
+
+This is a reporting template, not an empirical result.
+
+## Amendments
+
+If the plan changes after results are available, preserve both versions
+and document what changed, why, and which conclusions depend on the
+amended specification. Do not silently remove a failed branch, change
+the estimator, or adjust the perturbation envelope after seeing the
+preferred result.
+
+## API map
+
+- \`create_aoi_perturbation_grid()\` — perturbation set and display
+  geometry;
+- \`run_aoi_sensitivity_analysis()\` — assignment, feature
+  recomputation, and model propagation;
+- \`estimate_aoi_assignment_stability()\` — assignment robustness;
+- \`assess_aoi_inference_stability()\` — coefficient, convergence,
+  interval, and model-N stability;
+- \`report_aoi_sensitivity()\` — compact reporting draft.
+
+See also the main **AOI Perturbation and Uncertainty Analysis** vignette
+for geometry, troubleshooting, plots, and limitations.

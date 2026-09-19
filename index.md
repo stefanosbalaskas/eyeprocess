@@ -26,9 +26,79 @@ interoperability, and psychometric/process modelling.
 | Import and harmonization | Vendor-aware readers, generic mappings, canonical schemas, explicit timebase and coordinate handling |
 | Validation and provenance | Source inspection, schema coverage, quality audits, source fingerprints, validation corpora, provenance manifests |
 | Gaze and AOI analysis | Trial construction, AOI registration and assignment, fixation summaries, scanpaths, transitions, visual diagnostics |
+| Censored gaze latency | Survival-ready event/censor tables, Kaplan-Meier curves, clustered/frailty Cox, Weibull/log-normal AFT, diagnostics and sensitivity |
 | Pupil and biometrics | Pupil preprocessing, binocular handling, physiological synchronization, quality-aware feature derivation |
 | Process and psychometric modelling | IRT, response-time models, multimodal process measurement, validation and sensitivity infrastructure |
 | Interoperability and storage | Eye-Tracking-BIDS, Arrow/Parquet workflows, conversion bridges, auditable storage contracts |
+
+## Event-detector multiverse and inference robustness
+
+The development surface includes a vendor-neutral detector-sensitivity
+workflow that carries event-detection uncertainty all the way to the
+scientific model:
+
+**raw gaze → detector → events → AOIs → derived features → identical
+model → robustness report**
+
+Key interfaces include
+[`define_event_detector_spec()`](https://stefanosbalaskas.github.io/eyeprocess/reference/event_detector_multiverse.md),
+[`run_detector_multiverse()`](https://stefanosbalaskas.github.io/eyeprocess/reference/event_detector_multiverse.md),
+[`match_detected_events()`](https://stefanosbalaskas.github.io/eyeprocess/reference/event_detector_multiverse.md),
+[`propagate_detector_to_features()`](https://stefanosbalaskas.github.io/eyeprocess/reference/event_detector_multiverse.md),
+[`run_detector_inference_multiverse()`](https://stefanosbalaskas.github.io/eyeprocess/reference/event_detector_multiverse.md),
+and
+[`report_detector_multiverse()`](https://stefanosbalaskas.github.io/eyeprocess/reference/event_detector_multiverse.md).
+
+The workflow supports I-VT, I-DT, a transparently labelled
+adaptive-velocity reference detector, a REMoDNaV command-line bridge,
+external detector callbacks, and vendor-supplied events. It retains
+zero-event trials, never converts all-missing gaze to zero dwell, errors
+on ambiguous AOI membership unless a rule is chosen explicitly, requires
+an explicit model engine, and keeps non-converged/failed branches
+visible.
+
+See the [Event-Detector Multiverse
+article](https://stefanosbalaskas.github.io/eyeprocess/articles/event-detector-multiverse.html)
+and the [detector-multiverse reference
+section](https://stefanosbalaskas.github.io/eyeprocess/reference/index.html#event-detector-multiverse-and-inference-robustness).
+
+## AOI perturbation, uncertainty, and reporting
+
+AOI boundaries are treated as an **analytical specification** rather
+than a fixed truth. The AOI robustness workflow can dilate, erode,
+translate, jitter, and anisotropically expand declared geometry in
+pixels or degrees of visual angle; remap samples/fixations with explicit
+ambiguity and missingness; recompute complete AOI feature cells;
+propagate the same analyst-specified model; retain failed/non-converged
+branches; and summarize assignment, coefficient, interval, convergence,
+and model-`N` stability.
+
+The website now provides a complete route from planning to
+reviewer-ready evidence:
+
+- [AOI Perturbation and Uncertainty
+  Analysis](https://stefanosbalaskas.github.io/eyeprocess/articles/aoi-perturbation-uncertainty.html)
+  — worked synthetic workflow, four plot families, interpretation,
+  failure handling, and limitations.
+- [AOI Sensitivity Analysis Plan and Reporting
+  Template](https://stefanosbalaskas.github.io/eyeprocess/articles/aoi-sensitivity-analysis-plan.html)
+  — prespecify geometry, perturbation envelope, units, denominator
+  rules, model, and amendment policy.
+- [AOI Robustness Reporting
+  Bundle](https://stefanosbalaskas.github.io/eyeprocess/articles/aoi-reporting-bundle.html)
+  — package branch audits, assignment/model evidence, failures,
+  provenance, report text, figures, and optional file manifests for
+  manuscripts or reviewer responses.
+
+Core functions include
+[`create_aoi_perturbation_grid()`](https://stefanosbalaskas.github.io/eyeprocess/reference/aoi_perturbation_uncertainty.md),
+[`run_aoi_sensitivity_analysis()`](https://stefanosbalaskas.github.io/eyeprocess/reference/aoi_perturbation_uncertainty.md),
+[`estimate_aoi_assignment_stability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/aoi_perturbation_uncertainty.md),
+[`assess_aoi_inference_stability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/aoi_perturbation_uncertainty.md),
+[`report_aoi_sensitivity()`](https://stefanosbalaskas.github.io/eyeprocess/reference/aoi_perturbation_uncertainty.md),
+and the four AOI plotting functions. Robustness frequencies are
+descriptive sensitivity summaries, not probabilities that an AOI
+definition or scientific conclusion is true.
 
 ## September 2026 measurement-accountability additions
 
@@ -52,10 +122,76 @@ the package’s existing synchronization or modelling engines:
   generalization claim cannot be marked supported without
   held-out-person validation.
 
+The development branch also adds [censored gaze-latency survival
+analysis](https://stefanosbalaskas.github.io/eyeprocess/articles/gaze-survival-analysis.html),
+retaining valid never-inspected trials as right-censored observations
+and distinguishing clustered Cox from latent participant frailty. A
+companion [evidence-verification worked
+example](https://stefanosbalaskas.github.io/eyeprocess/articles/gaze-survival-verification-example.html)
+demonstrates time to first source/evidence AOI entry with explicit
+censoring, diagnostics, sensitivity models, and reporting. Before
+freezing an analysis, use the [survival reproducibility
+checklist](https://stefanosbalaskas.github.io/eyeprocess/articles/gaze-survival-reproducibility-checklist.html).
+
 See the [Measurement accountability
 article](https://stefanosbalaskas.github.io/eyeprocess/articles/measurement-accountability-0-11.html)
 and the [measurement-accountability reference
 section](https://stefanosbalaskas.github.io/eyeprocess/reference/index.html#measurement-accountability-diagnostics-0-11).
+
+## Standardized spatial data quality
+
+The development branch adds a vendor-neutral data-quality subsystem for
+target-referenced **accuracy**, RMS sample-to-sample and spatial-SD
+**precision**, **BCEA**, realized sampling behavior, and **data loss**.
+The canonical report keeps these dimensions separate, records
+metric-specific units and provenance, and treats thresholds as review
+rules rather than automatic exclusions.
+
+``` r
+
+validation <- simulate_gaze_quality_calibration(samples_per_target = 8)
+
+quality <- create_gaze_quality_report(
+  validation,
+  by = c("profile", "target_id"),
+  valid = "valid",
+  missing_reason = "missing_reason",
+  nominal_sampling_hz = 60
+)
+
+report_gaze_quality(quality)
+```
+
+The synthetic validation profiles deliberately separate accuracy,
+precision, irregular sampling, and missingness. Timing diagnostics
+distinguish long observed intervals from the estimated number of nominal
+samples represented by those gaps. See the [Standardized Data Quality
+guide](https://stefanosbalaskas.github.io/eyeprocess/articles/standardized-data-quality.html)
+and the [Data Quality plot gallery and reporting
+clinic](https://stefanosbalaskas.github.io/eyeprocess/articles/data-quality-plot-gallery.html).
+
+## September 2026 trial-level mediation preparation
+
+The current development branch also adds a vendor-neutral preparation
+contract for repeated-measures mediation with gaze or other trial-level
+process variables.
+[`prepare_multilevel_mediation_data()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multilevel-mediation.md)
+preserves every trial, separates within- and between-participant
+exposure and mediator components, distinguishes genuine zero gaze from
+unobserved or poor-quality trials, audits trial support and missingness,
+and carries preprocessing/event/AOI/quality provenance forward.
+
+The preparation layer **does not fit a mediation model**. Bayesian
+inference belongs in `gp3bayes`; `eyeprocess` owns decomposition,
+observation semantics, quality flags, and model-ready trial structure.
+Serial mediators and moderators are prepared with
+[`add_multilevel_mediation_component()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multilevel-mediation.md)
+so statistical backends do not reimplement the scientific decomposition.
+
+See the [Trial-level multilevel mediation
+article](https://stefanosbalaskas.github.io/eyeprocess/articles/trial-level-multilevel-mediation.html)
+and the mediation-preparation functions in the [reference
+index](https://stefanosbalaskas.github.io/eyeprocess/reference/index.html).
 
 ## Design commitments
 
@@ -225,6 +361,8 @@ provenance_manifest(x)
   features](https://stefanosbalaskas.github.io/eyeprocess/articles/preprocessing-features.html)
 - [Psychometric process
   models](https://stefanosbalaskas.github.io/eyeprocess/articles/psychometric-process-models.html)
+- [Standardized Data
+  Quality](https://stefanosbalaskas.github.io/eyeprocess/articles/standardized-data-quality.html)
 - [Measurement
   accountability](https://stefanosbalaskas.github.io/eyeprocess/articles/measurement-accountability-0-11.html)
 - [Responsible

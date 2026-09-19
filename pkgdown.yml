@@ -7,6 +7,9 @@ articles:
   advanced-model-validation: advanced-model-validation.html
   advanced-pupillometry-representations: advanced-pupillometry-representations.html
   advanced-rasch-mixture-and-imputation-sensitivity: advanced-rasch-mixture-and-imputation-sensitivity.html
+  aoi-perturbation-uncertainty: aoi-perturbation-uncertainty.html
+  aoi-reporting-bundle: aoi-reporting-bundle.html
+  aoi-sensitivity-analysis-plan: aoi-sensitivity-analysis-plan.html
   api-lifecycle-and-canonical-interfaces: api-lifecycle-and-canonical-interfaces.html
   api-storage-adapters: api-storage-adapters.html
   bayesian-and-3pl-process-diagnostics: bayesian-and-3pl-process-diagnostics.html
@@ -14,14 +17,22 @@ articles:
   benchmarking-and-stress-testing: benchmarking-and-stress-testing.html
   calibration-uncertainty-and-data-quality: calibration-uncertainty-and-data-quality.html
   cognitive-diagnosis-qmatrix-governance: cognitive-diagnosis-qmatrix-governance.html
+  data-quality-plot-gallery: data-quality-plot-gallery.html
   deployment-drift-monitoring: deployment-drift-monitoring.html
   dynamic-irtree-hardening: dynamic-irtree-hardening.html
+  ecosystem-update-2026-09: ecosystem-update-2026-09.html
   empirical-validation-programme: empirical-validation-programme.html
+  event-detector-multiverse-failure-clinic: event-detector-multiverse-failure-clinic.html
+  event-detector-multiverse-visual-reporting: event-detector-multiverse-visual-reporting.html
+  event-detector-multiverse: event-detector-multiverse.html
   evidence-decision-provenance: evidence-decision-provenance.html
   experimental-process-irt-0-7: experimental-process-irt-0-7.html
   frozen-validation-evidence-programme: frozen-validation-evidence-programme.html
   functional-pupil-irt-engine: functional-pupil-irt-engine.html
   gaze-diffusion-irt: gaze-diffusion-irt.html
+  gaze-survival-analysis: gaze-survival-analysis.html
+  gaze-survival-reproducibility-checklist: gaze-survival-reproducibility-checklist.html
+  gaze-survival-verification-example: gaze-survival-verification-example.html
   gazepoint-downstream-workflow: gazepoint-downstream-workflow.html
   gazepoint-workflows: gazepoint-workflows.html
   getting-started: getting-started.html
@@ -79,11 +90,13 @@ articles:
   scanpaths-and-cognitive-episodes: scanpaths-and-cognitive-episodes.html
   simulation-calibration-and-resolution-guards: simulation-calibration-and-resolution-guards.html
   software-paper-evidence-bundle: software-paper-evidence-bundle.html
+  standardized-data-quality: standardized-data-quality.html
   streaming-scoring-and-validation-bundles: streaming-scoring-and-validation-bundles.html
   targets-interoperability: targets-interoperability.html
   temporal-process-representations: temporal-process-representations.html
   temporal-spatial-process-science: temporal-spatial-process-science.html
   theory-strategy-mixtures: theory-strategy-mixtures.html
+  trial-level-multilevel-mediation: trial-level-multilevel-mediation.html
   uncertainty-calibration: uncertainty-calibration.html
   unified-multimodal-process-irt-0-10: unified-multimodal-process-irt-0-10.html
   validating-real-exports: validating-real-exports.html
@@ -91,7 +104,7 @@ articles:
   validation-evidence-atlas-software-paper: validation-evidence-atlas-software-paper.html
   validation-execution-engine: validation-execution-engine.html
   visual-context-and-testlet-irt: visual-context-and-testlet-irt.html
-last_built: 2026-09-13T10:09Z
+last_built: 2026-09-19T18:41Z
 urls:
   reference: https://stefanosbalaskas.github.io/eyeprocess/reference
   article: https://stefanosbalaskas.github.io/eyeprocess/articles

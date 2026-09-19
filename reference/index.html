@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">eyeprocess</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.11.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.11.1.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,6 +19,10 @@
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><hr class="dropdown-divider"></li>
+    <li><h6 class="dropdown-header" data-toc-skip>Data Quality</h6></li>
+    <li><a class="dropdown-item" href="../articles/standardized-data-quality.html">Standardized eye-tracking data quality</a></li>
+    <li><a class="dropdown-item" href="../articles/data-quality-plot-gallery.html">Data Quality plot gallery and reporting clinic</a></li>
+    <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Foundations</h6></li>
     <li><a class="dropdown-item" href="../articles/getting-started.html">Getting Started with eyeprocess</a></li>
     <li><a class="dropdown-item" href="../articles/importing-and-harmonizing.html">Importing and Harmonizing Eye-Tracking Exports</a></li>
@@ -35,6 +39,10 @@
     <li><a class="dropdown-item" href="../articles/advanced-model-validation.html">Advanced model programme and validation</a></li>
     <li><a class="dropdown-item" href="../articles/research-validation-program.html">Research validation and software-paper programme</a></li>
     <li><a class="dropdown-item" href="../articles/measurement-accountability-0-11.html">Measurement accountability: pupil latency, event plausibility, and validation</a></li>
+    <li><a class="dropdown-item" href="../articles/ecosystem-update-2026-09.html">Ecosystem update — September 2026</a></li>
+    <li><a class="dropdown-item" href="../articles/gaze-survival-analysis.html">Survival Analysis for Gaze Latency</a></li>
+    <li><a class="dropdown-item" href="../articles/gaze-survival-verification-example.html">Worked example: evidence verification latency</a></li>
+    <li><a class="dropdown-item" href="../articles/gaze-survival-reproducibility-checklist.html">Reproducibility checklist for censored gaze latency</a></li>
     <li><a class="dropdown-item" href="../articles/validation-execution-engine.html">Research-scale validation execution</a></li>
     <li><a class="dropdown-item" href="../articles/dynamic-irtree-hardening.html">Dynamic IRTree and transition-model hardening</a></li>
     <li><a class="dropdown-item" href="../articles/independent-vendor-corpus.html">Independent multi-vendor validation corpus</a></li>
@@ -44,6 +52,9 @@
     <li><a class="dropdown-item" href="../articles/api-storage-adapters.html">Stable APIs, scalable storage, and external adapters</a></li>
     <li><a class="dropdown-item" href="../articles/benchmark-reproduction.html">Public benchmark and software-paper reproduction</a></li>
     <li><a class="dropdown-item" href="../articles/probabilistic-aoi-compositions.html">Probabilistic AOIs and Compositional Attention</a></li>
+    <li><a class="dropdown-item" href="../articles/aoi-perturbation-uncertainty.html">AOI Perturbation and Uncertainty Analysis</a></li>
+    <li><a class="dropdown-item" href="../articles/aoi-sensitivity-analysis-plan.html">AOI Sensitivity Analysis Plan and Reporting Template</a></li>
+    <li><a class="dropdown-item" href="../articles/aoi-reporting-bundle.html">AOI Robustness Reporting Bundle</a></li>
     <li><a class="dropdown-item" href="../articles/uncertainty-calibration.html">Measurement Uncertainty and Recalibration</a></li>
     <li><a class="dropdown-item" href="../articles/reliability-device-transportability.html">Process Reliability and Device Transportability</a></li>
     <li><a class="dropdown-item" href="../articles/pupil-registration-missingness.html">Pupil Phase-Amplitude Registration and Missingness</a></li>
@@ -69,6 +80,54 @@
     </div>
 
     <div class="section level2">
+      <h2 id="event-detector-multiverse-and-inference-robustness">Event detector multiverse and inference robustness<a class="anchor" aria-label="anchor" href="#event-detector-multiverse-and-inference-robustness"></a></h2>
+
+      <div class="section-desc"><p>Explicit detector specifications, event matching, AOI/feature propagation, identical-model inference, stability summaries, plots, and reproducible reporting.</p></div>
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="event_detector_multiverse.html">define_event_detector_spec()</a></code> <code><a href="event_detector_multiverse.html">validate_event_detector_spec()</a></code> <code><a href="event_detector_multiverse.html">create_detector_multiverse()</a></code> <code><a href="event_detector_multiverse.html">detect_events_with_spec()</a></code> <code><a href="event_detector_multiverse.html">import_external_detector_events()</a></code> <code><a href="event_detector_multiverse.html">run_detector_multiverse()</a></code> <code><a href="event_detector_multiverse.html">match_detected_events()</a></code> <code><a href="event_detector_multiverse.html">compare_event_catalogues()</a></code> <code><a href="event_detector_multiverse.html">estimate_detector_agreement()</a></code> <code><a href="event_detector_multiverse.html">summarise_detector_events()</a></code> <code><a href="event_detector_multiverse.html">summarise_detector_disagreement()</a></code> <code><a href="event_detector_multiverse.html">propagate_detector_to_aoi()</a></code> <code><a href="event_detector_multiverse.html">propagate_detector_to_features()</a></code> <code><a href="event_detector_multiverse.html">run_detector_inference_multiverse()</a></code> <code><a href="event_detector_multiverse.html">assess_detector_inference_stability()</a></code> <code><a href="event_detector_multiverse.html">summarise_detector_robustness()</a></code> <code><a href="event_detector_multiverse.html">plot_detector_event_timeline()</a></code> <code><a href="event_detector_multiverse.html">plot_detector_agreement()</a></code> <code><a href="event_detector_multiverse.html">plot_detector_feature_distributions()</a></code> <code><a href="event_detector_multiverse.html">plot_detector_coefficient_stability()</a></code> <code><a href="event_detector_multiverse.html">plot_detector_multiverse()</a></code> <code><a href="event_detector_multiverse.html">report_detector_multiverse()</a></code> <code><a href="event_detector_multiverse.html">simulate_detector_multiverse_data()</a></code>
+
+        </dt>
+        <dd>Event-detector multiverse and inference robustness</dd>
+      </dl></div><div class="section level2">
+      <h2 id="trial-level-multilevel-mediation">Trial-level multilevel mediation<a class="anchor" aria-label="anchor" href="#trial-level-multilevel-mediation"></a></h2>
+
+      <div class="section-desc"><p>Prepare repeated-measures mediation data without collapsing gaze to participant means.</p></div>
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="multilevel-mediation.html">center_within_participant()</a></code> <code><a href="multilevel-mediation.html">decompose_within_between()</a></code> <code><a href="multilevel-mediation.html">summarise_within_between_variance()</a></code> <code><a href="multilevel-mediation.html">identify_mediation_levels()</a></code> <code><a href="multilevel-mediation.html">audit_mediation_missingness()</a></code> <code><a href="multilevel-mediation.html">check_mediation_trial_counts()</a></code> <code><a href="multilevel-mediation.html">validate_multilevel_mediation_data()</a></code> <code><a href="multilevel-mediation.html">prepare_multilevel_mediation_data()</a></code> <code><a href="multilevel-mediation.html">add_multilevel_mediation_component()</a></code>
+
+        </dt>
+        <dd>Trial-level multilevel mediation preparation</dd>
+      </dl></div><div class="section level2">
+      <h2 id="standardized-spatial-data-quality-development-">Standardized spatial data quality (0.11 development)<a class="anchor" aria-label="anchor" href="#standardized-spatial-data-quality-development-"></a></h2>
+
+      <div class="section-desc"><p>Vendor-neutral quality metrics with explicit units, review-only thresholds, reproducible synthetic validation, and manuscript-ready reporting.</p></div>
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="standardized_spatial_quality.html">validate_gaze_quality_inputs()</a></code> <code><a href="standardized_spatial_quality.html">compute_gaze_accuracy()</a></code> <code><a href="standardized_spatial_quality.html">compute_rms_s2s()</a></code> <code><a href="standardized_spatial_quality.html">compute_gaze_sd_precision()</a></code> <code><a href="standardized_spatial_quality.html">compute_bcea()</a></code> <code><a href="standardized_spatial_quality.html">compute_gaze_precision()</a></code> <code><a href="standardized_spatial_quality.html">estimate_sampling_interval()</a></code> <code><a href="standardized_spatial_quality.html">estimate_sampling_jitter()</a></code> <code><a href="standardized_spatial_quality.html">estimate_effective_sampling_rate()</a></code> <code><a href="standardized_spatial_quality.html">compute_valid_sample_fraction()</a></code> <code><a href="standardized_spatial_quality.html">compute_gaze_data_loss()</a></code> <code><a href="standardized_spatial_quality.html">summarise_spatial_quality()</a></code> <code><a href="standardized_spatial_quality.html">summarise_sampling_quality()</a></code> <code><a href="standardized_spatial_quality.html">create_gaze_quality_report()</a></code> <code><a href="standardized_spatial_quality.html">compare_gaze_quality_sessions()</a></code> <code><a href="standardized_spatial_quality.html">compare_gaze_quality_conditions()</a></code> <code><a href="standardized_spatial_quality.html">plot_gaze_accuracy()</a></code> <code><a href="standardized_spatial_quality.html">plot_gaze_precision()</a></code> <code><a href="standardized_spatial_quality.html">plot_bcea()</a></code> <code><a href="standardized_spatial_quality.html">plot_sampling_intervals()</a></code> <code><a href="standardized_spatial_quality.html">plot_gaze_quality_dashboard()</a></code> <code><a href="standardized_spatial_quality.html">report_gaze_quality()</a></code> <code><a href="standardized_spatial_quality.html">simulate_gaze_quality_calibration()</a></code>
+
+        </dt>
+        <dd>Standardized vendor-neutral gaze data-quality metrics</dd>
+      </dl></div><div class="section level2">
       <h2 id="measurement-accountability-diagnostics-">Measurement accountability diagnostics (0.11)<a class="anchor" aria-label="anchor" href="#measurement-accountability-diagnostics-"></a></h2>
 
 
@@ -98,6 +157,22 @@
 
         </dt>
         <dd>Build a measurement-to-generalization validation ladder</dd>
+      </dl></div><div class="section level2">
+      <h2 id="censored-gaze-latency-survival-analysis">Censored gaze-latency survival analysis<a class="anchor" aria-label="anchor" href="#censored-gaze-latency-survival-analysis"></a></h2>
+
+      <div class="section-desc"><p>Right-censored gaze latency preparation, Kaplan-Meier description, Cox/AFT modelling, repeated-participant structures, diagnostics, sensitivity analysis, plotting, prediction, and reporting.</p></div>
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="gaze-survival.html">prepare_gaze_survival_data()</a></code> <code><a href="gaze-survival.html">validate_gaze_survival_data()</a></code> <code><a href="gaze-survival.html">summarise_gaze_censoring()</a></code> <code><a href="gaze-survival.html">estimate_gaze_survival()</a></code> <code><a href="gaze-survival.html">fit_gaze_cox_model()</a></code> <code><a href="gaze-survival.html">fit_gaze_mixed_cox_model()</a></code> <code><a href="gaze-survival.html">fit_gaze_aft_model()</a></code> <code><a href="gaze-survival.html">tidy_gaze_survival_model()</a></code> <code><a href="gaze-survival.html">check_gaze_proportional_hazards()</a></code> <code><a href="gaze-survival.html">compare_gaze_survival_models()</a></code> <code><a href="gaze-survival.html">predict_gaze_survival()</a></code> <code><a href="gaze-survival.html">estimate_gaze_latency_quantiles()</a></code> <code><a href="gaze-survival.html">plot_gaze_survival_curve()</a></code> <code><a href="gaze-survival.html">plot_gaze_cumulative_incidence()</a></code> <code><a href="gaze-survival.html">plot_gaze_hazard()</a></code> <code><a href="gaze-survival.html">plot_gaze_cox_diagnostics()</a></code> <code><a href="gaze-survival.html">compare_gaze_survival_specifications()</a></code> <code><a href="gaze-survival.html">report_gaze_survival_model()</a></code> <code><a href="gaze-survival.html">simulate_gaze_survival_inputs()</a></code> <code><a href="gaze-survival.html">simulate_gaze_survival_example()</a></code>
+
+        </dt>
+        <dd>Censored Gaze-Latency Survival Analysis</dd>
       </dl></div><div class="section level2">
       <h2 id="validation-evidence-programmes-and-freezing-m-">Validation evidence programmes and freezing (0.9 M2)<a class="anchor" aria-label="anchor" href="#validation-evidence-programmes-and-freezing-m-"></a></h2>
 
@@ -1226,6 +1301,22 @@
 
         </dt>
         <dd>Simulate dichotomous IRT responses with optional local dependence and missingness</dd>
+      </dl></div><div class="section level2">
+      <h2 id="aoi-perturbation-and-uncertainty">AOI perturbation and uncertainty<a class="anchor" aria-label="anchor" href="#aoi-perturbation-and-uncertainty"></a></h2>
+
+      <div class="section-desc"><p>Geometry perturbation, pixel/degree conversion, assignment stability, feature recomputation, model propagation, reporting, and robustness plots.</p></div>
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="aoi_perturbation_uncertainty.html">validate_aoi_geometry()</a></code> <code><a href="aoi_perturbation_uncertainty.html">convert_aoi_margin_to_degrees()</a></code> <code><a href="aoi_perturbation_uncertainty.html">convert_aoi_margin_to_pixels()</a></code> <code><a href="aoi_perturbation_uncertainty.html">aoi_perturbation_spec()</a></code> <code><a href="aoi_perturbation_uncertainty.html">dilate_aoi()</a></code> <code><a href="aoi_perturbation_uncertainty.html">erode_aoi()</a></code> <code><a href="aoi_perturbation_uncertainty.html">translate_aoi()</a></code> <code><a href="aoi_perturbation_uncertainty.html">jitter_aoi()</a></code> <code><a href="aoi_perturbation_uncertainty.html">perturb_aoi_geometry()</a></code> <code><a href="aoi_perturbation_uncertainty.html">create_aoi_perturbation_grid()</a></code> <code><a href="aoi_perturbation_uncertainty.html">apply_aoi_perturbation_grid()</a></code> <code><a href="aoi_perturbation_uncertainty.html">compare_aoi_assignments()</a></code> <code><a href="aoi_perturbation_uncertainty.html">estimate_aoi_assignment_stability()</a></code> <code><a href="aoi_perturbation_uncertainty.html">estimate_fixation_assignment_probability()</a></code> <code><a href="aoi_perturbation_uncertainty.html">recompute_aoi_features()</a></code> <code><a href="aoi_perturbation_uncertainty.html">run_aoi_sensitivity_analysis()</a></code> <code><a href="aoi_perturbation_uncertainty.html">assess_aoi_inference_stability()</a></code> <code><a href="aoi_perturbation_uncertainty.html">summarise_aoi_sensitivity()</a></code> <code><a href="aoi_perturbation_uncertainty.html">report_aoi_sensitivity()</a></code> <code><a href="aoi_perturbation_uncertainty.html">plot_aoi_perturbations()</a></code> <code><a href="aoi_perturbation_uncertainty.html">plot_aoi_assignment_stability()</a></code> <code><a href="aoi_perturbation_uncertainty.html">plot_aoi_coefficient_stability()</a></code> <code><a href="aoi_perturbation_uncertainty.html">plot_aoi_robustness_surface()</a></code>
+
+        </dt>
+        <dd>AOI Perturbation and Uncertainty Analysis</dd>
       </dl></div><div class="section level2">
       <h2 id="validation-sensitivity-and-negative-controls-">Validation, sensitivity, and negative controls (0.9)<a class="anchor" aria-label="anchor" href="#validation-sensitivity-and-negative-controls-"></a></h2>
 
@@ -4407,6 +4498,13 @@
 
         <dt>
 
+          <code><a href="multilevel-mediation.html">center_within_participant()</a></code> <code><a href="multilevel-mediation.html">decompose_within_between()</a></code> <code><a href="multilevel-mediation.html">summarise_within_between_variance()</a></code> <code><a href="multilevel-mediation.html">identify_mediation_levels()</a></code> <code><a href="multilevel-mediation.html">audit_mediation_missingness()</a></code> <code><a href="multilevel-mediation.html">check_mediation_trial_counts()</a></code> <code><a href="multilevel-mediation.html">validate_multilevel_mediation_data()</a></code> <code><a href="multilevel-mediation.html">prepare_multilevel_mediation_data()</a></code> <code><a href="multilevel-mediation.html">add_multilevel_mediation_component()</a></code>
+
+        </dt>
+        <dd>Trial-level multilevel mediation preparation</dd>
+
+        <dt>
+
           <code><a href="eyeprocess-class.html">new_eye_dataset</a></code> <code><a href="eyeprocess-class.html">is_eye_dataset</a></code> <code><a href="eyeprocess-class.html">as_eye_dataset</a></code> <code><a href="eyeprocess-class.html">as_eye_dataset.eye_dataset</a></code> <code><a href="eyeprocess-class.html">as_eye_dataset.data.frame</a></code> <code><a href="eyeprocess-class.html">as_eye_dataset.default</a></code> <code><a href="eyeprocess-class.html">print.eye_dataset</a></code> <code><a href="eyeprocess-class.html">summary.eye_dataset</a></code> <code><a href="eyeprocess-class.html">print.summary.eye_dataset</a></code> <code><a href="eyeprocess-class.html">validate_eye_dataset</a></code> <code><a href="eyeprocess-class.html">print.eye_validation</a></code> <code><a href="eyeprocess-class.html">get_eye_table</a></code> <code><a href="eyeprocess-class.html">set_eye_table</a></code> <code><a href="eyeprocess-class.html">append_eye_table</a></code> <code><a href="eyeprocess-class.html">add_provenance</a></code> <code><a href="eyeprocess-class.html">provenance_manifest</a></code> <code><a href="eyeprocess-class.html">compact_eye_dataset</a></code>
 
         </dt>
@@ -4542,10 +4640,31 @@
 
         <dt>
 
+          <code><a href="aoi_perturbation_uncertainty.html">validate_aoi_geometry()</a></code> <code><a href="aoi_perturbation_uncertainty.html">convert_aoi_margin_to_degrees()</a></code> <code><a href="aoi_perturbation_uncertainty.html">convert_aoi_margin_to_pixels()</a></code> <code><a href="aoi_perturbation_uncertainty.html">aoi_perturbation_spec()</a></code> <code><a href="aoi_perturbation_uncertainty.html">dilate_aoi()</a></code> <code><a href="aoi_perturbation_uncertainty.html">erode_aoi()</a></code> <code><a href="aoi_perturbation_uncertainty.html">translate_aoi()</a></code> <code><a href="aoi_perturbation_uncertainty.html">jitter_aoi()</a></code> <code><a href="aoi_perturbation_uncertainty.html">perturb_aoi_geometry()</a></code> <code><a href="aoi_perturbation_uncertainty.html">create_aoi_perturbation_grid()</a></code> <code><a href="aoi_perturbation_uncertainty.html">apply_aoi_perturbation_grid()</a></code> <code><a href="aoi_perturbation_uncertainty.html">compare_aoi_assignments()</a></code> <code><a href="aoi_perturbation_uncertainty.html">estimate_aoi_assignment_stability()</a></code> <code><a href="aoi_perturbation_uncertainty.html">estimate_fixation_assignment_probability()</a></code> <code><a href="aoi_perturbation_uncertainty.html">recompute_aoi_features()</a></code> <code><a href="aoi_perturbation_uncertainty.html">run_aoi_sensitivity_analysis()</a></code> <code><a href="aoi_perturbation_uncertainty.html">assess_aoi_inference_stability()</a></code> <code><a href="aoi_perturbation_uncertainty.html">summarise_aoi_sensitivity()</a></code> <code><a href="aoi_perturbation_uncertainty.html">report_aoi_sensitivity()</a></code> <code><a href="aoi_perturbation_uncertainty.html">plot_aoi_perturbations()</a></code> <code><a href="aoi_perturbation_uncertainty.html">plot_aoi_assignment_stability()</a></code> <code><a href="aoi_perturbation_uncertainty.html">plot_aoi_coefficient_stability()</a></code> <code><a href="aoi_perturbation_uncertainty.html">plot_aoi_robustness_surface()</a></code>
+
+        </dt>
+        <dd>AOI Perturbation and Uncertainty Analysis</dd>
+
+        <dt>
+
+          <code><a href="event_detector_multiverse.html">define_event_detector_spec()</a></code> <code><a href="event_detector_multiverse.html">validate_event_detector_spec()</a></code> <code><a href="event_detector_multiverse.html">create_detector_multiverse()</a></code> <code><a href="event_detector_multiverse.html">detect_events_with_spec()</a></code> <code><a href="event_detector_multiverse.html">import_external_detector_events()</a></code> <code><a href="event_detector_multiverse.html">run_detector_multiverse()</a></code> <code><a href="event_detector_multiverse.html">match_detected_events()</a></code> <code><a href="event_detector_multiverse.html">compare_event_catalogues()</a></code> <code><a href="event_detector_multiverse.html">estimate_detector_agreement()</a></code> <code><a href="event_detector_multiverse.html">summarise_detector_events()</a></code> <code><a href="event_detector_multiverse.html">summarise_detector_disagreement()</a></code> <code><a href="event_detector_multiverse.html">propagate_detector_to_aoi()</a></code> <code><a href="event_detector_multiverse.html">propagate_detector_to_features()</a></code> <code><a href="event_detector_multiverse.html">run_detector_inference_multiverse()</a></code> <code><a href="event_detector_multiverse.html">assess_detector_inference_stability()</a></code> <code><a href="event_detector_multiverse.html">summarise_detector_robustness()</a></code> <code><a href="event_detector_multiverse.html">plot_detector_event_timeline()</a></code> <code><a href="event_detector_multiverse.html">plot_detector_agreement()</a></code> <code><a href="event_detector_multiverse.html">plot_detector_feature_distributions()</a></code> <code><a href="event_detector_multiverse.html">plot_detector_coefficient_stability()</a></code> <code><a href="event_detector_multiverse.html">plot_detector_multiverse()</a></code> <code><a href="event_detector_multiverse.html">report_detector_multiverse()</a></code> <code><a href="event_detector_multiverse.html">simulate_detector_multiverse_data()</a></code>
+
+        </dt>
+        <dd>Event-detector multiverse and inference robustness</dd>
+
+        <dt>
+
           <code><a href="eyeprocess-plots.html">plot.eye_dataset</a></code> <code><a href="eyeprocess-plots.html">plot_eye_overview</a></code> <code><a href="eyeprocess-plots.html">plot_eye_trace</a></code> <code><a href="eyeprocess-plots.html">plot_fixations</a></code> <code><a href="eyeprocess-plots.html">plot_scanpath</a></code> <code><a href="eyeprocess-plots.html">plot_gaze_heatmap</a></code> <code><a href="eyeprocess-plots.html">plot_aoi_dwell</a></code> <code><a href="eyeprocess-plots.html">plot_transition_matrix</a></code> <code><a href="eyeprocess-plots.html">plot_pupil_timeseries</a></code> <code><a href="eyeprocess-plots.html">plot_biometrics</a></code> <code><a href="eyeprocess-plots.html">plot_signal_quality</a></code> <code><a href="eyeprocess-plots.html">plot_sampling_rate</a></code> <code><a href="eyeprocess-plots.html">plot_missingness</a></code> <code><a href="eyeprocess-plots.html">plot_trial_timeline</a></code> <code><a href="eyeprocess-plots.html">plot_feature_distribution</a></code> <code><a href="eyeprocess-plots.html">plot_feature_correlation</a></code> <code><a href="eyeprocess-plots.html">plot_coordinate_spaces</a></code> <code><a href="eyeprocess-plots.html">plot_clock_alignment</a></code> <code><a href="eyeprocess-plots.html">plot_item_difficulty</a></code> <code><a href="eyeprocess-plots.html">plot_model_diagnostics</a></code>
 
         </dt>
         <dd>Visualize eye-tracking and multimodal process data</dd>
+
+        <dt>
+
+          <code><a href="gaze-survival.html">prepare_gaze_survival_data()</a></code> <code><a href="gaze-survival.html">validate_gaze_survival_data()</a></code> <code><a href="gaze-survival.html">summarise_gaze_censoring()</a></code> <code><a href="gaze-survival.html">estimate_gaze_survival()</a></code> <code><a href="gaze-survival.html">fit_gaze_cox_model()</a></code> <code><a href="gaze-survival.html">fit_gaze_mixed_cox_model()</a></code> <code><a href="gaze-survival.html">fit_gaze_aft_model()</a></code> <code><a href="gaze-survival.html">tidy_gaze_survival_model()</a></code> <code><a href="gaze-survival.html">check_gaze_proportional_hazards()</a></code> <code><a href="gaze-survival.html">compare_gaze_survival_models()</a></code> <code><a href="gaze-survival.html">predict_gaze_survival()</a></code> <code><a href="gaze-survival.html">estimate_gaze_latency_quantiles()</a></code> <code><a href="gaze-survival.html">plot_gaze_survival_curve()</a></code> <code><a href="gaze-survival.html">plot_gaze_cumulative_incidence()</a></code> <code><a href="gaze-survival.html">plot_gaze_hazard()</a></code> <code><a href="gaze-survival.html">plot_gaze_cox_diagnostics()</a></code> <code><a href="gaze-survival.html">compare_gaze_survival_specifications()</a></code> <code><a href="gaze-survival.html">report_gaze_survival_model()</a></code> <code><a href="gaze-survival.html">simulate_gaze_survival_inputs()</a></code> <code><a href="gaze-survival.html">simulate_gaze_survival_example()</a></code>
+
+        </dt>
+        <dd>Censored Gaze-Latency Survival Analysis</dd>
 
         <dt>
 
@@ -4693,6 +4812,13 @@
 
         </dt>
         <dd>Plot validation runtime</dd>
+
+        <dt>
+
+          <code><a href="standardized_spatial_quality.html">validate_gaze_quality_inputs()</a></code> <code><a href="standardized_spatial_quality.html">compute_gaze_accuracy()</a></code> <code><a href="standardized_spatial_quality.html">compute_rms_s2s()</a></code> <code><a href="standardized_spatial_quality.html">compute_gaze_sd_precision()</a></code> <code><a href="standardized_spatial_quality.html">compute_bcea()</a></code> <code><a href="standardized_spatial_quality.html">compute_gaze_precision()</a></code> <code><a href="standardized_spatial_quality.html">estimate_sampling_interval()</a></code> <code><a href="standardized_spatial_quality.html">estimate_sampling_jitter()</a></code> <code><a href="standardized_spatial_quality.html">estimate_effective_sampling_rate()</a></code> <code><a href="standardized_spatial_quality.html">compute_valid_sample_fraction()</a></code> <code><a href="standardized_spatial_quality.html">compute_gaze_data_loss()</a></code> <code><a href="standardized_spatial_quality.html">summarise_spatial_quality()</a></code> <code><a href="standardized_spatial_quality.html">summarise_sampling_quality()</a></code> <code><a href="standardized_spatial_quality.html">create_gaze_quality_report()</a></code> <code><a href="standardized_spatial_quality.html">compare_gaze_quality_sessions()</a></code> <code><a href="standardized_spatial_quality.html">compare_gaze_quality_conditions()</a></code> <code><a href="standardized_spatial_quality.html">plot_gaze_accuracy()</a></code> <code><a href="standardized_spatial_quality.html">plot_gaze_precision()</a></code> <code><a href="standardized_spatial_quality.html">plot_bcea()</a></code> <code><a href="standardized_spatial_quality.html">plot_sampling_intervals()</a></code> <code><a href="standardized_spatial_quality.html">plot_gaze_quality_dashboard()</a></code> <code><a href="standardized_spatial_quality.html">report_gaze_quality()</a></code> <code><a href="standardized_spatial_quality.html">simulate_gaze_quality_calibration()</a></code>
+
+        </dt>
+        <dd>Standardized vendor-neutral gaze data-quality metrics</dd>
       </dl></div><div class="section level2">
       <h2 id="psychometrics">Psychometrics<a class="anchor" aria-label="anchor" href="#psychometrics"></a></h2>
 

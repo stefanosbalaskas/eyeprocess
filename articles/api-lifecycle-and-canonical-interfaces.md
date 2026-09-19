@@ -44,20 +44,20 @@ audit <- eyeprocess::audit_eye_api(inventory, lifecycle)
 eyeprocess::api_surface_summary(inventory)
 #>        family       status Freq
 #> 1          io     advanced    0
-#> 2       model     advanced   46
-#> 3        plot     advanced   91
-#> 4  simulation     advanced   30
-#> 5     summary     advanced   34
-#> 6     utility     advanced  315
-#> 7  validation     advanced   57
+#> 2       model     advanced   50
+#> 3        plot     advanced  100
+#> 4  simulation     advanced   33
+#> 5     summary     advanced   40
+#> 6     utility     advanced  324
+#> 7  validation     advanced   58
 #> 8    workflow     advanced    7
 #> 9          io         core   26
 #> 10      model         core    0
-#> 11       plot         core   19
-#> 12 simulation         core    0
-#> 13    summary         core    4
-#> 14    utility         core  114
-#> 15 validation         core   22
+#> 11       plot         core   28
+#> 12 simulation         core    1
+#> 13    summary         core   11
+#> 14    utility         core  148
+#> 15 validation         core   27
 #> 16   workflow         core    0
 #> 17         io experimental    0
 #> 18      model experimental   32
@@ -75,17 +75,17 @@ eyeprocess::api_surface_summary(inventory)
 #> 30    utility        gated    5
 #> 31 validation        gated    2
 #> 32   workflow        gated    0
-#> 33         io     workflow   45
+#> 33         io     workflow   46
 #> 34      model     workflow   15
 #> 35       plot     workflow   10
 #> 36 simulation     workflow    5
-#> 37    summary     workflow   10
-#> 38    utility     workflow  151
+#> 37    summary     workflow   11
+#> 38    utility     workflow  159
 #> 39 validation     workflow   49
 #> 40   workflow     workflow   13
 audit
 #> eyeprocess API lifecycle audit
-#>   APIs             : 1185 
+#>   APIs             : 1283 
 #>   reviewed fraction: 100.0% 
 #>   invalid mappings : 0
 ```

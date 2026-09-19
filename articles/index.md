@@ -1,5 +1,33 @@
 # Articles
 
+### Trial-level multilevel mediation
+
+- [Trial-Level Multilevel Gaze Mediation
+  Preparation](https://stefanosbalaskas.github.io/eyeprocess/articles/trial-level-multilevel-mediation.md):
+
+### Event detector multiverse
+
+Why detector choice is an analytical decision, how to construct a
+defensible multiverse, propagate events into AOI features and inference,
+and report robustness without significance counting.
+
+- [Event-Detector Multiverse and Inference
+  Robustness](https://stefanosbalaskas.github.io/eyeprocess/articles/event-detector-multiverse.md):
+- [Visual reporting: detector multiverse
+  diagnostics](https://stefanosbalaskas.github.io/eyeprocess/articles/event-detector-multiverse-visual-reporting.md):
+- [Failure clinic: detector multiverse
+  audits](https://stefanosbalaskas.github.io/eyeprocess/articles/event-detector-multiverse-failure-clinic.md):
+
+### Standardized Data Quality
+
+Accuracy, RMS-S2S and SD precision, BCEA, realized sampling behavior,
+data loss, review rules, sensitivity, and manuscript reporting.
+
+- [Standardized eye-tracking data
+  quality](https://stefanosbalaskas.github.io/eyeprocess/articles/standardized-data-quality.md):
+- [Data Quality plot gallery and reporting
+  clinic](https://stefanosbalaskas.github.io/eyeprocess/articles/data-quality-plot-gallery.md):
+
 ### Executed validation evidence and governed IRT (0.9 M2)
 
 Frozen software-validation programmes, IRT
@@ -92,6 +120,14 @@ controls, reproducibility, benchmarking, and software-paper evidence.
   programme](https://stefanosbalaskas.github.io/eyeprocess/articles/research-validation-program.md):
 - [Measurement accountability: pupil latency, event plausibility, and
   validation](https://stefanosbalaskas.github.io/eyeprocess/articles/measurement-accountability-0-11.md):
+- [Ecosystem update — September
+  2026](https://stefanosbalaskas.github.io/eyeprocess/articles/ecosystem-update-2026-09.md):
+- [Survival Analysis for Gaze
+  Latency](https://stefanosbalaskas.github.io/eyeprocess/articles/gaze-survival-analysis.md):
+- [Worked example: evidence verification
+  latency](https://stefanosbalaskas.github.io/eyeprocess/articles/gaze-survival-verification-example.md):
+- [Reproducibility checklist for censored gaze
+  latency](https://stefanosbalaskas.github.io/eyeprocess/articles/gaze-survival-reproducibility-checklist.md):
 - [Research-scale validation
   execution](https://stefanosbalaskas.github.io/eyeprocess/articles/validation-execution-engine.md):
 - [Dynamic IRTree and transition-model
@@ -110,6 +146,12 @@ controls, reproducibility, benchmarking, and software-paper evidence.
   reproduction](https://stefanosbalaskas.github.io/eyeprocess/articles/benchmark-reproduction.md):
 - [Probabilistic AOIs and Compositional
   Attention](https://stefanosbalaskas.github.io/eyeprocess/articles/probabilistic-aoi-compositions.md):
+- [AOI Perturbation and Uncertainty
+  Analysis](https://stefanosbalaskas.github.io/eyeprocess/articles/aoi-perturbation-uncertainty.md):
+- [AOI Sensitivity Analysis Plan and Reporting
+  Template](https://stefanosbalaskas.github.io/eyeprocess/articles/aoi-sensitivity-analysis-plan.md):
+- [AOI Robustness Reporting
+  Bundle](https://stefanosbalaskas.github.io/eyeprocess/articles/aoi-reporting-bundle.md):
 - [Measurement Uncertainty and
   Recalibration](https://stefanosbalaskas.github.io/eyeprocess/articles/uncertainty-calibration.md):
 - [Process Reliability and Device

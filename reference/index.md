@@ -1,5 +1,83 @@
 # Package index
 
+## Event detector multiverse and inference robustness
+
+Explicit detector specifications, event matching, AOI/feature
+propagation, identical-model inference, stability summaries, plots, and
+reproducible reporting.
+
+- [`define_event_detector_spec()`](https://stefanosbalaskas.github.io/eyeprocess/reference/event_detector_multiverse.md)
+  [`validate_event_detector_spec()`](https://stefanosbalaskas.github.io/eyeprocess/reference/event_detector_multiverse.md)
+  [`create_detector_multiverse()`](https://stefanosbalaskas.github.io/eyeprocess/reference/event_detector_multiverse.md)
+  [`detect_events_with_spec()`](https://stefanosbalaskas.github.io/eyeprocess/reference/event_detector_multiverse.md)
+  [`import_external_detector_events()`](https://stefanosbalaskas.github.io/eyeprocess/reference/event_detector_multiverse.md)
+  [`run_detector_multiverse()`](https://stefanosbalaskas.github.io/eyeprocess/reference/event_detector_multiverse.md)
+  [`match_detected_events()`](https://stefanosbalaskas.github.io/eyeprocess/reference/event_detector_multiverse.md)
+  [`compare_event_catalogues()`](https://stefanosbalaskas.github.io/eyeprocess/reference/event_detector_multiverse.md)
+  [`estimate_detector_agreement()`](https://stefanosbalaskas.github.io/eyeprocess/reference/event_detector_multiverse.md)
+  [`summarise_detector_events()`](https://stefanosbalaskas.github.io/eyeprocess/reference/event_detector_multiverse.md)
+  [`summarise_detector_disagreement()`](https://stefanosbalaskas.github.io/eyeprocess/reference/event_detector_multiverse.md)
+  [`propagate_detector_to_aoi()`](https://stefanosbalaskas.github.io/eyeprocess/reference/event_detector_multiverse.md)
+  [`propagate_detector_to_features()`](https://stefanosbalaskas.github.io/eyeprocess/reference/event_detector_multiverse.md)
+  [`run_detector_inference_multiverse()`](https://stefanosbalaskas.github.io/eyeprocess/reference/event_detector_multiverse.md)
+  [`assess_detector_inference_stability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/event_detector_multiverse.md)
+  [`summarise_detector_robustness()`](https://stefanosbalaskas.github.io/eyeprocess/reference/event_detector_multiverse.md)
+  [`plot_detector_event_timeline()`](https://stefanosbalaskas.github.io/eyeprocess/reference/event_detector_multiverse.md)
+  [`plot_detector_agreement()`](https://stefanosbalaskas.github.io/eyeprocess/reference/event_detector_multiverse.md)
+  [`plot_detector_feature_distributions()`](https://stefanosbalaskas.github.io/eyeprocess/reference/event_detector_multiverse.md)
+  [`plot_detector_coefficient_stability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/event_detector_multiverse.md)
+  [`plot_detector_multiverse()`](https://stefanosbalaskas.github.io/eyeprocess/reference/event_detector_multiverse.md)
+  [`report_detector_multiverse()`](https://stefanosbalaskas.github.io/eyeprocess/reference/event_detector_multiverse.md)
+  [`simulate_detector_multiverse_data()`](https://stefanosbalaskas.github.io/eyeprocess/reference/event_detector_multiverse.md)
+  : Event-detector multiverse and inference robustness
+
+## Trial-level multilevel mediation
+
+Prepare repeated-measures mediation data without collapsing gaze to
+participant means.
+
+- [`center_within_participant()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multilevel-mediation.md)
+  [`decompose_within_between()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multilevel-mediation.md)
+  [`summarise_within_between_variance()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multilevel-mediation.md)
+  [`identify_mediation_levels()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multilevel-mediation.md)
+  [`audit_mediation_missingness()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multilevel-mediation.md)
+  [`check_mediation_trial_counts()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multilevel-mediation.md)
+  [`validate_multilevel_mediation_data()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multilevel-mediation.md)
+  [`prepare_multilevel_mediation_data()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multilevel-mediation.md)
+  [`add_multilevel_mediation_component()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multilevel-mediation.md)
+  : Trial-level multilevel mediation preparation
+
+## Standardized spatial data quality (0.11 development)
+
+Vendor-neutral quality metrics with explicit units, review-only
+thresholds, reproducible synthetic validation, and manuscript-ready
+reporting.
+
+- [`validate_gaze_quality_inputs()`](https://stefanosbalaskas.github.io/eyeprocess/reference/standardized_spatial_quality.md)
+  [`compute_gaze_accuracy()`](https://stefanosbalaskas.github.io/eyeprocess/reference/standardized_spatial_quality.md)
+  [`compute_rms_s2s()`](https://stefanosbalaskas.github.io/eyeprocess/reference/standardized_spatial_quality.md)
+  [`compute_gaze_sd_precision()`](https://stefanosbalaskas.github.io/eyeprocess/reference/standardized_spatial_quality.md)
+  [`compute_bcea()`](https://stefanosbalaskas.github.io/eyeprocess/reference/standardized_spatial_quality.md)
+  [`compute_gaze_precision()`](https://stefanosbalaskas.github.io/eyeprocess/reference/standardized_spatial_quality.md)
+  [`estimate_sampling_interval()`](https://stefanosbalaskas.github.io/eyeprocess/reference/standardized_spatial_quality.md)
+  [`estimate_sampling_jitter()`](https://stefanosbalaskas.github.io/eyeprocess/reference/standardized_spatial_quality.md)
+  [`estimate_effective_sampling_rate()`](https://stefanosbalaskas.github.io/eyeprocess/reference/standardized_spatial_quality.md)
+  [`compute_valid_sample_fraction()`](https://stefanosbalaskas.github.io/eyeprocess/reference/standardized_spatial_quality.md)
+  [`compute_gaze_data_loss()`](https://stefanosbalaskas.github.io/eyeprocess/reference/standardized_spatial_quality.md)
+  [`summarise_spatial_quality()`](https://stefanosbalaskas.github.io/eyeprocess/reference/standardized_spatial_quality.md)
+  [`summarise_sampling_quality()`](https://stefanosbalaskas.github.io/eyeprocess/reference/standardized_spatial_quality.md)
+  [`create_gaze_quality_report()`](https://stefanosbalaskas.github.io/eyeprocess/reference/standardized_spatial_quality.md)
+  [`compare_gaze_quality_sessions()`](https://stefanosbalaskas.github.io/eyeprocess/reference/standardized_spatial_quality.md)
+  [`compare_gaze_quality_conditions()`](https://stefanosbalaskas.github.io/eyeprocess/reference/standardized_spatial_quality.md)
+  [`plot_gaze_accuracy()`](https://stefanosbalaskas.github.io/eyeprocess/reference/standardized_spatial_quality.md)
+  [`plot_gaze_precision()`](https://stefanosbalaskas.github.io/eyeprocess/reference/standardized_spatial_quality.md)
+  [`plot_bcea()`](https://stefanosbalaskas.github.io/eyeprocess/reference/standardized_spatial_quality.md)
+  [`plot_sampling_intervals()`](https://stefanosbalaskas.github.io/eyeprocess/reference/standardized_spatial_quality.md)
+  [`plot_gaze_quality_dashboard()`](https://stefanosbalaskas.github.io/eyeprocess/reference/standardized_spatial_quality.md)
+  [`report_gaze_quality()`](https://stefanosbalaskas.github.io/eyeprocess/reference/standardized_spatial_quality.md)
+  [`simulate_gaze_quality_calibration()`](https://stefanosbalaskas.github.io/eyeprocess/reference/standardized_spatial_quality.md)
+  : Standardized vendor-neutral gaze data-quality metrics
+
 ## Measurement accountability diagnostics (0.11)
 
 - [`pupil_latency_sensitivity()`](https://stefanosbalaskas.github.io/eyeprocess/reference/pupil_latency_sensitivity.md)
@@ -8,6 +86,34 @@
   : Event-marker plausibility audit
 - [`validation_ladder()`](https://stefanosbalaskas.github.io/eyeprocess/reference/validation_ladder.md)
   : Build a measurement-to-generalization validation ladder
+
+## Censored gaze-latency survival analysis
+
+Right-censored gaze latency preparation, Kaplan-Meier description,
+Cox/AFT modelling, repeated-participant structures, diagnostics,
+sensitivity analysis, plotting, prediction, and reporting.
+
+- [`prepare_gaze_survival_data()`](https://stefanosbalaskas.github.io/eyeprocess/reference/gaze-survival.md)
+  [`validate_gaze_survival_data()`](https://stefanosbalaskas.github.io/eyeprocess/reference/gaze-survival.md)
+  [`summarise_gaze_censoring()`](https://stefanosbalaskas.github.io/eyeprocess/reference/gaze-survival.md)
+  [`estimate_gaze_survival()`](https://stefanosbalaskas.github.io/eyeprocess/reference/gaze-survival.md)
+  [`fit_gaze_cox_model()`](https://stefanosbalaskas.github.io/eyeprocess/reference/gaze-survival.md)
+  [`fit_gaze_mixed_cox_model()`](https://stefanosbalaskas.github.io/eyeprocess/reference/gaze-survival.md)
+  [`fit_gaze_aft_model()`](https://stefanosbalaskas.github.io/eyeprocess/reference/gaze-survival.md)
+  [`tidy_gaze_survival_model()`](https://stefanosbalaskas.github.io/eyeprocess/reference/gaze-survival.md)
+  [`check_gaze_proportional_hazards()`](https://stefanosbalaskas.github.io/eyeprocess/reference/gaze-survival.md)
+  [`compare_gaze_survival_models()`](https://stefanosbalaskas.github.io/eyeprocess/reference/gaze-survival.md)
+  [`predict_gaze_survival()`](https://stefanosbalaskas.github.io/eyeprocess/reference/gaze-survival.md)
+  [`estimate_gaze_latency_quantiles()`](https://stefanosbalaskas.github.io/eyeprocess/reference/gaze-survival.md)
+  [`plot_gaze_survival_curve()`](https://stefanosbalaskas.github.io/eyeprocess/reference/gaze-survival.md)
+  [`plot_gaze_cumulative_incidence()`](https://stefanosbalaskas.github.io/eyeprocess/reference/gaze-survival.md)
+  [`plot_gaze_hazard()`](https://stefanosbalaskas.github.io/eyeprocess/reference/gaze-survival.md)
+  [`plot_gaze_cox_diagnostics()`](https://stefanosbalaskas.github.io/eyeprocess/reference/gaze-survival.md)
+  [`compare_gaze_survival_specifications()`](https://stefanosbalaskas.github.io/eyeprocess/reference/gaze-survival.md)
+  [`report_gaze_survival_model()`](https://stefanosbalaskas.github.io/eyeprocess/reference/gaze-survival.md)
+  [`simulate_gaze_survival_inputs()`](https://stefanosbalaskas.github.io/eyeprocess/reference/gaze-survival.md)
+  [`simulate_gaze_survival_example()`](https://stefanosbalaskas.github.io/eyeprocess/reference/gaze-survival.md)
+  : Censored Gaze-Latency Survival Analysis
 
 ## Validation evidence programmes and freezing (0.9 M2)
 
@@ -341,6 +447,37 @@
 - [`simulate_eyeprocess_irt_binary()`](https://stefanosbalaskas.github.io/eyeprocess/reference/simulate_eyeprocess_irt_binary.md)
   : Simulate dichotomous IRT responses with optional local dependence
   and missingness
+
+## AOI perturbation and uncertainty
+
+Geometry perturbation, pixel/degree conversion, assignment stability,
+feature recomputation, model propagation, reporting, and robustness
+plots.
+
+- [`validate_aoi_geometry()`](https://stefanosbalaskas.github.io/eyeprocess/reference/aoi_perturbation_uncertainty.md)
+  [`convert_aoi_margin_to_degrees()`](https://stefanosbalaskas.github.io/eyeprocess/reference/aoi_perturbation_uncertainty.md)
+  [`convert_aoi_margin_to_pixels()`](https://stefanosbalaskas.github.io/eyeprocess/reference/aoi_perturbation_uncertainty.md)
+  [`aoi_perturbation_spec()`](https://stefanosbalaskas.github.io/eyeprocess/reference/aoi_perturbation_uncertainty.md)
+  [`dilate_aoi()`](https://stefanosbalaskas.github.io/eyeprocess/reference/aoi_perturbation_uncertainty.md)
+  [`erode_aoi()`](https://stefanosbalaskas.github.io/eyeprocess/reference/aoi_perturbation_uncertainty.md)
+  [`translate_aoi()`](https://stefanosbalaskas.github.io/eyeprocess/reference/aoi_perturbation_uncertainty.md)
+  [`jitter_aoi()`](https://stefanosbalaskas.github.io/eyeprocess/reference/aoi_perturbation_uncertainty.md)
+  [`perturb_aoi_geometry()`](https://stefanosbalaskas.github.io/eyeprocess/reference/aoi_perturbation_uncertainty.md)
+  [`create_aoi_perturbation_grid()`](https://stefanosbalaskas.github.io/eyeprocess/reference/aoi_perturbation_uncertainty.md)
+  [`apply_aoi_perturbation_grid()`](https://stefanosbalaskas.github.io/eyeprocess/reference/aoi_perturbation_uncertainty.md)
+  [`compare_aoi_assignments()`](https://stefanosbalaskas.github.io/eyeprocess/reference/aoi_perturbation_uncertainty.md)
+  [`estimate_aoi_assignment_stability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/aoi_perturbation_uncertainty.md)
+  [`estimate_fixation_assignment_probability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/aoi_perturbation_uncertainty.md)
+  [`recompute_aoi_features()`](https://stefanosbalaskas.github.io/eyeprocess/reference/aoi_perturbation_uncertainty.md)
+  [`run_aoi_sensitivity_analysis()`](https://stefanosbalaskas.github.io/eyeprocess/reference/aoi_perturbation_uncertainty.md)
+  [`assess_aoi_inference_stability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/aoi_perturbation_uncertainty.md)
+  [`summarise_aoi_sensitivity()`](https://stefanosbalaskas.github.io/eyeprocess/reference/aoi_perturbation_uncertainty.md)
+  [`report_aoi_sensitivity()`](https://stefanosbalaskas.github.io/eyeprocess/reference/aoi_perturbation_uncertainty.md)
+  [`plot_aoi_perturbations()`](https://stefanosbalaskas.github.io/eyeprocess/reference/aoi_perturbation_uncertainty.md)
+  [`plot_aoi_assignment_stability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/aoi_perturbation_uncertainty.md)
+  [`plot_aoi_coefficient_stability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/aoi_perturbation_uncertainty.md)
+  [`plot_aoi_robustness_surface()`](https://stefanosbalaskas.github.io/eyeprocess/reference/aoi_perturbation_uncertainty.md)
+  : AOI Perturbation and Uncertainty Analysis
 
 ## Validation, sensitivity, and negative controls (0.9)
 
@@ -1530,6 +1667,16 @@ introduced in the 0.7 development series.
   [`sensitivity_process`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-quality.md)
   [`print.eye_sensitivity`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-quality.md)
   : Quality control, sensitivity, and governance
+- [`center_within_participant()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multilevel-mediation.md)
+  [`decompose_within_between()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multilevel-mediation.md)
+  [`summarise_within_between_variance()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multilevel-mediation.md)
+  [`identify_mediation_levels()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multilevel-mediation.md)
+  [`audit_mediation_missingness()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multilevel-mediation.md)
+  [`check_mediation_trial_counts()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multilevel-mediation.md)
+  [`validate_multilevel_mediation_data()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multilevel-mediation.md)
+  [`prepare_multilevel_mediation_data()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multilevel-mediation.md)
+  [`add_multilevel_mediation_component()`](https://stefanosbalaskas.github.io/eyeprocess/reference/multilevel-mediation.md)
+  : Trial-level multilevel mediation preparation
 - [`new_eye_dataset`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-class.md)
   [`is_eye_dataset`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-class.md)
   [`as_eye_dataset`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-class.md)
@@ -1716,6 +1863,54 @@ introduced in the 0.7 development series.
   [`plot_metric_dependency_graph()`](https://stefanosbalaskas.github.io/eyeprocess/reference/046-evidence-provenance-graph.md)
   [`plot_model_decision_impact()`](https://stefanosbalaskas.github.io/eyeprocess/reference/046-evidence-provenance-graph.md)
   : Evidence and decision provenance graphs
+- [`validate_aoi_geometry()`](https://stefanosbalaskas.github.io/eyeprocess/reference/aoi_perturbation_uncertainty.md)
+  [`convert_aoi_margin_to_degrees()`](https://stefanosbalaskas.github.io/eyeprocess/reference/aoi_perturbation_uncertainty.md)
+  [`convert_aoi_margin_to_pixels()`](https://stefanosbalaskas.github.io/eyeprocess/reference/aoi_perturbation_uncertainty.md)
+  [`aoi_perturbation_spec()`](https://stefanosbalaskas.github.io/eyeprocess/reference/aoi_perturbation_uncertainty.md)
+  [`dilate_aoi()`](https://stefanosbalaskas.github.io/eyeprocess/reference/aoi_perturbation_uncertainty.md)
+  [`erode_aoi()`](https://stefanosbalaskas.github.io/eyeprocess/reference/aoi_perturbation_uncertainty.md)
+  [`translate_aoi()`](https://stefanosbalaskas.github.io/eyeprocess/reference/aoi_perturbation_uncertainty.md)
+  [`jitter_aoi()`](https://stefanosbalaskas.github.io/eyeprocess/reference/aoi_perturbation_uncertainty.md)
+  [`perturb_aoi_geometry()`](https://stefanosbalaskas.github.io/eyeprocess/reference/aoi_perturbation_uncertainty.md)
+  [`create_aoi_perturbation_grid()`](https://stefanosbalaskas.github.io/eyeprocess/reference/aoi_perturbation_uncertainty.md)
+  [`apply_aoi_perturbation_grid()`](https://stefanosbalaskas.github.io/eyeprocess/reference/aoi_perturbation_uncertainty.md)
+  [`compare_aoi_assignments()`](https://stefanosbalaskas.github.io/eyeprocess/reference/aoi_perturbation_uncertainty.md)
+  [`estimate_aoi_assignment_stability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/aoi_perturbation_uncertainty.md)
+  [`estimate_fixation_assignment_probability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/aoi_perturbation_uncertainty.md)
+  [`recompute_aoi_features()`](https://stefanosbalaskas.github.io/eyeprocess/reference/aoi_perturbation_uncertainty.md)
+  [`run_aoi_sensitivity_analysis()`](https://stefanosbalaskas.github.io/eyeprocess/reference/aoi_perturbation_uncertainty.md)
+  [`assess_aoi_inference_stability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/aoi_perturbation_uncertainty.md)
+  [`summarise_aoi_sensitivity()`](https://stefanosbalaskas.github.io/eyeprocess/reference/aoi_perturbation_uncertainty.md)
+  [`report_aoi_sensitivity()`](https://stefanosbalaskas.github.io/eyeprocess/reference/aoi_perturbation_uncertainty.md)
+  [`plot_aoi_perturbations()`](https://stefanosbalaskas.github.io/eyeprocess/reference/aoi_perturbation_uncertainty.md)
+  [`plot_aoi_assignment_stability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/aoi_perturbation_uncertainty.md)
+  [`plot_aoi_coefficient_stability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/aoi_perturbation_uncertainty.md)
+  [`plot_aoi_robustness_surface()`](https://stefanosbalaskas.github.io/eyeprocess/reference/aoi_perturbation_uncertainty.md)
+  : AOI Perturbation and Uncertainty Analysis
+- [`define_event_detector_spec()`](https://stefanosbalaskas.github.io/eyeprocess/reference/event_detector_multiverse.md)
+  [`validate_event_detector_spec()`](https://stefanosbalaskas.github.io/eyeprocess/reference/event_detector_multiverse.md)
+  [`create_detector_multiverse()`](https://stefanosbalaskas.github.io/eyeprocess/reference/event_detector_multiverse.md)
+  [`detect_events_with_spec()`](https://stefanosbalaskas.github.io/eyeprocess/reference/event_detector_multiverse.md)
+  [`import_external_detector_events()`](https://stefanosbalaskas.github.io/eyeprocess/reference/event_detector_multiverse.md)
+  [`run_detector_multiverse()`](https://stefanosbalaskas.github.io/eyeprocess/reference/event_detector_multiverse.md)
+  [`match_detected_events()`](https://stefanosbalaskas.github.io/eyeprocess/reference/event_detector_multiverse.md)
+  [`compare_event_catalogues()`](https://stefanosbalaskas.github.io/eyeprocess/reference/event_detector_multiverse.md)
+  [`estimate_detector_agreement()`](https://stefanosbalaskas.github.io/eyeprocess/reference/event_detector_multiverse.md)
+  [`summarise_detector_events()`](https://stefanosbalaskas.github.io/eyeprocess/reference/event_detector_multiverse.md)
+  [`summarise_detector_disagreement()`](https://stefanosbalaskas.github.io/eyeprocess/reference/event_detector_multiverse.md)
+  [`propagate_detector_to_aoi()`](https://stefanosbalaskas.github.io/eyeprocess/reference/event_detector_multiverse.md)
+  [`propagate_detector_to_features()`](https://stefanosbalaskas.github.io/eyeprocess/reference/event_detector_multiverse.md)
+  [`run_detector_inference_multiverse()`](https://stefanosbalaskas.github.io/eyeprocess/reference/event_detector_multiverse.md)
+  [`assess_detector_inference_stability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/event_detector_multiverse.md)
+  [`summarise_detector_robustness()`](https://stefanosbalaskas.github.io/eyeprocess/reference/event_detector_multiverse.md)
+  [`plot_detector_event_timeline()`](https://stefanosbalaskas.github.io/eyeprocess/reference/event_detector_multiverse.md)
+  [`plot_detector_agreement()`](https://stefanosbalaskas.github.io/eyeprocess/reference/event_detector_multiverse.md)
+  [`plot_detector_feature_distributions()`](https://stefanosbalaskas.github.io/eyeprocess/reference/event_detector_multiverse.md)
+  [`plot_detector_coefficient_stability()`](https://stefanosbalaskas.github.io/eyeprocess/reference/event_detector_multiverse.md)
+  [`plot_detector_multiverse()`](https://stefanosbalaskas.github.io/eyeprocess/reference/event_detector_multiverse.md)
+  [`report_detector_multiverse()`](https://stefanosbalaskas.github.io/eyeprocess/reference/event_detector_multiverse.md)
+  [`simulate_detector_multiverse_data()`](https://stefanosbalaskas.github.io/eyeprocess/reference/event_detector_multiverse.md)
+  : Event-detector multiverse and inference robustness
 - [`plot.eye_dataset`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-plots.md)
   [`plot_eye_overview`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-plots.md)
   [`plot_eye_trace`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-plots.md)
@@ -1737,6 +1932,27 @@ introduced in the 0.7 development series.
   [`plot_item_difficulty`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-plots.md)
   [`plot_model_diagnostics`](https://stefanosbalaskas.github.io/eyeprocess/reference/eyeprocess-plots.md)
   : Visualize eye-tracking and multimodal process data
+- [`prepare_gaze_survival_data()`](https://stefanosbalaskas.github.io/eyeprocess/reference/gaze-survival.md)
+  [`validate_gaze_survival_data()`](https://stefanosbalaskas.github.io/eyeprocess/reference/gaze-survival.md)
+  [`summarise_gaze_censoring()`](https://stefanosbalaskas.github.io/eyeprocess/reference/gaze-survival.md)
+  [`estimate_gaze_survival()`](https://stefanosbalaskas.github.io/eyeprocess/reference/gaze-survival.md)
+  [`fit_gaze_cox_model()`](https://stefanosbalaskas.github.io/eyeprocess/reference/gaze-survival.md)
+  [`fit_gaze_mixed_cox_model()`](https://stefanosbalaskas.github.io/eyeprocess/reference/gaze-survival.md)
+  [`fit_gaze_aft_model()`](https://stefanosbalaskas.github.io/eyeprocess/reference/gaze-survival.md)
+  [`tidy_gaze_survival_model()`](https://stefanosbalaskas.github.io/eyeprocess/reference/gaze-survival.md)
+  [`check_gaze_proportional_hazards()`](https://stefanosbalaskas.github.io/eyeprocess/reference/gaze-survival.md)
+  [`compare_gaze_survival_models()`](https://stefanosbalaskas.github.io/eyeprocess/reference/gaze-survival.md)
+  [`predict_gaze_survival()`](https://stefanosbalaskas.github.io/eyeprocess/reference/gaze-survival.md)
+  [`estimate_gaze_latency_quantiles()`](https://stefanosbalaskas.github.io/eyeprocess/reference/gaze-survival.md)
+  [`plot_gaze_survival_curve()`](https://stefanosbalaskas.github.io/eyeprocess/reference/gaze-survival.md)
+  [`plot_gaze_cumulative_incidence()`](https://stefanosbalaskas.github.io/eyeprocess/reference/gaze-survival.md)
+  [`plot_gaze_hazard()`](https://stefanosbalaskas.github.io/eyeprocess/reference/gaze-survival.md)
+  [`plot_gaze_cox_diagnostics()`](https://stefanosbalaskas.github.io/eyeprocess/reference/gaze-survival.md)
+  [`compare_gaze_survival_specifications()`](https://stefanosbalaskas.github.io/eyeprocess/reference/gaze-survival.md)
+  [`report_gaze_survival_model()`](https://stefanosbalaskas.github.io/eyeprocess/reference/gaze-survival.md)
+  [`simulate_gaze_survival_inputs()`](https://stefanosbalaskas.github.io/eyeprocess/reference/gaze-survival.md)
+  [`simulate_gaze_survival_example()`](https://stefanosbalaskas.github.io/eyeprocess/reference/gaze-survival.md)
+  : Censored Gaze-Latency Survival Analysis
 - [`plot_aoi_transition_matrix()`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot_aoi_transition_matrix.md)
   : Plot an AOI transition matrix
 - [`plot_aoi_transition_rank()`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot_aoi_transition_rank.md)
@@ -1779,6 +1995,30 @@ introduced in the 0.7 development series.
   : Plot validation failure rates
 - [`plot_validation_runtime()`](https://stefanosbalaskas.github.io/eyeprocess/reference/plot_validation_runtime.md)
   : Plot validation runtime
+- [`validate_gaze_quality_inputs()`](https://stefanosbalaskas.github.io/eyeprocess/reference/standardized_spatial_quality.md)
+  [`compute_gaze_accuracy()`](https://stefanosbalaskas.github.io/eyeprocess/reference/standardized_spatial_quality.md)
+  [`compute_rms_s2s()`](https://stefanosbalaskas.github.io/eyeprocess/reference/standardized_spatial_quality.md)
+  [`compute_gaze_sd_precision()`](https://stefanosbalaskas.github.io/eyeprocess/reference/standardized_spatial_quality.md)
+  [`compute_bcea()`](https://stefanosbalaskas.github.io/eyeprocess/reference/standardized_spatial_quality.md)
+  [`compute_gaze_precision()`](https://stefanosbalaskas.github.io/eyeprocess/reference/standardized_spatial_quality.md)
+  [`estimate_sampling_interval()`](https://stefanosbalaskas.github.io/eyeprocess/reference/standardized_spatial_quality.md)
+  [`estimate_sampling_jitter()`](https://stefanosbalaskas.github.io/eyeprocess/reference/standardized_spatial_quality.md)
+  [`estimate_effective_sampling_rate()`](https://stefanosbalaskas.github.io/eyeprocess/reference/standardized_spatial_quality.md)
+  [`compute_valid_sample_fraction()`](https://stefanosbalaskas.github.io/eyeprocess/reference/standardized_spatial_quality.md)
+  [`compute_gaze_data_loss()`](https://stefanosbalaskas.github.io/eyeprocess/reference/standardized_spatial_quality.md)
+  [`summarise_spatial_quality()`](https://stefanosbalaskas.github.io/eyeprocess/reference/standardized_spatial_quality.md)
+  [`summarise_sampling_quality()`](https://stefanosbalaskas.github.io/eyeprocess/reference/standardized_spatial_quality.md)
+  [`create_gaze_quality_report()`](https://stefanosbalaskas.github.io/eyeprocess/reference/standardized_spatial_quality.md)
+  [`compare_gaze_quality_sessions()`](https://stefanosbalaskas.github.io/eyeprocess/reference/standardized_spatial_quality.md)
+  [`compare_gaze_quality_conditions()`](https://stefanosbalaskas.github.io/eyeprocess/reference/standardized_spatial_quality.md)
+  [`plot_gaze_accuracy()`](https://stefanosbalaskas.github.io/eyeprocess/reference/standardized_spatial_quality.md)
+  [`plot_gaze_precision()`](https://stefanosbalaskas.github.io/eyeprocess/reference/standardized_spatial_quality.md)
+  [`plot_bcea()`](https://stefanosbalaskas.github.io/eyeprocess/reference/standardized_spatial_quality.md)
+  [`plot_sampling_intervals()`](https://stefanosbalaskas.github.io/eyeprocess/reference/standardized_spatial_quality.md)
+  [`plot_gaze_quality_dashboard()`](https://stefanosbalaskas.github.io/eyeprocess/reference/standardized_spatial_quality.md)
+  [`report_gaze_quality()`](https://stefanosbalaskas.github.io/eyeprocess/reference/standardized_spatial_quality.md)
+  [`simulate_gaze_quality_calibration()`](https://stefanosbalaskas.github.io/eyeprocess/reference/standardized_spatial_quality.md)
+  : Standardized vendor-neutral gaze data-quality metrics
 
 ## Psychometrics
 
