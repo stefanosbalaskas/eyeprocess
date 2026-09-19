@@ -250,6 +250,30 @@ Formula models use `na.fail`. Missing predictors therefore cause an explicit
 branch failure rather than an unnoticed reduction in N. Non-converged branches
 are retained diagnostically and excluded from coefficient-distribution summaries.
 
+### Model-input audit
+
+Outcome and quality attrition are also explicit. `run_detector_inference_multiverse()`
+returns `input_audit`, one row per planned detector specification. It records
+`input_rows`, `aoi_selected_rows`, `quality_excluded_rows`,
+`outcome_missing_rows`, `model_rows_used`, and branch `status`.
+
+```{r}
+inference$input_audit[, c(
+  "detector_id",
+  "input_rows",
+  "aoi_selected_rows",
+  "quality_excluded_rows",
+  "outcome_missing_rows",
+  "model_rows_used",
+  "status"
+)]
+```
+
+Quality and non-finite-outcome exclusions also appear in `inference$warnings`.
+The same counts are copied onto coefficient rows when a model is fitted and onto
+failure rows when fitting cannot proceed. Missing outcomes are never recoded as
+zero or silently discarded.
+
 ### Denominator discipline
 
 The stability table uses the **declared detector multiverse** as the denominator.
@@ -361,3 +385,11 @@ These are backend differences, not permission to alter the scientific model
 between languages. Numerical identity is not required where estimation engines
 differ; detector definitions, retained observations, model meaning, convergence
 status, provenance, and semantic output fields are expected to align.
+
+## Failure clinic
+
+The companion `event-detector-multiverse-failure-clinic` vignette and installed
+`examples/event-detector-multiverse-failure-clinic.R` script deliberately
+exercise detector failure, quality exclusion, outcome missingness, and invalid
+duplicate-term callback output. Use them to verify that failures remain visible
+rather than being repaired silently.
