@@ -209,26 +209,28 @@ recompute_aoi_features <- function(
         }
       }
 
-      rows[[length(rows) + 1L]] <- cbind(
-        base,
-        data.frame(
-          aoi = aoi,
-          observation_level = observation_level,
-          observation_count = observation_count,
-          fixation_count = fixation_count,
-          sample_count = sample_count,
-          dwell = dwell,
-          first_observation = first_observation,
-          first_fixation = first_fixation,
-          inspected = inspected,
-          n_valid_observations = n_valid,
-          n_missing_observations = n_missing,
-          duration_complete = duration_complete,
-          time_complete = time_complete,
-          perturbation_id = perturbation_id,
-          stringsAsFactors = FALSE
-        )
+      detail <- data.frame(
+        aoi = aoi,
+        observation_level = observation_level,
+        observation_count = observation_count,
+        fixation_count = fixation_count,
+        sample_count = sample_count,
+        dwell = dwell,
+        first_observation = first_observation,
+        first_fixation = first_fixation,
+        inspected = inspected,
+        n_valid_observations = n_valid,
+        n_missing_observations = n_missing,
+        duration_complete = duration_complete,
+        time_complete = time_complete,
+        perturbation_id = perturbation_id,
+        stringsAsFactors = FALSE
       )
+      rows[[length(rows) + 1L]] <- if (length(group_cols)) {
+        cbind(base, detail)
+      } else {
+        detail
+      }
     }
   }
 
