@@ -839,11 +839,52 @@ plot_detector_multiverse <- function(x, inference = NULL, term = NULL, feature =
 #' @export
 report_detector_multiverse <- function(x, inference = NULL, term = NULL, substantive_threshold = NULL, path = NULL) {
   s <- summarise_detector_robustness(x, inference, term, substantive_threshold)
-  lines <- c("# Event-detector multiverse report", "", "## Scope", "", "This report evaluates whether events, AOI features, and statistical conclusions change across the supplied defensible detector specifications. The specification set is not evidence that omitted detector choices are valid or irrelevant.", "", "## Detector specifications", "", .edm_md_table(x$multiverse$manifest), "", "## Event-level sensitivity", "", if (nrow(s$event_summary)) .edm_md_table(s$event_summary) else "No successful event catalogues were available.", "", "## AOI-feature sensitivity", "", if (nrow(s$feature_sensitivity)) .edm_md_table(s$feature_sensitivity) else "AOI features were not propagated or no cross-detector comparison was estimable.", "")
-  if (!is.null(inference) && !is.null(term)) lines <- c(lines, "## Inference stability", "", .edm_md_table(s$inference_stability), "", "The convergence-rate denominator is every planned detector specification. Model failures, missing requested terms, and non-converged branches therefore remain visible rather than disappearing from robustness accounting.", "")
-  if (nrow(x$failures)) lines <- c(lines, "## Branch failures", "", .edm_md_table(x$failures), "")
-  lines <- c(lines, "## Reporting guidance", "", "Report detector family and parameters, sampling rate and coordinate units, AOI assignment rule, successful/failed specifications, event-level agreement, feature ranges, coefficient distributions with uncertainty, convergence failures, and any substantive threshold. Do not summarize robustness by counting p-values alone.", "", "## Limitations", "", "Detector sensitivity is conditional on the supplied preprocessing, AOIs, quality rules, model specification, and detector set. Agreement does not establish event validity, and disagreement does not identify which detector is correct without external evidence.")
-  text <- paste(lines, collapse = "\n"); if (!is.null(path)) writeLines(text, path, useBytes = TRUE); text
+  lines <- c(
+    "# Event-detector multiverse report", "",
+    "## Scope", "",
+    "This report evaluates whether events, AOI features, and statistical conclusions change across the supplied defensible detector specifications. The specification set is not evidence that omitted detector choices are valid or irrelevant.", "",
+    "## Detector specifications", "", .edm_md_table(x$multiverse$manifest), "",
+    "## Event-level sensitivity", "",
+    if (nrow(s$event_summary)) .edm_md_table(s$event_summary) else "No successful event catalogues were available.", "",
+    "## AOI-feature sensitivity", "",
+    if (nrow(s$feature_sensitivity)) .edm_md_table(s$feature_sensitivity) else "AOI features were not propagated or no cross-detector comparison was estimable.", ""
+  )
+
+  if (!is.null(inference)) {
+    lines <- c(
+      lines,
+      "## Model-input audit", "",
+      if (nrow(inference$input_audit)) .edm_md_table(inference$input_audit) else "No model-input audit rows were available.", "",
+      "AOI selection, declared quality exclusions, non-finite outcomes, and model rows used are reported separately; missing outcomes are never converted to zero.", ""
+    )
+  }
+
+  if (!is.null(inference) && !is.null(term)) {
+    lines <- c(
+      lines,
+      "## Inference stability", "",
+      .edm_md_table(s$inference_stability), "",
+      "The convergence-rate denominator is every planned detector specification. Model failures, missing requested terms, and non-converged branches therefore remain visible rather than disappearing from robustness accounting.", ""
+    )
+  }
+
+  if (!is.null(inference) && nrow(inference$failures)) {
+    lines <- c(lines, "## Model failures", "", .edm_md_table(inference$failures), "")
+  }
+  if (nrow(x$failures)) {
+    lines <- c(lines, "## Branch failures", "", .edm_md_table(x$failures), "")
+  }
+
+  lines <- c(
+    lines,
+    "## Reporting guidance", "",
+    "Report detector family and parameters, sampling rate and coordinate units, AOI assignment rule, successful/failed specifications, model-input audit counts, event-level agreement, feature ranges, coefficient distributions with uncertainty, convergence failures, and any substantive threshold. Do not summarize robustness by counting p-values alone.", "",
+    "## Limitations", "",
+    "Detector sensitivity is conditional on the supplied preprocessing, AOIs, quality rules, model specification, and detector set. Agreement does not establish event validity, and disagreement does not identify which detector is correct without external evidence."
+  )
+  text <- paste(lines, collapse = "\n")
+  if (!is.null(path)) writeLines(text, path, useBytes = TRUE)
+  text
 }
 
 #' Simulate a small 60-Hz detector-multiverse dataset
