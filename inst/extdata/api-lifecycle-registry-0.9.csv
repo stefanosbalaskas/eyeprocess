@@ -1262,3 +1262,4 @@
 "plot_detector_multiverse","advanced","","","0.11.1.9000","Composite diagnostic plotting front door for detector sensitivity."
 "report_detector_multiverse","workflow","report_detector_multiverse","","0.11.1.9000","Canonical reproducible Markdown reporting workflow for event-detector sensitivity."
 "simulate_detector_multiverse_data","advanced","","","0.11.1.9000","Synthetic 60-Hz detector-multiverse teaching and validation data; not an empirical performance benchmark."
+"simulate_gaze_survival_inputs","advanced","","","0.11.1.9000","Deterministic synthetic raw trial/event inputs for censored gaze-survival teaching, examples, and validation; not empirical evidence."
