@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">eyeprocess</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.12.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.12.0.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -77,23 +77,31 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Changelog</h1>
-      <small>Source: <a href="https://github.com/stefanosbalaskas/eyeprocess/blob/v0.12.0/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
+      <small>Source: <a href="https://github.com/stefanosbalaskas/eyeprocess/blob/master/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
     <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.12.0.9000" id="eyeprocess-01209000">eyeprocess 0.12.0.9000<a class="anchor" aria-label="anchor" href="#eyeprocess-01209000"></a></h2>
+<div class="section level3">
+<h3 id="development-0-12-0-9000">Development<a class="anchor" aria-label="anchor" href="#development-0-12-0-9000"></a></h3>
+<ul><li>Development resumes after the cross-platform CI-certified stable <code>v0.12.0</code> release.</li>
+<li>Stable release provenance remains anchored at commit <code>4d272f025e70207f31fb2baf10cba31ee8bdb996</code>; the <code>v0.12.0</code> tag and published release assets are unchanged.</li>
+</ul></div>
+</div>
+    <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.12.0" id="eyeprocess-0120">eyeprocess 0.12.0<a class="anchor" aria-label="anchor" href="#eyeprocess-0120"></a></h2>
 <div class="section level3">
-<h3 id="pre-release-validation-status-0-12-0">Pre-release validation status<a class="anchor" aria-label="anchor" href="#pre-release-validation-status-0-12-0"></a></h3>
+<h3 id="release-validation-status-0-12-0">Release validation status<a class="anchor" aria-label="anchor" href="#release-validation-status-0-12-0"></a></h3>
 <ul><li>
-<strong>Release status:</strong> <code>v0.12.0</code> is published first as a GitHub pre-release. The package is locally validated, but the exact release commit is not yet claimed as cross-platform GitHub CI-certified.</li>
+<strong>Release status:</strong> <code>v0.12.0</code> is the stable GitHub release. It was promoted from pre-release after the exact tagged commit passed the complete cross-platform GitHub R-CMD-check matrix.</li>
 <li>
 <strong>Local Windows validation — 2026-09-19:</strong> installed-package targeted tests PASS; strict measurement-intelligence lane PASS; full local test suite PASS; clean survival-vignette rebuild PASS; pkgdown local build PASS; final package installation PASS.</li>
 <li>
 <strong>R CMD check:</strong> Windows R 4.6.1, <code>--as-cran</code>, <strong>0 errors / 0 warnings / 0 notes</strong>.</li>
 <li>
-<strong>Pending certification:</strong> GitHub-hosted Linux, macOS, Windows, R-devel, and oldrel lanes remain pending while GitHub Actions capacity is unavailable. This is a CI-certification limitation, not a package-runtime failure.</li>
+<strong>Cross-platform certification — 2026-09-19:</strong> macOS release, Windows release, Ubuntu release, Ubuntu devel, and Ubuntu oldrel-1 all passed on commit <code>4d272f025e70207f31fb2baf10cba31ee8bdb996</code>. The pkgdown push workflow, pkgdown release workflow, and GitHub Pages deployment also passed.</li>
 <li>
-<strong>Promotion rule:</strong> promote this same <code>v0.12.0</code> release from pre-release to stable only after the exact release commit passes the required cross-platform GitHub Actions checks. If those checks require code changes, do not silently move the release tag.</li>
+<strong>Release provenance:</strong> tag <code>v0.12.0</code> remains permanently anchored to commit <code>4d272f025e70207f31fb2baf10cba31ee8bdb996</code>; the validated release source artifact and SHA-256 remain unchanged.</li>
 </ul></div>
 <div class="section level3">
 <h3 id="event-detector-multiverse-and-inference-robustness-0-12-0">Event detector multiverse and inference robustness<a class="anchor" aria-label="anchor" href="#event-detector-multiverse-and-inference-robustness-0-12-0"></a></h3>
