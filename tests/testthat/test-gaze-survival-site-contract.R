@@ -1,3 +1,8 @@
+test_that("gaze-survival raw simulator remains part of the public contract", {
+  expect_true("simulate_gaze_survival_inputs" %in% getNamespaceExports("eyeprocess"))
+  expect_true(is.function(getExportedValue("eyeprocess", "simulate_gaze_survival_inputs")))
+})
+
 test_that("gaze-survival site contract remains discoverable", {
   root <- normalizePath(file.path(testthat::test_path(), "..", ".."), mustWork = TRUE)
   pkgdown <- file.path(root, "_pkgdown.yml")
