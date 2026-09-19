@@ -32,6 +32,18 @@ The workflow supports I-VT, I-DT, a transparently labelled adaptive-velocity ref
 
 See the [Event-Detector Multiverse article](https://stefanosbalaskas.github.io/eyeprocess/articles/event-detector-multiverse.html) and the [detector-multiverse reference section](https://stefanosbalaskas.github.io/eyeprocess/reference/index.html#event-detector-multiverse-and-inference-robustness).
 
+## AOI perturbation, uncertainty, and reporting
+
+AOI boundaries are treated as an **analytical specification** rather than a fixed truth. The AOI robustness workflow can dilate, erode, translate, jitter, and anisotropically expand declared geometry in pixels or degrees of visual angle; remap samples/fixations with explicit ambiguity and missingness; recompute complete AOI feature cells; propagate the same analyst-specified model; retain failed/non-converged branches; and summarize assignment, coefficient, interval, convergence, and model-`N` stability.
+
+The website now provides a complete route from planning to reviewer-ready evidence:
+
+- [AOI Perturbation and Uncertainty Analysis](https://stefanosbalaskas.github.io/eyeprocess/articles/aoi-perturbation-uncertainty.html) — worked synthetic workflow, four plot families, interpretation, failure handling, and limitations.
+- [AOI Sensitivity Analysis Plan and Reporting Template](https://stefanosbalaskas.github.io/eyeprocess/articles/aoi-sensitivity-analysis-plan.html) — prespecify geometry, perturbation envelope, units, denominator rules, model, and amendment policy.
+- [AOI Robustness Reporting Bundle](https://stefanosbalaskas.github.io/eyeprocess/articles/aoi-reporting-bundle.html) — package branch audits, assignment/model evidence, failures, provenance, report text, figures, and optional file manifests for manuscripts or reviewer responses.
+
+Core functions include `create_aoi_perturbation_grid()`, `run_aoi_sensitivity_analysis()`, `estimate_aoi_assignment_stability()`, `assess_aoi_inference_stability()`, `report_aoi_sensitivity()`, and the four AOI plotting functions. Robustness frequencies are descriptive sensitivity summaries, not probabilities that an AOI definition or scientific conclusion is true.
+
 ## September 2026 measurement-accountability additions
 
 The current development branch adds three conservative diagnostics that make timing uncertainty and validation scope explicit without changing the package's existing synchronization or modelling engines:

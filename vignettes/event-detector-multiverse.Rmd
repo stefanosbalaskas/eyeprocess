@@ -336,6 +336,19 @@ At minimum, report:
 
 Do **not** summarize robustness by counting significant p-values.
 
+## Visual reporting companion
+
+For a compact plot-first walkthrough, use
+`vignette("event-detector-multiverse-visual-reporting")`. It generates a
+CI-sized set of internal-detector diagnostics covering event counts, temporal
+agreement, disclosure-AOI dwell, coefficient stability, and model-input row
+accounting. The visual article uses only built-in detectors so optional external
+backends do not determine whether the page can build.
+
+The figures should be read as a sequence: **event representation → propagated
+measurement → downstream inference → row/failure accounting**. No individual
+plot is a detector-validity test.
+
 ## Generate a Markdown report
 
 ```{r}
@@ -388,7 +401,7 @@ status, provenance, and semantic output fields are expected to align.
 
 ## Failure clinic
 
-The companion `event-detector-multiverse-failure-clinic` vignette and installed
+The companion `event-detector-multiverse-visual-reporting` vignette provides a plot-first reporting workflow. The `event-detector-multiverse-failure-clinic` vignette and installed
 `examples/event-detector-multiverse-failure-clinic.R` script deliberately
 exercise detector failure, quality exclusion, outcome missingness, and invalid
 duplicate-term callback output. Use them to verify that failures remain visible
