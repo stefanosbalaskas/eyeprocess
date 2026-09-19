@@ -102,6 +102,15 @@ recompute_aoi_features <- function(
   }
   d <- data
   d$aoi_assignment <- assignments
+  perturbation_id <- if (is.null(perturbation_id)) {
+    NA_character_
+  } else {
+    if (!is.character(perturbation_id) || length(perturbation_id) != 1L ||
+        is.na(perturbation_id) || !nzchar(perturbation_id)) {
+      .aoi_stop("perturbation_id must be NULL or one non-empty character value.")
+    }
+    perturbation_id
+  }
   group_cols <- unlist(Filter(Negate(is.null), list(participant_col, trial_col)), use.names = FALSE)
   if (!all(group_cols %in% names(d))) .aoi_stop("One or more grouping columns are absent.")
   if (!is.null(duration_col) && !duration_col %in% names(d)) .aoi_stop("duration_col is absent.")

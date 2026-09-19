@@ -268,6 +268,9 @@ test_that("explicit sensitivity branches retain specification metadata", {
   )
   expect_equal(sort(unique(out$specification)), c("expanded_aoi", "primary"))
   expect_true("aoi_specification" %in% names(out))
+  expect_true(all(c("hazard_ratio", "time_ratio", "effect_measure") %in% names(out)))
+  expect_true(all(is.na(out$time_ratio[out$effect_measure == "hazard_ratio"])))
+  expect_true(all(is.na(out$hazard_ratio[out$effect_measure == "time_ratio"])))
 })
 
 test_that("synthetic survival inputs and prepared tables are deterministic", {
