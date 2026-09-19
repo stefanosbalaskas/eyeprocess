@@ -269,6 +269,7 @@ test_that("feature recomputation preserves zero cells and missing denominators",
   expect_true(is.na(p2a$inspected))
   expect_equal(p2a$n_valid_observations, 0)
   expect_equal(p2a$n_missing_observations, 2)
+  expect_true(all(is.na(complete$perturbation_id)))
 
   expect_warning(
     recompute_aoi_features(

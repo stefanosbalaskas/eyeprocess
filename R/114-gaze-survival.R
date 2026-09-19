@@ -963,7 +963,7 @@ compare_gaze_survival_specifications <- function(
       rows[[k]] <- tidy
     }
   }
-  out <- do.call(rbind, rows)
+  out <- do.call(.bind_rows_base, rows)
   out <- out[, c("specification", "model_family", setdiff(names(out), c("specification", "model_family"))), drop = FALSE]
   rownames(out) <- NULL
   out

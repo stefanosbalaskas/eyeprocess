@@ -14,7 +14,7 @@ test_that("within-between decomposition preserves trial rows", {
   data <- make_mediation_data()
   out <- decompose_within_between(data, c("condition", "dwell_ms"))
   expect_equal(nrow(out), nrow(data))
-  expect_equal(tapply(out$condition_within, out$participant_id, mean), c(p1 = 0, p2 = 0, p3 = 0))
+  expect_equal(drop(tapply(out$condition_within, out$participant_id, mean)), c(p1 = 0, p2 = 0, p3 = 0))
   expect_equal(unique(out$condition_between), 0.5)
   expect_true(all(is.na(out$dwell_ms_within[is.na(data$dwell_ms)])))
 })
@@ -125,7 +125,22 @@ test_that("cross-language fixture matches canonical semantic fields", {
   for (column in c("X_within", "X_between", "M_within", "M_between")) {
     expect_equal(actual[[column]], fixture[[column]], tolerance = 1e-12)
   }
-  for (column in setdiff(names(fixture), c("X_within", "X_between", "M_within", "M_between"))) {
+  logical_columns <- c(
+    "mediation_mediator_observed",
+    "mediation_mediator_true_zero",
+    "mediation_poor_quality",
+    "mediation_response_observed",
+    "mediation_analysis_eligible"
+  )
+  for (column in logical_columns) {
+    expected_logical <- tolower(trimws(as.character(fixture[[column]]))) == "true"
+    expect_identical(actual[[column]], expected_logical)
+  }
+  character_columns <- setdiff(
+    names(fixture),
+    c("X_within", "X_between", "M_within", "M_between", logical_columns)
+  )
+  for (column in character_columns) {
     expect_equal(as.character(actual[[column]]), as.character(fixture[[column]]))
   }
 })
