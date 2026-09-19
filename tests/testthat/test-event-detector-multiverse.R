@@ -710,3 +710,55 @@ test_that("installed detector failure clinic executes", {
   )
 })
 
+test_that("detector report includes model input audit and model failures", {
+  d <- simulate_detector_multiverse_data(n_participants = 4, seed = 46)
+  out <- run_detector_multiverse(
+    d,
+    list(
+      edm_ivt("ivt25", 25),
+      edm_ivt("ivt35", 35)
+    )
+  )
+  out <- propagate_detector_to_aoi(out)
+  out <- propagate_detector_to_features(out)
+
+  selective <- function(data, model_spec) {
+    if (identical(unique(as.character(data$detector_id)), "ivt35")) {
+      stop("deliberate model failure")
+    }
+    data.frame(
+      term = "condition",
+      estimate = 1,
+      SE = .2,
+      CI_lower = .6,
+      CI_upper = 1.4,
+      p = .01,
+      converged = TRUE,
+      N = nrow(data),
+      stringsAsFactors = FALSE
+    )
+  }
+
+  fit <- run_detector_inference_multiverse(
+    out,
+    list(
+      engine = "callback",
+      formula = dwell_time_ms ~ condition_id,
+      outcome = "dwell_time_ms",
+      aoi_id = "disclosure"
+    ),
+    model_callback = selective
+  )
+  text <- report_detector_multiverse(
+    out,
+    inference = fit,
+    term = "condition"
+  )
+
+  expect_match(text, "## Model-input audit", fixed = TRUE)
+  expect_match(text, "quality_excluded_rows", fixed = TRUE)
+  expect_match(text, "outcome_missing_rows", fixed = TRUE)
+  expect_match(text, "## Model failures", fixed = TRUE)
+  expect_match(text, "deliberate model failure", fixed = TRUE)
+})
+
