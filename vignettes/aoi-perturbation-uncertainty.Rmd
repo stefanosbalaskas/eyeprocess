@@ -198,6 +198,45 @@ plot_aoi_assignment_stability(result)
 plot_aoi_coefficient_stability(result, "condition")
 ```
 
+### Plot-to-question map
+
+| Visual | Function | Scientific question | Report with |
+|---|---|---|---|
+| Perturbed geometry | `plot_aoi_perturbations()` | Which observations cross a boundary when geometry changes? | perturbation ID, units, overlap/boundary policy |
+| Assignment stability | `plot_aoi_assignment_stability()` | How much of the measurement mapping changes? | unchanged/new/lost/reassigned proportions |
+| Coefficient stability | `plot_aoi_coefficient_stability()` | Does the same model change materially? | coefficient/interval range, convergence, model `N` |
+| Robustness surface | `plot_aoi_robustness_surface()` | Where does sensitivity concentrate across two-dimensional perturbations? | both perturbation axes and the plotted stability metric |
+
+The robustness-surface plot is most useful when the analysis plan includes a two-dimensional perturbation grid. Do not construct a surface after seeing results merely to locate a favorable region.
+
+```{r surface-example, eval=FALSE}
+surface_pairs <- as.matrix(expand.grid(
+  margin_x = c(-.25, 0, .25, .50),
+  margin_y = c(-.25, 0, .25, .50)
+))
+surface_grid <- create_aoi_perturbation_grid(
+  anisotropic = surface_pairs,
+  unit = "deg",
+  include_baseline = TRUE,
+  screen_width_px = 1024,
+  screen_height_px = 768,
+  viewing_distance = 60,
+  physical_screen_size = c(53.1, 29.9),
+  boundary_policy = "allow"
+)
+surface_result <- run_aoi_sensitivity_analysis(
+  fixations, aois, surface_grid,
+  x_col = "x", y_col = "y",
+  observation_id_col = "obs",
+  participant_col = "participant",
+  trial_col = "trial",
+  duration_col = "duration",
+  time_col = "time",
+  observation_level = "fixation"
+)
+plot_aoi_robustness_surface(surface_result)
+```
+
 The coefficient plot should be interpreted together with the assignment plot.
 A result can have many reassigned fixations without reversing a coefficient, or
 can show high aggregate assignment stability while a model estimate remains
@@ -283,6 +322,10 @@ The package does not reinterpret a geometry failure as a model result, a callbac
 > Of the planned AOI perturbations, all non-evaluable geometry and model branches were retained in the audit trail. Overlap ambiguity remained explicit, missing assignment opportunities were not converted to zero, and non-converged model rows were excluded from converged-effect summaries. Model-N variation was reported alongside coefficient and assignment stability.
 
 This is a reporting template, not an empirical result.
+
+### Figure set for manuscripts and reviewer responses
+
+A compact evidence set usually contains: (1) one geometry/reassignment figure, (2) assignment stability, and (3) coefficient stability. Add the two-dimensional robustness surface only when joint geometry changes are part of the prespecified sensitivity plan. Pair the figures with the branch audit, failure table, convergence summary, and model-`N` range rather than presenting plots without denominators.
 
 ## Reporting AOI Robustness
 
