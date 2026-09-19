@@ -1,5 +1,14 @@
 # eyeprocess 0.11.1
 
+## Event detector multiverse and inference robustness
+
+- Adds explicit detector specifications, deterministic detector branches, temporal event matching/agreement, detector-to-AOI/feature propagation, identical-model inference, stability summaries, diagnostic plots, and reproducible reporting.
+- Uses the full declared detector multiverse as the convergence denominator; failed, missing-term, unavailable-backend, and non-converged branches remain in the scientific record. Duplicate coefficient terms from custom callbacks are rejected.
+- Adds per-detector `input_audit` accounting for propagated rows, target-AOI rows, quality exclusions, non-finite outcomes, model rows used, and model status without recoding missing outcomes to zero.
+- Adds the main methodology vignette, failure-clinic vignette and executable example, reporting/interpretation guidance, API documentation, pkgdown discovery, and cross-language contract coverage.
+
+**Validation record — 2026-09-19:** no R/Rscript runtime was available locally, so the merged feature is not claimed as locally executed. Static source/test structure checks passed before commits, and the merged governance audit is **1,263 NAMESPACE exports = 1,263 unique lifecycle registry rows**, with **117 module-policy rows** and no missing/extra export mappings. The merged feature commit is **not GitHub CI-certified** because exact-head Actions did not execute. Re-check the release/devel/oldrel R CMD check matrix, Windows/macOS runners, pkgdown build/deployment, measurement-intelligence workflow, and required status checks when Actions capacity is available.
+
 ## Censored gaze-latency survival examples and site guidance
 
 - Adds a standalone evidence-verification example for time to first source/evidence AOI entry, including right-censoring construction, clustered Cox, Weibull/log-normal AFT sensitivity models, diagnostics, interpretation, and manuscript reporting guidance.
