@@ -29,6 +29,7 @@ articles:
     Accuracy, RMS-S2S and SD precision, BCEA, realized sampling behavior, data loss, review rules, sensitivity, and manuscript reporting.
   contents:
   - standardized-data-quality
+  - data-quality-plot-gallery
 - title: Executed validation evidence and governed IRT (0.9 M2)
   desc: |
     Frozen software-validation programmes, IRT information/scoring/diagnostics, linking and invariance, process-aware IRT, cognitive diagnosis, adaptive testing, engine gating, and paper-ready evidence.
