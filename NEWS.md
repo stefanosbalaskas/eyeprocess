@@ -1,12 +1,19 @@
+# eyeprocess 0.12.0.9000
+
+## Development
+
+- Development resumes after the cross-platform CI-certified stable `v0.12.0` release.
+- Stable release provenance remains anchored at commit `4d272f025e70207f31fb2baf10cba31ee8bdb996`; the `v0.12.0` tag and published release assets are unchanged.
+
 # eyeprocess 0.12.0
 
-## Pre-release validation status
+## Release validation status
 
-- **Release status:** `v0.12.0` is published first as a GitHub pre-release. The package is locally validated, but the exact release commit is not yet claimed as cross-platform GitHub CI-certified.
+- **Release status:** `v0.12.0` is the stable GitHub release. It was promoted from pre-release after the exact tagged commit passed the complete cross-platform GitHub R-CMD-check matrix.
 - **Local Windows validation — 2026-09-19:** installed-package targeted tests PASS; strict measurement-intelligence lane PASS; full local test suite PASS; clean survival-vignette rebuild PASS; pkgdown local build PASS; final package installation PASS.
 - **R CMD check:** Windows R 4.6.1, `--as-cran`, **0 errors / 0 warnings / 0 notes**.
-- **Pending certification:** GitHub-hosted Linux, macOS, Windows, R-devel, and oldrel lanes remain pending while GitHub Actions capacity is unavailable. This is a CI-certification limitation, not a package-runtime failure.
-- **Promotion rule:** promote this same `v0.12.0` release from pre-release to stable only after the exact release commit passes the required cross-platform GitHub Actions checks. If those checks require code changes, do not silently move the release tag.
+- **Cross-platform certification — 2026-09-19:** macOS release, Windows release, Ubuntu release, Ubuntu devel, and Ubuntu oldrel-1 all passed on commit `4d272f025e70207f31fb2baf10cba31ee8bdb996`. The pkgdown push workflow, pkgdown release workflow, and GitHub Pages deployment also passed.
+- **Release provenance:** tag `v0.12.0` remains permanently anchored to commit `4d272f025e70207f31fb2baf10cba31ee8bdb996`; the validated release source artifact and SHA-256 remain unchanged.
 
 
 ## Event detector multiverse and inference robustness
