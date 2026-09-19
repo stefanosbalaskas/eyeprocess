@@ -762,3 +762,28 @@ test_that("detector report includes model input audit and model failures", {
   expect_match(text, "deliberate model failure", fixed = TRUE)
 })
 
+
+
+test_that("detector visual reporting documentation is retained", {
+  visual_path <- testthat::test_path(
+    "..", "..", "vignettes",
+    "event-detector-multiverse-visual-reporting.Rmd"
+  )
+  expect_true(file.exists(visual_path))
+  visual <- paste(readLines(visual_path, warn = FALSE), collapse = "\n")
+  expect_match(visual, "Event-count sensitivity", fixed = TRUE)
+  expect_match(visual, "Pairwise temporal agreement", fixed = TRUE)
+  expect_match(visual, "AOI-feature sensitivity", fixed = TRUE)
+  expect_match(visual, "Coefficient stability", fixed = TRUE)
+  expect_match(visual, "Model-input accountability", fixed = TRUE)
+  expect_match(visual, "input_audit", fixed = TRUE)
+  expect_match(visual, "Planned-denominator robustness", fixed = TRUE)
+
+  pkgdown_path <- testthat::test_path("..", "..", "_pkgdown.yml")
+  pkgdown <- paste(readLines(pkgdown_path, warn = FALSE), collapse = "\n")
+  expect_match(
+    pkgdown,
+    "event-detector-multiverse-visual-reporting",
+    fixed = TRUE
+  )
+})
