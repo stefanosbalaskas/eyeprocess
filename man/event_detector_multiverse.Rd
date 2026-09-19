@@ -157,6 +157,11 @@ external algorithm.
 \value{
 Specification functions return detector specification or multiverse objects.
 Execution/propagation functions return governed multiverse result objects.
+\code{run_detector_inference_multiverse()} returns an inference result containing
+coefficients, failures, warnings, model metadata, a feature fingerprint, and
+\code{input_audit}. The audit has one row per planned detector and records
+\code{input_rows}, \code{aoi_selected_rows}, \code{quality_excluded_rows},
+\code{outcome_missing_rows}, \code{model_rows_used}, and branch \code{status}.
 Comparison and stability functions return data frames or named summary lists.
 For \code{assess_detector_inference_stability()}, \code{specifications} is the
 number of planned detector specifications, \code{term_available_specifications}
