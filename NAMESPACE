@@ -1720,3 +1720,5 @@ export(plot_detector_coefficient_stability)
 export(plot_detector_multiverse)
 export(report_detector_multiverse)
 export(simulate_detector_multiverse_data)
+
+export(simulate_gaze_survival_inputs)
