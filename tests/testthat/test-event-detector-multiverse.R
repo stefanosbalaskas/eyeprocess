@@ -591,3 +591,110 @@ test_that("model callbacks reject duplicate coefficient terms", {
   )
 })
 
+test_that("model input attrition is audited and warned", {
+  d <- simulate_detector_multiverse_data(n_participants = 4, seed = 41)
+  out <- run_detector_multiverse(d, list(edm_ivt()))
+  out <- propagate_detector_to_aoi(out)
+  out <- propagate_detector_to_features(out)
+
+  idx <- which(
+    out$features$detector_id == "ivt30" &
+      as.character(out$features$aoi_id) == "disclosure"
+  )
+  expect_gte(length(idx), 3L)
+  out$features$valid_data_fraction[idx[1]] <- .1
+  out$features$dwell_time_ms[idx[2]] <- NA_real_
+
+  callback <- function(data, model_spec) {
+    data.frame(
+      term = "condition",
+      estimate = 1,
+      SE = .2,
+      CI_lower = .6,
+      CI_upper = 1.4,
+      p = .01,
+      converged = TRUE,
+      N = nrow(data),
+      stringsAsFactors = FALSE
+    )
+  }
+
+  fit <- run_detector_inference_multiverse(
+    out,
+    list(
+      engine = "callback",
+      formula = dwell_time_ms ~ condition_id,
+      outcome = "dwell_time_ms",
+      aoi_id = "disclosure"
+    ),
+    model_callback = callback,
+    minimum_valid_fraction = .5
+  )
+
+  audit <- fit$input_audit[1, , drop = FALSE]
+  expect_gt(audit$input_rows, audit$aoi_selected_rows)
+  expect_equal(audit$quality_excluded_rows, 1)
+  expect_equal(audit$outcome_missing_rows, 1)
+  expect_equal(
+    audit$model_rows_used,
+    audit$aoi_selected_rows - 2
+  )
+  expect_identical(audit$status, "modelled")
+  expect_true(all(c(
+    "input_rows", "aoi_selected_rows", "quality_excluded_rows",
+    "outcome_missing_rows", "model_rows_used"
+  ) %in% names(fit$coefficients)))
+  expect_true(any(grepl("minimum_valid_fraction", fit$warnings$warning, fixed = TRUE)))
+  expect_true(any(grepl("non-finite outcome", fit$warnings$warning, fixed = TRUE)))
+})
+
+
+test_that("all non-finite outcomes fail with retained input audit", {
+  d <- simulate_detector_multiverse_data(n_participants = 4, seed = 42)
+  out <- run_detector_multiverse(d, list(edm_ivt()))
+  out <- propagate_detector_to_aoi(out)
+  out <- propagate_detector_to_features(out)
+
+  idx <- which(
+    out$features$detector_id == "ivt30" &
+      as.character(out$features$aoi_id) == "disclosure"
+  )
+  out$features$dwell_time_ms[idx] <- NA_real_
+
+  callback <- function(data, model_spec) {
+    data.frame(
+      term = "condition",
+      estimate = 1,
+      SE = .2,
+      CI_lower = .6,
+      CI_upper = 1.4,
+      p = .01,
+      converged = TRUE,
+      N = nrow(data),
+      stringsAsFactors = FALSE
+    )
+  }
+
+  fit <- run_detector_inference_multiverse(
+    out,
+    list(
+      engine = "callback",
+      formula = dwell_time_ms ~ condition_id,
+      outcome = "dwell_time_ms",
+      aoi_id = "disclosure"
+    ),
+    model_callback = callback
+  )
+
+  expect_equal(nrow(fit$coefficients), 0)
+  expect_equal(nrow(fit$failures), 1)
+  audit <- fit$input_audit[1, , drop = FALSE]
+  expect_identical(audit$status, "no_model_data")
+  expect_equal(audit$outcome_missing_rows, audit$aoi_selected_rows)
+  expect_equal(audit$model_rows_used, 0)
+  expect_equal(
+    fit$failures$outcome_missing_rows,
+    audit$outcome_missing_rows
+  )
+})
+
