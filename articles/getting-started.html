@@ -87,6 +87,7 @@
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
 </form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://CRAN.R-project.org/package=eyeprocess">CRAN</a></li>
 <li class="nav-item"><a class="external-link nav-link" href="https://github.com/stefanosbalaskas/eyeprocess/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
@@ -114,9 +115,30 @@ event, response, and biometric streams without erasing their source
 semantics. The core object is a relational <code>eye_dataset</code>, not
 a single wide data frame.</p>
 <div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
+<p>For the CRAN release (<strong>0.11.1</strong>, published 28 September
+2026):</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"eyeprocess"</span><span class="op">)</span></span></code></pre></div>
+<p>The canonical CRAN record is <a href="https://CRAN.R-project.org/package=eyeprocess" class="external-link uri">https://CRAN.R-project.org/package=eyeprocess</a> and the
+package DOI is <a href="https://doi.org/10.32614/CRAN.package.eyeprocess" class="external-link uri">https://doi.org/10.32614/CRAN.package.eyeprocess</a>.</p>
+<p>The GitHub stable release is currently newer than CRAN. Install
+<strong>v0.12.0</strong> explicitly when that release line is
+required:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"stefanosbalaskas/eyeprocess"</span>, ref <span class="op">=</span> <span class="st">"v0.12.0"</span><span class="op">)</span></span></code></pre></div>
+<p>For the current <strong>0.12.0.9000</strong> development branch:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"stefanosbalaskas/eyeprocess"</span><span class="op">)</span></span></code></pre></div>
+<p>Always record the installed package version in reproducible reports
+with <code>packageVersion("eyeprocess")</code>.</p>
+</div>
+<div class="section level2">
 <h2 id="simulate-a-complete-project">Simulate a complete project<a class="anchor" aria-label="anchor" href="#simulate-a-complete-project"></a>
 </h2>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://stefanosbalaskas.github.io/eyeprocess/">eyeprocess</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/eyeprocess-simulation.html">simulate_eye_dataset</a></span><span class="op">(</span>n_person <span class="op">=</span> <span class="fl">20</span>, n_item <span class="op">=</span> <span class="fl">8</span>, seed <span class="op">=</span> <span class="fl">42</span><span class="op">)</span></span>
@@ -128,7 +150,7 @@ a single wide data frame.</p>
 <div class="section level2">
 <h2 id="standard-workflow">Standard workflow<a class="anchor" aria-label="anchor" href="#standard-workflow"></a>
 </h2>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">spec</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/eyeprocess-preprocessing.html">preprocess_spec</a></span><span class="op">(</span></span>
 <span>  gaze_filter <span class="op">=</span> <span class="st">"median"</span>,</span>
 <span>  pupil_interpolation <span class="op">=</span> <span class="st">"linear"</span>,</span>
@@ -146,7 +168,7 @@ a single wide data frame.</p>
 <div class="section level2">
 <h2 id="inspect-and-visualize">Inspect and visualize<a class="anchor" aria-label="anchor" href="#inspect-and-visualize"></a>
 </h2>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">trial</span> <span class="op">&lt;-</span> <span class="va">x</span><span class="op">$</span><span class="va">intervals</span><span class="op">$</span><span class="va">trial_id</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
 <span><span class="fu"><a href="../reference/eyeprocess-plots.html">plot_eye_overview</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/eyeprocess-plots.html">plot_scanpath</a></span><span class="op">(</span><span class="va">x</span>, trial_id <span class="op">=</span> <span class="va">trial</span><span class="op">)</span></span>
@@ -156,7 +178,7 @@ a single wide data frame.</p>
 <div class="section level2">
 <h2 id="persist-the-canonical-representation">Persist the canonical representation<a class="anchor" aria-label="anchor" href="#persist-the-canonical-representation"></a>
 </h2>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/eyeprocess-export-report.html">write_eye_dataset</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"analysis/eye-dataset.rds"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/eyeprocess-export-report.html">export_canonical</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"analysis/canonical-folder"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/eyeprocess-export-report.html">report_eye_dataset</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"analysis/eyeprocess-report.md"</span>, include_plots <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>

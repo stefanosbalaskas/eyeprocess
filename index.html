@@ -90,6 +90,7 @@
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="search.json">
 </form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://CRAN.R-project.org/package=eyeprocess">CRAN</a></li>
 <li class="nav-item"><a class="external-link nav-link" href="https://github.com/stefanosbalaskas/eyeprocess/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
@@ -105,8 +106,8 @@
 </div>
 <p><strong>Vendor-neutral infrastructure for reproducible eye-tracking and multimodal process-data research.</strong></p>
 <p><code>eyeprocess</code> transforms heterogeneous eye-tracking, pupillometry, behavioural, and biometric exports into validated, analysis-ready process data. It combines vendor-neutral harmonization with first-class Gazepoint support, explicit quality and provenance controls, gaze/AOI/scanpath analysis, pupillometry and biometric workflows, interoperability, and psychometric/process modelling.</p>
-<p><strong>Current formal release:</strong> <strong>0.11.1</strong></p>
-<p><a href="https://stefanosbalaskas.github.io/eyeprocess/">Website</a> · <a href="https://stefanosbalaskas.github.io/eyeprocess/reference/index.html">Reference</a> · <a href="https://stefanosbalaskas.github.io/eyeprocess/articles/index.html">Articles</a> · <a href="https://github.com/stefanosbalaskas/eyeprocess" class="external-link">GitHub</a> · <a href="https://github.com/stefanosbalaskas/eyeprocess/releases" class="external-link">Releases</a></p>
+<p><strong>Release channels:</strong> CRAN <strong>0.11.1</strong> (published 2026-09-28) · GitHub stable <strong>0.12.0</strong> · development <strong>0.12.0.9000</strong></p>
+<p><a href="https://stefanosbalaskas.github.io/eyeprocess/">Website</a> · <a href="https://CRAN.R-project.org/package=eyeprocess" class="external-link">CRAN</a> · <a href="https://stefanosbalaskas.github.io/eyeprocess/reference/index.html">Reference</a> · <a href="https://stefanosbalaskas.github.io/eyeprocess/articles/index.html">Articles</a> · <a href="https://github.com/stefanosbalaskas/eyeprocess" class="external-link">GitHub</a> · <a href="https://github.com/stefanosbalaskas/eyeprocess/releases" class="external-link">Releases</a></p>
 <div class="section level2">
 <h2 id="what-eyeprocess-provides">What eyeprocess provides<a class="anchor" aria-label="anchor" href="#what-eyeprocess-provides"></a>
 </h2>
@@ -307,19 +308,35 @@
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>Install the exact formal GitHub release:</p>
+<div class="section level3">
+<h3 id="cran">CRAN<a class="anchor" aria-label="anchor" href="#cran"></a>
+</h3>
+<p>The current CRAN release is <strong>0.11.1</strong>, published on <strong>28 September 2026</strong>:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span></span>
-<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"stefanosbalaskas/eyeprocess"</span>, ref <span class="op">=</span> <span class="st">"v0.11.1"</span><span class="op">)</span></span></code></pre></div>
-<p>For the current development branch:</p>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"eyeprocess"</span><span class="op">)</span></span></code></pre></div>
+<p>The canonical CRAN record is <a href="https://CRAN.R-project.org/package=eyeprocess" class="external-link uri">https://CRAN.R-project.org/package=eyeprocess</a> and the package DOI is <a href="https://doi.org/10.32614/CRAN.package.eyeprocess" class="external-link uri">https://doi.org/10.32614/CRAN.package.eyeprocess</a>.</p>
+</div>
+<div class="section level3">
+<h3 id="github-stable-release">GitHub stable release<a class="anchor" aria-label="anchor" href="#github-stable-release"></a>
+</h3>
+<p>The GitHub release line is newer than CRAN. To install the exact <strong>v0.12.0</strong> release:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"stefanosbalaskas/eyeprocess"</span>, ref <span class="op">=</span> <span class="st">"v0.12.0"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="development">Development<a class="anchor" aria-label="anchor" href="#development"></a>
+</h3>
+<p>For the current <strong>0.12.0.9000</strong> development branch:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"stefanosbalaskas/eyeprocess"</span><span class="op">)</span></span></code></pre></div>
 <p>Optional modelling backends are deliberately not mandatory dependencies. Install only the engines required for a specific analysis.</p>
+</div>
 </div>
 <div class="section level2">
 <h2 id="quick-start">Quick start<a class="anchor" aria-label="anchor" href="#quick-start"></a>
 </h2>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://stefanosbalaskas.github.io/eyeprocess/">eyeprocess</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/eyeprocess-import-gazepoint.html">read_gazepoint_folder</a></span><span class="op">(</span></span>
@@ -357,7 +374,7 @@
 <div class="section level2">
 <h2 id="validation-and-reproducibility">Validation and reproducibility<a class="anchor" aria-label="anchor" href="#validation-and-reproducibility"></a>
 </h2>
-<p>The 0.11.1 release line preserves an auditable validation contract across data import, transformations, storage, modelling, and reporting. Release validation included the complete test suite and exact source-tarball checking with <strong>0 errors and 0 warnings</strong>; the remaining incoming NOTE concerns submission/optional repository metadata rather than a package failure.</p>
+<p>The <strong>0.11.1 CRAN release</strong> preserves an auditable validation contract across data import, transformations, storage, modelling, and reporting. It was published on CRAN on <strong>28 September 2026</strong> after the CRAN remediation cycle, and is available from the canonical package page and package DOI above. The newer <strong>v0.12.0 GitHub release</strong> and <strong>0.12.0.9000 development branch</strong> remain separate release channels and should not be reported as the CRAN version.</p>
 <p>The package also provides infrastructure for real-export validation, grouped validation, parameter recovery, simulation-based calibration, leakage checks, sensitivity analysis, model-evidence audits, benchmark generation, and reproducible reporting.</p>
 <p>Detailed implementation and validation records are maintained in:</p>
 <ul>
@@ -372,7 +389,7 @@
 </h2>
 <p><code>eyeprocess</code> does not equate fixation with attention, dwell time with difficulty, pupil dilation with cognitive load, rapid response with guessing, physiological variation with a named mental state, or a data-derived process factor with a psychological construct.</p>
 <p>Useful audit interfaces include:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/eyeprocess-quality.html">interpretive_warnings</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="reference/eyeprocess-quality.html">analysis_readiness</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
 <span><span class="fu"><a href="reference/eyeprocess-class.html">provenance_manifest</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code></pre></div>
@@ -397,10 +414,10 @@
 <h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
 </h2>
 <p>For the citation associated with the installed package, run:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation</a></span><span class="op">(</span><span class="st">"eyeprocess"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/packageDescription.html" class="external-link">packageVersion</a></span><span class="op">(</span><span class="st">"eyeprocess"</span><span class="op">)</span></span></code></pre></div>
-<p>Studies should report the exact package version and, when relevant, the source commit and modelling backend used.</p>
+<p>Studies should report the exact package version and, when relevant, the source commit and modelling backend used. The canonical CRAN package DOI is <a href="https://doi.org/10.32614/CRAN.package.eyeprocess" class="external-link"><code>10.32614/CRAN.package.eyeprocess</code></a>.</p>
 </div>
 <div class="section level2">
 <h2 id="contributing-and-issues">Contributing and issues<a class="anchor" aria-label="anchor" href="#contributing-and-issues"></a>
@@ -422,6 +439,8 @@
 <ul class="list-unstyled">
 <li><a href="https://github.com/stefanosbalaskas/eyeprocess/" class="external-link">Browse source code</a></li>
 <li><a href="https://github.com/stefanosbalaskas/eyeprocess/issues" class="external-link">Report a bug</a></li>
+<li><a href="https://CRAN.R-project.org/package=eyeprocess" class="external-link">CRAN package</a></li>
+<li><a href="https://doi.org/10.32614/CRAN.package.eyeprocess" class="external-link">CRAN package DOI</a></li>
 </ul>
 </div>
 

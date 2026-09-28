@@ -10,9 +10,11 @@ Gazepoint support, explicit quality and provenance controls,
 gaze/AOI/scanpath analysis, pupillometry and biometric workflows,
 interoperability, and psychometric/process modelling.
 
-**Current formal release:** **0.11.1**
+**Release channels:** CRAN **0.11.1** (published 2026-09-28) · GitHub
+stable **0.12.0** · development **0.12.0.9000**
 
 [Website](https://stefanosbalaskas.github.io/eyeprocess/) ·
+[CRAN](https://CRAN.R-project.org/package=eyeprocess) ·
 [Reference](https://stefanosbalaskas.github.io/eyeprocess/reference/index.html)
 ·
 [Articles](https://stefanosbalaskas.github.io/eyeprocess/articles/index.html)
@@ -229,15 +231,34 @@ compatibility with every exporter or software version.
 
 ## Installation
 
-Install the exact formal GitHub release:
+### CRAN
+
+The current CRAN release is **0.11.1**, published on **28 September
+2026**:
+
+``` r
+
+install.packages("eyeprocess")
+```
+
+The canonical CRAN record is
+<https://CRAN.R-project.org/package=eyeprocess> and the package DOI is
+<https://doi.org/10.32614/CRAN.package.eyeprocess>.
+
+### GitHub stable release
+
+The GitHub release line is newer than CRAN. To install the exact
+**v0.12.0** release:
 
 ``` r
 
 install.packages("remotes")
-remotes::install_github("stefanosbalaskas/eyeprocess", ref = "v0.11.1")
+remotes::install_github("stefanosbalaskas/eyeprocess", ref = "v0.12.0")
 ```
 
-For the current development branch:
+### Development
+
+For the current **0.12.0.9000** development branch:
 
 ``` r
 
@@ -312,12 +333,13 @@ construct.
 
 ## Validation and reproducibility
 
-The 0.11.1 release line preserves an auditable validation contract
+The **0.11.1 CRAN release** preserves an auditable validation contract
 across data import, transformations, storage, modelling, and reporting.
-Release validation included the complete test suite and exact
-source-tarball checking with **0 errors and 0 warnings**; the remaining
-incoming NOTE concerns submission/optional repository metadata rather
-than a package failure.
+It was published on CRAN on **28 September 2026** after the CRAN
+remediation cycle, and is available from the canonical package page and
+package DOI above. The newer **v0.12.0 GitHub release** and
+**0.12.0.9000 development branch** remain separate release channels and
+should not be reported as the CRAN version.
 
 The package also provides infrastructure for real-export validation,
 grouped validation, parameter recovery, simulation-based calibration,
@@ -381,7 +403,9 @@ packageVersion("eyeprocess")
 ```
 
 Studies should report the exact package version and, when relevant, the
-source commit and modelling backend used.
+source commit and modelling backend used. The canonical CRAN package DOI
+is
+[`10.32614/CRAN.package.eyeprocess`](https://doi.org/10.32614/CRAN.package.eyeprocess).
 
 ## Contributing and issues
 

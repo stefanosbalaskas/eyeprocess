@@ -1,5 +1,18 @@
 # Ecosystem update — September 2026
 
+## eyeprocess 0.11.1 published on CRAN
+
+`eyeprocess` **0.11.1** was published on CRAN on **28 September 2026**.
+The canonical package page is
+<https://CRAN.R-project.org/package=eyeprocess> and the package DOI is
+<https://doi.org/10.32614/CRAN.package.eyeprocess>.
+
+The release channels are intentionally distinct: CRAN currently provides
+0.11.1, GitHub provides the newer stable `v0.12.0` release, and `master`
+continues as the 0.12.0.9000 development line. Analyses should report
+the version actually installed rather than treating these channels as
+equivalent.
+
 ## Related downstream modelling addition
 
 The related Python package **gpbiometricspy** now includes a fully
