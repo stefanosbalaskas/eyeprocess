@@ -15,6 +15,34 @@ knitr::opts_chunk$set(collapse = TRUE, comment = "#>", eval = FALSE)
 biometric streams without erasing their source semantics. The core object is a
 relational `eye_dataset`, not a single wide data frame.
 
+## Installation
+
+For the CRAN release (**0.11.1**, published 28 September 2026):
+
+```{r}
+install.packages("eyeprocess")
+```
+
+The canonical CRAN record is <https://CRAN.R-project.org/package=eyeprocess> and
+the package DOI is <https://doi.org/10.32614/CRAN.package.eyeprocess>.
+
+The GitHub stable release is currently newer than CRAN. Install **v0.12.0**
+explicitly when that release line is required:
+
+```{r}
+install.packages("remotes")
+remotes::install_github("stefanosbalaskas/eyeprocess", ref = "v0.12.0")
+```
+
+For the current **0.12.0.9000** development branch:
+
+```{r}
+remotes::install_github("stefanosbalaskas/eyeprocess")
+```
+
+Always record the installed package version in reproducible reports with
+`packageVersion("eyeprocess")`.
+
 ## Simulate a complete project
 
 ```{r}

@@ -10,7 +10,18 @@ navbar:
     - news
     right:
     - search
+    - cran
     - github
+  components:
+    cran:
+      text: CRAN
+      href: https://CRAN.R-project.org/package=eyeprocess
+home:
+  links:
+  - text: CRAN package
+    href: https://CRAN.R-project.org/package=eyeprocess
+  - text: CRAN package DOI
+    href: https://doi.org/10.32614/CRAN.package.eyeprocess
 articles:
 - title: Trial-level multilevel mediation
   contents:
