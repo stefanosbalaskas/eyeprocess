@@ -10,5 +10,9 @@ authors:
     orcid: https://orcid.org/0000-0003-2444-9796
     email: s.balaskas@ac.upatras.gr
 repository-code: https://github.com/stefanosbalaskas/eyeprocess
+identifiers:
+  - type: doi
+    value: 10.32614/CRAN.package.eyeprocess
+    description: "CRAN package DOI; CRAN release 0.11.1 published 2026-09-28"
 url: https://stefanosbalaskas.github.io/eyeprocess/
 license: MIT
