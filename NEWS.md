@@ -5,6 +5,13 @@
 - Development resumes after the cross-platform CI-certified stable `v0.12.0` release.
 - Stable release provenance remains anchored at commit `4d272f025e70207f31fb2baf10cba31ee8bdb996`; the `v0.12.0` tag and published release assets are unchanged.
 
+## CRAN publication status — 2026-09-28
+
+- **CRAN release:** `eyeprocess` **0.11.1** was published on CRAN on **28 September 2026**.
+- **Canonical CRAN package page:** <https://CRAN.R-project.org/package=eyeprocess>.
+- **CRAN package DOI:** <https://doi.org/10.32614/CRAN.package.eyeprocess>.
+- Release channels remain explicit: CRAN is currently 0.11.1; the newer stable GitHub release is `v0.12.0`; `master` is the 0.12.0.9000 development line.
+
 # eyeprocess 0.12.0
 
 ## Release validation status
