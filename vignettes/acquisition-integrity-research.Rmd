@@ -34,3 +34,31 @@ descriptive long-then-short interval heuristic, not a diagnosis of acquisition
 software bugs.
 
 This addition is under development; no release is implied.
+
+
+## DABEST-style effect visualization after eyeprocess preprocessing
+
+Once gaze/pupil observations are reduced to **independent participant-level**
+effect summaries, use the official R
+[dabestr package](https://acclab.github.io/dabestr/) for Gardner–Altman
+or Cumming plots. These deliberately display both the raw distribution
+and BCa bootstrap uncertainty. The underlying
+[DABEST Python examples](https://acclab.github.io/DABEST-python/)
+are the visualization reference; no cross-language code is copied.
+
+\`\`\`{r dabest-bridge, eval=FALSE}
+# aggregated <- one validated row per participant and condition,
+# with ParticipantID, Condition and PupilChange columns.
+library(dabestr)
+d <- dabestr::load(
+  aggregated, x = Condition, y = PupilChange,
+  idx = c("low", "high"),
+  paired = "baseline", id_col = ParticipantID
+)
+dabestr::dabest_plot(dabestr::mean_diff(d), float_contrast = FALSE)
+\`\`\`
+
+Sample-level eye-tracking data, event windows and serially correlated
+trials cannot be resampled as independent observations. For those designs,
+retain the package's grouped/multilevel inference rather than substituting
+unadjusted raw mean differences.
