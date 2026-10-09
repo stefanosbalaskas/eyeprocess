@@ -1,0 +1,64 @@
+---
+title: "Observed acquisition integrity: hardware, SDK and analysis clocks"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Observed acquisition integrity}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+The 2026 methodological briefings distinguish hardware-native capability,
+what the acquisition SDK delivered, the observed timestamps and the grid used
+by downstream analysis. The distinction matters when low-rate recordings
+are interpolated to a much denser computational grid: interpolation does not
+recover lost physiological information.
+
+```{r example, eval=requireNamespace('ggplot2', quietly=TRUE)}
+library(eyeprocess)
+audit <- audit_eye_acquisition_integrity(
+  time_s = c(0, .01, .02, .02, .06, .061, .07),
+  valid = c(TRUE, TRUE, FALSE, TRUE, TRUE, TRUE, TRUE),
+  device_native_rate_hz = 100,
+  sdk_delivered_rate_hz = 90,
+  analysis_grid_rate_hz = 500
+)
+audit$summary
+plot_eye_acquisition_integrity(audit)
+```
+
+The plot retains the zero timestamp interval and long gap. The declared
+device/SDK rates are supplied metadata; the helper does **not** verify those
+against firmware, infer absent packets, repair clock drift or establish
+millisecond-accurate cross-device alignment. The candidate catch-up flag is a
+descriptive long-then-short interval heuristic, not a diagnosis of acquisition
+software bugs.
+
+This addition is under development; no release is implied.
+
+
+## DABEST-style effect visualization after eyeprocess preprocessing
+
+Once gaze/pupil observations are reduced to **independent participant-level**
+effect summaries, use the official R
+[dabestr package](https://acclab.github.io/dabestr/) for Gardner–Altman
+or Cumming plots. These deliberately display both the raw distribution
+and BCa bootstrap uncertainty. The underlying
+[DABEST Python examples](https://acclab.github.io/DABEST-python/)
+are the visualization reference; no cross-language code is copied.
+
+```{r dabest-bridge, eval=FALSE}
+# aggregated <- one validated row per participant and condition,
+# with ParticipantID, Condition and PupilChange columns.
+library(dabestr)
+d <- dabestr::load(
+  aggregated, x = Condition, y = PupilChange,
+  idx = c("low", "high"),
+  paired = "baseline", id_col = ParticipantID
+)
+dabestr::dabest_plot(dabestr::mean_diff(d), float_contrast = FALSE)
+```
+
+Sample-level eye-tracking data, event windows and serially correlated
+trials cannot be resampled as independent observations. For those designs,
+retain the package's grouped/multilevel inference rather than substituting
+unadjusted raw mean differences.

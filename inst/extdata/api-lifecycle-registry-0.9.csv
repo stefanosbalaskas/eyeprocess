@@ -1282,3 +1282,5 @@
 "compare_gaze_survival_specifications","workflow","compare_gaze_survival_specifications","","0.11.1.9000","Censored gaze-latency survival-analysis API with explicit censoring, estimator, provenance, diagnostics, and reporting contracts."
 "report_gaze_survival_model","workflow","report_gaze_survival_model","","0.11.1.9000","Censored gaze-latency survival-analysis API with explicit censoring, estimator, provenance, diagnostics, and reporting contracts."
 "simulate_gaze_survival_example","advanced","","","0.11.1.9000","Censored gaze-latency survival-analysis API with explicit censoring, estimator, provenance, diagnostics, and reporting contracts."
+"audit_eye_acquisition_integrity","experimental","","","0.12.0.9000","Research-only rate and timestamp provenance diagnostic; source: 120-acquisition-integrity-research.R. No synchronization or physiological-bandwidth validation claim."
+"plot_eye_acquisition_integrity","experimental","","","0.12.0.9000","Research-only timestamp-interval plot; source: 120-acquisition-integrity-research.R. Descriptive visualization; not an external acquisition validation."

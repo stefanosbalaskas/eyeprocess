@@ -75,7 +75,9 @@ test_that("packaged lifecycle policy artifacts are internally coherent", {
   reg <- utils::read.csv(registry_path, stringsAsFactors = FALSE, na.strings = c("", "NA"))
   policy <- utils::read.csv(policy_path, stringsAsFactors = FALSE, na.strings = c("", "NA"))
 
-  expect_equal(nrow(reg), 1283L)
+  # Frozen base inventory (1283) plus two explicitly registered experimental
+  # acquisition-integrity APIs on this development branch.
+  expect_equal(nrow(reg), 1285L)
   expect_equal(nrow(policy), 117L)
   expect_false(anyDuplicated(reg$name) > 0L)
   expect_false(anyDuplicated(policy$source_file) > 0L)
