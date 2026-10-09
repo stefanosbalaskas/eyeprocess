@@ -13,16 +13,16 @@ The [DABEST Python project](https://acclab.github.io/DABEST-python/) and the mai
 
 The three figures below are reproducible and use **synthetic, illustrative data only**. They are created with ggplot2 in the article so the graphics can render on the published pkgdown website without relying on experimental APIs. This article does **not** claim that a new estimator has been scientifically qualified or released.
 
-\`\`\`{r setup, include=FALSE}
+```{r setup, include=FALSE}
 knitr::opts_chunk$set(collapse = TRUE, comment = "#>", fig.width = 8, fig.height = 4.7)
 set.seed(20261009)
-\`\`\`
+```
 
 ## Figure 1. Acquisition timestamps: the analysis grid is not the device rate
 
 A hardware-native capability, acquisition SDK delivery rate, recorded timestamps, and interpolated analysis grid are different quantities. Here, a nominal 100 Hz synthetic stream contains a duplicated timestamp, a long gap, and a short subsequent interval. The displayed analysis grid of 500 Hz does **not** recover missing samples.
 
-\`\`\`{r acquisition-intervals, eval=requireNamespace("ggplot2", quietly=TRUE)}
+```{r acquisition-intervals, eval=requireNamespace("ggplot2", quietly=TRUE)}
 time_s <- cumsum(c(0, rep(.010, 15), 0, .055, .001,
                   rep(.010, 20)))
 delta_ms <- 1000 * diff(time_s)
@@ -38,15 +38,15 @@ ggplot2::ggplot(intervals, ggplot2::aes(x = interval_ms)) +
     y = "Count"
   ) +
   ggplot2::theme_minimal(base_size = 12)
-\`\`\`
+```
 
-The dashed line denotes the *nominal* 10 ms interval, not the verified hardware performance. In the experimental development branch, \`audit_eye_acquisition_integrity()\` and \`plot_eye_acquisition_integrity()\` add explicit provenance and interval audits; see [research PR #49](https://github.com/stefanosbalaskas/eyeprocess/pull/49).
+The dashed line denotes the *nominal* 10 ms interval, not the verified hardware performance. In the experimental development branch, `audit_eye_acquisition_integrity()` and `plot_eye_acquisition_integrity()` add explicit provenance and interval audits; see [research PR #49](https://github.com/stefanosbalaskas/eyeprocess/pull/49).
 
 ## Figure 2. Paired eye responses and participant-bootstrap uncertainty
 
 Treating hundreds of frames or fixations from the same person as independent observations inflates the sample size. The plot therefore aggregates to one prespecified response per participant and condition, retaining matched participants.
 
-\`\`\`{r paired-observations, eval=requireNamespace("ggplot2", quietly=TRUE)}
+```{r paired-observations, eval=requireNamespace("ggplot2", quietly=TRUE)}
 n <- 30L
 participant <- data.frame(
   id = seq_len(n),
@@ -72,9 +72,9 @@ ggplot2::ggplot(long, ggplot2::aes(
     x = NULL, y = "AOI dwell time (seconds)"
   ) +
   ggplot2::theme_minimal(base_size = 12)
-\`\`\`
+```
 
-\`\`\`{r paired-bootstrap, eval=requireNamespace("ggplot2", quietly=TRUE)}
+```{r paired-bootstrap, eval=requireNamespace("ggplot2", quietly=TRUE)}
 paired_diff <- participant$stimulus - participant$baseline
 boots <- replicate(2000L, mean(sample(
   paired_diff, size = length(paired_diff), replace = TRUE
@@ -96,15 +96,15 @@ ggplot2::ggplot(data.frame(draw = boots), ggplot2::aes(y = draw, x = 1)) +
     x = NULL, y = "Difference in AOI dwell time (seconds)"
   ) +
   ggplot2::theme_minimal(base_size = 12)
-\`\`\`
+```
 
-For canonical Gardner–Altman and Cumming figures, use the maintained R \`dabestr\` package. For mixed models, serially dependent trajectories, or unequal observation exposure, use the appropriate hierarchical estimand and uncertainty rather than substituting a raw mean difference.
+For canonical Gardner–Altman and Cumming figures, use the maintained R `dabestr` package. For mixed models, serially dependent trajectories, or unequal observation exposure, use the appropriate hierarchical estimand and uncertainty rather than substituting a raw mean difference.
 
 ## Figure 3. Missingness assumptions remain unidentifiable from observed rows
 
-The following is a deliberately simple **scenario analysis**, not a mechanism estimator. A group has an observed mean of 11 seconds and half of recorded outcome rows unavailable. Imputing unavailable rows to *observed mean + delta* changes the hypothetical full-data mean according to \`11 + 0.5 * delta\`. Those outcomes are unobserved; no data-driven procedure here establishes MCAR, MAR, or MNAR.
+The following is a deliberately simple **scenario analysis**, not a mechanism estimator. A group has an observed mean of 11 seconds and half of recorded outcome rows unavailable. Imputing unavailable rows to *observed mean + delta* changes the hypothetical full-data mean according to `11 + 0.5 * delta`. Those outcomes are unobserved; no data-driven procedure here establishes MCAR, MAR, or MNAR.
 
-\`\`\`{r delta-sensitivity, eval=requireNamespace("ggplot2", quietly=TRUE)}
+```{r delta-sensitivity, eval=requireNamespace("ggplot2", quietly=TRUE)}
 scenario <- data.frame(
   delta = seq(-10, 10, by = .5),
   missing_fraction = .5,
@@ -124,6 +124,6 @@ ggplot2::ggplot(
     y = "Hypothetical overall mean (seconds)"
   ) +
   ggplot2::theme_minimal(base_size = 12)
-\`\`\`
+```
 
 **Reporting boundary:** identify the physical gaze target and coordinate reference when reporting accuracy; distinguish timestamp quality from hardware delivery; state the participant/trial estimand before estimation plots; and disclose missingness assumptions. Research diagnostics remain in [PR #49](https://github.com/stefanosbalaskas/eyeprocess/pull/49), pending scientific qualification and formal lifecycle review.
