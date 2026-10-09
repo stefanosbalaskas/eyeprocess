@@ -23,6 +23,9 @@ home:
   - text: CRAN package DOI
     href: https://doi.org/10.32614/CRAN.package.eyeprocess
 articles:
+- title: Illustrated estimation graphics
+  contents:
+  - estimation-first-eye-tracking-gallery
 - title: Trial-level multilevel mediation
   contents:
   - trial-level-multilevel-mediation
