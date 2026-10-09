@@ -1,3 +1,5 @@
+utils::globalVariables(c("delta_ms"))
+
 # Explicit acquisition-integrity evidence. No timestamp resampling or
 # attempted hardware/SDK synchronization is performed.
 
