@@ -23,6 +23,9 @@ home:
   - text: CRAN package DOI
     href: https://doi.org/10.32614/CRAN.package.eyeprocess
 articles:
+- title: Acquisition integrity and sampling-rate provenance (research)
+  contents:
+  - acquisition-integrity-research
 - title: Trial-level multilevel mediation
   contents:
   - trial-level-multilevel-mediation
