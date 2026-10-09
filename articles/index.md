@@ -1,5 +1,10 @@
 # Articles
 
+### Illustrated estimation graphics
+
+- [Estimation-first eye tracking: sampling, pairing, and
+  missingness](https://stefanosbalaskas.github.io/eyeprocess/articles/estimation-first-eye-tracking-gallery.md):
+
 ### Trial-level multilevel mediation
 
 - [Trial-Level Multilevel Gaze Mediation

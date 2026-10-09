@@ -22,6 +22,7 @@ articles:
   dynamic-irtree-hardening: dynamic-irtree-hardening.html
   ecosystem-update-2026-09: ecosystem-update-2026-09.html
   empirical-validation-programme: empirical-validation-programme.html
+  estimation-first-eye-tracking-gallery: estimation-first-eye-tracking-gallery.html
   event-detector-multiverse-failure-clinic: event-detector-multiverse-failure-clinic.html
   event-detector-multiverse-visual-reporting: event-detector-multiverse-visual-reporting.html
   event-detector-multiverse: event-detector-multiverse.html
@@ -104,7 +105,7 @@ articles:
   validation-evidence-atlas-software-paper: validation-evidence-atlas-software-paper.html
   validation-execution-engine: validation-execution-engine.html
   visual-context-and-testlet-irt: visual-context-and-testlet-irt.html
-last_built: 2026-09-28T10:33Z
+last_built: 2026-10-09T20:46Z
 urls:
   reference: https://stefanosbalaskas.github.io/eyeprocess/reference
   article: https://stefanosbalaskas.github.io/eyeprocess/articles
