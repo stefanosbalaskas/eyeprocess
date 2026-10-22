@@ -1,3 +1,11 @@
+# eyeprocess 0.12.1 — release candidate (not published)
+
+## October 2026 documentation and reproducibility
+
+* Adds a synthetic timestamp-interval versus nominal-sampling article with two original plots and explicit synchronization limitations. No exported API changes; independent scientific draft PR #49 remains excluded.
+* Release gate: complete exact-source R CMD check --as-cran, review installed source tarball and cross-platform tests, audit publication metadata, then publish an immutable GitHub tag and submit to CRAN with maintainer confirmation.
+* Current CRAN baseline at candidate preparation: 0.11.1. The candidate has **not** been submitted to CRAN or published as a GitHub Release.
+
 # eyeprocess 0.12.0.9000
 
 ## Development
