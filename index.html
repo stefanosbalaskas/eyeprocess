@@ -107,7 +107,7 @@
 </div>
 <p><strong>Vendor-neutral infrastructure for reproducible eye-tracking and multimodal process-data research.</strong></p>
 <p><code>eyeprocess</code> transforms heterogeneous eye-tracking, pupillometry, behavioural, and biometric exports into validated, analysis-ready process data. It combines vendor-neutral harmonization with first-class Gazepoint support, explicit quality and provenance controls, gaze/AOI/scanpath analysis, pupillometry and biometric workflows, interoperability, and psychometric/process modelling.</p>
-<p><strong>Release channels:</strong> CRAN <strong>0.11.1</strong> (published 2026-09-28) · GitHub stable <strong>0.12.0</strong> · development <strong>0.12.0.9000</strong></p>
+<p><strong>Release channels (verified 22 October 2026):</strong> CRAN <strong>0.11.1</strong> (published 2026-09-28) · GitHub stable <strong>0.12.1</strong>. The repository <code>master</code> contains 0.12.1; the earlier development identifier 0.12.0.9000 is no longer current.</p>
 <p><a href="https://stefanosbalaskas.github.io/eyeprocess/">Website</a> · <a href="https://CRAN.R-project.org/package=eyeprocess" class="external-link">CRAN</a> · <a href="https://stefanosbalaskas.github.io/eyeprocess/reference/index.html">Reference</a> · <a href="https://stefanosbalaskas.github.io/eyeprocess/articles/index.html">Articles</a> · <a href="https://github.com/stefanosbalaskas/eyeprocess" class="external-link">GitHub</a> · <a href="https://github.com/stefanosbalaskas/eyeprocess/releases" class="external-link">Releases</a></p>
 <div class="section level2">
 <h2 id="what-eyeprocess-provides">What eyeprocess provides<a class="anchor" aria-label="anchor" href="#what-eyeprocess-provides"></a>
@@ -307,6 +307,12 @@
 <p>Support level and empirical validation are deliberately kept separate. The existence of an adapter is not treated as proof of production compatibility with every exporter or software version.</p>
 </div>
 <div class="section level2">
+<h2 id="october-2026-illustrated-research">October 2026 illustrated research<a class="anchor" aria-label="anchor" href="#october-2026-illustrated-research"></a>
+</h2>
+<p>The <a href="https://stefanosbalaskas.github.io/eyeprocess/articles/october-2026-timestamp-intervals.html">timestamp-interval diagnostics article</a> includes two original R-generated figures contrasting declared sampling and observed intervals. These demonstrations are synthetic and are not empirical device-calibration, causal, or clinical evidence.</p>
+<p><strong>Channels:</strong> GitHub <strong>0.12.1</strong> (22 October 2026); CRAN <strong>0.11.1</strong> (latest independently checked). The GitHub and CRAN source versions are not interchangeable.</p>
+</div>
+<div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
 <div class="section level3">
@@ -320,15 +326,15 @@
 <div class="section level3">
 <h3 id="github-stable-release">GitHub stable release<a class="anchor" aria-label="anchor" href="#github-stable-release"></a>
 </h3>
-<p>The GitHub release line is newer than CRAN. To install the exact <strong>v0.12.0</strong> release:</p>
+<p>The GitHub release line is newer than CRAN. To install the exact <strong>v0.12.1</strong> release:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span></span>
-<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"stefanosbalaskas/eyeprocess"</span>, ref <span class="op">=</span> <span class="st">"v0.12.0"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"stefanosbalaskas/eyeprocess"</span>, ref <span class="op">=</span> <span class="st">"v0.12.1"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="development">Development<a class="anchor" aria-label="anchor" href="#development"></a>
 </h3>
-<p>For the current <strong>0.12.0.9000</strong> development branch:</p>
+<p>For the current repository <code>master</code> (version <strong>0.12.1</strong>):</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"stefanosbalaskas/eyeprocess"</span><span class="op">)</span></span></code></pre></div>
 <p>Optional modelling backends are deliberately not mandatory dependencies. Install only the engines required for a specific analysis.</p>
@@ -375,7 +381,7 @@
 <div class="section level2">
 <h2 id="validation-and-reproducibility">Validation and reproducibility<a class="anchor" aria-label="anchor" href="#validation-and-reproducibility"></a>
 </h2>
-<p>The <strong>0.11.1 CRAN release</strong> preserves an auditable validation contract across data import, transformations, storage, modelling, and reporting. It was published on CRAN on <strong>28 September 2026</strong> after the CRAN remediation cycle, and is available from the canonical package page and package DOI above. The newer <strong>v0.12.0 GitHub release</strong> and <strong>0.12.0.9000 development branch</strong> remain separate release channels and should not be reported as the CRAN version.</p>
+<p>The <strong>0.11.1 CRAN release</strong> preserves an auditable validation contract across data import, transformations, storage, modelling, and reporting. It was published on CRAN on <strong>28 September 2026</strong> after the CRAN remediation cycle, and is available from the canonical package page and package DOI above. The newer <strong>v0.12.1 GitHub release</strong> is not yet the CRAN version; report the exact installed package version and source.</p>
 <p>The package also provides infrastructure for real-export validation, grouped validation, parameter recovery, simulation-based calibration, leakage checks, sensitivity analysis, model-evidence audits, benchmark generation, and reproducible reporting.</p>
 <p>Detailed implementation and validation records are maintained in:</p>
 <ul>

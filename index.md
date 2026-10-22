@@ -10,8 +10,10 @@ Gazepoint support, explicit quality and provenance controls,
 gaze/AOI/scanpath analysis, pupillometry and biometric workflows,
 interoperability, and psychometric/process modelling.
 
-**Release channels:** CRAN **0.11.1** (published 2026-09-28) · GitHub
-stable **0.12.0** · development **0.12.0.9000**
+**Release channels (verified 22 October 2026):** CRAN **0.11.1**
+(published 2026-09-28) · GitHub stable **0.12.1**. The repository
+`master` contains 0.12.1; the earlier development identifier 0.12.0.9000
+is no longer current.
 
 [Website](https://stefanosbalaskas.github.io/eyeprocess/) ·
 [CRAN](https://CRAN.R-project.org/package=eyeprocess) ·
@@ -229,6 +231,18 @@ Support level and empirical validation are deliberately kept separate.
 The existence of an adapter is not treated as proof of production
 compatibility with every exporter or software version.
 
+## October 2026 illustrated research
+
+The [timestamp-interval diagnostics
+article](https://stefanosbalaskas.github.io/eyeprocess/articles/october-2026-timestamp-intervals.html)
+includes two original R-generated figures contrasting declared sampling
+and observed intervals. These demonstrations are synthetic and are not
+empirical device-calibration, causal, or clinical evidence.
+
+**Channels:** GitHub **0.12.1** (22 October 2026); CRAN **0.11.1**
+(latest independently checked). The GitHub and CRAN source versions are
+not interchangeable.
+
 ## Installation
 
 ### CRAN
@@ -248,17 +262,17 @@ The canonical CRAN record is
 ### GitHub stable release
 
 The GitHub release line is newer than CRAN. To install the exact
-**v0.12.0** release:
+**v0.12.1** release:
 
 ``` r
 
 install.packages("remotes")
-remotes::install_github("stefanosbalaskas/eyeprocess", ref = "v0.12.0")
+remotes::install_github("stefanosbalaskas/eyeprocess", ref = "v0.12.1")
 ```
 
 ### Development
 
-For the current **0.12.0.9000** development branch:
+For the current repository `master` (version **0.12.1**):
 
 ``` r
 
@@ -337,9 +351,8 @@ The **0.11.1 CRAN release** preserves an auditable validation contract
 across data import, transformations, storage, modelling, and reporting.
 It was published on CRAN on **28 September 2026** after the CRAN
 remediation cycle, and is available from the canonical package page and
-package DOI above. The newer **v0.12.0 GitHub release** and
-**0.12.0.9000 development branch** remain separate release channels and
-should not be reported as the CRAN version.
+package DOI above. The newer **v0.12.1 GitHub release** is not yet the
+CRAN version; report the exact installed package version and source.
 
 The package also provides infrastructure for real-export validation,
 grouped validation, parameter recovery, simulation-based calibration,
