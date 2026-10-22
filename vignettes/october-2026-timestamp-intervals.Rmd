@@ -1,0 +1,59 @@
+---
+title: "Reported sampling rates and observed timestamp intervals"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Reported sampling rates and observed timestamp intervals}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Measurement question
+
+Device-reported rate, source-export timestamp intervals, frame-delivery cadence, and downstream resampling frequency are distinct quantities. A declared sampling frequency should never be substituted for empirical timestamp checks; neither observed intervals nor a device specification by themselves establish synchronization accuracy, calibration quality, or the temporal accuracy of a fixation or pupil event.
+
+This deliberately synthetic example begins with a *nominal* 120 Hz grid, introduces jitter, and inserts a few delayed intervals to show why mean realized rate and interval distribution should be reported separately.
+
+```{r timestamp-synthetic-data}
+set.seed(20261022)
+n <- 501L
+nominal_ms <- 1000 / 120
+interval_ms <- pmax(0.1, stats::rnorm(n - 1L, nominal_ms, 0.55))
+delays <- seq(95L, 395L, by = 60L)
+interval_ms[delays] <- interval_ms[delays] * 2.6
+timestamp_ms <- c(0, cumsum(interval_ms))
+realized_rate_hz <- (length(timestamp_ms) - 1L) * 1000 /
+  (tail(timestamp_ms, 1L) - timestamp_ms[1L])
+stopifnot(length(timestamp_ms) == n,
+          all(diff(timestamp_ms) > 0),
+          realized_rate_hz < 120)
+data.frame(declared_hz = 120, observed_mean_hz = realized_rate_hz,
+           interval_q05_ms = unname(stats::quantile(interval_ms, 0.05)),
+           interval_median_ms = unname(stats::median(interval_ms)),
+           interval_q95_ms = unname(stats::quantile(interval_ms, 0.95)))
+```
+
+## Figure 1. The actual interval sequence
+
+```{r timestamp-interval-figure, fig.width=9, fig.height=4, fig.cap="Synthetic timestamp differences. Dashed line shows the nominal device interval, not a measured timing-reference accuracy bound."}
+graphics::plot(seq_along(interval_ms), interval_ms, type = "h",
+               col = "#24577B", xlab = "Successive observed interval",
+               ylab = "Elapsed time (milliseconds)",
+               main = "Nominal sampling is not realized delivery")
+graphics::abline(h = nominal_ms, lty = 2, col = "#C05B43", lwd = 2)
+```
+
+## Figure 2. Interval distribution and delayed updates
+
+```{r timestamp-distribution-figure, fig.width=8, fig.height=4, fig.cap="Original R histogram of intentionally jittered synthetic intervals with occasional delayed updates; no real device measurement or clock-ground-truth comparison."}
+graphics::hist(interval_ms, breaks = 28,
+               col = "#CEE0ED", border = "#597087",
+               xlab = "Observed timestamp interval (milliseconds)",
+               main = "Interval distribution reveals long-tail delays")
+graphics::abline(v = nominal_ms, col = "#C05B43", lty = 2, lwd = 2)
+```
+
+## Reporting constraints
+
+This demonstration supports an elementary acquisition audit: retain native export timestamps and source rate declarations; calculate realized intervals before interpolation, smoothing or trial aggregation; record clock changes and delayed intervals; and distinguish observed missing records from true absence of the underlying behavioral event. It does **not** establish whether delayed samples reflect buffering, device loss, timestamp origin, USB delivery, a host computer, or another cause. That inference needs independent reference timing and vendor-specific documentation.
+
+The separate [draft acquisition-integrity research PR #49](https://github.com/stefanosbalaskas/eyeprocess/pull/49) includes experimental certificate and plotting implementations that remain subject to empirical qualification and CI. This article does not merge those research APIs, change published stable 0.12.0 or authorize a newer CRAN release.
