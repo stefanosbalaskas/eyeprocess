@@ -73,6 +73,7 @@ articles:
   multiple-response-and-revisiting-irt-0-7: multiple-response-and-revisiting-irt-0-7.html
   multiverse-sensitivity-and-decision-stability: multiverse-sensitivity-and-decision-stability.html
   negative-controls-and-temporal-leakage: negative-controls-and-temporal-leakage.html
+  october-2026-timestamp-intervals: october-2026-timestamp-intervals.html
   preprocessing-features: preprocessing-features.html
   probabilistic-aoi-compositions: probabilistic-aoi-compositions.html
   process-decision-proxies-and-frontier-gates: process-decision-proxies-and-frontier-gates.html
@@ -105,7 +106,7 @@ articles:
   validation-evidence-atlas-software-paper: validation-evidence-atlas-software-paper.html
   validation-execution-engine: validation-execution-engine.html
   visual-context-and-testlet-irt: visual-context-and-testlet-irt.html
-last_built: 2026-10-09T20:46Z
+last_built: 2026-10-22T07:00Z
 urls:
   reference: https://stefanosbalaskas.github.io/eyeprocess/reference
   article: https://stefanosbalaskas.github.io/eyeprocess/articles

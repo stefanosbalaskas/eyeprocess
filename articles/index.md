@@ -125,6 +125,8 @@ controls, reproducibility, benchmarking, and software-paper evidence.
   programme](https://stefanosbalaskas.github.io/eyeprocess/articles/research-validation-program.md):
 - [Measurement accountability: pupil latency, event plausibility, and
   validation](https://stefanosbalaskas.github.io/eyeprocess/articles/measurement-accountability-0-11.md):
+- [Reported sampling rates and observed timestamp
+  intervals](https://stefanosbalaskas.github.io/eyeprocess/articles/october-2026-timestamp-intervals.md):
 - [Ecosystem update — September
   2026](https://stefanosbalaskas.github.io/eyeprocess/articles/ecosystem-update-2026-09.md):
 - [Survival Analysis for Gaze
