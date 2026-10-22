@@ -1,19 +1,17 @@
-# CRAN submission comments — RELEASE CANDIDATE, NOT SUBMITTED
+# CRAN submission review — eyeprocess 0.12.1
 
-Package: eyeprocess
-Candidate source version: 0.12.1
-Currently verified CRAN version: 0.11.1
+**Status: NOT SUBMITTED TO CRAN (22 October 2026).**
 
-## Scope
+- Source candidate: GitHub `v0.12.1` — https://github.com/stefanosbalaskas/eyeprocess/releases/tag/v0.12.1
+- Source archive: `eyeprocess_0.12.1.tar.gz` attached to the GitHub Release.
+- CRAN version before proposed submission: `0.11.1`.
+- Exact-release GitHub workflow: https://github.com/stefanosbalaskas/eyeprocess/actions/runs/39763120082 (completed successfully after building and checking the release source archive with `R CMD check --as-cran`).
+- October documentation: reproducible synthetic illustrated vignette with explicit interpretation limitations; no empirical instrument validation or automatic calibration claim.
 
-Synthetic timestamp jitter and nominal sampling diagnostic article and two plots; no API changes.
+## CRAN-maintainer verification still required
 
-## Release qualification (not complete)
+1. Independently examine the exact archive's `00check.log`, any NOTES, installed sources and examples, supported R platforms and CRAN incoming checks. Workflow success alone is not the same as CRAN acceptance.
+2. Confirm reverse-dependency effects, links/DOIs, URL validity, and policy compliance. No existing tags or historical CRAN packages should be overwritten.
+3. Submit the exact validated `eyeprocess_0.12.1.tar.gz` archive through CRAN's maintainer-authenticated channel. Confirm the response email and wait for CRAN processing. This has **not** happened in this campaign.
 
-* Candidate exact-head GitHub Actions: inspect current PR run results before promotion.
-* `R CMD build` source archive: not independently generated/verified in this campaign.
-* `R CMD check --as-cran` against the exact intended submission tarball: not independently verified.
-* Reverse-dependency and cross-platform CRAN policy audit: pending release review.
-* CRAN maintainer confirmation: not requested; no CRAN submission or new GitHub Release made.
-
-**Replace this draft with observed test environments and exact results before any CRAN upload.**
+This file is a release evidence record, not a submission receipt.
